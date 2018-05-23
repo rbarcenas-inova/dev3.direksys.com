@@ -1,0 +1,154 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 0, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+			
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center" colspan="2">N&uacute;mero asignado</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform" onsubmit="return disableSubmits();">	
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="didmx" value="[va_didmx]">
+	<input type="hidden" name="dids7" value="[va_accountcode]">
+	<input type="hidden" name="cid" value="[va_src]">
+	<input type="hidden" name="cdr_id" value="[va_cdr_id]">
+	<fieldset><legend>Informaci&oacute;n del n&uacute;mero</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		[va_scal]
+		<tr>
+		  <td width="30%" valign="top" rowspan="2">N&uacute;mero telef&oacute;nico : </td>
+		  <td><span class="bigtext">[va_phone_number]</span><br>
+				<span class="stdtext">(llamada recibida [va_calldate] / </span>
+				<span class="stdtxterr">hace [va_timedif])</span><br>
+				<span class="stdtext">El cliente tiene <span class="stdtxterr">[va_numcalls]</span> llamadas sin contestar</span><br>
+				<span class="stdtext">Hora Local </span><span class="stdtxterr">[va_localtime]</span></td>
+		</tr>
+		<tr>
+			<td>DNIS : [va_num800] ([va_didmx])<br>
+				Campaña : [va_product]</td>
+		<tr>
+			<td colspan=2>
+				<p>&nbsp;</p>
+				<p>Ordenes del Mismo Cliente, (Basado en Numero de telefono)
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					<tr>
+				    <td class="menu_bar_title">ID de orden</td>
+				    <td class="menu_bar_title">Nombre del cliente</td>
+					</tr>
+			    [va_other_info]
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2>
+				<p>&nbsp;</p>
+				<p>Otras Llamadas de Salida, (Basado en Numero de telefono)
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				    <tr>
+					<td class="menu_bar_title" width="20%">Fecha de la llamada</td>
+					<td class="menu_bar_title" width="35%">Nombre del RVT</td>
+					<td class="menu_bar_title" width="45%">Calificaci&oacute;n</td>
+				    </tr>
+				    [va_ocalls_info]
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2>
+				<p>&nbsp;</p>
+				<p>Notas de Llamada de Salida Pasadas, (Basado en Numero de telefono)
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				    <tr>
+					<td class="menu_bar_title" width="15%">Fecha de la Nota</td>
+					<td class="menu_bar_title" width="35%">Nombre del RVT</td>
+					<td class="menu_bar_title" width="50%">Notas</td>
+				    </tr>
+				    [va_notes_info]
+				</table>
+			</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+		
+	<fieldset><legend>Calificaci&oacute;n de la llamada: <span class="smallfieldterr">[er_calification]</span></legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td width="50%" class="menu_bar_title">Calificación Inmediata</td>
+				<td width="50%" class="menu_bar_title">Calificar después</td>
+			</tr>
+			<tr>
+				<td>
+					<p><b>Calificacion de llamadas contestadas :</b><br>
+					<input type="radio" class="radio" name="calification" value='Contestada/No Venta'>Contestada/No Venta<br>
+					<input type="radio" class="radio" name="calification" value='Contestada/No Venta - Ya tiene Pedido'>Contestada/No Venta - Ya tiene Pedido<br>
+					<input type="radio" class="radio" name="calification" value='Contestada/No Venta - Precio'>Contestada/No Venta - Precio<br>
+
+					<input type="radio" class="radio" name="calification" value='Contestada/No Venta - Gasto Envio'>Contestada/No Venta - Gasto Envio<br>
+					<input type="radio" class="radio" name="calification" value='Contestada/No Venta - Tiempo de Entrega'>Contestada/No Venta - Tiempo de Entrega<br>
+					<input type="radio" class="radio" name="calification" value='Contestada/No Venta - Facilidad de Pago'>Contestada/No Venta - Facilidad de Pago<br>
+					<input type="radio" class="radio" name="calification" value='Contestada/No Venta - Oferteo Confuso'>Contestada/No Venta - Oferteo Confuso<br>
+					<input type="radio" class="radio" name="calification" value='Contestada/No Venta - Competencia'>Contestada/No Venta - Competencia<br>
+					<input type="radio" class="radio" name="calification" value='Contestada/No Venta - Producto incorrecto'>Contestada/No Venta - Producto incorrecto<br>
+					<input type="radio" class="radio" name="calification" value='Contestada/No Venta - No hay COD'>Contestada/No Venta - No hay COD<br>
+					<input type="radio" class="radio" name="calification" value='Contestada/No Venta - Llamada de ATC'>Contestada/No Venta - Llamada de ATC<br>
+					<input type="radio" class="radio" name="calification" value='Contestada/No Venta - Venta Agendada'>Contestada/No Venta - Venta Agendada<br>
+
+					<input type="radio" class="radio" name="calification" value='Contestada/No Venta - Broma'>Contestada/No Venta - Broma<br>
+					<input type="radio" class="radio" name="calification" value='Contestada - Nadie llamo'>Contestada - Nadie llamo<br>
+					<p>&nbsp;</p>
+					<p><b>Calificacion de llamadas NO contestadas :</b><br>
+					<input type="radio" class="radio" name="calification" value='No contestada - Voicemail/Fax'>No contestada - Voicemail (No dejar Voicemail!)/Fax<br>
+					<input type="radio" class="radio" name="calification" value='No contestada - Nadie Contesta'>No contestada - Nadie Contesta<br>
+					[va_set_unavailable]
+				</td>
+				<td>
+					<input type="radio" class="radio" name="calification" value='int-answered'>Calificar Despues<br><br>
+											Iniciar Proceso de Orden o Consultas en Direksys</td>
+			</tr>
+			 [va_cdr_notes]
+			<tr>
+			    <td colspan="2" align="center"><br><input type="submit" value="Aceptar" class="button">
+			    	<input type="submit" value="Aceptar y Terminar" name="lastcall" class="button"></td>
+			</tr>
+		</table>
+
+	</fieldset>
+	<script language="javascript">
+	<!--
+	chg_radio('calification','[in_calification]');
+	//-->
+</script>
+	</form>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+[ip_footer]

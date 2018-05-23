@@ -1,0 +1,138 @@
+[ip_header_console]
+
+<script>
+
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	//$(document).ajaxError(function(e, xhr, settings, exception) {
+		//alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	//});
+
+});
+
+$(function() {
+
+	// if the function argument is given to overlay,
+	// it is assumed to be the onBeforeLoad event listener
+	$("a[rel]").overlay({
+		effect: 'apple',
+	});
+});
+
+</script>
+
+<style>
+
+/* use a semi-transparent image for the overlay */
+#overlay {
+	background-image:url(/jquerytools/overlay/transparent.png);
+	color:#fff;
+	height:540px;
+}
+
+/* container for external content. uses vertical scrollbar, if needed */
+div.contentWrap {
+	height:541px;
+	overflow-y:auto;
+}
+/* the overlayed element */
+.apple_overlay {
+
+	/* initially overlay is hidden */
+	display:none;
+
+	/* growing background image */
+	background-image:url(/jquerytools/overlay/white.png);
+
+	/*
+		width after the growing animation finishes
+		height is automatically calculated
+	*/
+	width:540px;
+
+	/* some padding to layout nested elements nicely  */
+	padding:35px;
+
+	/* a little styling */
+	font-size:11px;
+}
+
+/* default close button positioned on upper right corner */
+.apple_overlay .close {
+	background-image:url(/jquerytools/overlay/close.png);
+	position:absolute; right:5px; top:5px;
+	cursor:pointer;
+	height:35px;
+	width:35px;
+}
+
+</style>
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" valign=top align=center>	
+			
+		<table width="100%" height=41px border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+				<td>&nbsp;</td>
+				<td class="cell_on" width="14%" align="center">Consola Venta</td>
+		 </tr>
+		</table>
+		
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+
+
+	
+
+	<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;">
+		<table>
+			<tr>
+				<td id="error_order" style="display:none;"><h2>El pedido <u>[in_id_orders]</u> no se pudo completar.</h2></td>
+			</tr>
+			<tr>
+				<td>
+				<form method="get" action="/cgi-bin/mod/pos/admin">
+					<input type="hidden" name="cmd" value="console">
+					<input type="submit" value="Crear Nuevo Pedido" class="button">
+				</form>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<table id="cc_ok" style="display:none;">
+			<tr>
+				<td><a href="/cgi-bin/mod/pos/dbman?cmd=opr_orders&search=Print&toprint=[in_id_orders]&f=11&voucher=1" target="_blank" class="button">Imprimir Voucher del Pago</a></td>
+				<td><a href="/cgi-bin/mod/pos/dbman?cmd=opr_orders&search=Print&toprint=[in_id_orders]&f=12" target="_blank" class="button">Imprimir Recibo de Compra</a></td>				
+			</tr>
+		</table>
+		<br>
+	</fieldset>
+
+<p>&nbsp;</p>
+
+</td>
+</tr>
+</table>
+<script type="text/javascript">
+$(function() {
+
+   var cc = '[va_cc]';
+   if(cc == 'ok'){
+   		$("#cc_ok").show();
+   }
+   var error = '[va_error]';
+   if(error == 'error_order'){
+   		$("#error_order").show();
+   }   
+
+});
+</script>
+
+
+[ip_footer]
+
+

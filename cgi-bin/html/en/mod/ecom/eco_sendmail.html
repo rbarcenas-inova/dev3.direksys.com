@@ -1,0 +1,94 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="60%" align="center"></td>
+	    <td width="20%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/ecom/admin?cmd=eco_sendmail")'>Send Email</td>
+	  </tr>
+	</table>
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+
+  <form action="/cgi-bin/mod/ecom/admin" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="eco_sendmail">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Send an Email</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Send To</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="20%">ID Order  : <span class="smallfieldterr">[er_id_orders]</span></td>
+		  <td class="smalltext"><input type="text" name="id_orders" value="[in_id_orders]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+  	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="20%">Subject : <span class="smallfieldterr">[er_subject]</span></td>
+		  <td class="smalltext"><input type="text" name="subject" value="[in_subject]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="20%">From email: <span class="smallfieldterr">[er_from_email]</span></td>
+		  <td class="smalltext"><input type="text" name="from_email" value="[in_from_email]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="20%">To email: <span class="smallfieldterr">[er_to_email]</span></td>
+		  <td class="smalltext"><input type="text" name="to_email" value="[in_to_email]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Templates List</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td colspan="2" width="90%" align="left">
+		  	&nbsp;
+		  	<span class="smallfieldterr">[er_to_email]</span>
+		  	<br>
+		  [fc_build_sendmail_templates_list]	
+		  </td>
+		 </tr>
+  	</table>
+	</fieldset>
+	&nbsp;
+	<p align="center"><input type="submit" value=" Send " class="button"></p>
+  </form>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

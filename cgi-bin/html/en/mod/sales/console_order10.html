@@ -1,0 +1,197 @@
+[ip_header_console]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td valign="top" align="left" bgcolor="#ffffff">
+			
+		<table width="100%" height=41px border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+				<td>&nbsp;</td>
+				<td class="cell_on" width="14%" align="center">Consola [va_salesorigins.channel]</td>
+		 </tr>
+		</table>
+		
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+				
+				
+	[fc_customer_header]
+
+<fieldset>
+<legend>Gracias : Hasta Luego </legend>
+
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform" id="form_finalize_call">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="10">
+	<input type="hidden" name="add_extrainfo" value="1">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="id_customers" value="[in_id_customers]">
+	<input type="hidden" name="id_salesorigins" value="[va_id_salesorigins]">
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td class="stdtxterr">[va_message]<td>
+		</tr>
+		<tr>
+      	<td colspan="2">
+	      		      	  		
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+			
+			</td>
+	  </tr>
+</table>
+&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%" class="titletext" align="center">Orden : [va_e_prefix][in_id_orders]</td>
+		</tr>
+		<tr>
+		  <td width="30%" class="titletext" align="center">Cliente : [in_id_customers]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+		  <td colspan="2" align="center"><br><input type="submit"  value="Gracias!!  Finalizar LLamada>>" class="button"></td>
+		</tr>		
+	</table>
+</fieldset>
+</form>
+<p>&nbsp;</p>
+<!-- invoice data -->
+<form action="/cgi-bin/mod/sales/admin" method="post" name="form_invoice" id="form_invoice" style="[va_display_invoice_info]">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="10">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="id_customers" value="[in_id_customers]">
+	<input type="hidden" name="id_salesorigins" value="[va_id_salesorigins]">
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext">
+				<label for="req_invoice">¿Requiere Factura?</label>&nbsp;<input type="checkbox" name="req_invoice" id="req_invoice" value="1">
+				<br><br>
+			<td>
+		</tr>
+	</table>
+	<div id="data_invoice" style="display:none">
+		<fieldset>
+			<legend>Datos de Facturación </legend>
+
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td width="30%">
+						RFC : <span class="smallfieldterr">[er_invoice_rfc]</span>
+					</td>
+					<td width="70%">
+						<input type="text" name="invoice_rfc" id="invoice_rfc" value="[in_invoice_rfc]" onfocus="focusOn( this )" onblur="focusOff( this )" size="25" max="13">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Raz&oacute;n Social : <span class="smallfieldterr">[er_invoice_name]</span>
+					</td>
+					<td>
+						<input type="text" name="invoice_name" id="invoice_name" value="[in_invoice_name]" onfocus="focusOn( this )" onblur="focusOff( this )" size="80">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Calle/N&uacute;mero ext/N&uacute;mero int : <span class="smallfieldterr">[er_invoice_street]</span>
+					</td>
+					<td>
+						<input type="text" name="invoice_street" id="invoice_street" value="[in_invoice_street]" onfocus="focusOn( this )" onblur="focusOff( this )" size="60">
+						<input type="text" name="invoice_noext" id="invoice_noext" value="[in_invoice_noext]" onfocus="focusOn( this )" onblur="focusOff( this )" size="10">
+						<input type="text" name="invoice_noint" id="invoice_noint" value="[in_invoice_noint]" onfocus="focusOn( this )" onblur="focusOff( this )" size="10">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Colonia : <span class="smallfieldterr">[er_invoice_urbanization]</span>
+					</td>
+					<td>
+						<input type="text" name="invoice_urbanization" id="invoice_urbanization" value="[in_invoice_urbanization]" onfocus="focusOn( this )" onblur="focusOff( this )" size="60">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Municipio &oacute; Delegaci&oacute;n : <span class="smallfieldterr">[er_invoice_city]</span>
+					</td>
+					<td>
+						<input type="text" name="invoice_city" id="invoice_city" value="[in_invoice_city]" onfocus="focusOn( this )" onblur="focusOff( this )" size="60">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Estado : <span class="smallfieldterr">[er_invoice_state]</span>
+					</td>
+					<td>
+						<input type="text" name="invoice_state" id="invoice_state" value="[in_invoice_state]" onfocus="focusOn( this )" onblur="focusOff( this )" size="40">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Pa&iacute;s : <span class="smallfieldterr">[er_invoice_country]</span>
+					</td>
+					<td>
+						<input type="text" name="invoice_country" id="invoice_country" value="[in_invoice_country]" onfocus="focusOn( this )" onblur="focusOff( this )"  size="40">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						C&oacute;digo Postal : <span class="smallfieldterr">[er_invoice_zipcode]</span>
+					</td>
+					<td>
+						<input type="text" name="invoice_zipcode" id="invoice_zipcode" value="[in_invoice_zipcode]" onfocus="focusOn( this )" onblur="focusOff( this )" size="5">
+					</td>
+				</tr>
+			</table>&nbsp;
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td colspan="2" align="center"><br><input type="submit" value="Confirmar datos de facturaci&oacute;n" class="button"></td>
+				</tr>
+			</table>
+		</fieldset>
+	</div>
+</form>
+<!-- invoice data -->
+
+<br><br>
+</td>
+</tr>
+</table>	
+<script language="javascript">
+<!--
+
+$('#req_invoice').click(function () { 
+	if($(this).attr('checked')) {
+		$('#data_invoice').slideDown('fast');
+	}else {
+		$('#data_invoice').slideUp('fast');
+	}
+});
+$('#bday_year').blur(function(){
+	var year = $(this).val();
+	if (!year.match(new RegExp('^\\d{4}$'))){
+		alert('El año no está en el formato adecuado');
+	}
+});
+$('#form_finalize_call').submit(function () {
+	return true;
+});
+chg_select('bday_day','[in_bday_day]');
+chg_select('bday_month','[in_bday_month]');
+
+//-->
+</script>
+[ip_footer_console]

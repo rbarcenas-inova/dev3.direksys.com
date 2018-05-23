@@ -1,0 +1,135 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+	<p class="titletext" align="center">New Bills</p>
+	    <div id="container" class="sltv-skin-sam">
+		  <div class="yui-navset yui-navset-top" align="right">
+			  <ul class="yui-nav">
+			  	<li class="[va_tab_bill]" id="tab1" title="" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=fin_new_bills&type=Bill&quot;)">
+						<a href="javascript:return false;">
+							<em>Bills</em>
+						</a>
+				</li>
+			  	<li class="[va_tab_deposit]" id="tab2" title="" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=fin_new_bills&type=Deposit&quot;)">
+						<a href="javascript:return false;">
+							<em>Deposits</em>
+						</a>
+				</li>
+			  	<li class="[va_tab_credit]" id="tab3" title="" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=fin_new_bills&type=Credit&quot;)">
+						<a href="javascript:return false;">
+							<em>Credits</em>
+						</a>
+				</li>
+			  	<li class="[va_tab_debit]" id="tab4" title="" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=fin_new_bills&type=Debit&quot;)">
+						<a href="javascript:return false;">
+							<em>Debits</em>
+						</a>
+				</li>
+			  	<li class="[va_tab_all]" id="tab5" title="" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=fin_new_bills&quot;)">
+						<a href="javascript:return false;">
+							<em>All</em>
+						</a>
+				</li>
+								
+			</ul>
+		  </div>
+	    </div>
+
+
+	&nbsp;
+	<span class="smallfieldterr">[va_message]</span>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td class="tbltextttl">
+	    	<a href="/cgi-bin/mod/admin/admin?cmd=fin_new_bills&type=[in_type]"><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Print' alt='' border='0'></a>
+	    	Records : [va_matches]</td>
+	    <td align="right" class="tbltextttl"><!-- Pages: [va_pageslist] --></td>
+		</tr>
+  </table>
+	
+	<div style="max-height: 600px; overflow: auto;">
+		<form action="/cgi-bin/mod/[ur_application]/admin?cmd=fin_new_bills" name="form_auth_bills" method="post" onsubmit="return confirm_authorize();">
+			<input type="hidden" name="cmd" value="[in_cmd]" />
+			<input type="hidden" name="to_pending" value="1" />
+			<input type="hidden" name="type" value="[in_type]" />
+			<div>
+				<input type="submit" value="Change to Pending" class="button"  name="button_debit" style="margin: 25px 0; width: 130px;" />
+			</div>
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+					<td class="menu_bar_title" align="center">ID</td>
+					<td class="menu_bar_title" align="center">Vendor</td>
+					<td class="menu_bar_title" align="center">Amount Due</td>
+					<td class="menu_bar_title" align="center">Currency</td>	    
+					<td class="menu_bar_title" align="center">Terms</td>
+					<td class="menu_bar_title" align="center">Due Date</td>
+					<td class="menu_bar_title" align="center">Memo</td>
+					<td class="menu_bar_title"><input type="checkbox" name="checkall" id="checkall" value="" /></td>
+				</tr>
+				[va_bills_list]
+				<tr>
+					<td class="smalltext" align="right" colspan="2">Total : </td>
+					<td class="smalltext" align="right" style="border-top:thick double #808080;" nowrap>[va_total]</td>
+					<td class="smalltext" align="right" style="BORDER-TOP:#C0C0C0 1px solid;" nowrap>[va_total_due]</td>
+					<td class="smalltext" colspan="5"></td>
+				</tr>
+			</table>
+			<div>
+				<input type="submit" value="Change to Pending" class="button"  name="button_debit" style="margin: 25px 0; width: 130px;" />
+			</div>
+		</form>
+	</div>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">
+				Records : [va_matches]</td>
+			<td align="right" class="tbltextttl"><!-- Pages: [va_pageslist] --></td>
+		</tr>
+	</table>  
+	&nbsp;
+
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+<script type="text/javascript">
+	$('#checkall').click(function() {
+		if ($(this).attr('checked')=='checked') {
+			$("input[name='auth_bills']").prop('checked','checked');
+			//$(self.document.forms[f].elements[i]).prop('checked','checked');
+		}else {
+			$("input[name='auth_bills']").prop('checked',false);
+			//$(self.document.forms[f].elements[i]).prop('checked',false);
+		}
+	});
+	
+	function confirm_authorize() {
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+</script>
+
+[ip_footer]

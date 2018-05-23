@@ -1,0 +1,207 @@
+<STYLE TYPE="text/css">
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+</STYLE>
+
+<center>
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td><font class=info>
+
+<table cellpadding=0 cellspacing=0 border=0>
+	<td align=left>
+		<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px>
+	</td>
+	[fc_show_companyinfo]
+</table>
+
+<center>
+<hr style="color: #000;background-color: #000;height: 1px;">
+
+
+	
+	<fieldset><legend>Información de Folio de Atención</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" ><font class=infot>Identificador de Folio de Atención: </td>
+			<td><font class=infot>[in_id_rmasi] &nbsp;
+				<a href="/cgi-bin/cc-cservice/dbman?cmd=opr_rmasi&modify=[in_id_rmasi]"><img src='[va_imgurl]/[ur_pref_style]/b_edit.gif' title='Edit' alt='' border='0'></a>
+		  	<a href="javascript:prnwin('/cgi-bin/cc-cservice/dbman?cmd=opr_rmasi&search=Print&toprint=[in_id_rmasi]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.gif' title='Print' alt='' border='0'></a>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%"><font class=infot><font class=info>Date / Time /user : </td>
+			<td><font class=info>[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+<fieldset><legend>Solicitud del cliente</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%"><font class=infot>ID de cliente: </td>
+			<td><font class=info>[in_id_customers]</td>
+		</tr>		
+		<tr>
+	    <td width="30%"><font class=infot>ID de Orden: </td>
+	    <td><font class=info>[in_id_orders]</td>
+		</tr>
+		<tr>
+			<td width="30%"><font class=infot>Motivo:</td>
+			<td><font class=info>[in_ret_reason]</td>
+		</tr>
+		<tr>
+			<td width="30%"><font class=infot>Motivo detallado:</td>
+			<td><font class=info>[in_ret_reason_ext]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Información principal del Folio de Atención</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%"><font class=infot>Folio de atención:</td>
+			<td><font class=info>[fc_build_folio]</td>
+		</tr>
+		<tr>
+			<td width="30%"><font class=infot>Fecha:</td>
+			<td><font class=info>[fc_build_fecha]</td>
+		</tr>
+		<tr>
+	  	<td width="30%"><font class=infot>Tipo de Folio de Atención:</td>
+	    <td><font class=info>[in_type_rmasi]</select>
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%"><font class=infot>Status:</td>
+		  <td><font class=info>[in_status]</td>
+		</tr>
+		<tr>
+			<td width="30%"><font class=infot>Misma dirección:</td>
+		  <td><font class=info>[in_sameaddress]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Dirección para folio de ATC</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td valign="top" width="30%"><font class=infot>Dirección:<!--<a name='address' id='address'></a> <a href='#address' id='ajax_btn' onClick="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'address');loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=check_address&address1='+self.document.sitform.address1.value+'&address2='+self.document.sitform.address2.value+'&address3='+self.document.sitform.address3.value+'&city='+self.document.sitform.city.value+'&urbanization='+self.document.sitform.urbanization.value+'&zip='+self.document.sitform.zip.value);">Revisar</a>--></td>
+	   	<td><font class=info>
+	   		[in_address1]<br>
+	   		[in_address2]<br>
+	   		[in_address3]
+	   	</td>
+		</tr>
+		<tr>
+			<td width="30%"><font class=infot>Ciudad:</td>
+			<td><font class=info>[in_city]</td>
+		</tr>
+		<tr>
+			<td width="30%"><font class=infot>Urbanizaci&oacute;n :</td>
+	  	<td><font class=info>[in_urbanization]</td>
+		</tr>
+		<tr>
+			<td width="30%"><font class=infot>Estado: </td>
+	  	<td><font class=info>[in_state]</td>
+		</tr>
+		<tr>
+			<td width="30%"><font class=infot>Zip Code: </td>
+	  	<td><font class=info>[in_zip]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Uso de tarjeta</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%"><font class=infot>Misma tarjeta:</td>
+	  	<td><font class=info>[in_sametdc]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Información de Tarjeta</legend>
+	<table border='0' cellspacing='0' cellpadding='2' width='100%'>	
+	  <tr>
+	  	<td valign="top" width="30%"><font class=infot>Tipo Tarjeta:</td>
+	    <td><font class=info>[in_pmtfield1]</td>
+	  </tr>
+	  <tr>
+	     <td><font class=infot>Nombre en Tarjeta:</td>
+	     <td><font class=info>[in_pmtfield2]</td>
+	  </tr>
+	  <tr>
+	     <td><font class=infot>Numero Tarjeta #:</td>
+	     <td><font class=info>[in_pmtfield3]</td>
+	  </tr>
+	  <tr>
+	     <td><font class=infot>Expiración:</td>
+	     <td><font class=info>[in_pmtfield4]</td>
+	  </tr>
+	  <tr>
+	     <td><font class=infot>CVN:</td>
+	     <td><font class=info>[in_pmtfield5]</td>
+	  </tr>
+	  <tr>
+	     <td><font class=infot>Teléfono Casa:</td>
+	     <td><font class=info>[in_pmtfield6]</td>
+	  </tr>
+	</table>
+</fieldset>
+&nbsp;<!--Pendiente desarrollo opcional con función para ver qué campos mostrar-->
+<fieldset><legend>Productos</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td valign="top" width="30%"><font class=infot>Productos regresado: </td>
+			<td><font class=info>[in_retaccess]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%"><font class=infot>Productos faltante: </td>
+			<td><font class=info>[in_missingaccess]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%"><font class=infot>Productos deseados: </td>
+			<td><font class=info>[in_wantedaccess]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Comentarios</legend>
+	<table border='0' cellspacing='0' cellpadding='2' width='100%'>	
+		<tr>
+	  	<td valign="top" width="30%"><font class=infot>Comentarios:</td>
+	    <td><font class=info>[in_comments]</td>
+		</tr>
+	</table>
+</fieldset>

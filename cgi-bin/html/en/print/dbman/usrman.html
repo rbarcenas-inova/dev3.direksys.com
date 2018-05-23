@@ -1,0 +1,216 @@
+<STYLE TYPE="text/css">
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+</STYLE>
+
+<center>
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td><font class=info>
+
+<table cellpadding=0 cellspacing=0 border=0>
+	<td align=left>
+		<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px>
+	</td>
+	[fc_show_companyinfo]
+</table>
+
+<center>
+<hr style="color: #000;background-color: #000;height: 1px;">
+
+
+	
+	<fieldset><legend>User Manager Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" ><font class=infot>User ID : </td>
+			<td><font class=infot>[in_id_admin_users]</td>
+		</tr>
+		<tr>
+			<td width="30%"><font class=infot><font class=info>Created Date / Time  : </td>
+			<td><font class=info>[in_date] [in_time] &nbsp; &nbsp; Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>			
+	&nbsp;	  
+	<fieldset><legend>User Basic Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td><font class=info>Login ID : </td>
+			<td><font class=info>[in_username]</td>
+			<td><font class=info>Account is : </td>
+			<td><font class=info>[in_status]</td>
+		</tr>
+		<tr>
+			<td><font class=info>First Name : </td>
+			<td><font class=info>[in_firstname]</td>
+			<td><font class=info>Job Title:</td>
+			<td><font class=info>[in_jobtitle]</td>
+		</tr>
+		<tr>
+			<td><font class=info>Middle Name :</td>
+			<td><font class=info>[in_middlename]</td>
+			<td><font class=info>E-Mail :</td>
+			<td><font class=info><a href="mailto:[in_email]">[in_email]</a></td>
+		</tr>
+		<tr>
+			<td><font class=info>Last Name :</td>
+			<td><font class=info>[in_lastname]</td>
+			<td><font class=info>E-Mail 2 :</td>
+			<td><font class=info>[in_opcemail2]</td>
+		</tr>
+		<tr>
+			<td><font class=info>User Group : </td>
+			<td><font class=info>[in_usergroup]</td>
+			<td><font class=info>Expires</td>
+			<td><font class=info>[in_expires]</td>
+		</tr>
+		<tr>
+			<td><font class=info>Application :</td>
+			<td><font class=info>[in_app]</td>
+			<td><font class=info>Access Filter (IP) :</td>
+			<td><font class=info>[in_ipfilter]</td>
+		</tr>
+		 <tr>
+		     <td colspan="2" width="50%">&nbsp;</td>
+			<td colspan="2" width="50%">&nbsp;</td>
+		 </tr>
+    </table>
+   </fieldset>
+   &nbsp;
+	<fieldset><legend>Optional Basic Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td><font class=info>Birthday : </td>
+			<td><font class=info>[in_opcbirthday]</td>
+			<td><font class=info>Employee Number :</td>
+			<td><font class=info>[in_opclegalid]</td>
+		</tr>
+     	<tr>
+			<td><font class=info>Married Status : </td>
+			<td><font class=info>[in_opcmarriedstatus]</td>
+			<td><font class=info>Childrens :</td>
+			<td><font class=info>[in_opcchildrens]</td>
+		</tr>
+     </table>
+     </fieldset>
+	&nbsp;
+	<fieldset><legend>Optional Home Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%" id="table290">
+		<tr>
+			<td valign="top"><font class=info>Street :</td>
+			<td><font class=info>[in_homestreet]</td>
+			<td valign="top"><font class=info>Phone :</td>
+			<td valign="top"><font class=info>[in_homephone]</td>
+		</tr>
+    <tr>
+			<td><font class=info>City :</td>
+			<td><font class=info>[in_homecity]</td>
+			<td valign="top"><font class=info>Phone :</td>
+			<td valign="top"><font class=info>[in_homephone2]</td>
+		</tr>
+		<tr>
+			<td><font class=info>State/Province :</td>
+			<td><font class=info>[in_homestate]</td>
+			<td valign="top"><font class=info>Fax :</td>
+			<td valign="top"><font class=info>[in_homefax]</td>
+		</tr>
+		<tr>
+			<td><font class=info>Postal Code :</td>
+			<td><font class=info>[in_homepostalcode]</td>
+			<td valign="top"><font class=info>Mobile :</td>
+			<td valign="top"><font class=info>[in_homemobile]</td>
+		</tr>
+		<tr>
+			<td><font class=info>Country/Region :</td>
+			<td><font class=info>[in_homecountry]</td>
+			<td valign="top"><font class=info>Mobile2 :</td>
+			<td valign="top"><font class=info>[in_homemobile2]</td>
+		</tr>
+		<tr>
+			<td><font class=info>Web Page :</td>
+			<td><font class=info>[in_homeweb]</td>
+			<td valign="top"><font class=info>SMS :</td>
+			<td valign="top"><font class=info>[in_homesms]</td>
+		</tr>
+		<tr>
+		  <td colspan="2" width="50%"></td>
+			<td colspan="2" width="50%"></td>
+		 </tr>
+     </table>
+     </fieldset>
+     &nbsp;
+     <fieldset><legend>User Preferences</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td><font class=info>Language : </td>
+			<td><font class=info>[tt_in_pref_language] &nbsp;</td>
+			<td><font class=info>Style : </td>
+			<td><font class=info>[in_pref_style]&nbsp;</td>
+		</tr>
+		<tr>
+			<td><font class=info>Display New Msgs: </td>
+			<td><font class=info>[in_pref_newmsg]</td>
+			<td><font class=info>Max Hits</td>
+			<td><font class=info>[in_pref_maxh]&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="4"><font class=info>Applications in ToolBar<br>
+      [in_pref_applications]</td>
+		</tr>
+		<tr>
+			<td colspan="4"><font class=info>Applications in Welcome Page<br>
+        [in_pref_wpage]</td>
+		</tr>
+   </table>
+  </fieldset>
+  &nbsp;
+	<fieldset><legend>Optional Notes</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td><font class=info>[in_opcnotes]</td>
+		</tr>
+	</table>
+  </fieldset>
+  &nbsp;
+  <fieldset><legend>User Activity</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td><font class=info>Last Login : </td>
+			<td><font class=info>[in_lastlogin]</td>
+			<td><font class=info>From IP : </td>
+			<td><font class=info>[in_lastip]</td>
+		</tr>
+   </table>
+  </fieldset>
+	&nbsp;

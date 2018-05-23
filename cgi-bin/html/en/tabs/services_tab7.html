@@ -1,0 +1,42 @@
+&nbsp;
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman" name="sitform">
+	<input type="hidden" name="id_services" value="[in_id_services]">
+	<input type="hidden" name="view" value="[in_id_services]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="7">
+	<input type="hidden" name="tabs" value="1">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="2" class="gborder" align="center">
+		<tr>
+		    <td class="tbltextttl" width="50%">	
+		    	<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_services]&tab=[va_activetab]&tabs=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>
+	        </td>
+		    <td style="text-align: right;">
+		    	<a href='/cgi-bin/common/apps/schid?cmd=services_retention_setup&view=[in_id_services]&tab=[va_activetab]&tabs=1&[va_rndnumber]#initab' class="fancy_modal_iframe"><img src='[va_imgurl]/[ur_pref_style]/b_add.png' title='Add account' alt='add' border='0'></a>
+		    </td>
+		</tr>
+		<tr>
+			<td class="fieldterr" colspan="2">[va_tabmessage]</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">	
+					<thead>
+						<tr>
+							<th align="center" class="menu_bar_title">Account</th>
+							<th align="center" class="menu_bar_title">Percent %</th>
+							<th align="center" class="menu_bar_title">Credebit</th>
+							<th align="center" class="menu_bar_title">Extra</th>
+							<th align="center" class="menu_bar_title">&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody id="tbody_accounts_ret">
+						[va_accounts_ret_list]
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+</form>
+

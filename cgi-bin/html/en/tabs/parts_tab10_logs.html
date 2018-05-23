@@ -1,0 +1,31 @@
+<form>
+	&nbsp;	
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+			<td class="tbltextttl">
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[fc_template_idvalue]&tabaction=lotlogs&tab=[in_tab]&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+				Records : [va_matches]				
+			</td>
+			<td align="right">
+				<a href='javascript:trjump("/cgi-bin/mod/admin/dbman?cmd=[in_cmd]&view=[in_view]&tab=10&tabaction=addlotinfo&[va_rndnumber]#initab")'>Add Information</a> &nbsp; - &nbsp; 
+				<a href='javascript:trjump("/cgi-bin/mod/admin/dbman?cmd=[in_cmd]&view=[in_view]&tab=10&[va_rndnumber]#initab")'>Lot Information</a>
+				</td>	
+		</tr>
+		<tr>
+			<td colspan="2">
+			 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				 <tr>
+				 	<td class="menu_bar_title" align="center">Type</td>
+				 	<td class="menu_bar_title" align="center">Info</td>
+				 	<td class="menu_bar_title" align="center">Date</td>
+				 	<td class="menu_bar_title" align="center">User</td>
+				 </tr>
+				 [va_searchresults]
+				</table>
+				&nbsp;
+		
+			</td>
+		</tr>
+	</table>
+	&nbsp;
+</form>

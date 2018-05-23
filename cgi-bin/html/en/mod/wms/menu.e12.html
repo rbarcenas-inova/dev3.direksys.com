@@ -1,0 +1,187 @@
+<li><h3>Main</h3>
+	<div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td width=10px></td><td>
+			  <a href="/cgi-bin/mod/wms/admin?cmd=home"	class=acormenu>Home</a>
+			  <a href="/cgi-bin/mod/wms/dbman?cmd=usrman"	class=acormenu>User Manager</a>
+			  <a href="/cgi-bin/mod/wms/admin?cmd=about"	class=acormenu>About DirekSYS</a>
+			  <a href="javascript:logoff()"	class=acormenu>Logoff</a>
+			  [fc_link_to_transmodule]
+			</td></tr>
+		</table>
+		<br>
+		[fc_menu_list]
+		<br>
+	</div>
+</li>
+
+		
+<li><h3>Inbound</h3>
+	<div>
+		<table border="0" cellspacing="0" >			
+			<tr><td colspan=2><font class=sub>Receipts</font></td></tr>
+			<tr><td width=10px></td><td>
+					<a href="#" OnClick="trnjump('/cgi-bin/mod/wms/admin?cmd=enterwreturn')"	class=acormenu>Order Return</a>
+					<!--a href="#" OnClick="trnjump('/cgi-bin/mod/wms/admin?cmd=entercmreturn')"	class=acormenu>CreditMemo Return</a-->
+					<a href="#" OnClick="trnjump('/cgi-bin/mod/wms/admin?cmd=enternewcmreturn')"	class=acormenu><li>Returns w/o CreditMemo</a>
+					<a href="/cgi-bin/mod/wms/admin?cmd=opr_returns_add"	class=acormenu>Returns Manager</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=mer_wreceipts"	class=acormenu>Warehouse Receipt</a>
+					<a href="#" OnClick="trnjump('/cgi-bin/mod/wms/admin?cmd=cod_wreceipt')"	class=acormenu>COD Receipt</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Sorting</font></td></tr>
+			<tr><td width=10px></td><td>
+					<a href="/cgi-bin/mod/wms/admin?cmd=swreceipt" class=acormenu>W. Receipt</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_returns&search=Search"	class="acormenu"><li>Returns</a>
+					<!--<a href="#" OnClick="trnjump('/cgi-bin/mod/wms/admin?cmd=enterwreturn2')"	class=acormenu>Order Return 2</a>-->
+				<br>
+			</td></tr>
+		</table>
+	</div>
+</li>		
+			
+<li><h3>Outbound</h3>
+	<div>
+		<table border="0" cellspacing="0" >				
+			<tr><td width=10px></td><td>
+					<a href="/cgi-bin/mod/wms/admin?cmd=pklist" class=acormenu>Packing List</a>
+					<a href="/cgi-bin/mod/wms/admin?cmd=updtracking" class=acormenu>Update Tracking</a>
+					<a href="#" OnClick="trnjump('/cgi-bin/mod/wms/admin?cmd=entershipment')"	class=acormenu>Enter Shipment</a>
+					<a href="#" OnClick="trnjump('/cgi-bin/mod/wms/admin?cmd=entershipmentPrueba')"	class=acormenu><li>Enter Shipment Prueba</a>
+					<a href="#" OnClick="trnjump('/cgi-bin/mod/wms/admin?cmd=enterlocaldelivery')" class=acormenu>Enter Local Delivery</a>
+					<a href="#" OnClick="trnjump('/cgi-bin/mod/wms/admin?cmd=entershipmentPrueba&localdelivery=1')" class=acormenu><li>Enter Local 
+					Delivery Prueba</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=warehouses_batches" class=acormenu>Batches</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>COD</font></td></tr>
+			<tr><td width=10px></td><td>
+			<!--<a href="#" OnClick="trnjump('/cgi-bin/mod/wms/admin?cmd=entershipment_cod')"	class=acormenu>Enter Shipment</a>-->
+					<!-- <a href="/cgi-bin/mod/wms/admin?cmd=manifest_cod&history=1" class=acormenu>Daily History</a> -->
+					<a href="/cgi-bin/mod/wms/admin?cmd=cod_in_transit" class=acormenu>In Transit</a>
+			<!--<a href="/cgi-bin/mod/wms/admin?cmd=mo_coupons" class=acormenu>MO Coupons</a>-->
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Returns</font></td></tr>
+			<tr><td width=10px></td><td>
+					<a href="/cgi-bin/mod/wms/admin?cmd=retpackinglist" class=acormenu>To Send</a>
+					<a href="/cgi-bin/mod/wms/admin?cmd=rvendor_list"	class=acormenu>To Vendor</a>
+					<a href="#" OnClick="trnjump('/cgi-bin/mod/wms/admin?cmd=entershipment&fix=1')"	class=acormenu><li>Enter Exchanges</a>
+				<br>
+			</td></tr>
+		</table>
+	</div>
+</li>		
+
+
+<li><h3>Warehouse</h3>
+	<div>
+		<table border="0" cellspacing="0" >				
+			<tr><td colspan=2><font class=sub>Inventory</font></td></tr>
+			<tr><td width=10px></td><td>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_manifests"	class=acormenu>Transfer Manifest</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_skustransfers"	class=acormenu>SKUs Transfers</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_warehouses"	class=acormenu>Warehouses</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_locations"	class=acormenu>Locations</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Adjustments</font></td></tr>
+			<tr><td width=10px></td><td>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_claims"	class=acormenu>Claims</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_adjustments"	class=acormenu>Adjustment</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Others</font></td></tr>
+			<tr><td width=10px></td><td>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_zones" class=acormenu>Zones</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_zipcodes" class=acormenu>By zipcode</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=zipcodes_excluded" class=acormenu>Excluded Zipcodes</a>
+					<!-- 	<a href="/cgi-bin/mod/wms/dbman?cmd=opr_coverages"	class=acormenu>Coverages</a> -->
+					<a href="/cgi-bin/mod/wms/admin?cmd=zipcodes_border_zones" class=acormenu><li>Border Zones</a>
+					<a href="#" OnClick="trnjump('/cgi-bin/mod/wms/admin?cmd=entershipment&fix=1')"	class=acormenu><li>Fix Scans</a>
+				<br>
+			</td></tr>
+		</table>
+	</div>
+</li>		
+
+<li><h3>Products</h3>
+	<div>
+		<table border="0" cellspacing="0" >	
+			<tr><td colspan=2><font class=sub>Vendors and POs</font></td></tr>
+			<tr><td width=10px></td><td>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=mer_vendors"	class=acormenu>Vendors</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=mer_po" class=acormenu>Purchase Orders</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Products & SKUs</font></td></tr>
+			<tr><td width=10px></td><td>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=mer_products"	class=acormenu>Products</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=mer_parts" class=acormenu>SKUs</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=mer_parts_productions" class=acormenu>SKUs Implode/Explode</a>
+					<a href="/cgi-bin/mod/wms/admin?cmd=print_label" class=acormenu>Print Labels</a>
+					<a href="/cgi-bin/mod/wms/admin?cmd=upc"	class=acormenu>Add/Update UPC</a>
+				<br>
+			</td></tr>
+		</table>
+	</div>
+</li>	
+
+<li><h3>Orders</h3>
+	<div>
+		<table border="0" cellspacing="0" >	
+			<tr><td width=10px></td><td>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_customers&search=advform"	class=acormenu>Customers</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_orders&search=advform"	class=acormenu>Orders</a>
+			<!--<a href="/cgi-bin/mod/wms/admin?cmd=orders_track"	class=acormenu>Tracking Order</a>-->
+					<a href="/cgi-bin/mod/wms/admin?cmd=orders_dropshipp"	class=acormenu>Scan Dropship</a>
+				<br>
+			</td></tr>
+		</table>
+	</div>
+</li>	
+
+
+<li><h3>Returns</h3>
+	<div>
+		<table border="0" cellspacing="0" >
+			<tr><td width=10px></td><td>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_returns&search=listall&sb=id_returns&so=DESC&status=New"	class=acormenu>Sorting</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_returns&search=listall&sb=id_returns&so=DESC&status=Repair"	class=acormenu>Repair</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_returns&search=listall&sb=id_returns&so=DESC&status=QC/IT"	class=acormenu>Quality Control</a>
+					<a href="/cgi-bin/mod/wms/dbman?cmd=opr_returns&search=listall&sb=id_returns&so=DESC&status=Back to inventory"	class=acormenu>Back To Inventory</a>
+				<br>
+			</td></tr>
+		</table>
+	</div>
+</li>		
+
+
+<li><h3>Reports</h3>
+	<div>
+		<table border="0" cellspacing="0" >
+			<tr><td width=10px></td><td>
+				<a class="acormenu" href="/cgi-bin/mod/wms/admin?cmd=repmans&fulllist=1"><li>Custom reports</a>
+				<a href="/cgi-bin/mod/wms/admin?cmd=rep_fin_transfer_warehouse" class=acormenu><li>Warehouse Transfers</a>
+				<!-- <a href="/cgi-bin/mod/wms/admin?cmd=logistic_warehouses_batches_export_layout" class=acormenu><li>Logistics Export History</a> -->
+ 				<br>
+			</td></tr>
+		</table>
+	</div>
+</li>		
+
+
+<li><h3>Preferences</h3>
+	<div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/wms/admin?cmd=myprefs"	class=acormenu>Change my Preferences</a>
+				<a href="/cgi-bin/mod/wms/admin?cmd=myprefs_mypass"	class=acormenu>Change my Password</a>
+				<a href="/cgi-bin/mod/wms/admin?cmd=myprefs_wpage"	class=acormenu>Home Page</a>
+				<a href="/cgi-bin/mod/wms/admin?cmd=myprefs_mlogs"	class=acormenu>My Logs</a>
+				<a href="/cgi-bin/mod/wms/admin?cmd=help"	class=acormenu>Help</a>
+				<br>
+			</td></tr>
+		</table>
+	</div>
+</li>

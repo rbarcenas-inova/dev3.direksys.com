@@ -1,0 +1,178 @@
+	&nbsp;
+	<fieldset><legend>Customers Addresses</legend>
+		<table width="100%" cellspacing="0" cellpadding="2" border="0">
+			<tbody><tr>
+		  	<td width="30%" class="titletext">Customers Addresses ID :</td>
+		    <td class="titletext">
+					<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_customers_addresses]
+					    	<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&amp;modify=[in_id_customers_addresses]"><img border="0" alt="" title="Edit" src="/sitimages//default/b_edit.gif"></a> &nbsp;
+							<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&amp;search=Print&amp;toprint=[in_id_customers_addresses]')"><img border="0" alt="" title="Print" src="/sitimages//default/b_print.gif"></a> &nbsp;
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="30%" class="smalltext">Fecha / Hora / Usuario  : </td>
+				<td class="smalltext">[in_date] [in_time] Creado por : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+			</tr></tbody>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset>
+	<legend>Cliente</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		 	<tr>
+				<td valign="top" width="30%" valign="top">ID Cliente : </td> 
+				<td class="smalltext" valign="top">([in_id_customers]) [va_company_name]</td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset>
+	   <legend>Informaci&oacute;n de Sucursal</legend>
+	   <table border="0" cellspacing="0" cellpadding="2" width="100%">
+		 	<tr>
+				<td valign="top" width="30%" valign="top">C&oacute;digo : </td> 
+				<td class="smalltext" valign="top">[in_code]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Alias : </td> 
+				<td class="smalltext" valign="top">[in_alias]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">GLN : </td> 
+				<td class="smalltext" valign="top">[in_gln]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Direcci&oacute;n Fiscal : </td> 
+				<td class="smalltext" valign="top">[in_primaryrecord]</td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset>
+	  <legend>Direcci&oacute;n (Formato Direksys)</legend>
+	  <table border="0" cellspacing="0" cellpadding="2" width="100%">
+		 	<tr>
+				<td valign="top" width="30%" valign="top">Calle y N&uacute;mero : </td> 
+				<td class="smalltext" valign="top">[in_address1]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Entre Calles : </td> 
+				<td class="smalltext" valign="top">[in_address2]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Referencias : </td> 
+				<td class="smalltext" valign="top">[in_address3]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Colonia : </td> 
+				<td class="smalltext" valign="top">[in_urbanization]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Delegaci&oacute;n/Municipio : </td> 
+				<td class="smalltext" valign="top">[in_city]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Estado : </td> 
+				<td class="smalltext" valign="top">[in_state]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">C&oacute;digo Postal : </td> 
+				<td class="smalltext" valign="top">[in_zip]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Pa&iacute;s : </td> 
+				<td class="smalltext" valign="top">[in_country]</td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset>
+	   <legend>Direcci&oacute;n (Formato SAT)</legend>  
+	   <table border="0" cellspacing="0" cellpadding="2" width="100%">
+		 	<tr>
+				<td valign="top" width="30%" valign="top">Calle : </td> 
+				<td class="smalltext" valign="top">[in_cu_street]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">No. Interior : </td> 
+				<td class="smalltext" valign="top">[in_cu_num]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">No. Exterior : </td> 
+				<td class="smalltext" valign="top">[in_cu_num2]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Colonia : </td> 
+				<td class="smalltext" valign="top">[in_cu_urbanization]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Ciudad : </td> 
+				<td class="smalltext" valign="top">[in_cu_district]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Delegaci&oacute;n/Municipio : </td> 
+				<td class="smalltext" valign="top">[in_cu_city]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Estado : </td> 
+				<td class="smalltext" valign="top">[in_cu_state]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">C&oacute;digo Postal : </td> 
+				<td class="smalltext" valign="top">[in_cu_zip]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Pa&iacute;s : </td> 
+				<td class="smalltext" valign="top">[in_cu_country]</td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset>
+	   <legend>SAT Info</legend>
+	   <table border="0" cellspacing="0" cellpadding="2" width="100%">
+		 	<tr>
+				<td valign="top" width="30%" valign="top">M&eacute;todo de pago : </td> 
+				<td class="smalltext" valign="top">[in_payment_method] [va_payment_method]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Forma de pago : </td> 
+				<td class="smalltext" valign="top">[in_payment_type] [va_payment_type]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Uso CFDI Factura: </td> 
+				<td class="smalltext" valign="top">[in_use_cfdi_invoice] [va_use_cfdi_invoice]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Uso CFDI Nota de Cr&eacute;dito: </td> 
+				<td class="smalltext" valign="top">[in_use_cfdi_credit] [va_use_cfdi_credit]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Banco : </td> 
+				<td class="smalltext" valign="top">[in_bank]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">RFC Banco : </td> 
+				<td class="smalltext" valign="top">[in_fcode_bank]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">N&uacute;mero de cuenta : </td> 
+				<td class="smalltext" valign="top">[in_account_number]</td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset>
+	   <legend>Estatus</legend>
+	   <table border="0" cellspacing="0" cellpadding="2" width="100%">
+		 	<tr>
+				<td valign="top" width="30%" valign="top">Status : </td> 
+				<td class="smalltext" valign="top">[in_status]</td>
+			</tr>
+		</table>
+	</fieldset>

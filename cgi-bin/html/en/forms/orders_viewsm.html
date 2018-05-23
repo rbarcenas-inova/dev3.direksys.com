@@ -1,0 +1,156 @@
+
+	&nbsp;
+	<fieldset><legend>Informaci&oacute;n del Cliente</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">N&uacute;mero de Cliente : </td>
+			<td class="smalltext"><a href="[va_script_url]?cmd=customers&view=[in_id_customers]">[in_id_customers]</a></td>
+		</tr>
+		<tr>
+		    <td width="30%">Nombre/Apellido : </td>
+		    <td class="smalltext">[in_customers.firstname] [in_customers.lastname1] [in_customers.lastname2]</td>
+		</tr>	
+		<tr>
+		  	<td width="30%">Sexo : </td>
+		    <td class="smalltext">[in_customers.sex]</td>
+		</tr>
+		<tr>
+		  	<td width="30%">Tel&eacute;fono (D&iacute;a) : </td>
+		    <td class="smalltext">[in_customers.phone1]</td>
+		</tr>
+		<tr>
+		  	<td width="30%">Tel&eacute;fono (Noche) : </td>
+		    <td class="smalltext">[in_customers.phone2]</td>
+		</tr>	
+		<tr>
+		  	<td width="30%">M&oacute;bil : </td>
+		    <td class="smalltext">[in_customers.cellphone]</td>
+		</tr>	
+		<tr>
+		  	<td width="30%">Disponibilidad : </td>
+		    <td class="smalltext">[in_customers.atime]</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Informaci&oacute;n de Factura <a name='address' id='address'>-</a> <a href='#address' id='ajax_btn' onClick="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'address');loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=check_address&id_orders=[in_id_orders]');">Revisar</a></legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">		
+		<tr>
+			<td valign="top" width="30%">Direcci&oacute;n : </td>
+		  <td class="smalltext">[in_address1]<br>
+		  	[in_address2]<br>
+		    [in_address3]
+		  </td>
+		</tr>
+		<tr>
+		<tr>
+		  <td valign="top" width="30%">Urbanizaci&oacute;n : </td>
+		  <td class="smalltext">[in_urbanization]</td>
+		</tr>
+		<tr>			
+			<td width="30%">Ciudad : </td>
+			<td class="smalltext">[in_city]</td>
+		</tr>
+		<tr>
+		 	<td width="30%">Estado/C&oacute;digo Postal : </td>
+		  <td class="smalltext">[in_state], [in_zip]</td>
+		</tr>
+		<tr>
+			<td width="30%">País : </td>
+			<td class="smalltext">[in_country]</td>		 
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Notas de Factura : </td>
+		  <td class="smalltext">[in_billingnotes]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Informaci&oacute;n de Envío</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td valign="top" width="30%">Receptor :</td>
+		  <td class="smalltext">[in_shp_name]</td>
+		</tr>
+		  <td valign="top" width="30%">Direcci&oacute;n :</td>
+		  <td class="smalltext">[in_shp_address1]<br>
+		  	[in_shp_address2]<br>
+		  	[in_shp_address3]
+		  </td>
+		</tr>
+		<tr>
+		<tr>
+		  <td valign="top" width="30%">Urbanizaci&oacute;n : </td>
+		  <td class="smalltext">[in_shp_urbanization]</td>
+		</tr>
+		<tr>			
+			<td width="30%">Ciudad : </td>
+			<td class="smalltext">[in_shp_city]</td>
+		</tr>
+		<tr>
+		 	<td width="30%">Estado/C&oacute;digo Postal : </td>
+		  <td class="smalltext">[in_shp_state] [in_shp_zip]</td>
+		</tr>
+		<tr>
+			<td>Country : </td>
+			<td class="smalltext">[in_shp_country]</td>		 
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Notas de Env&iacute;o : </td>
+		  <td class="smalltext">[in_shp_notes]</td>
+		 </tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Notas de la Orden</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		    <td valign="top" width="30%">Notas : </td>
+		    <td class="smalltext">[in_ordernotes]</td>
+		 	</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Estado de la Orden <a name='status' id='status'>-</a>
+  							<a href='#status' id='ajax_btn' onClick="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'status');loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=edit_status&id_orders=[in_id_orders]');">
+									<img src="[va_imgurl]/[ur_pref_style]/b_edit.png" border="0"></a></legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			    <td valign="top" width="30%">Estado General : </td>
+			    <td class="smalltext">[in_status]</td>
+		 	</tr>
+			<tr>
+			    <td valign="top" width="30%">Estado Productos : </td>
+			    <td class="smalltext">[in_statusprd]</td>
+		 	</tr>
+			<tr>
+			    <td valign="top" width="30%">Estado Pago : </td>
+			    <td class="smalltext">[in_statuspay]</td>
+		 	</tr>
+		</table>
+	</fieldset>	
+	&nbsp;		
+	<fieldset><legend>Tipo de Envío</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Tipo : <span class="smallfieldterr">[er_shp_type]</span></td>
+		    <td class="smalltext">[in_shp_type]</td>
+		 </tr>
+  	</table>
+	</fieldset>		
+	&nbsp;
+	<fieldset><legend>Más Información</legend>	
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td valign="top" width="30%" valign="top">N&uacute;mero de Estaci&oacute;n : </td> 
+				<td class="smalltext" valign="top">([in_id_pricelevels])  [fc_load_pricelevel_name]</td>
+			</tr>			
+			[fc_load_station_qa]
+			<tr>
+				<td valign="top" width="30%" valign="top">Ya ha comprado con Nosotros? : </td> 
+				<td class="smalltext" valign="top">[in_repeatedcustomer]</td>
+			</tr>
+		</table>
+	</fieldset>
+
+

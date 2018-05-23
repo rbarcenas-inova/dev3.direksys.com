@@ -1,0 +1,251 @@
+
+<form action="" method="post" name="sitformajax">
+	<table border="1" cellspacing="0" width="700" class="formtable">
+		<tr>
+			<td colspan="2" nowrap class="menu_bar_title">INFORMACI&Oacute;N DEL SOLICITANTE</td>
+		</tr>
+		<tr>
+			<td colspan="2" nowrap class="menu_bar">
+					Firma Electrónica – Si el solicitante desea firmar electrónicamente luego de la aprobación, por favor escriba aquí su correo electrónico<br>
+					<input type="text" name="email" value="[in_email]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'><i>Escriba su correo electrónica de manera correcta, para poder firmar electrónicamente.</i>
+			</td>
+		</tr>
+		<tr>
+			<td nowrap width="70%">
+				<table>
+					<tr>
+						<td class="menu_bar">
+							Primer nombre *<br>
+							<input type="text" name="firstname" value="[in_firstname]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+						<td class="menu_bar">
+							Inicial 2º.Nombre<br>
+							<input type="text" name="lastname2" value="[in_lastname2]" size="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+						<td class="menu_bar">
+							Apellidos *<br>
+							<input type="text" name="lasttname1" value="[in_lastname1]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td nowrap class="menu_bar" width="30%">
+				<table>
+					<tr>
+						<td class="menu_bar">
+							No. de Seguridad social: *<br>
+							<input type="text" name="ssn" value="[in_ssn]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+					</tr>
+				</table>
+			</td>
+		<tr>
+		<tr>
+			<td nowrap width="70%">
+				<table>
+					<tr>
+						<td class="menu_bar">
+							Fecha de nacimiento *(MM,DD,AAAA)<br>
+							<input type="text" name="birthdate" value="[in_birthdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+						<td class="menu_bar">
+							Teléfono del Hogar: *<br>
+							<input type="text" name="phone1" value="[in_phone1]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td nowrap class="menu_bar" width="30%">
+				<table>
+					<tr>
+						<td class="menu_bar" nowrap>
+							Estado Civil<br>
+							Soltero (a) <input type="radio" name="maritalstatus" value="Single" class="radio">
+							Casado (a) <input type="radio" name="maritalstatus" value="Married" class="radio">
+							Divorciado (a) <input type="radio" name="maritalstatus" value="Divorced" class="radio">
+						</td>
+					</tr>
+				</table>
+			</td>
+		<tr>
+		<tr>
+			<td nowrap width="70%">
+				<table>
+					<tr>
+						<td class="menu_bar">
+							Dirección de su residencia: *<br>
+							Calle: <input type="text" name="address1" value="[in_address1]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'><br>
+							Ciudad: <input type="text" name="city" value="[in_city]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'> Estado: <input type="text" name="state" value="[in_state]" size="3" onFocus='focusOn( this )' onBlur='focusOff( this )'> Zip: <input type="text" name="zip" value="[in_zip]" size="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td nowrap class="menu_bar" width="30%">
+				<table>
+					<tr>
+						<td class="menu_bar">
+							Pago mensual hipoteca/Renta:<br>
+							<input type="text" name="homepay" value="[in_homepay]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'><br>
+							Casa propia <input type="radio" name="homestatus" value="Own Home" class="radio">
+							Alquilada <input type="radio" name="homestatus" value="Rent" class="radio">
+						</td>
+					</tr>
+				</table>
+			</td>
+		<tr>
+		<tr>
+			<td nowrap class="menu_bar" width="70%">
+				Nombre del empleador (Si es Independiente, Nombre del negocio):<br>
+				<input type="text" name="employer" value="[in_employer]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+			<td nowrap class="menu_bar" width="30%">
+				Teléfono del Trabajo: *<br>
+				<input type="text" name="phone2" value="[in_phone2]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		<tr>
+		<tr>
+			<td nowrap class="menu_bar" width="70%">
+				Ingresos mensuales del solicitante: *<br>
+				<input type="text" name="income" value="[in_income]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'><br>
+				Otros Ingresos (Monto y fuente):<br>
+				<input type="text" name="otherincome" value="[in_otherincome]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'><br>
+			</td>
+			<td nowrap class="menu_bar" width="30%">
+				Tiempo Completo <input type="radio" name="job" value="Full" class="radio"> Tiempo parcial <input type="radio" name="job" value="Part" class="radio"><br>
+				Independiente <input type="checkbox" name="selfemployed" value="Self employed" class="check"><br>
+				Fecha Inicio Empleo: <input type="text" name="datehire" value="[in_datehire]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		<tr>
+		<tr>
+			<td nowrap class="menu_bar" width="70%">
+				<table>
+					<tr>
+						<td class="menu_bar">
+							Nombre del empleador del esposo(a):<br>
+							<input type="text" name="spouseemployer" value="[in_spouseemployer]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+						<td class="menu_bar">
+							Teléfono del Trabajo del esposo(a): *<br>
+							<input type="text" name="spousephone" value="[in_spousephone]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+					</tr>
+				</table>
+				Ingresos mensuales del esposo(a):<br>
+				<input type="text" name="spouseincome" value="[in_spouseincome]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+			<td nowrap class="menu_bar" width="30%">
+				Tiempo Completo <input type="radio" name="spousejob" value="Full" class="radio"> Tiempo parcial <input type="radio" name="spousejob" value="Part" class="radio"><br>
+				Independiente <input type="checkbox" name="spouseselfemployed" value="Self employed" class="check"><br>
+				Fecha Inicio Empleo: <input type="text" name="spousedatehire" value="[in_spousedatehire]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		<tr>
+		<tr>
+			<td nowrap class="menu_bar" width="70%">
+				Nombre del banco:<br>
+				<input type="text" name="bankname" value="[in_bankname]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+			<td nowrap class="menu_bar" width="30%">
+				Cuenta corriente <input type="radio" name="counttype" value="Checking" class="radio"> Cuenta de ahorros <input type="radio" name="counttype" value="Saving" class="radio">
+			</td>
+		<tr>
+	</table>
+	<table border="1" cellspacing="0" width="700" class="formtable">
+		<tr>
+			<td nowrap class="menu_bar" width="100%" colspan='3'>
+				Haga una lista de dos parientes y un amigo que no vivan con usted: *
+			</td>
+		</tr>
+		<tr>
+			<td nowrap class="menu_bar" width="50%">
+				Nombre
+			</td>
+			<td nowrap class="menu_bar" width="25%">
+				Número del Teléfono
+			</td>
+			<td nowrap class="menu_bar" width="25%">
+				Relación
+			</td>
+		</tr>
+		<tr>
+			<td nowrap class="menu_bar" width="50%">
+				<input type="text" name="relativename1" value="[in_relativename1]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+			<td nowrap class="menu_bar" width="25%">
+				<input type="text" name="relativephone1" value="[in_relativephone1]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+			<td nowrap class="menu_bar" width="25%">
+				<input type="text" name="relationship1" value="[in_relationship1]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+			<td nowrap class="menu_bar" width="50%">
+				<input type="text" name="relativename2" value="[in_relativename2]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+			<td nowrap class="menu_bar" width="25%">
+				<input type="text" name="relativephone2" value="[in_relativephone2]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+			<td nowrap class="menu_bar" width="25%">
+				<input type="text" name="relationship2" value="[in_relationship2]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+			<td nowrap class="menu_bar" width="60%">
+				<input type="text" name="relativename3" value="[in_relativename3]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+			<td nowrap class="menu_bar" width="20%">
+				<input type="text" name="relativephone3" value="[in_relativephone3]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+			<td nowrap class="menu_bar" width="20%">
+				<input type="text" name="relationship3" value="[in_relationship3]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+	</table>
+	<table border="1" cellspacing="0" width="700" class="formtable">
+		<tr>
+			<td class="menu_bar" width="100%" colspan='2' align='justify'>
+				Por medio del presente declaro que tengo más de dieciocho (18) años y que todo lo que he escrito en este formato de crédito es mi información completa, verdadera y precisa. Por medio del presente autorizo a cualquier tenedor del Contrato de Pagos al por Menor por Cuotas o cualquier otra persona, firma o Corporación a quien se le requiera extender el crédito necesario (incluyendo cualquier empleado o agente de cualquiera de ellos), para que se comuniquen con cualquier persona, firma o Corporación, incluyendo a mi empleador con respecto a mi estatus de crédito. EN EL EVENTO de que se me conceda el crédito con respecto a mi Contrato de Pagos al por Menor por Cuotas, por medio del presente autorizo a cualquier tenedor del contrato, a quien concede el crédito, cualquier abogado, cobrador o agencia de cobros, (sus agentes o empleados), para que se comuniquen con cualquier persona, firma o Corporación (incluyendo a mi empleador), con respecto a dicha deuda. ADEMAS AUTORIZO a cualquier tenedor del Contrato de Pagos al por Menor por Cuotas, a quien concede el crédito, o a cualquier abogado, cobrador o agencia de cobros que comuniquen cualquiera y toda la información concerniente a esta solicitud o deuda a cualquier Agencia de Informes de Crédito u otros acreedores; ADEMAS ADMITO Y ACEPTO que le notificaré al acreedor o acreedor en perspectiva por escrito sobre cualquier cambio en mi nombre, dirección o empleo dentro de un periodo de tiempo responsable después del hecho.
+			</td>
+		</tr>
+		<tr>
+			<td nowrap class="menu_bar" width="70%">
+				FIRMA DEL CLIENTE <input type="text" name="signature" value="[in_signature]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+			<td nowrap class="menu_bar" width="30%">
+				FECHA <input type="text" name="signdate" value="[in_signdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+			<td class="menu_bar" width="100%" colspan='2' align='center'>
+				<input type="button" value="Guardar" class="button" onClick="loadDoc('/cgi-bin/mod/sales/upsajax?cmd=credit_application&save=1&email='+document.sitformajax.email.value+'&firstname='+document.sitformajax.firstname.value+'&lastname1='+document.sitformajax.lastname1.value+'&lastname2='+document.sitformajax.lastname2.value+'&ssn='+document.sitformajax.ssn.value+'&birthdate='+document.sitformajax.birthdate.value+'&phone1='+document.sitformajax.phone1.value+'&maritalstatus='+document.sitformajax.maritalstatus.value+'&address1='+document.sitformajax.address1.value+'&city='+document.sitformajax.city.value+'&state='+document.sitformajax.state.value+'&zip='+document.sitformajax.zip.value+'&homepay='+document.sitformajax.homepay.value+'&homestatus='+document.sitformajax.homestatus.value+'&employer='+document.sitformajax.employer.value+'&phone2='+document.sitformajax.phone2.value+'&income='+document.sitformajax.income.value+'&otherincome')">
+			</td>
+		</tr>
+	</table>
+</form>
+<script language="javascript">
+<!-- 	
+	chg_radio('maritalstatus','[in_maritalstatus]');
+	chg_radio('homestatus','[in_homestatus]');
+	chg_radio('job','[in_job]');
+	chg_radio('spousejob','[in_spousejob]');
+	chg_radio('counttype','[in_counttype]');
+
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#birthdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			maxDate: new Date(),
+			changeYear: true,
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+//-->
+</script>		
+

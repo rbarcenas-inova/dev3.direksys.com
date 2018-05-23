@@ -1,0 +1,183 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+	&nbsp;		
+	<fieldset><legend>Bank Summary</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			    <td width="20%">New Bills to Pay </td>
+			    <td width="20%" align="right">[va_newbills]</td>
+			    <td width="1%"></td>
+			    <td width="59%">Banks Balances: </td>
+			<tr>
+			    <td></td>
+			    <td align="right">[va_newbills_qty]</td>
+			    <td></td>
+			    <td rowspan="3"><div style="display:block;	border: 0px ;	padding:5px;	margin-top:5px;	width:100%;	height:80px;	overflow:scroll;" >
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+					    <td class="menu_bar_title" align="center" width="5%">Bank</td>
+					    <td class="menu_bar_title" align="center" width="10%">Rreconciled</td>
+					    <td class="menu_bar_title" align="center" width="10%">Balance</td>
+					</tr>
+					[va_bankslists]
+			  </table>
+				</div></td>
+			</tr>
+			<tr>
+			    <td>Partially Paid Bills </td>
+			    <td align="right">[va_ppbills]</td>
+			    <td></td>
+			</tr>
+			<tr>
+			    <td></td>
+			    <td align="right">[va_ppbills_qty]</td>
+			    <td></td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+
+	<br/>
+
+	<p class="titletext" align="center">Bills to Pay</p>
+	    <div id="container" class="sltv-skin-sam">
+		  <div class="yui-navset yui-navset-top" align="right">
+			  <ul class="yui-nav">
+			  	<li class="[va_tab_bills]" id="tab1" title="" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=fin_make_checks&status=Processed&quot;)">
+						<a href="javascript:return false;">
+							<em>By Bill / New</em>
+						</a>
+				</li>
+			  	<li class="[va_tab_vendors]" id="tab2" title="" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=fin_make_checks&status=Processed&byvendors=1&quot;)">
+						<a href="javascript:return false;">
+							<em>By Vendor / New</em>
+						</a>
+				</li>
+			  	<li class="[va_tab_ppbills]" id="tab3" title="" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=fin_make_checks&status=Partly+Paid&quot;)">
+						<a href="javascript:return false;">
+							<em>By Bill / Partially Paid</em>
+						</a>
+				</li>
+			  	<li class="[va_tab_ppvendors]" id="tab4" title="" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=fin_make_checks&status=Partly+Paid&byvendors=1&quot;)">
+						<a href="javascript:return false;">
+							<em>By Vendor / Partially Paid</em>
+						</a>
+				</li>
+			  	<li class="[va_tab_abills]" id="tab5" title="" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=fin_make_checks&quot;)">
+						<a href="javascript:return false;">
+							<em>By Bill</em>
+						</a>
+				</li>
+			  	<li class="[va_tab_avendors]" id="tab6" title="" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=fin_make_checks&byvendors=1&quot;)">
+						<a href="javascript:return false;">
+							<em>By Vendor</em>
+						</a>
+				</li>
+								
+			</ul>
+		  </div>
+	    </div>
+
+
+	&nbsp;
+<div style="[va_bills_style]">
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td class="tbltextttl">
+	    	<a href="/cgi-bin/mod/admin/admin?cmd=fin_make_checks&status=[in_status]"><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Print' alt='' border='0'></a>
+	    	Records : [va_matches]</td>
+	    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class="menu_bar_title" align="center">Bill</td>
+		    <td class="menu_bar_title" align="center">Vendor</td>
+		    <td class="menu_bar_title" align="center">Amount</td>
+		    <td class="menu_bar_title" align="center">Amount Due</td>
+		    <td class="menu_bar_title" align="center">Currency</td>	    
+		    <td class="menu_bar_title" align="center">Terms</td>
+		    <td class="menu_bar_title" align="center">Due Date</td>
+		    <td class="menu_bar_title" align="center">Memo</td>
+		</tr>
+		[va_bills_list]
+		<tr>
+		    <td class="smalltext" align="right" colspan="2">Total : </td>
+		    <td class="smalltext" align="right" style="BORDER-TOP:#C0C0C0 1px solid;" nowrap>[va_total]</td>
+		    <td class="smalltext" align="right" style="BORDER-TOP:#C0C0C0 1px solid;" nowrap>[va_total_due]</td>
+		    <td class="smalltext" colspan="3"></td>
+		</tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">
+				Records : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>  
+	&nbsp;
+</div>
+<div style="[va_vendors_style]">
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td class="tbltextttl">
+	    	<a href="/cgi-bin/mod/admin/admin?cmd=fin_make_checks&status=[in_status]&byvendors=1"><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Print' alt='' border='0'></a>
+	    	Records : [va_matches]</td>
+	    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class="menu_bar_title" align="center">&nbsp;</td>
+			<td class="menu_bar_title" align="center">ID</td>
+		    <td class="menu_bar_title" align="center">Vendor</td>
+		    <td class="menu_bar_title" align="center">Bills</td>
+		    <td class="menu_bar_title" align="center">Amount</td>
+		    <td class="menu_bar_title" align="center">Amount Due</td>
+		    <td class="menu_bar_title" align="center">Currency</td>	    
+		</tr>
+		[va_byvendors_list]
+		<tr>
+		    <td class="smalltext" align="right" colspan="3">Total : </td>
+		    <td class="smalltext" align="right" style="BORDER-TOP:#C0C0C0 1px solid;" nowrap>[va_total]</td>
+		    <td class="smalltext" align="right" style="BORDER-TOP:#C0C0C0 1px solid;" nowrap>[va_total_due]</td>
+		    <td class="smalltext"></td>
+		</tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">
+				Records : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>  
+	&nbsp;
+</div>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+[ip_footer]

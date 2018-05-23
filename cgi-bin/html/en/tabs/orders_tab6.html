@@ -1,0 +1,70 @@
+&nbsp;
+	
+  &nbsp;
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+    <tr>
+			<td class="tbltextttl">
+				Debits : [va_matchescredits]
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_orders]&tab=[va_activetab]&tabs=15&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+				<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=1&tabcmd=orders&toprint=[in_id_orders]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			<td class="small_text" align="right" valign="top">
+					<a name="prdmenu" id="prdmenu">&nbsp;</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				
+  				<!--<a href="#prdmenu" onMouseOver="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'prdmenu');loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=orders_tab15&id_orders=[in_id_orders]&path=/cgi-bin/mod/[ur_application]/dbman');">Movements Actions</a>-->
+					<a class="scroll" href="#tabsl" onClick="edit_movements();">Edit Movements</a>
+			</td>
+    </tr>
+    <tr>
+    	<td colspan="2">      	
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+      			<tr>         	
+					<td class="menu_bar_title">Account ID</td>
+					<td class="menu_bar_title">Account Name</td>
+					<td class="menu_bar_title">Segment</td>
+					<td class="menu_bar_title">Category</td>
+					<td class="menu_bar_title">Debit</td>
+					<td class="menu_bar_title">Credit</td>
+					<td class="menu_bar_title" align="right">Effective Date</td>
+					<td class="menu_bar_title" align="right">Posted Date</td>
+			 	</tr>
+			 	[va_searchresultsdebs]
+      </table>       
+     </td>
+    </tr>
+    <tr>
+    	<td align='right'>Total Debits&nbsp;</td>
+    	<td align='right'>[va_tot_debs]</td>
+    </tr>
+  </table>  
+  &nbsp;
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+    <tr>
+      <td class="tbltextttl" colspan="2"><span class='fieldterr'>[va_tabmessages]</span>&nbsp;</td>
+    </tr>     
+		<tr>
+			<td class="tbltextttl">Credits : [va_matchescredits]</td>
+    </tr>
+    <tr>
+    	<td colspan="2">      	
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+      			<tr>         	
+					<td class="menu_bar_title">Account ID</td>
+					<td class="menu_bar_title">Account Name</td>
+					<td class="menu_bar_title">Segment</td>
+					<td class="menu_bar_title">Category</td>
+					<td class="menu_bar_title">Debit</td>
+					<td class="menu_bar_title">Credit</td>
+					<td class="menu_bar_title" align="right">Effective Date</td>
+					<td class="menu_bar_title" align="right">Posted Date</td>
+			 	</tr>
+			 	[va_searchresultscred]
+      </table>       
+     </td>
+    </tr>
+    <tr>
+    	<td align='right'>Total Credits&nbsp;</td>
+    	<td align='right'>[va_tot_cred]</td>
+    </tr>
+  </table>
+  

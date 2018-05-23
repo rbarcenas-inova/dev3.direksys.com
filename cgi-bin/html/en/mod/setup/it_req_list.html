@@ -1,0 +1,71 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 9, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+			[fc_menu_custom]
+			&nbsp;
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="40%" align="center"></td>
+	    <td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=it_req")'>Add Request</td>
+	    <td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=it_req&search=form")'>Search</td>
+	    <td width="20%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=it_req&search=listall")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform" onsubmit="return warningmsg()">
+	<input type="hidden" name="cmd" value="it_req">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Support Requests List</td>
+		 </tr>
+		<tr>
+		   <td colspan="2"><span class="help_on">These are the support requests in the database, To view the request information click on "V" To Edit it, click on "E" or "D" if you want to delete it</span></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Requests : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title" width="20%">View / Edit / Delete</td>
+		    <td class="menu_bar_title">ID</td>
+		    <td class="menu_bar_title">Title</td>
+		    <td class="menu_bar_title">Description</td>
+		    <td class="menu_bar_title">Status</td>
+		 </tr>
+		[va_searchresults]
+  </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">Requests : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>
+	&nbsp;
+</form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

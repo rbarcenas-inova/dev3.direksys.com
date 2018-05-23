@@ -1,0 +1,60 @@
+<div>
+
+	<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="mm_contracts">
+	<input type="hidden" name="view" value="[in_id_mediacontracts]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="[in_tab]">
+	<input type="hidden" name="upd_spot" value="[va_id_mediacontracts_rep]">
+	<input type="hidden" name="linked_to" value="[va_linked_to]">
+
+		<br><br>
+		<center class="titletext">
+			[va_this_type] Data
+		</center>
+		<span class="stdtxterr">[va_message]</span>
+		&nbsp;
+		<fieldset><legend>Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%" class="container_white">
+			<tr>
+				<td width="35%">ESTDay: <span class="smallfieldterr">[er_repestdate]</span></td>
+				<td class="smalltext"><input type="text" name="repestdate" value="[va_repestdate]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+				<td width="35%">ESTTime : <span class="smallfieldterr">[er_repesttime]</span></td>
+				<td class="smalltext"><input type="text" name="repesttime" value="[va_repesttime]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+
+			<tr>
+				<td width="35%">Cost: <span class="smallfieldterr">[er_repcost]</span></td>
+				<td class="smalltext"><input type="text" name="repcost" value="[va_repcost]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )' [va_repcost_disabled]></td>
+			</tr>
+			<tr>
+				<td width="35%">Distribution: <span class="smallfieldterr">[er_repdist]</span></td>
+				<td class="smalltext"><input type="text" name="repdist" value="[va_repdist]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+				<td width="35%">Status: <span class="smallfieldterr">[er_repstatus]</span></td>
+				<td class="smalltext">
+					<select name="repstatus" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option> 
+						[fc_build_select_repstatus]
+					</select>
+				</td>
+			</tr>	
+		</table>
+		</fieldset>
+		&nbsp;
+		<center>
+			<input type="submit" id="btn_submit" value="Send" class="button">
+		</center>
+		<br>
+	</form>
+</div>	
+
+	<script language="javascript">
+	<!--
+		chg_select('repstatus','[va_repstatus]');
+	//-->
+	</script>
+

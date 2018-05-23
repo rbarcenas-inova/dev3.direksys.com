@@ -1,0 +1,21 @@
+&nbsp;
+<form action="/cgi-bin/mod/ecom/admin" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="eco_techsupp">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="get_status" value="[in_get_status]">
+	<input type="hidden" name="view" value="[in_view]">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="60%" align="center">
+		<tr>
+			<td class="titletext">
+			        Write you reply here &nbsp;<span class="smallfieldterr">[er_answer]</span><br>
+			        <textarea name='answer' rows="8" cols="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td class="titletext" align="center">
+				<input type="submit" value="Reply This" class="button">
+			</td>
+		</tr>
+	</table>
+</form>

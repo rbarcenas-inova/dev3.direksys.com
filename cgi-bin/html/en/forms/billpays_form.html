@@ -1,0 +1,94 @@
+&nbsp;
+<fieldset><legend>Bill Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	
+ 		<tr>
+			<td width="30%" valign="top">Bank ID	 : <span class="smallfieldterr">[er_id_banks]</span></td>
+			  <td class="smalltext">
+					<input type="text" name="id_banks" id='id_banks' value="[in_id_banks]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<a href="#banks" id="banks" onClick="add_banks()"><img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+					<div id="popup_banks" style="visibility: hidden; display: none; background-color: #ffffff;">
+					<div class="menu_bar_title" id="item_drag">
+					<img id="popup_exit" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+					&nbsp;&nbsp;&nbsp;Banks
+					</div>
+					<div class="formtable">
+					<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=banks&db=sl_banks&fname=id_banks&ajaxtype=1" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+					<H2>Unable to do the script</H2>
+					<H3>Please update your Browser</H3>
+					</IFRAME>	
+					</div></div>					
+			   </td>
+			</tr>
+		<tr>	
+	
+	
+ 		<tr>
+			<td width="30%" valign="top">Vendor ID	 : <span class="smallfieldterr">[er_id_vendors]</span></td>
+			  <td class="smalltext">
+					<input type="text" name="id_vendors" id='id_vendors' value="[in_id_vendors]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<a href="#vendors" id="vendors" onClick="add_vendor()"><img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+					<div id="popup_vendors" style="visibility: hidden; display: none; background-color: #ffffff;">
+					<div class="menu_bar_title" id="item_drag1">
+					<img id="popup_exit1" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+					&nbsp;&nbsp;&nbsp;Vendors
+					</div>
+					<div class="formtable">
+					<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=vendors&db=sl_vendors&fname=id_vendors&ajaxtype=1" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+					<H2>Unable to do the script</H2>
+					<H3>Please update your Browser</H3>
+					</IFRAME>	
+					</div></div>					
+			   </td>
+			</tr>
+
+			<tr>
+				<td width="30%">Name :  <span class="smallfieldterr"></span></td>
+				<td><input type="text" onblur="focusOff( this )" onfocus="focusOn( this )" size="40" value="[in_name]" name="name"></td>
+			</tr>
+			<tr>
+				<td width="30%" >Description :  <span class="smallfieldterr"></span></td>
+				<td><textarea onblur="focusOff( this )" onfocus="focusOn( this )" name="description" style="width: 100%;"   >[in_description]</textarea></td>
+			</tr>
+			<tr>
+				<td width="30%">Amount :  <span class="smallfieldterr"></span></td>
+				<td><input type="text" onblur="focusOff( this )" onfocus="focusOn( this )" size="" value="[in_amount]" name="amount"></td>
+			</tr>
+			<tr>
+				<td width="30%">Currency :  <span class="smallfieldterr"></span></td>
+				<td>
+					[fc_billpays_currency]
+				</td>
+				</tr>
+			<tr>
+			<td width="30%">Status :  <span class="smallfieldterr"></span></td>
+				<td>
+					[fc_billspays_status]
+				</td>
+			</tr>
+	</table>
+</fieldset>	
+&nbsp;
+<input type="hidden" name="authby" value="[in_authby]">
+
+<script language="javascript">
+<!--
+	chg_radio('status','[in_status]');
+	chg_radio('currency','[in_currency]');
+	
+	function add_vendor(){
+		popup_show('popup_vendors', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'vendors');
+	}
+	
+	function add_banks(){
+		popup_show('popup_banks', 'item_drag', 'popup_exit', 'element-right', -1, -1,'banks');
+	}
+
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+});
+</script>

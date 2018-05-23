@@ -1,0 +1,109 @@
+	&nbsp;
+	<fieldset><legend>Service Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	  	<td width="30%">Name : <span class="smallfieldterr">[er_name]</span></td>
+	   	<td class="smalltext"><input type="text" name="name" value="[in_name]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+	    <td valign="top" width="30%">Description : <span class="smallfieldterr">[er_description]</span></td>
+	    <td class="smalltext"><textarea name="description" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description]</textarea> </td>
+		</tr>
+		<tr>
+	  	<td width="30%">Price/Rate : <span class="smallfieldterr">[er_sprice]</span></td>
+	   	<td class="smalltext"><input type="text" name="sprice" value="[in_sprice]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>				
+		<tr>
+	  	<td width="30%">Sales Price : <span class="smallfieldterr">[er_salesprice]</span></td>
+		  <td class="smalltext">
+		  	<input type="radio" name="salesprice" value="Fixed" class="radio">Fixed
+				<input type="radio" name="salesprice" value="Variable" class="radio">Variable (Service Price will Be = Rate/100 * Product Price)
+			</td>	   		
+		</tr>				
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Type</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+			<td width="30%">Type : <span class="smallfieldterr">[er_servicetype]</span></td>
+			<td class="smalltext">[br_servicetype@sl_services]</td>
+		</tr>
+		<tr>
+	  	<td width="30%">ID products related : <span class="smallfieldterr">[er_id_products_related]</span></td>
+	   	<td class="smalltext">
+	   		<input type="text" name="id_products_related" value="[in_id_products_related]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	<a href="#" id="products" onClick="add_product()"><img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a> 
+		  	<!-- Add Products-->
+				<div id="popup_product" style="visibility: hidden; display: none; background-color: #ffffff;">
+				<div class="menu_bar_title" id="item_drag1">
+				<img id="popup_exit1" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+				&nbsp;&nbsp;&nbsp;Products
+				</div>
+				<div class="formtable">
+				<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=noninventory_related_products&id_products=[in_id_products]" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+				<H2>Unable to do the script</H2>
+				<H3>Please update your Browser</H3>
+				</IFRAME>	
+				</div></div>
+	   	</td>
+		</tr>
+		<tr>
+	  		<td width="30%">Product Price : <span class="smallfieldterr">[er_refill_sprice]</span></td>
+	   		<td class="smalltext"><input type="text" name="refill_sprice" value="[in_refill_sprice]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Product Shipping Price : <span class="smallfieldterr">[er_id_packingopts]</span> </td>
+			<td class="smalltext">
+				<select name="id_packingopts" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    		<option value="">---</option>
+		        	[fc_build_select_prd_pckopts]
+		       	</select>
+		   	</td>	
+		<tr>
+	  		<td width="30%">Days Period: <span class="smallfieldterr">[er_days]</span></td>
+	   		<td class="smalltext"><input type="text" name="days" value="[in_days]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+	  	<td width="30%">Other : <span class="smallfieldterr">[er_other]</span></td>
+	   	<td class="smalltext"><input type="text" name="other" value="[in_other]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>			
+  	</table>
+	</fieldset>
+	&nbsp;
+ 	<fieldset><legend>SAT info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td width="30%" >ID Product / Service : </td>
+
+				<td class="smalltext">
+					[va_products_services]
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;	
+ 	<fieldset><legend>Service Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+				<td width="30%">Status : <span class="smallfieldterr">[er_status]</span></td>
+			  <td class="smalltext">
+			  	<input type="radio" name="status" value="Active" class="radio">Active
+					<input type="radio" name="status" value="Inactive" class="radio">Inactive
+				</td>
+			</tr>
+  	</table>
+	</fieldset>
+<input type="hidden" name="tax" value="[in_tax]">
+<input type="hidden" name="saleid_accounts" value="[in_saleid_accounts]">
+	
+<script language="javascript">
+<!--
+
+	chg_select('type','[in_type]');
+	chg_radio('status','[in_status]');
+	chg_radio('salesprice','[in_salesprice]');	
+	chg_radio('servicetype','[in_servicetype]');
+		
+//-->
+</script>

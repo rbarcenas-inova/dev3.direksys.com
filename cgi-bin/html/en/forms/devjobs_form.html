@@ -1,0 +1,87 @@
+	&nbsp;
+	<fieldset><legend>Developer Jobs Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	  	<td width="30%">Title : <span class="smallfieldterr">[er_title]</span></td>
+	    <td class="smalltext" colspan="2"><input type="text" name="title" value="[in_title]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>		
+		<tr>			
+			<td valign="top">Applications : <span class="smallfieldterr">[er_applications]</span></td>
+			<!--td valign="top">
+				<select name="application" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			  	<option value="---">---</option>
+					[fc_build_soapps]
+      	</select>
+      	<a href="javascript:add_app();"><img src="[va_imgurl]/[ur_pref_style]/arr.plus.gif" border="0"></a>
+      </td-->
+			<td valign="top">      
+				<textarea name="applications" cols="40" rows="2" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_applications]</textarea>
+		 	</td>      
+		</tr>				
+		<tr>
+		  <td width="30%">Responsible : <span class="smallfieldterr">[er_responsible]</span></td>
+		  <td class="smalltext" colspan="2">
+		  	<select name="responsible" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	      	<option value="---">---</option>
+	      		[fc_build_developerlist]
+				</select>
+			</td>
+		</tr>
+		<tr>			
+			<td valign="top">Collaborators : <span class="smallfieldterr">[er_collaborators]</span></td>
+			<td valign="top">      
+				<textarea name="collaborators" cols="40" rows="2" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_collaborators]</textarea>
+		 	</td>      
+		</tr>			
+		<tr>
+		 <td valign="top" width="30%">Description : <span class="smallfieldterr">[er_description]</span></td>
+		 <td class="smalltext" colspan="2"><textarea name="description" cols="50" rows="5" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description]</textarea></td>
+		</tr>
+		<tr>
+	    <td width="30%">Due Date : <span class="smallfieldterr">[er_duedate]</span></td>
+	    <td class="smalltext" colspan="2"><input type="text" id="duedate" name="duedate" value="[in_duedate]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>		 
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Job Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		  	<td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		    <td class="smalltext">
+		    	<input type="radio" name="status" value="Urgent" class="radio">Urgent		    			    	
+		    	<input type="radio" name="status" value="Important" class="radio">Important
+					<input type="radio" name="status" value="Closed" class="radio">Closed
+				</td>
+			</tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript" type="text/javascript">
+<!--
+	
+	chg_select('department','[in_department]');
+	chg_select('unit','[in_unit]');	
+	chg_select('applications','[in_applications]');	
+	chg_select('responsible','[in_responsible]');
+	chg_radio('status','[in_status]');
+
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#duedate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+
+//-->
+</script>

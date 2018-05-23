@@ -1,0 +1,219 @@
+[ip_header]
+
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+	var dates = $( "#from_date, #to_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: [fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="35%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_ret_prod")'>Based in Returns</td>
+	    <td width="35%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_ret_orders")'>Based in Orders</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	&nbsp;
+
+  <form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="rep_ret_prod">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">Returns / Products Report</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Query</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+	    <td width="25%">From Date : <span class="smallfieldterr">[er_from_date]</span></td>
+	    <td class="smalltext"><input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	    </td>
+		</tr>
+		<tr>
+	    <td width="25%">To Date : <span class="smallfieldterr">[er_to_date]</span></td>
+	    <td class="smalltext"><input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	    </td>
+		 </tr>
+		<tr>
+	  	<td valign="top" width="25%">Category : <span class="smallfieldterr">[er_id_categories]</span></td>
+	    <td class="smalltext">
+	    	<select name="id_categories" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	      	<option value="---">---</option>
+	        [fc_build_select_maincategories]
+				</select>
+			</td>
+		</tr>
+		<tr>
+		 	<td width="25%">State : </td>
+		  <td class="smalltext">
+				<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+						[fc_build_select_opr_customersstate]
+				</select>
+			</td>
+		</tr>
+		<tr>
+		 	<td width="25%">Price Levels : </td>
+		  <td class="smalltext">
+				<select name="id_pricelevels" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					[fc_build_select_pricelevels]
+				</select>
+			</td>
+		</tr>
+		<tr>
+	   		<td width="25%" valign="top">Type : <span class="smallfieldterr">[er_type]</span></td>
+			<td class="smalltext">[fc_build_checkbox_return_type]
+				<br><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'></td>
+		</tr>
+		<tr>
+	   		<td width="25%" valign="top">Status : <span class="smallfieldterr">[er_status]</span></td>
+			<td class="smalltext">[fc_build_checkbox_return_status]
+				<br><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'></td>
+		</tr>
+		<tr>
+	   		<td width="25%" valign="top">Action : <span class="smallfieldterr">[er_meraction]</span></td>
+			<td class="smalltext">[fc_build_checkbox_return_meraction]
+				<br><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'></td>
+		</tr>
+		<tr>
+		    <td width="25%">ID Product : <span class="smallfieldterr">[er_id_products]</span></td>
+		    <td class="smalltext"><input type="text" name="id_products" value="[in_id_products]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	<a name="tabs" id="tabs">&nbsp;</a>
+		    	<a href="javascript:search_id('id_products','db=sl_products&cmd=products')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+		</tr>
+	</table>
+	</fieldset>
+	<fieldset>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+	   		<td class="smalltext" valign="top" width="25%">Report Type :</td>
+	   		<td class="smalltext">
+		   		<input type="radio" class="radio" name="groupby" value="day"> Day
+		   		<input type="radio" class="radio" name="groupby" value="month"> Month
+		   		<input type="radio" class="radio" name="groupby" value="hour"> Time/Hour
+		   		<input type="radio" class="radio" name="groupby" value="state"> State
+		   		<input type="radio" class="radio" name="groupby" value="category"> Category<br>
+		   		 <input type="radio" class="radio" name="groupby" value="type"> Type
+		   		<input type="radio" class="radio" name="groupby" value="status"> Status
+		   		<input type="radio" class="radio" name="groupby" value="meraction"> Action
+		   		<input type="radio" class="radio" name="groupby" value="id_products"> Product ID
+   		</td>
+		</tr>
+	</table>
+	</fieldset>
+	<fieldset>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+	   		<td class="smalltext" valign="top" width="25%">Sales By:</td>
+	   		<td class="smalltext">
+		   		[fc_build_checkbox_usertype]
+		   		<br>
+		   		<input type="checkbox" class="checkbox" name="excludedisc" value="on" checked> Do not Include Discounts
+	   		</td>
+			</tr>
+		</table>
+	</fieldset>	
+	<fieldset>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+	   		<td class="smalltext" valign="top" width="25%">Sort By:</td>
+	   		<td class="smalltext">
+		   		<input type="radio" class="radio" name="sortby" value="" checked> No Order
+		   		<input type="radio" class="radio" name="sortby" value="nums"> Nums or Records
+		   		<input type="radio" class="radio" name="sortby" value="amounts"> Amount<br>
+		   		<input type="radio" class="radio" name="sortorder" value="ASC"> Ascending
+		   		<input type="radio" class="radio" name="sortorder" value="DESC" checked> Descending
+	   		</td>
+			</tr>
+		</table>
+	</fieldset>
+	<fieldset>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+		  		<td class="smalltext" width="25%">Date:</td>
+		   		<td class="smalltext"><input type="radio" class="radio" name="dtype" value="sl_orders.Date" checked> Order Date
+		   			<input type="radio" class="radio" name="dtype" value="sl_returns.Date"> Return Date</td>
+			</tr>
+		</table>
+	</fieldset>
+	<p align="center"><input type="submit" value="Run" class="button"></p>
+  </form>
+<script language="javascript">
+<!--
+
+	chg_chkbox('type','[in_type]');
+	chg_chkbox('status','[in_status]');
+	chg_chkbox('meraction','[in_meraction]');
+	chg_radio('groupby','[in_groupby]');
+	chg_radio('sortby','[in_sortby]');
+	chg_radio('dtype','[in_dtype]');
+	chg_radio('report_type','[in_report_type]');
+	
+//-->
+</script>
+
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+
+
+[ip_footer]

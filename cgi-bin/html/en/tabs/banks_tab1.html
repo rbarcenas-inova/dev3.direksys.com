@@ -1,0 +1,40 @@
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+
+<input type="hidden" name="view" value="[in_id_banks]">
+<input type="hidden" name="action" value="1">
+<input type="hidden" name="bank_action" value="update">
+<input type="hidden" name="tab" value="[in_tab]">
+<input type="hidden" name="cmd" value="[in_cmd]">
+<fieldset><legend>Edit Account:</legend>
+	<table style="[va_show_edit_amount]">
+		<tr>
+			<td class="smalltext"  [va_disablea] >Account: 
+			<td class="smalltext">
+				<input type="text" name="n_id_accounts" id="id_n_account" value="[va_id_accounts]" onFocus='focusOn( this )' onBlur='focusOff( this )'/><span class="smallfieldterr" id="span_n_id_accounts">[er_n_id_accounts]</span>
+				<a href="#tabs" onClick="popup_show('search_n_account', 'item_drag3', 'popup_exiti3', 'mouse-corner', 0, 0,'id_n_account');">
+					<img src="/sitimages/default/icsearchsmall.gif" border="0">
+				</a>
+			</td>
+				<td colspan="2" align="center"><input [va_disablea] type="submit" value="Modify" class="button"></td>
+			</td>
+		</tr>
+
+	</table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable"
+		<tr>
+			<td class="menu_bar_title">ID</td>
+			<td class="menu_bar_title">Account ID</td>
+			<td class="menu_bar_title">Account Name</td>
+			<td class="menu_bar_title">Account Description</td>
+		</tr>
+	[va_searchresults]
+	</table>
+</fieldset>
+<script type="text/javascript">
+<!--
+	$(document).ready(function() {
+		chg_select('n_id_accounts','[in_n_id_accounts]');
+	});
+
+//-->
+</script>

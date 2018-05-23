@@ -1,0 +1,410 @@
+[ip_header_console]
+
+<link rel="stylesheet" type="text/css" href="">
+<script type="text/javascript">
+<!--	
+	
+/*
+	onload = function(){
+		var showone = "[in_tab]";
+		if(showone == ""){
+			popup_show('popup_script', 'script_drag', 'script_exit', 'element-right', -1, -1,'wumsg');
+		}
+	}
+*/
+$(document).ready(function() {
+
+		//$(document).ajaxError(function(e, xhr, settings, exception) {
+		//		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		//}); 
+
+		$("#fancybox_email_and_cellphone").fancybox({
+				'margin'				:	'1',
+				'padding'				:	'1',
+				'autoScale'			: false,
+				'centerOnScroll': true,
+				'transitionIn'	: 'none',
+				'transitionOut'	: 'none',
+				'autoDimensions':	'true',
+				'overlayOpacity':	'0.3',
+				'onComplete'		: function() {
+						$("#fancybox-wrap").css({'margin-top':'10px', 'margin-bottom':'auto'}); 
+				}
+			});
+
+	$("#fancybox_postdated").fancybox({
+		'margin'		:	'1',
+		'padding'		:	'5',
+		'autoScale'		: false,
+		'centerOnScroll': true,
+		'transitionIn'	: 'none',
+		'transitionOut'	: 'none',
+		'autoDimensions':	'true',
+		'overlayOpacity':	'0.3',
+		'onComplete'		: function() {
+				$("#fancybox-wrap").css({'margin-top':'10px', 'margin-bottom':'auto'}); 
+		}
+	});
+	$('#btnPostdated').click(function() {
+		$('#fancybox_postdated').trigger('click');
+		$('#txtDays').focus();
+	});
+	
+	$('#btnPostfechar').click(function(){
+		var days = $('#txtDays').val();
+		var patron_val = /^\d{4}-\d{2}-\d{2}$/;
+
+		if( days != '' && patron_val.test(days) ) {
+			//if(days>[va_pdmaxdays])	{
+			//	alert("El número máximo de días es [va_pdmaxdays]");
+			//	$('#txtDays').focus();			
+			//}else{
+				if(confirm('¿Esta seguro de elegir '+days+'?'))
+					parent.location.href = "/cgi-bin/mod/sales/admin?cmd=console_order&step=8&postdated=1&days="+days+"#tabs";
+				else
+					return false;
+			//}
+		}else{
+			alert("El valor introducido no es válido");
+			$('#txtDays').focus();
+		}
+	});
+
+		/*$( '#check_address' ).click(function() {
+
+			var email = $( 'input:hidden[name=email]' ).val();
+			var cellphone = $( 'input:hidden[name=cellphone]' ).val();
+				$.ajaxSetup({ timeout: ( 15 * 1000 ) });
+				$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'verify_email_and_cellphone', 'email':email, 'cellphone':cellphone},function(response,status,xhr){
+// 						alert(status);
+						if (status == "error") {
+ 								alert(msg);
+						}else{
+								if(response.match(/error/gi)){
+			    					alert("Los datos no son válidos.\r\n"+response);
+			    			}else{
+									document.getElementById('modal_email_and_cellphone').innerHTML = response;
+									$( "#fancybox_email_and_cellphone" ).trigger('click');
+								}
+						}
+			
+				});
+		});*/
+		var email = $( 'input:hidden[name=email]' ).val();
+		var cellphone = $( 'input:hidden[name=cellphone]' ).val();
+		var contact_mode = $( 'input:hidden[name=contact_mode]' ).val();
+		var email_and_cellphone_use = $( 'input:hidden[name=email_and_cellphone_use]' ).val();
+		//alert('Values: '+email+','+cellphone+','+isNaN([in_tab]));
+		if(isNaN([in_tab]) && (email=='' && cellphone=='' && contact_mode!='phone_call')&& email_and_cellphone_use==1){
+				$( "#fancybox_email_and_cellphone" ).trigger('click');	
+		}
+		
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td valign="top" align="left" bgcolor="#ffffff">
+			
+		<table width="100%" height=41px border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+				<td>&nbsp;</td>
+				<td class="cell_on" width="14%" align="center">Consola [va_salesorigins.channel]</td>
+		 </tr>
+		</table>
+		
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+				
+				
+		[fc_customer_header]
+			<br>
+			
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="9">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="postdated" value="[in_postdated]">
+	<input type="hidden" name="days" value="[in_days]">
+	<input type='hidden' name='pay_type' value='[in_pay_type]'>
+	<input type="hidden" name="email" value="[in_email]" size="30">
+	<input type="hidden" name="cellphone" value="[in_cellphone]" size="30">
+	<input type="hidden" name="email_and_cellphone_use" value="[in_email_and_cellphone_use]" size="30">
+	<input type="hidden" name="contact_mode" value="[in_contact_mode]" size="30">
+	
+<fieldset><legend>Crear nueva Orden : Confirmar Orden</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	      <td>
+	      		      	  		
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+			
+			</td>
+	   </tr>
+		<tr>
+		  <td bgcolor="#C0C0C0" height="2"></td>
+		</tr>
+	</table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Nombre Completo : </td>
+		  <td class="smalltext">[in_firstname] [in_lastname1] [in_lastname2]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Teléfonos (Día / Tarde / Celular) : </td>
+		  <td class="smalltext">[in_phone1] - [in_phone2] - [in_cellphone]</td>
+		</tr>
+		<tr>
+		  <td width="30%" >Hora : <span class="help_on">Mejor Hora para Ubicarlo?</span></td>
+		  <td class="smalltext" valign="top">[in_atime]</td>
+		</tr>
+		<tr>
+		  <td colspan="2" bgcolor="#C0C0C0" height="2"></td>
+		</tr>		
+	</table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td width="50%">Info de Cobro : </td>
+		  <td width="50%">Info de Despacho</td>
+		</tr>		
+		<tr>
+		  <td width="50%" valign="top">
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				  <td valign="top"nowrap>Dirección  : </td>
+				  <td class="smalltext">[in_address1]<br>[in_address2]<br>[in_address3]</td>
+				</tr>
+				<tr>
+				  <td width="30%"nowrap>Info Local  : </td>
+				  <td class="smalltext">[in_urbanization]</td>
+				</tr>
+				<tr>
+				 	<td width="30%"nowrap>Ciudad  : </td>
+				 	<td class="smalltext">[in_city]</td>
+				</tr>
+				<tr>
+				 	<td width="30%"nowrap>Estado/Zip : </td>
+				    <td class="smalltext">[in_state], [in_zip]</td>
+				</tr>
+				<tr>
+				 	<td width="30%"nowrap>Pais : </td>
+				    <td class="smalltext">[in_country]</td>
+				</tr>
+				<tr>
+				 	<td width="30%" valign="top"nowrap>Notas  : </td>
+				    <td class="smalltext">[in_billingnotes]</td>
+				</tr>		
+			</table></td>
+		  <td width="50%" valign="top">
+		  	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				  <td valign="top"nowrap>Direccion  : </td>
+				  <td class="smalltext">[in_shp_address1]<br>[in_shp_address2]<br>[in_shp_address3]</td>
+				</tr>
+				<tr>
+				  <td width="30%"nowrap>Info Local  : </td>
+				  <td class="smalltext">[in_shp_urbanization]</td>
+				</tr>
+				<tr>
+				 	<td width="30%"nowrap>Ciudad  : </td>
+				 	<td class="smalltext">[in_shp_city]</td>
+				</tr>
+				<tr>
+				 	<td width="30%"nowrap>Estado/Zip : </td>
+				    <td class="smalltext">[in_shp_state], [in_shp_zip]</td>
+				</tr>
+				<tr>
+				 	<td width="30%"nowrap>Pais : </td>
+				    <td class="smalltext">[in_shp_country]</td>
+				</tr>
+				<tr>
+				 	<td width="30%" valign="top"nowrap>Notas  : </td>
+				    <td class="smalltext">[in_shp_notes]</td>
+				</tr>		
+				<tr>
+				 	<td width="30%" valign="top" nowrap>Persona que Recibe  : </td>
+				    <td class="smalltext">[in_shp_name]</td>
+				</tr>		
+				
+			</table></td>
+		</tr>
+		<tr>
+		  <td colspan="2" bgcolor="#C0C0C0" height="2"></td>
+		</tr>		
+	</table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td colspan="2" bgcolor="#C0C0C0" height="2"></td>
+		</tr>		
+	</table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Tipo Pago  : </td>
+		  <td class="smalltext">[va_paytype] <br>
+		  	[va_delivery_dates]
+		  </td>
+		</tr>
+	</table>
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="stdtxterr" colspan="2">[in_errmes]</td>
+		 </tr>
+	</table>
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td colspan="2">[fc_products_inorder]</td>
+		</tr>	
+		<tr>
+		  <td colspan="2" bgcolor="#C0C0C0" height="2"></td>
+		</tr>		
+	</table>
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td align="center">
+		  	<br><b>Tipo de Envío Actual: </b> [va_this_shp_type] <span class="smallfieldterr">[er_shp_type]<br>
+		  		<span class="help_on">Presiona la im&aacute;gen para cambiar el tipo</span>
+		  	<br>
+		  </td>
+		</tr>
+		<tr>
+			<td>
+				[ip_console_shipping_table]
+			</td>
+		</tr>
+	</table>
+	&nbsp;
+	[fc_paysummary]
+	&nbsp;
+	<p align="center"><input type="submit"  value="Confirmar Orden>>" class="button"><center>
+	<!-- <input type="button" value="Revisar" class="button" name="check_address" id="check_address"> -->
+					
+					<!-- Fancybox -->
+					<a id="fancybox_email_and_cellphone" href="#modal_email_and_cellphone"></a>
+					<div style="display: none;">
+						<div id="modal_email_and_cellphone" style="width:500px;overflow:auto;text-align:center;">
+							<iframe src="/cgi-bin/common/apps/ajaxbuild?ajaxbuild=email_and_cellphone&email=[in_email]&cellphone=[in_cellphone]" width="490" height=350>
+							  <p>Your browser does not support iframes.</p>
+							</iframe>
+						</div>
+					</div>
+					<!-- Fancybox -->
+		[fc_build_postdated_button]
+		</p>
+		<!-- Fancybox -->
+		<a id="fancybox_postdated" href="#modal_postdated"></a>
+		<div style="display: none;">
+			<div id="modal_postdated" style="width:500px;overflow:auto;text-align:center; padding: 30px 0 20px 0;">
+				<p>Elija la fecha que desea :<br><br> 
+					<input type="text" id="txtDays" value="" maxlength="20" size="15" />  
+				</p>
+				<p> <input type="button" name="btnPostfechar" id="btnPostfechar" value="Aceptar" class="button" /> </p>
+			</div>
+		</div>
+		<!-- Fancybox -->
+</fieldset>
+<!--GV Modifica: Se comenta
+			<p class="txtlegend">Lista Servicios
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+			<tr>
+				<td class="menu_bar_title" ></td>
+			  <td class="menu_bar_title" >ID</td>
+			  <td class="menu_bar_title">Nombre</td>			  
+			  <td class="menu_bar_title">Tipo Servicio</td>
+			  <td class="menu_bar_title">Precio</td>
+			  <td class="menu_bar_title">Imp.</td>
+			</tr>
+			[va_serlist]
+			<tr>
+			  <td colspan="8"><hr class="menu_bar_title"></td>
+			</tr>			 
+			</table></p>
+-->
+
+<br>
+<!--GV Inicia-->
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr><td bgcolor=#ffffff>
+[fc_console_extraslinks]
+</td></tr></table>
+<!--GV Termina--> 
+<script language="javascript">
+<!--
+
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		// alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+	var dates = $( "#txtDays" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: new Date(),
+		minDate:  new Date(),
+		maxDate: '+[va_pdmaxdays]d',
+		changeMonth: true,
+		numberOfMonths: 2,
+	});
+
+});
+
+
+function postdatedf() {
+	//GV Inicia
+	var days=prompt("Introduzca el número de días(max:[va_pdmaxdays] ):");
+	if(days>[va_pdmaxdays])
+	{
+		alert("El número máximo de días es [va_pdmaxdays]");
+		days=prompt("Introduzca el número de días:");
+		
+	}
+	days = days*1;
+	if(days)
+	{
+		if(confirm('¿Esta seguro que es una orden POST FECHADA por '+days+' días?'))
+		{
+			parent.location.href = "/cgi-bin/mod/sales/admin?cmd=console_order&step=8&postdated=1&days="+days+"#tabs";
+		}
+		else
+			return false;
+	}
+	//GV Termina
+	/*if (confirm('Esta seguro que es una orden POST FECHADA?')){
+		parent.location.href = "/cgi-bin/mod/sales/admin?cmd=console_order&step=9&postdated=1";
+    }else{
+	    return false;
+    }*/
+}
+
+//-->
+
+function recharge(valor)
+{
+	//alert(valor.name+"="+valor.value);
+	//window.location
+	self.location = "/cgi-bin/mod/sales/admin?cmd=console_order&step=8&tab=1&"+valor.name+"="+valor.value+"#tabs";
+	//trjump('/cgi-bin/mod/sales/admin?cmd=console_order&step=8&tab=1&fpago_$cses{'items_'.$i.'_id'}=#tabs');
+}
+
+</script>
+
+</form>		   
+ </td>
+    </tr>
+</table>	
+[ip_footer_console]
+
+

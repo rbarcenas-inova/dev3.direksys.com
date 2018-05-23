@@ -1,0 +1,89 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"   "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://opengraphprotocol.org/schema/"
+      xmlns:fb="http://www.facebook.com/2008/fbml"
+      xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="es-mx">
+<title>Editing Order</title>
+<link rel="stylesheet" type="text/css" href="/sitimages/orders/orders.css">
+<META NAME="Author" CONTENT="ArielAleXCo." />
+</head>
+<body>
+
+
+<center>
+<form action="/cgi-bin/common/apps/e_orders" method="post" name="sitform" [>
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="cmd" value="stdedition">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="path" value="[in_path]">
+	<input type="hidden" name="taxmode" value="[in_taxmode]">
+	<input type="hidden" name="add_cod" value="1">
+	<input type="hidden" value="[in_force_calc]" name="force_calc">
+	[va_productslist]
+	[va_paymentsupdlist]
+
+<table cellpadding=0 cellspacing=5 width=95% border=0>
+	<tr>
+		<td valign=bottom align=left><font class=modaltit>Editing Order : [in_id_orders]</font><br><br></td>
+	</tr>	
+	<tr>
+		<td colspan=2 align=left>
+		<table cellpadding=4 cellspacing=0 width=100% style="border:1px solid;">
+			<tr bgcolor=#4d6ce4 background="/sitimages/orders/tabla.jpg">
+				<td colspan="2"><font class=mthead>Add COD Payment</font></td>
+			</tr>
+			<tr>
+				<td class="stdtxterr" colspan="2">[va_message]</td>
+			</tr>			
+			<tr>
+				<td class="num">Amount : <span class="fieldterr">[er_amount]</span></td>
+				<td><input type="text" size="10" name="amount" class="inputsm" value="[in_amount]" ><br>
+					This Amount will modify any Unpaid COD payment. Otherwise a new payment will be created</td>
+			</tr>
+	
+			<tr>
+				<td>&nbsp;</td>
+				<td><input type="submit" name="search" value="Add" class="button"> &nbsp;
+					<input type="submit" name="return" value="Return" class="button">
+				</td>
+			</tr>
+		</table>
+	
+	<font class=modalsec>Payments: <b>[va_paylines]</b></font>
+			<table cellpadding=4 cellspacing=0 width=100% style="border:1px solid;">
+				<tr bgcolor=#4d6ce4 background="/sitimages/orders/tabla.jpg">
+					<td align="center"><font class=mthead>#</font></td>
+					<td align="center"><font class=mthead>Type</font></td>
+					<td align="center"><font class=mthead>Info</font></td>
+					<td align="center"><font class=mthead>Amount</font></td>
+					<td align="center"><font class=mthead>Payment Date <br><font color=#eeeeee><I>(YYYY-MM-DD)</I></font></td>
+					<td align="center"><font class=mthead>Action</font></td>
+				</tr>
+				[va_paymentslist]
+				<tr bgcolor="#ffffff">
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td align="right"><b>TOTAL</td>
+					<td class="num"><b>[va_ptotal]</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+			<table cellpadding=4 cellspacing=0 width=40% style="border:1px solid;" align="right">
+				<tr bgcolor=#4d6ce4 background="/sitimages/orders/tabla.jpg">
+					<td align="center"><font class=mthead>Payments : [va_ptotal]</font></td>
+					<td align="center"><font class=mthead>Products : [va_total]</font></td>
+					<td align="center"><font class=mthead>Differencte : [va_tdiff]</font></td>
+				</tr>
+				<tr bgcolor="#ffffff">
+					<td colspan="3">[va_diffmessage]</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>
+</body>

@@ -1,0 +1,91 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center style="background-image:url([va_imgurl]menu/menubg.jpg); background-repeat:repeat-x; background-position: top left;">
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0>
+				<tr>
+					<td align=left>
+						<font face=verdana>
+							<ul id="accordion">
+							[ip_menu]
+						</ul>
+						<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+						<script type="text/javascript">
+							var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.5', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+						</script>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff" style="padding: 10px;">
+			<fieldset><legend>Enable/Disable Billing</legend>
+				<input type="hidden" id="currStat" value=[va_stat]>
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+					<tr>
+						<td>
+							To activate or deactivate Billing feature please select an option<hr space>
+							<input type="radio" name="rdoOption" value="1"> Enable <br>
+							<input type="radio" name="rdoOption" value="0"> Disable <br>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			<br />
+			<fieldset>
+				<legend>Logs</legend>
+				<div id="tab_maincontent" [va_tabvisible]>					
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+						<tr>
+							<td class="tbltextttl" colspan="4">
+								<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+								Records : [va_matches]</td>
+							<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>	
+						</tr>
+						<tr>
+							<td colspan="5">
+								<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+									<tr>
+										<td class="menu_bar_title">Log Date</td>
+										<td class="menu_bar_title">Log Time</td>
+										<td class="menu_bar_title">Action</td>
+										<td class="menu_bar_title">User</td>
+										<td class="menu_bar_title">IP Address</td>
+									</tr>
+									[va_searchresults]
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</fieldset>
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+
+
+<script>
+	$(function(){
+		$('input:radio[name="rdoOption"][value="'+$('#currStat').val()+'"]').attr('checked',true);
+		$('input[name="rdoOption"]').live('click',function(){
+			var val=$(this).val();
+
+			var settings = {
+					  "url": "/cgi-bin/common/apps/ajaxbuild",
+					  "method": "POST",
+					  "data":{
+					  	"ajaxbuild":"billingcontrol",
+					  	"rdoOption":val
+					  }
+					}
+
+				$.ajax(settings).done(function (response) {
+				 	console.log(response);
+				});
+		});
+	});
+</script>

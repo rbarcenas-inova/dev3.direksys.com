@@ -1,0 +1,71 @@
+&nbsp;
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman" name="sitform">
+	<input type="hidden" name="id_services" value="[in_id_services]">
+	<input type="hidden" name="view" value="[in_id_services]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="4">
+	<input type="hidden" name="tabs" value="4">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="2" class="gborder" align="center">
+		<tr>
+		    <td class="tbltextttl" width="50%">	
+		    	<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_services]&tab=[va_activetab]&tabs=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>		      
+	        </td>
+		    <td class="fieldterr">[va_tabmessage]</td>
+		</tr>
+		<!-- Sale Accounts Description -->
+		<tr style="[va_show_account_sale]">
+		  	<td valign="top" width="50%" class="smalltext">Sale Account : ([in_saleid_accounts]) [va_saccount_name]</td>
+		  	<td valign="top" width="50%" class="smalltext">Sale Tax : [in_tax] %</td>	
+		</tr>
+		<!-- Purchase Accounts Description -->
+		<tr style="[va_show_account_purchase]">
+		  	<td valign="top" width="50%" class="smalltext">Purchase Account : ([in_purchaseid_accounts]) [va_paccount_name]</span></td>
+		  	<td valign="top" width="50%" class="smalltext">Purchase Tax : [in_tax] %</td>	
+		</tr>
+		<!-- <tr style="[va_show_account_purchase]">
+		  	<td valign="top" width="50%" class="smalltext">Purchase Tax Account : ([in_purchasetaxid_accounts]) [va_taxpaccount_name]</span></td>
+		  	<td valign="top" width="50%" class="smalltext">&nbsp;</td>	
+		</tr> -->
+		<tr>
+			<td align="center" colspan="2" class="menu_bar_title">Change Accounts to:</td>
+		</tr>
+		<!-- Sale Accounts Configuration -->
+		<tr style="[va_show_account_sale]">
+		  	<td valign="top" width="50%">Sale Account : <span class="smallfieldterr">[er_saleid_accounts]</span>
+		    	<select name="newsaleid_accounts" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			      	<option value="---">---</option>
+			        [fc_build_select_accounting]
+				</select>
+			</td>
+
+		    <td class="smalltext">Sale Tax : <input type="text" name="newtax" value="[in_tax]" size="8" onFocus='focusOn( this )' onBlur='focusOff( this )'> &nbsp; %</td>
+		</tr>
+		<!-- Purchase Accounts Configuration -->
+		<tr style="[va_show_account_purchase]">
+		  	<td valign="top" width="50%">Purchase Account : <span class="smallfieldterr">[er_purchaseid_accounts]</span>
+		    	<select name="newpurchaseid_accounts" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			      	<option value="---">---</option>
+			        [fc_build_select_accounting]
+					</select>
+			</td>			
+		    <td class="smalltext" width="50%">Purchase Tax : <input type="text" name="purchase_newtax" value="[in_tax]" size="8" onFocus='focusOn( this )' onBlur='focusOff( this )'> &nbsp; %</td>
+		</tr>
+		<!-- <tr style="[va_show_account_purchase]">
+		  	<td valign="top" width="50%">Purchase Tax Account : <span class="smallfieldterr">[er_taxpurchaseid_accounts]</span>
+		    	<select name="newtaxpurchaseid_accounts" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			      	<option value="---">---</option>
+			        [fc_build_select_accounting]
+					</select>
+			</td>			
+		    <td class="smalltext" width="50%">&nbsp;</td>
+		</tr> -->
+		<tr>
+			<td align="center" colspan="2"><p>&nbsp;</p><input type="submit" value="Update Accounts" class="button"></td>
+		</tr>
+	</table>
+</form>
+
+
+

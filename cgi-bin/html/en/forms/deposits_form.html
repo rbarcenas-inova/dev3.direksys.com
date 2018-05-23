@@ -1,0 +1,111 @@
+
+	&nbsp;
+	<fieldset><legend>Deposit Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  	<td valign="top" width="30%">Bank : <span class="smallfieldterr">[er_id_banks]</span></td>
+		   	<td class="smalltext">
+		   		<select name="id_banks" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+          			<option value="">---</option>
+						[fc_build_select_bank]
+					</select>
+				</td>
+	 	</tr>
+		<tr>
+	  		<td width="30%">Deposit Date : <span class="smallfieldterr">[er_depdate]</span></td>
+			<td class="smalltext"><input type="text" id="depdate" name="depdate" value="[in_depdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		
+		
+ 		<tr>
+			<td width="30%" valign="top">Vendor ID	 : <span class="smallfieldterr">[er_id_vendors]</span></td>
+			  <td class="smalltext">
+			  	<!--<input type="text" name="id_vendors" value="[in_id_vendors]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			    <a href="javascript:search_id('id_vendors','db=sl_vendors&cmd=vendors')">
+					<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a> <span class="help_on">[va_vendor_name]</span>-->
+					<input type="text" name="id_vendors" id='id_vendors' value="[in_id_vendors]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<a href="#vendors" id="vendors" onClick="add_vendor()"><img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+					<div id="popup_vendors" style="visibility: hidden; display: none; background-color: #ffffff;">
+					<div class="menu_bar_title" id="item_drag1">
+					<img id="popup_exit1" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+					&nbsp;&nbsp;&nbsp;Vendors
+					</div>
+					<div class="formtable">
+					<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=vendors&db=sl_vendors&fname=id_vendors&ajaxtype=1" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+					<H2>Unable to do the script</H2>
+					<H3>Please update your Browser</H3>
+					</IFRAME>	
+					</div></div>					
+			   </td>
+			</tr>				
+			<tr>
+			  	<td valign="top" width="30%">Account : <span class="smallfieldterr">[er_id_accounts]</span></td>
+			   	<td class="smalltext">
+			   		<select name="id_accounts" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	          			<option value="">---</option>
+							[fc_build_select_accounting]
+						</select>
+					</td>
+		 	</tr>
+			<tr>
+		  		<td width="30%">Memo : <span class="smallfieldterr">[er_memo]</span></td>
+				<td class="smalltext"><input type="text" name="memo" value="[in_memo]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+		  		<td width="30%">Reference Num : <span class="smallfieldterr">[er_refnum]</span></td>
+				<td class="smalltext"><input type="text" name="refnum" value="[in_refnum]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>			
+			<tr>
+		  		<td width="30%">Amount : <span class="smallfieldterr">[er_amount]</span></td>
+				<td class="smalltext"><input type="text" name="amount" value="[in_amount]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+	
+		</table>
+		</fieldset>
+	&nbsp;
+		  <fieldset><legend>Status</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				  <td width="30%">Status :</td>
+				  <td class="smalltext">[in_status]</td>
+				</tr>
+			</table>
+			</fieldset>		
+	
+<input type="hidden" name="status" value="[in_status]">
+
+	
+
+
+<script language="javascript">
+
+	[va_autorun_js]
+
+	function add_vendor(){
+		popup_show('popup_vendors', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'vendors');
+	}
+
+	chg_select('id_accounts','[in_id_accounts]');
+	chg_select('id_banks','[in_id_banks]');
+	
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+	var dates = $( "#depdate" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		minDate: new Date()-60,
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3
+	});
+
+});
+
+</script>
+
+

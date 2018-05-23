@@ -1,0 +1,140 @@
+&nbsp;
+    <fieldset>
+        <legend>Contracts</legend>
+        <table border="0" cellspacing="0" cellpadding="2" width="100%">
+            <tbody>
+                <tr>
+                    <td width="30%">Station : <span class="smallfieldterr">[er_station]</span></td>
+                    <td class="smalltext"><select name="station" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+										    <option value="---">---</option>
+										    [fc_build_select_stations]
+									    </select></td>
+                </tr>
+                <tr>
+                    <td width="30%">Dma : <span class="smallfieldterr">[er_dma]</span></td>
+                    <td class="smalltext"><select name="dma" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+										    <option value="---">---</option>
+										    [fc_build_select_mediadmas]
+									    </select></td>
+                </tr>
+                <tr>
+                    <td width="30%">Agency : <span class="smallfieldterr">[er_agency]</span></td>
+                    <td class="smalltext"><select name="agency" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+										    <option value="---">---</option>
+										    [fc_build_select_agency]
+									    </select></td>
+                </tr>
+                <tr>
+                    <td width="30%">Format : <span class="smallfieldterr">[er_format]</span></td>
+                    <td class="smalltext">[br_format@sl_mediacontracts]</td>
+                </tr>
+
+                <tr>
+                    <td width="30%">Cost : <span class="smallfieldterr">[er_cost]</span></td>
+                    <td class="smalltext"><input name="cost" value="[in_cost]" size="10" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+                </tr>
+                <tr>
+                    <td width="30%">Station Date : <span class="smallfieldterr">[er_stationdate]</span></td>
+                    <td class="smalltext"><input type="text" id="stationdate" name="stationdate" value="[in_stationdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+                </tr>
+                <tr>
+                    <td width="30%">Stationtime : <span class="smallfieldterr">[er_stationtime]</span></td>
+                    <td class="smalltext"><input name="stationtime" value="[in_stationtime]" size="10" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+                    		<span class="help_on">ie: 13:39</span></td>
+                </tr>
+                <tr>
+                    <td width="30%">Local/Base Date : <span class="smallfieldterr">[er_estday]</span></td>
+                    <td class="smalltext"><input type="text" id="estday" name="estday" value="[in_estday]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+                </tr>
+                <tr>
+                    <td width="30%">Local/Base Time : <span class="smallfieldterr">[er_esttime]</span></td>
+                    <td class="smalltext"><input name="esttime" value="[in_esttime]" size="10" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+                    	<span class="help_on">ie: 13:39</span></td>
+                </tr>
+                <tr>
+                    <td width="30%">Destination : <span class="smallfieldterr">[er_destination]</span></td>
+                     <td class="smalltext">[br_destination@sl_mediacontracts]</td>
+                </tr>
+                <tr>
+                    <td width="30%">Destination DID : <span class="smallfieldterr">[er_destinationdid]</span></td>
+                    <td class="smalltext"><select name="destinationdid" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+										    <option value="---">---</option>
+										    [fc_build_select_dids]
+									    </select></td>
+               </tr>
+                <tr>
+                    <td width="30%">Offer : <span class="smallfieldterr">[er_offer]</span></td>
+                    <td class="smalltext"><input name="offer" value="[in_offer]" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+                </tr>
+                <tr>
+                    <td width="30%">Comments : <span class="smallfieldterr">[er_comments]</span></td>
+                    <td class="smalltext"><input name="comments" value="[in_comments]" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+                </tr>
+                <tr>
+                    <td width="30%">Week : <span class="smallfieldterr">[er_week]</span></td>
+                    <td class="smalltext"><input name="week" value="[in_week]" size="5" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>&nbsp; &nbsp;
+    <fieldset>
+        <legend>Contracts Status</legend>
+        <table border="0" cellspacing="0" cellpadding="2"
+        width="100%">
+            <tbody>
+                <tr>
+                    <td width="30%">Status : <span class="smallfieldterr">[er_status]</span></td>
+                    <td class="smalltext">
+                    	[br_status@sl_mediacontracts]&nbsp;&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    
+<input type="hidden" name="mediastatus" value="[in_mediastatus]">
+
+<script language="javascript">
+<!--
+	chg_radio('format','[in_format]');
+	chg_radio('status','[in_status]');
+	chg_radio('destination','[in_destination]');
+	chg_select('dma','[in_dma]');
+	chg_select('station','[in_station]');
+	chg_select('agency','[in_agency]');
+	chg_select('destinationdid','[in_destinationdid]');
+
+
+	function add_vendor(){
+		popup_show('popup_aragencies', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'aragencies');
+	}
+
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+	var dates = $( "#estday, #stationdate" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-3m",
+		minDate: new Date(2012,1-1,1),
+		maxDate: "+3m",
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+});
+
+
+</script>

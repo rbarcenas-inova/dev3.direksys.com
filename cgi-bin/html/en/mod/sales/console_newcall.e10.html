@@ -1,0 +1,65 @@
+[ip_header_console]
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" valign=top align=left>	
+						
+		<table width="100%" height=41px border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+				<td>&nbsp;</td>
+				<td class="cell_on" width="14%" align="center">Consola [va_salesorigins.channel]</td>
+		 </tr>
+		</table>
+		
+			<div style="background-color:#ffffff;margin:15px;">
+				
+<fieldset>
+<legend>Nueva Llamada </legend>
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="0">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="did" value="[in_did]">
+	<input type="hidden" name="id_origins" value="[in_id_origins]">
+	<input type="hidden" name="id_salesorigins" value="[in_id_origins]">
+	<input type="hidden" name="pterms" value="Contado" />
+[er_did]
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+
+
+		<table border="0" cellspacing="0" cellpadding="2" align=center>
+			<tr>
+		    <td valign="middle" width="25%"><font size=3><b>ID de Llamada :</b></font> <span class="fieldterr">[er_cid]</span></td>
+		    <td  class="smalltext"><input type="text" name="cid" value="[in_cid]" maxlength="10" size="20" class="input250"> &nbsp; <span class="fieldterr">[er_message]</span>
+		    <input type="submit" value="Iniciar >>" class="button">	
+		    </td>
+			</tr>
+		</table>
+<center>
+
+		    		&nbsp;<br><br><br>
+		    		<!--table border="0" cellspacing="0" cellpadding="2" class="formtable">
+		    			<tr>
+		    				<td class="menu_bar_title">Ingrese el N&uacute;mero de Tel&eacute;fono del cual llama y el producto por el cual llama</td>
+		    			</tr>
+		    			<tr>
+		    				<td>[fc_famprodlist]</td>
+		    			</tr>
+		    		</table!--> 
+
+
+
+</form>
+</fieldset>
+</td>
+    </tr>
+</table>	
+
+[ip_footer_console]
+
+

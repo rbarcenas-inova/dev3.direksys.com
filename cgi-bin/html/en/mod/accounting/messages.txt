@@ -1,0 +1,22 @@
+#### Messages
+## Accounting Period
+
+acc_periods_added=Accounting Period Added
+acc_periods_updated=Accounting Period Updated
+
+acc_periods_chgstatus_void_to_open=Status changed from Void to Open
+acc_periods_chgstatus_void_to_closed=Status changed from Void to Closed
+acc_periods_chgstatus_open_to_closed=Status changed from Open to Closed
+acc_periods_chgstatus_open_to_void=Status changed from Open to Void
+acc_periods_chgstatus_closed_to_void=Status changed from Closed to Void
+acc_periods_chgstatus_closed_to_open=Status changed from Closed to Open
+
+acc_layout_load_movsfail=Some Movements Failed
+acc_layout_load_categoryfail=Category Failed
+
+## Segments
+acc_segments_added=Segments Added
+acc_segments_updated=Segments Updated
+
+acc_segments_chgstatus_active_to_inactive=Status changed from Active to Inactive
+acc_segments_chgstatus_inactive_to_active=Status changed from Inactive to Active

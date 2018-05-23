@@ -1,0 +1,106 @@
+[ip_header_small]
+<body bgcolor="#EEEEEE" topmargin="0">
+
+<!-- Start Main Area  -->
+
+<form action="/cgi-bin/common/apps/custom" name="sitform" method="POST">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="id" value="[in_id]">
+	<input type="hidden" name="action" value="1">
+
+<center>
+
+<table border="0" width="95%" cellspacing="0" cellpadding="2" class="gborder">
+  <tr>
+    <td bgcolor="#3E76DD" class="tbltextttlwte">&nbsp; Paid a Bills (Transition Operations)</td>
+  </tr>
+  <tr>
+    <td class="stdtxterr">[va_message]</td>
+  </tr>
+  <tr>
+    <td>
+		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable"> 
+		  <tr>
+		    <td colspan="2" class="menu_bar_title">This Bill</td>
+		  </tr>
+		  <tr>
+		    <td width="30%">Bill Amount</td>
+		    <td>[in_billcurrency] [in_billamount]</td>
+		  </tr>
+		  <tr>
+		    <td width="30%">Bill Balance</td>
+		    <td>[in_billbalance]</td>
+		  </tr>
+		  <tr>
+		    <td width="30%">Bill Status</td>
+		    <td>[in_billstatus]</td>
+		  </tr>
+		  </table>    	
+    	</td>
+  </tr> 
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable"> 
+		  <tr>
+		    <td colspan="2" class="menu_bar_title">New Payment</td>
+		  </tr>
+		  <tr>
+		    <td width="30%">Bill Amount : <span class="smallfieldterr">[er_amount]</span></td>
+		    <td><input type='text' name='amount' value='[in_amount]' onfocus='focusOn( this )' onblur='focusOff( this )' size='20'></td>
+		  </tr> 
+		  <tr style="[va_style]">
+		    <td width="30%">Exchange Rate ([in_billcurrency]->[in_maincurrency]) : <span class="smallfieldterr">[er_exchange_rate]</span></td>
+		    <td><input type='text' name='exchange_rate' value='[in_exchange_rate]' onfocus='focusOn( this )' onblur='focusOff( this )' size='20'></td>
+		  </tr> 
+		  
+		  <tr>
+		    <td width="30%">Pay Date : <span class="smallfieldterr">[er_paydate]</span></td>
+		    <td><input type='text' id='paydate' name='paydate' value='[in_paydate]'  onfocus='focusOn( this )' onblur='focusOff( this )' size='10'></td>
+		  </tr> 
+		  <tr>
+		    <td width="30%">Reference Num : <span class="smallfieldterr">[er_refnum]</span></td>
+		    <td><input type='text' name='refnum' value='[in_refnum]' onfocus='focusOn( this )' onblur='focusOff( this )' size='20'></td>
+		  </tr> 
+		  <tr>
+		    <td width="30%">Memo : <span class="smallfieldterr">[er_memo]</span></td>
+		    <td><input type='text' name='memo' value='[in_memo]' onfocus='focusOn( this )' onblur='focusOff( this )' size='60'></td>
+		  </tr> 
+		</table>    	
+    	</td>
+  </tr> 
+</table>
+<p align="center"><input value="Update Record" class="button" type="submit"></p>
+</center>
+<script language="javascript">
+
+
+	
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+	var t = new Date();
+	var today = t.getFullYear() + '-' + (t.getMonth()+1) + '-' + t.getDate();
+	//alert(today);
+	//$("#podate").val(today);
+	var dates = $( "#paydate" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		setDate: new Date(),
+		defaultDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 2
+	});
+	
+
+});
+
+</script>
+
+</body>
+</html>

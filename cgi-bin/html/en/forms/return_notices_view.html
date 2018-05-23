@@ -1,0 +1,69 @@
+[ip_template_overlay]
+
+	&nbsp;
+	<fieldset><legend>Return Notices Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Return Notice ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_ID_return_notices] &nbsp;
+							[fc_template_idbutton]
+							[fc_template_prnbutton]
+							<a href="/cgi-bin/common/apps/schid?cmd=add_product&id_customers=[in_id_customers]&id_return_notices=[in_id_return_notices]&view=id_return_notices" title="Add Sku" class="fancy_modal_iframe"><img src="/sitimages/default/b_addsku.gif" title="Add Sku" border="0" width="24px"></a>
+						</div>
+					</div>
+					
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Return Notices Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td>Return : </td>
+			<td class="smalltext">[in_id_return]</td>		 
+		</tr>
+		<tr>
+			<td>Customer : </td>
+			<td class="smalltext"><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=opr_customers&view=[in_id_customers]">([in_id_customers])</a> [va_customer]</td>		 
+		</tr>
+		<tr>
+		    <td width="30%">Customer Addresses  : </td>
+		    <td class="smalltext">[in_customers_addresses] [va_customers_addresses]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Return Date : </td>
+		    <td class="smalltext">[in_ret_date]</td>
+		</tr>
+		<tr>
+		  	<td width="30%">Ship Date : </td>
+		    <td class="smalltext">[in_ship_date]</td>
+		</tr>	
+		<tr>
+		  	<td width="30%">Receipt Date : </td>
+		    <td class="smalltext">[in_recept_date]</td>
+		</tr>
+		  	<td width="30%">Carrier : </td>
+		    <td class="smalltext"><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=opr_carriers&view=[in_id_carriers]">([in_id_carriers])</a> [va_carrier]</td>
+			</tr>
+		<tr>
+	</table>
+	</fieldset>
+	&nbsp;
+   <fieldset><legend>Return Notices Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Status  :</td>
+		    <td class="smalltext">[in_status] &nbsp;&nbsp;&nbsp;&nbsp; Change to : [va_chgstatus]</td>
+		 </tr>
+  	</table>
+	</fieldset>
+	&nbsp;

@@ -1,0 +1,39 @@
+[ip_header_blank]
+[va_javascriptvar]
+
+<form method="post" action="/cgi-bin/common/apps/ajaxbuild" name="sitform">
+	<input type="hidden" name="ajaxbuild" value="review_customers_window">
+	<input type="hidden" name="action_choose" value="1">
+	<input type="hidden" name="cmd" value="[in_cmdo]">
+	<table width="100%" border="0"  class="gborder" align="center">
+		<tr>
+			<td colspan="3" class="smallfieldterr"><P style='font-size:14'>[va_tabmessages]</P></td>
+		</tr>
+		<tr>
+			<td class="menu_bar_title" colspan="3" align="center">
+				<P style='font-size:14'>Choose one of the following customers</P></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<fieldset><legend>Customers Results</legend>
+					<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					  <tr>
+						  <td valign="top" width="30%">Customers: <span class="smallfieldterr">[er_id_customers]</span></td>
+						  <td class="smalltext">
+								[va_possible_customers]
+							</td>
+						</tr>
+					</table>
+				</fieldset>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="3"><input type="submit" value="Accept" class="button"></td>
+		</tr>
+	</table>
+</form>
+
+

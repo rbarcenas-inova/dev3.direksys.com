@@ -1,0 +1,127 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 6, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=opr_returns_home&quot;)" align="center" width="17%">Returns</td>		
+	    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/dbman?cmd=opr_returns")'>Add</td>
+	    <td width="17%" class="cell_off" align="center" onClick='trjump(&quot;/cgi-bin/mod/[ur_application]/dbman?cmd=opr_returns&amp;search=form&quot;)'>Search</td>
+	    <td width="17%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/wms/dbman?cmd=sorting&search=listall&sb=id_returns&so=DESC&show_edit_list=1&show_only_list=1&status=In process")'>Edit / List</td>
+	  </tr>
+	</table>
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+
+	<form action="/cgi-bin/mod/wms/dbman" method="post" name="sitform"  onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="edit" value="1">
+	<input type="hidden" name="show_only_list" value="1">
+	<input type="hidden" name="show_edit_list" value="1">
+	<input type="hidden" name="id_returns" value="[in_id_returns]">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="id_orders_products" value="[in_id_orders_products]">
+	<input type="hidden" name="id_customers" value="[in_id_customers]">
+	<input type="hidden" name="prodcondition" value="[in_prodcondition]">
+	<input type="hidden" name="id_warehouses" value="[in_id_warehouses]">
+	<input type="hidden" name="location" value="[in_location]">
+	<input type="hidden" name="actnotes" value="[in_actnotes]">
+	<input type="hidden" name="receptionnotes" value="[in_receptionnotes]">
+	<input type="hidden" name="serial_number" value="[in_serial_number]">
+	<input type="hidden" name="authby" value="[in_authby]">
+	<input type="hidden" name="meraction" value="[in_meraction]">
+	<input type="hidden" name="nodel_status" value="In Process">
+	<input type="hidden" name="nodel_Type" value="1">
+	<input type="hidden" name="nodel_generalpckgcondition" value="1">
+	<input type="hidden" name="nodel_ST" value="1">
+	<input type="hidden" name="nodel_sx" value="1">
+	<input type="hidden" name="itemsqty" value="[in_itemsqty]">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">SORTING Edit Returns : [in_id_returns] for the order [in_id_orders]</td>
+		 </tr>
+		<tr><td class="stdtxterr" colspan="2">[fc_checkparts]<a href='#wumsg' id='wumsg'></a></td>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	[fc_customerdata]
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr class="gcell_on"><td colspan="5" align="center">Items In Order </td></tr>
+		<tr>
+			<td class="menu_bar_title" nowrap>ID Orden</td>
+	    <td class="menu_bar_title">Date</td>
+	    <td class="menu_bar_title">Product info</td>
+	    <td class="menu_bar_title">Ship Info</td>
+	    <td class="menu_bar_title">Status</td>
+	 </tr>
+		[fc_showitemsordered] 
+	</table>	
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr class="gcell_on"><td colspan="5" align="center">Services / Items (Returned) In Order </td></tr>
+		<tr>
+			<td class="menu_bar_title" nowrap>ID Orden</td>
+	    <td class="menu_bar_title">Date</td>
+	    <td class="menu_bar_title">Product info</td>
+	    <td class="menu_bar_title">Status</td>
+	 </tr>
+		[fc_showservicesordered] 
+	</table>
+	&nbsp;
+	<span class="smallfieldterr">[er_orderdata]</span>
+	[fc_orderdata]
+	&nbsp;
+	[ip_forms:sorting_form]
+	&nbsp;
+	<fieldset><legend>Send to</legend>
+		<input type="radio" name="status" value="In Process" class="radio">In Process
+		<input type="radio" name="status" value="Repair" class="radio">Repair
+		<input type="radio" name="status" value="ATC" class="radio">ATC
+		<input type="radio" name="status" value="QC/IT" class="radio">QC/IT
+		<input type="radio" name="status" value="Processed" class="radio">Processed
+		<input type="radio" name="status" value="Void" class="radio">Void
+	</fieldset>
+	&nbsp;
+	<center><input class="button" type="submit" value="Update Return" name="sortingupdate"></center>
+	</form>
+	[tb_sorting]
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script language="javascript">
+<!--
+
+	chg_radio('status','[in_status]');
+	
+
+//-->
+</script>
+[ip_footer]

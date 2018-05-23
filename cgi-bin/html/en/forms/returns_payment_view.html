@@ -1,0 +1,132 @@
+	&nbsp;
+	<fieldset><legend>Returns Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Returns ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_returns] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]
+							<a href="/cgi-bin/common/apps/full_kardex.pl?tbl_name=sl_returns&id_trs=[in_view]"  class='fancy_modal_iframe'>
+								<img src='[va_imgurl]/[ur_pref_style]/kardex.png' title='Kardex' alt='Kardex' border='0' width='24' height='24'>
+							</a>
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+ <fieldset><legend>Original Order</legend>
+ <span class="smallfieldterr">[er_orderdata]</span>
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr class="menu_bar_title">
+		<td colspan="5" align="center">Items In Order </td>
+	</tr>
+		<tr>
+			<td class="menu_bar_title" nowrap>ID Orden</td>
+			<td class="menu_bar_title">Date</td>
+			<td class="menu_bar_title">Product info</td>
+			<td class="menu_bar_title">Ship Info</td>
+			<td class="menu_bar_title">Status</td>
+	 </tr>
+		[fc_returns_itemsordered] 
+	</table>
+	&nbsp;
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr class="menu_bar_title">
+		<td colspan="6" align="center">This Return </td>
+	</tr>
+	<tr>
+		<td class="menu_bar_title">ID products</td>
+		<td class="menu_bar_title">Model / Name</td>
+		<td class="menu_bar_title">UPC</td>
+		<td class="menu_bar_title">Cost</td>
+		<td class="menu_bar_title">Quantity</td>
+		<td class="menu_bar_title">In order</td>
+		<td class="menu_bar_title">Status</td>
+		<td class="menu_bar_title">Warehouse</td>
+		<td class="menu_bar_title">Location</td>
+	</tr>
+	[fc_return_upcs]
+	</table>
+</fieldset>
+&nbsp;
+ <fieldset><legend>Merchandise Reception</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		  <td width="20%" valign="top">Return Type  :</td>
+		  <td class="smalltext">[in_type]</td>		
+  		</tr>
+  		<tr>
+		  <td width="20%" valign="top">General Pckg Condition  : </td>
+		  <td class="smalltext">[in_generalpckgcondition]</td>
+		</tr>
+		<tr>
+		  <td width="20%" valign="top">Reception Notes  : </td>
+		  <td class="smalltext">[in_receptionnotes]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Merchandise Action</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="20%" valign="top">Action  :</td>
+		  <td class="smalltext">[in_meraction]</td>		
+  	</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Return Fees</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="20%" valign="top">Shipping Charges (1st Ship) : </td>
+		  <td class="smalltext">[in_oldshpreturn]</td>		
+  	</tr>		
+  	<tr>
+		  <td width="20%" valign="top">Shipping Charges (Reship) : </td>
+		  <td class="smalltext">[in_newshp]</td>		
+  	</tr>
+  	<tr>
+		  <td width="20%" valign="top">Return Fees :</td>
+		  <td class="smalltext">[in_returnfee]</td>		
+  	</tr>
+  	<tr>
+		  <td width="20%" valign="top">Restock Fees  :</td>
+		  <td class="smalltext">[in_restockfes]</td>		
+  	</tr>
+  	<tr>
+		  <td width="20%" valign="top">Processingfee  :</td>
+		  <td class="smalltext">[in_processingfee]</td>		
+  	</tr>
+  	<tr>
+		  <td width="20%" valign="top">Amount  :</td>
+		  <td class="smalltext">
+		  	<div id="divpayment[id_orders_payments]">[in_amount]   <a href="#[id_orders]" id='ajax_btn' onClick="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'tabsl');loadDoc('/cgi-bin/common/apps/ajaxpayment?ajaxbuild=capture&id_orders=[id_orders]&id_orders_payments=[id_orders_payments]&e=[in_e]');delete_div('divpayment$rec->{'ID_orders_payments'}');"><img src='[va_imgurl]/[ur_pref_style]/b_cauth.gif' title='Capture' alt='' border='0'></a></div></td>		
+  	</tr>
+  </table>
+</fieldset>	
+&nbsp;
+	<fieldset><legend>Return Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+	    <td width="20%">Auth By :</td>
+	    <td class="smalltext">
+	    	<a href="[in_script_url]?cmd=man_users&view=[in_authby]">([in_authby])</a>
+	    </td>
+		</tr>
+  	<tr>
+	    <td width="20%">Status :</td>
+	    <td class="smalltext">[in_status]</td>
+		</tr>
+  </table>
+	</fieldset>

@@ -1,0 +1,43 @@
+	<html>
+		<form>
+		<head>
+	
+	&nbsp;
+	<fieldset><legend>USPS Address Standarization Form</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Address 1  : <span class="smallfieldterr">[er_address1]</span></td>
+		    <td class="smalltext"><input type="text" name="address1" value="[in_address1]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>	
+		 <tr>
+		    <td valign="top" width="30%">Address 2 : <span class="smallfieldterr">[er_address2]</span></td>
+		    <td class="smalltext"><input type="text" name="address2" value="[in_address2]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		<tr>
+		    <td width="30%">City  : <span class="smallfieldterr">[er_city]</span></td>
+		    <td class="smalltext"><input type="text" name="city" value="[in_city]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		 <tr>
+		 	<td width="30%">State : <span class="smallfieldterr">[er_state]</span></td>
+		 	<td class="smalltext">
+				<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+						[fc_build_select_taxcountystate]
+				</select>
+			</td>
+		</tr>
+			<tr>
+		    <td valign="top" width="30%">Zip Code : <span class="smallfieldterr">[er_zipcode]</span></td>
+		    <td class="smalltext"><input type="text" name="zipcode" value="[in_zipcode]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+</table>
+	</fieldset>
+	</head>
+	 <form action="/cgi-bin/cc-supervisor/usps.cgi" method="post" name="sitform" onsubmit="return disableSubmits();">
+
+	<p align="center"><input type="submit" value="Summit Address" class="button"></p>
+</form>
+</html>
+
+
+	&nbsp;

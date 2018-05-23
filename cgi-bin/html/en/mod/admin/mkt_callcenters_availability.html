@@ -1,0 +1,148 @@
+[ip_header]
+<style>
+	#demo-frame > div.demo { padding: 10px !important; };
+</style>
+
+<script type="text/javascript" language="javascript">
+<!--
+$(document).ready(function() {
+
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+});
+
+
+$(function() {
+	$( "#fm_cc img" ).click(function(){
+		var link_id=$(this).attr('id');
+		var MyRows=link_id.split("_");
+		var action=MyRows[0];
+		var row=MyRows[1];
+		var id = $('#id_'+row).val();
+		var from=$('#from_time_'+row).val();
+		var to=$('#to_time_'+row).val();
+
+		/* JQuery Update*/
+		if(action == 'slider-update'){
+
+			$('#slider-from_'+row).html('<img src="[va_imgurl]/processing.gif" title="Updating" border="0" width="16" height="16">');
+			$('#slider-to_'+row).html('<img src="[va_imgurl]/processing.gif" title="Updating" border="0" width="16" height="16">');
+
+
+			setTimeout(function(){
+
+				if(id > 0){
+					$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'update_callcenter_availability', 'id':id, 'from_time':from, 'to_time':to},function(response,status,xhr){
+
+						if (status == "error") {
+							$('#slider-from_'+row).css('background-color','#f5deb3');
+							$('#slider-to_'+row).css('background-color','#f5deb3');
+							alert(msg);
+						}else{
+							if(response.match(/error/gi)){
+								$('#slider-from_'+row).css('background-color','#f5deb3');
+								$('#slider-to_'+row).css('background-color','#f5deb3');
+								alert("Error:\r\n"+response);
+							}else{
+								$('#slider-from_'+row).css('background-color','#f0fff0');
+								$('#slider-to_'+row).css('background-color','#f0fff0');
+							}
+						}
+
+					});
+				}else{
+					alert('Callcenter Info Not Founded');
+				}
+
+				$('#slider-from_'+row).html(from);
+				$('#slider-to_'+row).html(to);
+
+			},2000);
+
+			return false;
+
+		/* Add & Drop Function */
+		}else{
+			$('#sub_action').val(action);
+			$('#sub_id').val(id);
+			$('#fm_cc').submit();
+		}
+	});
+});
+
+[va_searchresults_js]
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 7, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<table class="tab" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+	  <tbody><tr>
+	    <td align="center" width="30%"></td>
+	    <td width="35%" class="cell_on" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=mkt_callcenters_availability&amp;search=form&quot;)" align="center" width="14%">Call Centers Schedule</td>
+	    <td width="35%" class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=mkt_callcenters_logs&quot;)" align="center" width="14%">Call Center Logs</td>
+	  </tr>
+	</tbody></table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+	
+	
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td class="titletext" align="left" colspan="2">Media: Call Centers Availability</td>
+				</tr>
+				<tr>
+					<td class="stdtxterr" colspan="2">[va_message]</td>
+				</tr>
+			</table>
+
+			<form action="/cgi-bin/mod/admin/admin" method="post" name="sitform" id="fm_cc">
+				<input type="hidden" name="cmd" value="mkt_callcenters_availability">
+				<input type="hidden" name="action" value="1">
+				<input type="hidden" name="rows" value="[va_rows]">
+				<input type="hidden" id="sub_action" name="sub_action" value="update-all">
+				<input type="hidden" id="sub_id" name="sub_id" value="0">
+
+				&nbsp;
+				[va_searchresults]
+				&nbsp;
+				<center>
+					<input type="submit" name="btn_send" value="Update All">
+				</center
+			</form>
+
+
+			<script language="javascript">
+			<!--
+					[va_options_selected]
+			//-->
+			</script>
+	
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

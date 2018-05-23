@@ -1,0 +1,57 @@
+<div id="div_search_zipcode" title="B&uacute;squeda de C&oacute;digos Postales" style="overflow-x: hidden; overflow-y: hidden;">
+	<div id="tabs-zipcode">
+		<ul class="ul_tabs">
+		    <li><a href="#tabs-zipcode1">Zip Code :: Direksys</a></li>
+		    <li><a href="#tabs-zipcode2">Zip Code :: SEPOMEX</a></li>
+		    <li><a href="#tabs-zipcode3">Google Maps</a></li>
+	  	</ul>
+	  	<!-- Búsqueda en Direksys -->
+		<div id="tabs-zipcode1">
+			<div class="line">
+				<div class="inptxtv2">Estado:</div>
+				<select name="zp_state" id="zp_state" class="select">
+					<option value="0">--- Estados ---</option>
+					[fc_build_select_zipcodes_state]
+				</select>
+			</div>
+			<div class="line">
+				<div class="inptxtv2">Municipio:</div>
+				<select name="zp_city" id="zp_city" class="select">
+					<option value="0">--- Vac&iacute;o ---</option>
+				</select>
+			</div>
+			<div class="line">
+				<div class="inptxtv2">Colonia/Barrio:</div>
+				<input type="text" name="zp_urbanization" id="zp_urbanization" value="" class="input">
+			</div>
+			<div class="line" style="width: 100%; text-align: center;">
+				<input type="button" name="btn_zp_search" id="btn_zp_search" value="Buscar" class="buttonv2">
+			</div>
+
+			<table style="width: 720px;" class="tb_grid">
+				<thead>
+					<tr>
+						<th style="width: 15%;">C&oacute;digo Postal</th>
+						<th style="width: 40%;">Colonia/Barrio</th>
+						<th style="width: 25%;">Municipio</th>
+						<th style="width: 20%;">Estado</th>
+					</tr>
+				</thead>
+			</table>
+			<div id="div_zipcode_results" style="width: 737px; max-height: 200px; overflow-y: auto;">
+				<table id="table_zipcode_results" style="width: 100%" class="tb_grid">
+					<tbody>
+						
+					</tbody>
+				</table>
+			</div>
+	    </div>
+	    <!-- Búsqueda en SEPOMEX -->
+	  	<div id="tabs-zipcode2" style="text-align: center;">
+	    </div>
+	    <!-- Búsqueda en Google Maps -->
+	  	<div id="tabs-zipcode3" style="text-align: center;">
+	  		<div id="tabs-div_maps" style="height: 435px; width: 730px; margin: auto auto;"></div>
+	    </div>
+	</div>
+</div>

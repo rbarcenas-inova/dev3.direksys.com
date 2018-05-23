@@ -1,0 +1,309 @@
+<style>
+	/*o.v.*/
+
+	#image-dropdown {
+		/*style the "box" in its minimzed state*/
+		border:1px solid gray; width:60px; height:13px; overflow:hidden;
+		/*animate collapsing the dropdown from open to closed state (v. fast)*/
+		-moz-transition: height 0.1s; 
+		-webkit-transition: height 0.1s; 
+		-ms-transition: height 0.1s;  
+		-o-transition: height 0.1s;  
+		transition: height 0.1s;
+	}
+	#image-dropdown:hover {
+		/*when expanded, the dropdown will get native means of scrolling*/
+		height:39px; overflow-y:scroll;
+		/*nice and smooth expand - speed this up at your preference or remove animation altogether*/
+		-moz-transition: height 0.5s; 
+		-webkit-transition: height 0.5s; 
+		-ms-transition: height 0.5s;  
+		-o-transition: height 0.5s;  
+		transition: height 0.5s;
+	}
+	#image-dropdown input {
+		/*hide the nasty default radio buttons. like, completely!*/
+		display:none;
+	}
+
+
+	#image-dropdown label.mx {
+		/*style the labels to look like dropdown options, kinda*/
+		display:none; height:11px;width:20px; opacity:0.2; 
+		/*setting correct backgrounds - add additional rules with selectors based on "for" attribute, something like label[for=line2]{background-image:...}*/
+		background:url("/sitimages/flags/flagMX.png") 100% 100%;
+	}
+	#image-dropdown label.co {
+		/*style the labels to look like dropdown options, kinda*/
+		display:none; height:13px;width:20px; opacity:0.2; 
+		/*setting correct backgrounds - add additional rules with selectors based on "for" attribute, something like label[for=line2]{background-image:...}*/
+		background:url("/sitimages/flags/flagCO.png") 100% 100%;
+	}
+	#image-dropdown label.us {
+		/*style the labels to look like dropdown options, kinda*/
+		display:none; height:13px;width:20px; opacity:0.2; 
+		/*setting correct backgrounds - add additional rules with selectors based on "for" attribute, something like label[for=line2]{background-image:...}*/
+		background:url("/sitimages/flags/flagUS.png") 100% 100%;
+	}
+	#image-dropdown:hover label{
+		/*this is how labels render in the "expanded" state. we want to see only the selected radio button in the collapsed menu, and all of them when expanded*/
+		display:block;
+	}
+	#image-dropdown label:hover {
+		opacity:0.5;
+	}
+	#image-dropdown input:checked + label {
+		/*tricky! labels immediately following a checked radio button (with our markup they are semantically related) should be fully opaque regardless of hover, and they should always be visible (i.e. even in the collapsed menu*/
+		opacity:1 !important; display:block;
+	}
+
+	hr{
+		border-top: 1px dotted gray;
+		border-bottom: none;
+		height: 1px;
+	}
+</style>
+	<fieldset><legend>User Basic Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td class="smalltext">Username : <span class="smallfieldterr">[er_username]</span></td>
+				<td><input type="text" size="20" name="username" value="[in_username]" onFocus='focusOn( this )' onBlur='focusOff( this )' style="font-size:12px;border:solid 2px #0099FF;text-transform: lowercase;">&nbsp;</td>
+				<td class="smalltext">Account Status :</td>
+				<td>
+					<span class="smallfieldterr">[er_status]</span>
+					<input type="radio" name="status" value="Active" class="radio">Active
+					<input type="radio" name="status" value="Inactive" class="radio">Inactive
+					<input type="radio" name="status" value="Cancel" class="radio">Cancel
+				</td>
+			</tr>
+			<tr>
+			  	<td colspan="2"><span id="help" class="help_on">The username could be anything from 5 to 12 chars.</span></td>
+				<td colspan="2"><span id="help" class="help_on">Only Active accounts can login to the system.</span></td>
+			</tr>
+			<tr>
+				<td class="smalltext">First Name : <span class="smallfieldterr">[er_firstname]</span></td>
+				<td><input type="text" size="30" name="firstname" value="[in_firstname]" onFocus='focusOn( this )' onBlur='focusOff( this )'>&nbsp;</td>
+				<td valign="top" class="smalltext">Job Title : <span class="smallfieldterr">[er_jobtitle]</span></td>
+				<td valign="top"><input type="text" size="30" name="jobtitle" value="[in_jobtitle]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+				<input type="hidden" size="30" name="pref_table_width" value="0">
+				<td class="smalltext">Last Name : <span class="smallfieldterr">[er_lastname]</span></td>
+				<td><input type="text" size="30" name="lastname" value="[in_lastname]" onFocus='focusOn( this )' onBlur='focusOff( this )'>&nbsp;</td>
+				<td class="smalltext">E-Mail : <span class="smallfieldterr">[er_email]</span></td>
+				<td><input type="text" size="32" name="email" value="[in_email]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+				<td class="smalltext">Last Name 2 : <span class="smallfieldterr">[er_middlename]</span></td>
+				<td><input type="text" size="30" name="middlename" value="[in_middlename]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				<td class="smalltext">E-Mail 2 : <span class="smallfieldterr">[er_email2]</span></td>
+				<td><input type="text" size="32" name="opcemail2" value="[in_email2]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+			  <td colspan="4"><span id="help" class="help_on">The password is Case sensitive (Home is note the same as HOME) and the lenght should be 5 to 12 chars.</span></td>
+			</tr>
+			<tr>
+				<td class="smalltext" valign="top">Application : <span class="smallfieldterr">[er_application]</span></td>
+				<td valign="top">
+					<select name="application" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option>
+						[bs_application@admin_users]
+					</select></td>
+				<td class="smalltext">&nbsp;<input type="hidden" name="expiration" value="[in_expiration]"><!-- Expiration : <span class="smallfieldterr">[er_expiration]</span> --></td>
+				<td class="smalltext">&nbsp;<input type="hidden" name="never_expires" value="[in_never_expires]"><!-- <input id="expiration" size="10" name="expiration" value="[in_expiration]" onFocus='focusOn( this )' onBlur='focusOff( this )'>&nbsp;
+					&nbsp;&nbsp;Never&nbsp;<input type="checkbox" value="on" name="never_expires" class="checkbox" onClick="if (this.checked) parent.document.sitform.expiration.value='---';"> --></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span id="help" class="help_on"></span></td>
+				<td colspan="2"><span id="help" class="help_on">Select Never for accounts that never expire</span></td>
+			</tr>
+			<tr>
+				<td class="smalltext" valign="top">User Type: <span class="smallfieldterr">[er_user_type]</span></td>
+				<td valign="top">
+					<select name="user_type" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option>
+						[bs_user_type@admin_users]
+						</select>
+				</td>
+				<td class="smalltext" valign="top">Access Filter (IP) : <span class="smallfieldterr">[er_ipfilter]</span></td>
+				<td><textarea cols="25" rows="2" name="ipfilter" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_ipfilter]</textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2" valign="top" width="50%">&nbsp;</td>
+				<td colspan="2" width="50%"><span id="help" class="help_on">To restrict the access to an especific IP, just enter the IP, to accept from a group of IP use: 128.0.0.x. or x.x.x.x to accept login from anywhere</span></td>
+			</tr>
+			<tr>
+				<td class="smalltext">Change password :<span class="smallfieldterr">[er_change_pass]</span></td>
+				<td><input type="radio" name="change_pass" value="Yes" class="radio">Yes<input type="radio" name="change_pass" value="No" class="radio">No</td>
+				<td class="smalltext">Extension : <span class="smallfieldterr">[er_extension]</span></td>
+				<td><input type="text" size="10" name="extension" value="[in_extension]" onFocus='focusOn( this )' onBlur='focusOff( this )'>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="smalltext">Multiaccess Apps :<span class="smallfieldterr">[er_multiapp]</span></td>
+				<td colspan="" class="smalltext" colspan="3">
+					[fc_build_checkbox_mapps]
+				</td>
+				<td class="smalltext">Hits per Page : <span class="smallfieldterr">[er_pref_maxh]</span></td>
+				<td><input type="text" size="4" name="pref_maxh" value="[in_pref_maxh]" onFocus='focusOn( this )' onBlur='focusOff( this )'>&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="2" valign="top" width="50%">Sale Channels Restriction for User&nbsp;</td>
+				<td colspan="2" width="50%"><span id="help" class="help_on">Check any box to restrict the access to an Sale Channel, or neither for total access.</span></td>
+			</tr>
+			<tr>
+				<td class="smalltext">Sale Channels :<span class="smallfieldterr">[er_id_salesorigins]</span></td>
+				<td class="smalltext" colspan="5">
+					[fc_build_checkbox_saleorigins]
+				</td>
+			</tr>
+			<tr>
+				<td class="smalltext">Sale Channels View:<span class="smallfieldterr">[er_id_salesorigins_view]</span></td>
+				<td class="smalltext" colspan="5">
+					[fc_build_checkbox_saleorigins_view]
+				</td>
+			</tr>
+			<tr><td colspan="4"> <hr /> </td></tr>
+			<tr>
+				<td class="smalltext">Account Segments:<span class="smallfieldterr">[er_id_accounts_segments]</span></td>
+				<td class="smalltext" colspan="5">
+					[fc_build_checkbox_accounts_segments]
+				</td>
+			</tr>
+	   	</table>
+  	</fieldset>
+  	&nbsp;
+  	<fieldset><legend>Referenced Username</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td class="smalltext">Username :<span class="smallfieldterr">[er_username_ref]</span></td>
+				<td class="smalltext" colspan="5">
+					<input type="text" size="20" name="username_ref" value="[in_username_ref]" onFocus='focusOn( this )' onBlur='focusOff( this )' style="font-size:12px;border:solid 2px #0099FF;">&nbsp;
+				</td>
+			</tr>
+	   	</table>
+  	</fieldset>
+  	&nbsp;
+	<fieldset><legend>Optional Basic Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td class="smalltext">Birthday : <span class="smallfieldterr">[er_opcbirthday]</span></td>
+				<td><input type="text" size="20" id="birthday" name="opcbirthday" value="[in_opcbirthday]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				<td class="smalltext">Employee Number : <span class="smallfieldterr">[er_opclegalid]</span></td>
+				<td><input type="text" size="20" name="opclegalid" value="[in_opclegalid]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+			  <td colspan="2" width="50%"><span id="help" class="help_on">Birthday date in format : yyyy-mm-dd</span></td>
+				<td colspan="2" width="50%"><span id="help" class="help_on"><!-- Legal identification number such us: Social Security Number --></span></td>
+			</tr>
+	    <tr>
+				<td class="smalltext">Married Status : <span class="smallfieldterr">[er_marriedstatus]</span></td>
+				<td class="smalltext"><input type="radio" value="Single" name="marriedstatus" class="radio">Single
+					<input type="radio" value="Married" name="marriedstatus" class="radio">Married
+					<input type="radio" value="Other" name="marriedstatus" class="radio">Other</td>
+				<td class="smalltext">Childrens : <span class="smallfieldterr">[er_opcchildrens]</span></td>
+				<td><input type="text" size="5" name="opcchildrens" value="[in_opcchildrens]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+    </table>
+  </fieldset>
+	&nbsp;
+	<fieldset><legend>Optional Home Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%" id="table290">
+			<tr>
+				<td class="smalltext" valign="top">Street : <span class="smallfieldterr">[er_homestreet]</span></td>
+				<td><textarea    cols="32" rows="2" name="homestreet" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_homestreet]</textarea></td>
+				<td class="smalltext" valign="top">Phone : <span class="smallfieldterr"> [er_homephone]</span></td>
+				<td valign="top"><input type="text" size="20" name="homephone" value="[in_homephone]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+	     	<tr>
+				<td class="smalltext">City : <span class="smallfieldterr">[er_homecity]</span></td>
+				<td><input type="text" size="20" name="homecity" value="[in_homecity]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				<td class="smalltext" valign="top">Phone : <span class="smallfieldterr"> [er_homephone2]</span></td>
+				<td valign="top"><input type="text" size="20" name="homephone2" value="[in_homephone2]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+				<td class="smalltext">State/Province : <span class="smallfieldterr">[er_homestate]</span></td>
+				<td><input type="text" size="20" name="homestate" value="[in_homestate]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				<td class="smalltext" valign="top">Fax : <span class="smallfieldterr"> [er_homefax]</span></td>
+				<td valign="top"><input type="text" size="20" name="homefax" value="[in_homefax]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+				<td class="smalltext">Postal Code : <span class="smallfieldterr">[er_homepostalcode]</span></td>
+				<td><input type="text" size="20" name="homepostalcode" value="[in_homepostalcode]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				<td class="smalltext" valign="top">Mobile : <span class="smallfieldterr"> [er_homemobile]</span></td>
+				<td valign="top"><input type="text" size="20" name="homemobile" value="[in_homemobile]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+				<td class="smalltext">Country/Region : <span class="smallfieldterr">[er_homecountry]</span></td>
+				<td>
+					<div id="image-dropdown" >
+					<input type="radio" id="line1" name="homecountry" value="MX"  /><label class="mx" for="line1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MX</label>
+					<input type="radio" id="line2" name="homecountry" value="CO"  /><label class="co" for="line2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CO</label>
+					<input type="radio" id="line3" name="homecountry" value="US"  /><label class="us" for="line3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;US</label>
+					</div>
+				<td class="smalltext" valign="top">Mobile2 : <span class="smallfieldterr"> [er_homemobile2]</span></td>
+				<td valign="top"><input type="text" size="20" name="homemobile2" value="[in_homemobile2]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+				<td class="smalltext">Web Page : <span class="smallfieldterr">[er_homeweb]</span></td>
+				<td><input type="text" size="20" name="homeweb" value="[in_homeweb]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				<td class="smalltext" valign="top">SMS : <span class="smallfieldterr"> [er_homesms]</span></td>
+				<td valign="top"><input type="text" size="20" name="homesms" value="[in_homesms]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+			  <td colspan="2" width="50%"></td>
+				<td colspan="2" width="50%"></td>
+			</tr>
+	   </table>
+   </fieldset>
+	&nbsp;
+	<fieldset><legend>Optional Notes</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td class="smalltext">
+					<textarea    rows="8" style="width: 100%;" name="opcnotes" cols="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_opcnotes]</textarea></td>
+				</tr>
+		 </table>
+   </fieldset>
+
+<script language="javascript">
+<!--
+
+	//chg_chkbox('never_expires','[in_never_expires]');
+	chg_chkbox('id_salesorigins','[in_id_salesorigins]');
+	chg_chkbox('id_salesorigins_view','[in_id_salesorigins_view]');
+	chg_chkbox('multiapp','[in_multiapp]');
+	chg_chkbox('id_accounts_segments','[in_id_accounts_segments]');
+	chg_chkbox('status','[in_status]');
+	chg_select('user_type','[in_user_type]');
+	chg_radio('marriedstatus','[in_marriedstatus]');
+	chg_radio('change_pass','[in_change_pass]');
+	chg_select('application','[in_application]');
+	chg_radio('homecountry','[in_homecountry]');
+	
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		$( "#birthday" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			maxDate: new Date(),
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 3,
+		});
+
+		$( "#expiration" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+
+//-->
+</script>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>push puerto 3000</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+        <input type="hidden" id="u" />
+    <script>
+      var socket = io();
+      $('form').submit(function(){
+        socket.emit('generico', $('#u').val()+':'+$('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('generico', function(msg){
+        var tmp = msg.split(":");
+        var privado = tmp[1].split("@");
+        if(privado.length > 1){
+                if(privado[1] == $('#u').val())
+                        $('#messages').append($('<li>').text(msg));
+        }else{
+                $('#messages').append($('<li>').text(msg));
+        }
+      });
+
+      $(document).ready(function() {
+        var text = "";
+        var possible = "0123456789";
+        for( var i=0; i < 4; i++ )
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+        $('#messages').append($('<li>').text('Extension '+text));
+        $('#u').val(text);
+      });
+    </script>
+  </body>
+</html>

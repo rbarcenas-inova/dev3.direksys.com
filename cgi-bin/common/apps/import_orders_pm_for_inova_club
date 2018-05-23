@@ -1,0 +1,920 @@
+#!/usr/bin/perl
+#######################################################################
+#######################################################################
+#######################################################################
+use DBI;
+use DBIx::Connector;
+use DBD::mysql;
+
+# Load the form information and set the config file and userid.
+local(%in) = &parse_form;
+local(%config, %cfg, %usr);
+
+# Required Libraries
+# --------------------------------------------------------
+eval {
+	require ("../subs/auth.cgi");
+	require ("../subs/sub.base.html.cgi");
+};
+
+if ($@) { &cgierr ("Error loading required Libraries",300,$@); }
+
+eval { &main; };
+if ($@) { &cgierr("Fatal error, 301, $@"); }
+
+exit;
+
+sub main {	
+	$|++;
+	print "Content-type: text/html\n\n";
+
+	# aplico la 3 porque este proceso fue diseñado para MUFAR
+	$in{'e'} = 3 if (!$in{'e'});
+	
+	&load_settings;
+
+	$sys{'fmt_curr_decimal_digits'} = 2 if(!$sys{'fmt_curr_decimal_digits'});
+
+	print "<h4>DIREKSYS($in{'e'}) - CARGA MASIVA DE ORDENES DE VENTA - CLUB INOVA</h5>";
+	my $email_text = 'Cargado masivo de Ordenes -- '.localtime."\n";
+
+	# Numero de orden de cliente
+	if (1==1){
+
+		&connect_db;
+
+		#############################################
+		my $id_del_servicio = 1035;
+		my $neto_del_servicio = 90;
+		my $porcentaje_del_servicio = 16;
+		my $iva_del_servicio = ($neto_del_servicio * ($porcentaje_del_servicio/100));
+		my $total_del_servicio = ($neto_del_servicio + $iva_del_servicio);
+
+		my $id_salesorigins = 24;
+		my $id_products = 600000000 + $id_del_servicio;
+
+
+		## Validacion del servicio
+		my ($sth) = &Do_SQL("SELECT Name, CURDATE() date_dinamico, CURTIME() time_dinamico FROM sl_services WHERE ID_services='$id_del_servicio';");
+		my ($nombre_del_servicio,$date_dinamico,$time_dinamico) = $sth->fetchrow_array();
+
+		my $id_admin_users = 1;
+
+		print "ID = $id_del_servicio<br>";
+		print "Nombre = $nombre_del_servicio<br>";
+		print "Neto = $neto_del_servicio<br>";
+		print "% IVA = $porcentaje_del_servicio<br>";
+		print "IVA = $iva_del_servicio<br>";
+		print "<br>";
+		print "date_dinamico = $date_dinamico<br>";
+		print "time_dinamico = $time_dinamico<br>";
+
+		if ($nombre_del_servicio eq ''){
+			print "El servicio es incorrecto, favor de verificarlo<br>";
+			return;
+		}
+
+		&Do_SQL("START TRANSACTION");
+
+		#################################################################3
+		## Desde CSV para PhoneMart
+		$dir = $cfg{'path_sanborns_layouts'}."../amex/amex_pm.csv";
+		if (-e $dir and -r $dir and open (FILE, $dir)) {
+			print "existe --- DESDE ARCHIVO CSV";
+
+			print "<br><table width='100%' cellpadding='3' border='1' style='font-family:verdana;font-size:10px'>";
+			print "<tr>";
+			print "		<th>ORDVTA</th>";
+			print "		<th>ID CLIENTE</th>";
+			print "		<th>NOMBRE</th>";
+			print "		<th>TAJETA</th>";
+			print "		<th>VIGENCIA</th>";
+			print "		<th>CCV</th>";
+			print "		<th>OBS</th>";
+			print "</tr>";
+
+			my $errors=0;
+
+			while ($record = <FILE>) {
+				my $obs='';
+				if ($registers1 > 0){
+				# if ($registers1 == 1){
+					my @fields = split "," , $record;
+					my $field_referencia = $fields[0];
+					my $field_nombre = $fields[1];
+					my $field_tarjeta = $fields[2];
+					my $field_vigencia = $fields[3];
+					my $field_ccv = $fields[4];
+					## Formato de Campo para vigencia
+					$field_vigencia =~ s/\///g;
+					my ($vigencia_month,$vigencia_year) = split("/",$field_vigencia);
+					# my $message_vigencia = "Year=$vigencia_year <br> Month=$vigencia_month";
+
+					## Busqueda del cliente correspondiente
+					my ($sth) = &Do_SQL("SELECT * FROM sl_customers WHERE Phone2='$field_referencia';");
+					my ($rec) = $sth->fetchrow_hashref();
+					
+
+					if ($rec->{'ID_customers'}){
+						my $customer = ($rec->{'FirstName'} ne '')? $rec->{'FirstName'}:"";
+						$customer .= ($rec->{'LastName1'} ne '')? " $rec->{'LastName1'}":"";
+						$customer .= ($rec->{'LastName2'} ne '')? " $rec->{'LastName2'}":"";
+
+						$rec->{'ID_zones'} = 0;
+
+						## Registro en sl_orders
+						$sql = "INSERT INTO sl_orders (ID_orders, ID_orders_alias, ID_customers, Address1, Address2, Address3, Urbanization, City, State, Zip, Country, shp_type, shp_name, shp_Address1, shp_Address2, shp_Address3, shp_Urbanization, shp_City, shp_State, shp_Zip, shp_Country, shp_Notes, ID_zones, OrderQty, OrderShp, OrderDisc, OrderTax, OrderNet, PostedDate, dayspay, repeatedcustomer, ID_salesorigins, Ptype, Pterms, language, StatusPrd, StatusPay, Status, Date, Time, ID_admin_users) VALUES
+						(NULL, '$field_referencia', '$rec->{'ID_customers'}', '$rec->{'Address1'}', '$rec->{'Address2'}', '$rec->{'Address3'}', '$rec->{'Urbanization'}', '$rec->{'City'}', '$rec->{'State'}', '$rec->{'Zip'}', '$rec->{'Country'}', 1, '$customer', '$rec->{'Address1'}', '$rec->{'Address2'}', '$rec->{'Address3'}', '$rec->{'Urbanization'}', '$rec->{'City'}', '$rec->{'State'}', '$rec->{'Zip'}', '$rec->{'Country'}', 'Carga masiva para cobro mensual de Revista CLub Inova', '$rec->{'ID_zones'}', 1, 0, 0, '$iva_del_servicio', '$neto_del_servicio', NULL, 1, 'Yes', '$id_salesorigins', 'Credit-Card', 'CONTADO', 'spanish', 'None', 'None', 'New', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+						my $sth_order = &Do_SQL($sql);
+						my ($id_orders_new) = $sth_order->{'mysql_insertid'};
+
+						## Registro en sl_orders_products
+						$sql = "INSERT INTO sl_orders_products (ID_products, ID_orders, Quantity, SalePrice, Shipping, Cost, Tax, Tax_percent, Discount, FP, ShpTax, ShpTax_percent, Status, Date, Time, ID_admin_users) 
+						VALUES ($id_products, $id_orders_new, 1, $neto_del_servicio, 0, 0, $iva_del_servicio, $porcentaje_del_servicio, 0, 1, 0, 0, 'Active', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+						&Do_SQL($sql);
+
+						## Registro en sl_orders_payments
+						$rec->{'PmtField1'} = "American Express";
+						$rec->{'PmtField2'} = $customer;
+						$rec->{'PmtField3'} = substr($field_tarjeta, 0, 6)."xxxxxx".substr($field_tarjeta, -4); # $field_tarjeta
+						$rec->{'PmtField4'} = 'xxxx'; # $field_vigencia
+						$rec->{'PmtField5'} = (length($field_ccv) == 4) ? 'xxxx' : 'xxx'; # $field_ccv
+						$rec->{'PmtField7'} = "CreditCard";
+						$rec->{'PmtField8'} = "1";
+						$rec->{'PmtField9'} = "American Express";
+						$rec->{'PmtField10'} = "03";
+						$sql = "INSERT INTO sl_orders_payments(ID_orders, Type, PmtField1, PmtField2, PmtField3, PmtField4, PmtField5, PmtField6, PmtField7, PmtField8, PmtField9, PmtField10, Amount , Reason, Paymentdate, AuthCode, Captured, CapDate, PostedDate, Status, Date, Time, ID_admin_users) 
+						VALUES($id_orders_new, 'Credit-Card', '$rec->{'PmtField1'}', '$rec->{'PmtField2'}', '$rec->{'PmtField3'}', '$rec->{'PmtField4'}', '$rec->{'PmtField5'}', '$rec->{'PmtField6'}', '$rec->{'PmtField7'}', '$rec->{'PmtField8'}', '$rec->{'PmtField9'}', '$rec->{'PmtField10'}', '$total_del_servicio' , 'Sale', '$date_dinamico', '', NULL, NULL, NULL, 'Approved', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+						$sth_order_pay = &Do_SQL($sql);
+						my ($id_orders_payments_new) = $sth_order_pay->{'mysql_insertid'};
+
+						## Registro en sl_orders_cardsdata
+						$rec->{'card_number'} = &LeoDecrypt($field_tarjeta);
+						$rec->{'card_date'} = &LeoDecrypt($field_vigencia);
+						$rec->{'card_cvn'} = &LeoDecrypt($field_ccv);
+						$sql = "INSERT INTO sl_orders_cardsdata (ID_orders, ID_orders_payments, card_number, card_date, card_cvn, Date, Time, ID_admin_users)
+						VALUES($id_orders_new, $id_orders_payments_new, '$rec->{'card_number'}', '$rec->{'card_date'}', '$rec->{'card_cvn'}', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+						&Do_SQL($sql);
+					}else{
+						$obs .= "ID de cliente no encontrado";
+					}
+
+					print "<tr>";
+					print "		<th>$field_referencia</th>";
+					print "		<th>$id_customers</th>";
+					print "		<th>$field_nombre</th>";
+					print "		<th>$field_tarjeta</th>";
+					print "		<th>$field_vigencia</th>";
+					print "		<th>$field_ccv</th>";
+					print "		<th>$obs</th>";
+					print "</tr>";
+				}
+				
+				$registers1++;
+			}
+		}else{
+			print "NO existe -- SE VAN A GENERAR DESDE DIREKSYS";
+			#return;
+			$sql = "SELECT tmp.* 
+					FROM(
+						SELECT 
+							sl_orders.ID_orders 
+							, sl_orders.ID_orders_alias 
+							, sl_orders.ID_customers 
+							, sl_orders.Address1 
+							, sl_orders.Address2 
+							, sl_orders.Address3 
+							, sl_orders.Urbanization 
+							, sl_orders.City 
+							, sl_orders.State 
+							, sl_orders.Zip 
+							, sl_orders.Country 
+							, sl_orders.shp_type -- 1 
+							, sl_orders.shp_name 
+							, sl_orders.shp_Address1 
+							, sl_orders.shp_Address2 
+							, sl_orders.shp_Address3 
+							, sl_orders.shp_Urbanization 
+							, sl_orders.shp_City 
+							, sl_orders.shp_State 
+							, sl_orders.shp_Zip 
+							, sl_orders.shp_Country 
+							, sl_orders.shp_Notes -- Carga masiva 
+							, sl_orders.ID_zones 
+							, sl_orders.OrderQty -- 
+							, sl_orders.OrderShp 
+							, sl_orders.OrderDisc 
+							, sl_orders.OrderTax 
+							, sl_orders.OrderNet 
+							, sl_orders.PostedDate -- grabar NULL 
+							, sl_orders.dayspay -- 1 
+							, sl_orders.repeatedcustomer -- Yes 
+							, sl_orders.ID_salesorigins -- dato dinamico 
+							, sl_orders.Ptype -- Credit-Card 
+							, sl_orders.Pterms -- CONTADO 
+							, sl_orders.language -- spanish 
+							, sl_orders.StatusPrd 
+							, sl_orders.StatusPay 
+							, sl_orders.Status 
+							, sl_orders.Date 
+							, sl_orders.Time 
+							, sl_orders.ID_admin_users 
+							#, '--->' 
+							, sl_orders_payments.Type 
+							, sl_orders_payments.PmtField1 
+							, sl_orders_payments.PmtField2 
+							, sl_orders_payments.PmtField3 
+							, sl_orders_payments.PmtField4 
+							, sl_orders_payments.PmtField5 
+							, sl_orders_payments.PmtField6 
+							, sl_orders_payments.PmtField7 
+							, sl_orders_payments.PmtField8 
+							, sl_orders_payments.PmtField10 
+							#, '--->' 
+							, sl_orders_cardsdata.card_number 
+							, sl_orders_cardsdata.card_date 
+							, sl_orders_cardsdata.card_cvn 
+						FROM sl_orders 
+							INNER JOIN sl_orders_payments on sl_orders_payments.ID_orders=sl_orders.ID_orders 
+							INNER JOIN sl_orders_cardsdata ON sl_orders_cardsdata.ID_orders_payments=sl_orders_payments.ID_orders_payments 
+							INNER JOIN sl_customers ON sl_customers.ID_customers=sl_orders.ID_customers
+						WHERE sl_orders_payments.Captured='Yes' AND sl_orders_payments.Status ='Approved' 
+							AND sl_orders_payments.Reason='Sale' AND sl_orders_payments.PmtField3 like '37%' 
+							AND sl_customers.ID_customers IN(830451,460341,859155,808251,863052,857840,870984,557958,810517,851349,886957,828345,869969,654776,815796,776274,385889,866246,597875,562133,879879,687720,709487,539072,873696,825973,878573,776112,843298,500383,871888,616749,644664,676616,806636,739562,768999,193222,870235,893012,621505,759764,653390,817796,685296,869296,768041,480381,845804,899902,845084,584753,820102,863617,855604,734234,604951,872659,362706,797993,883468,898849,841100,642992,359978,763948,732554,633459,796977,807561,581016,559289,678618,883144,739450,829359,786080,391055,768399,523730,578490,800149,696388,899908,496635,773780,236194,669085,803603,538938,790071,558723,561596,625599,860417,497532,803756,556580,853454,509049,825265,771875,857321,469113,789208,701971,734614,797809,803962,540294,849242,870396,693314,388395,847385,870522,888289,814187,515205,685916,821266,688124,751418,880671,616633,790920,876210,379363,812245,820939,868360,610308,619484,680114,650746,625601,503273,865387,648334,719640,763803,841015,655290,874781,887277,826798,791323,594615,804225,708771,703789,693213,713242,592531,663468,879425,867823,777992,350681,758670,781616,889548,702863,799700,859480,863712,795235,882648,562691,809962,563528,393360,515660,842135,606373,796304,739166,779108,729442,880910,857045,722537,701136,497632,760386,741626,695411,855460,593425,424850,713818,745488,521467,500178,697552,582719,746232,813544,857687,524162,714365,838162,745630,561226,597718,839640,862998,681688,787636,641632,727658,805698,555502,637220,590013,828589,807145,754517,693001,570773,322760,678512,786567,743273,829069,857312,785972,864528,805005,705616,888814,854115,653118,808741,772084,804623,561758,579519,407138,474085,730244,192925,746521,247968,751661,769403,796564,710227,886829,744105,652094,570444,791444,561788,796011,531377,519908,651089,798500,793021,874755,567260,797961,872993,722151,819527,566962,392606,392864,638577,516791,712864,645300,697825,829821,764551,736086,115735,395453,753566,821202,576163,870178,570243,793044,866570,869233,351669,498771,822742,768965,818055,832518,697303,778608,822135,669050,534819,705087,723889,848145,853968,553875,833954,860583,484822,643820,694815,546160,499888,662701,849460,524035,553790,762440,180570,522953,558663,839782,563579,776823,838514,761649,863188,752961,880287,595502,892281,559770,899933,795214,498071,664341,766542,544631,591502,838868,768371,722302,838631,141229,685017,665248,888063,366970,625543,816799,611421,463189,805405,450173,589626,561870,753691,607193,650250,826961,724089,508224,573442,597340,834051,693754,777667,823783,715969,573503,709040,862922,529325,602573,880414,739270,599234,737433,862251,890940,829681,899919,569288,864695,794343,676688,873076,763261,881907,815125,672300,741684,548324,629194,834520,826785,785469,616531,646197,850719,530494,502098,560126,797618,134669,716909,841878,671037,604196,624154,872085,558254,717464,775727,850902,735758,696276,892066,898703,882204,869357,807530,567354,575206,724956,673541,688513,694959,811968,860436,778666,725306,873395,727602,866079,813980,821964,829411,899305,856477,770201,807135,676512,870649,829840,689259,879740,827972,833651,682425,735801,888453,848199,787261,899061,573996,840610,880705,579078,531361,804603,622500,848343,658449,826370,884935,702358,593277,854827,600551,679162,841257,779422,602317,810057,878075,859780,856377,690491,342725,695304,719454,747884,758663,782050,716090,861901,703421,854823,737007,375294,890116,740232,885347,578612,441179,685442,793394,813752,452439,684653,777448,794549,685215,882065,826371,766702,692158,832932,813749,873608,880749,853811,775571,751669,688754,872915,818241,852379,887686,834232,664447,877066,870925,817692,696038,884308,899947,754735,882159,783357,822117,773526,889528,852898,783265,833852,821067,890502,779161,856686,827009,777695,899945,776114,864300,872305,487193,778671,866442,757005,587456,807292,870062,859474,857956,878413,812727,770358,812418,741533,761668,835534,858246,664052,880947,787229,866986,833966,892405,794928,547544,565365,850912,734690,788319,851658,818637,767036,889319,881332,872213,891733,571781,747760,894422,852376,826550,802204,872383,511998,878943,608197,507854,854731,646624,884375,853519,646021,379169,891052,759063,637439,873280,793017,399174,872131,791453,881194,858907,899922,873148,841922,808965,774099,693761,758435,768850,719582,877764,534091,883396,627357,863471,718509,870952,482125,778065,673952,826079,861679,721217,883464,810610,570906,865254,781051,609355,799055,785307,639419,818317,826015,340589,730738,765427,575870,591888,899949,522617,162622,454312,648333,888140,820837,773837,826890,875542,887129,861923,751945,838471,880803,668840,762267,852919,501327,886351,791420,865522,815354,862179,795083,874776,713533,868650,758632,767004,829068,876230,788467,835213,792729,234342,794936,845416,798045,774027,756401,845663,867231,811710,863833,811451,787410,843548,235098,863766,777612,656173,827822,869509,811513,808483,865967,846184,808968,885211,779080,811504,878051,854205,862323,760382,823162,868786,867505,888791,746845,883786,878057,702422,764733,894408,777491,810568,519813,885927,521350,823333,880973,636223,894427,359265,520616,716402,774981,688793,678428,833848,841051,738910,423971,878037,822127,870638,491457,776080,754686,764931,863573,800766,668687,398394,733892,614247,834072,728511,748454,444902,596912,504901,433871,677173,640333,840658,861464,831869,873729,476770,859925,877224,848033,609859,748218,657780,737151,373121,670989,863788,763106,249800,420753,610127,621142,719027,623076,368946,807608,889846,663773,539029,868232,863467,665546,735434,869933,748560,811814,757075,507381,726025,639418,766718,101411,644100,615967,851330,544556,825344,815747,888097,870000,499013,880428,792153,639277,391519,780655,685989,562962,875415,857294,879189,762582,822274,794609,333406,851972,694580,872125,699168,403851,816655,758624,823325,657583,371768,873820,792449,782092,766527,864493,669922,820379,872196,789320,727324,723030,827984,861897,879322,880964,348387,751118,875469,667656,878102,712978,837225,729385,812760,611520,692151,766241,516294,779073,755933,880689,709228,884733,751888,690780,830157,799594,704276,845247,786238,543815,801605,802919,805213,645149,891129,578060,885541,779149,545877,878031,889899,715221,788034,537046,648361,888038,680562,808171,679231,755643,137604,672120,638493,727003,688823,888450,722143,875432,608736,617344,754377,364173,817178,566324,783137,864240,647134,768775,772948,369409,870052,670984,608471,756638,812261,598808,854351,781658,774288,730133,738086,891625,526924,636808,493852,881250,731561,786835,867447,807860,393554,754059,714642,750228,674556,799838,878249,731847,726613,783155,888285,868613,862159,718519,748461,797144,825523,750073,880441,822650,624716,710897,827032,831384,790443,869889,363063,817480,185962,811340,153960,757668,644126,878020,800900,612069,899900,875379,327225,888568,873335,516110,810747,883228,709398,720600,613825,577106,793315,756276,553172,869708,496351,781031,686230,887774,708323,337256,838648,899924,423468,494178,481764,843012,513165,513572,654720,848697,860413,627473,566221,729815,323417,788760,688641,850914,547618,571929,833269,728476,861164,854228,705233,881278,359888,629802,577665,787251,815433,863110,560682,798370,822531,751052,269652,644265,668694,801129,242865,536555,710661,528299,862187,547494,568119,197304,140716,772493,386799,759319,855505,704262,888889,758621,504350,534800,899953,572543,544486,831227,757355,882686,868318,647691,715353,725809,884060,880395,698472,881972,893788,765480,824070,885218,751679,817933,789863,541878,842440,798615,752428,870161,144265,719634,387418,706773,795155,139764,777321,899940,881217,769741,624003,829817,854337,583409,565407,899952,676747,662668,888025,867752,870632,828280,714925,863763,801981,860496,878978,525432,757755,599860,878040,876927,773745,160473,753577,598604,808672,411579,796461,899890,692501,409723,837000,839796,777711,515832,883193,787275,328847,668807,601303,477820,528087,359984,651380,410754,784281,679056,507018,787580,635212,831517,880434,708074,880410,622358,833268,653564,860647,865575,476910,269653,514810,899927,827089,327128,360199,721404,811311,734832,608367,864291,635025,845491,164778,847854,899884,841914,691807,588397,529359,361627,362256,870656,873967,650971,852966,878359,888172,840080,697406,631751,751896,832041,654565,669840,753094,705097,859495,738629,511019,761599,884053,805802,792899,582728,889013,756306,479000,827856,404897,414611,743784,534238,839358,354630,734433,672211,871204,891023,701201,598412,789068,882083,626453,877188,395772,873440,849798,872292,806211,859121,711637,714326,509040,541083,699680,478174,776872,407861,835173,899930,382045,753563,893994,899897,675783,643620,749433,684735,143448,751808,852004,887861,849172,847182,423847,764187,879943,762700,597623,858148,866583,748570,683632,856633,697872,729700,899939,830631,869389,686854,694185,407783,869657,899946,879179,774819,561416,735094,795518,776033,819070,765424,899954,383982,762702,890264,880712,549136,876302,879747,724596,563584,397790,344302,798653,760519,880805,792406,535901,587066,845179,755359,789159,873971,880870,865391,890383,887445,899923,562062,148922,767840,856348,854231,888035,817926,737165,885253,880708,854283,899918,715892,728393,398480,556498,832912,775233,881358,841758,647143,645613,532622,768998,800547,807717,899944,702759,803304,642586,538656,386321,712573,686117,736398,789446,748739,689704,666153,686964,686287,845096,813616,764639,801965,779114,729289,728601,893993,695893,855061,814381,745659,880372,669032,524856,485881,558930,477287,437132,860205,881735,807270,783353,773246,753977,852542,407555,676667,806063,723127,327099,830161,869312,655855,858650,888077,878198,831939,869899,712022,863077,691588,562983,765565,842695,899928,822311,886828,766030,745966,859675,883587,802086,635637,602427,883445,802647,755885,823850,815016,664289,854678,584633,766087,568756,641024,754031,856299,426399,832268,836218,847449,809039,709539,143695,370650,744988,859059,791138,769005,259060,777078,857253,698889,757488,768168,671326,562765,714413,796998,683566,886279,755405,686949,755587,669039,814973,889886,676661,795897,823089,714450,617701,831543,521374,899903,872103,786593,683389,810276,850689,898560,187224,773722,822041,857693,629473,136271,708467,826283,852624,850513,808093,741652,832817,651528,837405,678517,597856,741358,684866,868615,891979,215609,899895,810503,273563,854466,799305,688136,899950,694703,408654,812909,871188,778881,870350,775413,849670,827035,556935,890430,815782,770628,794434,799389,741826,724227,688068,692328,843445,833881,759978,799295,587053,720076,889499,899948,825013,591902,893335,740025,615912,669043,881785,151698,572711,777950,852003,873968,496176,833961,851240,396433,519402,880529,757193,659303,781251,667266,587415,826077,780359,898524,762044,625569,765542,841900,779096,889170,760972,561457,686307,601650,826008,807341,597503,733608,668372,525038,126279,567265,683543,658456,377280,889657,899909,569957,729387,370172,876675,562598,478521,780870,769442,773019,342422,237846,828713,820461,778325,672860,868500,832193,874686,859081,845644,797029,475009,372920,899913,629929,850884,860261,759315,646076,871835,691704,368360,899920,730609,572767,538726,879162,515496,889862,664460,505654,650860,793111,844050,675530,122441,791715,626687,787213,570725,817558,489890,869420,806317,595542,703977,828807,729539,856420,379168,747369,854746,505875,848965,760644,494715,867495,790082,610762,528423,722626,695593,871214,859103,528755,630138,869406,693786,867274,632259,845532,687672,870180,139082,650661,856993,807217,360372,641394,582742,566662,845083,736299,797146,835169,835930,893786,686186,820397,681359,847161,784140,881975,858479,762732,159798,509991,624347,845170,567806,728544,790795,795249,138590,723819,861510,648073,836500,749322,736382,563699,689637,794526,789322,646294,683114,729489,680911,667117,894865,868986,859320,779175,847653,803646,860718,831169,484541,797335,825514,867382,690591,373627,698430,724636,671044,846800,726662,870733,376175,842534,815494,728716,566267,764945,398022,553587,700997,873193,599276,676343,861118,713882,577700,640470,403733,807638,705634,888987,348919,326478,632782,723570,796821,572172,682254,224262,667572,834222,711459,854848,794788,704311,633867,747016,877526,892259,762305,765423,766566,787597,599305,695768,425323,880554,753574,693046,124950,825258,522887,641312,808082,792454,692945,762265,663593,833170,868553,862162,723860,541270,817750,853030,799999,663831,550265,832117,525020,541333,858181,527042,765494,821326,658023,696889,643859,616161,899936,753502,806380,775461,592193,883776,561524,597471,650263,679652,835490,689272,894911,782756,725393,657074,836427,837895,857791,577105,639029,693870,415398,642347,666315,785186,847855,571818,788067,753068,495459,699189,780545,509700,762502,877401,854658,646283,660779,853989,856407,753576,683647,741674,707238,881770,785267,847991,623040,803589,706246,771770,747499,719957,841524,887932,560256,370303,741665,812880,839569,806662,740420,662721,489457,715559,752170,791175,391979,795252,679413,424556,880683,868669,719741,854301,869660,834163,604651,887724,801607,364141,588879,564849,820710,738757,860260,806251,381128,640288,503347,831542,892627,760267,576478,804573,898581,571840,626461,729435,113749,473743,832944,739610,822530,649312,856467,735923,676530,724553,853364,521782,724839,553964,853490,583430,851733,850786,849061,822425,637423,794339,770005,806277,899926,864684,788925,767000,816073,742987,869367,809554,378767,380812,375886,884669,805161,755666,693136,895047,899931,701260,854780,590712,474994,862188,751588,782382,778963,664915,760978,899938,533817,856939,777153,583822,741359,515738,899898,206572,782944,856573,779275,588361,899885,848191,840361,899951,651131,510513,630145,379022,736121,854240,868350,545802,728599,593700,884635,839260,859639,876655,785217,879049,851515,552999,688587,413045,658486,787237,779282,815521,882650,369227,744098,738649,640201,579165,835340,708393,754350,852644,899893,815832,558802,847591,497484,755913,883824,873323,872337,525979,772369,684106,866951,168924,783560,698353,810481,811431,852154,859678,878338,660198,649883,839227,668641,765516,831565,362588,778074,603989,668510,869788,558986,476424,696173,679498,546638,631768,893995,405500,666890,642488,755420,491905,895015,772543,868570,481948,839200,869910,831591,888216,622162,729770,393911,842946,774115,818494,652838,875172,869413,899942,886764,839986,820478,759317,807910,819333,871934,887056,864558,556278,898915,777987,665305,642109,621644,636442,715027,795653,636510,672225,859265,859069,880405,789173,557036,745381,587876,889952,876564,162763,737973,588477,772526,866068,792835,821495,733410,844877,480729,882260,888886,775346,797731,847373,664884,871173,699291,593956,846144,877264,307475,642393,879240,789282,663964,771106,630371,677604,148817,768254,281522,638588,600041,818933,884643,816688,731534,739164,632002,115680,883348,670913,729093,679146,614349,387042,504284,815057,591631,783592,655042,668598,791468,836984,542070,561288,831976,729839,600197,698350,602772,780021,794486,866059,379753,395963,746269,733087,185434,824871,653885,899941,719739,724907,390447,488097,845168,134273,545685,370386,889864,793681,639230,824252,869851,855192,877114,854222,858298,765068,880386,116181,839849,393648,609281,801437,668405,875534,777595,829546,831139,718777,878920,217993,768295,568891,875128,876513,399001,672903,396416,887647,762784,868552,604829,899916,119937,867801,487318,815903,699645,416719,607458,489295,547270,610870,734134,841720,763087,684178,888746,747800,871915,714202,797853,867640,762699,882307,852754,528576,876926,546536,871585,818572,672338,819396,838283,815082,683335,800419,648234,573054,643761,810065,737706,816221,698580,669042,649003,889652,871486,888370,839633,823140,861854,850530,639744,848922,758690,825866,517644,701106,869828,852030,809262,509588,565272,877589,789096,878036,774090,776198,814235,899914,830306,864652,856585,872344,866573,870119,546042,104920,840515)
+						ORDER BY sl_orders.ID_orders DESC 
+					) tmp	
+					GROUP BY tmp.ID_customers 
+					;";
+			$values_dinamico = '';
+
+			$sth2 = &Do_SQL($sql);
+			while (my $rec = $sth2->fetchrow_hashref()){
+				## Registro en sl_orders
+				$sql = "INSERT INTO sl_orders (ID_orders, ID_orders_alias, ID_customers, Address1, Address2, Address3, Urbanization, City, State, Zip, Country, shp_type, shp_name, shp_Address1, shp_Address2, shp_Address3, shp_Urbanization, shp_City, shp_State, shp_Zip, shp_Country, shp_Notes, ID_zones, OrderQty, OrderShp, OrderDisc, OrderTax, OrderNet, PostedDate, dayspay, repeatedcustomer, ID_salesorigins, Ptype, Pterms, language, StatusPrd, StatusPay, Status, Date, Time, ID_admin_users) VALUES
+				(NULL, NULL, '$rec->{'ID_customers'}', '$rec->{'Address1'}', '$rec->{'Address2'}', '$rec->{'Address3'}', '$rec->{'Urbanization'}', '$rec->{'City'}', '$rec->{'State'}', '$rec->{'Zip'}', '$rec->{'Country'}', 1, '$rec->{'shp_name'}', '$rec->{'shp_Address1'}', '$rec->{'shp_Address2'}', '$rec->{'shp_Address3'}', '$rec->{'shp_Urbanization'}', '$rec->{'shp_City'}', '$rec->{'shp_State'}', '$rec->{'shp_Zip'}', '$rec->{'shp_Country'}', 'Carga masiva para cobro mensual de Revista CLub Inova', '$rec->{'ID_zones'}', 1, 0, 0, '$iva_del_servicio', '$neto_del_servicio', NULL, 1, 'Yes', '$id_salesorigins', 'Credit-Card', 'CONTADO', 'spanish', 'None', 'None', 'New', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+				my $sth_order = &Do_SQL($sql);
+				my ($id_orders_new) = $sth_order->{'mysql_insertid'};
+
+				## Registro en sl_orders_products
+				$sql = "INSERT INTO sl_orders_products (ID_products, ID_orders, Quantity, SalePrice, Shipping, Cost, Tax, Tax_percent, Discount, FP, ShpTax, ShpTax_percent, Status, Date, Time, ID_admin_users) 
+				VALUES ($id_products, $id_orders_new, 1, $neto_del_servicio, 0, 0, $iva_del_servicio, $porcentaje_del_servicio, 0, 1, 0, 0, 'Active', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+				&Do_SQL($sql);
+
+				## Registro en sl_orders_payments
+				$sql = "INSERT INTO sl_orders_payments(ID_orders, Type, PmtField1, PmtField2, PmtField3, PmtField4, PmtField5, PmtField6, PmtField7, PmtField8, PmtField10, Amount , Reason, Paymentdate, AuthCode, Captured, CapDate, PostedDate, Status, Date, Time, ID_admin_users) 
+				VALUES($id_orders_new, 'Credit-Card', '$rec->{'PmtField1'}', '$rec->{'PmtField2'}', '$rec->{'PmtField3'}', '$rec->{'PmtField4'}', '$rec->{'PmtField5'}', '$rec->{'PmtField6'}', '$rec->{'PmtField7'}', '$rec->{'PmtField8'}', '$rec->{'PmtField10'}', '$total_del_servicio' , 'Sale', '$date_dinamico', '', NULL, NULL, NULL, 'Approved', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+				$sth_order_pay = &Do_SQL($sql);
+				my ($id_orders_payments_new) = $sth_order_pay->{'mysql_insertid'};
+
+				## Registro en sl_orders_cardsdata
+				$sql = "INSERT INTO sl_orders_cardsdata (ID_orders, ID_orders_payments, card_number, card_date, card_cvn, Date, Time, ID_admin_users)
+				VALUES($id_orders_new, $id_orders_payments_new, '$rec->{'card_number'}', '$rec->{'card_date'}', '$rec->{'card_cvn'}', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+				&Do_SQL($sql);
+
+				print "<br />ID_orders: $id_orders_new\n";
+			}
+		}
+
+		# print "<br>".$sql."<br>";
+
+		&Do_SQL("COMMIT");
+
+
+		return;
+		###################################################################################################
+		if(-e $dir and $in{'no'}) {
+
+			# cambiar a nombre archivo dinamico
+			$file1 = 'amex_'.$in{'no'}.'.csv';
+			$dir1 = $dir.$file1;
+
+			if(-r $dir1 and -r $dir2) {
+				print "abriendo: ".$dir1." <br>";
+
+				my $OC_SANBORNS='NULL';
+
+				# lee archivo 1
+				# paso 2 - una vez que se encuentre el archivo hay que recorrer primero el que tiene el resumen
+				my ($string) = '';
+				my ($registers1) = 0;
+				my (@product, @cve_product, @product_price, @product_tax);
+
+				if(-r $dir1 and open (FILE, $dir1)) {
+					
+					print "<br><table width='100%' cellpadding='3' border='1' style='font-family:verdana;font-size:10px'>";
+					print "<tr>";
+					print "		<th>ID PARTS</th>";
+					print "		<th>UPC</th>";
+					print "		<th>PRECIO DIREKSYS</th>";
+					print "		<th>PRECIO REQUEST</th>";
+					print "		<th>COMMENTS</th>";
+					print "</tr>";
+
+					my $errors=0;
+
+					while ($record = <FILE>) {
+						chomp $record;
+						$registers1++;
+
+						my ($err_messages2);
+						if ($record =~ m/\"/) {
+							$errors++;
+							$err_messages2 = qq|<span style='color:red;'>ERROR DETECTADO EN $dir1: $record </span><br>|;
+						}
+
+						my @fields = split "," , $record;
+						
+						## si el campo 2 empieza con  comillas y hay un campo  3 y 4 esta pasando basura y es necesario corregirlo
+						if($fields[2] =~ m/\"/ and $fields[3] and $fields[4]) {
+							$fields[2] = $fields[2].$fields[3];
+							$fields[3] = $fields[4];
+						}
+
+						my $field_id_product = $fields[0];
+						my $field_desc_product = $fields[1];
+						my $field_qty_product = $fields[2];
+						my $field_price_product = $fields[3];
+						my $field_tax_product = $fields[4];
+
+						if ($field_id_product ne '' and $field_price_product ne '' and $field_tax_product ne ''){
+							
+							$OC_SANBORNS = $fields[5] if ($fields[5]); # ----------------ORDEN DE COMPRA DEL CLIENTE
+
+							# limpiando campo de caracteres de formato
+							$fields[2] =~ s/[\" \$]//g;
+
+							$product[$registers1] = $field_id_product;
+							$cve_product[$registers1] = $field_desc_product;
+							$product_qty[$registers1] = $field_qty_product;
+							$product_price[$registers1] = $field_price_product;
+							$product_tax_percent[$registers1] = $field_tax_product;
+
+							## como los costos del producto son sin impuesto, hay que calcular el impuesto y el total
+							## precio neto
+							my $tax = $field_tax_product / 100;
+							my $tax_product = $field_price_product * $tax;
+							$tax_product = sprintf("%.".$sys{'fmt_curr_decimal_digits'}."f", $tax_product);
+							my $price_product_wtax = $field_price_product + $tax_product;
+
+							$product_tax[$registers1] = $tax_product;
+							$product_price_wtax[$registers1] = $price_product_wtax;
+
+							# CLAVE IDENTIFICADOR DEL PRODUCTO | DESCRIPCION DEL PRODUCTO | PRECIO |  IVA % | IVA CANTIDAD | PRECIO CON IMPUESTO
+
+							# Se agrega una validacion extra para detectar que los productos solicitados existan antes de ejecutar cualquier proceso.
+							
+							
+							my ($sth) = &Do_SQL("SELECT (SELECT SPrice FROM sl_customers_parts WHERE ID_customers='$id_customer' AND ID_parts=sl_skus.ID_products)as SPrice, sl_skus.ID_sku_products as ID_parts FROM sl_skus 
+							WHERE 1 AND sl_skus.UPC='$field_id_product';");
+							my ($price_direksys, $id_parts_direksys) = $sth->fetchrow_array();
+							my $err_messages='';
+
+							print "<tr>";
+							print "		<td>$id_parts_direksys</td>";
+							print "		<td>$field_id_product</td>";
+							print "		<td>$price_direksys</td>";
+							print "		<td>$field_price_product</td>";
+							
+							if (!$id_parts_direksys){
+								$errors++;
+								$err_messages.="<span style='color:red;'>EL PRODUCTO $field_id_product NO FUE ENCONTRADO EN EL DIREKSYS.</span><br>";
+							}elsif ($price_direksys != $field_price_product){
+								$errors++;
+								$err_messages.="<span style='color:red;'>EL PRECIO DEL PRODUCTO $field_id_product NO COINCIDE CON EL PRECIO EN DIREKSYS.</span><br>";
+							}
+							
+							print "		<td>$err_messages2$err_messages</td>";
+							print "</tr>";
+						}
+
+					}
+					print "</table><br>";
+
+					if(-r $dir2 and open (FILE, $dir2)) {
+						while ($record = <FILE>) {
+							chomp $record;
+							$registers2++;
+
+							if ($record =~ m/\"/) {
+								$errors++;
+								print qq|<span style='color:red;'>ERROR DETECTADO EN $dir2: $record </span><br>|;
+							}
+						}
+					}else{
+						$errors++;
+						print qq|<span style='color:red;'>$dir2 no encontrado </span><br>|;
+					}
+
+
+
+					if($registers1 > 0) {
+						print "$registers1 records found in dir1"." <br>";
+						if ($errors++){
+							print "SE ENCONTRARON ERRORES EN EL PROCESO, CORRIJALOS PARA CONTINUAR:<br>";
+							return;
+						}
+					}else {
+						print "no records found in dir1"." <br>";
+						return;
+					}
+
+					close FILE;
+					
+
+				}else{
+					print "<span style='color:red;'>$dir1 no encontrado </span><br>";
+					return;
+				}
+				if($in{'process'} eq 'analyze' or $in{'process'} eq 'commit'){
+					if ($OC_SANBORNS != $in{'no'}){
+						print "<span style='color:red;'>EL NO DE ORDEN DE COMPRA NO COINCIDE CON LA INFORMACION DEL ARCHIVO.</span><br>";				
+						return;
+					}else{
+						
+						my ($sth) = &Do_SQL("SELECT COUNT(*) FROM sl_orders WHERE sl_orders.ID_orders_alias='$OC_SANBORNS' AND sl_orders.ID_customers='$id_customer'");
+						my $file_invalid = $sth->fetchrow_array();
+
+						if ($file_invalid){
+							print "<span style='color:red;'>YA EXISTEN ORDENES DE VENTA EN DIREKSYS CON ESTE NODE ORDEN DE COMPRA.</span><br>";				
+
+							return if (!$in{'forced'});
+						}
+					}
+
+					print "abriendo: ".$dir2." <br>";;
+					
+					# lee archivo 2
+					my ($registers2) = 0; # lo limitaremos al no de productos que obtuvimos arriba
+					my (@office_key, @office_desc,);
+					if(-r $dir2 and open (FILE, $dir2)) {		
+						while ($record = <FILE>) {
+							chomp $record;
+							$registers2++;
+
+							if ($record =~ m/\"/) {
+								$errors++;
+								$err_messages2 = qq|<span style='color:red;'>ERROR DETECTADO EN: $record </span><br>|;
+								print qq|<span style='color:red;'>ERROR DETECTADO EN $dir2: $record </span><br>|;
+							}
+
+							my @fields = split "," , $record;
+
+
+							# limpiando campo de caracteres de formato
+							if($fields[0]) {
+								# $fields[0] =~ s/[\" \$]//g;
+								if($fields[0] =~ m/\-/ ) {
+									my @fields2 = split "-" , $fields[0];
+
+									$office_key[$registers2] = $fields2[0];
+									$office_desc[$registers2] = $fields2[1];
+								}
+							}
+
+							$customer_code = $office_key[$registers2];
+							$customer_alias = $office_desc[$registers2];
+
+
+							#podriamos poner en la nota el nombre del archivo del que se obtuvo la informacion
+							$orders_notes = 'Esta Orden fue creada por procesamiento de Carga Masiva de Direksys.';
+
+							# por cada registro(tienda) se crea una orden
+							# hasta  esta parte ya debo conocer el id del cliente y sus respectivos datos
+							# voy a ir a buscar su ultima compra y me voy a traer sus datos
+
+							my ($sth_last_order) = &Do_SQL("SELECT * FROM sl_orders WHERE ID_customers = '$id_customer' LIMIT 1;");
+							$rec_last_order = $sth_last_order->fetchrow_hashref;
+							
+							my ($sth_customer) = &Do_SQL("SELECT *, (SELECT ifnull(CreditDays,0) FROM sl_terms WHERE Type='Sales' AND Status='Active' AND Name=sl_customers.Pterms LIMIT 1)CreditDays FROM sl_customers WHERE ID_customers = '$id_customer';");
+							$rec_customer = $sth_customer->fetchrow_hashref;
+
+							# datos del envio de la tienda correspondiente
+							if ($customer_code ne '' and $customer_alias ne ''){
+								if($in{'customer'} ne '100090'){
+									$fields[0] =~ s/^\s+|\s+$//g;
+									#$query="SELECT * FROM cu_customers_addresses WHERE ID_customers=$id_customer AND Code = '$fields[0]' LIMIT 1;";
+									$query="SELECT * FROM cu_customers_addresses WHERE ID_customers=$id_customer AND Alias like ('%$customer_code%-%$customer_alias%') LIMIT 1;";
+								}else{
+									$customer_code =~ s/^\s+|\s+$//g;
+									$customer_alias =~ s/^\s+|\s+$//g;
+									$query="SELECT * FROM cu_customers_addresses WHERE ID_customers=$id_customer AND Alias like ('%$customer_alias%') LIMIT 1;";
+									#$query="SELECT * FROM cu_customers_addresses WHERE ID_customers=$id_customer AND Alias like ('%$customer_code%-%$customer_alias%') LIMIT 1;";
+									#$query="SELECT * FROM cu_customers_addresses WHERE ID_customers=$id_customer AND Code = '$customer_code-$customer_alias' LIMIT 1;";
+								}
+								my ($sth_customer_shpaddress) = &Do_SQL($query);
+								$rec_customershpaddress = $sth_customer_shpaddress->fetchrow_hashref;
+							}else{
+								$rec_customershpaddress=0;
+							}
+							
+							# revisar si el cliente existe
+							# si existe entonces crea la orden con sus datos
+							my $id_customers_addresses = int($rec_customershpaddress->{'ID_customers_addresses'});
+							if (int($rec_customer->{'ID_customers'}) > 0 and $id_customers_addresses > 0) {
+								##si hay shpaddress entonces shpaddress sino entonces la del customer
+								if($rec_customershpaddress->{'ID_customers_addresses'} > 0) {
+									$rec_customer->{'Address1'} = $rec_customershpaddress->{'Address1'};
+									$rec_customer->{'Address2'} = $rec_customershpaddress->{'Address2'};
+									$rec_customer->{'Address3'} = $rec_customershpaddress->{'Address2'};
+									$rec_customer->{'Urbanization'} = $rec_customershpaddress->{'Urbanization'};
+									$rec_customer->{'City'} = $rec_customershpaddress->{'City'};
+									$rec_customer->{'State'} = $rec_customershpaddress->{'State'};
+									$rec_customer->{'Zip'} = $rec_customershpaddress->{'Zip'};
+									$rec_customer->{'Country'} = $rec_customershpaddress->{'Country'};
+								}
+
+								if($in{'process'} eq 'commit') {
+									$sth_order = &Do_SQL("INSERT INTO sl_orders SET ID_orders=NULL,  trackordernumber=NULL,  ID_customers=".$id_customer.", ID_orders_alias='".$OC_SANBORNS."'
+										,  Pterms='".$rec_customer->{'Pterms'}."'
+										,  Ptype='Deposit'
+										,  id_customers_addresses='".$rec_customershpaddress->{'ID_customers_addresses'}."'
+										,  Address1='".$rec_customer->{'Address1'}."'
+										,  Address2='".$rec_customer->{'Address2'}."'
+										,  Address3='".$rec_customer->{'Address3'}."'
+										,  Urbanization='".$rec_customer->{'Urbanization'}."'
+										,  City='".$rec_customer->{'City'}."'
+										,  State='".$rec_customer->{'State'}."'
+										,  Zip='".$rec_customer->{'Zip'}."'
+										,  Country='".$rec_customer->{'Country'}."'
+										,  BillingNotes=NULL,  shp_type=1,  shp_name=NULL
+										,  shp_Address1='".$rec_customer->{'Address1'}."'
+										,  shp_Address2='".$rec_customer->{'Address2'}."'
+										,  shp_Address3='".$rec_customer->{'Address3'}."'
+										,  shp_Urbanization='".$rec_customer->{'Urbanization'}."'
+										,  shp_City='".$rec_customer->{'City'}."'
+										,  shp_State='".$rec_customer->{'State'}."'
+										,  shp_Zip='".$rec_customer->{'Zip'}."'
+										,  shp_Country='".$rec_customer->{'Country'}."'
+										,  shp_Notes=NULL,  ID_zones=0,  OrderNotes='$orders_notes'
+										,  OrderQty=0.00,  OrderShp=0.00,  OrderDisc=0.00,  OrderTax=0.16,  OrderNet=NULL,  ID_salesorigins=5,  ID_pricelevels=99,  dayspay=NULL,  ID_orders_related=0
+										,  question1=NULL,  answer1=NULL,  question2=NULL,  answer2=NULL,  question3=NULL,  answer3=NULL,  question4=NULL,  answer4=NULL,  question5=NULL,  answer5=NULL,  repeatedcustomer='Yes',  Coupon=0,  Flags=0,  DNIS=0,  ID_mediacontracts=0,  DIDS7=0,  Letter=0,  ID_warehouses=0,  first_call=NULL
+										,  language='spanish',  StatusPrd='None',  StatusPay='None',  Status='New',  Date=CURDATE(),  Time=CURTIME(),  ID_admin_users=1");
+									$id_orders_new = $sth_order->{'mysql_insertid'};
+								}
+								
+								if (int($id_orders_new)>0) {
+									print "<br>SE CREO LA ORDEN <strong>$id_orders_new</strong> PARA EL CLIENTE <strong>$id_customer</strong>, SUCURSAL <strong>$customer_code - $customer_alias</strong> EN EL SISTEMA.<br>";
+									$email_text .= "Se creo la Oorden No.: $id_orders_new para el Cliente ID: $id_customer, en el sistema.\n";
+
+									# de 1 hasta el numero de productos indicados arriba, se hace el recorrido de cada producto agregando cuantos quiere para esta tienda de cada uno
+									# Inserta los productos	
+									my $qty;
+									my $total = 0;
+									my $tax = 0;
+									my $SalePrice = 0;
+									my $ID_products = 100000000;
+
+									my $total_OrderQty = 0;
+									my $total_OrderTax = 0;
+									my $total_OrderNet = 0;					
+
+									for my $i(1..$registers1) {
+										$qty = int($fields[$i]);
+
+										$product_price[$i] =~ s/ \$//g;
+
+										$SalePrice = $product_price[$i] * $qty;
+										$tax = $SalePrice * ($product_tax_percent[$i] / 100);
+
+										### para que pueda insertar la cantidad debe ser ,mayor que cero
+										if($qty > 0) {
+
+											# una validacion mas, confirmamos que el producto exista y este activo
+											my $id_parts = $product[$i];
+											$sth_val_parts = &Do_SQL("SELECT (SELECT SPrice FROM sl_customers_parts WHERE ID_customers=100105 AND ID_parts=sl_skus.ID_products)as SPrice, sl_skus.ID_sku_products as ID_parts FROM sl_skus WHERE 1 AND sl_skus.UPC='".$id_parts."' AND sl_skus.Status='Active'");
+											 # "SELECT 400000000+ID_parts as ID_parts FROM sl_customers_parts INNER JOIN sl_parts USING (ID_parts) WHERE ID_customers=$id_customer AND sku_customers='$id_parts' AND sl_parts.Status='Active'"
+											$rec_parts = $sth_val_parts->fetchrow_hashref;
+
+											if (int($rec_parts->{'ID_parts'}) > 0) {
+
+												$sth_parts = &Do_SQL("INSERT INTO sl_orders_products SET
+													ID_orders_products = NULL
+													, ID_products=".$ID_products."
+													, ID_orders=".$id_orders_new."
+													, ID_packinglist=0
+													, Related_ID_products=".$rec_parts->{'ID_parts'}."
+													, Quantity=".$qty."
+													, SalePrice=".($qty * $product_price[$i])."
+													, Shipping=0
+													, Cost=0
+													, Tax=".$tax."
+													, Tax_percent=".($product_tax_percent[$i] / 100)."
+													, Discount=0
+													, FP=1
+													, Status='Active'
+													, Date=Curdate()
+													, Time=NOW()
+													, ID_admin_users=1");
+												
+												# /*, ShpDate=DATE_SUB('$due_date',INTERVAL $p_terms DAY)
+												# , PostedDate=DATE_SUB('$due_date',INTERVAL $p_terms DAY)*/
+												
+												$total_OrderQty += $qty;
+												$total_OrderTax += $tax;
+												$total_OrderNet += $SalePrice;
+
+												if ($rec_parts->{'SPrice'} == $product_price[$i]){
+													print 'SE AGREGAN <strong>'.$qty.'</strong> PIEZAS DEL PRODUCTO <strong>'.$rec_parts->{'ID_parts'}."-".$cve_product[$i].'</strong> COSTO DIREKSYS '.&format_price($rec_parts->{'SPrice'}).' COSTO NUEVO <strong>'.&format_price($product_price[$i]).'</strong> A LA ORDEN.<br>';
+												}else{
+													print '<span style="color:red;">SE AGREGAN <strong>'.$qty.'</strong> PIEZAS DEL PRODUCTO <strong>'.$rec_parts->{'ID_parts'}."-".$cve_product[$i].'</strong> COSTO DIREKSYS '.&format_price($rec_parts->{'SPrice'}).' COSTO NUEVO <strong>'.&format_price($product_price[$i]).'</strong> A LA ORDEN.</span><br>';
+												}
+
+												$email_text .= 'Se agregan '.$qty.' piezas del producto "'.$rec_parts->{'ID_parts'}."-".$cve_product[$i].'" a la Orden '.$id_orders_new.".\n";
+
+
+												# $ID_products++;
+												$ID_products+=1000000;
+											}else {
+												print '<br><span style="color:red;">NO FUE POSIBLE AGREGAR EL PRODUCTO <strong>'.$rec_parts->{'ID_parts'}."-".$product[$i].'</strong> A LA ORDEN<span style="color:red;">.';
+												$email_text .= "No fue posible agregar el producto $cve_product[$i] a la Orden $id_orders_new.\n";
+
+											}
+										}
+
+									}
+
+									# suma las catidades de productos de una misma tienda para generar una orden por tienda
+									# hay q sumar y hacer un update sobre sl_orders y listo
+									print '<br>total_OrderQty = '.$total_OrderQty;
+									print '<br>total_OrderTax = '.$total_OrderTax;
+									print '<br>total_OrderNet = '.$total_OrderNet;
+									
+									$email_text .= "Los totales de la Orden '.$id_orders_new.'. son los siguientes:\n";
+									$email_text .= 'OrderQty = '.$total_OrderQty."\n";
+									$email_text .= 'OrderTax = '.$total_OrderTax."\n";
+									$email_text .= 'OrderNet = '.$total_OrderNet."\n";
+
+									my $total_Order = $total_OrderNet + $total_OrderTax;
+
+									&Do_SQL("UPDATE sl_orders SET OrderQty=$total_OrderQty, OrderNet=$total_OrderNet WHERE ID_orders=".$id_orders_new);
+										
+									# ---------------------- Pago de la Orden 
+									my ($sth_ord_payments) = &Do_SQL("INSERT INTO `sl_orders_payments` (`ID_orders_payments`, `ID_orders`, `Type`, `PmtField1`, `PmtField2`, `PmtField3`, `PmtField4`, `PmtField5`, `PmtField6`, `PmtField7`, `PmtField8`, `PmtField9`, `Amount`, `Reason`, `Paymentdate`, `AuthCode`, `AuthDateTime`, `Captured`, `CapDate`, `PostedDate`, `Status`, `Date`, `Time`, `ID_admin_users`) VALUES
+									(NULL, '".$id_orders_new."', 'Deposit', '', '', '', '', '', '', '', '', '', '".$total_Order."', 'Sale', DATE_ADD(CURDATE(), INTERVAL ".$rec_customer->{'CreditDays'}." DAY), '', '', NULL, NULL,'0000-00-00', 'Approved', CURDATE(), 'CURTIME()', 1 )");
+									$id_orders_payments = $sth_ord_payments->{'mysql_insertid'};
+									
+									if (int($id_orders_payments)>0){
+										print "<br>SE AGREGO EL PAGO <strong>$id_orders_payments</strong> A LA ORDEN <strong>$id_orders_new</strong>.";
+										$email_text .= "Se agrego el pago $id_orders_payments a la orden $id_orders_new.\n";
+									}else{
+										print "<br>NO FUE POSIBLE AGREGAR EL PAGO A LA ORDEN <strong>$id_orders_new</strong>.";
+										$email_text .= "No fue posible agregar el pago a la Orden $id_orders_new \n";
+									}
+
+
+									# ---------------------- Nota a la Orden 
+									&Do_SQL("INSERT INTO sl_orders_notes SET ID_orders = '$id_orders_new', Notes='Esta Orden fue creada por procesamiento masivo desde Direksys',Type = 'Low', Date = CURDATE(), Time = CURTIME(), ID_admin_users = '1' ;");
+
+								}else{
+									print "<br>NO FUE POSIBLE CREAR LA ORDEN PARA EL CLIENTE: <strong>$id_customer</strong> SUCURSAL: <strong>$customer_code - $customer_alias</strong>";
+									$email_text .= "No fue posible crear la Orden para el Cliente ".$id_customer." Sucursal $customer_code - $customer_alias.\n";
+								}
+
+							}else {
+								print "<br>LA SUCURSAL $id_customers_addresses::<strong>$customer_code - $customer_alias</strong> DEL CLIENTE CON ID $id_customer NO FUE ENCONTRADO EN EL SISTEMA.";
+								#print "SELECT * FROM cu_customers_addresses WHERE ID_customers=$id_customer AND Alias like ('%$customer_alias%') LIMIT 1;<br/>";
+								print $query."<br/>";
+								$email_text .= "El cliente con id $id_customer no fue encontrado en el sistema.\n";
+
+							}
+
+							print "<br>";
+					
+						}
+						print "<br>";
+
+						if($registers2 > 0) {
+							print "$registers2 records found in dir2";
+							$email_text .= "$registers2 records found in dir2.\n";
+
+						}else {
+							print "no records found in dir2";
+						}
+
+						close FILE;
+					}else{
+						print "<span style='color:red;'>$dir2 no encontrado </span><br>";
+					}
+				}
+
+	  			&send_text_mail($cfg{'from_email'},'adiaz@inovaus.com',"Resumen de Carga masiva de ordenes.", $email_text) if($in{'process'} eq 'commit');
+			}else{
+				print "<span style='color:red;'>ERROR AL LEER LOS ARCHIVOS FUENTE <strong>$file1</strong> y <strong>$file2</strong>.</span><br>";
+				print "$dir1<br>";
+				print "$dir2<br>";
+			}
+		 
+		}else{
+			print "<span style='color:red;'>dir '$dir' not found </span><br>";
+			$email_text .= "El archivo '$dir' no fue encontrado.\n";
+
+		}
+
+		&disconnect_db;
+
+	}
+}
+
+#########################################################
+##			Query				##
+##########################################################
+sub parse_form {
+# --------------------------------------------------------
+	my (@pairs, %in);
+	my ($buffer, $pair, $name, $value);
+
+	if ($ENV{'REQUEST_METHOD'} eq 'GET') {
+		@pairs = split(/&/, $ENV{'QUERY_STRING'});
+	}elsif ($ENV{'REQUEST_METHOD'} eq 'POST') {
+		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
+ 		@pairs = split(/&/, $buffer);
+	}else {
+		&cgierr ("This script must be called from the Web\nusing either GET or POST requests\n\n");
+	}
+	PAIR: foreach $pair (@pairs) {
+		($name, $value) = split(/=/, $pair);
+
+		$name =~ tr/+/ /;
+		$name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		$name = lc($name);
+
+		$value =~ tr/+/ /;
+		$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+
+		$value =~ s/^\s+//g;
+		$value =~ s/\s+$//g;
+
+		#$value =~ s/\r//g;
+		$value =~ s/<!--(.|\n)*-->//g;			# Remove SSI.
+		if ($value eq "---") { next PAIR; }		# This is used as a default choice for select lists and is ignored.
+		(exists $in{$name}) ?
+			($in{$name} .= "|$value") :		# If we have multiple select, then we tack on
+			($in{$name}  = $value);			# using the ~~ as a seperator.
+	}
+	return %in;
+}
+
+##################################################################
+#     CGIERR   	#
+##################################################################
+sub cgierr {
+# --------------------------------------------------------
+# Last Modified on: 11/10/08 11:58:21
+# Last Modified by: MCC C. Gabriel Varela S: Se corrige la forma de mostrar la fecha
+	my (@sys_err) = @_;
+	print "Content-type: text/html\n\n";
+
+	my ($key,$env,$out_in,$out_env);
+	if (!$cfg{'cd'}){
+		print qq|
+						<head>
+										<title>CGI - ERROR</title>
+						</head>					
+						<body BGCOLOR="#FFFFFF" LINK="#FF0000" VLINK="#FF0000" ALINK="#FF0000">
+					
+							<table BORDER="0" WIDTH="500" CELLPADDING="10" CELLSPACING="10">
+							  <tr>
+							    <td BGCOLOR="#FF0000" colspan="2"><font size="5" color="#FFFFFF" face="Arial"><b>CGI-Error</b></font></td>
+							  </tr>
+							</table>
+							<table BORDER="0" WIDTH="550" CELLPADDING="2" CELLSPACING="0">|;
+								$sys_err[0]	and print "\n<tr>\n  <td valign='top' width='200'><font face='Arial' size='3'>Error Message</font></td>\n  <td><font face='Arial' size='3' color='#FF0000'><b>$sys_err[0]</b></font></td>\n</tr>\n";
+								$sys_err[1]	and print "<tr>\n  <td width='200'><font face='Arial' size='2'>Error Code</font></td>\n  <td><font face='Arial' size='2'>$sys_err[1]</font></td>\n";
+								$sys_err[2]	and print "<tr>\n  <td valign='top' width='200'><font face='Arial' size='2'>System Message</font></td>\n  <td><font face='Arial' size='2'>$sys_err[2]</font></td>\n";
+								print qq|
+							<tr>
+							  <td colspan="2"><p>&nbsp</p><font face='Arial' size='2'>If the problem percist, please contact us with the above Information.</font><br>
+									<font face='Arial' size='2'><a href="mailto:$systememail">$systememail</a></font></td>
+							</tr>
+							  </table>
+						</body>
+						</html>|;
+		######################################
+		### Save CGI ERR			
+		##############################
+		my ($ip);
+		my (@outmsg) = @sys_err;
+		my ($sec, $min, $hour, $day, $mon, $year, $dweek, $dyear, $daylight) = localtime(time());
+		$year+=1900;
+		$mon++;
+		my ($time,$date) = ("$hour:$min:$sec","$mon-$day-$year");
+		
+		foreach $key (sort keys %in) {
+			$outmsg[3] .= "$key=$in{$key},";
+		}
+		
+		foreach $env (sort keys %ENV) {
+			$outmsg[4] .= "$env=$ENV{$env},";
+		}
+		
+		for (0..4){
+			$outmsg[$_] =~ s/\n|\r/ /g;
+			$outmsg[$_] =~ s/\|/ /g;
+		}
+		
+		if ($ENV{'REMOTE_ADDR'}){
+			$ip = $ENV{'REMOTE_ADDR'};
+		}elsif ($ENV{'REMOTE_HOST'}){
+			$ip = $ENV{'REMOTE_HOST'};
+		}elsif ($ENV{'HTTP_CLIENT_IP'}){
+			$ip = $ENV{'HTTP_CLIENT_IP'};
+		}else{
+			$ip = "Unknow";
+		}
+	
+		(!$cfg{'cgierr_log_file'}) and ($cfg{'cgierr_log_file'} = './logs/cgierr.log');
+		if (open (LOG, ">>$cfg{'cgierr_log_file'}")){;
+			print LOG "$usr{'username'}|$outmsg[0]|$outmsg[1]|$outmsg[2]|$outmsg[3]|$outmsg[4]|$time|$date|$ip\n";
+			close AUTH;
+		}
+	
+
+	}else{
+		print "<PRE>\n\nCGI ERROR\n==========================================\n";
+					$sys_err[0]	and print "Error Message       : $sys_err[0]\n";
+					$sys_err[1]	and print "Error Code          : $sys_err[1]\n";
+					$sys_err[2]	and print "System Message      : $sys_err[2]\n";
+					$0			and print "Script Location     : $0\n";
+					$]			and print "Perl Version        : $]\n";
+					$sid		and print "Session ID          : $sid\n";
+
+
+		print "\nForm Variables IN\n-------------------------------------------\n";
+		
+		foreach $key (sort keys %in) {
+			my $space = " " x (20 - length($key));
+			$out_in .= "$key=$in{$key},";
+			print "$key$space: $in{$key}\n";
+		}
+		
+		print "\nForm Variables ERROR\n-------------------------------------------\n";
+		foreach $key (sort keys %error) {
+			my $space = " " x (20 - length($key));
+			print "$key$space: $error{$key}\n";
+		}
+		
+		print "\nEnvironment Variables\n-------------------------------------------\n";
+		foreach $env (sort keys %ENV) {
+			my $space = " " x (20 - length($env));
+			$out_env .= "$env=$ENV{$env},";
+			print "$env$space: $ENV{$env}\n";
+		}
+		
+		print "\n</PRE>";
+
+	}
+
+	exit -1;
+}
+
+sub load_settings {
+	my ($fname);
+	
+	if ($in{'e'}) {
+		$fname = "../general.e".$in{'e'}.".cfg";
+	}else {
+		$fname = "../general.ex.cfg";
+	}
+
+	## general
+	open (CFG, "<$fname") or &cgierr ("Unable to open: $fname,160,$!");
+	LINE: while (<CFG>) {
+		(/^#/)      and next LINE;
+		(/^\s*$/)   and next LINE;
+		$line = $_;
+		$line =~ s/\n|\r//g;
+		my ($td,$name,$value) = split (/\||\=/, $line,3);
+		if ($td eq "conf") {
+			$cfg{$name} = $value;
+			next LINE;
+		}elsif ($td eq "sys"){
+			$sys{$name} = $value;
+			next LINE;
+		}
+	}
+	close CFG;
+
+}
+
+sub check_ip {
+# --------------------------------------------------------
+	my ($ip, $ipfilter) = @_;
+	
+	my (@ip) = split(/\./,$ip,4);
+	my (@allowip) = split(/\,/,$ipfilter,4);
+	
+	for my $i(0..$#allowip){
+		$allowip[$i] =~ s/\n|\r//g;
+		$ok = 1;
+		my (@ipfilter) = split(/\./,$allowip[$i],4);
+		for my $x(0..3){
+			if ($ip[$x] ne $ipfilter[$x] and $ipfilter[$x] ne 'x'){
+				$ok = 0;
+			}
+		}
+	}
+	return $ok;
+}
+
+
+1;

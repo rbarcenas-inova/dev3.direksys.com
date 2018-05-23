@@ -1,0 +1,79 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=pklist")'>Create</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_list&status=New")'>New</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_list&status=In Process")'>In Process</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_list&status=Backorder")'>Backorder</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_list&status=Processed")'>Processed</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_list&status=Pending")'>Pending</td>
+	    <td class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_search")'>Search</td>
+	  </tr>
+	</table>
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform" onsubmit="return warningmsg()">
+	<input type="hidden" name="cmd" value="packing_list">
+	<input type="hidden" name="status" value="[in_status]">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Packing List</td>
+		 </tr>
+		<tr>
+		   <td colspan="2"><span class="help_on">These are the Packing List in the database, To view the bug information click on "V" To Edit it, click on "E" or "D" if you want to delete it</span></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Packing List : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title" nowrap>Ord / Inv / P.List</td>
+		    <td class="menu_bar_title">ID Order</td>
+		    <td class="menu_bar_title">Order Date</td>
+		    <td class="menu_bar_title">Status</td>
+		    <td class="menu_bar_title">Prod ID/Description</td>
+		 </tr>
+		[va_searchresults]
+     </table>
+</form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+		</td>
+	</tr>
+</table>

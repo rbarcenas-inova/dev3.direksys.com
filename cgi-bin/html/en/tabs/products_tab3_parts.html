@@ -1,0 +1,71 @@
+	&nbsp;
+	
+	<span class="stdtxterr">[va_tabmessage]</span>
+	<table border="0" cellspacing="0" cellpadding="0" width="100%" class="formtable">
+		<tr>
+			<td>
+			 	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+			 		<tr>
+			 			<td colspan="7">
+			 				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_products]&tab=[va_activetab]&tabs=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+			 			</td>
+			 		</tr>
+			 		<tr>
+			 			<td class="menu_bar_title" colspan="7" align="center">Adding / Editing parts To:</td>
+			 		</tr>
+					<tr>
+				   		 <td class="menu_bar_title">ID</td>
+				   		 <td class="menu_bar_title">[in_choicename1]</td>
+				   		 <td class="menu_bar_title">[in_choicename2]</td>
+				   		 <td class="menu_bar_title">[in_choicename3]</td>
+				   		 <td class="menu_bar_title">[in_choicename4]</td>
+				   		 <td class="menu_bar_title">Vendor SKU</td>
+				   		 <td class="menu_bar_title">UPC</td>
+				 	</tr>
+				 	[va_skus_info]
+					<tr>
+						<td class="smalltext" colspan="7"></td>
+					</tr>
+				</table>
+				
+			</td>		
+		</tr>
+		<tr>
+			<td>
+				<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+					<input type="hidden" name="id_products" value="[in_id_products]">
+					<input type="hidden" name="view" value="[in_id_products]">
+					<input type="hidden" name="id_sku_products" value="[in_addparts]">
+					<input type="hidden" name="action" value="3">
+					<input type="hidden" name="tab" value="3">
+					
+					<input type="hidden" name="addparts" value="[in_addparts]">
+					<input type="hidden" name="cmd" value="[in_cmd]">
+					
+			 	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+			 		<tr>
+			 			<td class="menu_bar_title" colspan="5" align="center">Parts for This Item</td>
+			 		</tr>
+			 		<tr>
+				   		 <td class="menu_bar_title">Qty</td>
+				   		 <td class="menu_bar_title">Part ID</td>
+				   		 <td class="menu_bar_title">UPC</td>
+				   		 <td class="menu_bar_title" align="center">Model/Name</td>
+				 	</tr>
+				 	[va_parts_list]
+				 	<tr>
+						<td colspan="5" align="center">[va_hstart]<input class="button" type="submit" value="Update" name="update_parts">[va_hend]</td>
+					</tr>
+				</table>
+			</form>
+			</td>
+		</tr>
+		<tr>
+			<td><IFRAME SRC="/cgi-bin/mod/[ur_application]/admin?cmd=mer_addparts&id_sku_products=[in_addparts]" name="rcmd" TITLE="Recieve Commands" width="100%" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+					<H2>Unable to do the script</H2>
+					<H3>Please update your Browser</H3>
+					</IFRAME></td>
+		</tr>
+		</table>
+
+	

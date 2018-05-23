@@ -1,0 +1,137 @@
+	<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+	<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform" onsubmit="/*return disableSubmits();*/">
+	<input type="hidden" name="cmd" value="opr_customers">
+	<input type="hidden" name="view" value="[in_id_customers]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="[in_tab]">
+	<input type="hidden" name="belongsto" value="[in_belongsto]">
+	<input type="hidden" name="id_customers_addresses" value="[in_ca_id_customers_addresses]">
+	<input type="hidden" name="ca_gln" value="[in_ca_gln]">	
+
+	<div class="container_white" style="padding:5px">
+		<center class="titletext">
+			Customer Address: [in_id_customers_address] ([in_id_customers])
+		</center>
+		<span class="stdtxterr">[va_message]</span>
+		&nbsp;
+		<fieldset><legend>Address Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+
+			<tr>
+				<td>Codigo Alias : </td>
+				<td class="smalltext">
+					<input type="text" name="ca_code" value="[in_ca_code]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_ca_alias]</span>
+			   	</td>
+			</tr>
+			<tr>
+				<td>Alias : </td>
+				<td class="smalltext">
+					<input type="text" name="ca_alias" value="[in_ca_alias]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_ca_alias]</span>
+			   	</td>
+			</tr>
+			<tr>
+				<td>Calle : </td>
+				<td class="smalltext">
+					<input type="text" name="ca_street" value="[in_ca_cu_street]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_ca_street]</span>
+			   	</td>
+			</tr>
+			<tr>
+				<td>N&uacute;mero : </td>
+				<td class="smalltext">
+					<input type="text" name="ca_num" value="[in_ca_cu_num]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_ca_num]</span>
+			   	</td>
+			</tr>
+			<tr>
+				<td>N&uacute;mero Interior: </td>
+				<td class="smalltext">
+					<input type="text" name="ca_num2" value="[in_ca_cu_num2]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_ca_num2]</span>
+			   	</td>
+			</tr>
+
+			<tr>	
+				<td>Colonia / Barrio : </td>
+				<td class="smalltext">
+					<input type="text" name="ca_urbanization" value="[in_ca_urbanization]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_ca_urbanization]</span>
+			   	</td>
+			</tr>
+			
+			<tr>
+				<td>Municipio / Delegaci&oacute;n : </td>
+				<td class="smalltext">
+					<input type="text" name="ca_city" value="[in_ca_city]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_ca_city]</span>
+			   	</td>
+			</tr>
+			<tr>
+				<td>Estado : </td>
+				<td class="smalltext">
+					<select name="ca_state" id="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option>
+						[bs_State@cu_customers_addresses]
+					</select>
+					<span class="smallfieldterr">[er_ca_state]</span>
+			   	</td>
+			</tr>
+			<tr>
+				<td>Estado (Direccion Fiscal): </td>
+				<td class="smalltext">
+					<input type="text" name="ca_cu_state" value="[in_ca_cu_state]" size="60" onocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_ca_cu_state]</span>
+					
+			   	</td>
+			</tr>
+			<tr>
+			 	<td width="30%">C&oacute;digo Postal: </td>
+			 	<td class="smalltext">
+			 		<input type="text" name="ca_zipcode" value="[in_ca_zip]" size="8" onocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_ca_zipcode]</span>
+			 	</td>
+			</tr>
+			<tr>
+				<td>Pa&iacute;s : </td>
+				<td class="smalltext">
+					<input type="text" name="ca_country" value="[in_ca_country]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_ca_country]</span>
+			   	</td>
+			</tr>
+			
+		</table>
+		</fieldset>
+		&nbsp;
+		<fieldset><legend>Address Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+
+			<tr>
+				<td width="30%">Direcci&oacuten Primaria : </td>
+				<td class="smalltext">
+					Si <input type="radio" name="ca_primaryrecord" value="Yes" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					No <input type="radio" name="ca_primaryrecord" value="No" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<span class="smallfieldterr">[er_ca_primaryrecord]</span>
+			   	</td>
+			</tr>
+			</table>
+		</fieldset>
+		&nbsp;
+
+		<center>
+			<input type="submit" id="btn_submit" value="Enviar" class="button">
+		</center>
+		<br>
+	</div>
+
+	</form>
+
+	<script language="javascript">
+	<!--
+		chg_select('ca_state','[in_ca_state]');
+		chg_radio('ca_primaryrecord','[in_ca_primaryrecord]');
+		$(document).ready(function(){
+			$("form[name='sitform']").submit(function(){
+				if (!$.trim($("input[name='ca_cu_state']").val())) {
+					$("input[name='ca_cu_state']").siblings('span').remove();
+					$("input[name='ca_cu_state']").after('<span class="smallfieldterr">Requerido</span>');
+					return false;
+				} else {
+					return true;
+				}
+			});
+		});
+	//-->
+	</script>

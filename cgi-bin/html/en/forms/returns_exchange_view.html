@@ -1,0 +1,165 @@
+	&nbsp;
+	<fieldset><legend>Returns Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Returns ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_returns] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]
+							<a href="/cgi-bin/common/apps/full_kardex.pl?tbl_name=sl_returns&id_trs=[in_view]"  class='fancy_modal_iframe'>
+								<img src='[va_imgurl]/[ur_pref_style]/kardex.png' title='Kardex' alt='Kardex' border='0' width='24' height='24'>
+							</a>
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+ <fieldset><legend>Original Order</legend>
+ <span class="smallfieldterr">[er_orderdata]</span>
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr class="menu_bar_title">
+		<td colspan="5" align="center">Items In Order </td>
+	</tr>
+		<tr>
+			<td class="menu_bar_title" nowrap>ID Orden</td>
+			<td class="menu_bar_title">Date</td>
+			<td class="menu_bar_title">Product info</td>
+			<td class="menu_bar_title">Ship Info</td>
+			<td class="menu_bar_title">Status</td>
+	 </tr>
+		[fc_returns_itemsordered] 
+	</table>
+	&nbsp;
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr class="menu_bar_title">
+		<td colspan="6" align="center">This Return </td>
+	</tr>
+	<tr>
+		<td class="menu_bar_title">ID products</td>
+		<td class="menu_bar_title">Model / Name</td>
+		<td class="menu_bar_title">UPC</td>
+		<td class="menu_bar_title">Cost</td>
+		<td class="menu_bar_title">Quantity</td>
+		<td class="menu_bar_title">In order</td>
+		<td class="menu_bar_title">Status</td>
+		<td class="menu_bar_title">Warehouse</td>
+		<td class="menu_bar_title">Location</td>
+	</tr>
+	[fc_return_upcs]
+	</table>
+</fieldset>
+&nbsp;
+ <fieldset><legend>Merchandise Reception</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		  <td width="20%" valign="top">Return Type  :</td>
+		  <td class="smalltext">[in_type]</td>		
+  		</tr>
+  		<tr>
+		  <td width="20%" valign="top">General Pckg Condition  : </td>
+		  <td class="smalltext">[in_generalpckgcondition]</td>
+		</tr>
+		<tr>
+		  <td width="20%" valign="top">Reception Notes  : </td>
+		  <td class="smalltext">[in_receptionnotes]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Merchandise Action</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="20%" valign="top">Action  :</td>
+		  <td class="smalltext">[in_meraction]</td>		
+  	</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Return for Exchange</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="20%" valign="top">Exchange :  </td>
+		  <td class="smalltext"><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_products&view=[va_id_products]">[va_id_products_exchange]</a> [va_productsname]</td>	
+  	</tr>
+  	<tr>
+		  <td width="20%" valign="top">Price :  </td>
+		  <td class="smalltext">[in_sprice]</td>	
+  	</tr>
+  </table>
+</fieldset>	
+&nbsp;
+<fieldset><legend>Return Fees</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  	<tr>
+			  <td width="20%" valign="top">Shipping Charges (1st Ship) : </td>
+			  <td class="smalltext">[in_oldshpreturn]</td>		
+	  	</tr>		
+	  	<tr>
+			  <td width="20%" valign="top">Shipping Charges (Reship) : </td>
+			  <td class="smalltext">[in_newshp]</td>		
+	  	</tr>
+	  	<tr>
+			  <td width="20%" valign="top">Return Fee :</td>
+			  <td class="smalltext">[in_returnfee]</td>		
+	  	</tr>
+	  	<tr>
+			  <td width="20%" valign="top">Restock Fee  :</td>
+			  <td class="smalltext">[in_restockfee]</td>		
+	  	</tr>
+	  	<tr>
+			  <td width="20%" valign="top">Processing Fee  :</td>
+			  <td class="smalltext">[in_processingfee]</td>		
+	  	</tr>
+	  	<tr>
+			  <td width="20%" valign="top">Amount :  </td>
+			  <td class="smalltext">[in_amount]</td>	
+	  	</tr>
+  </table>
+</fieldset>	
+
+&nbsp;
+	<fieldset><legend>Return Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+	    <td width="20%">Auth By :</td>
+	    <td class="smalltext">
+	    	<a href="[in_script_url]?cmd=man_users&view=[in_authby]">([in_authby])</a>
+	    </td>
+		</tr>
+  	<tr>
+	    <td width="20%">Status :</td>
+	    <td class="smalltext">[in_status]</td>
+		</tr>
+  </table>
+	</fieldset>
+
+<div id="popup_addparts" style="visibility: hidden; display: none; background-color: #ffffff;">
+<div class="menu_bar_title" id="parts_drag">
+<img id="popup_exit3" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+&nbsp;&nbsp;&nbsp;Add Items to Returns
+</div>
+<div class="formtable">
+<IFRAME SRC='/cgi-bin/common/apps/schid?cmd=returns_addupcs&id_returns=[in_id_returns]&path=/cgi-bin/mod/[ur_application]/dbman&cmdo=opr_returns' name='rcmd' TITLE='Recieve Commands' width='546' height='250' FRAMEBORDER='0' MARGINWIDTH='0' MARGINHEIGHT='0' SCROLLING='auto'>
+<H2>Unable to do the script</H2>
+<H3>Please update your Browser</H3>
+</IFRAME>	
+</div></div>
+
+<script language="JavaScript">
+	function add_part(){
+		popup_show('popup_addparts', 'parts_drag', 'popup_exit3', 'element-right', -1, -1,'tabs');
+	}
+</script>
+
+<!-- CHTODO: No se debe poder agregar un Item a un return que no este en Status In Process -->

@@ -1,0 +1,125 @@
+<fieldset><legend>Notices</legend>
+							<table border="0" cellspacing="0" cellpadding="2" width="100%">
+<tbody>
+<tr>
+<td width="30%">Return :  <span class="smallfieldterr">[er_id_return]</span></td>
+<td>
+	<input type="text" name="id_return" value="[in_id_return]" size="45" onfocus="focusOn( this )" onblur="focusOff( this )"></td>
+</tr>
+<tr>
+<td width="30%">Customer :  <span class="smallfieldterr">[er_id_customers]</span></td>
+<!-- td>
+	<input type="text" name="id_customers" value="[in_id_customers]" size="20" onfocus="focusOn( this )" onblur="focusOff( this )"></td -->
+<td class="smalltext">
+					<input type="text" name="id_customers" id='id_customers' value="[in_id_customers]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )' [va_restrict_id_customers]>
+					<a href="/cgi-bin/common/apps/schid?cmd=customers&db=sl_customers&fname=id_customers&ajaxtype=id_customers" title="Search for a Customer" class="fancy_modal_iframe">
+			<img src="/sitimages//default/icsearchsmall.gif" border="0"></a>
+			</td>
+</tr>
+<tr>
+<td width="30%">Customer Addresses :  <span class="smallfieldterr">[er_customers_addresses]</span></td>
+<td>
+	<select id="customers_addresses" name="customers_addresses" value="[in_customers_addresses]" data-value="[in_customers_addresses]" onfocus="focusOn( this )" onblur="focusOff( this )">
+		<option>---</option>
+	</select>
+</td>
+</tr>
+<tr>
+<td width="30%">Return Date :  <span class="smallfieldterr">[er_ret_date]</span></td>
+				</td>
+<td>
+	<input id="ret_date" size="10" name="ret_date" value="[in_ret_date]" onfocus="focusOn( this )" onblur="focusOff( this )">&nbsp;		
+				</td>
+</tr>
+<tr>
+<td width="30%">Ship Date :  <span class="smallfieldterr">[er_ship_date]</span></td>
+<td>
+	<input id="ship_date" size="10" name="ship_date" value="[in_ship_date]" onfocus="focusOn( this )" onblur="focusOff( this )">&nbsp;		
+				</td>
+</tr>
+<tr>
+<td width="30%">Receipt Date :  <span class="smallfieldterr">[er_recept_date]</span></td>
+<td>
+	<input id="recept_date" size="10" name="recept_date" value="[in_recept_date]" onfocus="focusOn( this )" onblur="focusOff( this )">&nbsp;	
+				</td>
+</tr>
+<tr>
+<td width="30%">Carrier :  <span class="smallfieldterr">[er_id_carriers]</span></td>
+<td>
+	<select name="id_carriers" onfocus="focusOn( this )" onblur="focusOff( this )">
+		<option>---</option>
+		[fc_build_select_carrier]
+	</select>
+</td>
+</tr>
+<tr>
+	<td width="30%">Status :  <span class="smallfieldterr"></span></td>
+	<td class="smalltext">[fc_return_notices_status]<br><br></td>
+</tr>
+</tbody></table>
+	</fieldset>
+&nbsp;
+<script src="/chosen/chosen.jquery.min.js"></script>
+<link rel="stylesheet" href="/chosen/chosen.min.css">
+<script language="javascript">
+
+function chg_select(Name,Value) {
+		for (var f=0; f<self.document.forms.length; f++){
+    		for (var i=0; i<self.document.forms[f].length; i++){
+        		if (self.document.forms[f].elements[i].name == Name){
+        			for (var j = 0; j < self.document.forms[f].elements[i].children.length; j++) {
+                   		if(self.document.forms[f].elements[i].children[j].value==Value)
+                   			self.document.forms[f].elements[i].children[j].selected='selected';
+        			}
+            }
+       	}
+
+   	}
+}
+
+var r = '';
+setInterval(function(){
+	if(r != $('#id_customers').val()){
+		var v = $('#id_customers').val();
+		$.ajax({
+			url: '/cgi-bin/common/apps/ajaxbuild?ajaxbuild=get_customers_address2&id_customers='+v,
+			type: 'GET',
+		})
+		.done(function(data) {
+			$('#customers_addresses').html('<option>---</option>'+data);
+			if(r == ''){
+				var t = $('#customers_addresses').attr('data-value');
+				chg_select('customers_addresses','[in_customers_addresses]');
+				$("#customers_addresses").trigger("chosen:updated");
+			}else{
+				$("#customers_addresses").val('').trigger("chosen:updated");
+			}
+			r = $('#id_customers').val();
+		});
+	}
+},1000);
+
+$('#customers_addresses').chosen({width: "50%"});
+<!--
+	chg_select('id_carriers','[in_id_carriers]');
+	
+
+
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			// alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+
+		var dates = $("#ret_date, #ship_date, #recept_date").datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: new Date(),
+			// maxDate: '+2d',
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+	});
+
+</script>

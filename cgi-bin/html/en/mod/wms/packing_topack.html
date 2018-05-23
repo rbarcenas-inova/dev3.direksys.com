@@ -1,0 +1,111 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="23%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=pklist")'>Packing List</td>
+	    <td width="23%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_topack")'>Orders to Fulfill</td>
+	    <td width="24%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_topack")'>Search</td>
+	  </tr>
+	</table>
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+	
+<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform" onsubmit="return warningmsg()">
+	<input type="hidden" name="cmd" value="packing_topack">
+	<input type="hidden" name="search" value="1">
+	<input type="hidden" name="oids" value="[in_oids]">
+	
+	
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Ordes Ready to Be Fulfill</td>
+		 </tr>
+		<tr>
+		   <td colspan="2"><span class="help_on">These are the orders in the database, To view the order information click on "V" To Edit it, click on "E" or "D" if you want to delete it</span></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Orders : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title" width="5%" align="center"><input type="checkbox" id="inp_sel_all" stype=""></td>
+		    <td class="menu_bar_title" width="10%" align="center">Order ID</td>
+		    <td class="menu_bar_title" width="10%" align="center">Date</td>
+		    <td class="menu_bar_title" width="25%" align="center">Name</td>
+		    <td class="menu_bar_title" width="25%" align="center">Company Name</td>
+		    <td class="menu_bar_title" width="15%" align="center">Lines/Qty</td>
+		    <td class="menu_bar_title" width="10%" align="center">Status</td>
+		 </tr>
+		 <tr>
+		 	<td colspan="8">
+				<div id="div_searchresults" width="100%" style="display:block;padding:5px;margin-top:5px;height:[va_div_height]px;max-height:700px;overflow:auto;">
+					<table border="0" cellspacing="0" cellpadding="2" width="100%">
+						[va_searchresults]
+					</table>
+				</div>	
+				<p align="center"><input type="submit" name='action' value="Next" class="button"></p>  
+		 	</td>
+		</tr>	
+  	</table>
+<!--
+  	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="50%" class="formtable" align="center">
+		<tr>
+		    <td class="menu_bar_title" align="center">Search by Specific Orders</td>
+		 </tr>
+		<tr>
+		    <td align="left">Orders <span class="help_on">(comma or enter separated)</span><br>
+		    	<textarea id="batch_idorders" name="batch_idorders" cols="100" rows="3"></textarea>
+		    </td>
+		</tr>
+	</table>
+
+	&nbsp;
+	<p align="center"><input type="submit" value="Next" class="button"></p>      	
+-->
+</form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+	$('#inp_sel_all').click(function () {
+		if($(this).attr('checked'))
+			$('input.checkbox').attr('checked','checked');
+		else
+			$('input.checkbox').removeAttr('checked');
+    });
+</script>
+
+
+[ip_footer]

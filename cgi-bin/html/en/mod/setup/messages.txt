@@ -1,0 +1,41 @@
+###################################
+### Menu General
+#####################################
+
+all_keypoints=For Use in all KeyPoints
+
+
+acc_keypoints_htab1=Tag,Type,Data
+acc_keypoints_htab2=Tag,Function,Params
+
+acc_keypfunctions_htab1=Name,Description,Status
+acc_keypfunctions_htab2=#,Name,Description
+
+
+### Reports Manager
+pagerepman=Reports Manager
+repman_added=Report Added :
+repman_updated=Report Updated :
+repman_deleted=Report Deleted :
+repman_noteadded=Report Note Added
+repman_viewed=Report Viewed :
+repman_field_added=Report Field Added
+repman_field_droped=Report Field Droped
+notifs_htab1=Action,Type,From,Destination
+
+### Event Manager
+pageevents=Events Manager
+events_added=Event Added :
+events_updated=Event Updated :
+events_deleted=Event Deleted :
+events_viewed=Event Viewed :
+
+
+### Reports Manager
+pagenotifs=Notifications Manager
+notifs_added=Notification Added :
+notifs_updated=Notification Updated :
+notifs_deleted=Notification Deleted :
+notifs_viewed=Notification Viewed :
+notifs_action_added=New Action Added
+notifs_action_droped=Action Deleted

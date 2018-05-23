@@ -1,0 +1,93 @@
+	&nbsp;
+	<fieldset><legend>SKU Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Model : <span class="smallfieldterr">[er_model]</span></td>
+		    <td class="smalltext"><input type="text" name="model" value="[in_model]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		    <td width="30%">Item Title : <span class="smallfieldterr">[er_name]</span></td>
+		    <td class="smalltext"><input type="text" name="name" value="[in_name]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="30%">Category : <span class="smallfieldterr">[er_id_categories]</span></td>
+		    <td class="smalltext">
+		    	<select name="id_categories" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		      	<option value="---">---</option>
+		        [fc_build_select_maincategories]
+					</select>
+				</td>
+		</tr>
+		<tr>
+		    <td width="30%">Vendor SKU : <span class="smallfieldterr">[er_vendorsku]</span></td>
+		    <td class="smalltext"><input type="text" name="vendorsku" value="[in_vendorsku]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		    <td width="30%">UPC : <span class="smallfieldterr">[er_upc]</span></td>
+		    <td class="smalltext"><input type="text" name="upc" value="[in_upc]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>	
+		<tr>
+		    <td width="30%">Lot Manager : </td>
+		    <td class="smalltext">[br_lots@sl_parts]</td>
+		</tr>		
+		<tr>
+		    <td width="30%">Classification : <span class="smallfieldterr">[er_classification]</span></td>
+		    <td class="smalltext">
+		    	<select name="classification" value="[in_classification]" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    		<option value="---">---</option>
+		    		[bs_classification@sl_parts]
+		    	</select></td>
+		</tr>
+		<tr>
+		    <td width="30%">Reference Cost ($): <span class="smallfieldterr">[er_refcost]</span></td>
+		    <td class="smalltext"><input type="text" name="refcost" value="[in_refcost]" size="8" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		    <td width="30%">Reference Cost Percentage(%): <span class="smallfieldterr">[er_refcostpct]</span></td>
+		    <td class="smalltext"><input type="text" name="refcostpct" value="[in_refcostpct]" size="8" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		</table>
+	</fieldset>
+ 	&nbsp;
+
+ 	<fieldset><legend>SAT info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td width="30%" >ID Product / Service : </td>
+
+				<td class="smalltext">
+					[va_products_services]
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			    <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+			    <td class="smalltext"><input type="radio" name="status" value="Active" class="radio">Active
+		      	<input type="radio" name="status" value="Inactive" class="radio">Inactive
+	      </td>
+			</tr>
+  	</table>
+	</fieldset>
+	
+<script language="JavaScript">
+
+
+	chg_radio('status','[in_status]');
+	chg_radio('lots','[in_lots]');
+	chg_select('id_categories','[in_id_categories]');
+	chg_select('classification','[in_classification]');
+
+
+//-->
+</script>
+
+<input type="hidden" name="purchaseid_accounts" value="[in_purchaseid_accounts]">
+<input type="hidden" name="saleid_accounts" value="[in_saleid_accounts]">
+<input type="hidden" name="assetid_accounts" value="[in_assetid_accounts]">
+<input type="hidden" name="purchase_tax" value="[in_purchase_tax]">
+<input type="hidden" name="sale_tax" value="[in_sale_tax]">
+

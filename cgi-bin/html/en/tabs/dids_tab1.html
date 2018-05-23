@@ -1,0 +1,40 @@
+&nbsp;
+	<table width="100%" border="0" cellspacing="0" cellpadding="2" align="center" class="gborder">
+
+
+		<tr>
+			<td colspan="2" class="smallfieldterr">&nbsp;</td>
+			<td valign="top" align="right" class="small_text">
+				<a onclick="edit_order();" href="javascript:return false;">Add new Exception</a>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="tbltextttl">
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_mediadids]&tab=[va_activetab]&tabs=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+				<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=1&tabcmd=dids&toprint=[in_id_mediadids]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+				Exceptions : [va_matches]</td>
+	   		<td class="smalltext">Filter By :
+				<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mm_dids&view=[in_id_mediadids]&tab=1&filter=Active">Active</a> -
+				<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mm_dids&view=[in_id_mediadids]&tab=1&filter=Applied">Applied</a> -
+			</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+	 	</tr>
+		<tr>
+			<td colspan="3">
+		 		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+					  <td class="menu_bar_title">&nbsp;</td>
+					  <td class="menu_bar_title">To Callcenter</td>
+					  <td class="menu_bar_title">Date/Time Scheduled</td>
+					  <td class="menu_bar_title">Date/Time Applied</td>
+					  <td class="menu_bar_title">Status</td>
+					  <td class="menu_bar_title">Created By</td>
+					 </tr>
+				 [va_searchresults]
+				</table>
+			</td>
+		</tr>
+
+	</table>
+

@@ -1,0 +1,175 @@
+#### Messages
+msgd_sent=Mensage Sent
+msgd_nomsgs=No Messages
+
+### Products Search
+searchempty=Su busqueda retornó 0 coincidencias
+
+#### Callers DB
+pageproducts=Products
+prods_onairnow=On Air Now
+prods_onairtoday=On Air Today
+done=Done
+status_updated=Order Status Updated
+
+### WAREHOUSE RECEIPT
+pagewreceipt=Warehouse receipt
+wreceipt_added=Warehouse receipt Added :
+wreceipt_updated=Warehouse receipt Updated :
+wreceipt_deleted=Warehouse receipt Deleted :
+wreceipt_noteadded=Warehouse receipt New Note Added
+wreceipt_itemadded=Warehouse receipt Item Added
+wreceipt_itemdel=Warehouse receipt Item Deleted
+wreceipt_processed=Warehouse receipt Processed
+wreceipt_notedit=You can Not Edit a Processed Warehouse Receipt
+nopo_available=No Purchase Order Available
+wreceipt_itemupd=Item/choice Updated
+mer_wreceipt_adj_added=W. Receipt Adjustment Added
+mer_wreceipt_adj_del=W. Receipt Adjustment Deleted
+
+### MANIFESTS
+pagemanifests=Manifest
+manifests_added=Manifest Added :
+manifests_updated=Manifest Updated :
+manifests_deleted=Manifest Deleted :
+manifest_noteadded=Manifest New Note Added
+manifest_done=Manifest Processed
+manifest_itemadded=Manifest Item Added
+manifest_itemdel=Manifest Item Added
+manifest_error=Unable to process the Manifest, the merchandise is not in the Warehouse
+
+nostock=No Stock
+change_to=Change To
+
+### MANIFESTS
+packinglist_updtrk=Tracking Number registered to the Packing List 
+packinglist_order=Unable to Find the Order Number
+packinglist_track=Unable to Find a valid Tracking Number
+packinglist_prod=Unable to find the Product Sku
+packinglist_updinvfld=Unable to find the Packing List
+
+### MANIFESTS
+noprint=Nothing To Print
+manifest_print=Print
+manifest_print_detail= Print detail
+
+### VENDORS
+novendorsku=No Vendor SKU
+
+## UPC
+confirm=PLEASE Confirm that you are going to update this UPC code
+upc_added=UPC added to the product
+upc_updated=UPC updated to the product
+
+## Shippments
+order_shipped=Order Shipped (Scanned)
+order_shpauthorized = Shipping Autorized
+
+
+### IT Jobs
+pagereturns=Return Receipt
+returns_added=Return Receipt Added :
+returns_updated=Return Receipt Updated :
+returns_deleted=Return Receipt Deleted :
+returns_noteadded=New Return Receipt Note Added
+returns_viewed=Return Receipt Viewed :
+returns_order_notshipped=Order is not Shipped
+returns_order_skusnotshipped=No items scanned out yet
+returns_reship_no_products_available=There are no Products for ReShip
+
+
+pageretwarehouse=Returns Warehouse
+retwarehouse_updated=Return Updated :
+retwarehouse_deleted=Return Receipt Deleted :
+retwarehouse_noteadded=New Return Receipt Note Added
+retwarehouse_viewed=Return Receipt Viewed :
+
+sorting_updated=Sorting Updated :
+crreturns_updated=Check Return Updated :
+
+orders_updated=Order Updated
+preorders_updated=Preorder Updated
+orders_note_added=Order Note Added
+packinglist_added=Packinglist Added
+sku_trans_added=Sku Trans Added
+purchaseorder_wreceipts_added=PO Wreceipt Added
+purchaseorder_item_updated=PO Item Updated
+sku_cost_added=Sku Cost Added
+list_added=List Added
+import_log_added=Import Log Added
+preorders_note_added=Preorder Note Added
+cod_order_shipped=Cod Order Shipped
+orders_note_updated=Order Note Updated
+opr_orders_htab14=ID payment,ID order,Type,Amount,Status,Captured Info
+adjustment_added=Adjustment Added
+return_charge_done=Return Change Done
+adjustment_itemadded=Adjustment Item Added
+adjustments_added=Adjustment Added
+
+## Batches
+warehouses_batches_added=Batch Added 
+warehouses_batches_noteadded=Note Added
+warehouses_batches_assigned=Orders Assigned to Batch
+warehouses_batches_process=Batch to Processed
+warehouses_batches_send=Batch File Sent
+warehouses_batches_reship_done=Reship Orders in Batch Sent
+
+order_batchadded=Order Added to Batch
+order_batchdropped=Order Released from Batch
+order_batchsent=Order Sent in Batch
+order_batchreshipped=Orden Re shipped in batch 
+order_batchunpaid=Order Without Minimum Amount Captured
+order_batchintransit=COD In Transit Already
+order_batchempty=Order Without Available Products
+order_batch_zip_excluded=ZipCodes Excluded 
+prod_batchsent=in Batch
+prod_batchabsent=Not in Batch
+
+
+### Batch Zip Codes
+bzipcodes_loaded=Batch Loaded
+bzipcodes_accepted=Accepted
+bzipcodes_declined=Declined
+bzipcodes_declinedzc=Zip Codes Declined
+tobatch_err=No Orders or Warehouse. Please try again
+nozones_err=No Warehouse to the Selected Zone
+zones_notwarehouses=There's no driver assigned to the Zone
+
+## Returns Exportation Headers Tabs
+returns_htab3=UPC,Model
+
+### Scan
+scan_order_onlyone=Only One Order per Return
+scan_not_wholesale=Invalid Order
+scan_order_pactive_return=Products Pending to Send.
+
+
+### To Pack
+pack_error=Incomplete Orders. Unable to process All Orders.
+pack_comment=The following Orders have sent to Pack :
+pack_done=All items has been sent to pack. Print the manifest and move the items to de Pack Area
+pack_already=Items already in Pack Area. Print the manifest
+
+### Warehouse Batches
+change_status=Change Status to : 
+status_changed_Processed=Status Changed to Processed
+status_changed_Cancelled=Status Changed to Cancelled
+
+## Parts Production
+mer_parts_productions_htab1=ID,Name,UPC,Type,Location,Quantity
+mer_parts_productions_added=New Parts Production Added
+mer_parts_productions_voided=Parts Production Status Set to Void
+mer_parts_productions_itemadded=Parts Productions Items Added
+mer_parts_productions_items_insufficient=Insufficient Quantity Specified
+mer_parts_productions_processed=Parts Productions Processed
+mer_parts_productions_explode_pct=The Percentage of Out Items must be equal to 100
+mer_parts_productions_implode_qtyin_different=Quantity in all In SKU's must be equal.
+mer_parts_productions_implode_qtyout_different=Quantity in the only out SKU must be equal to  
+mer_parts_productions_implode_qtyout_invalid=Quantity invalid for this Implode
+
+### opr_adjustments
+warehouse_not_location=Warehouses not match with Location
+opr_adjustments_cant_approved=You can not change the status to approve until update adjustment. Probably there are sets in the list too.
+
+### opr_customs_info
+opr_customs_info_updated=Customs Info Updated 

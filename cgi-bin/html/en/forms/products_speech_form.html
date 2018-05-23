@@ -1,0 +1,48 @@
+	&nbsp;
+	<fieldset><legend>Speech Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="20%">Name  : <span class="smallfieldterr">[er_name]</span></td>
+			<td class="smalltext"><input type="text" name="name" value="[in_name]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">DID  : <span class="smallfieldterr">[er_id_dids]</span></td>
+		  <td class="smalltext">
+  			<select name="id_dids" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+      		<option value="---">---</option>
+      		[fc_build_select_dids]
+				</select>
+			</td>
+		</tr>		
+		<tr>
+		  <td colspan="2">Speech : <span class="smallfieldterr">[er_speech]</span></td>
+		</tr>
+		<tr>
+		  <td class="smalltext" colspan="2">[fc_build_html_textbox]</td>
+		</tr>
+		<tr>
+		  <td colspan="2" class="help_on">Fields Available for Returned Customers:<br>
+		  [va_customersfields]</td>
+		</tr>		 
+	</table>
+	</fieldset>
+	&nbsp;
+ 	<fieldset><legend>Speech Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		<td width="20%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		 <td class="smalltext">
+		 	<input type="radio" name="status" value="Active" class="radio">Active
+			<input type="radio" name="status" value="Inactive" class="radio">Inactive
+		</td>
+	</tr>
+  </table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+	chg_radio('status','[in_status]');
+	chg_select('id_dids','[in_id_dids]');
+//-->
+</script>
+

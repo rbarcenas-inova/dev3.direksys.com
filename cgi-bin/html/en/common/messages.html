@@ -1,0 +1,71 @@
+[ip_header_blank]
+
+[va_javascriptvar]
+<body class=" yui-skin-sam">
+
+	<form method="post" action="[va_script_url]">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+			<tr>
+				<td>
+		<input type="hidden" name="id" value="[in_id]">
+		<input type="hidden" name="table" value="[in_table]">
+		<input type="hidden" name="cmd" value="manage_lists">
+		<input type="hidden" name="cmdo" value="[in_cmdo]">
+		<input type="hidden" name="ajaxbuild" value="manage_lists">
+		<input type="hidden" name="path" value="[in_path]">
+		<input type="hidden" name="action" value="1">
+		<span class="smallfieldterr">[va_imessage]</span>
+		<fieldset><legend>Messages</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr id="div_message">
+				  <td width="30%">Message: </td>
+					<td class="smalltext">
+						<textarea id="message" name="message" ></textarea>
+					</td>
+				</tr>
+			
+				<tr>
+				  <td width="30%">User: </td>
+					<td class="smalltext">
+						<select name="user" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							<option value="">---</option>
+							[fc_build_userlists]
+						</select>
+					</td>
+				</tr>
+				<tr>
+				  <td width="30%">Group: </td>
+					<td class="smalltext">
+						<select name="group" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							<option value="">---</option>
+							[fc_build_grouplists]
+						</select>
+					</td>
+				</tr>
+				<tr>
+				  <td width="30%"><input type="submit" value="Assign" class="button"></td>
+				</tr>
+			</table>
+			</fieldset>
+			&nbsp;
+		</td>
+	</tr>
+	<tr>
+				<td>
+		<fieldset><legend>Actually assigned to</legend>
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	      	<tr>         	
+	      		<td class="menu_bar_title" nowrap>Action</td>
+						<td class="menu_bar_title" nowrap>List</td>
+						<td class="menu_bar_title" nowrap>User</td>
+						<td class="menu_bar_title" nowrap>Application</td>
+				 	</tr>
+				 	[va_searchresults]
+				</table>
+			</fieldset>
+			&nbsp;
+			</td>
+	</tr>
+</table>
+</form>
+</body>

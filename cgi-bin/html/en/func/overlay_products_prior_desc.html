@@ -1,0 +1,50 @@
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+});
+
+
+
+-->
+</script>
+
+
+	<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="mer_products">
+	<input type="hidden" name="view" value="[in_id_products]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="[in_tab]">
+	<input type="hidden" name="belongsto" value="[in_belongsto]">
+	<input type="hidden" name="upd_desc" value="[in_id_products_prior]">
+
+	<div class="container_white">
+ 
+		<span class="stdtxterr">[va_message]</span>
+		 
+		<fieldset><legend>Product Description. Ecommerce Data: [in_belongsto] ([in_id_products])</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		  
+			<tr>
+            <td colspan="2" width="100%">[va_fckcreatehtml]</td>
+            </tr>
+		</table>
+		</fieldset>
+	 
+        &nbsp;
+		<center>
+			<input type="submit" id="btn_submit" value="Send" class="button">
+		</center>
+		<br> 
+
+	</div>
+
+	</form>
+
+ 
+

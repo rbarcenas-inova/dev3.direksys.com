@@ -1,0 +1,74 @@
+&nbsp;
+<fieldset><legend>Report Identification</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Name :  <span class="smallfieldterr">[er_name]</span></td>
+			<td><input name="name" value="[in_name]" size="80" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td colspan="2">Description :  <span class="smallfieldterr">[er_description]</span></td>
+		</tr>
+		<tr>
+			<td colspan="2"><textarea    rows="5" cols="10" style="width: 100%;" name="description" onfocus="focusOn( this )" onblur="focusOff( this )">[in_description]</textarea></td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+<fieldset><legend>Report SQL Query</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td colspan="2">SQL (From):  <span class="smallfieldterr">[er_sql_from]</span></td>
+		</tr>
+		<tr>
+			<td colspan="2"><textarea    rows="5" cols="10" style="width: 100%;" name="sql_from" onfocus="focusOn( this )" onblur="focusOff( this )">[in_sql_from]</textarea></td>
+		</tr>
+		<tr>
+			<td colspan="2">SQL (Where):  <span class="smallfieldterr">[er_sql_where]</span></td>
+		</tr>
+		<tr>
+			<td colspan="2"><textarea    rows="5" cols="10" style="width: 100%;" name="sql_where" onfocus="focusOn( this )" onblur="focusOff( this )">[in_sql_where]</textarea></td>
+		</tr>
+		<tr>
+			<td width="30%">SQL (Order By) :  <span class="smallfieldterr">[er_sql_order]</span></td>
+			<td><input name="sql_order" value="[in_sql_order]" size="80" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td width="30%"><span class="smallfieldterr">[er_sql_order_type]</span></td>
+			<td>[br_sql_order_type@admin_reports]</td>
+		</tr>
+		<tr>
+			<td width="30%">SQL (Group By) :  <span class="smallfieldterr">[er_sql_group]</span></td>
+			<td><input name="sql_group" value="[in_sql_group]" size="80" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td width="30%">Max rows :  <span class="smallfieldterr">[er_max_rows]</span></td>
+			<td >
+				<input name="max_rows" value="[in_max_rows]" size="10" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+			</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+<fieldset><legend>Report Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Status :  <span class="smallfieldterr">[er_status]</span></td>
+			<td ><span style="white-space:nowrap"><input id="status_Active" name="status" value="Active" class="radio" type="radio"> <label for="status_Active">Active</label></span>
+			<span style="white-space:nowrap"><input id="status_Inactive" name="status" value="Inactive" class="radio" type="radio"> <label for="status_Inactive">Inactive</label></span>
+			</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+
+<script language="JavaScript">
+<!--
+
+	chg_radio('status','[in_status]');
+	chg_select('id_parent','[in_id_parent]');
+	chg_select('id_accategories','[in_id_accategories]');
+	chg_radio('sql_order_type','[in_sql_order_type]');
+
+//-->
+</script>
+

@@ -1,0 +1,123 @@
+[ip_header]
+
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+	
+	var dates = $( "[va_date_filters]" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		//maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3
+	});
+
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: [va_expanditem], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	&nbsp;
+
+  <form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="repmans">
+	<input type="hidden" name="id" value="[in_id]">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">[va_reportname]</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Filters</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%" class="menu_bar_title">Field Name</td>
+		    <td align="center" width="23%" class="menu_bar_title">From</td>
+		    <td align="center" width="23%" class="menu_bar_title">To</td>
+		    <td align="center" width="23%" class="menu_bar_title">Equal</td>
+		 </tr>
+		[va_filters]
+	</table>
+	</fieldset>
+	<fieldset>
+		<table border="0" cellspacing="0" cellpadding="5" width="100%">	
+			<tr>
+	   		<td class="smalltext" valign="top" width="30%" style="text-align:right;">Sort By:</td>
+	   		<td class="smalltext" style="text-align:left;">
+		   		<input type="radio" class="radio" name="sortorder" value="ASC"> Ascending
+		   		<input type="radio" class="radio" name="sortorder" value="DESC" checked> Descending
+	   		</td>
+            <td class="smalltext" valign="top" width="30%" style="text-align:right;">M&eacute;todo:</td>
+            <td class="smalltext" style="text-align:left;">
+                <select name="extraction_method">
+                    <option value="foreground" selected="selected">Foreground</option>
+                    <option value="background">Background</option>
+                </select>
+            </td>
+			</tr>
+		</table>
+	</fieldset>
+
+	<p align="center"><input type="submit" name="run" value="Run" class="button">
+					<input type="submit" name="export" value="Export" loading="0" class="button"></p>
+  </form>
+<script language="javascript">
+<!--
+
+	chg_chkbox('status','[in_status]');
+	chg_radio('dropship','[in_dropship]');
+	chg_chkbox('user_type','[in_user_type]');
+	chg_chkbox('first_call','[in_first_call]');
+	
+	function choose_customer(){
+		popup_show('popup_customer', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'customers');
+	}
+	function choose_user() {
+		popup_show('popup_user', 'item_drag2', 'popup_exit2', 'element-right', -1, -1,'users');
+	}
+//-->
+</script>
+
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+
+
+[ip_footer]

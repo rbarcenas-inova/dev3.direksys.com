@@ -1,0 +1,62 @@
+&nbsp; &nbsp;
+<fieldset><legend>Customs Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width='30%'>ID WReceipts : <span class='smallfieldterr'></span></td>
+			<td>
+				<span id='span_id_wreceipts'>[in_id_wreceipts]</span>
+			</td>
+		</tr>
+		<tr>
+			<td width='30%'>Customs Info Number : <span class='smallfieldterr'></span></td>
+			<td>
+				<input type='text' name='import_declaration_number' value='[in_import_declaration_number]' size='50' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+			<td width='30%'>Customs Info Date : </td>
+			<td class='smalltext' id='td_import_declaration_date'><span id='span_import_declaration_date'>[in_import_declaration_date]</span> </td>
+		</tr>
+		<tr>
+			<td width='30%'>Customs : </td>
+			<td class='smalltext' id='td_customs'><span id='span_customs'>[in_customs]</span> </td>
+		</tr>
+		<tr>
+			<td width='30%'>ID Vendors : </td>
+			<td class='smalltext' id='td_id_vendors'><span id='span_id_vendors'>[in_id_vendors]</span> </td>
+		</tr>
+		<tr>
+			<td width='30%'>Status :  <span class='smallfieldterr'></span></td>
+			<td class="smalltext" id='td_status'><span id='span_status'>[in_status]</span> </td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<input type="hidden" name="id_wreceipts" value="[in_id_wreceipts]" />
+<input type="hidden" name="import_declaration_date" value="[in_import_declaration_date]" />
+<input type="hidden" name="customs" value="[in_customs]" />
+<input type="hidden" name="id_vendors" value="[in_id_vendors]" />
+<input type="hidden" name="status" value="[in_status]" />
+
+
+<script language="javascript">
+
+	$(document).ready(function() {
+
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' 
+			'+'error:
+			' + xhr.responseText );
+		});
+
+		var dates = $('#import_declaration_date' ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: '-2m',
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+	});
+//-->
+</script>

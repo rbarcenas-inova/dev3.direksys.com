@@ -1,0 +1,114 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+  <form action="/cgi-bin/mod/wms/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="updtracking_list">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">Import Data From UPS/USPS/Fedex</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title">Commands</td>
+		    <td class="menu_bar_title">File Name</td>
+		</tr>
+		[va_searchresults]
+  </table>
+  &nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="50%" class="formtable" align="center">
+		<!--GV Inicia 02jun2008
+		<tr>
+			<td class="smalltext">
+	    	File Type: 
+	    	<select name="filetype" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	      	<option value="---">---</option>
+	      	<option value="AIW">AIW</option>
+	      	<option value="INOVA">INOVA</option>
+	      	<option value="KENETIC">KENETIC</option>
+	      	<option value="SOYO">SOYO</option>
+				</select>
+			</td>
+		</tr>
+		 -->
+		<tr>
+			<td class="smalltext">
+	    	Date Type: 
+	    	<select name="datetype" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	      	<option value="american">MM/DD/YYYY</option>
+	      	<option value="latin">DD/MM/YYYY</option>
+	      	<option value="nothingtosee">MMM.DD</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="smalltext">
+	    	Warehouse: 
+	    	<select name="id_warehouses" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	      	[fc_build_select_warehouses]
+				</select>
+			</td>
+		</tr>
+		<!--GV Termina 02jun2008 -->
+		<tr>
+		    <td class="smalltext"><input type="checkbox" class="checkbox" name="rtest" value="on"> Run Test (will not change The Data)<br>
+		    	<input type="checkbox" class="checkbox" name="unknow" value="on" checked> Do not show unknow Lines</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Show Only :<br>
+				<input type="radio" class="radio" name="showonly" value="all" checked>All<br>
+				<input type="radio" class="radio" name="showonly" value="shipped">Shipped Updated<br>
+				<input type="radio" class="radio" name="showonly" value="imported">Already been Imported<br>
+				<input type="radio" class="radio" name="showonly" value="notfound">Unable to Find<br>
+				<!--GV Inicia modificación 02jun2008 se quita
+				<input type="radio" class="radio" name="showonly" value="mult">Multiple Items<br>
+				GV Termina modificación 02jun2008 se quita -->
+			</td>
+		</tr>
+  </table>  
+  <!--GV Inicia 02jun2008 -->
+  <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable" align="center">
+		<tr>
+			<td class="stdtxterr">[va_message1]</td>
+		</tr>
+	</table>
+		<!--GV Termina 02jun2008 -->
+  </form>
+  
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+[ip_footer]

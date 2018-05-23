@@ -1,0 +1,674 @@
+<link rel="stylesheet" type="text/css" href="/dropzone/dropzone.css">
+<script src="/dropzone/dropzone.js"></script>
+<style>
+
+	/** Tabla **/
+		#bank_records{
+			font-size: 9px;
+		}
+
+		img.logo_bank
+		{
+			height: 26px;
+			width: 26px;
+			margin-right:5px;
+			vertical-align:middle;
+		}
+
+
+		img.logo_bank_selected
+		{
+			height: 34px;
+			width: 34px;
+			margin-right:5px;
+			vertical-align:middle;
+		}
+
+
+		#bank_records img.show_hidde
+		{
+			height: 12px;
+			width: 12px;
+			vertical-align:middle;
+			margin-right:10px;
+		}
+
+		#bank_records thead, tfoot{
+			background-color: #666;
+			color: #FFF;
+		}
+
+		#bank_records th{
+			padding: 0px 4px 0px 0px;
+			font-size: 9px;
+		}
+	 	
+		#bank_records thead th:first-child{
+			width: 30px;
+		}
+
+		#bank_records thead th:nth-child(2){
+			width: 80px;
+		}
+
+		#bank_records thead th:nth-child(3){
+			width: 300px;
+		}
+
+
+		#bank_records thead th:nth-child(5){
+			width: 90px;
+		}
+
+		#bank_records thead th:nth-child(6){
+			width: 90px;
+		}
+
+		#bank_records td:nth-child(3){
+			text-align: center;
+		}
+
+		#bank_records th:nth-child(7), th:nth-child(8){
+			width: 78px;
+		}
+
+		#bank_records thead th:nth-child(9){
+			width: 100px;
+		}	
+
+		#bank_records td{
+			padding-top: 3px;
+			padding-bottom: 3px;
+			border: none;
+			/*border-top: solid 1px #CCC;*/
+		}
+
+		#bank_records .date{
+			width: 80px;
+			text-align: center;
+		} 
+
+		#bank_records .amount{
+			text-align: right;
+			padding-right: 4px;
+			width: 70px;
+			font-weight: bold;
+			font-size: 11px;
+		}
+
+		#bank_records .retirement{
+			color:#7f0000;
+		}
+
+		#bank_records select{
+			font-size: 11px;
+			border:none;
+			width: 90%;
+		}
+
+
+		.selector_bank{
+			background-color: #d6d6d6;
+			color: #000;
+		}
+
+
+		.edit_relations img, .check_all img, .accept img{
+			width: 20px;
+			vertical-align:middle;
+		}
+
+		.refuse img{
+			width: 24px;
+			vertical-align:middle;
+		}
+
+		.action_movements{
+			text-align: right;
+			display: inline-block;
+			border: none;
+			margin: 0px;
+			margin-bottom: -4px;
+			font-size: 10px;
+			width: 100%;
+			border-bottom: 1px solid #BBB; 
+			border-top: 1px solid #BBB;
+
+		}
+
+		#refuse_all img{
+			max-width: 22px;
+			height: 22px;
+		}
+		
+		.title{
+			text-align: left;
+			display: inline-block;
+			border: none;
+			margin: 0px;
+		}
+
+		.selector_bank td:nth-child(2){
+			padding-left: 10px;
+			font-weight: bold;
+		}
+
+
+		#bank_name{
+			font-size: 12px;
+		}
+
+		.account_name{
+			font-size: 11px;
+		}
+
+
+		#all{
+			display: inline-block;
+			width: 99%;
+			text-align: right;
+			font-size: 12px;
+			font-weight: bold;
+			padding: 4px;
+		}
+
+
+		#refuse_all img{
+			width: 20px;
+			vertical-align: middle;
+		}
+
+
+		.marked{
+			background-color: red;
+		}
+
+		.unmarked{
+			background-color: none;
+		}
+
+		.highlight{
+			background-color: #EEE;
+		}
+
+
+		#content_data_accounts{
+			margin: 0px;
+			padding: 0px;
+			overflow-y: scroll;
+			height: 500px
+		}
+
+		.invalid{
+			color:#AAA;
+			text-decoration: line-through;
+		}
+
+
+		.correct{
+			border: 2px solid green;
+		}
+
+		.incorrect{
+			border: 2px solid red;
+			color:red;
+		}
+
+		#selector_bank{
+			text-align: left;
+		}
+
+		.account_item{
+			display: inline-block;
+			border: none;
+			text-align: left;
+			padding: 4px;
+			border: none; 
+		}
+
+		.account_selected{
+			box-shadow: -2px -2px 9px #AAA;
+			border: 1px solid #BBB; 
+			margin: -1px;
+		}
+		
+	/** Tabla **/
+
+		.loader {
+			
+			border: 9px solid rgba(200, 210, 250, 0.5); 
+			border-right: 9px solid rgba(200, 210, 250, 0.9); 
+			border-left: 9px solid rgba(200, 210, 250, 0.9); 
+			background: none;
+			border-radius: 50%;
+			width: 70px;
+			height: 70px;
+			animation: spin 1s linear infinite;
+			position: absolute;
+			left: 50%;
+			top: 70%;
+			display: none;
+		}
+
+		@keyframes spin {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(540deg); }
+		}
+
+		.overall{
+			position: absolute;
+			z-index: 100;
+			top: 0px;
+			left: 0px;
+			height: 98%;
+			width:100%;
+			margin: 0px !important;
+		}
+
+
+
+</style>
+
+
+[ip_header]
+
+<table border="0" cellspacing="0" cellpadding="0" width="[ur_table_width]" style="border:none; ">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+			<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0>
+				<td align=left>
+					<font face=verdana>
+						<ul id="accordion">
+							[ip_menu]
+						</ul>
+						<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+						<script type="text/javascript">
+							var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+						</script>
+					</font>
+				</td>
+			</table>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+			<!-- Start Main Area  -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+				<tr>
+					<td width="60%" align="center"></td>
+					<td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=treasury_relations")'>Relationship Rules</td>
+					<td width="20%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=preview_treasury")'>Upload</td>
+				</tr>
+			</table>
+
+			<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" style="border:none; ">
+				<tr>
+					<td valign="top" aling="left" bgcolor="#ffffff">
+						[va_msg]<br>
+						<!-- Start Main Area  -->
+						<div style="background-color:#ffffff; margin:15px;">
+							<fieldset>
+								<legend>Upload Layout Treasury</legend>
+								<form action="/apps/upload_layout_treasury.php" class="dropzone" method="POST" enctype="multipart/form-data" id="my-awesome-dropzone">
+									<input type="hidden" name="e" value="[va_e]" />
+									<input type="hidden" name="cmd" value="preview_treasury" />
+									<input type="hidden" name="user" value="[va_user]" />
+								</form>
+							</fieldset>
+						</div>
+
+						<div style="margin:15px;" id="preview">
+							<fieldset>
+								<legend>
+									Preview Layout Treasury &nbsp;&nbsp;&nbsp;
+									<img src="/sitimages/default/tearoff_icon.gif" title="view" alt="view" height="10" border="0" width="10" id="change_view">
+								</legend>
+									
+									<div id="all" >
+										<div id="selector_bank" >
+										</div>
+										<div class="action_movements" >
+											<span class="check_all" data-status="uncheck">
+												<img  src="/sitimages/default/check_mark.png" title="Check or uncheck elements"> Check All
+											</span>	&nbsp;&nbsp;
+											<a href="" class="fancy_modal_iframe" style="position:absolute; width:0px; height: 0px;" id="edit_relation_treasury_layout"></a>
+											<span class="edit_relations">
+												<img  src="/sitimages/default/link2.png" title="Add relation Text/Category"> Add Relations
+											</span>										
+											&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+											<span class="accept">
+												<img  src="/sitimages/default/accept.png" title="Process selected items."> Proceed
+											</span>
+											<span class="refuse">
+												<img src="/sitimages/default/refuse.png" title="Delete selected movements."> Delete
+											</span>
+											&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+											<span id="refuse_all">
+												<img src="/sitimages/default/erase.png" title="Erase ALL Movements.">Erase ALL
+											</span>
+										</div>
+									</div>
+
+									<div id="content_data_accounts">
+										<div class="loader"></div>
+										<table id="bank_records" cellspacing="0" width="100%" style="border:1px solid black; border-collapse:collapse;" border="1">
+									        <thead>
+									            <tr>
+									            	<th>Select</th>
+									                <th>Date</th>
+									                <th>Bank Movement</th>
+									                <th>Description</th>
+									                <!--th>Mov.</th>
+									                <th>Code</th-->
+									                <th>Deposit</th>
+									                <th>Retirement</th>
+									                <th>Balance</th>
+									            </tr>
+									 		</thead>
+									 		<tbody>
+									        </tbody>
+									        <tfoot>    
+									            <tr>
+									            	<th>Select</th>
+									                <th>Date</th>
+									                <th>Bank Movement</th>
+									                <th>Description</th>
+									                <!--th>Mov.</th>
+									                <th>Code</th-->
+									                <th>Deposit</th>
+									                <th>Retirement</th>
+									                <th>Balance</th>
+									            </tr>
+									        </tfoot>
+									    </table>
+									</div>
+							</fieldset>				
+						</div>
+						<!-- End Main Area  -->
+
+						<div id="menu">  </div>
+					</td>
+				</tr>
+			</table>
+
+		</td>
+	</tr>
+</table>
+
+<div id="preview-template" style="display: none;">
+	
+	<div class="dz-filename">
+		<img class="dz-image" />
+		<span data-dz-name></span>
+	</div>
+	<div class="dz-progress">
+		<span class="dz-upload" data-dz-uploadprogress></span>
+	</div>
+</div>
+
+<script language="javascript">
+
+	var ids_sent = {};
+	
+	Dropzone.options.myAwesomeDropzone = {
+		paramName: "file", 	// The name that will be used to transfer the file
+		maxFilesize: 10, 	// MB
+		parallelUploads: 4,
+		addRemoveLinks: true,
+		createImageThumbnails: true,
+		dictRemoveFile: 'Eliminar',
+		//previewTemplate: document.getElementById('preview-template').innerHTML,
+		acceptedFiles: "application/vnd.ms-excel,application/vnd.ms-office,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+		init: function(){
+			this.on("success", 
+				function(file,response){ 
+					this.removeFile(file); 
+					refreshPreview();
+					message_txt = 'Se cargo correctamente el archivo '+file.name+'.';
+					if( isNaN(response) ){ 	message_txt += response+'.'; }
+					else {	message_txt += 'Se insertaron '+response+' registros.'; }
+					alert( message_txt );
+				}
+			);
+		}
+	};
+
+
+	function refreshPreview()
+	{
+		$('.loader').show();
+		$.post( "/cgi-bin/common/apps/ajaxbuild?", {ajaxbuild:'refreshPreviewTreasury'})
+			.done(
+				function( data ) {
+			  		$('#bank_records tbody tr').remove();
+
+			  		response = JSON.parse(data);
+			  		console.log(response);
+
+			  		$('#bank_records tbody').html(response['rows']);
+			  		$('#selector_bank').html(response['banks']);
+
+					$('.account_item').on('click', function(){ show_hide_records( $(this) ) });
+					$('.check_all').on('click', function(){ select_all( ); });
+					$('.edit_relations').on('click', function(){ open_edit_relations(); });
+					$('.accept').on('click', function(){ send_movements();	});
+					$('.refuse').on('click', function(){ delete_movements();});
+
+					$('#bank_records tbody tr:not(.selector_bank)').on('mouseover', function(){ $(this).addClass('highlight'); });
+					$('#bank_records tbody tr:not(.selector_bank)').on('mouseout', function(){ $(this).removeClass('highlight'); });
+
+					$('#bank_records tbody tr:not(.selector_bank) td:nth-child(4)').on('click', function(){ select_this( $(this) ); });
+				}
+			)
+			.always(
+				function(){
+					$('.loader').hide();
+				}
+			);
+	}
+
+
+	function show_hide_records(element)
+	{
+
+		$('.loader').show( 100, function(){
+
+			status = $(element).data('status');
+			account = $(element).data('account');
+
+			if( status.match('inactive') == 'inactive' ){
+				
+				$('[data-belongs-account]').hide();
+				$('#selector_bank').find('img').removeClass('logo_bank_selected').addClass('logo_bank');
+				$('#selector_bank').find('.action_movements').hide();
+				$('#selector_bank').find('.account_name').hide();
+				$('.account_item').attr('data-status','inactive').removeClass('account_selected');
+				
+				$('[data-belongs-account="'+account+'"]').show();
+				$(element).find('img').addClass('logo_bank_selected').removeClass('logo_bank');
+				$(element).find('.action_movements').show();
+				$(element).find('.account_name').show( 100, function(){ $('.loader').hide(); });
+				$(element).attr('data-status','active').addClass('account_selected');
+			}
+	
+		});
+	}
+
+	function select_all()
+	{
+		account = $('#selector_bank').find('.account_item[data-status="active"]').data('account');
+		status = $('.check_all').data(status);
+
+		if( status != 'check' ){
+			$('[data-belongs-account="'+account+'"] input:checkbox').attr('checked','checked');
+			$('.check_all').data(status,'check');
+		}else{
+			$('[data-belongs-account="'+account+'"] input:checkbox').attr('checked', false );
+			$('.check_all').data(status,'uncheck');
+		}
+	}
+
+	function select_this(element)
+	{
+		this_checkbox = $(element).parent().find('input:checkbox');
+		checked = this_checkbox.is(":checked");
+
+		if( checked ){
+			this_checkbox.attr('checked', false);
+		}else{
+			this_checkbox.attr('checked', 'checked' );
+		}
+	}
+
+	function send_movements()
+	{
+
+		account = $('#selector_bank').find('.account_item[data-status="active"]').data('account');
+
+		var accepted_ids = {};
+		$('[data-belongs-account="'+account+'"] input:checkbox:checked').each( 
+			function(index){ 
+				id = $(this).attr('id');
+				category = $('#slct'+id+' :selected').val();
+
+				console.log(ids_sent[id]);
+
+				if( category != undefined && ids_sent[id] == undefined ){
+					accepted_ids[id+''] = category;
+					ids_sent[id] = true;
+				}
+			}
+		);
+
+		ids = JSON.stringify(accepted_ids);
+
+		if( Object.keys(accepted_ids).length > 0 ){
+			$.post( "/cgi-bin/common/apps/ajaxbuild?", {ajaxbuild:'importTreasury',id_treasury:ids})
+			.done(
+				function(data) {
+					console.log(data);
+					response = JSON.parse(data);
+
+					for( var key in response ){
+						cell = $('#'+key).parent();
+						$('#'+key).remove();
+
+						content = response[key];
+
+						if( content.includes('|'))
+						{
+							parts = content.split('|');
+							
+							console.log(parts);
+							if( isNaN(parts[1]) ){
+								image = 'b_warning.png';
+							}else{
+								image = 'correct.png';
+							}
+
+							$(cell).append('<img src="/sitimages/default/'+image+'" title=" ID Banks Movements: '+parts[0]+' / Accounting: '+ parts[1]+'">');
+							$(cell).parent().addClass('correct');
+							
+						}else{
+							$(cell).append('<img src="/sitimages/default/warning.gif" title="'+content+'">');
+							$(cell).parent().addClass('incorrect');
+						}
+					}
+				}	
+			);
+		}
+
+	}
+
+	function delete_movements()
+	{
+
+		account = $('#selector_bank').find('.account_item[data-status="active"]').data('account');
+		group = new Array();
+
+		$('[data-belongs-account="'+account+'"] input:checkbox')
+			.each(
+				function(index)
+				{
+					if( $(this).is(":checked") ){
+						group.push( $(this).attr('id') );
+					}
+				}
+			);
+
+
+		list = group.join();
+
+		alert(list);
+
+		$.post( "/cgi-bin/common/apps/ajaxbuild?", {ajaxbuild:'refreshPreviewTreasury',delete:list})
+			.done(function(data){ 
+				$.each(group, function(key, value){
+					$('#'+value).parent().parent().remove();
+				})
+			});
+	}
+
+
+
+	function open_edit_relations()
+	{
+		account = $('#selector_bank').find('.account_item[data-status="active"]').data('account');
+		id = $('[data-belongs-account="'+account+'"] input:checked:first').attr('id');
+		if(isNaN(id)){
+			alert("Debe seleccionar un registro");
+			
+		}else{
+			path = '/cgi-bin/common/apps/ajaxbuild?ajaxbuild=edit_relation_treasury_layout&amp;reg='+id;
+			$('#edit_relation_treasury_layout').attr('href', path).trigger('click');
+		}
+	}
+
+	function delete_all()
+	{
+		var response = confirm("¿Seguro que desea borrar todos los registros?");
+		if( response ){
+
+
+			account = $('#selector_bank').find('.account_item[data-status="active"]').data('account');
+			group = new Array();
+			$('[data-belongs-account="'+account+'"] input:checkbox')
+				.each(
+					function(index)
+					{
+						if( $(this).attr('id') != undefined ){
+							group.push( $(this).attr('id')  );		
+						}
+					}
+				);
+
+			list = group.join();
+
+			$.post( "/cgi-bin/common/apps/ajaxbuild?", {ajaxbuild:'refreshPreviewTreasury',delete:list})
+				.done(function(data) { refreshPreview(); } );
+		}
+	}
+
+	$(function() {
+		refreshPreview();
+		$('#refuse_all').on('click',function(){ delete_all(); });
+		$('#change_view').on('click',function(){ 
+			if( $('#preview').hasClass('overall') ){
+				$('#preview').removeClass('overall');
+				$("body").css("overflow", "auto");
+				$("#content_data_accounts").css('height','500px');
+			}else{
+				$('#preview').addClass('overall');
+				$("body").scrollTop(0);
+				$("body").css("overflow", "hidden");
+				$("#content_data_accounts").css('height','84%');
+			}
+		});
+	});
+
+
+
+
+
+
+</script>
+[ip_footer]

@@ -1,0 +1,29 @@
+[ip_header_blank]
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Agentes de Western Union  : [in_zip]</td>
+	  </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Agentes : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+	  </tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title">Nombre / Direcci&oacute;n</td>
+		    <td class="menu_bar_title">Teléfono</td>
+	  </tr>
+		[va_searchresults]
+    </table>
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="wuagents">
+	<input type="hidden" name="action" value="1">
+	<p align="center"><input type="submit" value="Buscar" class="button"></p>
+</form>
+</body>
+</html>
+

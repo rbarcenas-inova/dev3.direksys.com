@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd " version="3.2" serie="A" folio="45572" fecha="2015-08-01T14:26:41" sello="SIYb8D4ZS+JblELdaiWY4r6N9gC08hiy7a7lV3v4+ABboil5FijxYEgCEoROSrHngZvhFA4GrbLyXjvZqIx+cgXrFGBa7jI1ahtgp2u06h1/DPEUXWxJx3X1G9HCxfDS0BTFSQxnq/cRO+F5DphySVe7dERwyHdZXXHFKluuLCU=" formaDePago="PAGO EN UNA SOLA EXHIBICION" noCertificado="00001000000200224511" certificado="MIIEmzCCA4OgAwIBAgIUMDAwMDEwMDAwMDAyMDAyMjQ1MTEwDQYJKoZIhvcNAQEFBQAwggGVMTgwNgYDVQQDDC9BLkMuIGRlbCBTZXJ2aWNpbyBkZSBBZG1pbmlzdHJhY2nDs24gVHJpYnV0YXJpYTEvMC0GA1UECgwmU2VydmljaW8gZGUgQWRtaW5pc3RyYWNpw7NuIFRyaWJ1dGFyaWExODA2BgNVBAsML0FkbWluaXN0cmFjacOzbiBkZSBTZWd1cmlkYWQgZGUgbGEgSW5mb3JtYWNpw7NuMSEwHwYJKoZIhvcNAQkBFhJhc2lzbmV0QHNhdC5nb2IubXgxJjAkBgNVBAkMHUF2LiBIaWRhbGdvIDc3LCBDb2wuIEd1ZXJyZXJvMQ4wDAYDVQQRDAUwNjMwMDELMAkGA1UEBhMCTVgxGTAXBgNVBAgMEERpc3RyaXRvIEZlZGVyYWwxFDASBgNVBAcMC0N1YXVodMOpbW9jMRUwEwYDVQQtEwxTQVQ5NzA3MDFOTjMxPjA8BgkqhkiG9w0BCQIML1Jlc3BvbnNhYmxlOiBDZWNpbGlhIEd1aWxsZXJtaW5hIEdhcmPDrWEgR3VlcnJhMB4XDTEyMDIwMjE3MTM1MVoXDTE2MDIwMjE3MTM1MVowgdwxKjAoBgNVBAMTIUVEWFNNQVJUIFNPTFVDSU9ORVMgUyBBIFAgSSBERSBDVjEqMCgGA1UEKRMhRURYU01BUlQgU09MVUNJT05FUyBTIEEgUCBJIERFIENWMSowKAYDVQQKEyFFRFhTTUFSVCBTT0xVQ0lPTkVTIFMgQSBQIEkgREUgQ1YxJTAjBgNVBC0THEVTTzExMTAxOUpKOCAvIEpBU0o2NzA1MTJQVzQxHjAcBgNVBAUTFSAvIEpBU0o2NzA1MTJIREZSVFMwNzEPMA0GA1UECxMGTWF0cml6MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC8mvha+u13petOouq9vMYhzeFcrIS018wsuLkK/rD40XCc3oE61x2adQaqALPFwttymQRj7UBeyGjiiOTZHyuMFItv77kBh1MpAeKrGMh0Q1ETYf81Jqeg4z83sCi4RiSKZwVPscD7nNWuZs3oSSxYBjnRsK0AdeWG75n6ZA/fcQIDAQABox0wGzAMBgNVHRMBAf8EAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQUFAAOCAQEAL+vCHJBot7uQnddp3d7PjFqk4cvkB4YELSFm8kNQyH3dDzS8fWwf6RZJH4cKAcSEsQAwcutP1wh+bNEeU/RfHlWuf5s/c79HUSXnq2L67ZArFilz4tSLajRNcP0F98Pq8K0uNZRKohnwFWgS1fCfk/TE1RCUu0GmL/MuaHoXqcxJJ2HQL8HfjuLUk07dNMgddhNIP5dhoquJXJ661ULl0wOMEIltwwZf4mrPn668sHBQj/NyDVhl/NOfUUDtEgY9uGYWUmL+zpif5DQ8bDsD1HvP0H/13qqMzdE9qlBHT/cp6PY0QPP0sxYnO3FzNC4LUHuvwHib/rt82obiRn3fag==" subTotal="5850.00" Moneda="MXN" total="6786.00" tipoDeComprobante="ingreso" metodoDePago="NO IDENTIFICADO" LugarExpedicion="MEXICO, D.F." NumCtaPago="NO IDENTIFICADO">
+  <cfdi:Emisor rfc="ESO111019JJ8" nombre="EDXSmart Soluciones SAPI de CV">
+    <cfdi:DomicilioFiscal calle="Insurgentes Sur" colonia="Juarez" municipio="Del. Cuauhtemoc" estado="D.F." pais="MEXICO" codigoPostal="06600" />
+    <cfdi:ExpedidoEn calle="Insurgentes Sur" colonia="Juarez" municipio="Del. Cuauhtemoc" estado="D.F." pais="MEXICO" codigoPostal="06600" />
+    <cfdi:RegimenFiscal Regimen="General de Ley P. M." />
+  </cfdi:Emisor>
+  <cfdi:Receptor rfc="CMU060119UI7" nombre="CORPORATIVO MUFAR S DE RL DE CV">
+    <cfdi:Domicilio calle="ADOLFO LOPEZ MATEOS" noExterior="163" colonia="MIXCOAC" municipio="BENITO JUAREZ" estado="DISTRITO FEDERAL" pais="MEXICO" codigoPostal="03910" />
+  </cfdi:Receptor>
+  <cfdi:Conceptos>
+    <cfdi:Concepto cantidad="1.00" unidad="NO APLICA" descripcion="01/07/2015 to 01/08/2015 -- SOPORTE Y MANTENIMIENTO MENSUAL" valorUnitario="5850.00" importe="5850.00" />
+  </cfdi:Conceptos>
+  <cfdi:Impuestos totalImpuestosTrasladados="936.00">
+    <cfdi:Traslados>
+      <cfdi:Traslado impuesto="IVA" tasa="16.00" importe="936.00" />
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+  <cfdi:Complemento><tfd:TimbreFiscalDigital version="1.0" UUID="43e4b481-b001-4133-b672-5fc0bba77e8d" FechaTimbrado="2015-08-01T19:32:14" selloCFD="SIYb8D4ZS+JblELdaiWY4r6N9gC08hiy7a7lV3v4+ABboil5FijxYEgCEoROSrHngZvhFA4GrbLyXjvZqIx+cgXrFGBa7jI1ahtgp2u06h1/DPEUXWxJx3X1G9HCxfDS0BTFSQxnq/cRO+F5DphySVe7dERwyHdZXXHFKluuLCU=" noCertificadoSAT="00001000000300171326" selloSAT="sv7llCJEJTaAGHo8gecA2RWsctXitABWngx59+3F5zRWs7+3fKHP80aYHPEir1t437kQCJGy4EW1biTh81XI6Py2btLFTKUJ6RWSjNzqnteEnlXh6qeSY68G6cXjP6j/sIdtn4suPEaX8Yldwze/43FM4usGrseMmTCUFZci320=" xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/TimbreFiscalDigital/TimbreFiscalDigital.xsd" /></cfdi:Complemento><cfdi:Addenda xmlns:ecfd="http://www.southconsulting.com/schemas/strict" xsi:schemaLocation="http://www.southconsulting.com/schemas/strict http://www.southconsulting.com/schemas/strict/ecfd.xsd">
+    <ecfd:ECFD version="1.0">
+      <ecfd:Documento ID="T33A45572">
+        <ecfd:Encabezado>
+          <ecfd:IdDoc>
+            <ecfd:NroAprob>1</ecfd:NroAprob>
+            <ecfd:AnoAprob>1900</ecfd:AnoAprob>
+            <ecfd:Tipo>33</ecfd:Tipo>
+            <ecfd:Serie>A</ecfd:Serie>
+            <ecfd:Folio>45572</ecfd:Folio>
+            <ecfd:Estado>ORIGINAL</ecfd:Estado>
+            <ecfd:FechaEmis>2015-08-01T14:26:41</ecfd:FechaEmis>
+            <ecfd:FormaPago>PAGO EN UNA SOLA EXHIBICION</ecfd:FormaPago>
+            <ecfd:MedioPago>NO IDENTIFICADO</ecfd:MedioPago>
+            <ecfd:LugarExpedicion>MEXICO, D.F.</ecfd:LugarExpedicion>
+            <ecfd:NumCtaPago>NO IDENTIFICADO</ecfd:NumCtaPago>
+          </ecfd:IdDoc>
+          <ecfd:ExEmisor>
+            <ecfd:RFCEmisor>ESO111019JJ8</ecfd:RFCEmisor>
+            <ecfd:NmbEmisor>EDXSmart Soluciones SAPI de CV</ecfd:NmbEmisor>
+            <ecfd:DomFiscal>
+              <ecfd:Calle>Insurgentes Sur</ecfd:Calle>
+              <ecfd:Colonia>Juarez</ecfd:Colonia>
+              <ecfd:Municipio>Del. Cuauhtemoc</ecfd:Municipio>
+              <ecfd:Estado>D.F.</ecfd:Estado>
+              <ecfd:Pais>MEXICO</ecfd:Pais>
+              <ecfd:CodigoPostal>06600</ecfd:CodigoPostal>
+            </ecfd:DomFiscal>
+            <ecfd:LugarExped>
+              <ecfd:Calle>Insurgentes Sur</ecfd:Calle>
+              <ecfd:Colonia>Juarez</ecfd:Colonia>
+              <ecfd:Municipio>Del. Cuauhtemoc</ecfd:Municipio>
+              <ecfd:Estado>D.F.</ecfd:Estado>
+              <ecfd:Pais>MEXICO</ecfd:Pais>
+              <ecfd:CodigoPostal>06600</ecfd:CodigoPostal>
+            </ecfd:LugarExped>
+          </ecfd:ExEmisor>
+          <ecfd:ExReceptor>
+            <ecfd:RFCRecep>CMU060119UI7</ecfd:RFCRecep>
+            <ecfd:NmbRecep>CORPORATIVO MUFAR S DE RL DE CV</ecfd:NmbRecep>
+            <ecfd:DomFiscalRcp>
+              <ecfd:Calle>ADOLFO LOPEZ MATEOS</ecfd:Calle>
+              <ecfd:NroExterior>163</ecfd:NroExterior>
+              <ecfd:Colonia>MIXCOAC</ecfd:Colonia>
+              <ecfd:Municipio>BENITO JUAREZ</ecfd:Municipio>
+              <ecfd:Estado>DISTRITO FEDERAL</ecfd:Estado>
+              <ecfd:Pais>MEXICO</ecfd:Pais>
+              <ecfd:CodigoPostal>03910</ecfd:CodigoPostal>
+            </ecfd:DomFiscalRcp>
+            <ecfd:LugarRecep>
+              <ecfd:Calle>ADOLFO LOPEZ MATEOS</ecfd:Calle>
+              <ecfd:NroExterior>163</ecfd:NroExterior>
+              <ecfd:Colonia>MIXCOAC</ecfd:Colonia>
+              <ecfd:Municipio>BENITO JUAREZ</ecfd:Municipio>
+              <ecfd:Estado>DISTRITO FEDERAL</ecfd:Estado>
+              <ecfd:Pais>MEXICO</ecfd:Pais>
+              <ecfd:CodigoPostal>03910</ecfd:CodigoPostal>
+            </ecfd:LugarRecep>
+          </ecfd:ExReceptor>
+          <ecfd:Totales>
+            <ecfd:Moneda>MXN</ecfd:Moneda>
+            <ecfd:SubTotal>5850.0000</ecfd:SubTotal>
+            <ecfd:MntImp>936.0000</ecfd:MntImp>
+            <ecfd:VlrPagar>6786.0000</ecfd:VlrPagar>
+          </ecfd:Totales>
+          <ecfd:ExImpuestos>
+            <ecfd:TipoImp>IVA</ecfd:TipoImp>
+            <ecfd:TasaImp>16.00</ecfd:TasaImp>
+            <ecfd:MontoImp>936.0000</ecfd:MontoImp>
+          </ecfd:ExImpuestos>
+        </ecfd:Encabezado>
+        <ecfd:Detalle>
+          <ecfd:NroLinDet>1</ecfd:NroLinDet>
+          <ecfd:DscLang>ES</ecfd:DscLang>
+          <ecfd:DscItem>01/07/2015 to 01/08/2015 -- SOPORTE Y MANTENIMIENTO MENSUAL</ecfd:DscItem>
+          <ecfd:QtyItem>1</ecfd:QtyItem>
+          <ecfd:UnmdItem>NO APLICA</ecfd:UnmdItem>
+          <ecfd:PrcNetoItem>5850.0000</ecfd:PrcNetoItem>
+          <ecfd:MontoNetoItem>5850.0000</ecfd:MontoNetoItem>
+        </ecfd:Detalle>
+        <ecfd:TimeStamp>2015-08-01T19:29:08</ecfd:TimeStamp>
+      </ecfd:Documento>
+      <ecfd:Personalizados>
+        <ecfd:campoString name="TextoParcialidades" />
+        <ecfd:campoString name="SerieOriginal" />
+        <ecfd:campoString name="FolioOriginal" />
+        <ecfd:campoString name="MontoBC3" />
+        <ecfd:campoString name="TasaBC3" />
+        <ecfd:campoString name="MontoBC2" />
+        <ecfd:campoString name="TasaBC2" />
+        <ecfd:campoString name="MontoBC1" />
+        <ecfd:campoString name="Observaciones" />
+        <ecfd:campoString name="Pedido" />
+        <ecfd:campoString name="Telefono" />
+        <ecfd:campoString name="Vendedor" />
+        <ecfd:campoString name="TasaBC1" />
+        <ecfd:campoString name="Picking" />
+        <ecfd:campoString name="Email">llozada@inova.com.mx;mdeaquino@inova.com.mx;cuentasporpagar@inova.com.mx;recepcion_corpmufar@edxinbox.com</ecfd:campoString>
+        <ecfd:campoString name="REFBANCOMER">CMU060119UI78</ecfd:campoString>
+        <ecfd:campoString name="IDSAP">C-CMU06011</ecfd:campoString>
+        <ecfd:campoString name="RegimenFiscal">General de Ley P. M.</ecfd:campoString>
+        <ecfd:campoString name="CuentaDePago">NO IDENTIFICADO</ecfd:campoString>
+        <ecfd:campoString name="LugarDeExpedicion">MEXICO, D.F.</ecfd:campoString>
+        <ecfd:CustDetalle>
+          <ecfd:CustDetNroLin>1</ecfd:CustDetNroLin>
+          <ecfd:CustDetAFN_01>SVC#883</ecfd:CustDetAFN_01>
+        </ecfd:CustDetalle>
+      </ecfd:Personalizados>
+    </ecfd:ECFD>
+  </cfdi:Addenda>
+</cfdi:Comprobante>

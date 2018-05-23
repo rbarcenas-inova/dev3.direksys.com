@@ -1,0 +1,102 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_toff&dropship=[in_dropship]&partialshipment=[in_partialshipment]&partialshipped=[in_partialshipped]")'>To [va_fftype]</td>
+	    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_toff_orders&dropship=[in_dropship]&partialshipment=[in_partialshipment]&partialshipped=[in_partialshipped]")'>Orders</td>
+	    <td width="18%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_toff_items&dropship=[in_dropship]&partialshipment=[in_partialshipment]&partialshipped=[in_partialshipped]")'>Items</td>
+	    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_toff_zones&dropship=[in_dropship]&partialshipment=[in_partialshipment]&partialshipped=[in_partialshipped]")'>Zones</td>
+	  </tr>
+	</table>
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Items Ready to Process</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td align="center" colspan="2" class="menu_bar_title">Product Description</td>
+	  </tr>
+		<tr>
+			<td nowrap>ID: </td>
+			<td>[va_id_products]</td>
+	  </tr>
+		<tr>
+			<td nowrap>Model/Name : </td>
+			<td>[va_model]<br>[va_name]</td>
+	  </tr>
+		<tr>
+			<td nowrap>Choices : </td>
+			<td>[va_choices]</td>
+	  </tr>
+		<tr>
+			<td nowrap>Orders : </td>
+			<td>[va_orders]</td>
+	  </tr>	  
+	</table>
+	&nbsp;
+<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform" target="upwin" onsubmit="upwin()">
+	<input type="hidden" name="cmd" value="packing_toff_items">
+	<input type="hidden" name="id_products" value="[in_id_products]">
+	<input type="hidden" name="dropship" value="[in_dropship]">
+	<input type="hidden" name="partialshipment" value="[in_partialshipment]">
+	<input type="hidden" name="print" value="1">
+	
+	<table align="center" border="0" cellspacing="0" cellpadding="4" width="70%" class="formtable">
+		<tr>
+			<td align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="prnwin('/cgi-bin/mod/wms/admin?cmd=packing_toff_items&remove=1&id_products=[in_id_products]&dropship=[in_dropship]')">Remove All<br>From Manifest</td>
+			<td align="center" class="smalltext">
+				<input type="radio" name="page" value="invoicesltv" class="radio">Invoice in PrePrinted Page<br>
+				<input type="radio" name="page" value="invoiceblank" class="radio">Invoice in  Blank Page<br>
+				<input type="radio" name="page" value="exports_inova" class="radio"> Export to DS Innova<br>
+				<input type="radio" name="page" value="exports_general" class="radio"> Export to DS general<br>
+				<input type="radio" name="page" value="exports_fedex" class="radio" checked> Export to DS Fedex<br>
+				<input type="radio" name="page" value="tooutofstock" class="radio">Move to Out of Stock<br>
+				<input type="radio" name="page" value="todssent" class="radio">Move to Dropship Sent (Only for Dropship Orders)<br>
+				<!--
+				<input type="radio" name="page" value="plsltv" class="radio">Packing List SLTV Page<br>
+				<input type="radio" name="page" value="plblank" class="radio">Packing List Blank Page<br>
+				-->
+				<input type="submit"  value="Print" class="button">
+				</td>
+	  </tr>
+	  <tr>
+	  		<td colspan="2" class="help_on" align="center">To Print Invoices or Packing List for specifics Orders go to the Orders or Items Tab</td>
+	  </tr>
+	</table>
+</form>	
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

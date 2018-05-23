@@ -1,0 +1,48 @@
+[ip_header_small]
+
+
+<span class="smallfieldterr">[va_message]</span>
+
+
+  <form action="/cgi-bin/common/apps/ajaxbuild" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="ajaxbuild" value="mer_products">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="opt" value="[in_opt]">
+	<input type="hidden" name="id_products" value="[in_id_products]">
+
+<table border="0" cellspacing="0" cellpadding="4" width="[ur_table_width]" class="container_white">
+	<tr>
+		<td>
+&nbsp;
+<fieldset><legend>Pricing</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			    <td width="30%">Break Even Volume : <span class="smallfieldterr">[er_breakevenvolume]</span></td>
+			    <td class="smalltext"><input type="text" name="breakevenvolume" value="[in_breakevenvolume]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			 </tr>
+			<tr>
+			    <td width="30%">Margin : <span class="smallfieldterr">[er_margin]</span></td>
+			    <td class="smalltext"><input type="text" name="margin" value="[in_margin]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on"> %</span></td>
+			 </tr>
+			<tr>
+			    <td width="30%">Air Time Minutes : <span class="smallfieldterr">[er_airtimeminutes]</span></td>
+			    <td class="smalltext"><input type="text" name="airtimeminutes" value="[in_airtimeminutes]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+			    <td width="30%">Min Accepted Price (MAP) : <span class="smallfieldterr">[er_map]</span></td>
+			    <td class="smalltext"><input type="text" name="map" value="[in_map]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">in US$</span></td>
+			 </tr>
+			<tr>
+			    <td width="30%">Retail Price(MSRP)  : <span class="smallfieldterr">[er_msrp]</span></td>
+			    <td class="smalltext"><input type="text" name="msrp" value="[in_msrp]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">in US$</span></td>
+			</tr>
+	</table>
+ </fieldset>
+&nbsp;
+	</td>
+</tr>
+</table>
+
+
+<p align="center"><input type="submit" value="Update Record" class="button"></p>
+  </form>

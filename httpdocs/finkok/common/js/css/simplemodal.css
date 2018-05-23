@@ -1,0 +1,27 @@
+/* 
+    Document   : simplemodal
+    Created on : 15/11/2012, 10:49:38 AM
+    Author     : ccedillo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#basic-modal-content {display:none;}
+
+/* Overlay */
+#simplemodal-overlay {background-color:#000; cursor:wait;}
+
+/* Container */
+/*
+#simplemodal-container {height:360px; width:600px; color:#bbb; background-color:#333; border:4px solid #444; padding:12px;}
+#simplemodal-container .simplemodal-data {padding:8px;}
+#simplemodal-container code {background:#141414; border-left:3px solid #65B43D; color:#bbb; display:block; font-size:12px; margin-bottom:12px; padding:4px 6px 6px;}
+#simplemodal-container a {color:#ddd;}
+*/
+/* #simplemodal-container a.modalCloseImg {background:url('../img/x.png') no-repeat; width:25px; height:29px; display:inline; z-index:3200; position:absolute; top:-15px; right:-16px; cursor:pointer;} */
+
+#simplemodal-container h3 {color:#84b8d9;}
+
+
+/* IE 6 hacks */
+/* #simplemodal-container a.modalCloseImg {background:none; right:-14px; width:22px; height:26px; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/x.png',sizingMethod='scale');} */

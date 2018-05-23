@@ -1,0 +1,214 @@
+&nbsp;
+<fieldset><legend>Bill Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+ 		<tr>
+			<td width="30%" valign="top">Vendor ID	 : <span class="smallfieldterr">[er_id_vendors]</span></td>
+			<td class="smalltext">
+					<input type="text" name="id_vendors" id='id_vendors' value="[in_id_vendors]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )' [va_restrict_id_vendors] required>
+					<a href="/cgi-bin/common/apps/schid?cmd=vendors&db=sl_vendors&fname=id_vendors&ajaxtype=1" title="Search for Vendors" class="fancy_modal_iframe">
+						<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+					</a>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">&nbsp;</td>
+			<td class="smalltext" id="vendor_data"></td>
+		</tr>
+		<tr [va_restrict_type]>
+		  	<td valign="top" width="30%">Type : <span class="smallfieldterr">[er_type]</span></td>
+		   	<!--br_type@sl_bills-->
+		   	<td class="smalltext">
+		   		<span style="white-space:nowrap"><input type="radio" id="type_bill" name="type" value="Bill" class="radio" required> <label for="type_bill">Bill</label></span>
+				<!--<span style="white-space:nowrap"><input type="radio" id="type_debit" name="type" value="Debit" class="radio"> <label for="type_debit">Debit</label></span>-->
+				<span style="white-space:nowrap"><input type="radio" id="type_credit" name="type" value="Credit" class="radio" required> <label for="type_credit">Credit</label></span>
+				<span style="white-space:nowrap"><input type="radio" id="type_deposit" name="type" value="Deposit" class="radio" required> <label for="type_deposit">Deposit</label></span>
+		   	</td>
+		</tr>
+		<tr style="display:none" id="select_invoice">
+			<td width="30%">Invoice # : <span class="smallfieldterr">[er_invoice]</span></td>
+		    <td class="smalltext">
+		    	<input type="text" name="id_invoice" value="[in_invoice]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input" id="invoice_field">
+		    	<a href="admin?cmd=vendor_cfdi_selector&amp;element_id=invoice_field" title="Invoices" class="fancy_modal_iframe" id="btn_search_invoices">
+					<img src="/sitimages//default/icsearchsmall.gif" border="0">
+				</a>
+		    </td>
+		</tr>
+
+		<tr>
+		  <td width="30%">Bill Date : <span class="smallfieldterr">[er_billdate]</span></td>
+			<td class="smalltext">
+				<input type="text" id="billdate" name="billdate" value="[in_billdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )' [va_restrict_id_vendors] required>
+				<input type="hidden" value="" id="creddays">
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%">Due Date : <span class="smallfieldterr">[er_duedate]</span></td>
+			<td class="smalltext"><input type="text" id="duedate" name="duedate" value="[in_duedate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )' [va_restrict_id_vendors] readonly></td>
+		</tr>
+		<tr id="currency_exchange" style="display:none;">
+			<td>Exchange Rate : <span class="smallfieldterr">[er_currency_exchange]</span></td>
+			<td class="smalltext">
+				<input type="text" name="currency_exchange" value="[in_currency_exchange]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' id="get_exchange_rate" >
+				<input type="button" value="Get Current (DOF)" onclick="loadExchangeRate('get_exchange_rate')"> 
+			</td>
+		</tr>
+		<tr>
+		    <td width="30%">Invoice : <span class="smallfieldterr">[er_invoice]</span></td>
+		    <td class="smalltext">
+		    	<input type="text" name="invoice" value="[in_invoice]" size="20" style="width: 350px;" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    </td>
+		</tr>
+  		<tr>
+		    <td width="30%">Memo : <span class="smallfieldterr">[er_memo]</span></td>
+		    <td class="smalltext"><input type="text" name="memo" value="[in_memo]" size="80" onFocus='focusOn( this )' onBlur='focusOff( this )' [va_restrict_id_vendors]></td>
+		</tr>
+		<tr>
+		    <td width="30%">Status : <span class="smallfieldterr">[er_memo]</span></td>
+		    <td class="smalltext">[fc_bills_status]</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+<input type="hidden" name="authby" value="[in_authby]">
+<input type="hidden" name="authtopay" value="[in_authtopay]">
+
+<script language="javascript">
+<!--
+	chg_radio('type','[in_type]');
+	var local = true;
+
+	// Quitar required 
+	if('[va_required]' != '1'){
+		$('[required]').removeAttr('required');
+	}
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			// alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+
+		var dates = $( "#duedate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: new Date(),
+			// maxDate: '+2d',
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+		$("#billdate").datepicker({
+		    minDate: 0,
+		    /* altField: "#date_exchange_rate", */
+		    dateFormat: 'yy-mm-dd',
+		    changeMonth: true,
+			numberOfMonths: 3,
+		    onSelect: function(dateText, inst) {
+		    	var creddays = $('#creddays').val();
+				creddays = parseInt(creddays);
+				if(!isNaN(creddays) && creddays >= 0 ) {
+					if (creddays>0){
+						var actualDate = new Date(dateText);
+						var newDate = new Date(actualDate.getFullYear(), actualDate.getMonth(), actualDate.getDate() + creddays);
+						$('#duedate').datepicker('option', 'minDate', newDate );
+						$('#duedate').datepicker('setDate', newDate );
+					}else{
+						$('#duedate').datepicker('setDate', $("#billdate").val() );
+					}
+				}
+		    }
+		});
+
+		$('#id_vendors').blur(function() {
+		 	loadDataVendor();
+		});
+		$('#btn_search_invoices').click(function() {
+			console.log("click...");
+			loadDataVendor();
+		});
+
+		loadDataVendor();
+
+	});
+
+	function loadExchangeRate(obj) {
+		var url = '/cgi-bin/common/apps/ajaxbuild';
+		var param = 'ajaxbuild=exchange_rate';
+		$.post(url, param, function(data){
+		   $('#'+obj).val(data)
+		});
+	}
+
+	$('.radio').on('click', function(){
+		if(this.checked && this.id != 'type_deposit' && local){
+			$('[name="invoice"]').attr('readonly', 'readonly');
+			$('#select_invoice').show('slow');
+
+			$('[title="Invoices"]').attr('href', 'admin?cmd=vendor_cfdi_selector&amp;element_id=invoice_field&id_vendors='+$('#id_vendors').val()+'&type_bill='+$('input[name=type]:checked').val());
+		}else{
+			$('[name="invoice"]').removeAttr('readonly');
+			$('#select_invoice').hide('slow');
+			
+			$('[name="invoice"], [name="id_invoice"]').val('');
+		}
+	});
+
+	/*
+	 * Si se está editando el Bill y además aún se puede asignar una factura, 
+	 * entonces se muestra la opción para seleccionarla.
+	 */
+	if( ('[in_status]' == 'New' || '[in_status]' == 'Processed') && '[in_invoice]' == '' && '[in_type]' != 'Deposit' ){
+		$('[name="invoice"]').attr('readonly', 'readonly');
+		$('#select_invoice').show('slow');
+
+		$('[title="Invoices"]').attr('href', 'admin?cmd=vendor_cfdi_selector&amp;element_id=invoice_field&id_vendors='+$('#id_vendors').val()+'&type_bill='+$('input[name=type]:checked').val());
+	}
+
+	function loadDataVendor() {
+		id_vendors = $('#id_vendors').val();
+		if(!isNaN(id_vendors) && id_vendors!='') {
+			var url = '/cgi-bin/common/apps/ajaxbuild';
+			var param = 'id_vendors='+id_vendors;
+			x = $('[title="Invoices"]').attr('href').indexOf('&id_vendors');
+			
+
+			$.ajax({
+				type: "POST",
+				url: url,
+				data: 'ajaxbuild=load_vendor_data&'+param,
+				success: function(msg){
+					var values = msg.split("|",5);
+					var string_data=''
+					string_data += 'Name: '+values[3]+'<br>';
+					if(!isNaN(values[0])) {
+						$("#creddays").val(values[0]);
+						string_data += 'Cedit days: '+values[0]+'<br>';
+					}
+					if (values[4]=='hide'){
+						$('#currency_exchange').val('');
+						$('#currency_exchange').hide();
+						/*console.log('type_bill: '+$('input[name=type]:checked').val());
+						if(x == -1){
+							$('[title="Invoices"]').attr('href', $('[title="Invoices"]').attr('href')+'&id_vendors='+id_vendors+'&type_bill='+$('input[name=type]:checked').val());
+							local = true;
+						}else{
+							vl = $('[title="Invoices"]').attr('href').substring(0, x)+'&id_vendors='+id_vendors+'&type_bill='+$('input[name=type]:checked').val();
+							$('[title="Invoices"]').attr('href',vl);
+							local = true;
+						}*/
+					}else{						
+						$('#currency_exchange').show();
+						$('#select_invoice').hide();
+						$('[name="invoice"]').removeAttr('readonly');
+						local = false;
+					}
+					string_data += 'Terms: '+values[2]+'<br>';
+					string_data += 'Currency: '+values[1]+'<br>';
+					$("#vendor_data").html(string_data);
+				}
+			});
+		}
+	}
+	
+
+</script>

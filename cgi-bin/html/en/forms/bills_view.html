@@ -1,0 +1,333 @@
+	<fieldset><legend>Bills ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Bills ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_bills] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton] &nbsp;
+							[fc_func_list_manager] &nbsp;
+							[fc_custom_id_link]
+							<a href="/cgi-bin/common/apps/ajaxfinance?cmd=movements_editor&id_bills=[in_view]&tablename=bills&edit_type=bills" class="fancy_modal_iframe" title="Movements Editor">
+								<img border="0" alt="Edit" title="Edit Movements" src="[va_imgurl]/[ur_pref_style]/icon-edit-movements.png" height="24" width="24">
+							</a>
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+&nbsp;
+
+
+<fieldset><legend>Bill Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+ 		<tr>
+			<td width="30%" valign="top">Vendor ID :</span></td>
+			  <td class="smalltext">[in_id_vendors]</td>
+			</tr>
+		<tr>
+		  	<td valign="top" width="30%">Type : </td>
+		   	<td class="smalltext">[in_type] [va_link_bill_to_deposit]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Bill Date : </td>
+			<td class="smalltext">[in_billdate]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Due Date : </td>
+			<td class="smalltext">[in_duedate]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Invoice : </td>
+		    <td class="smalltext">[in_invoice]  [va_url_pdf]</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Memo : </td>
+		    <td class="smalltext">[in_memo]</td>
+		 </tr>
+		<tr>
+		  	<td valign="top" width="30%">Currency : </td>
+		   	<td class="smalltext">[in_currency]</td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="30%">Payment Method : </td>
+		   	<td class="smalltext">[in_paymentmethod]</td>
+		</tr>
+		<tr style="[va_display_only_internationals]">
+		  	<td valign="top" width="30%">Exchange Rate : </td>
+		   	<td class="smalltext">[in_currency_exchange]</td>
+		</tr>
+		<!-- <tr>
+		  	<td valign="top" width="30%">Date Exchange Rate : </td>
+		   	<td class="smalltext">[in_date_exchange_rate]</td>
+		</tr> -->
+ 		<tr>
+			<td width="30%" valign="top">Status :</span></td>
+			  <td class="smalltext"><!-- [in_status] --> [va_cancel_bill_payment] [in_status] &nbsp;&nbsp;&nbsp;&nbsp; Change to : [va_chgstatus]</td>
+		</tr>		 
+ 		<tr>
+			<td width="30%" valign="top">Autorization :</span></td>
+			  <td class="smalltext">[va_authorization]</td>
+		</tr>
+		[va_paid_info]
+	</table>
+</fieldset>	
+&nbsp;
+<fieldset><legend>Bill Total</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+ 		<tr>
+			<td width="30%" valign="top">Amount :</span></td>
+			  <td class="smalltext">[in_v_amount]  [fc_bill_status]</td>
+		</tr>
+		<tr style="[va_only_nopadided]">
+			<td width="30%" valign="top">Amount Due :</span></td>
+			  <td class="smalltext">[va_bill_amount_due]</td>
+		</tr>
+		[va_accounts]
+	</table>
+</fieldset>	
+&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="forLines"></div>
+<label id="tabs"></label>
+
+<script language="JavaScript">
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		$.ajaxSetup({
+	    	timeout: 60000
+	    });
+
+		/* 
+			Todos los elementos <span> con clase editable se convierten a editable
+			Todos llevan el formato span_action_id
+			action = qty, price
+			id = id de la tabla id_purchaseorders_items
+			Para saber cual elemento se esta convirtiendo
+		*/
+		$('span.editable').editable( {
+			submit:'Update',
+			editBy:'dblclick',
+			cancel:'Cancel',
+			onSubmit:function(content) {
+				var data = $(this).attr('id').split('_');
+
+				var f = data[1];
+				var id = data[2];
+				alert(f);
+				if(f == 'qty') {
+					var prev_value = parseInt(content.previous.replace(',',''));
+					var new_value = parseInt(content.current.replace(',',''));
+				}else{
+					var prev_value = parseFloat(content.previous.replace('$',''));
+					var new_value = parseFloat(content.current.replace('$',''));
+				}
+				
+				if(prev_value != new_value){
+					$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'po_update', 'id_po_items':id, 'field': f, 'old':prev_value, 'new':new_value},function(response,status,xhr){
+						if (status == "error") {
+							alert(msg);
+							$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/checkmark_off.gif" title="Done">');
+						}else{
+							if(response.match(/error/gi)){
+								alert("Error:\r\n"+response);
+								$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl][ur_pref_style]/checkmark_off.gif" title="Done">');
+							}else{
+								if(f == 'price') {
+									$('#span_' + f + '_' + id).html('\$'+parseFloat(new_value));
+								}
+								$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/checkmark.gif" title="Done">');
+							}
+						}
+						$('#span_chg_' + f + '_' + id).fadeIn(2000);
+					});
+
+					setTimeout(function(){
+							$('#span_chg_' + f + '_' + id).fadeOut(2000);
+					},3000);
+					
+					setTimeout(function(){
+						$('#span_chg_' + f + '_' + id).fadeIn(2000);
+						$('#span_chg_' + f + '_' + id).html('<img id="#btn_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/b_edit.png" title="Click to edit Cost" style="cursor:pointer;">');
+					},5000);
+		
+				}else{
+					$('#span_chg_' + f + '_' + id).fadeIn(2000);
+				}
+			},
+			onCancel:function(){ 
+				var data = $(this).attr('id').split('_');
+				var f = data[1];
+				var id = data[2];
+				$('#span_chg_' + f + '_' + id).fadeIn(2000);
+			}
+		});
+
+
+		/* 
+			Evento de click de los lapices. Todos los lapices con clase triggers_editable
+			Todos llevan el formato btn_chg_action_if 
+			action = qty, price
+			id = id de la tabla id_purchaseorders_items
+			Para saber cual elemento poner a editable
+			Independitentemente del lapiz, se puede hacer doble click en el elemento para hacerlo funcionar
+		*/
+		$('img.triggers_editable').live('click',function(){
+			var data = $(this).attr('id').split('_');
+			var f = data[2];
+			var id_poi = data[3];
+			$('#span_chg_' + f + '_' + id_poi).fadeOut();
+			$('#span_' + f + '_' + id_poi).dblclick();
+		});		
+
+	
+	});
+	
+
+	function edit_movements() {
+		var objFrame=document.getElementById("rcmd_movements");
+		objFrame.src="/cgi-bin/common/apps/ajaxfinance?cmd=editing_movements&id_bills=[in_id_bills]&tablename=bills&edit_type=bills&path=[va_script_url]&cmdo=[in_cmd]&dototemp=YES";
+		popup_show('popup_edit_movements', 'item_dragiii', 'popup_exiteoi', 'element-right', -1, -1,'tabs');
+	}
+
+	function Confirm_to_continue() {
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+<div id="search_n_account" style="display: none; background-color: #ffffff;border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+    <div class="menu_bar_title" id="item_drag3">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;<font color=white>Search Main Account</td>
+			<td align=right width=20px><img id="popup_exiti3" name="popup_exiti3" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+    </div>
+    <div >
+        <IFRAME SRC="admin?cmd=accountsTree&tab=2&element_id=id_n_account&element_descrip=descrip_n_account&hide_element=search_n_account" width="700" height="620" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+        <H2>Unable to do the script</H2>
+        <H3>Please update your Browser</H3>
+        </IFRAME>	
+    </div> 
+</div>
+ 
+
+
+
+<!--visibility: hidden;-->
+<div id="search_tax_account" style="display: none; background-color: #ffffff;border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+
+    <div class="menu_bar_title" id="item_drag2">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;<font color=white>Search Tax Account</td>
+			<td align=right width=20px><img id="popup_exiti2" name="popup_exiti2" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+    </div>
+    <div >
+        <IFRAME SRC="admin?cmd=accountsTree&tab=2&element_id=id_tax_account&element_descrip=descrip_tax_account&hide_element=search_tax_account" name="rcmd" TITLE="Recieve Commands" width="700" height="620" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+        <H2>Unable to do the script</H2>
+        <H3>Please update your Browser</H3>
+        </IFRAME>	
+    </div> 
+
+</div>
+
+
+
+<div id="search_account" name="search_account" style="display: none; background-color: #ffffff;border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+    <div class="menu_bar_title" id="item_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;<font color=#ffffff>Search Account</td>
+			<td align=right width=20px><img id="popup_exiti" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+    </div>
+    <div >
+        <IFRAME SRC="admin?cmd=accountsTree&tab=2&element_id=id_account&element_descrip=descrip_account&hide_element=search_account" name="rcmd" TITLE="Recieve Commands" width="700" height="620" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+        <H2>Unable to do the script</H2>
+        <H3>Please update your Browser</H3>
+        </IFRAME>	
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- Edit Movements-->
+<div id='popup_edit_movements' style='visibility: hidden; display: none; background-color: #ffffff;border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;'>
+<div class='menu_bar_title' id='item_dragiii'>
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Editing Movements</td>
+			<td align=right width=20px><img id="popup_exiteoi" name="popup_exiteoi" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+</div>
+<div class='formtable'>
+  <iframe src='' id='rcmd_movements' name='rcmd_movements' title='Recieve Commands' width='900' height='700' frameborder='0' marginwidth='0' marginheight='0' scrolling='auto'>
+  <h2>Unable to do the script</h2>
+  <h3>Please update your Browser</h3></iframe>
+</div>
+</div>

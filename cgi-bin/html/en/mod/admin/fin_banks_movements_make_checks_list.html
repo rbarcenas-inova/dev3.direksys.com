@@ -1,0 +1,187 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+		<table width="100%" cellspacing="0" cellpadding="0" border="0" align="center" class="tab">
+			<tbody>
+				<tr>
+					<td width="30%" align="center"></td>
+					<td width="17%" align="center" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=fin_banks_movements_home&quot;)" class="cell_on">Banks Movements</td>
+					<td width="17%" align="center" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=fin_banks_movements&amp;add=1&quot;)" class="cell_off">Add</td>
+					<td width="17%" align="center" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=fin_banks_movements&amp;search=form&quot;)" class="cell_off">Search</td>
+					<td width="17%" align="center" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=fin_banks_movements&amp;search=listall&amp;so=DESC&amp;sb=ID_banks&quot;)" class="cell_off">View / Edit / Delete</td>
+				</tr>
+			</tbody>
+		</table>
+	<div style="background-color:#ffffff;margin:15px;">
+
+	
+	<form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+		<input type="hidden" name="cmd" value="fin_banks_movements_make_checks_list">
+		<input type="hidden" name="action" value="1">
+
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td class="titletext" align="left" colspan="2">Check Printing</td>
+			</tr>
+			<tr>
+				<td class="stdtxterr" colspan="2">[va_message]</td>
+			</tr>
+		</table>
+		&nbsp;
+		<fieldset>
+			<legend>Search</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td width="30%" valign="top">ID : <span class="smallfieldterr">[er_id_banks_movements]</span></td>
+					<td class="smalltext">
+						<input type="text" name="id_banks_movements" value="[in_id_banks_movements]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' />
+					</td>
+				</tr>
+				<tr>
+					<td width="30%" valign="top">Vendor ID : <span class="smallfieldterr">[er_id_vendors]</span></td>
+					<td class="smalltext">
+						<input type="text" name="id_vendors" value="[in_id_vendors]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' />
+					</td>
+				</tr>
+				<tr>
+					<td width="30%" valign="top">Vendor Name : <span class="smallfieldterr">[er_company_name]</span></td>
+					<td class="smalltext">
+						<input type="text" name="company_name" value="[in_company_name]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' />
+					</td>
+				</tr>
+				
+				<tr>
+					<td width="30%">From Date : <span class="smallfieldterr">[er_from_date]</span></td>
+					<td class="smalltext">
+						<input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' />
+					</td>
+				</tr>
+				<tr>
+					<td width="30%">To Date : <span class="smallfieldterr">[er_to_date]</span></td>
+					<td class="smalltext">
+						<input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' />
+					</td>
+				</tr>
+				
+				<tr>
+					<td width="30%">Bank : </td>
+					<td class="smalltext">
+						<select name="id_banks" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							<option value="">---</option>
+								[fc_build_select_bank]
+						</select>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+
+		<p align="center"><input type="submit" value="Search" class="button"></p>
+	</form>
+	
+	&nbsp;
+	<span class="stdtxterr">[va_message]</span>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td class="tbltextttl">
+	    	<a href="/cgi-bin/mod/admin/admin?cmd=fin_banks_movements_make_checks_list&type=[in_type]"><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Print' alt='' border='0'></a>
+	    	Records : [va_matches]</td>
+	    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+  </table>
+	
+	<!-- <div style="max-height: 800px; overflow: auto;"> -->
+		
+			<input type="hidden" name="cmd" value="[in_cmd]" />
+			<input type="hidden" name="to_process" value="1" />
+			<input type="hidden" name="type" value="[in_type]" />
+			
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+					<td class="menu_bar_title" align="center">&nbsp;</td>
+					<td class="menu_bar_title" align="center">Bank Movement ID</td>
+					<td class="menu_bar_title" align="center">Date</td>
+					<td class="menu_bar_title" align="center">Type</td>
+					<td class="menu_bar_title" align="center">Amount</td>	    
+					<td class="menu_bar_title" align="center">Bank Name</td>
+					<td class="menu_bar_title" align="center">Bank Account</td>
+					<td class="menu_bar_title" align="center">Vendor</td>
+					<td class="menu_bar_title" align="center">Vendor ID</td>
+				</tr>
+				[va_banks_movements_list]
+				<tr>
+					<td class="smalltext" align="right" colspan="4">Total : </td>
+					<td class="smalltext" align="right" style="border-top:thick double #808080;" nowrap>[va_total]</td>
+					<td class="smalltext" align="right" style="BORDER-TOP:#C0C0C0 1px solid;" nowrap>[va_total_due]</td>
+					<td class="smalltext" colspan="5"></td>
+				</tr>
+			</table>
+			
+		
+	<!-- </div> -->
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">
+				Records : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>  
+	&nbsp;
+
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+<script type="text/javascript">
+	$('#checkall').click(function() {
+		if ($(this).attr('checked')=='checked') {
+			$("input[name='auth_bills']").prop('checked','checked');
+			//$(self.document.forms[f].elements[i]).prop('checked','checked');
+		}else {
+			$("input[name='auth_bills']").prop('checked',false);
+			//$(self.document.forms[f].elements[i]).prop('checked',false);
+		}
+	});
+	function confirm_authorize() {
+
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+	var dates = $( "#from_date, #to_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+	
+</script>
+
+[ip_footer]

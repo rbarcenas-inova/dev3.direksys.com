@@ -1,0 +1,66 @@
+	<fieldset><legend>Accounting Periods</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Accounting Periods ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+				<div class="scrollermenu">
+					<div class="top_icons">
+						[in_id_accounting_periods] &nbsp;
+						[fc_template_idbutton]
+						[fc_template_prnbutton]
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time / User  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>
+	</table>
+	</fieldset>
+	<a name='tabs' id='tabs'>&nbsp;</a>
+	<fieldset><legend>Accounting Periods Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Short Name : </td>
+		    <td class="smalltext">[in_short_name]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Description : </td>
+		    <td class="smalltext">[in_description]</td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="30%">From Date : </td>
+		    <td class="smalltext">[in_from_date]</td>
+		</tr>
+		<tr>
+		    <td width="30%">To Date :</td>
+		    <td class="smalltext">[in_to_date]</td>
+		</tr>
+		<tr>
+			<td width="30%">Es periodo de Cierre :  <span class="smallfieldterr"></span></td>
+			<td class="smalltext">[in_is_closing_periods]</td>
+		</tr>
+		<tr>
+			<td width="30%">Code :  <span class="smallfieldterr"></span></td>
+			<td class="smalltext">
+				[in_code]
+			</td>
+		</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Accounting Periods Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  	<td valign="top" width="30%" class="smalltext">Status : </td>
+		  	<td class="smalltext">[in_status]</td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="30%" class="smalltext">Change to : </td>
+		  	<td class="smalltext"> [va_chgstatus] [fc_periods_select]</td>
+		</tr>
+  	</table>
+	</fieldset>
+	&nbsp;

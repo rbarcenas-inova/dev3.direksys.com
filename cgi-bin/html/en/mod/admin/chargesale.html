@@ -1,0 +1,110 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 3, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+<form action="/cgi-bin/mod/admin/admin" method="POST" name="sitform">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="cmd" value="chargesale">
+		
+<!-- Start Main Area  -->
+	<fieldset><legend>Charge Sale</legend>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+			<td><span class="bigerrtext">[va_error]</span>
+				<span class="stdtxterr">[va_message]</span></td>
+		</tr>
+		<tr>
+	    	<td valign="top">
+		    	Invoice <input type="text" id="invoice" name="invoice" value="[in_invoice]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	<br><br>
+		    	Amount   $<input type="text" id="amount" name="amount" value="[in_amount]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		   		<br><br>
+		    	<strong>Billing Address</strong> 
+		    	<br><br>
+		    	Street  <input type="text" id="address" name="address" value="[in_address]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	<br><br>
+		    	City  <input type="text" id="city" name="city" value="[in_city]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	<br><br>
+		    	State   <select name="state"><option>---</option>[fc_build_select_taxstatestate]</select>
+		    	<br><br>
+		    	Zip Code   <input type="text" id="zipcode" name="zipcode" value="[in_zipcode]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	<br><br>
+		    	<strong>CC Info</strong>
+		    	<br><br>
+		    	CC Data <span class="help_on">(Slide the Card Please)</span><br>
+		    	<textarea name="ccdata" cols="50" style="width:100%" rows="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_ccdata]</textarea>
+		    	Expiration 
+		    	(Month)
+		    		<select name="emonth">
+		    			<option>--</option>
+		    			<option value="01">01</option>
+		    			<option value="02">02</option>
+		    			<option value="03">03</option>
+		    			<option value="04">04</option>
+		    			<option value="05">05</option>
+		    			<option value="06">06</option>
+		    			<option value="07">07</option>
+		    			<option value="08">08</option>
+		    			<option value="09">09</option>
+		    			<option value="10">10</option>
+		    			<option value="11">11</option>
+		    			<option value="12">12</option>
+		    		</select>
+		    	 	&nbsp;&nbsp;
+		    	 	<select name="eyear">
+		    			<option>--</option>
+		    			<option value="2008">2008</option>
+		    			<option value="2009">2009</option>
+		    			<option value="2010">2010</option>
+		    			<option value="2011">2011</option>
+		    			<option value="2012">2012</option>
+		    			<option value="2013">2013</option>
+		    			<option value="2014">2014</option>
+		    			<option value="2015">2015</option>
+		    		</select>
+		    	 <br><br>
+		    	 Verification Number   <input type="text" id="vnumber" name="vnumber" value="[in_vnumber]" size="6" maxlength="4" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	<br><br>
+		    	<strong>Sale Info</strong>
+		    	Description <textarea name="desc" cols="50" style="width:100%" rows="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_desc]</textarea>				    				
+		    </td>
+ 		 </tr>
+
+ 		 <tr>
+ 		 	<td align="center"><input type="submit" value="Charge" class="button"></td>
+ 		</tr>
+    </table>
+	</fieldset>
+</form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+<script language="javascript">
+<!--
+	chg_select('state','[in_state]');
+	//-->
+</script>
+[ip_footer]
+	

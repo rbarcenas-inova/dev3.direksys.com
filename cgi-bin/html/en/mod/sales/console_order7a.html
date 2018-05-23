@@ -1,0 +1,447 @@
+[ip_header_console]
+
+<script type="text/javascript">
+<!--	
+	
+/*
+	onload = function(){
+		var showone = "[in_tab]";
+		if(showone == ""){
+			popup_show('popup_script', 'script_drag', 'script_exit', 'element-right', -1, -1,'wumsg');
+		}
+	}
+*/
+$(document).ready(function() {
+
+		//$(document).ajaxError(function(e, xhr, settings, exception) {
+		//		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		//}); 
+
+		$("#fancybox_email_and_cellphone").fancybox({
+				'margin'				:	'1',
+				'padding'				:	'1',
+				'autoScale'			: false,
+				'centerOnScroll': true,
+				'transitionIn'	: 'none',
+				'transitionOut'	: 'none',
+				'autoDimensions':	'true',
+				'overlayOpacity':	'0.3',
+				'onComplete'		: function() {
+						$("#fancybox-wrap").css({'margin-top':'10px', 'margin-bottom':'auto'}); 
+				}
+			});
+
+
+
+		/*$( '#check_address' ).click(function() {
+
+			var email = $( 'input:hidden[name=email]' ).val();
+			var cellphone = $( 'input:hidden[name=cellphone]' ).val();
+				$.ajaxSetup({ timeout: ( 15 * 1000 ) });
+				$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'verify_email_and_cellphone', 'email':email, 'cellphone':cellphone},function(response,status,xhr){
+// 						alert(status);
+						if (status == "error") {
+ 								alert(msg);
+						}else{
+								if(response.match(/error/gi)){
+			    					alert("Los datos no son válidos.\r\n"+response);
+			    			}else{
+									document.getElementById('modal_email_and_cellphone').innerHTML = response;
+									$( "#fancybox_email_and_cellphone" ).trigger('click');
+								}
+						}
+			
+				});
+		});*/
+		var email = $( 'input:hidden[name=email]' ).val();
+		var cellphone = $( 'input:hidden[name=cellphone]' ).val();
+		var contact_mode = $( 'input:hidden[name=contact_mode]' ).val();
+		var email_and_cellphone_use = $( 'input:hidden[name=email_and_cellphone_use]' ).val();
+		//alert('Values: '+email+','+cellphone+','+isNaN([in_tab]));
+		if(isNaN([in_tab]) && (email=='' && cellphone=='' && contact_mode!='phone_call')&& email_and_cellphone_use==1){
+				$( "#fancybox_email_and_cellphone" ).trigger('click');	
+		}
+		
+});
+-->
+</script>
+
+[cs_PmtField1]
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td valign="top" align="left" bgcolor="#ffffff">
+			
+		<table width="100%" height=41px border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+				<td>&nbsp;</td>
+				<td class="cell_on" width="14%" align="center">Consola [va_salesorigins.channel]</td>
+		 </tr>
+		</table>
+		
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+				
+				
+		[fc_customer_header]
+			<br>
+			
+
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="7">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="postdated" value="[in_postdated]">
+	<input type="hidden" name="days" value="[in_days]">	
+	<input type="hidden" name="email" value="[in_email]" size="30">
+	<input type="hidden" name="cellphone" value="[in_cellphone]" size="30">
+	<input type="hidden" name="email_and_cellphone_use" value="[in_email_and_cellphone_use]" size="30">
+	<input type="hidden" name="contact_mode" value="[in_contact_mode]" size="30">
+	
+	
+<fieldset><legend>Creando Orden : Info de pago / Tarjeta de Crédito</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	      <td colspan="2">
+	      	
+	      		      	  		
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+			
+			</td>
+	   </tr>			
+		<tr>
+		  <td width="30%">Nombre Cliente  : </td>
+		  <td class="smalltext">[in_firstname] [in_lastname1] [in_lastname2]</td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Facturación y Despacho  : </td>
+		  <td class="smalltext">[va_billingshipping]</td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Tipo Envio : </td>
+		  <td class="smalltext">[va_shippingtype] </td>
+		</tr>
+		<tr>
+		  <td colspan="2">[fc_products_inorder]</td>
+		</tr>	
+	</table>
+	&nbsp;
+	<input type='hidden' name='pay_type' value='[in_pay_type]'>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td colspan="2">Información de Pago : <span class="smallfieldterr">[er_pay_type]</td>
+		</tr>	
+		<tr>
+		  <td class="stdtxterr" colspan="2">[va_message]<td>
+		</tr>	
+		<tr>
+		  <td bgcolor="#EAEAEA" valign="top">
+				<table border='0' cellspacing='0' cellpadding='2' width='100%'>	
+				  <tr>
+				     <td class='smalltext' valign="top" nowrap>Tipo de Tarjeta : <span class='smallfieldterr'>[er_pmtfield7]</span></td>
+				     <td class='smalltext'>
+				     	<input type='radio' class='radio' name='pmtfield7' id ="pmtfield7_Debito" value='DebitCard'><label for="pmtfield7_Debito">Tarjeta de Debito <span class="help_on">(Debit Card)</span></label>
+				     	<input type='radio' class='radio' name='pmtfield7'id ="pmtfield7_Credito" value='CreditCard'><label for="pmtfield7_Credito">Tarjeta de Credito <span class="help_on">Credit Card</span></label>
+				     </td>
+				  </tr>
+				  <tr>
+				     <td class='smalltext' valign="top" nowrap>Red : <span class='smallfieldterr'>[er_pmtfield1]</span></td>
+				     <td class='smalltext'>
+				     	<select name='pmtfield1' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				     		<option value=""></option>
+				     		<option value="Visa">Visa</option>
+				     		<option value="Mastercard">Mastercard</option>
+				     		<option value="American Express">American Express</option>
+				     	</select>
+				     </td>
+				  </tr>
+				  <tr>
+				    <td class='smalltext' nowrap>
+				     	<label for="pmtfield2">Titular de la Tarjeta : </label><span class='smallfieldterr'>[er_pmtfield2]</span>
+				    </td>
+				    <td class='smalltext'>
+				     	<input type='text' name='pmtfield2' id="pmtfield2" value='[in_pmtfield2]' size='35' onFocus='focusOn( this )' onBlur='focusOff( this )'> <span id="samecustomer">Mismo cliente</span>
+				    </td>
+				  </tr>
+				  <tr>
+				     <td class='smalltext' nowrap>
+				     	<label for="pmtfield3">Numero de Tarjeta # : </label><span class='smallfieldterr'>[er_pmtfield3]</span></td>
+				     <td class='smalltext'><input type='text' name='pmtfield3' id="pmtfield3" value='[in_pmtfield3]' size='20' MAXLENGTH='16' onFocus='focusOn( this )' onBlur='focusOff( this );Mod10(document.forms[0].pmtfield3.value);'>
+				     <!--<input type="button"  value="Revisar" class="button" onclick="Mod10(document.forms[0].pmtfield3.value)">--></td>
+				  </tr>
+				  <tr>
+				     <td class='smalltext' nowrap valign="top">
+				     	Vigencia : <span class='smallfieldterr'>[er_pmtfield4]</span></td>
+				     <td class='smalltext'>
+				     	<label for="Month">Mes : </label>
+				     	<select size="1" name="Month" id="Month" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+								<option value=""></option>
+						        <option value="01">01</option>
+								<option value="02">02</option>
+								<option value="03">03</option>
+								<option value="04">04</option>
+								<option value="05">05</option>
+								<option value="06">06</option>
+								<option value="07">07</option>
+								<option value="08">08</option>
+								<option value="09">09</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+					        </select>
+					        <label for="Month"> A&ntilde;o : </label>
+				     		<select size="1" name="Year" id="Year" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+								<option value=""></option>
+								[fc_build_exp_date_opts]
+					        </select>
+					        <span class="help_on">La Vigencia debe ser al menos 3 meses despues de la ultima cuota</span></td>
+				  </tr>
+				  <tr>
+				     <td class='smalltext'>C&oacute;digo de Seguridad : <span class='smallfieldterr'>[er_pmtfield5]</span></td>
+				     <td class='smalltext'><input type='text' name='pmtfield5' value='[in_pmtfield5]' size='5' MAXLENGTH='4' onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">CVV, tres últimos dígitos que se encuentran impresos sobre la banda de firma, situada en el reverso de la tarjeta de crédito.</td>
+				  </tr>
+				  <tr>
+				     <td class='smalltext'>Tel&eacute;fono Casa : <span class='smallfieldterr'>[er_pmtfield6]</span></td>
+				     <td class='smalltext'><input type='text' name='pmtfield6' value='[in_pmtfield6]' size='12' MAXLENGTH='10' onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">10 numeros sin parentesis o guiones</span></td>
+				  </tr>
+				</table>
+		  	</td>
+		  	<td><img src="[va_imgurl]cc_images/CC_.gif" border="0" name="imgMain"><br>
+		  		<img src="[va_imgurl]/cvn2.png" border="0"><br>
+		  		<img src="[va_imgurl]/cvn1.png" border="0"></td>
+		</tr>
+		<tr>
+		  <td colspan="2" align="center"><input type="submit"  value="Continuar (Confirmar Orden)>>" class="button">
+		  <!--<input type="button" value="Revisar" class="button" name="check_address" id="check_address">-->
+					
+					<!-- Fancybox -->
+					<a id="fancybox_email_and_cellphone" href="#modal_email_and_cellphone"></a>
+					<div style="display: none;">
+						<div id="modal_email_and_cellphone" style="width:500px;overflow:auto;text-align:center;">
+							<iframe src="/cgi-bin/common/apps/ajaxbuild?ajaxbuild=email_and_cellphone&email=[in_email]&cellphone=[in_cellphone]" width="490" height=350>
+							  <p>Your browser does not support iframes.</p>
+							</iframe>
+						</div>
+					</div>
+					<!-- Fancybox -->
+		  	[va_noreties]</td>
+		</tr>		
+	</table>
+</fieldset>
+
+<script language="javascript">
+<!--
+
+chg_select('pmtfield1','[in_pmtfield1]');
+chg_radio('pmtfield7','[in_pmtfield7]');
+chg_select('Month','[in_month]');
+chg_select('Year','[in_year]');
+
+function nomoreretries() {
+	if (confirm('Esta seguro que no tiene otra forma de Pagar?')){
+		parent.location.href = "/cgi-bin/mod/sales/admin?cmd=console_order&step=9&check_payment=1&postdated="+document.sitform.postdated.value+"&days="+document.sitform.days.value+"&pay_type="+document.sitform.pay_type.value;
+    }else{
+	    return false;
+    }
+}
+
+
+//GV Inicia Se inserta función para validaciones con tarjeta de crédito
+/*function Mod10(jjj)
+{
+	alert(jjj);
+}*/
+var aryImages = new Array(16);
+aryImages[0] = "/sitimages/cc_images/CC_.gif";
+  aryImages[1] = "/sitimages/cc_images/CC_badcard.gif";
+  aryImages[2] = "/sitimages/cc_images/CC_visa.gif";
+  aryImages[3] = "/sitimages/cc_images/CC_maestro.gif";
+  aryImages[4] = "/sitimages/cc_images/CC_mastercard.gif";
+  aryImages[5] = "/sitimages/cc_images/CC_delta.gif";
+  aryImages[6] = "/sitimages/cc_images/CC_electron.gif";
+  aryImages[7] = "/sitimages/cc_images/CC_visapurchasing.gif";
+  aryImages[8] = "/sitimages/cc_images/CC_visaatmonly.gif";
+  aryImages[9] = "/sitimages/cc_images/CC_discover.gif";
+  aryImages[10] = "/sitimages/cc_images/CC_solo.gif";
+  aryImages[11] = "/sitimages/cc_images/CC_switch.gif";
+  aryImages[12] = "/sitimages/cc_images/CC_amex.gif";
+  aryImages[13] = "/sitimages/cc_images/CC_jcb.gif";
+  aryImages[14] = "/sitimages/cc_images/CC_dinersclub.gif";
+  aryImages[15] = "/sitimages/cc_images/CC_carteblanche.gif";
+  aryImages[16] = "/sitimages/cc_images/CC_enroute.gif";
+
+  var mdtImages = new Array(3);
+
+  mdtImages[0] = "/sitimages/cc_images/CC_mod10blank.gif";
+  mdtImages[1] = "/sitimages/cc_images/CC_mod10passed.gif";
+  mdtImages[2] = "/sitimages/cc_images/CC_mod10failed.gif";
+
+  var mdtxImages = new Array(3);
+
+  mdtxImages[0] = "/sitimages/cc_images/CC_mod10blank.gif";
+  mdtxImages[1] = "/sitimages/cc_images/CC_lengthpassed.gif";
+  mdtxImages[2] = "/sitimages/cc_images/CC_lengthfailed.gif";
+
+
+function Mod10(ccno)
+{
+	vlengthgood=0;
+	ccsum=0;
+	cclen=ccno.length;
+	if (cclen<13)
+	{
+		cardimage='1';
+		cc_type_id='';
+	}
+	else
+	{
+		for (i=1; i<cclen; i++)
+		{
+			ccdig=parseInt(ccno.charAt(cclen-(i+1)));
+			if (i%2==1)
+			{
+				ccdig*=2;
+				if (ccdig.toString().length==2)
+				{
+					ccdig=(parseInt(ccdig.toString().charAt(0))+parseInt(ccdig.toString().charAt(1)));
+				} 
+			}
+			ccsum+=ccdig;
+		}
+		ccsum+=parseInt(ccno.charAt(cclen-1));
+		if(ccsum%10==0)
+		{
+			cc_type_id='NOT VALID TYPE';
+			cardimage='1';
+			vlength='99';
+			if (ccno.match(/^4/) )
+			{
+				cc_type_id = 'Visa';
+				cardimage='2';
+				if (cclen==13 || cclen==16)
+				{
+					vlengthgood=1;
+				}
+				else
+				{
+					vlengthgood=0;
+				}
+			}
+			if (ccno.match(/^51|^52|^53|^54|^55/) )
+			{
+				cc_type_id = 'Mastercard';
+				cardimage='4';
+				if (cclen==16)
+				{
+					vlengthgood=1;
+				}
+				else
+				{
+					vlengthgood=0;
+				}
+			}
+			if (ccno.match(/^405501|^405502|^405503|^405504|^405550|^405551|^405552|^405553|^405554|^415928|^424604|^424604|^427533|^4288|^443085|^4484|^4485|^4486|^4715|^4716|^4804/) )
+			{
+				cc_type_id = 'Visa'; //visapurchasing
+				cardimage='7';
+				if (cclen==16) 
+				{
+					vlengthgood=1;
+				}
+				else 
+				{
+					vlengthgood=0;
+				}
+			}
+			if (ccno.match(/^490300|^490301|^49031|^49032|^490330|^490331|^490332|^490333|^490334|^49034|^49035|^49036|^49037|^49038|^49039|^49040|^490419|^490451|^490459|^490467|^490475|^490476|^490477|^490478|^4905|^491103|^491104|^491105|^491106|^491107|^491108|^491109|^49111|^49112|^49113|^49114|^49115|^49116|^491170|^491171|^491172|^491173|^491183|^491184|^491185|^491186|^491187|^491188|^491189|^49119|^4928|^4987/) )
+			{
+				cc_type_id = 'Visa'; //visaatmonly
+				cardimage='8';
+				if (cclen==16) 
+				{
+					vlengthgood=1;
+				}
+				else 
+				{
+					vlengthgood=0;
+				}
+			}
+			if (ccno.match(/^6011/) )
+				{
+				cc_type_id = 'Discover';
+				cardimage='9';
+				if (cclen==16) 
+				{
+					vlengthgood=1;
+				}
+				else 
+				{
+					vlengthgood=0;
+				}
+			}
+			if (ccno.match(/^36/) ) /* #RB Start - Add Diners Club Validation - apr2808 */
+			{
+				cc_type_id = 'Diners';
+				cardimage='14';
+				if (cclen==14) 
+				{
+					vlengthgood=1;
+				}
+				else 
+				{
+					vlengthgood=0;
+				}
+			}	/* #RB End */
+			if (ccno.match(/^34|^37/) )
+			{
+				cc_type_id = 'American Express';
+				cardimage='12';
+				if (cclen==13 || cclen==15) 
+				{
+					vlengthgood=1;
+				}
+				else 
+				{
+					vlengthgood=0;
+				}
+			}
+			if (vlengthgood!=1)
+			{
+				cardimage='1';
+				cc_type_id='';
+			}
+		}
+		else
+		{
+			cardimage='1';
+			cc_type_id='';
+		}
+	}	
+	//document.forms[0].pmtfield1.value=cc_type_id;
+	chg_radio('pmtfield1',cc_type_id);
+	document['imgMain'].src = aryImages[cardimage];
+}
+//GV Termina Se inserta función para validaciones con tarjeta de crédito
+
+$('#samecustomer').css('cursor','pointer');
+$('#samecustomer').click(function(){
+	var name = '[in_firstname] [in_lastname1] [in_lastname2]'.toUpperCase();
+	$('#pmtfield2').val(name);
+});
+
+//-->
+</script>
+    </td>
+    </tr>
+</table>	
+			
+[ip_footer_console]
+
+

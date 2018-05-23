@@ -1,0 +1,57 @@
+	&nbsp;
+	<fieldset><legend>IT Job Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Title  : <span class="smallfieldterr">[er_title]</span></td>
+		  <td class="smalltext"><input type="text" name="title" value="[in_title]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td>Department : <span class="smallfieldterr">[er_id_departments]</span></td>
+			<td>
+			  <select name="id_departments" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			  	<option value="---">---</option>
+					[fc_build_select_departments]
+      			</select>
+      </td>
+		</tr>
+		<tr>
+		  <td width="30%">User : <span class="smallfieldterr">[er_id_user]</span></td>
+		  <td class="smalltext">
+		  	<select name="id_user" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	      	<option value="---">---</option>
+	      		[fc_build_userlist]
+				</select>
+			</td>
+		</tr>		
+		<tr>
+		 <td valign="top" width="30%">Description : <span class="smallfieldterr">[er_description]</span></td>
+		 <td class="smalltext"><textarea name="description" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description]</textarea></td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Job Length (minutes) : <span class="smallfieldterr">[er_job_length]</span></td>
+		  <td class="smalltext"><input type="text" name="job_length" value="[in_job_length]" size="8" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>		 
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>IT Job Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		  	<td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		    <td class="smalltext">
+		    	<input type="radio" name="status" value="Active" class="radio">Active
+					<input type="radio" name="status" value="Inactive" class="radio">Inactive
+				</td>
+			</tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+	
+	chg_select('id_departments','[in_id_departments]');
+	chg_select('id_user','[in_id_user]');
+	chg_radio('status','[in_status]');
+//-->
+</script>
+

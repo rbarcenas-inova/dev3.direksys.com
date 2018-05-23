@@ -1,0 +1,161 @@
+<link rel="stylesheet" type="text/css" href="/dropzone/dropzone.css">
+<script src="/dropzone/dropzone.js"></script>
+
+&nbsp;
+<fieldset><legend>Warehouse Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Name  : <span class="smallfieldterr">[er_name]</span></td>
+			<td class="smalltext"><input type="text" name="name" value="[in_name]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			<td width="10%" rowspan="8" style="text-align:center;">Picture: <span class="smallfieldterr">[er_picture]</span></td>
+			<td class="smalltext" rowspan="8">
+				<div id="picture" style="border:solid 1px #808080; height:180px; width:150px; background-position:center; background-repeat:no-repeat; background-size:contain; background-image: url('data:image/jpeg;base64,[in_picture]');"></div>
+				<input type="hidden" name="picture" value="[in_picture]">
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Warehouse Manager : <span class="smallfieldterr">[er_wmanager]</span></td>
+			<td class="smalltext">
+				<select name="wmanager" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="---">---</option>
+					[fc_build_userlist]
+				</select>
+			</td>
+		</tr>
+
+		<tr>
+		  <td valign="top" width="30%">Type :</td>
+		   <td class="smalltext">
+		   		<select name="type" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		   			<option value="---">---</option>
+						[bs_type@sl_warehouses]
+					</select><span class="smallfieldterr">[er_type]</span>
+		   	</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Calle y N&uacute;mero :<span class="smallfieldterr">[er_address1]</span></td>
+			<td class="smalltext">
+				<input type="text" name="address1" value="[in_address1]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'><br>				
+			</td>
+		<tr>			
+		<tr>
+			<td valign="top" width="30%">Colonia : <span class="smallfieldterr">[er_address2]</span></td>
+			<td class="smalltext">
+				<input type="text" name="address2" value="[in_address2]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Municipio/Delegaci&oacute;n : <span class="smallfieldterr">[er_city]</span></td>
+			<td class="smalltext">
+				<input type="text" name="city" value="[in_city]" size="30" oocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		 	<td width="30%">Estado/C&oacute;digo Postal : </td>
+		 	<td class="smalltext">
+				<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+						[fc_build_select_opr_salesstate]
+				</select> <span class="smallfieldterr">[er_state]</span>
+				<input type="text" name="zip" value="[in_zip]" size="8" oocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_zip]</span>
+			</td>
+		</tr>
+		<tr>
+		 	<td width="30%" style="display: [va_sty_deliveryzones];">Zonas de Cobertura : </td>
+		 	<td style="display: [va_sty_deliveryzones];"  colspan="3">
+		 		<br />
+		 		<input type="text" name="deliveryzones" value="[in_deliveryzones]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_deliveryzones]</span>
+				<span style="color: gray; font-weight: normal; font-size: 8pt; display: block;">Escriba los IDs de las zona separados por coma(,). Deje vac&iacute;o el campo si este almac&eacute;n abarca todas las zonas</span>
+		 		<br />
+			</td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Notes : <span class="smallfieldterr">[er_notes]</span></td>
+		  <td class="smalltext" colspan="3"><textarea name="notes" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_notes]</textarea></td>	
+		</tr>
+		<tr>
+		  <td width="30%">Is a DropShipper ? :  <span class="smallfieldterr">[er_dropshipper]</span></td>
+			<td class="smalltext" colspan="3">
+				<input type="radio" name="dropshipper" value="Yes" class="radio">Yes
+        		<input type="radio" name="dropshipper" value="No" class="radio">No
+      		</td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">ID Users for COD Confirmations : <span class="smallfieldterr">[er_codlist]</span></td>
+		  <td class="smalltext" colspan="3"><input type="text" name="codlist" value="[in_codlist]" style="width:100%" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>	
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Accounts : <span class="smallfieldterr">[er_codlist]</span></td>
+			<td class="smalltext" colspan="3">
+				<select name="id_accounts" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					[fc_build_select_warehouses_accounts]
+				</select>
+			</td>	
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Warehouse Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+			<td class="smalltext">
+				<input type="radio" name="status" value="Active" class="radio">Active
+				<input type="radio" name="status" value="Inactive" class="radio">Inactive
+			</td>
+		</tr>
+	</table>
+</fieldset>
+
+<script language="javascript">
+<!--
+	chg_radio('dropshipper','[in_dropshipper]');
+	chg_radio('status','[in_status]');
+	chg_select('wmanager','[in_wmanager]');
+	chg_select('state','[in_state]');
+	chg_select('type','[in_type]');
+	chg_select('id_accounts','[in_id_accounts]');
+
+//-->
+</script>
+
+
+<div id="preview-template" style="border:solid 1px black;">
+	<div class="dz-filename">
+		<div data-dz-name style="width:100%; text-align:center; color:#ddd;"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+
+	$("div#picture").dropzone({ 
+		url: "/apps/upload_picture.php",
+		paramName: "file", 	// The name that will be used to transfer the file
+		maxFilesize: 1, 	// MB
+		parallelUploads: 1,
+		createImageThumbnails: false,
+		dictRemoveFile: 'Eliminar',
+		previewTemplate: document.getElementById('preview-template').innerHTML,
+		acceptedFiles: "image/jpeg",
+		init: function(){
+        	//this.on("addedfile", handleFileAdded);
+        	this.on('sending', function(file, xhr, formData){ formData.append('e', '[in_e]'); });
+        	this.on("drop", function(){ this.removeAllFiles(); });
+        	this.on("error", function(file, response){ if(!file.accepted){ alert(response); this.removeFile(file); } });
+        	this.on("success", 
+        		function( file, response ){ 
+        			$('#picture').css('background-image', 'url("data:image/jpeg;base64,'+response+'")');
+        			$('[name="picture"]').val(response);
+        		}
+        	);
+        }
+	});
+
+
+
+
+
+</script>

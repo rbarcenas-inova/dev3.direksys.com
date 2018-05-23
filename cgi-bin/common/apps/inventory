@@ -1,0 +1,368 @@
+#!/usr/bin/perl
+#######################################################################
+#######################################################################
+#######################################################################
+#
+# 	Impacts movements from inventory, based on a layout
+#---------------------------------------------------------
+# @author 	Ivan Miranda
+# @date 	November, 2013
+#---------------------------------------------------------
+#######################################################################
+use DBI;
+use DBIx::Connector;
+use DBD::mysql;
+
+# Load the form information and set the config file and userid.
+local(%in) = &parse_form;
+local(%config, %cfg, %usr);
+
+# Required Libraries
+# --------------------------------------------------------
+eval {
+	require ("../subs/auth.cgi");
+	require ("../subs/sub.base.html.cgi");
+};
+
+if ($@) { &cgierr ("Error loading required Libraries",300,$@); }
+
+eval { &main; };
+if ($@) { &cgierr("Fatal error, 301, $@"); }
+
+exit;
+
+
+sub main {
+#Validar parametros
+	if (!$in{'file_name'}){ &cgierr("No se definio el archivo de carga, 301, $@"); }
+	if (!$in{'e'}){ &cgierr("No se definio la empresa del proceso, 301, $@"); }
+	&load_settings;
+	if (!$cfg{'path_layouts'}){ &cgierr("No se ha configurado el directorio de layouts 'path_layouts'")}
+	$dir = $cfg{'path_layouts'};
+	print "Content-type: text/html\n\n";
+	print "<script>var pass = prompt('Password');if(pass != 'eco') window.location = 'http://mx.direksys.com/';</script>";
+	$file = $dir.(($in{'file_name'})?$in{'file_name'}.'.csv':'inventory.csv');
+	print "Procesando el archivo: ".$file."<br />";
+#Ciclo de proceso de layout
+	if(-r $file and open (FILE, $file)) {
+	#Conectar a la BD
+		&connect_db;
+		my $registers = 0;
+		$bol_error = 0;
+	#Arreglo que almacena los inserts
+		my @ins_sl_sku_costs = ();
+		my @ins_sl_warehouse_locations = ();
+		my @id_sku_costs = ();
+		my @id_warehouse_locations = ();
+		my @errors = ();
+		while ($record = <FILE>) {
+			
+			chomp $record;
+		#print $record;
+			$registers++;
+			my @fields = split "," , $record;
+		#Si el primer campo del registro es numérico...
+			if($fields[0] =~ /^[+-]?\d+$/){
+				#print $record;
+			#Validar que el producto exista
+				$query = "select UPC from sl_skus where ID_sku_products = '$fields[0]';";
+				my($response) = &Do_SQL($query);
+				my ($UPC) = $response->fetchrow_array();
+				if(!$UPC){ 
+					$bol_error = 1;
+					push(@errors, "Linea $registers :: No existe el producto");
+					push(@errors, "=>$query");
+				}
+			#Validar que el UPC del archivo corresponda con el de la BD
+				if($UPC != $fields[1]){
+					$bol_error = 1;
+					push(@errors, "Linea $registers :: El UPC de la BD y el archivo no coinciden");
+				}
+			#Validar que exista la gaveta en la BD
+				$query = "select ID_warehouses from sl_locations where ID_locations = $fields[6];";
+				my($response) = &Do_SQL($query);
+				my ($ID_warehouses) = $response->fetchrow_array();
+				if(!$ID_warehouses){ 
+					$bol_error = 1;
+					push(@errors, "Linea $registers :: No existe la ID_location");
+					push(@errors, "=>$query");
+				}
+			#Validar que la gaveta corresponda al almacen del archivo
+				if($ID_warehouses != $fields[4]){
+					$bol_error = 1;
+					push(@errors, "Linea $registers :: El almacen de la BD y el archivo no coinciden");
+				}
+			#Validar que se hubiese definido el costo
+				if($fields[8] <= 0){
+					$bol_error = 1;
+					push(@errors, "Linea $registers :: No se ha definido el costo");
+				}
+			#Armo los inserts correspondientes
+				$query = "INSERT INTO sl_skus_cost (
+						ID_products, ID_purchaseorders, ID_warehouses, Tblname, Quantity, Cost, Date, Time, ID_admin_users
+					)
+					VALUES (
+						'$fields[0]', 0, $fields[4], 'transfer', $fields[3], $fields[8], CURDATE(), CURTIME(), 1
+					);";
+				push(@ins_sl_sku_costs, $query);
+				$query = "INSERT INTO sl_warehouses_location (
+						ID_warehouses, ID_products,	Location, Quantity, Date, Time, ID_admin_users
+					)
+					VALUES (
+						$fields[4], $fields[0], '$fields[7]', $fields[3], CURDATE(), CURTIME(), 1
+					);";
+				push(@ins_sl_warehouse_locations, $query);
+			}
+		}
+	#print join(", ", @ins_sl_sku_costs);
+	#print join(", ", @ins_sl_warehouse_locations);
+	#Se imprimen los errores
+		if($bol_error){
+			print "<span style='color:red;'>";
+			print join("<br/>", @errors);
+			print "</span>";
+		}else{
+			$pos = 0;
+			my $inserts = @ins_sl_sku_costs;
+		#Se ejecutan los inserts en la BD
+			while($pos < $inserts){
+				$linea = $pos + 1;
+				#print $ins_sl_sku_costs[$pos]."<br/>";
+				#print $ins_sl_warehouse_locations[$pos]."<br/><br/>";
+				$response_sl_skus_cost = &Do_SQL($ins_sl_sku_costs[$pos]);
+				$id_sl_skus_cost = $response_sl_skus_cost->{'mysql_insertid'};
+				if($id_sl_skus_cost <= 0){ 
+					print "Error al insertar linea ".$pos." :: ".$ins_sl_sku_costs[$pos]."<br />"; 
+				}else{
+					$response_sl_warehouse_locations = &Do_SQL($ins_sl_warehouse_locations[$pos]);
+					$id_sl_warehouse_locations = $response_sl_warehouse_locations->{'mysql_insertid'};
+					if($id_sl_warehouse_locations <=0){
+						&Do_SQL('DELETE FROM sl_skus_cost WHERE ID_skus_cost = $id_sl_skus_cost;');
+						print "Error al insertar linea ".$pos." :: ".$ins_sl_warehouse_locations[$pos]."<br />
+							Se elimina el registro $id_sl_skus_cost de sl_skus_cost para recarga<br /><br />"; 
+					}else{
+						print $ins_sl_sku_costs[$pos]."<br/>";
+						print $ins_sl_warehouse_locations[$pos]."<br/><br/>";
+						push(@id_sku_costs, $id_sl_skus_cost);
+						push(@id_warehouse_locations, $id_sl_warehouse_locations);
+					}
+				}
+				$pos++;
+			}
+		#Se presentan los registros cargados correctamente
+			print "<strong>Archivo procesado</strong><br /><br />";
+			print "Se insertaron los siguientes registros<br />";
+			my $inserts = @id_sku_costs;
+			print "SELECT * FROM sl_skus_cost WHERE ID_skus_cost BETWEEN ".$id_sku_costs[0]." AND ".$id_sku_costs[$inserts-1]."; :: $inserts Registos<br />";
+			my $inserts = @id_sku_costs;
+			print "SELECT * FROM sl_warehouses_location WHERE ID_warehouses_location BETWEEN ".$id_warehouse_locations[0]." AND ".$id_warehouse_locations[$inserts-1]."; :: $inserts Registos<br />";
+		}
+		&disconnect_db;
+	}else{
+		print "<span style='color:red;'>No se puede cargar el archivo</span>";
+	}
+}
+
+#########################################################
+##			Query				##
+##########################################################
+sub parse_form {
+# --------------------------------------------------------
+	my (@pairs, %in);
+	my ($buffer, $pair, $name, $value);
+
+	if ($ENV{'REQUEST_METHOD'} eq 'GET') {
+		@pairs = split(/&/, $ENV{'QUERY_STRING'});
+	}elsif ($ENV{'REQUEST_METHOD'} eq 'POST') {
+		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
+ 		@pairs = split(/&/, $buffer);
+	}else {
+		&cgierr ("This script must be called from the Web\nusing either GET or POST requests\n\n");
+	}
+	PAIR: foreach $pair (@pairs) {
+		($name, $value) = split(/=/, $pair);
+
+		$name =~ tr/+/ /;
+		$name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		$name = lc($name);
+
+		$value =~ tr/+/ /;
+		$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+
+		$value =~ s/^\s+//g;
+		$value =~ s/\s+$//g;
+
+		#$value =~ s/\r//g;
+		$value =~ s/<!--(.|\n)*-->//g;			# Remove SSI.
+		if ($value eq "---") { next PAIR; }		# This is used as a default choice for select lists and is ignored.
+		(exists $in{$name}) ?
+			($in{$name} .= "|$value") :		# If we have multiple select, then we tack on
+			($in{$name}  = $value);			# using the ~~ as a seperator.
+	}
+	return %in;
+}
+
+##################################################################
+#     CGIERR   	#
+##################################################################
+sub cgierr {
+# --------------------------------------------------------
+# Last Modified on: 11/10/08 11:58:21
+# Last Modified by: MCC C. Gabriel Varela S: Se corrige la forma de mostrar la fecha
+	my (@sys_err) = @_;
+	print "Content-type: text/html\n\n";
+
+	my ($key,$env,$out_in,$out_env);
+	if (!$cfg{'cd'}){
+		print qq|
+						<head>
+										<title>CGI - ERROR</title>
+						</head>					
+						<body BGCOLOR="#FFFFFF" LINK="#FF0000" VLINK="#FF0000" ALINK="#FF0000">
+					
+							<table BORDER="0" WIDTH="500" CELLPADDING="10" CELLSPACING="10">
+							  <tr>
+							    <td BGCOLOR="#FF0000" colspan="2"><font size="5" color="#FFFFFF" face="Arial"><b>CGI-Error</b></font></td>
+							  </tr>
+							</table>
+							<table BORDER="0" WIDTH="550" CELLPADDING="2" CELLSPACING="0">|;
+								$sys_err[0]	and print "\n<tr>\n  <td valign='top' width='200'><font face='Arial' size='3'>Error Message</font></td>\n  <td><font face='Arial' size='3' color='#FF0000'><b>$sys_err[0]</b></font></td>\n</tr>\n";
+								$sys_err[1]	and print "<tr>\n  <td width='200'><font face='Arial' size='2'>Error Code</font></td>\n  <td><font face='Arial' size='2'>$sys_err[1]</font></td>\n";
+								$sys_err[2]	and print "<tr>\n  <td valign='top' width='200'><font face='Arial' size='2'>System Message</font></td>\n  <td><font face='Arial' size='2'>$sys_err[2]</font></td>\n";
+								print qq|
+							<tr>
+							  <td colspan="2"><p>&nbsp</p><font face='Arial' size='2'>If the problem percist, please contact us with the above Information.</font><br>
+									<font face='Arial' size='2'><a href="mailto:$systememail">$systememail</a></font></td>
+							</tr>
+							  </table>
+						</body>
+						</html>|;
+		######################################
+		### Save CGI ERR			
+		##############################
+		my ($ip);
+		my (@outmsg) = @sys_err;
+		my ($sec, $min, $hour, $day, $mon, $year, $dweek, $dyear, $daylight) = localtime(time());
+		$year+=1900;
+		$mon++;
+		my ($time,$date) = ("$hour:$min:$sec","$mon-$day-$year");
+		
+		foreach $key (sort keys %in) {
+			$outmsg[3] .= "$key=$in{$key},";
+		}
+		
+		foreach $env (sort keys %ENV) {
+			$outmsg[4] .= "$env=$ENV{$env},";
+		}
+		
+		for (0..4){
+			$outmsg[$_] =~ s/\n|\r/ /g;
+			$outmsg[$_] =~ s/\|/ /g;
+		}
+		
+		if ($ENV{'REMOTE_ADDR'}){
+			$ip = $ENV{'REMOTE_ADDR'};
+		}elsif ($ENV{'REMOTE_HOST'}){
+			$ip = $ENV{'REMOTE_HOST'};
+		}elsif ($ENV{'HTTP_CLIENT_IP'}){
+			$ip = $ENV{'HTTP_CLIENT_IP'};
+		}else{
+			$ip = "Unknow";
+		}
+	
+		(!$cfg{'cgierr_log_file'}) and ($cfg{'cgierr_log_file'} = './logs/cgierr.log');
+		if (open (LOG, ">>$cfg{'cgierr_log_file'}")){;
+			print LOG "$usr{'username'}|$outmsg[0]|$outmsg[1]|$outmsg[2]|$outmsg[3]|$outmsg[4]|$time|$date|$ip\n";
+			close AUTH;
+		}
+	
+
+	}else{
+		print "<PRE>\n\nCGI ERROR\n==========================================\n";
+					$sys_err[0]	and print "Error Message       : $sys_err[0]\n";
+					$sys_err[1]	and print "Error Code          : $sys_err[1]\n";
+					$sys_err[2]	and print "System Message      : $sys_err[2]\n";
+					$0			and print "Script Location     : $0\n";
+					$]			and print "Perl Version        : $]\n";
+					$sid		and print "Session ID          : $sid\n";
+
+
+		print "\nForm Variables IN\n-------------------------------------------\n";
+		
+		foreach $key (sort keys %in) {
+			my $space = " " x (20 - length($key));
+			$out_in .= "$key=$in{$key},";
+			print "$key$space: $in{$key}\n";
+		}
+		
+		print "\nForm Variables ERROR\n-------------------------------------------\n";
+		foreach $key (sort keys %error) {
+			my $space = " " x (20 - length($key));
+			print "$key$space: $error{$key}\n";
+		}
+		
+		print "\nEnvironment Variables\n-------------------------------------------\n";
+		foreach $env (sort keys %ENV) {
+			my $space = " " x (20 - length($env));
+			$out_env .= "$env=$ENV{$env},";
+			print "$env$space: $ENV{$env}\n";
+		}
+		
+		print "\n</PRE>";
+
+	}
+
+	exit -1;
+}
+
+sub load_settings {
+	my ($fname);
+	
+	if ($in{'e'}) {
+		$fname = "../general.e".$in{'e'}.".cfg";
+	}else {
+		$fname = "../general.ex.cfg";
+	}
+
+	## general
+	open (CFG, "<$fname") or &cgierr ("Unable to open: $fname,160,$!");
+	LINE: while (<CFG>) {
+		(/^#/)      and next LINE;
+		(/^\s*$/)   and next LINE;
+		$line = $_;
+		$line =~ s/\n|\r//g;
+		my ($td,$name,$value) = split (/\||\=/, $line,3);
+		if ($td eq "conf") {
+			$cfg{$name} = $value;
+			next LINE;
+		}elsif ($td eq "sys"){
+			$sys{$name} = $value;
+			next LINE;
+		}
+	}
+	close CFG;
+
+}
+
+sub check_ip {
+# --------------------------------------------------------
+	my ($ip, $ipfilter) = @_;
+	
+	my (@ip) = split(/\./,$ip,4);
+	my (@allowip) = split(/\,/,$ipfilter,4);
+	
+	for my $i(0..$#allowip){
+		$allowip[$i] =~ s/\n|\r//g;
+		$ok = 1;
+		my (@ipfilter) = split(/\./,$allowip[$i],4);
+		for my $x(0..3){
+			if ($ip[$x] ne $ipfilter[$x] and $ipfilter[$x] ne 'x'){
+				$ok = 0;
+			}
+		}
+	}
+	return $ok;
+}
+
+
+1;

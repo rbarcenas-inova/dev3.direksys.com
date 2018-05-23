@@ -1,0 +1,144 @@
+[ip_header]
+<style>
+	
+	ul ul {
+	    margin: 0;
+	    padding-left: 40px;
+	    display: none;
+	}
+	li:hover{
+		font-weight: normal;
+	}
+	ul.tree li {
+	    cursor: default;
+	    font-weight: bold;
+	    margin-left: 15px;
+	    padding: 4px 0;
+	}
+	ul.tree li ul li{
+		list-style:none;	
+	}
+
+.table {
+    border: solid 1px #DDEEEE;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 12px Arial, sans-serif;
+}
+.table thead th {
+    background-color: #DDEFEF;
+    border: solid 1px #DDEEEE;
+    color: #336B6B;
+    padding: 10px;
+    text-align: left;
+    text-shadow: 1px 1px 1px #fff;
+}
+.table tbody td {
+    border: solid 1px #DDEEEE;
+    color: #333;
+    padding: 5px;
+    text-shadow: 1px 1px 1px #fff;
+    font: normal 10px Arial, sans-serif;
+}
+.table {
+    overflow: hidden;
+    z-index: 1;
+}
+.table tbody td, .table thead th {
+    position: relative;
+}
+.table tbody td:hover::before {
+    background-color: #CCE7E7;
+    content:'\00a0';
+    height: 100%;
+    left: -5000px;
+    position: absolute;
+    top: 0;
+    width: 10000px;
+    z-index: -1;
+}
+.table tbody td:hover::after {
+    background-color: #CCE7E7;
+    content:'\00a0';
+    height: 10000px;
+    left: 0;
+    position: absolute;
+    top: -5000px;
+    width: 100%;
+    z-index: -1;
+}
+#trial_balance{
+	margin: 10px 0;
+}
+.table tbody td.highlights{
+	font-weight: bold;
+}
+.table tbody td.inactive{
+	color:red;
+}
+	
+</style>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: [va_expanditem], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+				<tr>
+					<td width="70%" align="center"></td>
+					<td width="30%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]")'>Catalogo de Cuentas</td>
+				</tr>
+			</table>
+<!-- Start Main Area  -->
+
+	<div style="background-color:#ffffff;margin:15px;">
+		<!-- <h1 class="titletext">Catalogo de Cuentas</h1> -->
+		<div id="" style="">
+			<span style="float:left;">
+				<a href="/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]&type=csv&export=1">
+					<img border="0" src="[va_imgurl]/[ur_pref_style]/b_xls.gif" width="24" height="24" title="Export" alt="Export">
+				</a>
+			</span>
+			<h2 align="center">[va_company_name]</h2>
+			<h2 align="center">Catalogo de Cuentas al [va_to_date]</h2>
+			<table class="table" id="balanza" width="100%">
+				<thead>
+					<tr>
+						<th nowrap>Nivel</th>
+						<th nowrap>Cuenta</th>
+						<th nowrap>Nombre</th>
+						<th nowrap>Tipo</th>
+						<th nowrap></th>
+						<th nowrap>Dig Agr</th>
+						<th nowrap>Edo Fin</th>
+						<th nowrap>Moneda</th>
+						<th nowrap>Seg Neg</th>
+						<th nowrap>Rubro NIF</th>
+						<th nowrap>Agrup SAT</th>
+					</tr>
+				</thead>
+				[va_html_print]
+			</table>
+			<br>
+		</div>
+	</div>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+[ip_footer]

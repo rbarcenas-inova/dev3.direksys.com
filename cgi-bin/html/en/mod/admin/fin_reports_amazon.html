@@ -1,0 +1,127 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0 width="100%">
+				<td align=left width="230px">
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>		
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_home")'>Financial Home</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reports")'>Sales Reports</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reports_tax")'>Tax  Collected</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reports_fp")'>Flex Pay</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+	&nbsp;
+
+  <form action="/cgi-bin/mod/admin/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="fin_reports_amazon">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="left" colspan="2">Amazon Orders </td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Filters</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			    <td width="30%">
+			    	<label for="from_date">From Date : </label>
+			    	<span class="smallfieldterr">[er_from_date]</span>
+			    </td>
+			    <td class="smalltext">
+			    	<input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' />
+			    </td>
+			</tr>
+			<tr>
+			    <td width="30%">
+			    	<label for="to_date">To Date : </label>
+			    	<span class="smallfieldterr">[er_to_date]</span>
+			    </td>
+			    <td class="smalltext">
+			    	<input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' />
+			    </td>
+			</tr>	 
+			<tr style="display:none">
+		   		<td width="30%" valign="top">Status : <span class="smallfieldterr">[er_status]</span></td>
+				<td class="smalltext">[fc_build_checkbox_order_status]</td>
+			</tr>
+			<tr>
+		   		<td width="30%" valign="top">Fulfilled by: : <span class="smallfieldterr">[er_shipped_by]</span></td>
+				<td class="smalltext">
+					<input type="radio" class="radio" name="shipped_by" id="sba" value="1" />
+					<label for="sba">Amazon</label>
+					<input type="radio" class="radio" name="shipped_by" id="sbo" value="2" />
+					<label for="sbo">Direksys</label>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	<p align="center">
+		<input type="submit" value="Run" class="button" />
+		<input type="reset" value="Reset" class="button" />
+	</p>
+  </form>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+<script language="javascript" type="text/javascript">
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+	var dates = $( "#from_date, #to_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2011,10-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+});
+
+	chg_radio('shipped_by','[in_shipped_by]');
+
+-->
+</script>
+
+[ip_footer]

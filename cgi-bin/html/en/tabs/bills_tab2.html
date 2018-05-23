@@ -1,0 +1,133 @@
+	&nbsp;
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+			<td class="tbltextttl">
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_bills]&tab=[va_activetab]&tabs=[in_tab]&[va_rndnumber]#initab")'>
+					<img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+				<span class='fieldterr'>[va_tab_messages]</span>&nbsp;
+			</td>
+	 	</tr>
+		<tr>
+			<td   [va_disablea] >
+			<div id="tab_maincontent" [va_tabvisible]>
+			<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+				<input type="hidden" name="id_bills" value="[in_id_bills]">
+				<input type="hidden" name="view" value="[in_id_bills]">
+				<input type="hidden" name="action" value="1">
+				<input type="hidden" name="tab" value="[in_tab]">
+				<input type="hidden" name="cmd" value="[in_cmd]">
+				<fieldset><legend>Edit Bills Amount:</legend>
+					<table width="100%" style="[va_show_edit_amount]">
+						<tr>
+							<td class="smalltext" [va_disablea]  width="15%">Amount: 
+							<td class="smalltext">
+								<input type="text" name="n_amount" value="[in_n_amount]" class="input">
+								<span class="smallfieldterr">[er_n_amount]</span></td>
+							</td>
+						</tr>
+						<tr>
+							<td class="smalltext"  [va_disablea]  width="15%">Account: 
+							<td class="smalltext">
+								<input type="text" name="n_id_accounts" id="id_n_account" value="" class="input" size="7">
+								<span id="descrip_n_account"></span>
+								<span class="smallfieldterr" id="span_n_id_accounts">[er_n_id_accounts]</span>
+								<!--a href="/cgi-bin/mod/[ur_application]/admin?cmd=accountsTree" class='fancy_modal_iframe' id="lnk_addnotes" title="Catalogo de cuentas">
+									<img src='/sitimages//default/icsearchsmall.gif' title="Busqueda" alt='notes' border='0' width='24' height='24'>
+								</a-->
+								<a href="#tabs" onClick="popup_show('search_n_account', 'item_drag3', 'popup_exiti3', 'mouse-corner', 0, 0,'id_n_account');">
+									<img src="/sitimages/default/icsearchsmall.gif" border="0">
+								</a>
+							</td>
+							</td>
+						</tr>
+					</table>
+
+
+					<table width="100%" border=0 class="formtable" cellpadding="4" cellspacing="0">
+						<tr>
+							<td class="menu_bar_title" colspan="2"></td>
+							<td class="menu_bar_title" colspan="2" align="center" width=40% style="border:0;border-left:1px solid black;">Net</td>
+							<td class="menu_bar_title" colspan="2" align="center" width=35% style="border:0;border-left:1px solid black;">Tax</td>
+							<td class="menu_bar_title"style="border:0;border-left:1px solid black;"></td>
+						</tr>
+						<tr>
+							<td class="menu_bar_title2" ></td>
+							<td class="menu_bar_title2" >Dept: </td>
+							<td class="menu_bar_title2" align=center style="border:0;border-left:1px solid black;">Amount: </td>
+							<td class="menu_bar_title2" >Account: </td>
+							<td class="menu_bar_title2" align=center style="border:0;border-left:1px solid black;">Amount: </td>
+							<td class="menu_bar_title2" >Account: </td>
+							<td class="menu_bar_title2" align=center style="border:0;border-left:1px solid black;" >Ded</td>
+						</tr>
+						[va_lines_result]
+					</table>
+
+
+
+					<table width="100%" style="[va_display_form]">
+						<tr>
+							<td class="smalltext" width="15%">Dept: </td>
+							<td class="smalltext">
+								<select name="id_segments"  class="input">
+									<option value="">---</option>
+									[fc_build_select_accounts_segments]
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="smalltext" width="15%">Amount: </td>
+							<td class="smalltext">
+								<input type="text" name="amount_ml" value=""  class="input">
+							</td>
+						</tr>
+						<tr>
+							<td class="smalltext" width="15%">Account: </td>
+							<td class="smalltext">
+								<input type="text" name="id_accounts_ml" id="id_account" value="" class="input" size="7">
+								<span id="descrip_account"></span>
+								<a href="#tabs" onClick="popup_show('search_account', 'item_drag', 'popup_exiti', 'mouse-corner', 0, 0,'id_account');">
+									<img src="/sitimages/default/icsearchsmall.gif" border="0">
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="smalltext" width="15%">Tax Amount: </td>
+							<td class="smalltext">
+								<input type="text" name="tax_amount_ml" value=""  class="input">
+							</td>
+						</tr>
+						<tr>
+							<td class="smalltext" width="15%">Tax Account: </td>
+							<td class="smalltext">
+								<input type="text" name="tax_id_accounts_ml" id="id_tax_account" value="" class="input" size="7">
+								<span id="descrip_tax_account"></span>
+								<a href="#tabs" onClick="popup_show('search_tax_account', 'item_drag2', 'popup_exiti2', 'mouse-corner', 0, 0,'id_tax_account');">
+									<img src="/sitimages/default/icsearchsmall.gif" border="0">
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="smalltext" width="15%">Deductible: </td>
+							<td class="smalltext">
+								<input type="checkbox" name="Deductible" value="Yes">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center"><input [va_disablea] type="submit" value="Modify" class="button"></td>
+						</tr>
+					</table>
+				</fieldset>
+			</form>
+			</div>
+			</td>
+		</tr>
+	</table>
+
+<script type="text/javascript">
+<!--
+	$(document).ready(function() {
+		chg_select('n_id_accounts','[in_n_id_accounts]');
+	});
+
+//-->
+</script>

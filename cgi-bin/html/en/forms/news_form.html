@@ -1,0 +1,88 @@
+	&nbsp;
+	<fieldset><legend>News Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td width="30%">Title : <span class="smallfieldterr">[er_title]</span></td>
+	    <td class="smalltext"><input type="text" name="title" value="[in_title]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+	    <td width="30%">Category : <span class="smallfieldterr">[er_category]</span></td>
+	    <td class="smalltext"><input type="text" name="category" value="[in_category]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+	    <td width="30%">Author : <span class="smallfieldterr">[er_author]</span></td>
+	    <td class="smalltext"><input type="text" name="author" value="[in_author]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Publishing Date : <span class="smallfieldterr">[er_publishingdate]</span></td>
+		  <td class="smalltext">
+				<input type="text" id="publishingdate" name="publishingdate" value="[in_publishingdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+	    <td width="30%">Abstract Image : <span class="smallfieldterr">[er_image]</span></td>
+	    <td class="smalltext"><input type="text" name="image" value="[in_image]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+	    <td width="30%">Article Type : <span class="smallfieldterr">[er_articletype]</span></td>
+	    <td class="smalltext"><input type="text" name="articletype" value="[in_articletype]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width="30%">Link : <span class="smallfieldterr">[er_link]</span></td>
+			<td class="smalltext"><input type="text" name="link" value="[in_link]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>		
+		
+		
+		<tr>
+	    <td width="30%">Document : <span class="smallfieldterr">[er_document]</span></td>
+	    <!--<td class="smalltext"><input type="text" name="document" value="[in_document]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>-->
+		</tr>
+		<tr>
+		  <td colspan="2" class="smalltext" colspan="2">[fc_build_html_textbox_doc]</td>
+		</tr>		
+		
+		<!--<tr>
+		  <td colspan="2">Article : <span class="smallfieldterr">[er_speech]</span></td>
+		</tr>
+		<tr>
+		  <td class="smalltext" colspan="2">[fc_build_html_textbox]</td>
+		</tr>-->				
+	</table>
+	</fieldset>
+	&nbsp;
+ 	<fieldset><legend>News Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		  	<td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		  	<td class="smalltext">
+					<input type="radio" name="status" value="Active" class="radio">Active
+					<input type="radio" name="status" value="Inactive" class="radio">Inactive
+				</td>
+		 	</tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_radio('status','[in_status]');
+
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#publishingdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: new Date(),
+			maxDate: "+6m",
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+
+//-->
+</script>

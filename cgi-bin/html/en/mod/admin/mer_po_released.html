@@ -1,0 +1,175 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 3, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table class="tab" cellpadding="0" cellspacing="0" align="center" border="0" width="100%">
+	  <tbody><tr>
+		<td align="center" width="30%"></td>
+		<td class="cell_on" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=mer_po_home&quot;)" align="center" width="14%">Purchase Order</td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mer_po&amp;add=1&quot;)" align="center" width="14%">Add</td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mer_po&amp;search=form&quot;)" align="center" width="14%">Search</td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mer_po&amp;search=advform&quot;)" align="center" width="14%">Adv Search</td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mer_po&amp;search=listall&quot;)" align="center" width="14%">View / Edit / Delete</td>
+	  </tr>
+	</tbody></table>
+	
+	<div style="background-color:#ffffff;margin:15px;">
+	<div id="po_filter" style="[va_display_po_filter]">
+		<form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+			<input type="hidden" name="cmd" value="mer_po_released">
+			<input type="hidden" name="search" value="1">
+
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				    <td class="titletext" align="left" colspan="2">Filter Purchases Orders</td>
+				 </tr>
+				<tr>
+				    <td class="stdtxterr" colspan="2">[va_message]</td>
+				 </tr>
+			</table>
+			&nbsp;
+			
+			<fieldset><legend>Search : Purchase Order</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+				<tr>
+				    <td width="30%">From Date : <span class="smallfieldterr">[er_from_date]</span></td>
+				    <td class="smalltext"><input type="text" id="from_date3" name="from_date" value="[in_from_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+				<tr>
+				    <td width="30%">To Date	 : <span class="smallfieldterr">[er_to_date]</span></td>
+				    <td class="smalltext"><input type="text" id="to_date4" name="to_date" value="[in_to_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+			</table>
+			</fieldset>
+			
+			<p align="center"><input type="submit" value="Search" class="button"></p>
+		</form>
+	</div>
+
+	<div id="po_process" style="[va_display_po_process]">
+		<form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform_list" onsubmit="return confirm_authorize();">
+			<input type="hidden" name="cmd" value="mer_po_released">
+			<input type="hidden" name="action" value="1">
+			<input type="hidden" name="auth_type" value="">
+
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				    <td class="titletext" align="left" colspan="2">Purchases Orders Released<br><a href="#" onclick="return toggledivs()">Show Filters</a></td>
+				 </tr>
+				<tr>
+				    <td class="stdtxterr" colspan="2">[va_message]</td>
+				 </tr>
+			</table>
+			&nbsp;
+			
+			<fieldset><legend>Purchase Order to Authorize</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+				<tr>
+					<td class="menu_bar_title"><input type="checkbox" name="checkall" id="checkall" value=""></td>
+					<td class="menu_bar_title">ID</td>
+					<td class="menu_bar_title">Vendor</td>
+					<td class="menu_bar_title">Date</td>
+					<td class="menu_bar_title">Type</td>
+					<td class="menu_bar_title">Status</td>
+					<td class="menu_bar_title">Currency</td>
+					<td class="menu_bar_title">Amount</td>
+				</tr>
+				[va_polist]
+			</table>
+			</fieldset>
+			
+			<p align="center">
+				<input type="submit" value="Authorize" class="button" name="button_approve" style="width: 100px; margin: 0 10px;" />
+				<input type="submit" value="Decline" class="button" name="button_decline" style="width: 100px; margin: 0 10px;" />
+			</p>
+		</form>
+	</div>
+
+	</div>
+	<script language="javascript">
+	<!--			
+
+		chg_select('sendto','[in_sendto]');
+
+	    $(document).ready(function() {
+
+			/*AJAX Error handler*/
+			$(document).ajaxError(function(e, xhr, settings, exception) {
+				alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+			});
+
+			var dates = $( "#from_date3, #to_date4" ).datepicker({
+				dateFormat: 'yy-mm-dd',
+				defaultDate: "-2m",
+				minDate: new Date(2009,1-1,1),
+				maxDate: new Date(),
+				changeMonth: true,
+				numberOfMonths: 3,
+				onSelect: function( selectedDate ) {
+					var option = this.id == "from_date3" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+					dates.not( this ).datepicker( "option", option, date );
+				}
+			});
+
+			$('#checkall').click(function() {
+				if ($(this).attr('checked')=='checked') {
+					$('input:checkbox.po_checkbox').attr('checked','checked');
+				}else {
+					totals_paid = 0;
+					$('input:checkbox.po_checkbox').removeAttr('checked');
+				}
+			});
+			$('input[name="button_approve"]').click(function(e){
+				e.preventDefault();
+				$('input[name="auth_type"]').attr('value','approve');
+				$('form[name="sitform_list"]').submit();
+			
+			});
+			$('input[name="button_decline"]').click(function(e){
+				e.preventDefault();
+				$('input[name="auth_type"]').attr('value','decline');
+				$('form[name="sitform_list"]').submit();
+			});
+			
+	    });
+		
+		function confirm_authorize() {
+			if (confirm('Are you sure you want to continue?'))
+				return true;
+			else
+				return false;
+		}
+		function toggledivs() {
+			$('#po_filter').toggle();
+			return false;
+		}
+	//-->
+	</script>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+[ip_footer]

@@ -1,0 +1,40 @@
+&nbsp;
+<fieldset><legend>Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Name  : <span class="smallfieldterr">[er_channel]</span></td>
+		  <td class="smalltext"><input type="text" name="channel" value="[in_channel]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width="30%">Segment  : </td>
+		  	<td class="smalltext">
+		  		<select name="id_accounts_segments" id="id_accounts_segments" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+     				<option value="">---</option>
+    				[fc_build_select_accounts_segments]
+     			</select>
+     			<span class="smallfieldterr">[er_id_po_segments]</span>
+		  	</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Station Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	  	<td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		  <td class="smalltext">
+				<input type="radio" name="status" value="Active" class="radio">Active
+				<input type="radio" name="status" value="Inactive" class="radio">Inactive
+			</td>
+	 	</tr>
+	</table>
+</fieldset>
+
+<script language="javascript">
+<!--
+	chg_radio('status','[in_status]');
+	chg_select('id_accounts_segments','[in_id_accounts_segments]');
+
+//-->
+</script>
+

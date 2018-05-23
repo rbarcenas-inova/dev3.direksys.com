@@ -1,0 +1,43 @@
+## Fields Error Messages
+invalid=Invalid
+required=Required
+repeated=Repeated
+notmatch=Not Match
+none=None
+invalidemail=&#9679; The Email addres is invalid<br>
+notdefined=Not Defined
+
+## Login Page
+nologin=Please Login
+
+### Search page // General Use
+btn_view=V
+btn_edit=E
+btn_del=D
+
+
+search_nomatches=No matching records
+record_updated=Record Updated
+record_added=Record Added
+
+#### Database Messages
+db_error=Database Error : &nbsp;
+
+#### Products Categories
+pagecategories=Category
+categories_added=Category Added :
+categories_updated=Category Updated :
+categories_deleted=Category Deleted :
+
+
+#### General Setup
+imgmansetup_updated=Setup Updated
+imgmansetup_error=Unable to update the setup file, please contact the system administrator
+
+
+### Schid
+schid_invalid_params=Invalid Parameters Request
+schid_notfind=unable to find record or no record specified:
+pageschid=Search
+
+

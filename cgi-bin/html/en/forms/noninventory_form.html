@@ -1,0 +1,71 @@
+	&nbsp;
+	<fieldset><legend>General Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Name : <span class="smallfieldterr">[er_name]</span></td>
+		    <td class="smalltext"><input type="text" name="name" value="[in_name]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Description : <span class="smallfieldterr">[er_description]</span></td>
+		  <td class="smalltext"><textarea name="description" cols="50" style="width:100%" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description]</textarea> </td>
+		 </tr>
+		<tr>
+		    <td width="30%">Any Vendor : <span class="smallfieldterr">[er_anyvendor]</span></td>
+		    <td class="smalltext">
+		    	[br_anyvendor@sl_noninventory]
+		    	</td>
+		</tr>
+		<tr>
+			<td width="30%">Units  : <span class="smallfieldterr">[er_status]</span></td>
+			<td class='smalltext'>
+		   		<select name='units' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		   			[bs_Units@sl_noninventory]
+				</select></td>				
+		 </tr>
+		</table>
+	</fieldset>
+ 	&nbsp;
+ 	<fieldset><legend>Accounting</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			    <td width="30%">
+			    	<input name="purchaseid_accounts" id="purchaseid_accounts" value="[in_purchaseid_accounts]" size="10" maxlenght="10" type="text" class="input" readonly>
+					<a href="admin?cmd=accountsTree&element_id=purchaseid_accounts&element_descrip=account_name" title="Chart of Accounts" class="fancy_modal_iframe">
+						<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+					</a>
+					<br><span id="account_name">[va_paccount_name]</span>
+
+			    </td>
+
+			    <td class="smalltext">
+			    	Sale Tax : <input type="text" name="tax" value="[in_tax]" size="8" onFocus='focusOn( this )' onBlur='focusOff( this )'> &nbsp; %
+	      		</td>
+			</tr>
+  	</table>
+	</fieldset>
+ 	&nbsp;
+
+	<fieldset><legend>Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			    <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+			    <td class="smalltext"><input type="radio" name="status" value="Active" class="radio">Active
+		      	<input type="radio" name="status" value="Inactive" class="radio">Inactive
+	      </td>
+			</tr>
+  	</table>
+	</fieldset>
+	
+<script language="JavaScript">
+<!--
+
+	chg_radio('status','[in_status]');
+	chg_radio('anyvendor','[in_anyvendor]');
+	chg_select('units','[in_units]');
+
+//-->
+</script>
+
+<input type="hidden" name="purchaseid_accounts" value="[in_purchaseid_accounts]">
+<input type="hidden" name="assetid_accounts" value="[in_assetid_accounts]">
+

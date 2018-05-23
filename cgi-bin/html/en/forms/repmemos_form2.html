@@ -1,0 +1,105 @@
+	&nbsp;
+	<fieldset><legend>Replacement Memo Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			
+		<tr>
+		  <td width="30%">ID Orders  : <span class="smallfieldterr">[er_id_orders]</span></td>
+		  <td class="smalltext"><input type="text" name="id_orders" value="[in_id_orders]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		
+		<tr>
+		  <td width="30%">ID Products  : <span class="smallfieldterr">[er_id_products]</span></td>
+		  <td class="smalltext">
+		  	<input type="text" name="id_products" value="[in_id_products]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	Search by <a href="#" id="products" onClick="add_product()">Products</a> 
+		  	or by <a href="#" id="parts" onClick="add_part()">Parts</a>
+		  </td>
+		  <!-- Add Products-->
+			<div id="popup_product" style="visibility: hidden; display: none; background-color: #ffffff;">
+			<div class="menu_bar_title" id="item_drag1">
+			<img id="popup_exit1" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+			&nbsp;&nbsp;&nbsp;Products
+			</div>
+			<div class="formtable">
+			<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=products_rm&id_products=[in_id_products]" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+			</IFRAME>	
+			</div></div>
+		  <!-- Add Parts-->
+			<div id="popup_part" style="visibility: hidden; display: none; background-color: #ffffff;">
+			<div class="menu_bar_title" id="item_drag2">
+			<img id="popup_exit2" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+			&nbsp;&nbsp;&nbsp;Parts
+			</div>
+			<div class="formtable">
+			<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=parts_rm&id_products=[in_id_products]" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+			</IFRAME>	
+			</div></div>			
+		</tr>
+		
+		<tr>
+		  <td width="30%">Reason  : <span class="smallfieldterr">[er_reson]</span></td>
+		  <td class="smalltext">
+		  	<select name="reason" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					  [fc_build_select_opr_reason]
+			</select> <span class="smallfieldterr">[er_reason]</span>
+		  	
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">Product Category : <span class="smallfieldterr">[er_prodcategory]</span></td>
+		  <td class="smalltext">
+		  <select name="prodcategory" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					  [fc_build_select_opr_productcategoryrep]
+			</select> <span class="smallfieldterr">[er_prodcategory]</span>
+			</td>		
+		</tr>
+		
+		<tr>
+	    <td valign="top" width="30%">Notes: <span class="smallfieldterr">[er_notes]</span></td>
+	    <td class="smalltext"><textarea name="notes" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_notes]</textarea> </td>
+		</tr>	
+		
+		<!--<tr>
+		  <td width="30%">Authorized By : <span class="smallfieldterr">[er_AuthBy]</span></td>
+		  <td class="smalltext"><input type="text" name="AuthBy" value="[in_AuthBy]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>-->
+		
+		
+	</table>
+	</fieldset>
+	&nbsp;
+	<input type="hidden" name="status" value="[in_status]">
+	<input type="hidden" name="authby" value="[in_authby]">
+	
+ <!-- <fieldset><legend>Replacement Memos Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		    <td class="smalltext">
+				<select name="status" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					  [fc_build_select_opr_statusrepmemos]
+			</select> <span class="smallfieldterr">[er_status]</span>
+			</td>
+		 </tr>
+  	</table>
+	</fieldset>-->
+
+
+<script language="JavaScript">
+	function add_product(){
+		popup_show('popup_product', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'products');
+	}
+	function add_part(){
+		popup_show('popup_part', 'item_drag2', 'popup_exit2', 'element-right', -1, -1,'parts');
+	}
+chg_select('reason','[in_reason]');	
+chg_select('prodcategory','[in_prodcategory]');
+chg_select('status','[in_status]');
+</script>

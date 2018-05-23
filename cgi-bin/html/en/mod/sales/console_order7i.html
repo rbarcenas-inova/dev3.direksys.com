@@ -1,0 +1,732 @@
+[ip_header_console]
+
+<script type="text/javascript">
+<!--
+	
+/*
+	onload = function(){
+		var showone = "[in_tab]";
+		if(showone == ""){
+			popup_show('popup_script', 'script_drag', 'script_exit', 'element-right', -1, -1,'wumsg');
+		}
+	}
+*/
+$(document).ready(function() {
+
+	//$(document).ajaxError(function(e, xhr, settings, exception) {
+	//		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	//}); 
+
+	$("#fancybox_email_and_cellphone").fancybox({
+			'margin'				:	'1',
+			'padding'				:	'1',
+			'autoScale'			: false,
+			'centerOnScroll': true,
+			'transitionIn'	: 'none',
+			'transitionOut'	: 'none',
+			'autoDimensions':	'true',
+			'overlayOpacity':	'0.3',
+			'onComplete'		: function() {
+					$("#fancybox-wrap").css({'margin-top':'10px', 'margin-bottom':'auto'}); 
+			}
+		});
+
+	var email = $( 'input:hidden[name=email]' ).val();
+	var cellphone = $( 'input:hidden[name=cellphone]' ).val();
+	var contact_mode = $( 'input:hidden[name=contact_mode]' ).val();
+	var email_and_cellphone_use = $( 'input:hidden[name=email_and_cellphone_use]' ).val();
+	//alert('Values: '+email+','+cellphone+','+isNaN([in_tab]));
+	if(isNaN([in_tab]) && (email=='' && cellphone=='' && contact_mode!='phone_call')&& email_and_cellphone_use==1){
+			$( "#fancybox_email_and_cellphone" ).trigger('click');	
+	}
+  
+	$('#btn_ppc_this_address').click(function(e){
+    
+		var sendTo = '[va_ajaxbuild]';
+		var this_zip  = $('#ppc_this_zip').val();
+		var this_city  = $('#ppc_this_city');
+		var this_state = $('#ppc_this_state');
+		var this_loading = $('#ppc_this_loading');
+
+		var this_city_before = this_city.val();
+		var this_state_before = this_state.val();
+
+
+		this_city.attr('disabled','disabled');
+		this_state.attr('disabled','disabled');
+		this_loading.html('<img src="/sitimages/processing.gif" width="30" height="30">');
+
+		$.get(sendTo,{'ajaxbuild' : 'getCityState' , 'zip' : this_zip }, function(response,status,xhr){
+
+			if (status == "error") {
+				var msg = "Lo siento,hubo un problema para procesar la informacion";
+				alert(msg);
+				this_city.val(this_city_before);
+				this_state.val(this_state_before);
+			}else{
+				//alert(response);
+				var this_result = response.split('~',2);
+
+				this_city.val(this_result[0]);
+				this_state.val(this_result[1]);
+				this_city.removeAttr('disabled');
+				this_state.removeAttr('disabled');
+				this_loading.html('');
+			}
+		});
+		e.preventDefault();
+	});
+    
+    
+	$('#btn_ppc_postal_address').click(function(e){
+    
+		var sendTo = '[va_ajaxbuild]';
+		var postal_zip  = $('#ppc_postal_zip').val();
+		var postal_city  = $('#ppc_postal_city');
+		var postal_state = $('#ppc_postal_state');
+		var postal_loading = $('#ppc_postal_loading');
+
+		var postal_city_before = postal_city.val();
+		var postal_state_before = postal_state.val();
+
+
+		postal_city.attr('disabled','disabled');
+		postal_state.attr('disabled','disabled');
+		postal_loading.html('<img src="/sitimages/processing.gif" width="30" height="30">');
+
+		$.get(sendTo,{'ajaxbuild' : 'getCityState' , 'zip' : postal_zip }, function(response,status,xhr){
+
+			if (status == "error") {
+				var msg = "Lo siento,hubo un problema para procesar la informacion";
+				alert(msg);
+				postal_city.val(postal_city_before);
+				postal_state.val(postal_state_before);
+			}else{
+				//alert(response);
+				var postal_result = response.split('~',2);
+
+				postal_city.val(postal_result[0]);
+				postal_state.val(postal_result[1]);
+				postal_city.removeAttr('disabled');
+				postal_state.removeAttr('disabled');
+				postal_loading.html('');
+
+			}
+		});
+		e.preventDefault();
+	});
+
+	$('#ppc_id_type').change(function(){
+
+		var val = $('#ppc_id_type').val().match(/(\d{1,3})/);
+		var valint = parseInt(val[0]);
+
+		// Validamos si el State debe requerirse
+		if((valint==2 || valint==7 || valint==8 || valint==9 || valint==101) && ($('#ppc_id_country').val()=='(840) UNITED STATES' || $('#ppc_id_country').val()=='')){
+			$('#ppc_id_state').removeAttr('disabled');
+			
+		}else{
+			$('#ppc_id_state').attr('disabled','disabled');
+		}
+
+		// Validamos si fechaVencimiento no debe requerirse
+		if(valint==1 || valint==6 || valint==100 || valint==102){
+			$('#ppc_id_goodthru').attr('disabled','disabled');
+		}else{
+			$('#ppc_id_goodthru').removeAttr('disabled');
+		}
+	});
+
+	$('#ppc_id_country').change(function(){
+
+		var val = $('#ppc_id_type').val().match(/(\d{1,3})/);
+		var valint = parseInt(val[0]);
+
+		// Validamos si el State debe requerirse
+		if((valint==2 || valint==7 || valint==8 || valint==9 || valint==101) && $('#ppc_id_country').val()=='(840) UNITED STATES'){
+			$('#ppc_id_state').removeAttr('disabled');
+
+		}else{
+			$('#ppc_id_state').attr('disabled','disabled');
+		}
+	});
+
+	var dates = $( "#birthday" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		maxDate: new Date(),
+		changeYear: true,
+		changeMonth: true,
+		numberOfMonths: 3,
+	});
+
+	var dates2 = $( "#ppc_id_goodthru" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		changeYear: true,
+		changeMonth: true,
+		numberOfMonths: 3,
+	});
+
+});
+
+
+function checkDir(){
+// Activa/Desactiva los inputs de Direccion Postal
+  
+	if ($('#ppc_same_dir').is(":checked")){
+		$('#ppc_postal_address input').attr('disabled','disabled');
+		$('#ppc_postal_address input:text').val('');
+	}else{
+		$('#ppc_postal_address input').removeAttr('disabled');
+	}
+}
+
+
+-->
+</script>
+
+[cs_PmtField1]
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td valign="top" align="left" bgcolor="#ffffff">
+			
+		<table width="100%" height=41px border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+				<td>&nbsp;</td>
+				<td class="cell_on" width="14%" align="center">Consola [va_salesorigins.channel]</td>
+		 </tr>
+		</table>
+		
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+				
+				
+		[fc_customer_header]
+			<br>
+			
+
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="7">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="postdated" value="[in_postdated]">
+	<input type="hidden" name="days" value="[in_days]">	
+	<input type="hidden" name="email" value="[in_email]" size="30">
+	<input type="hidden" name="cellphone" value="[in_cellphone]" size="30">
+	<input type="hidden" name="email_and_cellphone_use" value="[in_email_and_cellphone_use]" size="30">
+	<input type="hidden" name="contact_mode" value="[in_contact_mode]" size="30">
+	
+	
+<fieldset><legend>Creando Orden : Info de pago / Tarjeta de Prepago</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	      <td colspan="2">
+	      		      	  		
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+			
+			</td>
+	   </tr>			
+		<tr>
+		  <td width="30%">Nombre Cliente  : </td>
+		  <td class="smalltext">[in_firstname] [in_lastname1] [in_lastname2]</td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Facturación y Despacho  : </td>
+		  <td class="smalltext">[va_billingshipping]</td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Tipo Envio : </td>
+		  <td class="smalltext">[va_shippingtype] </td>
+		</tr>
+		<tr>
+		  <td colspan="2">[fc_products_inorder]</td>
+		</tr>	
+	</table>
+	&nbsp;
+	<input type='hidden' name='pay_type' value='[in_pay_type]'>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td colspan="2">Información de Pago : <span class="smallfieldterr">[er_pay_type]</td>
+		</tr>	
+		<tr>
+		  <td class="stdtxterr" colspan="2">[va_message]<td>
+		</tr>	
+		<tr>
+		  <td colspan="2" valign="top">
+		  <fieldset>
+		    <legend>Datos Generales</legend>
+				<table border='0' cellspacing='0' cellpadding='2' width='100%'>	
+				  <tr>
+				     <td class='smalltext' nowrap width="20%" >Nombre (Nombre/Apellido) :</td>
+				     <td class='smalltext' align="left">
+				     		<input type='text' name='ppc_customer_firstname' value='[in_ppc_customer_firstname]' size='15' onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class='smallfieldterr'>[er_ppc_customer_firstname]</span>
+				     		<input type='text' name='ppc_customer_lastname' value='[in_ppc_customer_lastname]' size='15' onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class='smallfieldterr'>[er_ppc_customer_lastname]</span>
+				     	</td>
+				     <td class='smalltext' nowrap width="20%" >Tipo de Identificaci&oacute;n <span class='smallfieldterr'>[er_ppc_id_type]</span></td>
+				     <td class='smalltext' align="left">
+							<select name="ppc_id_type" id="ppc_id_type" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+								<option value=''>----</option>
+								<option value='(1) Social Security Number'>(1) Social Security Number</option>
+								<option value='(2) Drivers license number'>(2) Drivers license number</option>
+								<option value='(3) Matricular Consular number'>(3) Matricular Consular number</option>
+								<option value='(4) Passport'>(4) Passport</option>
+								<option value='(5) Visa'>(5) Visa</option>
+								<option value='(6) Green Card'>(6) Green Card</option>
+								<option value='(7) State ID'>(7) State ID</option>
+								<option value='(9) Voters Registration Card'>(9) Voters Registration Card</option>
+								<option value='(8) Military Id / Government Id'>(8) Military Id / Government Id</option>
+								<option value='(102) Aeropost ID'>(102) Aeropost ID</option>
+								<option value='(101) MERCHANTS ID'>(101) MERCHANTS ID</option>
+								<option value='(100) Others'>(100) Others</option>
+							</select></td>				     
+				     
+				  </tr>
+				  <tr>
+				     <td class='smalltext' width="20%" >Teléfono Celular : <span class='smallfieldterr'>[er_ppc_cellphone]</span></td>
+				     <td class='smalltext' align="left"><input type='text' name='ppc_cellphone' value='[in_ppc_cellphone]' size='12' MAXLENGTH='10' onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">10 numeros sin parentesis o guiones</span></td>
+				     <td class='smalltext' nowrap width="20%" >N&uacute;mero de Identificaci&oacute;n <span class='smallfieldterr'>[er_ppc_id_number]</span></td>
+				     <td class='smalltext' align="left"><input type='text' name='ppc_id_number' value='[in_ppc_id_number]' size='20' MAXLENGTH='16' onFocus='focusOn( this )' onBlur='focusOff( this );Mod10(document.forms[0].pmtfield3.value);'></td>
+				  </tr>
+				  <tr>
+				     <td class='smalltext' width="20%" >Fecha Nacimiento : <span class='smallfieldterr'>[er_ppc_birthday]</span></td>
+				     <td class='smalltext' align="left">
+				     	<input type="text" id="birthday" name="ppc_birthday" value="[in_ppc_birthday]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				     </td>
+				     <td class='smalltext' nowrap width="20%" >Identificaci&oacute;n Pais <span class='smallfieldterr'>[er_ppc_id_country]</span></td>
+				     <td class='smalltext' align="left">
+						<select name="ppc_id_country" id="ppc_id_country" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							<option value=''>----</option>
+							<option value='(840) UNITED STATES'>(840) UNITED STATES</option>
+							<option value='(484) MEXICO'>(484) MEXICO</option>
+							<option value='(222) EL SALVADOR'>(222) EL SALVADOR</option>
+							<option value='(558) NICARAGUA'>(558) NICARAGUA</option>
+							<option value='(630) PUERTO RICO'>(630) PUERTO RICO</option>
+							<option value='(155) AFGHANISTAN'>(155) AFGHANISTAN</option>
+							<option value='(240) ALBANIA'>(240) ALBANIA</option>
+							<option value='(276) ALEMANIA'>(276) ALEMANIA</option>
+							<option value='(012) ALGERIA'>(012) ALGERIA</option>
+							<option value='(016) AMERICAN SAMOA'>(016) AMERICAN SAMOA</option>
+							<option value='(020) ANDORRA'>(020) ANDORRA</option>
+							<option value='(024) ANGOLA'>(024) ANGOLA</option>
+							<option value='(660) ANGUILLA'>(660) ANGUILLA</option>
+							<option value='(010) ANTARCTICA'>(010) ANTARCTICA</option>
+							<option value='(028) ANTIGUA Y BARBUDA'>(028) ANTIGUA Y BARBUDA</option>
+							<option value='(530) ANTILLAS HOLANDESAS'>(530) ANTILLAS HOLANDESAS</option>
+							<option value='(682) ARABIA SAUDITA'>(682) ARABIA SAUDITA</option>
+							<option value='(032) ARGENTINA'>(032) ARGENTINA</option>
+							<option value='(051) ARMENIA-PAIS'>(051) ARMENIA-PAIS</option>
+							<option value='(533) ARUBA'>(533) ARUBA</option>
+							<option value='(036) AUSTRALIA'>(036) AUSTRALIA</option>
+							<option value='(040) AUSTRIA'>(040) AUSTRIA</option>
+							<option value='(031) AZERBAIJAN'>(031) AZERBAIJAN</option>
+							<option value='(044) BAHAMAS'>(044) BAHAMAS</option>
+							<option value='(048) BAHRAIN'>(048) BAHRAIN</option>
+							<option value='(050) BANGLADESH'>(050) BANGLADESH</option>
+							<option value='(052) BARBADOS'>(052) BARBADOS</option>
+							<option value='(112) BELARUS'>(112) BELARUS</option>
+							<option value='(056) BELGICA'>(056) BELGICA</option>
+							<option value='(084) BELICE'>(084) BELICE</option>
+							<option value='(204) BENIN'>(204) BENIN</option>
+							<option value='(060) BERMUDA'>(060) BERMUDA</option>
+							<option value='(064) BHUTAN'>(064) BHUTAN</option>
+							<option value='(068) BOLIVIA'>(068) BOLIVIA</option>
+							<option value='(072) BOTSWANA'>(072) BOTSWANA</option>
+							<option value='(074) BOUVET ISLAND'>(074) BOUVET ISLAND</option>
+							<option value='(070) BOZNIA-HERZEGOVINA'>(070) BOZNIA-HERZEGOVINA</option>
+							<option value='(076) BRASIL'>(076) BRASIL</option>
+							<option value='(086) BRITISH INDIAN OCEAN TERRITORY'>(086) BRITISH INDIAN OCEAN TERRITORY</option>
+							<option value='(096) BRUNEI  DARUSSALAM'>(096) BRUNEI  DARUSSALAM</option>
+							<option value='(100) BULGARIA'>(100) BULGARIA</option>
+							<option value='(854) BURKINA FASO'>(854) BURKINA FASO</option>
+							<option value='(108) BURUNDI'>(108) BURUNDI</option>
+							<option value='(132) CABO VERDE ISLAS'>(132) CABO VERDE ISLAS</option>
+							<option value='(136) CAIMAN ISLAS'>(136) CAIMAN ISLAS</option>
+							<option value='(120) CAMERUN'>(120) CAMERUN</option>
+							<option value='(124) CANADA'>(124) CANADA</option>
+							<option value='(140) CENTRAL AFRICAN REPUBLIC'>(140) CENTRAL AFRICAN REPUBLIC</option>
+							<option value='(148) CHAD'>(148) CHAD</option>
+							<option value='(152) CHILE'>(152) CHILE</option>
+							<option value='(156) CHINA'>(156) CHINA</option>
+							<option value='(196) CHIPRE'>(196) CHIPRE</option>
+							<option value='(162) CHRISTMAS ISLAND'>(162) CHRISTMAS ISLAND</option>
+							<option value='(166) COCOS (KEELING) ISLAS'>(166) COCOS (KEELING) ISLAS</option>
+							<option value='(170) COLOMBIA'>(170) COLOMBIA</option>
+							<option value='(174) COMOROS'>(174) COMOROS</option>
+							<option value='(178) CONGO'>(178) CONGO</option>
+							<option value='(180) CONGO Democratic Republic of (was Zaire)'>(180) CONGO Democratic Republic of (was Zaire)</option>
+							<option value='(408) COREA DEL NORTE'>(408) COREA DEL NORTE</option>
+							<option value='(410) COREA DEL SUR'>(410) COREA DEL SUR</option>
+							<option value='(188) COSTA RICA'>(188) COSTA RICA</option>
+							<option value='(191) CROACIA'>(191) CROACIA</option>
+							<option value='(192) CUBA'>(192) CUBA</option>
+							<option value='(208) DINAMARCA'>(208) DINAMARCA</option>
+							<option value='(262) DJIBOUTI'>(262) DJIBOUTI</option>
+							<option value='(212) DOMINICA'>(212) DOMINICA</option>
+							<option value='(626) EAST TIMOR'>(626) EAST TIMOR</option>
+							<option value='(218) ECUADOR'>(218) ECUADOR</option>
+							<option value='(818) EGIPTO'>(818) EGIPTO</option>
+							<option value='(222) EL SALVADOR'>(222) EL SALVADOR</option>
+							<option value='(784) EMIRATOS ARABES UNIDOS'>(784) EMIRATOS ARABES UNIDOS</option>
+							<option value='(232) ERITREA'>(232) ERITREA</option>
+							<option value='(703) ESLOVAQUIA'>(703) ESLOVAQUIA</option>
+							<option value='(705) ESLOVENIA'>(705) ESLOVENIA</option>
+							<option value='(724) ESPANA'>(724) ESPANA</option>
+							<option value='(233) ESTONIA'>(233) ESTONIA</option>
+							<option value='(231) ETIOPIA'>(231) ETIOPIA</option>
+							<option value='(238) FALKLAND ISLAS'>(238) FALKLAND ISLAS</option>
+							<option value='(234) FEROE ISLAS'>(234) FEROE ISLAS</option>
+							<option value='(242) FIJI'>(242) FIJI</option>
+							<option value='(608) FILIPINAS'>(608) FILIPINAS</option>
+							<option value='(246) FINLANDIA'>(246) FINLANDIA</option>
+							<option value='(249) FRANCE METROPOLITAN'>(249) FRANCE METROPOLITAN</option>
+							<option value='(250) FRANCIA'>(250) FRANCIA</option>
+							<option value='(260) FRENCH SOUTHERN TERRITORIES'>(260) FRENCH SOUTHERN TERRITORIES</option>
+							<option value='(266) GABON'>(266) GABON</option>
+							<option value='(270) GAMBIA'>(270) GAMBIA</option>
+							<option value='(268) GEORGIA'>(268) GEORGIA</option>
+							<option value='(288) GHANA'>(288) GHANA</option>
+							<option value='(292) GIBRALTAR'>(292) GIBRALTAR</option>
+							<option value='(308) GRANADA'>(308) GRANADA</option>
+							<option value='(300) GRECIA'>(300) GRECIA</option>
+							<option value='(304) GROENLANDIA'>(304) GROENLANDIA</option>
+							<option value='(312) GUADALUPE'>(312) GUADALUPE</option>
+							<option value='(316) GUAM'>(316) GUAM</option>
+							<option value='(320) GUATEMALA'>(320) GUATEMALA</option>
+							<option value='(226) GUINEA ECUATORIAL'>(226) GUINEA ECUATORIAL</option>
+							<option value='(324) GUINEA REPUBLICA'>(324) GUINEA REPUBLICA</option>
+							<option value='(624) GUINEA-BISSAU'>(624) GUINEA-BISSAU</option>
+							<option value='(328) GUYANA'>(328) GUYANA</option>
+							<option value='(254) GUYANA FRANCESA'>(254) GUYANA FRANCESA</option>
+							<option value='(332) HAITI'>(332) HAITI</option>
+							<option value='(398) HAZAJSTAN'>(398) HAZAJSTAN</option>
+							<option value='(334) HEARD AND MACDONALD ISLAS'>(334) HEARD AND MACDONALD ISLAS</option>
+							<option value='(528) HOLANDA'>(528) HOLANDA</option>
+							<option value='(340) HONDURAS'>(340) HONDURAS</option>
+							<option value='(344) HONG KONG'>(344) HONG KONG</option>
+							<option value='(348) HUNGRIA'>(348) HUNGRIA</option>
+							<option value='(356) INDIA'>(356) INDIA</option>
+							<option value='(360) INDONESIA'>(360) INDONESIA</option>
+							<option value='(364) IRAN'>(364) IRAN</option>
+							<option value='(368) IRAQ'>(368) IRAQ</option>
+							<option value='(372) IRLANDA'>(372) IRLANDA</option>
+							<option value='(480) ISLA MAURICIO'>(480) ISLA MAURICIO</option>
+							<option value='(352) ISLANDIA'>(352) ISLANDIA</option>
+							<option value='(184) ISLAS COOK'>(184) ISLAS COOK</option>
+							<option value='(090) ISLAS SALOMON'>(090) ISLAS SALOMON</option>
+							<option value='(376) ISRAEL'>(376) ISRAEL</option>
+							<option value='(380) ITALIA'>(380) ITALIA</option>
+							<option value='(384) IVORY COAST REP.'>(384) IVORY COAST REP.</option>
+							<option value='(388) JAMAICA'>(388) JAMAICA</option>
+							<option value='(392) JAPON'>(392) JAPON</option>
+							<option value='(400) JORDANIA'>(400) JORDANIA</option>
+							<option value='(116) KAMPUCHEA, DEMOCRATIC'>(116) KAMPUCHEA, DEMOCRATIC</option>
+							<option value='(404) KENIA'>(404) KENIA</option>
+							<option value='(296) KIRIBATI'>(296) KIRIBATI</option>
+							<option value='(414) KUWAIT'>(414) KUWAIT</option>
+							<option value='(417) KYRGYZSTAN'>(417) KYRGYZSTAN</option>
+							<option value='(418) LAOS'>(418) LAOS</option>
+							<option value='(426) LESOTTO'>(426) LESOTTO</option>
+							<option value='(428) LETONIA'>(428) LETONIA</option>
+							<option value='(422) LIBANO.'>(422) LIBANO.</option>
+							<option value='(430) LIBERIA'>(430) LIBERIA</option>
+							<option value='(434) LIBIA'>(434) LIBIA</option>
+							<option value='(438) LIECHTENSTEIN'>(438) LIECHTENSTEIN</option>
+							<option value='(440) LITUANIA'>(440) LITUANIA</option>
+							<option value='(442) LUXEMBURGO'>(442) LUXEMBURGO</option>
+							<option value='(446) MACAO'>(446) MACAO</option>
+							<option value='(807) MACEDONIA'>(807) MACEDONIA</option>
+							<option value='(450) MADAGASCAR'>(450) MADAGASCAR</option>
+							<option value='(454) MALAWI'>(454) MALAWI</option>
+							<option value='(458) MALAYSIA'>(458) MALAYSIA</option>
+							<option value='(462) MALDIVAS'>(462) MALDIVAS</option>
+							<option value='(466) MALI'>(466) MALI</option>
+							<option value='(470) MALTA'>(470) MALTA</option>
+							<option value='(504) MARRUECOS'>(504) MARRUECOS</option>
+							<option value='(584) MARSHALL ISLANDS'>(584) MARSHALL ISLANDS</option>
+							<option value='(474) MARTINICA'>(474) MARTINICA</option>
+							<option value='(478) MAURITANIA'>(478) MAURITANIA</option>
+							<option value='(175) MAYOTTE'>(175) MAYOTTE</option>
+							<option value='(484) MEXICO'>(484) MEXICO</option>
+							<option value='(583) MICRONESIA FEDERATED STATES OF'>(583) MICRONESIA FEDERATED STATES OF</option>
+							<option value='(581) MIDWAY ISLAND'>(581) MIDWAY ISLAND</option>
+							<option value='(498) MOLDOVA'>(498) MOLDOVA</option>
+							<option value='(492) MONACO'>(492) MONACO</option>
+							<option value='(496) MONGOLIA'>(496) MONGOLIA</option>
+							<option value='(500) MONTSERRAT'>(500) MONTSERRAT</option>
+							<option value='(508) MOZAMBIQUE'>(508) MOZAMBIQUE</option>
+							<option value='(104) MYANMAR'>(104) MYANMAR</option>
+							<option value='(516) NAMIBIA'>(516) NAMIBIA</option>
+							<option value='(520) NAURU'>(520) NAURU</option>
+							<option value='(524) NEPAL'>(524) NEPAL</option>
+							<option value='(558) NICARAGUA'>(558) NICARAGUA</option>
+							<option value='(562) NIGER'>(562) NIGER</option>
+							<option value='(566) NIGERIA'>(566) NIGERIA</option>
+							<option value='(570) NIUE'>(570) NIUE</option>
+							<option value='(574) NORFOLK ISLAND'>(574) NORFOLK ISLAND</option>
+							<option value='(580) NORTHERN MARIANA ISLANDS'>(580) NORTHERN MARIANA ISLANDS</option>
+							<option value='(578) NORUEGA'>(578) NORUEGA</option>
+							<option value='(540) NUEVA CALEDONIA'>(540) NUEVA CALEDONIA</option>
+							<option value='(554) NUEVA ZELANDIA'>(554) NUEVA ZELANDIA</option>
+							<option value='(512) OMAN'>(512) OMAN</option>
+							<option value='(585) PALAU'>(585) PALAU</option>
+							<option value='(275) PALESTINIAN TERRITORY Occupied'>(275) PALESTINIAN TERRITORY Occupied</option>
+							<option value='(591) PANAMA'>(591) PANAMA</option>
+							<option value='(598) PAPUA NUEVA GUINEA'>(598) PAPUA NUEVA GUINEA</option>
+							<option value='(586) PAQUISTAN'>(586) PAQUISTAN</option>
+							<option value='(600) PARAGUAY'>(600) PARAGUAY</option>
+							<option value='(604) PERU'>(604) PERU</option>
+							<option value='(612) PITCAIRN'>(612) PITCAIRN</option>
+							<option value='(258) POLINESIA FRANCESA'>(258) POLINESIA FRANCESA</option>
+							<option value='(616) POLONIA'>(616) POLONIA</option>
+							<option value='(620) PORTUGAL'>(620) PORTUGAL</option>
+							<option value='(630) PUERTO RICO'>(630) PUERTO RICO</option>
+							<option value='(634) QATAR'>(634) QATAR</option>
+							<option value='(826) REINO UNIDO'>(826) REINO UNIDO</option>
+							<option value='(203) REPUBLICA CHECA'>(203) REPUBLICA CHECA</option>
+							<option value='(214) REPUBLICA DOMINICANA'>(214) REPUBLICA DOMINICANA</option>
+							<option value='(638) REUNION'>(638) REUNION</option>
+							<option value='(642) RUMANIA'>(642) RUMANIA</option>
+							<option value='(643) RUSIA'>(643) RUSIA</option>
+							<option value='(646) RWANDA'>(646) RWANDA</option>
+							<option value='(239) S. GEORGIA THE S. SANDWICH ISLANDS'>(239) S. GEORGIA THE S. SANDWICH ISLANDS</option>
+							<option value='(882) SAMOA'>(882) SAMOA</option>
+							<option value='(674) SAN MARINO'>(674) SAN MARINO</option>
+							<option value='(666) SAN PEDRO Y MIGUELON'>(666) SAN PEDRO Y MIGUELON</option>
+							<option value='(670) SAN VICENTE Y GRANADINAS'>(670) SAN VICENTE Y GRANADINAS</option>
+							<option value='(662) SANTA LUCIA'>(662) SANTA LUCIA</option>
+							<option value='(678) SANTO TOME Y PRINCIPE'>(678) SANTO TOME Y PRINCIPE</option>
+							<option value='(686) SENEGAL'>(686) SENEGAL</option>
+							<option value='(690) SEYCHELLES REP. POPULAR'>(690) SEYCHELLES REP. POPULAR</option>
+							<option value='(694) SIERRA LEONA'>(694) SIERRA LEONA</option>
+							<option value='(702) SINGAPUR'>(702) SINGAPUR</option>
+							<option value='(760) SIRIA'>(760) SIRIA</option>
+							<option value='(706) SOMALIA'>(706) SOMALIA</option>
+							<option value='(710) SOUTH AFRICA'>(710) SOUTH AFRICA</option>
+							<option value='(144) SRI LANKA'>(144) SRI LANKA</option>
+							<option value='(654) ST. HELENA'>(654) ST. HELENA</option>
+							<option value='(659) ST. KITTS-NEVIS-ANGUILLA'>(659) ST. KITTS-NEVIS-ANGUILLA</option>
+							<option value='(748) SUAZILANDIA'>(748) SUAZILANDIA</option>
+							<option value='(736) SUDAN'>(736) SUDAN</option>
+							<option value='(752) SUECIA'>(752) SUECIA</option>
+							<option value='(756) SUIZA'>(756) SUIZA</option>
+							<option value='(740) SURINAM'>(740) SURINAM</option>
+							<option value='(744) SVALBARB ANH JAN MAYEN ISLANDS'>(744) SVALBARB ANH JAN MAYEN ISLANDS</option>
+							<option value='(764) TAILANDIA'>(764) TAILANDIA</option>
+							<option value='(158) TAIWAN'>(158) TAIWAN</option>
+							<option value='(762) TAJIKSTAN'>(762) TAJIKSTAN</option>
+							<option value='(834) TANZANIA'>(834) TANZANIA</option>
+							<option value='(768) TOGO'>(768) TOGO</option>
+							<option value='(772) TOKELAU'>(772) TOKELAU</option>
+							<option value='(776) TONGA'>(776) TONGA</option>
+							<option value='(780) TRINIDAD Y TOBAGO'>(780) TRINIDAD Y TOBAGO</option>
+							<option value='(788) TUNEZ'>(788) TUNEZ</option>
+							<option value='(796) TURCAS Y CAICOS'>(796) TURCAS Y CAICOS</option>
+							<option value='(795) TURKMENISTAN'>(795) TURKMENISTAN</option>
+							<option value='(792) TURQUIA'>(792) TURQUIA</option>
+							<option value='(798) TUVALU'>(798) TUVALU</option>
+							<option value='(804) UCRANIA'>(804) UCRANIA</option>
+							<option value='(800) UGANDA'>(800) UGANDA</option>
+							<option value='(840) UNITED STATES'>(840) UNITED STATES</option>
+							<option value='(858) URUGUAY'>(858) URUGUAY</option>
+							<option value='(860) UZBEKISTAN'>(860) UZBEKISTAN</option>
+							<option value='(548) VANUATO'>(548) VANUATO</option>
+							<option value='(336) VATICAN CITY STATE'>(336) VATICAN CITY STATE</option>
+							<option value='(862) VENEZUELA'>(862) VENEZUELA</option>
+							<option value='(704) VIETNAM'>(704) VIETNAM</option>
+							<option value='(092) VIRGENES BRITANICAS ISLAS'>(092) VIRGENES BRITANICAS ISLAS</option>
+							<option value='(850) VIRGENES NORTEAMERICANAS'>(850) VIRGENES NORTEAMERICANAS</option>
+							<option value='(876) WALLIS Y FUTUNA'>(876) WALLIS Y FUTUNA</option>
+						</select>
+				     	</td>
+				  </tr>
+				<tr>
+				     <td class='smalltext' width="20%" ></td>
+				     <td class='smalltext' align="left"></td>
+				     <td class='smalltext' nowrap width="20%" >Identificaci&oacute;n Estado<span class='smallfieldterr'>[er_ppc_id_state]</span></td>
+				     <td class='smalltext' align="left">
+						<select name="ppc_id_state" id="ppc_id_state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							<option value=''>----</option>
+							<option value='(1) AL-Alabama'>(1) AL-Alabama
+							<option value='(2) AK-Alaska'>(2) AK-Alaska
+							<option value='(3) AZ-Arizona'>(3) AZ-Arizona
+							<option value='(4) AR-Arkansas'>(4) AR-Arkansas
+							<option value='(5) CA-California'>(5) CA-California
+							<option value='(6) CO-Colorado'>(6) CO-Colorado
+							<option value='(7) CT-Connecticut'>(7) CT-Connecticut
+							<option value='(8) DE-Delaware'>(8) DE-Delaware
+							<option value='(9) DC-District of Columbia'>(9) DC-District of Columbia
+							<option value='(10) FL-Florida'>(10) FL-Florida
+							<option value='(11) GA-Georgia'>(11) GA-Georgia
+							<option value='(12) HI-Hawaii'>(12) HI-Hawaii
+							<option value='(13) ID-Idaho'>(13) ID-Idaho
+							<option value='(14) IL-Illinois'>(14) IL-Illinois
+							<option value='(15) IN-Indiana'>(15) IN-Indiana
+							<option value='(16) IA-Iowa'>(16) IA-Iowa
+							<option value='(17) KS-Kansas'>17) KS-Kansas
+							<option value='(18) KY-Kentucky'>(18) KY-Kentucky
+							<option value='(19) LA-Louisiana'>(19) LA-Louisiana
+							<option value='(20) ME-Maine'>(20) ME-Maine
+							<option value='(21) MD-Maryland'>(21) MD-Maryland
+							<option value='(22) MA-Massachusetts'>(22) MA-Massachusetts
+							<option value='(23) MI-Michigan'>(23) MI-Michigan
+							<option value='(24) MN-Minnesota'>(24) MN-Minnesota
+							<option value='(25) MS-Mississippi'>(25) MS-Mississippi
+							<option value='(26) MO-Missouri'>(26) MO-Missouri
+							<option value='(27) MT-Montana'>(27) MT-Montana
+							<option value='(28) NE-Nebraska'>(28) NE-Nebraska
+							<option value='(29) NV-Nevada'>(29) NV-Nevada
+							<option value='(30) NH-New Hampshire'>(30) NH-New Hampshire
+							<option value='(31) NJ-New Jersey'>(31) NJ-New Jersey
+							<option value='(32) NM-New Mexico'>(32) NM-New Mexico
+							<option value='(33) NY-New York'>(33) NY-New York
+							<option value='(34) NC-North Carolina'>(34) NC-North Carolina
+							<option value='(35) ND-North Dakota'>(35) ND-North Dakota
+							<option value='(36) OH-Ohio'>(36) OH-Ohio
+							<option value='(37) OK-Oklahoma'>(37) OK-Oklahoma
+							<option value='(38) OR-Oregon'>(38) OR-Oregon
+							<option value='(39) PA-Pennsylvania'>(39) PA-Pennsylvania
+							<option value='(40) RI-Rhode Island'>(40) RI-Rhode Island
+							<option value='(41) SC-South Carolina'>(41) SC-South Carolina
+							<option value='(42) SD-South Dakota'>(42) SD-South Dakota
+							<option value='(43) TN-Tennessee'>(43) TN-Tennessee
+							<option value='(44) TX-Texas'>(44) TX-Texas
+							<option value='(45) UT-Utah'>(45) UT-Utah
+							<option value='(46) VT-Vermont'>(46) VT-Vermont
+							<option value='(47) VA-Virginia'>(47) VA-Virginia
+							<option value='(48) WA-Washington'>(48) WA-Washington
+							<option value='(49) WV-West Virginia'>(49) WV-West Virginia
+							<option value='(50) WI-Wisconsin'>(50) WI-Wisconsin
+							<option value='(51) WY-Wyoming'>(51) WY-Wyoming
+					</td>
+				  </tr>
+				  <tr>
+				     <td class='smalltext' width="20%" ></td>
+				     <td class='smalltext' align="left"></td>
+				     <td class='smalltext' nowrap width="20%" >Vencimiento de Identificaci&oacute;n <span class='smallfieldterr'>[er_ppc_id_goodthru]</span></td>
+				     <td class='smalltext' align="left">
+				     	<input type="text" id="ppc_id_goodthru" name="ppc_id_goodthru" value="[in_ppc_id_goodthru]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				     </td>
+				  </tr>
+
+
+				</table>
+				</fieldset>
+		  	</td>
+		</tr>
+
+		
+		<tr>
+		  
+		  <td valign="top">
+		  <fieldset>
+		    <legend>Direcci&oacute;n F&iacute;sica <span class="help_on">(Como aparece en su ID)</span></legend>
+				<table border='0' cellspacing='0' cellpadding='2' width='100%'  id="ppc_physical_address">	
+				  <tr>		  
+		        <td valign="top" width="30%">Dirección  :<a name='address' id='address'></a> <a href='#address' id='ajax_btn' onClick="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'address');loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=check_address&address1='+self.document.sitform.ppc_this_address1.value+'&address2='+self.document.sitform.ppc_this_address2.value+'&address3='+self.document.sitform.ppc_this_address3.value+'&city='+self.document.sitform.ppc_this_city.value+'&zip='+self.document.sitform.ppc_this_zip.value);">Revisar</a><br>
+		  	      <span class="smallfieldterr">(Incluye # Apt. , Trailer, Ste, etc)</span>
+		  	    </td>
+		        <td class="smalltext">
+					    <input type="text" name="ppc_this_address1" value="[in_ppc_this_address1]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address1]</span><br>
+		   		    <input type="text" name="ppc_this_address2" value="[in_ppc_this_address2]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address2]</span><br>
+		   		    <input type="text" name="ppc_this_address3" value="[in_ppc_this_address3]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address3]</span>
+		   	    </td>
+		      </tr>
+		      <tr  height="35">
+		 	      <td width="30%">Ciudad (una de las siguientes) : <span class="smallfieldterr">[er_ppc_this_city]</span></td>
+		 	      <td class="smalltext" id="ajax_ppc_this_city">
+		 	        <input type="text" name="ppc_this_city" id="ppc_this_city" value="[in_ppc_this_city]" size="30">
+		 	      </td>
+		      </tr>
+		      <tr height="35">
+		 	      <td width="30%" valign="bottom">Estado / Zip Code: </td>
+		        <td class="smalltext" valign="bottom">
+		          <input type="text" name="ppc_this_state" id="ppc_this_state" value="[in_ppc_this_state]" size="20"><span class="smallfieldterr">[er_ppc_this_state]</span>
+					    <input type="text" name="ppc_this_zip" id="ppc_this_zip" value="[in_ppc_this_zip]" size="8" onocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_ppc_this_zip]</span>
+					    <input type="button" value="Revisar" class="button" name="check_ppc_this_address" id="btn_ppc_this_address">
+					    <span id="ppc_this_loading" style="display:inline;vertical-align:text-bottom;"></span>
+				    </td>
+		      </tr>
+				</table>
+			</fieldset>
+		  </td>
+		  
+		  <td valign="top">
+		  <fieldset>
+		    <legend>Direcci&oacute;n Postal &nbsp;&nbsp;
+		     <input type='checkbox' class='checkbox' name='ppc_same_dir' id="ppc_same_dir" value='1' onclick="checkDir();"> <span class="help_on">Misma direcci&oacute;n que la f&iacute;sica</span>
+		    </legend>
+				<table border='0' cellspacing='0' cellpadding='2' width='100%' id="ppc_postal_address">	
+				  <tr>		  
+		        <td valign="top" width="30%">Dirección  :<a name='address2' id='address2'></a> <a href='#address2' id='ajax_btn' onClick="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'address2');loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=check_address&address1='+self.document.sitform.ppc_postal_address1.value+'&address2='+self.document.sitform.ppc_postal_address2.value+'&address3='+self.document.sitform.ppc_postal_address3.value+'&city='+self.document.sitform.ppc_postal_city.value+'&zip='+self.document.sitform.ppc_postal_zip.value);">Revisar</a><br>
+		  	      <span class="smallfieldterr">(Incluye # Apt. , Trailer, Ste, etc)</span>
+		  	    </td>
+		        <td class="smalltext">
+					    <input type="text" name="ppc_postal_address1" value="[in_ppc_postal_address1]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_ppc_postal_address1]</span><br>
+		   		    <input type="text" name="ppc_postal_address2" value="[in_ppc_postal_address2]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_ppc_postal_address2]</span><br>
+		   		    <input type="text" name="ppc_postal_address3" value="[in_ppc_postal_address3]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_ppc_postal_address3]</span>
+		   	    </td>
+		      </tr>
+		      <tr height="30">
+		 	      <td width="30%">Ciudad (una de las siguientes) : <span class="smallfieldterr">[er_ppc_postal_city]</span></td>
+		 	      <td class="smalltext" id="ajax_ppc_postal_city">
+		 	        <input type="text" name="ppc_postal_city" id="ppc_postal_city" value="[in_ppc_postal_city]" size="30">
+		 	      </td>
+		      </tr>
+		      <tr height="30">
+		 	      <td width="30%">Estado / Zip Code: </td>
+		        <td class="smalltext">
+		          <input type="text" name="ppc_postal_state" id="ppc_postal_state"  value="[in_ppc_postal_state]" size="20"><span class="smallfieldterr">[er_ppc_postal_state]</span>
+					    <input type="text" name="ppc_postal_zip" id="ppc_postal_zip" value="[in_ppc_postal_zip]" size="8" onocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_zip]</span>
+					    <input type="button" value="Revisar" class="button" name="check_ppc_postal_address" id="btn_ppc_postal_address" >
+					    <span id="ppc_postal_loading" style="display:inline;vertical-align:text-bottom;"></span>
+				    </td>
+		      </tr>
+				</table>
+			</fieldset>
+		  </td>
+		  
+		</tr>
+		<tr>
+		  <td colspan="2" align="center"><input type="submit"  value="Continuar (Confirmar Orden)>>" class="button">
+		  <!--<input type="button" value="Revisar" class="button" name="check_address" id="check_address">-->
+					
+					<!-- Fancybox -->
+					<a id="fancybox_email_and_cellphone" href="#modal_email_and_cellphone"></a>
+					<div style="display: none;">
+						<div id="modal_email_and_cellphone" style="width:500px;overflow:auto;text-align:center;">
+							<iframe src="/cgi-bin/common/apps/ajaxbuild?ajaxbuild=email_and_cellphone&email=[in_email]&cellphone=[in_cellphone]" width="490" height=350>
+							  <p>Your browser does not support iframes.</p>
+							</iframe>
+						</div>
+					</div>
+					<!-- Fancybox -->
+		  	[va_noreties]</td>
+		</tr>		
+	</table>
+</fieldset>
+
+<script language="javascript">
+<!--
+
+  chg_chkbox('ppc_same_dir','[in_ppc_same_dir]');
+  chg_select('ppc_id_type','[in_ppc_id_type]');
+  chg_select('ppc_id_country','[in_ppc_id_country]');
+  chg_select('ppc_id_state','[in_ppc_id_state]');
+-->
+</script>
+    </td>
+    </tr>
+</table>	
+			
+[ip_footer_console]
+
+

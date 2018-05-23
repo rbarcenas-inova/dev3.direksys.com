@@ -1,0 +1,112 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+
+
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=retpackinglistbyprod")'>By product</td>
+	    <td class="cell_on" align="center" >By orders</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+
+	<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Packing List for Returns</td>
+		 </tr>
+		<tr>
+		   <td colspan="2"><span class="help_on">Click on the line for more information</span></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Packing List : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class='menu_bar_title' onClick="chk_all()">&nbsp;</td>
+			<td class='menu_bar_title'>Return ID</td>
+		    <td class='menu_bar_title'>Order ID</td>
+			<td class='menu_bar_title'>Return Amount</td>
+			<td class='menu_bar_title'>Return Action</td>
+			<td class='menu_bar_title'>Return Status</td>
+			<td class='menu_bar_title'>Products Status</td>
+			<td class='menu_bar_title'>Payments Status</td>
+			<td class='menu_bar_title'>Order Status</td>
+		 </tr>
+		[va_searchresults]
+  	</table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">Packing List : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>
+	&nbsp;
+  	<table align="center" border="0" cellspacing="0" cellpadding="4" width="70%" class="formtable">
+  		<tr>
+   			<td align="center">
+   				<select name="id_warehouses" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					[va_selectwh]
+				</select>
+			</td>
+   		</tr>
+		<tr>
+			<td align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="prnwin('/cgi-bin/mod/wms/admin?cmd=retpackinglist&tobatch=selected&ordersselected='+document.sitform.ordersselected.value+'&id_warehouses='+document.sitform.id_warehouses.value)">Add Selected Orders<br>To Driver's Batch
+			</td>
+		</tr>
+	</table>
+	&nbsp;
+	<input type="hidden" name="ordersselected" id="ordersselected" value="">
+	</form>
+
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script>
+function chk_ord(order){
+	if(document.getElementById("chkor_"+order).checked == true){
+		document.getElementById("ordersselected").value += order+",";
+	}else{
+		var tmp_ord = document.getElementById("ordersselected").value;
+		var old_order = order+",";
+		document.getElementById("ordersselected").value = tmp_ord.replace(old_order,"");
+	}
+}
+</script>
+
+[ip_footer]

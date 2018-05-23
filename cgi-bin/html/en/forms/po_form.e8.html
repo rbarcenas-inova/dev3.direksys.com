@@ -1,0 +1,127 @@
+	&nbsp;
+	<fieldset><legend>Purchase Order Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+ 		<tr>
+			<td width="30%" valign="top">Vendor ID	 : <span class="smallfieldterr">[er_id_vendors]</span></td>
+			  <td class="smalltext">
+			  	<!--<input type="text" name="id_vendors" value="[in_id_vendors]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			    <a href="javascript:search_id('id_vendors','db=sl_vendors&cmd=vendors')">
+					<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a> <span class="help_on">[va_vendor_name]</span>-->
+					<input type="text" name="id_vendors" id='id_vendors' value="[in_id_vendors]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<a href="/cgi-bin/common/apps/schid?cmd=vendors&db=sl_vendors&fname=id_vendors&ajaxtype=1" title="Search for Vendors" class="fancy_modal_iframe">
+						<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+					</a>
+			   </td>
+			</tr>				
+  			<tr>
+			    <td width="30%">Vendor Ref Number : <span class="smallfieldterr">[er_refnumber]</span></td>
+			    <td class="smalltext"><input type="text" name="refnumber" value="[in_refnumber]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		    </tr>		
+			<tr>
+		  	<td width="30%">PO Date : <span class="smallfieldterr">[er_podate]</span></td>
+				<td class="smalltext">
+					<input type="text" id="podate" name="podate" value="[in_podate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<a href="#"><img src="[va_imgurl]/[ur_pref_style]/calendar.gif" id="trigger" border="0"></a>
+				</td>
+			</tr>
+			<tr>
+		  	<td width="30%">PO Cancel Date : <span class="smallfieldterr">[er_canceldate]</span></td>
+				<td class="smalltext">
+					<input type="text" id="canceldate" name="canceldate" value="[in_canceldate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<a href="#"><img src="[va_imgurl]/[ur_pref_style]/calendar.gif" id="trigger2" border="0"></a>
+				</td>
+			</tr>
+			<tr>
+		  	<td valign="top" width="30%">PO Terms : <span class="smallfieldterr">[er_poterms]</span></td>
+		   	<td class="smalltext">
+		   		<select name="poterms" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+          	<option value="">---</option>
+						[fc_build_select_paymentterms]
+					</select>
+				</td>
+		 	</tr>
+			<tr>
+				<td valign="top" width="30%">PO Terms Description : <span class="smallfieldterr">[er_poterms_desc]</span></td>
+				<td class="smalltext"><textarea name="poterms_desc" cols="50" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_poterms_desc]</textarea> </td>
+			</tr>		 	
+  		<tr>
+		    <td width="30%">Ship Via : <span class="smallfieldterr">[er_shipvia]</span></td>
+		    <td class="smalltext">
+		    	<select name="shipvia" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+          	<option value="">---</option>
+						[fc_build_select_poshpvia]
+					</select>
+					<input type="text" name="other_desc" value="[in_other_desc]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				</td>
+		 	</tr> 		 	
+  		<tr>
+		    <td width="30%">Ship To : <span class="smallfieldterr">[er_id_warehouses]</span></td>
+		    <td class="smalltext">
+		    	<select name="id_warehouses" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+          	<option value="">---</option>
+						[fc_build_select_warehouses]
+					</select>
+				</td>
+		 	</tr>		
+		 	<tr>
+		  	<td width="30%">ETD Date : <span class="smallfieldterr">[er_etd]</span></td>
+				<td class="smalltext">
+					 <input type="text" id="etd" name="etd" value="[in_etd]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<a href="#"><img src="[va_imgurl]/[ur_pref_style]/calendar.gif" id="trigger5" border="0"></a>
+				</td>
+			</tr>
+			
+		</table>
+		</fieldset>
+	&nbsp;
+		  <fieldset><legend>Purchase Order Authorization</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				  <td width="30%">Final Decision by :</td>
+				  <td class="smalltext">([in_authby]) [in_authby_name]</td>
+				</tr>
+		 		<tr>
+				  <td width="30%">Authorized Status :<span class="smallfieldterr">[er_auth]</span></td>
+				  <td class="smalltext">[in_auth]</td>
+				  
+				</tr>
+			</table>
+			</fieldset>		
+	
+<input type="hidden" name="auth" value="[in_auth]">
+<input type="hidden" name="authby" value="[in_authby]">
+	
+<script language="javascript">
+<!--
+	[va_autorun_js]
+
+	chg_select('poterms','[in_poterms]');
+	chg_select('shipvia','[in_shipvia]');
+	chg_select('id_warehouses','[in_id_warehouses]');
+	chg_radio('auth','[in_auth]');
+
+	Calendar.setup(
+	{
+		inputField : "podate", // ID of the input field
+		ifFormat : "%Y/%m/%d", // the date format
+		button : "trigger" // ID of the button
+	});
+
+	Calendar.setup(
+	{
+		inputField : "canceldate", // ID of the input field
+		ifFormat : "%Y/%m/%d", // the date format
+		button : "trigger2" // ID of the button
+	});
+	
+	Calendar.setup(
+	{
+		inputField : "etd", // ID of the input field
+		ifFormat : "%Y/%m/%d", // the date format
+		button : "trigger5" // ID of the button
+	});
+	
+
+//-->
+</script>
+

@@ -1,0 +1,374 @@
+	<!--script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>	
+	<script type="text/javascript">
+		var productAcc = new YAHOO.widget.AccordionView('productsaccordion', {collapsible: true, animationSpeed: '0.4',  width: 'auto', animate: true, effect: YAHOO.util.Easing.easeNone});
+	</script-->
+<style>
+/* container for external content. uses vertical scrollbar, if needed */
+div.contentWrap {
+	height:581px;
+	overflow-y:auto;
+}
+</style>
+
+<input type="hidden" name="smalldescription" value="[in_smalldescription]">
+<input type="hidden" name="description" value="[in_description]">
+<input type="hidden" name="smalldescription_en" value="[in_smalldescription_en]">
+<input type="hidden" name="description_en" value="[in_description_en]">
+<input type="hidden" name="disclaimer" value="[in_disclaimer]">
+
+<input type="hidden" name="choicename1" value="[in_choicename1]">
+<input type="hidden" name="choicename2" value="[in_choicename2]">
+<input type="hidden" name="choicename3" value="[in_choicename3]">
+<input type="hidden" name="choicename4" value="[in_choicename4]">
+
+<input type="hidden" name="oldsprice"  value="[in_sprice]">
+<input type="hidden" name="oldsprice1" value="[in_sprice1]">
+<input type="hidden" name="oldsprice2" value="[in_sprice2]">
+<input type="hidden" name="oldsprice3" value="[in_sprice3]">
+<input type="hidden" name="oldsprice4" value="[in_sprice4]">
+
+<input type="hidden" name="rebate" value="[in_rebate]">
+<input type="hidden" name="testing" value="[in_testing]">
+<input type="hidden" name="testing_authby" value="[in_testing_authby]">
+<input type="hidden" name="status" value="[in_status]">
+
+<input type="hidden" name="packing" value="[in_packing]">
+<input type="hidden" name="handling" value="[in_handling]">
+<input type="hidden" name="warehousehandling" value="[in_warehousehandling]">
+<input type="hidden" name="producttype" value="[in_producttype]">
+<input type="hidden" name="productdocs" value="[in_productdocs]">
+<input type="hidden" name="expressshipping" value="[in_expressshipping]">
+
+<input type="hidden" name="wholesaleorigin" value="[in_wholesaleorigin]">
+<input type="hidden" name="wholesalepriceorigin" value="[in_wholesalepriceorigin]">
+<input type="hidden" name="tariff" value="[in_tariff]">
+<input type="hidden" name="wholesaleprice" value="[in_wholesaleprice]">
+<input type="hidden" name="landedcost" value="[in_landedcost]">
+<input type="hidden" name="discount" value="[in_discount]">
+
+<input type="hidden" name="breakevenvolume" value="[in_breakevenvolume]">
+<input type="hidden" name="margin" value="[in_margin]">
+<input type="hidden" name="airtimeminutes" value="[in_airtimeminutes]">
+<input type="hidden" name="map" value="[in_map]">
+<input type="hidden" name="msrp" value="[in_msrp]">
+
+<input type="hidden" name="dids" value="[in_dids]">
+<input type="hidden" name="id_noninventory_related" value="[in_id_noninventory_related]">
+<input type="hidden" name="id_products_speech" value="[in_id_products_speech]">
+<input type="hidden" name="user_type" value="[in_user_type]">
+<input type="hidden" name="duties" value="[in_duties]">
+<input type="hidden" name="insurance" value="[in_insurance]">
+
+<input type="hidden" name="manufactersku" value="[in_manufactersku]">
+<input type="hidden" name="minimumstock" value="[in_minimumstock]">
+<input type="hidden" name="maximumstock" value="[in_maximumstock]">
+<input type="hidden" name="validatestock" value="[in_validatestock]">
+<input type="hidden" name="edt" value="[in_edt]">
+
+<input type="hidden" name="" value="[in_]">
+<input type="hidden" name="" value="[in_]">
+
+
+
+
+&nbsp;
+<fieldset><legend>Product Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">Model : <span class="smallfieldterr">[er_model]</span></td>
+		    <td class="smalltext"><input type="text" name="model" value="[in_model]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		    <td width="30%">Item Title : <span class="smallfieldterr">[er_name]</span></td>
+		    <td class="smalltext"><input type="text" name="name" value="[in_name]" size="60" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		[fc_search_mer_products]
+		<tr>
+		    <td width="30%">Country Origin  : <span class="smallfieldterr">[er_countryorigin]</span></td>
+		    <td class="smalltext"><input type="text" name="countryorigin" value="[in_countryorigin]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		    <td width="30%">Tax  : <span class="smallfieldterr">[er_taxaux]</span></td>
+		    <td class="smalltext"><input type="text" name="taxaux" value="[in_taxaux]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+	</table>
+ </fieldset>
+&nbsp;
+
+		<fieldset><legend>Shipping Specs</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+				<tr>
+				  <td width="30%" valign="top">Free Shipping Opt.: </td>
+				  <td class="smalltext">
+						<input type="radio" name="free_shp_opt" class="radio" value="Yes">Yes
+				  	<input type="radio" name="free_shp_opt" class="radio" value="No" >No
+				  </td>
+				</tr>
+			</table>
+			<hr color="#C0C0C0">
+	 		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+				<tr>
+				    <td colspan="2"><b>Shipping Calculate Specifications</b></td>
+				</tr>		 			
+				<tr>
+				    <td width="30%"> Method : <span class="smallfieldterr">*[er_shipping_table]</span></td>
+				    <td class="smalltext">[fc_build_radio_prd_shptable]</td>
+				</tr>
+			</table>
+				<hr color="#C0C0C0">
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+					<tr>
+				    <td width="30%">Discount Volume/Price : <span class="smallfieldterr">[er_shipping_duiscount]</span></td>
+				    <td class="smalltext"><input name="shipping_discount" value="Yes" type="checkbox" class="checkbox"></td>
+					</tr>
+					<tr>
+						<td class="smalltext" colspan="2">
+								<span class="help_on">
+									The shipping Charges will be calculated based on this choice.<br>
+									Discount by Volume/Price only apply on  Table Method.
+								</span>			
+						</td>
+					</tr>
+					<tr><td class="smalltext" colspan="2">&nbsp;</td></tr>
+					<tr>
+				    <td width="30%">Weight  : <span class="smallfieldterr">[er_weight]</span></td>
+				    <td class="smalltext"><input type="text" name="weight" value="[in_weight]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">Lb</span></td>
+				</tr>
+				<tr>
+				    <td width="30%">Dimensions (w x h x l)  : <span class="smallfieldterr">[er_sizeW] [er_sizeh] [er_sizel]</span></td>
+				    <td class="help_on"><input type="text" name="sizew" value="[in_sizew]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'> 
+							x <input type="text" name="sizeh" value="[in_sizeh]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							x <input type="text" name="sizel" value="[in_sizel]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+								in</td>
+				</tr>
+				<tr><td class="smalltext" colspan="2">&nbsp;</td></tr>
+				<tr>
+				  <td width="30%" valign="top">Packing/Shipping Options : </td>
+				  <td class="smalltext"><select name="id_packingopts" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		         <option value="">---</option>
+		         [fc_build_select_prd_pckopts]
+		       </select><br>
+		   		</td>
+				</tr>
+				<tr>
+					<td class="smalltext" colspan="2">
+						<span class="smallfieldterr">
+						*<strong>Fixed</strong> - The shipping amount is equal to Packing/Shipping Options amount. Note: This option has 50% off over CC payments.<br>
+						<strong>Variable</strong> - The shipping amount is calculated considering weight and dimensions (Packing/Shipping Options must be none). Note: If packing/shipping options is set the shipping amount will be the Packing/Shipping options amount without considering any discount.<br>
+						<strong>Table</strong> - The table must be set considering items and prices (must be done in view mode).
+						</span>
+					</td>
+				</tr>
+		</table>
+	</fieldset>	
+&nbsp;
+	
+		<fieldset><legend>Prices & Cost</legend>
+			
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+
+<!--					
+					<tr>
+					    <td width="30%">Net Cost: <span class="smallfieldterr">[er_sltv_netcost]</span></td>
+					    <td class="smalltext"><input type="text" name="sltv_netcost" value="[in_sltv_netcost]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> </td>
+					</tr>					
+				</table>
+				<hr color="#C0C0C0">
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+					<tr>
+					  <td width="30%">Sales Price (Precio 1)  : </td>
+					  <td class="smalltext">
+
+					  		<input type="text" name="sprice" value="[in_sprice]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'><!--onFocus='blur( this )'>-->
+<!--					  		
+					  		<span class="smallfieldterr">[er_sprice]</span></td>
+					</tr>
+					<tr>
+					  <td width="30%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Sprice 1 Name/Price)  : </td>
+					  <td class="smalltext">
+							<input type="text" name="sprice1name" value="[in_sprice1name]" value="[in_sprice1name]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					  		<input type="text" name="sprice1" value="[in_sprice1]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					  		<span class="smallfieldterr">[er_sprice1]</span></td>
+					</tr>
+					<tr>
+					  <td width="30%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Sprice 2 Name/Price)  : </td>
+					  <td class="smalltext">
+							<input type="text" name="sprice2name" value="[in_sprice2name]" value="[in_sprice2name]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					  		<input type="text" name="sprice2" value="[in_sprice2]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					  		<span class="smallfieldterr">[er_sprice2]</span></td>
+					</tr>
+					<tr>
+					  <td width="30%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Sprice 3 Name/Price)  : </td>
+					  <td class="smalltext">
+							<input type="text" name="sprice3name" value="[in_sprice3name]" value="[in_sprice3name]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					  		<input type="text" name="sprice3" value="[in_sprice3]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					  		<span class="smallfieldterr">[er_sprice3]</span></td>
+					</tr>
+					<tr>
+					  <td width="30%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Sprice 4 Name/Price)  : </td>
+					  <td class="smalltext">
+							<input type="text" name="sprice4name" value="[in_sprice4name]" value="[in_sprice4name]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					  		<input type="text" name="sprice4" value="[in_sprice4]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					  		<span class="smallfieldterr">[er_sprice4]</span></td>
+					</tr>
+					<tr>
+					  <td width="30%" valign="top">Flexipago<span class="help_on"> (Monthly)</span>  : <span class="smallfieldterr">[er_flexipago]</span></td>
+					  <td class="smalltext">
+					  	<select name="flexipago" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				  			<option value="">---</option>
+				  			<option value="1">None</option>
+				  			<option value="2">2 Payments</option>
+				  			<option value="3">3 Payments</option>
+				  			<option value="4">4 Payments</option>
+				  			<option value="5">5 Payments</option>
+				  			<option value="6">6 Payments</option>
+				  			<option value="7">7 Payments</option>
+				  			<option value="8">8 Payments</option>
+				  			<option value="9">9 Payments</option>
+				  			<option value="10">10 Payments</option>
+				  			<option value="11">11 Payments</option>
+				  			<option value="12">12 Payments</option>
+				  			<option value="13">13 Payments</option>
+				  			<option value="14">14 Payments</option>
+				  			<option value="15">15 Payments</option>
+				  			<option value="16">16 Payments</option>
+				  			<option value="17">17 Payments</option>
+				  			<option value="18">18 Payments</option>
+				  			<option value="19">19 Payments</option>
+				  			<option value="20">20 Payments</option>
+				  			<option value="21">21 Payments</option>
+				  			<option value="22">22 Payments</option>
+				  			<option value="23">23 Payments</option>
+				  			<option value="24">24 Payments</option>
+			        </select>
+			      </td>
+					</tr>
+					<tr>
+					  <td width="30%" valign="top">DownPayment  : <span class="smallfieldterr">[er_downpayment]</span></td>
+						<td class="smalltext"><input type="text" name="downpayment" value="[in_downpayment]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					</tr>
+					<tr>
+					  <td width="30%" valign="top">FP Price  : <span class="smallfieldterr">[er_fpprice]</span></td>
+						<td class="smalltext"><input type="text" name="fpprice" value="[in_fpprice]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					</tr>
+					<tr>
+					  <td width="30%" valign="top">Membership Price  : <span class="smallfieldterr">[er_memberprice]</span></td>
+						<td class="smalltext"><input type="text" name="memberprice" value="[in_memberprice]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					</tr>
+-->					
+					<tr>
+					  <td width="30%" valign="top">Price Method  : <span class="smallfieldterr">[er_pricetype]</span></td>
+						<td class="smalltext">
+							<input type="radio" name="pricetype" class="radio" value="Net">Net
+				  			<input type="radio" name="pricetype" class="radio" value="Gross">Gross
+						</td>
+					</tr>
+				</table>
+				<hr color="#C0C0C0">
+<!--
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+					<tr>			
+				    <td width="30%">Pay Type: <span class="smallfieldterr">[er_paytype]</span></td>
+				    <td class="smalltext">
+				    <input name="paytype" value="COD" type="checkbox" class="checkbox">COD&nbsp;&nbsp;
+				    <input name="paytype" value="Credit-Card-30" type="checkbox" class="checkbox">Credit Card&nbsp;&nbsp;
+				    <input name="paytype" value="Referenced-Deposit" type="checkbox" class="checkbox">Referenced Deposit
+				    </td> 	    
+					</tr>		
+				</table>
+-->				
+				<br>
+			</fieldset>	
+
+&nbsp;
+			<fieldset><legend>Additional Info</legend>	
+			<br>
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+					<tr>
+					  	<td width="30%">Brand  : <span class="smallfieldterr">[er_id_brands]</span></td>
+					    <td class="smalltext">
+						  	<select name="id_brands" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					      	<option value="">---</option>
+					        	[fc_build_select_brands]
+				        </select> </td>
+					</tr>
+				</table>
+				<hr color="#C0C0C0">
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			  		<tr>
+						<td width="30%">Drop Shipment : <span class="smallfieldterr">[er_dropshipment]</span></td>
+						<td class="smalltext">
+							<input type="radio" name="dropshipment" class="radio" value="Yes">Yes
+				  			<input type="radio" name="dropshipment" class="radio" value="No" >No
+				  		</td>
+					</tr>
+					<tr>
+						<td width="30%">Is Final Sale: <span class="smallfieldterr">[er_isfinal]</span></td>
+						<td class="smalltext">
+							<input type="radio" name="isfinal" class="radio" value="Yes">Yes
+					  		<input type="radio" name="isfinal" class="radio" value="No" >No
+						</td>
+					</tr>
+					<tr>
+						<td width="30%">Web Available: <span class="smallfieldterr">[er_web_available]</span></td>
+						<td class="smalltext">
+							<input type="radio" name="web_available" class="radio" value="Yes">Yes
+					  		<input type="radio" name="web_available" class="radio" value="No" >No
+					  	</td>
+					</tr>
+			  	</table>
+				<br>
+			</fieldset>			
+		 	&nbsp;
+
+		 	<fieldset><legend>SAT info</legend>
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					<tr>
+						<td width="30%" >ID Product / Service : </td>
+
+						<td class="smalltext">
+							[va_products_services]
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			&nbsp;
+
+<script type="text/javascript">
+<!--
+
+
+	chg_select('id_manufacters','[in_id_manufacters]');
+	chg_select('packing','[in_packing]');
+	chg_select('productdocs','[in_productdocs]');
+	chg_select('handling','[in_handling]');
+	chg_select('producttype','[in_producttype]');
+	chg_select('warehousehandling','[in_warehousehandling]');
+	chg_select('supplierpacking','[in_supplierpacking]');
+	chg_select('id_packingopts','[in_id_packingopts]');
+	chg_select('sprice1name','[in_sprice1name]');
+	chg_select('sprice2name','[in_sprice2name]');
+	chg_select('sprice3name','[in_sprice3name]');
+	chg_select('sprice4name','[in_sprice4name]');
+	chg_select('flexipago','[in_flexipago]');
+	chg_select('id_brands','[in_id_brands]');
+	chg_select('id_products_speech','[in_id_products_speech]');
+	chg_select('id_services_related','[in_id_services_related]');
+	
+	chg_chkbox('paytype','[in_paytype]');
+	chg_chkbox('dids','[in_dids]');
+	chg_chkbox('web_available','[in_web_available]');
+	
+	chg_radio('shipping_table','[in_shipping_table]');
+	chg_radio('pricetype','[in_pricetype]');
+	chg_radio('dropshipment','[in_dropshipment]');
+	chg_radio('isfinal','[in_isfinal]');
+	chg_radio('pactive','[in_pactive]');
+	chg_radio('free_shp_opt','[in_free_shp_opt]');
+
+	
+//-->
+</script>
+
+[fc_products_moreinfo]
+

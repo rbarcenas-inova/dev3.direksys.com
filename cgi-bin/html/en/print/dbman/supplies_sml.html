@@ -1,0 +1,193 @@
+<STYLE TYPE="text/css">
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+</STYLE>
+
+<center>
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td><font class=info>
+
+<table cellpadding=0 cellspacing=0 border=0>
+	<td align=left>
+		<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px>
+	</td>
+	[fc_show_companyinfo]
+</table>
+
+<center>
+<hr style="color: #000;background-color: #000;height: 1px;">
+
+
+	
+	<fieldset><legend>Supply ID</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		  	<td width="30%" ><font class=infot>ID  :</td>
+		    <td><font class=infot>[in_id_supplies_code]</td>
+		 </tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Supply Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%"><font class=infot>Model  :</td>
+		  <td><font class=info>[in_model]</td>
+		 </tr>
+		<tr>
+		  <td width="30%"><font class=infot>Name  :</td>
+		  <td><font class=info>[in_name]</td>
+		 </tr>
+		<tr>
+		  <td valign="top" width="30%"><font class=infot>Small Description : </td>
+		  <td><font class=info>[in_smalldescription]</td>
+		 </tr>
+		<tr>
+		  <td valign="top" width="30%"><font class=infot>Full Description : </td>
+		  <td><font class=info>[in_description]</td>
+		 </tr>
+		<tr>
+		  <td valign="top" width="30%"><font class=infot>Small Description(EN) : </td>
+		  <td><font class=info>[in_smalldescription_en]</td>
+		 </tr>
+		<tr>
+		  <td valign="top" width="30%"><font class=infot>Full Description(EN) : </td>
+		  <td><font class=info>[in_description_en]</td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Shipping Specs</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td width="30%"><font class=infot>Weight  : </td>
+		  <td><font class=info>[in_weight] <span class="help_on">Lb</span></td>
+		</tr>
+		<tr>
+		  <td width="30%"><font class=infot>Dimensions (w x h x l)  : </td>
+		  <td><font class=info>[in_sizew] <span class="help_on">x</span> [in_sizeh] <span class="help_on">x</span> [in_sizel] <span class="help_on">in</span></td>
+		 </tr>
+		<tr>
+		  <td width="30%"><font class=infot>Packing : </td>
+		  <td><font class=info>[in_packing]</td>
+		 </tr>
+		<tr>
+		  <td width="30%"><font class=infot>Handling Specs : </td>
+		  <td><font class=info>[in_handling]</td>
+		 </tr>
+		<tr>
+		  <td width="30%"><font class=infot>Warehouse Handling  : </td>
+		  <td><font class=info>[in_warehousehandling]</td>
+		 </tr>
+		<tr>
+		  <td width="30%"><font class=infot>Supply Type : </td>
+		  <td><font class=info>[in_producttype]</td>
+		</tr>
+		<tr>
+		  <td width="30%"><font class=infot>Supply Documentation : </td>
+		  <td><font class=info>[in_productdocs]</td>
+		</tr>
+		<tr>
+		  <td width="30%"><font class=infot>Packing Options : </td>
+		  <td><font class=info>([in_id_packingopts]) [in_pckoptsname]</td>
+		</tr>		
+	</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Pricing</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td width="30%"><font class=infot>Retail Price(MSRP)  : </td>
+		  <td><font class=info>[in_msrp] <span class="help_on">in US$</span></td>
+		</tr>
+		<tr>
+		  <td colspan="2"><hr style="color: #000;background-color: #000;height: 1px;"></td>
+		</tr>
+		<tr>
+		  <td width="30%" ><font class=infot>Sale Price  : </td>
+		  <td><font class=infot>[in_spricename] $ [in_sprice]</td>
+		</tr>
+		<tr>
+		  <td colspan="2"><hr style="color: #000;background-color: #000;height: 1px;"></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					<tr>
+						<td width="48%" colspan="2"><font class=infot>United States (UPS)</td>
+						<td width="4%">&nbsp;</td>
+						<td width="48%" colspan="2"><font class=infot>Puerto Rico (USPS)</td>
+				    </tr>    
+					<tr>
+						<td nowrap valign="top"><font class=info>[va_shp_text1] : </td>
+						<td nowrap valign="top"><font class=info>[va_shptotal1]</td>
+						<td width="4%">&nbsp;</td>
+						<td nowrap valign="top"><font class=info>[va_shp_textpr1] : </td>
+						<td nowrap valign="top"><font class=info>[va_shptotal1pr]</td>
+				    </tr>    
+					<tr>
+						<td nowrap valign="top"><font class=info>[va_shp_text2] : </td>
+						<td nowrap valign="top"><font class=info>[va_shptotal2]</td>
+						<td width="4%">&nbsp;</td>
+						<td nowrap valign="top"><font class=info>[va_shp_textpr2] : </td>
+						<td nowrap valign="top"><font class=info>[va_shptotal2pr]</td>
+				    </tr>  
+				
+				</table>
+				</td>
+	    </tr>
+	</table>
+	</fieldset>		
+	&nbsp;
+	<fieldset><legend>Brand Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%"><font class=infot>Brand  : </td>
+		    <td><font class=info>([in_idbrands]) [in_brands_name]</td>
+		 </tr>
+		<tr>
+		    <td width="30%"><font class=infot>Brand SKU  : </td>
+		    <td><font class=info>[in_manufactersku]</td>
+		 </tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+  <fieldset><legend>Supply Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	   <td width="30%"><font class=infot>Status  : </td>
+	   <td><font class=info>	[in_status]</td>
+	 </tr>
+  </table>
+	</fieldset>

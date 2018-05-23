@@ -1,0 +1,136 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: [fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_prod")'>Products</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_mm")'>Media</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_pay")'>Payments</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_usr")'>Users</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_cust")'>Customers</td>
+	    <td width="10%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_good_bad_l")'>Good/Bad</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_araging")'>AR Aging</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	&nbsp;
+	[va_report_tbl]
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td class="tbltextttl">
+	    	Records : [va_matches]</td>
+	    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		[va_headersresult]
+		[va_searchresults]
+  </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">
+				Records : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>  
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%" align="center" class="formtable">
+		<tr>
+			<td class="menu_bar_title" colspan="3" align="center">Totals</td>
+		</tr>
+		<tr>
+			<td class="menu_bar_title" align="center"></td>
+			<td class="menu_bar_title" align="center">[va_paytypebad]</td>
+			<td class="menu_bar_title" align="center">[va_paytypegood]</td>
+		</tr>
+		<tr>
+			<td>Payments Due:</td>
+			<td align="right">[va_tsvencidosbad]</td>
+			<td align="right">[va_tsvencidosgood]</td>
+		</tr>
+		<tr>
+			<td>Payments Paid:</td>
+			<td align="right">[va_tspagadosbad]</td>
+			<td align="right">[va_tspagadosgood]</td>
+		</tr>
+		<tr>
+			<td>Payments Payable:</td>
+			<td align="right">[va_tspor_pagarbad]</td>
+			<td align="right">[va_tspor_pagargood]</td>
+		</tr>
+		<tr>
+			<td>Payments total:</td>
+			<td align="right">[va_tstotalpaymentsbad]</td>
+			<td align="right">[va_tstotalpaymentsgood]</td>
+		</tr>
+		<!--tr>
+			<td>Goods:</td>
+			<td align="right">[va_goodscc]</td>
+			<td align="right">[va_goodsmo]</td>
+		</tr>
+		<tr>
+			<td>Bads:</td>
+			<td align="right">[va_badscc]</td>
+			<td align="right">[va_badsmo]</td>
+		</tr-->
+	</table>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%" align="center" class="formtable">
+		<tr>
+			<td class="menu_bar_title" colspan="2" align="center">Notes</td>
+		</tr>
+		<tr>
+			<td style="font-size:11">Payments Due:</td>
+			<td style="font-size:11">The sum of all payments not captured and payment date before today.</td>
+		</tr>
+		<tr>
+			<td style="font-size:11">Payments Paid:</td>
+			<td style="font-size:11">The sum of all payments already captured.</td>
+		</tr>
+		<tr>
+			<td style="font-size:11">Payments Payable:</td>
+			<td style="font-size:11">The sum of all payments not captured yet, because they have a payment date subsequent to today.</td>
+		</tr>
+		<tr>
+			<td style="font-size:11">Payments total:</td>
+			<td style="font-size:11">The sum of all payments regardless their Captured Status and payment date.</td>
+		</tr>
+		<tr>
+			<td style="font-size:11">Good:</td>
+			<td style="font-size:11">The orders COD that do not have any payment due.</td>
+		</tr>
+		<tr>
+			<td style="font-size:11">Bad:</td>
+			<td style="font-size:11">The orders COD that have at least one payment due.</td>
+		</tr>
+	</table>
+	&nbsp;
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

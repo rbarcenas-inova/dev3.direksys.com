@@ -1,0 +1,101 @@
+	&nbsp;
+	<fieldset><legend>Supplier Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Company Name : <span class="smallfieldterr">[er_companyname]</span></td>
+			<td class="smalltext"><input type="text" name="companyname" value="[in_companyname]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Address : <span class="smallfieldterr">[er_address]</span></td>
+			<td class="smalltext"><textarea name="address" cols="50" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_address]</textarea> </td>
+		</tr>
+		<tr>
+		  	<td width="30%">City/State/Zip :</td>
+			  <td class="smalltext">
+					<input type="text" name="city" value="[in_city]" size="30" oocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_city]</span>
+					<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+						[fc_build_select_supstate]
+					</select> <span class="smallfieldterr">[er_state]</span>
+					<input type="text" name="zip" value="[in_zip]" size="8" oocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_zip]</span>
+     		</td>
+		 </tr>
+		<tr>
+			<td width="30%">Country : <span class="smallfieldterr">[er_country]</span></td>
+			<td class="smalltext"><input type="text" name="country" value="[in_country]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width="30%">Phone : <span class="smallfieldterr">[er_phone]</span></td>
+			<td class="smalltext"><input type="text" name="phone" value="[in_phone]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width="30%">Fax : <span class="smallfieldterr">[er_fax]</span></td>
+			<td class="smalltext"><input type="text" name="fax" value="[in_fax]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width="30%">WebSite  : <span class="smallfieldterr">[er_website]</span></td>
+			<td class="smalltext"><input type="text" name="website" value="[in_website]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Supplier Extra Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Type : <span class="smallfieldterr">[er_type]</span></td>
+			<td class="smalltext">
+				<select name="type" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="---">---</option>
+					[fc_build_select_vendor_type]
+				</select>
+				<br><hr>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Payment Terms : <span class="smallfieldterr">[er_paymentterms]</span></td>
+			<td class="smalltext">[fc_build_checkbox_paymentterms]<br><hr></td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Shipping Option : <span class="smallfieldterr">[er_shippingoptions]</span></td>
+			<td class="smalltext">[fc_build_checkbox_shippingoptions]<br><hr></td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Discounts : <span class="smallfieldterr">[er_discounts]</span></td>
+			<td class="smalltext">[fc_build_checkbox_discounts]<br><hr></td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Comments</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td valign="top" width="30%">Comments : <span class="smallfieldterr">[er_comments]</span></td>
+			<td class="smalltext"><textarea name="comments" cols="50" style="width:100%" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_comments]</textarea> </td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Supplier Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+			<td class="smalltext"><input type="radio" name="status" value="Active" class="radio">Active
+				<input type="radio" name="status" value="Inactive" class="radio">Inactive
+			</td>
+		</tr>
+	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_select('type','[in_type]');
+	chg_chkbox('paymentterms','[in_paymentterms]');
+	chg_chkbox('shippingoptions','[in_shippingoptions]');
+	chg_chkbox('discounts','[in_discounts]');
+	chg_radio('status','[in_status]');
+chg_select('state','[in_state]');
+
+//-->
+</script>
+

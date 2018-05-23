@@ -1,0 +1,67 @@
+[ip_header]
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="720" class="container_white">
+	<tr>
+		<td width="140" align="center" valign="top">
+			[ip_menu_main]
+			&nbsp;
+			[ip_imgman:menu]
+			&nbsp;
+			[fc_menu_custom]
+			&nbsp;
+		</td>
+		<td valign="top">
+<!-- Start Main Area  -->
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="50%" align="center"></td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/imgman/admin?cmd=home")'>Images</td>
+	    <td class="cell_on" align="center" onClick='trjump("/cgi-bin/imgman/admin?cmd=upload")'>Upload</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/imgman/admin?cmd=gallery")'>Gallery</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/imgman/dbman?cmd=categories")'>Add Category</td>
+	  </tr>
+	</table>
+
+<form enctype="multipart/form-data" name="upload" action="/cgi-bin/common/apps/upfile.cgi" method="POST" target="upwin" onsubmit="upwin()">
+     <input type="hidden" name="image" value="1">
+     <input type="hidden" name="app" value="imgman">
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center">Upload Images</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Uploading File: </legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td>Upload .jpg/.gif/.png file:</td>
+		    <td><input type="file" size="50" name="file" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		<tr>
+		    <td colspan="2" align="center" class="help_on">Please wait until the new window loads. Your file is being processed.<br>
+					After you uploaded the file please ckeck the music list to<br>
+					identify the new one with a name and category</td>
+		 </tr>
+		<tr>
+		    <td>Place image in:</td>
+		    <td><select name="ID_categories" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+             		[fc_build_images_catlist]
+             	  </select></td>
+		 </tr>		 
+     </table>
+	</fieldset>
+	<p align="center"><input type="submit" value="Upload" class="button"></p>
+</form>
+
+	<p>&nbsp;</p>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

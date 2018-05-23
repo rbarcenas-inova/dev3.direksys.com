@@ -1,0 +1,179 @@
+<div style="background-color:#FFF;padding:5px;">
+	<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_view]&tab=[in_tab]&[va_rndnumber]#initab")'><img src="/sitimages//default/b_reload.gif" title="Refresh" alt="" border="0"></a>&nbsp;
+	<span class="newmessage">[va_tab_message]</span>
+	<div id="div_vendor_customer" style="[va_display_vendor_customer] [va_display_add_aux]">
+		<form action="/cgi-bin/mod/[ur_application]/dbman/" method="post" name="sitform" onsubmit="return confirm_apply();">
+			<input type="hidden" name="action" value="1">
+			<input type="hidden" name="cmd" value="fin_banks_movements">
+			<input type="hidden" name="tab" value="1">
+			<input type="hidden" name="view" value="[in_view]">
+			<input type="hidden" name="id_banks_movements" value="[in_id_banks_movements]">
+			
+			<table border="0" cellspacing="0" cellpadding="4" width="[ur_table_width]" class="container_white">
+				[va_searchresults]
+			</table>
+			[va_list_bills]
+			[va_list_payments]
+			[va_list_banks_movements]
+			[va_form_add]
+			
+			<div id="div_services"></div>
+			<div id="list_vendor_bills"></div>
+			[va_button]
+
+		</form>
+	</div>
+	<div id="div_accounts" style="[va_display_accounts]">
+		<fieldset>
+			<legend>Detail</legend>
+			<form action="/cgi-bin/mod/admin/dbman/" method="post" name="form_list_amounts" >
+				<input type="hidden" name="action" value="1" />
+				<input type="hidden" name="cmd" value="[in_cmd]" />
+				<input type="hidden" name="tab" value="1" />
+				<input type="hidden" name="view" value="[in_view]" />
+				<input type="hidden" name="id_banks_movements" value="[in_id_banks_movements]" />
+				<input type="hidden" name="add_acc_amounts" value="1" />
+				
+				<table border="1" cellspacing="0" cellpadding="4" width="100%">
+					<tbody id="tbody_detail"><tr>
+							<td class="menu_bar_title" align="center">&nbsp;</td>
+							<td class="menu_bar_title" align="center">Account</td>
+							<td class="menu_bar_title" align="center">Account Desc</td>
+							<td class="menu_bar_title" align="center">Amount $</td>
+						</tr>
+						[va_detail_searchresults]
+					</tbody>	
+				</table>
+			</form>
+		</fieldset>
+		<fieldset style="[va_display_add]">
+			<legend>Add</legend>
+			<form action="/cgi-bin/mod/admin/dbman/" method="post" name="sitform" id="form_add">
+				<input type="hidden" name="action" value="1">
+				<input type="hidden" name="cmd" value="[in_cmd]">
+				<input type="hidden" name="tab" value="1">
+				<input type="hidden" name="view" value="[in_view]">
+				<input type="hidden" name="id_banks_movements" value="[in_id_banks_movements]">
+
+				<table width="100%" border="0" cellspacing="0" cellpadding="4" style="[va_display_form]">
+					<tr>
+						<td class="smalltext" width="30%">Amount $: </td>
+						<td class="smalltext" width="70%">
+							<input type="text" name="amount_ml" value="">
+						</td>
+					</tr>
+					<tr>
+						<td class="smalltext" width="30%">Account: </td>
+						<td class="smalltext" width="70%">
+							<input type="text" name="id_accounts_ml" id="id_account" value="" />
+							<a href="#tabs" onClick="popup_show('search_account', 'item_drag2', 'popup_exit_acc', 'mouse-corner', 0, 0,'id_account');">
+								<img src="/sitimages/default/icsearchsmall.gif" border="0">
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td align="center" colspan="2"><input type="submit" class="button" value="Add" id="btn_proceed" name="btn_proceed" /></td>
+					</tr>
+					<tr>
+						<td align="center" colspan="2"><input type="submit" class="button" value="Finalize" id="btn_finalize" name="btn_finalize" /></td>
+					</tr>
+				</table>
+			</form>
+		</fieldset>
+	</div>
+	<a name='tabs' id='tabs'>&nbsp;</a>
+</div>
+
+<script type="text/javascript">
+	function drop_acc(obj) {
+		$(obj).parent().parent().remove();
+	}
+	
+	$(document).ready(function() {
+		chg_select('id_vendors','[in_id_vendors]');
+		
+		$("input[name='id_accounts_ml']").change(function(){
+			$("input[name='btn_proceed']").data('id_accounts_ml',$(this).val());
+		});
+		
+		$("input[name='amount_ml']").change(function(){
+			$("input[name='btn_proceed']").data('amount_ml',$(this).val());
+		});
+		
+		$("input[name='btn_proceed']").click(function(e){
+			e.preventDefault();
+			$("input[name='id_accounts_ml']").change();
+			var total_amount = 0.00;
+			var amount_ml = parseFloat($(this).data('amount_ml'));
+			$("div#container_banks_movements input[name='acc_amount']").each(function(index, obj){
+				total_amount += parseFloat($(obj).val());
+				
+			});
+			//alert('atotal: '+total_amount);
+			total_amount += amount_ml;
+			//alert('total: '+total_amount);
+			if (total_amount > parseFloat('[in_amount]'.replace(/\$|,+/g,''))) {
+				alert('The sum of the amounts is greater than expected.');
+				return false;
+			}
+			
+				$.ajax({
+						url: '/cgi-bin/common/apps/ajaxbuild',
+						type: 'POST',
+						data: {
+							ajaxbuild: "banks_movs_accounts_details",
+							id_accounts: $(this).data('id_accounts_ml'),
+							amount: $(this).data('amount_ml')
+						},
+						success: function( data ) {
+							if(data.length > 5){
+								$("tbody#tbody_detail").append(data);
+								//alert(data);
+							}else {
+								alert('No data found with this Account');
+							}	
+						}
+				});
+				return false;
+		});
+		
+		$("input[name='btn_finalize']").click(function(e){
+			e.preventDefault();
+			var total_amount = 0.00;
+			$("div#container_banks_movements input[name='acc_amount']").each(function(index, obj){
+				total_amount += parseFloat($(obj).val());
+			});
+			if (total_amount < parseFloat('[in_amount]'.replace(/\$|,+/g,''))) {
+				alert('The sum of the amounts is lesser than expected.');
+				return false;
+			}
+			if (confirm_apply()) {
+				$("form[name='form_list_amounts']").submit();
+			}
+		});
+		
+	});
+	
+	function add_service() {
+		var cloned = $('#add_amount').parent().parent().clone();
+		$('[name="services_table"] tr:last').after(cloned);
+	}
+	function delete_service() {
+		var numRows = $('[name="services_table"] tr').length;
+		if (numRows > 6) {
+			$('[name="services_table"] tr:last').remove();
+		}
+		
+	}
+	
+	function confirm_apply() {
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+	
+	
+	
+
+</script>

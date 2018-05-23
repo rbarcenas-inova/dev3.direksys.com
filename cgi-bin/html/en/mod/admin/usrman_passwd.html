@@ -1,0 +1,79 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 7, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table class="tab" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+	  <tbody><tr>
+	    <td align="center" width="30%"></td>
+			<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=usrman_home&quot;)" align="center" width="14%">Users Accounts</td>
+			<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=usrman&amp;add=1&quot;)" align="center" width="14%">Add</td>
+			<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=usrman&amp;search=form&quot;)" align="center" width="14%">Search</td>
+			<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=usrman&amp;search=advform&quot;)" align="center" width="14%">Adv Search</td>
+			<td class="cell_on" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=usrman&amp;search=listall&quot;)" align="center" width="14%">View / Edit / Delete</td>
+
+	  </tr>
+	</tbody></table>
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td class="titletext" align="left" colspan="2">Administration: Change Password</td>
+		</tr>
+		<tr>
+		  <td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;	
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+	    <td class="menu_bar_title">User ID</td>			
+	    <td class="menu_bar_title">First Name</td>
+	    <td class="menu_bar_title">Last Name</td>
+	    <td class="menu_bar_title">Email</td>	    
+	    <td class="menu_bar_title">User Group</td>
+	    <td class="menu_bar_title">Application</td>
+		</tr>
+		[va_searchresults]
+  </table>
+	&nbsp;
+
+  <form action="/cgi-bin/mod/admin/admin" method="post" name="sitform" onsubmit="return disableSubmits();">
+		<input type="hidden" name="cmd" value="usrman_passwd">
+		<input type="hidden" name="id_admin_users" value="[in_id_admin_users]">
+		<input type="hidden" name="chgpasswd" value="1">		
+		<fieldset><legend>Change Password</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				    <td width="30%">New Password : <span class="smallfieldterr">[er_passwd]</span></td>
+				    <td class="smalltext"><input type="passwd" name="passwd" value="[in_passwd]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+			</table>
+		</fieldset>
+		<p align="center"><input type="submit" value="Change Password" class="button"></p>		
+	</form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

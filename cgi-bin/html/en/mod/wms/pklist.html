@@ -1,0 +1,99 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.5', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	<fieldset><legend>Packing List</legend>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td valign="top">
+		    	<ul class="nslist">
+		    		<li class="nslist">Sorting / Picking & Packing</li>
+		    		<ul class="nslist">
+		    			<!--li><a href="/cgi-bin/mod/wms/admin?cmd=packing_addform">Create Packing Lists (Form) : [va_pklist_tocreate]</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_list">Search</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing">Create Batch</a></li-->
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_fadd_auto">Autofulfill</a></li>	
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_fadd">Select Orders to Fulfill</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_fadd&dropship=1">Select Orders to Dropship</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_shp">Select Shipped Orders With Exceptions to Fulfill</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_toff_zones">Orders Selected to be Fulfilled : [va_toff] Orders, [va_items] SKUs</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_toff&dropship=1">Orders Selected to be Dropshipped : [va_tods] Orders, [va_itemsds] SKUs</a></li>
+		    			<!--<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_partialship">Partial Ship</a><br><br></li>-->
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_topack">Pack Instructions</a></li>
+		    		</ul><br>
+		    		<li>Returns</li>
+		    		<ul>		    		
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=retpackinglist_zones">Packing list for returns</a></li>
+		    		</ul><br>
+		    		<li>CODs</li>
+		    		<ul>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_fadd_auto&cod=1">Autofulfill</a></li>	
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=cod_orderstofulfill">Select Orders/COD to Fulfill</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=cod_orderstobefulfilled&zones=1">Orders COD selected to be Fulfilled: [va_tpcodff] Orders, [va_itemscodff] SKUs</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=manifest_cod">Manifest</a></li>
+		    			<!--li><a href="/cgi-bin/mod/wms/admin?cmd=cod_products">Assign Products to Warehouse/Routes</a></li>
+		    			<!--li><a href="/cgi-bin/mod/wms/admin?cmd=cod_manifest">COD Manifest for Picking</a></li-->
+		    		</ul><br>
+		    		<li>Partial Shipment</li>
+		    		<ul>
+		    			<!--li><a href="/cgi-bin/mod/wms/admin?cmd=packing_addform">Create Packing Lists (Form) : [va_pklist_tocreate]</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_list">Search</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing">Create Batch</a></li-->
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_fadd&partialshipment=1">Select Orders to Fulfill</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_fadd&dropship=1&partialshipment=1">Select Orders to Dropship</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_toff_zones&partialshipment=1">Orders Selected to be Fulfilled : [va_toffps] Orders, [va_itemsps] SKUs</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_toff_zones&dropship=1&partialshipment=1">Orders Selected to be Dropshipped : [va_todsps] Orders, [va_itemsdsps] SKUs</a><br><br></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_partialship&partialshipment=1">Orders list with Partial Shipment</a></li>
+		    		</ul><br>
+		    		<li>Others</li>
+		    		<ul>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=bulkprint">Print Export Invoices manually</a></li>
+		    		</ul>
+		    		<!--li>Status Board</li>
+		    		<ul>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_list&status=New">New : [va_pklist_new]</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_list&status=In Process">In Process : [va_pklist_inprocess]</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_list&status=Backorder">Backorder : [va_pklist_backorder]</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_list&status=Processed">Processed : [va_pklist_processed]</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=packing_list&status=Pending">Pending : [va_pklist_pending]</a></li>
+		    		</ul>
+		    		<li>Paking List</li>
+		    		<ul>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=mer_setup_prdpacking">Print Batch</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=mer_setup_prdwhand">Review Only In Use</a></li>
+		    			<li><a href="/cgi-bin/mod/wms/admin?cmd=mer_setup_prdtype">Review All</a></li-->
+		    	</ul></td>
+ 		 </tr>
+    </table>
+	</fieldset>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

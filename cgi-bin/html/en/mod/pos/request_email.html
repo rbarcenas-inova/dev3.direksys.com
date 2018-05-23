@@ -1,0 +1,196 @@
+<form action="/cgi-bin/mod/pos/admin" method="post" name="sitform" id="sitform">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="10">
+	<input type="hidden" name="add_extrainfo" value="1">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="id_customers" value="[in_id_customers]">
+	<input type="hidden" name="secret_cupon_applied" value="[in_secret_cupon_applied]">
+<table border="0" cellspacing="0" cellpadding="0" width="480" class="container_white">
+<tr>	
+	<td>
+	<fieldset><legend>Confirmaci&oacute;n de env&iacute;o</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		      <td bgcolor="#D2FFD2"><span class="Apple-style-span" style="color: rgb(0, 0, 204);"><strong>Sr./Sra./Srita.______.
+Contamos con un nuevo servicio, el cu&aacute;l consiste en mantener informados a nuestros clientes del env&iacute;o de su orden cuando es escaneada y ha salido del almac&eacute;n hasta llegar a su casa. 
+<br><br>La notificaci&oacute;n ser&aacute; enviada al correo electr&oacute;nico que usted nos proporcione.</span></td>
+		   </tr>
+			<tr>
+			  <td bgcolor="#D2FFD2" height="2">
+			  	Email:
+			  	<input name="email" value="[in_email]" size="50" onfocus="focusOn( this )" onblur="focusOff( this );echeck(this.value);" type="text">
+				<br/>
+				
+				Su cumplea&ntilde;os:
+				<br/>
+			  	A&ntilde;o <span class="smallfieldterr"></span>
+				<input type="text" name="bday_year" id="bday_year" value="" size="6" maxlength="4"/>
+				Mes <span class="smallfieldterr">[er_bday_month]</span>
+				<select size="1" name="bday_month" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value=""></option>
+					<option value="01">Enero</option>
+					<option value="02">Febrero</option>
+					<option value="03">Marzo</option>
+					<option value="04">Abril</option>
+					<option value="05">Mayo</option>
+					<option value="06">Junio</option>
+					<option value="07">Julio</option>
+					<option value="08">Agosto</option>
+					<option value="09">Septiembre</option>
+					<option value="10">Octubre</option>
+					<option value="11">Noviembre</option>
+					<option value="12">Diciembre</option>
+				</select>  
+			  	D&iacute;a<span class="smallfieldterr">[er_bday_day]</span>
+				<select size="1" name="bday_day" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="" selected></option>
+					<option value="01">1</option>
+					<option value="02">2</option>
+					<option value="03">3</option>
+					<option value="04">4</option>
+					<option value="05">5</option>
+					<option value="06">6</option>
+					<option value="07">7</option>
+					<option value="08">8</option>
+					<option value="09">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option>
+					<option value="24">24</option>
+					<option value="25">25</option>
+					<option value="26">26</option>
+					<option value="27">27</option>
+					<option value="28">28</option>
+					<option value="29">29</option>
+					<option value="30">30</option>
+					<option value="31">31</option>
+				</select>
+				<br/><br/>
+				<center>
+			  	<input value="Aceptar>>" class="button" onclick="todos(email.value);">
+				</center>
+			  	<!--input value="No Acepta>>" class="button" onclick="$('.email').colorbox"-->
+			  	<div class="" id="cboxClose">close</div>
+			  </td>
+			</tr>
+			
+		</table>
+	</fieldset>
+  	</td>
+	</tr>
+</table>
+<script language = "Javascript">
+/**
+ * DHTML email validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+ */
+
+function todos(str)
+{
+	if(echeck(str)===true && checkBirthDate())
+	{
+		document.forms[0].submit();
+	}
+}
+function echeck(str) {
+
+		var at="@"
+		var dot="."
+		var lat=str.indexOf(at)
+		var lstr=str.length
+		var ldot=str.indexOf(dot)
+		if (str.indexOf(at)==-1){
+		   alert("El correo electrónico no es válido")
+		   return false
+		}
+
+		if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr){
+		   alert("El correo electrónico no es válido")
+		   return false
+		}
+
+		if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr){
+		    alert("El correo electrónico no es válido")
+		    return false
+		}
+
+		 if (str.indexOf(at,(lat+1))!=-1){
+		    alert("El correo electrónico no es válido")
+		    return false
+		 }
+
+		 if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot){
+		    alert("El correo electrónico no es válido")
+		    return false
+		 }
+
+		 if (str.indexOf(dot,(lat+2))==-1){
+		    alert("El correo electrónico no es válido")
+		    return false
+		 }
+		
+		 if (str.indexOf(" ")!=-1){
+		    alert("El correo electrónico no es válido")
+		    return false
+		 }
+
+ 		 return true					
+	}
+
+function ValidateForm(){
+	var emailID=document.sitform.Email
+	
+	if ((emailID.value==null)||(emailID.value=="")){
+		alert("Por favor teclee un email.")
+		emailID.focus()
+		return false
+	}
+	if (echeck(emailID.value)==false){
+		emailID.value=""
+		emailID.focus()
+		return false
+	}
+	return true
+ }
+ 
+ $('#bday_year').blur(function(){
+	var year = $(this).val();
+	if (!year.match(new RegExp('^\\d{4}$'))){
+		alert('El a\u00F1o no est\u00E1 en el formato adecuado');
+	}
+});
+function checkBirthDate() {
+	var year = $.trim($('#bday_year').val());
+	var bday_month = $.trim($('select[name="bday_month"]').val());
+	var bday_day = $.trim($('select[name="bday_day"]').val());
+	
+	if (bday_month != '' && bday_day != '') {
+		if (!year.match(new RegExp('^\\d{4}$'))){
+			alert('El a\u00F1o no est\u00E1 en el formato adecuado');
+			return false;
+		} else {
+			return true;
+		}
+	}
+	if (year.length >= 1) {
+		if (!year.match(new RegExp('^\\d{4}$'))){
+			alert('El a\u00F1o no est\u00E1 en el formato adecuado');
+			return false;
+		} else {
+			return true;
+		}
+	}
+	return true;
+}
+
+</script>

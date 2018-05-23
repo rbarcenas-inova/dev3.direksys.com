@@ -1,0 +1,152 @@
+	<table border="0" cellspacing="0" cellpadding="2" width="100%" class="formtable">
+		<tr>
+		  	<td width="28%" class="menu_bar_title">By Status</td>
+		    <td width="12%" class="menu_bar_title" align="center">All</td>
+		    <td width="12%" class="menu_bar_title" align="center">New</td>
+		    <td width="12%" class="menu_bar_title" align="center">Processed</td>
+		    <td width="12%" class="menu_bar_title" align="center">Pending</td>
+		    <td width="12%" class="menu_bar_title" align="center">Canceled</td>
+		    <td width="12%" class="menu_bar_title" align="center">Shipped</td>
+		    <td width="12%" class="menu_bar_title" align="center">Void</td>
+	 	</tr>
+		<tr>
+		  <td class="smalltext" colspan="7">By State w/Products Info</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; All US</td>
+		  	<td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&sb=id_orders&so=DESC')">[va_ords_all]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=New&sb=id_orders&so=DESC')">[va_ords_nw]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Processed&sb=id_orders&so=DESC')">[va_ords_pr]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Pending&sb=id_orders&so=DESC')">[va_ords_pe]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Cancelled&sb=id_orders&so=DESC')">[va_ords_ca]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Shipped&sb=id_orders&so=DESC')">[va_ords_sh]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Void&sb=id_orders&so=DESC')">[va_ords_vo]</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; FL Orders</td>
+		  	<td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=FL-Florida&sb=id_orders&so=DESC')">[va_ords_flall]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=FL-Florida&Status=New&st=and&sb=id_orders&so=DESC')">[va_ords_flnw]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=FL-Florida&Status=Processed&st=and&sb=id_orders&so=DESC')">[va_ords_flpr]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=FL-Florida&Status=Pending&st=and&sb=id_orders&so=DESC')">[va_ords_flpe]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=FL-Florida&Status=Cancelled&st=and&sb=id_orders&so=DESC')">[va_ords_flca]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=FL-Florida&Status=Shipped&st=and&sb=id_orders&so=DESC')">[va_ords_flsh]</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; CA Orders</td>
+		  	<td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=CA-California&sb=id_orders&so=DESC')">[va_ords_caall]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=CA-California&Status=New&st=and&sb=id_orders&so=DESC')">[va_ords_canw]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=CA-California&Status=Processed&st=and&sb=id_orders&so=DESC')">[va_ords_capr]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=CA-California&Status=Pending&st=and&sb=id_orders&so=DESC')">[va_ords_cape]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=CA-California&Status=Cancelled&st=and&sb=id_orders&so=DESC')">[va_ords_caca]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=CA-California&Status=Shipped&st=and&sb=id_orders&so=DESC')">[va_ords_cash]</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; PR Orders</td>
+		  	<td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=PR-Puerto Rico&sb=id_orders&so=DESC')">[va_ords_prall]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=PR-Puerto Rico&Status=New&st=and&sb=id_orders&so=DESC')">[va_ords_prnw]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=PR-Puerto Rico&Status=Processed&st=and&sb=id_orders&so=DESC')">[va_ords_prpr]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=PR-Puerto Rico&Status=Pending&st=and&sb=id_orders&so=DESC')">[va_ords_prpe]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=PR-Puerto Rico&Status=Cancelled&st=and&sb=id_orders&so=DESC')">[va_ords_prca]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&wprod=1&state=PR-Puerto Rico&Status=Shipped&st=and&sb=id_orders&so=DESC')">[va_ords_prsh]</td>
+	 	</tr>
+
+		<tr>
+		  <td class="smalltext" colspan="7">General w/Products Info</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; w/packing List</td>
+		  	<td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&sb=id_orders&so=DESC')">[va_gpl_all]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=New&sb=id_orders&so=DESC')">[va_gpl_nw]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Processed&sb=id_orders&so=DESC')">[va_gpl_pr]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Pending&sb=id_orders&so=DESC')">[va_gpl_pe]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Cancelled&sb=id_orders&so=DESC')">[va_gpl_ca]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Shipped&sb=id_orders&so=DESC')">[va_gpl_sh]</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; wo/packing List</td>
+		  	<td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&sb=id_orders&so=DESC')">[va_gnpl_all]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=New&sb=id_orders&so=DESC')">[va_gnpl_nw]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Processed&sb=id_orders&so=DESC')">[va_gnpl_pr]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Pending&sb=id_orders&so=DESC')">[va_gnpl_pe]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Cancelled&sb=id_orders&so=DESC')">[va_gnpl_ca]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Shipped&sb=id_orders&so=DESC')">[va_gnpl_sh]</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; Multiples Itemst</td>
+		  	<td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&sb=id_orders&so=DESC')">[va_gml_all]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=New&sb=id_orders&so=DESC')">[va_gml_nw]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Processed&sb=id_orders&so=DESC')">[va_gml_pr]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Pending&sb=id_orders&so=DESC')">[va_gml_pe]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Cancelled&sb=id_orders&so=DESC')">[va_gml_ca]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wprod=1&Status=Shipped&sb=id_orders&so=DESC')">[va_gml_sh]</td>
+	 	</tr>
+		<tr>
+		  <td class="smalltext" colspan="7">By Payments w/Payment Info</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; Check</td>
+		  	<td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wpay=1&Type=Check&sb=id_orders&so=DESC')">[va_pay_all_chk]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wpay=1&Type=Check&Status=New&sb=id_orders&so=DESC')">[va_pay_new_chk]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wpay=1&Type=Check&Status=Processed&sb=id_orders&so=DESC')">[va_pay_processed_chk]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wpay=1&Type=Check&Status=Pending&sb=id_orders&so=DESC')">[va_pay_pending_chk]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wpay=1&Type=Check&Status=Cancelled&sb=id_orders&so=DESC')">[va_pay_cancelled_chk]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wpay=1&Type=Check&Status=Shipped&sb=id_orders&so=DESC')">[va_pay_shipped_chk]</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; Credit Card</td>
+		  	<td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wpay=1&Type=Credit-Card&sb=id_orders&so=DESC')">[va_pay_all_cc]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wpay=1&Type=Credit-Card&Status=New&sb=id_orders&so=DESC')">[va_pay_new_cc]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wpay=1&Type=Credit-Card&Status=Processed&sb=id_orders&so=DESC')">[va_pay_processed_cc]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wpay=1&Type=Credit-Card&Status=Pending&sb=id_orders&so=DESC')">[va_pay_pending_cc]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wpay=1&Type=Credit-Card&Status=Cancelled&sb=id_orders&so=DESC')">[va_pay_cancelled_cc]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&wpay=1&Type=Credit-Card&Status=Shipped&sb=id_orders&so=DESC')">[va_pay_shipped_cc]</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; Wester Union</td>
+		  	<td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Type=WesternUnion&sb=id_orders&so=DESC')">[va_pay_all_wu]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Type=WesternUnion&Status=New&sb=id_orders&so=DESC')">[va_pay_new_wu]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Type=WesternUnion&Status=Processed&sb=id_orders&so=DESC')">[va_pay_processed_wu]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Type=WesternUnion&Status=Pending&sb=id_orders&so=DESC')">[va_pay_pending_wu]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Type=WesternUnion&Status=Cancelled&sb=id_orders&so=DESC')">[va_pay_cancelled_wu]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Type=WesternUnion&Status=Shipped&sb=id_orders&so=DESC')">[va_pay_shipped_wu]</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; PagoFacil</td>
+		  	<td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Type=WesternUnion&sb=id_orders&so=DESC')">[va_pay_all_fl]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Type=WesternUnion&Status=New&sb=id_orders&so=DESC')">[va_pay_new_fl]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Type=WesternUnion&Status=Processed&sb=id_orders&so=DESC')">[va_pay_processed_fl]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Type=WesternUnion&Status=Pending&sb=id_orders&so=DESC')">[va_pay_pending_fl]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Type=WesternUnion&Status=Cancelled&sb=id_orders&so=DESC')">[va_pay_cancelled_fl]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Type=WesternUnion&Status=Shipped&sb=id_orders&so=DESC')">[va_pay_shipped_fl]</td>
+	 	</tr>
+		<tr>
+		  <td class="smalltext" colspan="7">By Date w/Prod Info</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; Today</td>
+		  	<td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&sb=id_orders&so=DESC')">[va_date_all_d]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=New&sb=id_orders&so=DESC')">[va_date_new_d]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=Processed&sb=id_orders&so=DESC')">[va_date_processed_d]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=Pending&sb=id_orders&so=DESC')">[va_date_pending_d]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=Cancelled&sb=id_orders&so=DESC')">[va_date_cancelled_d]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=Shipped&sb=id_orders&so=DESC')">[va_date_shipped_d]</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; This Week</td>
+		  	<td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&sb=id_orders&so=DESC')">[va_date_all_w]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=New&sb=id_orders&so=DESC')">[va_date_new_w]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=Processed&sb=id_orders&so=DESC')">[va_date_processed_w]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=Pending&sb=id_orders&so=DESC')">[va_date_pending_w]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=Cancelled&sb=id_orders&so=DESC')">[va_date_cancelled_w]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=Shipped&sb=id_orders&so=DESC')">[va_date_shipped_w]</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; Last Week</td>
+		  	<td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&sb=id_orders&so=DESC')">[va_date_all_lw]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=New&sb=id_orders&so=DESC')">[va_date_new_lw]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=Processed&sb=id_orders&so=DESC')">[va_date_processed_lw]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=Pending&sb=id_orders&so=DESC')">[va_date_pending_lw]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=Cancelled&sb=id_orders&so=DESC')">[va_date_cancelled_lw]</td>
+		    <td class="smalltext" align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=Search&Status=Shipped&sb=id_orders&so=DESC')">[va_date_shipped_lw]</td>
+	 	</tr>
+	</table>

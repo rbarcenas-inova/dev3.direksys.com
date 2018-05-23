@@ -1,0 +1,67 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:[fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="14%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_orders_customers_info")'> Orders/Cust. Info</td>
+		<td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_orders_filter")'>Orders Filters</td>
+		<td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_noorder")'>Calls without Order</td>
+		<td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_salesbysku")'>Sales by SKU</td>
+		<td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_prodfam")'>Sales by ProdFam</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+  <form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="rep_bi_orders_customers_info">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">Business Intelligence : Orders/Customers Info</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Orders List</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+	    <td> <span class="smallfieldterr">[er_order_list]</span><br><br>
+	    		<textarea name="order_list" cols="50" style="width:50%" rows="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_order_list]</textarea>	
+	    </td>
+		 </tr>
+	</table>
+	</fieldset>	
+
+	<p align="center"><input type="submit" value="Search" class="button"></p>
+  </form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

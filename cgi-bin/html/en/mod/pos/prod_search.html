@@ -1,0 +1,148 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center" colspan="2">Buscar Productos</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+ 	</table>
+
+<form action="/cgi-bin/mod/pos/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="prod_search">
+	<input type="hidden" name="action" value="1">
+
+  <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	 <tr>
+		<td align="center" colspan="2" class="menu_bar_title">Buscar</td>
+   </tr>
+	 <tr>
+		<td align="right">ID : <span class="smallfieldterr">[er_id_products] </span></td>
+		<td><input type="text" name="id_products" value="[in_id_products]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+   </tr>
+	 <tr>
+		<td align="right">Modelo : <span class="smallfieldterr">[er_model] </span></td>
+		<td><input type="text" name="model" value="[in_model]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+   </tr>
+	 <tr>
+		<td align="right">Nombre : <span class="smallfieldterr">[er_name] </span></td>
+		<td><input type="text" name="name" value="[in_name]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+   </tr>
+   <tr>
+		<td align="right">Rango de Precios : <span class="smallfieldterr">[er_pricerange] </span></td>
+		<td>
+			<select name="pricerange" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+        <option value="---">---</option>
+        [fc_build_select_pricerange]
+			</select>
+		</td>
+   </tr>
+   <tr>
+		<td align="right">Tipo de Producto : <span class="smallfieldterr">[er_producttype]</span></td>
+		<td>
+			<select name="producttype" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+      	<option value="---">---</option>
+      	[fc_build_select_prdtype]
+			</select>
+		</td>
+   </tr>
+	 <tr>
+    <td align="right">Marca : <span class="smallfieldterr">[er_id_brands]</span></td>
+    <td class="smalltext"><select name="id_brands" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+       <option value="---">---</option>
+       [fc_build_select_brands]
+     </select>
+    </td>
+	 </tr>
+	 <tr>
+    <td align="right">Marca SKU : <span class="smallfieldterr">[er_manufactersku]</span></td>
+    <td class="smalltext"><input type="text" name="manufactersku" value="[in_manufactersku]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+	</tr>
+	<tr>
+		<td align="center" colspan="2"><br>
+			<input type="submit" value="Buscar" class="button">
+		</td>
+ 	</tr>
+</table>
+&nbsp;	
+<fieldset>
+<legend>Opciones de B&uacute;squeda</legend>
+<table border="0" cellspacing="0" cellpadding="4" width="100%" >
+<tr>
+<td align="center" colspan="2">
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+<tr>
+<td align="center" class="smalltext"> B&uacute;squeda por Palabras : <input name="keyword" size="40" maxlength="255" type="text" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+<td align="center" class="help_on">Organizar por :
+<select name="sb" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+<option value="">---</option>
+<option value="ID_products">ID SL</option>
+<option value="name">Nombre</option>
+<option value="model">Modelo</option>
+<option value="sprice">Precio</option>
+</select> &nbsp; &nbsp;
+Ordenar : 
+<input name="so" value="asc" id="so_asc" checked="checked" type="radio" class="radio" />       
+<label for="so_asc"> Ascendente </label>
+<input name="so" value="desc" id="so_desc" type="radio" class="radio" />
+<label for="so_desc"> Descendente </label>
+</span><br>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_select('sb','[in_sb]');
+	chg_radio('so','[in_so]');
+
+
+	chg_select('pricerange','[in_pricerange]');
+	chg_select('producttype','[producttype]');
+	chg_select('id_brands','[in_brands]');
+	chg_chkbox('sameshipping','[in_sameshipping]');
+
+//-->
+</script>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+

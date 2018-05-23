@@ -1,0 +1,280 @@
+	&nbsp;
+	<fieldset><legend>Order Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">User  : <span class="smallfieldterr">[er_id_admin_users]</span></td>
+		  <td class="smalltext">
+			<select name="id_admin_users" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<option value="">---</option>
+					[fc_build_select_internet_users]
+			</select>
+		</td>
+		</tr>
+		<tr>
+	</table>
+	</fieldset>
+	&nbsp;	
+	<fieldset><legend>Customer Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Name  : <span class="smallfieldterr">[er_firstname]</span></td>
+		  <td class="smalltext"><input type="text" name="firstname" value="[in_firstname]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Last Name (Father) : <span class="smallfieldterr">[er_lastname1]</span></td>
+		  <td class="smalltext"><input type="text" name="lastname1" value="[in_lastname1]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>	
+		<tr>
+		  <td width="30%">Last Name (Mother) : <span class="smallfieldterr">[er_lastname2]</span></td>
+		  <td class="smalltext"><input type="text" name="lastname2" value="[in_lastname2]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Sex : <span class="smallfieldterr">[er_sex]</span></td>
+		  <td class="smalltext">
+		  	<input type="radio" name="sex" value="Male" class="radio">Male
+		  	<input type="radio" name="sex" value="Female" class="radio">Female
+		</tr>
+		<tr>
+		  <td width="30%">Phone 1  : <span class="smallfieldterr">[er_phone1]</span></td>
+		  <td class="smalltext"><input type="text" name="phone1" value="[in_phone1]" size="20" ></td>
+		</tr>
+		<tr>
+		  <td width="30%">Cellphone  : <span class="smallfieldterr">[er_cellphone]</span></td>
+		  <td class="smalltext"><input type="text" name="cellphone" value="[in_cellphone]" size="20" ></td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Default Shipping Address</legend>	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td valign="top" width="30%">Address :</td>
+		   <td class="smalltext">
+		   		<input type="text" name="address1" value="[in_address1]" size="30" > <span class="smallfieldterr">[er_address1]</span><br>
+		   		<input type="text" name="address2" value="[in_address2]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address2]</span><br>
+		   		<input type="text" name="address3" value="[in_address3]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address3]</span>
+		   	</td>
+		</tr>
+		<tr>
+		  <td width="30%">Urbanization : <span class="smallfieldterr">[er_urbanization]</span></td>
+		  <td class="smalltext"><input type="text" name="urbanization" value="[in_urbanization]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		 	<td width="30%">City : <span class="smallfieldterr">[er_city]</span></td>
+		  <td class="smalltext">
+					<input type="text" name="city" value="[in_city]" size="30" oocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		 	<td width="30%">State/Zip : </td>
+		  <td class="smalltext">
+				<select name="state" id="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+						[fc_build_select_opr_customersstate]
+				</select> <span class="smallfieldterr">[er_state]</span>
+					<input type="text" name="zip" value="[in_zip]" size="8" oocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_zip]</span>
+			</td>
+		</tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+  <fieldset><legend>Optional Info</legend>	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">						
+		<tr>
+		  <td width="30%">Email  : <span class="smallfieldterr">[er_email]</span></td>
+		  <td class="smalltext"><input type="text" name="email" value="[in_email]" size="30" ></td>
+		</tr>
+		<tr>
+		  <td width="30%">Language  : <span class="smallfieldterr">[er_language]</span></td>
+		  <td class="smalltext">
+		  	<input type="radio" name="language" value="english" class="radio">English
+		  	<input type="radio" name="language" value="spanish" class="radio" checked="checked">Spanish	
+		  </td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;	
+	<center>
+		<input type="button" value="Search Customer" class="button" name="review_customers" id="review_customers">
+	</center>
+	&nbsp;	
+  <fieldset><legend>Products Info</legend>	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>         	
+			<td class="menu_bar_title" nowrap="nowrap">Select</td>
+			<td class="menu_bar_title" nowrap="nowrap">Item ID</td>
+			<td class="menu_bar_title" nowrap="nowrap">Sale Price</td>
+			<td class="menu_bar_title" nowrap="nowrap">Shipping</td>
+	 	</tr>
+		<tr>
+		  <td width="30%">Product 1: </td>
+		  <td class="smalltext"><input type="text" name="id_products1" value="[in_id_products1]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	<span class="smallfieldterr">[er_id_products1]</span>
+		    	<a name="tabs" id="tabs">&nbsp;</a>
+		    	<a href="javascript:search_id('id_products1','db=sl_products&cmd=products')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>				
+			<td class="smalltext">
+				<input type="text" name="sprice1" id="sprice1" value="[in_sprice1]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_sprice1]</span>
+			</td>
+			<td class="smalltext">
+				<input type="text" name="shipping1" id="shipping1" value="[in_shipping1]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_shipping1]</span>
+			</td>
+		</tr>
+		
+		<tr>
+		  <td width="30%">Product 2: </td>
+		  <td class="smalltext"><input type="text" name="id_products2" value="[in_id_products2]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	<span class="smallfieldterr">[er_id_products2]</span>
+		    	<a name="tabs" id="tabs">&nbsp;</a>
+		    	<a href="javascript:search_id('id_products2','db=sl_products&cmd=products')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+			<td class="smalltext">
+				<input type="text" name="sprice2" value="[in_sprice2]" id="sprice2" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_sprice2]</span>
+			</td>
+			<td class="smalltext">
+				<input type="text" name="shipping2" id="shipping2" value="[in_shipping2]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_shipping2]</span>
+			</td>
+		</tr>
+		
+		<tr>
+		  <td width="30%">Product 3: </td>
+		  <td class="smalltext"><input type="text" name="id_products3" value="[in_id_products3]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	<span class="smallfieldterr">[er_id_products3]</span>
+		    	<a name="tabs" id="tabs">&nbsp;</a>
+		    	<a href="javascript:search_id('id_products3','db=sl_products&cmd=products')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+			<td class="smalltext">
+				<input type="text" name="sprice3" value="[in_sprice3]" id="sprice3" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_sprice3]</span>
+			</td>
+			<td class="smalltext">
+				<input type="text" name="shipping3" id="shipping3" value="[in_shipping3]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_shipping3]</span>
+			</td>
+		</tr>
+		
+		<tr>
+		  <td width="30%">Product 4: </td>
+		  <td class="smalltext"><input type="text" name="id_products4" value="[in_id_products4]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	<span class="smallfieldterr">[er_id_products4]</span>
+		    	<a name="tabs" id="tabs">&nbsp;</a>
+		    	<a href="javascript:search_id('id_products4','db=sl_products&cmd=products')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+			<td class="smalltext">
+				<input type="text" name="sprice4" value="[in_sprice4]" id="sprice4" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_sprice4]</span>
+			</td>
+			<td class="smalltext">
+				<input type="text" name="shipping4" id="shipping4" value="[in_shipping4]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_shipping4]</span>
+			</td>
+		</tr>
+		
+		<tr>
+		  <td width="30%">Product 5: </td>
+		  <td class="smalltext"><input type="text" name="id_products5" value="[in_id_products5]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	<span class="smallfieldterr">[er_id_products5]</span>
+		    	<a name="tabs" id="tabs">&nbsp;</a>
+		    	<a href="javascript:search_id('id_products5','db=sl_products&cmd=products')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+			<td class="smalltext">
+				<input type="text" name="sprice5" value="[in_sprice5]" id="sprice5" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_sprice5]</span>
+			</td>
+			<td class="smalltext">
+				<input type="text" name="shipping5" id="shipping5" value="[in_shipping5]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_shipping5]</span>
+			</td>
+		</tr>
+
+		<tr>
+		  <td width="30%">Product 6: </td>
+		  <td class="smalltext"><input type="text" name="id_products6" value="[in_id_products6]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	<span class="smallfieldterr">[er_id_products6]</span>
+		    	<a name="tabs" id="tabs">&nbsp;</a>
+		    	<a href="javascript:search_id('id_products6','db=sl_products&cmd=products')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+			<td class="smalltext">
+				<input type="text" name="sprice6" value="[in_sprice6]" id="sprice6" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_sprice6]</span>
+			</td>
+			<td class="smalltext">
+				<input type="text" name="shipping6" id="shipping6" value="[in_shipping6]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_shipping6]</span>
+			</td>
+		</tr>
+
+		
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Payment Info</legend>	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">						
+		<tr>
+		  <td width="30%">Type  : <span class="smallfieldterr">[er_type]</span></td>
+		  <td class="smalltext">
+			<input type="radio" name="type" value="COD" class="radio">COD
+		  	<input type="radio" name="type" value="Credit-Card" class="radio">Credit-Card
+		  	<input type="radio" name="type" value="PayPal" class="radio">PayPal
+			<input type="radio" name="type" value="Google-checkout" class="radio">Google Checkout
+			<input type="radio" name="type" value="Amazon" class="radio">Amazon
+		  </td>
+		</tr>
+		<tr>
+			<td class="smalltext" valign="top" nowrap="nowrap">Credit-Card : <span class="smallfieldterr">[er_pmtfield1]</span></td>
+		   <td class="smalltext">
+		   		<input class="radio" name="pmtfield1" value="Visa" type="radio"> Visa
+		   		<input class="radio" name="pmtfield1" value="Mastercard" type="radio"> Master Card	
+		   		<input class="radio" name="pmtfield1" value="American Express" type="radio"> American Express
+		   		<input class="radio" name="pmtfield1" value="Discover" type="radio"> Discover		
+		   </td>
+		</tr>
+		<tr>
+	     <td class="smalltext" nowrap="nowrap">Credit-Card number : <span class="smallfieldterr">[er_pmtfield3]</span></td>
+	     <td class="smalltext"><input name="pmtfield3" value="[in_pmtfield3]" size="20" maxlength="16" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+	  </tr>
+	  <tr>
+     <td class='smalltext' nowrap>Expiration : <span class='smallfieldterr'>[er_pmtfield4]</span></td>
+     <td class='smalltext'>
+		<input type="text" id="expdate" name="expdate" value="[in_expdate]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	</td>
+  	</tr>
+  	<tr>
+	     <td class='smalltext'>CVN : <span class='smallfieldterr'>[er_pmtfield5]</span></td>
+	     <td class='smalltext'><input type='text' name='pmtfield5' value='[in_pmtfield5]' size='5' MAXLENGTH='4' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+	  </tr>
+	  <tr>
+	     <td class='smalltext'>Amount: <span class='smallfieldterr'>[er_amount]</span></td>
+	     <td class='smalltext'>
+			<input type='text' name='amount' id="amount" value='[in_amount]' size='5' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			<input type="button" value="Calculate" class="button" id="btn_cal">
+			<span id="refresh">&nbsp;</span>
+		</td>
+	  </tr>
+	  <tr>
+	     <td class='smalltext'>Authorization Number: <span class='smallfieldterr'>[er_authcode]</span></td>
+	     <td class='smalltext'><input type='text' name='authcode' value='[in_authcode]' size='10' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+	  </tr>
+	</table>
+	</fieldset>
+	&nbsp;	
+
+<script language="javascript">
+<!--
+	chg_radio('pmtfield1','[in_pmtfield1]');
+	chg_radio('type','[in_type]');
+	chg_radio('sex','[in_sex]');
+	chg_radio('status','[in_status]');
+	chg_radio('atime','[in_atime]');
+	chg_select('state','[in_state]');
+	chg_select('Type','[in_type]');
+	chg_select('birthcountry','[in_birthcountry]');
+	chg_select('Month','[in_month]');
+	chg_select('Year','[in_year]');
+	chg_select('id_admin_users','[in_id_admin_users]');
+//-->
+</script>

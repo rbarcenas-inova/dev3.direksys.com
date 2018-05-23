@@ -1,0 +1,37 @@
+	&nbsp;
+	<fieldset><legend>Prototype Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Item Title : <span class="smallfieldterr">[er_name]</span></td>
+		    <td class="smalltext"><input type="text" name="name" value="[in_name]" size="60" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="30%">Description: <span class="smallfieldterr">[er_description]</span></td>
+		    <td class="smalltext">
+					<textarea name="description" cols="50" style="width:100%" rows="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description]</textarea>
+				</td>
+		</tr>
+		</table>
+	</fieldset>
+ 	&nbsp;
+	<fieldset><legend>Prototype Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			    <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+			    <td class="smalltext">
+		      	<input type="radio" name="status" value="Active" class="radio">Active
+		      	<input type="radio" name="status" value="Inactive" class="radio">Inactive
+	      </td>
+			</tr>
+  	</table>
+	</fieldset>
+
+<script language="JavaScript">
+<!--
+
+	chg_radio('status','[in_status]');
+
+
+//-->
+</script>
+

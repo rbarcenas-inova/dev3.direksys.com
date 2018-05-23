@@ -1,0 +1,90 @@
+	<link rel="stylesheet" href="/libs/jsgrid/jsgrid.css">
+<link rel="stylesheet" href="/libs/jsgrid/jsgrid-theme.css" />
+<script src="/finkok/common/js/jquery.mask.min.js"></script>
+<script src="/libs/jsgrid/jsgrid.js"></script>
+	<fieldset><legend>Journal Entry ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Journal Entry ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_journalentries] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]
+							[fc_func_list_manager]
+							<a href="/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]&id_journalentries=[in_id_journalentries]&export=1" title="Export" alt="Export">
+								<img border="0" src="[va_imgurl]/[ur_pref_style]/b_xls.gif" width="24" height="24" title="Export Journal Entry" alt="Export">
+							</a>
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+&nbsp;
+<fieldset><legend>Journal Entries</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Journal Date : </td>
+			<td class="smalltext">[in_journaldate]</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Categories :  </td>
+			<td class="smalltext">[in_categories]</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Comments :  </td>
+			<td class="smalltext">[in_comments]</td>
+		</tr>
+		<tr>
+			<td width="30%">Status :  </td>
+			<td>[in_status] [va_action_status]</td>
+		</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+
+<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="journalform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="fin_journalentries">
+	<input type="hidden" name="view" value="[in_id_journalentries]">
+	<input type="hidden" id="posted" name="posted" value="0">
+	<input type="hidden" id="void" name="void" value="0">
+</form>
+
+
+<script language="javascript">
+<!--
+	
+	$(document).ready(function() {
+
+		var dates = $( "#from_date, #to_date" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: new Date(),
+			maxDate: '+2d',
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+	});
+
+	chg_chkbox('category','[in_category]');
+
+	function sendForm(type){
+		type == 1 ? document.getElementById('posted').value = 1 : document.getElementById('void').value = 1;
+		document.journalform.submit();
+	}
+
+</script>
+
+
+
+
+

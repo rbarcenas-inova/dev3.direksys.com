@@ -1,0 +1,69 @@
+	&nbsp;
+	<fieldset><legend>Supply Main Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+		    <td width="30%">Name : <span class="smallfieldterr">[er_name]</span></td>
+		    <td class="smalltext"><input type="text" name="name" value="[in_name]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+		    <td valign="top" width="30%">Description : <span class="smallfieldterr"></span></td>
+		    <td class="smalltext"><textarea name="description" cols="50" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description]</textarea> </td>
+		 	</tr>			
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Shipping Specs</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+		    <td width="30%">Weight : <span class="smallfieldterr">[er_weight]</span></td>
+		    <td class="smalltext"><input type="text" name="weight" value="[in_weight]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">Lb</span></td>
+			</tr>
+			<tr>
+		    <td width="30%">Dimensions (w x h x l) : <span class="smallfieldterr">[er_sizeW] [er_sizeh] [er_sizel]</span></td>
+		    <td class="help_on"><input type="text" name="sizew" value="[in_sizew]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'> 
+					x <input type="text" name="sizeh" value="[in_sizeh]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					x <input type="text" name="sizel" value="[in_sizel]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						in</td>
+			</tr>
+		</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Cost</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+		    <td width="30%">Net Cost : <span class="smallfieldterr">[er_sltv_netcost]</span></td>
+		    <td class="smalltext"><input type="text" name="netcost" value="[in_sltv_netcost]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>	 		 
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Pricing</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+		    <td width="30%">Sales Price : <span class="smallfieldterr">[er_sprice]</span></td>
+		    <td class="smalltext"><input type="text" name="sprice" value="[in_sprice]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>	 
+		</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Supply Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  	<tr>
+			 	<td width="30%">Status : <span class="smallfieldterr">[er_status]</span></td>
+				<td class="smalltext">
+					<input type="radio" name="status" class="radio" value="Active">Active
+					<input type="radio" name="status" class="radio" value="Inactive">Inactive
+				</td>
+			</tr>
+	  </table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+	
+	chg_select('spricename','[in_spricename]');
+	chg_radio('status','[in_status]');
+
+//-->
+</script>
+

@@ -1,0 +1,228 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"   "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://opengraphprotocol.org/schema/"
+      xmlns:fb="http://www.facebook.com/2008/fbml"
+      xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="es-mx">
+<title>Editing Order</title>
+<META NAME="Author" CONTENT="ArielAleXCo." />
+<link rel="stylesheet" type="text/css" href="/sitimages/orders/orders.css">
+<!-- Jquery -->
+<link rel="stylesheet" href="/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src=" /libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script type="text/javascript">
+	function mySubmitFunction(){
+		$("#btn_submit").hide();
+		$("#img_loading_chargebck").show();
+
+		if (!confirm('Are you sure you want to apply this chargeback?')){ 
+			$("#btn_submit").show();
+			$("#img_loading_chargebck").hide();
+			return false;
+		} else {
+			$("#form_charge_back").submit();
+		}
+	}
+</script>
+</head>
+<body>
+
+
+<center>
+<form action="/cgi-bin/common/apps/ajaxbuild" method="post" name="sitform" id="form_charge_back">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="ajaxbuild" value="edit_refund_chargeback">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="refund" value="[in_refund]">
+	<input type="hidden" name="isshipped" value="[in_isshipped]">
+	<input type="hidden" name="path" value="[in_path]">
+
+<table cellpadding=0 cellspacing=5 width=95% border=0>
+	<tr>
+		<td valign=bottom align=left><font class=modaltit>Products in Order : [in_id_orders]</font><br><br></td>
+	</tr>
+	<tr style="[va_style_message]">
+		<td align="center">[va_message]</td>
+	</tr>
+</table>
+
+<div id="div_chargebackinfo" style="[va_div_chargebackinfo]">
+	<table cellpadding=0 cellspacing=5 width=95% border=0>
+		<tr>
+			<td colspan=2 align=left>
+
+				<table cellpadding=4 cellspacing=0 width=100% style="border:1px solid;">
+					<tr bgcolor=#4d6ce4 background="/sitimages/orders/tabla.jpg">
+						<td colspan="2"><font class=mthead>[va_this_event] Info</font></td>
+					</tr>
+					<tr>
+						<td>
+							
+							&nbsp;
+							<fieldset>
+							<table border="0" cellspacing="0" cellpadding="2" width="100%">
+								
+								<tr style="[va_this_event_style]">			
+									<td width="30%">Bank Date : <span style="background-color:#F0F0A8;font-weight:bold; color:#DC3438">[er_bankdate]</span></td>
+									<td class="smalltext">
+										<input type="text" id="bankdate" name="bankdate" value="[in_bankdate]" size="15" oocus='focusOn( this )' onBlur='focusOff( this )'>
+									</td>
+								</tr>
+								<tr style="[va_this_event_style]">
+								 	<td width="30%">[va_this_event] To : <span class="smallfieldterr">[er_chargebackto]</span></td>
+									<td class="smalltext">
+										<select name="chargebackto" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+											<option value="">---</option>
+											[bs_ChargeBackTo@sl_chargebacks]
+								  		</select>
+									</td>
+								</tr>
+								<tr>
+								  	<td valign="top" width="30%">Notes : <span class="smallfieldterr">[er_description]</span></td>
+								  	<td class="smalltext">
+								  		<textarea name="description" cols="50" style="width:100%" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description]</textarea> 
+								 	</td>
+								</tr>
+							</table>
+							</fieldset>
+							&nbsp;	
+
+						</td>
+					</tr>
+				</table>
+				
+			</td>		
+		</tr>
+
+		<tr>
+			<td colspan=2 align=left>
+			
+				<br/>
+				<div style="[va_divsearch]">
+					<label style="font-weight:bold; color:red"></label>
+					&nbsp;
+					<table cellpadding=4 cellspacing=0 width=100% style="border:1px solid;">
+						<tr bgcolor=#4d6ce4 background="/sitimages/orders/tabla.jpg">
+							<td><font class=mthead>#</font></td>
+							<td><font class=mthead>Product ID</font></td>
+							<td><font class=mthead>Model/Name</font></td>
+							<td><font class=mthead>Quantity</font></td>
+							<td><font class=mthead>Ship Date</font></td>
+							<td><font class=mthead>Status</font></td>
+							<td align="center"><font class=mthead>Price</font></td>
+							<td align="center"><font class=mthead>Discount</font></td>
+							<td align="center"><font class=mthead>Shipping</font></td>
+							<td align="center"><font class=mthead>Tax</font></td>
+							<td align="right"><font class=mthead>Total</font></td>
+						</tr>
+						<tr style="[va_er_products]">
+							<td align="center">[er_products]</td><td colspan="10">&nbsp;</td>
+						</tr>
+						[va_searchresult]
+					</table>
+				</div>
+				
+			</td>
+		</tr>
+
+		<tr style="[va_isshipped_style]">
+			<td>
+							
+				&nbsp;
+				<fieldset>
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					<tr>
+					 	<td width="30%">Service : <span class="smallfieldterr">[er_id_services]</span></td>
+						<td class="smalltext">
+							<select name="id_services" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+								<option value="">---</option>
+								[fc_build_select_services]
+					  		</select>
+						</td>
+					</tr>
+					<tr >			
+						<td colspan="2" align="center">
+							<input type="checkbox" class="checkbox" id="id_isshipped_ok" name="id_isshipped_ok" value="1">
+							&nbsp;&nbsp;
+							<span style="height:25px;font-size:1.5em;color:red">
+								[va_isshipped_chargeback_info]
+							</span>
+						</td>
+					</tr>
+				</table>
+				</fieldset>
+				&nbsp;	
+
+			</td>
+		</tr>
+
+		<tr>
+			<td align="center">
+				<p>&nbsp;</p>
+				<p align="center" style="height:25px;font-size:2em;color:red"><span id="amt_balance"></span><br><br>
+					<input type="button" id="btn_submit" name="btn_submit" value="Add [va_this_event]" class="button" onclick="mySubmitFunction();"><!-- onClick="javascript:"> -->
+					<img src="/sitimages/loading.gif" height="30px" width="30px" style="display:none;" id="img_loading_chargebck" />
+				</p>
+			</td>
+		</tr>
+	</table>
+</div>
+
+&nbsp; 
+&nbsp;
+
+</form>
+
+
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		$.ajaxSetup({
+	    	timeout: 60000
+	    });
+
+		var dates = $( "#bankdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			maxDate: new Date(),
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 2,
+		});
+
+
+		/* Para SUMAR Los valores de refund|chargeback */
+		$(":checkbox[id^='id_orders_products_']").click(function(e){
+
+			var balance = 0;
+			$(":checkbox[id^='id_orders_products_']").each(function () {
+           
+           		if (this.checked) {
+
+					balance += parseFloat($( this ).val()) || 0;
+
+				}
+
+			});
+
+			balance = balance.toFixed(2);
+			if(balance > 0){
+
+				$( "#amt_balance" ).text('$' + balance);
+
+			}
+
+		});
+	});	
+
+</script>
+</body>
+

@@ -1,0 +1,102 @@
+	<table border="0" cellspacing="0" cellpadding="2" width="100%" class="formtable">
+		<tr>
+		  	<td class="menu_bar_title">By Due date</td>
+		    <td class="menu_bar_title" align="center">Due</td>
+		    <td class="menu_bar_title" align="center">Today</td>
+		    <td class="menu_bar_title" align="center">This Week</td>
+		    <td class="menu_bar_title" align="center">Next Week</td>
+		    <td class="menu_bar_title" align="center">This Month</td>
+		    <td class="menu_bar_title" align="center">Next Month</td>
+		    <td class="menu_bar_title" align="center">All</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; All</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=due&sb=id_orders&so=DESC')">[va_all_due]</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=today&sb=id_orders&so=DESC')">[va_all_today]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tweek&sb=id_orders&so=DESC')">[va_all_tweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nweek&sb=id_orders&so=DESC')">[va_all_nweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tmonth&sb=id_orders&so=DESC')">[va_all_tmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nmonth&sb=id_orders&so=DESC')">[va_all_nmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&sb=id_orders&so=DESC')">[va_all_all]</td>
+	 	</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; New</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=due&Status=New&sb=id_orders&so=DESC')">[va_new_due]</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=today&Status=New&sb=id_orders&so=DESC')">[va_new_today]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tweek&Status=New&sb=id_orders&so=DESC')">[va_new_tweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nweek&Status=New&sb=id_orders&so=DESC')">[va_new_nweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tmonth&Status=New&sb=id_orders&so=DESC')">[va_new_tmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nmonth&Status=New&sb=id_orders&so=DESC')">[va_new_nmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Status=New&sb=id_orders&so=DESC')">[va_new_all]</td>
+		</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; Processed</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=due&Status=Processed&sb=id_orders&so=DESC')">[va_processed_due]</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=today&Status=Processed&sb=id_orders&so=DESC')">[va_processed_today]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tweek&Status=Processed&sb=id_orders&so=DESC')">[va_processed_tweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nweek&Status=Processed&sb=id_orders&so=DESC')">[va_processed_nweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tmonth&Status=Processed&sb=id_orders&so=DESC')">[va_processed_tmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nmonth&Status=Processed&sb=id_orders&so=DESC')">[va_processed_nmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Status=Processed&sb=id_orders&so=DESC')">[va_processed_all]</td>
+		</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; Review</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=due&Status=Review&sb=id_orders&so=DESC')">[va_review_due]</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=today&Status=Review&sb=id_orders&so=DESC')">[va_review_today]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tweek&Status=Review&sb=id_orders&so=DESC')">[va_review_tweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nweek&Status=Review&sb=id_orders&so=DESC')">[va_review_nweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tmonth&Status=Review&sb=id_orders&so=DESC')">[va_review_tmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nmonth&Status=Review&sb=id_orders&so=DESC')">[va_review_nmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Status=Review&sb=id_orders&so=DESC')">[va_review_all]</td>
+		</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; Returned</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=due&Status=Returned&sb=id_orders&so=DESC')">[va_returned_due]</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=today&Status=Returned&sb=id_orders&so=DESC')">[va_returned_today]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tweek&Status=Returned&sb=id_orders&so=DESC')">[va_returned_tweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nweek&Status=Returned&sb=id_orders&so=DESC')">[va_returned_nweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tmonth&Status=Returned&sb=id_orders&so=DESC')">[va_returned_tmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nmonth&Status=Returned&sb=id_orders&so=DESC')">[va_returned_nmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Status=Returned&sb=id_orders&so=DESC')">[va_returned_all]</td>
+		</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; Pending</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=due&Status=Pending&sb=id_orders&so=DESC')">[va_pending_due]</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=today&Status=Pending&sb=id_orders&so=DESC')">[va_pending_today]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tweek&Status=Pending&sb=id_orders&so=DESC')">[va_pending_tweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nweek&Status=Pending&sb=id_orders&so=DESC')">[va_pending_nweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tmonth&Status=Pending&sb=id_orders&so=DESC')">[va_pending_tmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nmonth&Status=Pending&sb=id_orders&so=DESC')">[va_pending_nmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Status=Pending&sb=id_orders&so=DESC')">[va_pending_all]</td>
+		</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; Cancelled</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=due&Status=Cancelled&sb=id_orders&so=DESC')">[va_cancelled_due]</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=today&Status=Cancelled&sb=id_orders&so=DESC')">[va_cancelled_today]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tweek&Status=Cancelled&sb=id_orders&so=DESC')">[va_cancelled_tweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nweek&Status=Cancelled&sb=id_orders&so=DESC')">[va_cancelled_nweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tmonth&Status=Cancelled&sb=id_orders&so=DESC')">[va_cancelled_tmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nmonth&Status=Cancelled&sb=id_orders&so=DESC')">[va_cancelled_nmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Status=Cancelled&sb=id_orders&so=DESC')">[va_cancelled_all]</td>
+		</tr>
+		<tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; Shipped</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=due&Status=Shipped&sb=id_orders&so=DESC')">[va_shipped_due]</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=today&Status=Shipped&sb=id_orders&so=DESC')">[va_shipped_today]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tweek&Status=Shipped&sb=id_orders&so=DESC')">[va_shipped_tweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nweek&Status=Shipped&sb=id_orders&so=DESC')">[va_shipped_nweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tmonth&Status=Shipped&sb=id_orders&so=DESC')">[va_shipped_tmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nmonth&Status=Shipped&sb=id_orders&so=DESC')">[va_shipped_nmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Status=Shipped&sb=id_orders&so=DESC')">[va_shipped_all]</td>
+		</tr>
+    <tr>
+		  	<td class="smalltext" nowrap>&nbsp;&nbsp; Postdated</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=due&Status=Postdated&sb=id_orders&so=DESC')">[va_postdated_due]</td>
+		  	<td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=today&Status=Postdated&sb=id_orders&so=DESC')">[va_postdated_today]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tweek&Status=Postdated&sb=id_orders&so=DESC')">[va_postdated_tweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nweek&Status=Postdated&sb=id_orders&so=DESC')">[va_postdated_nweek]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=tmonth&Status=Postdated&sb=id_orders&so=DESC')">[va_postdated_tmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&paymentdate=nmonth&Status=Postdated&sb=id_orders&so=DESC')">[va_postdated_nmonth]</td>
+		    <td class="smalltext" align="right" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advSearch&paytbl=1&Status=Postdated&sb=id_orders&so=DESC')">[va_postdated_all]</td>
+		</tr>
+	</table>

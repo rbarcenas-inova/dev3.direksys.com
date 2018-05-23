@@ -1,0 +1,234 @@
+<STYLE TYPE="text/css">
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+</STYLE>
+
+<center>
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td><font class=info>
+
+<table cellpadding=0 cellspacing=0 border=0>
+	<td align=left>
+        <td align="left" valign="top">		<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px></td>
+	</td>
+	[fc_show_companyinfo]
+</table>
+
+<center>
+<hr style="color: #000;background-color: #000;height: 1px;">
+<font class=its>O R D E N E S</font>
+<hr style="color: #000;background-color: #000;height: 1px;">
+<br>
+
+
+
+					<table border="0" cellspacing="0" cellpadding="2" width="100%">
+						<tr>
+							<td width="12%"><font class=infot>ID de Orden : </td>
+							<td><font class=infot>[in_id_orders] &nbsp;</td>
+						</tr>
+						<tr>
+						    <td class="titletext" valign="top"><font class=info>Status : </td>
+						    <td><font class=infot>[in_status]<br>[in_statuspay] - [in_statusprd]</td>
+						</tr>
+						<tr>
+							<td colspan="2"><font class=info>[in_date] [in_time] Creado por : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]<td>
+						</tr>
+					</table>        	
+
+
+	&nbsp;
+	<fieldset><legend>Información del cliente</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%"><font class=infot>ID de cliente : </td>
+		  <td><font class=info>[in_id_customers]</td>
+		</tr>
+		<tr>
+		    <td width="30%"><font class=infot>Nombre (Nombre / Apellido) : </td>
+		    <td><font class=info>[in_customers.firstname] [in_customers.lastname1] [in_lcustomers.astname2]</td>
+		</tr>	
+		<tr>
+		  	<td width="30%"><font class=infot>Sexo : </td>
+		    <td><font class=info>[in_customers.sex]</td>
+		</tr>
+		<tr>
+		  	<td width="30%"><font class=infot>Teléfono (día) : </td>
+		    <td><font class=info>[in_customers.phone1]</td>
+		</tr>
+		<tr>
+		  	<td width="30%"><font class=infot>Teléfono (Tarde) : </td>
+		    <td><font class=info>[in_customers.phone2]</td>
+		</tr>	
+		<tr>
+		  	<td width="30%"><font class=infot>Celular : </td>
+		    <td><font class=info>[in_customers.cellphone]</td>
+		</tr>	
+		<tr>
+		  	<td width="30%"><font class=infot>Tiempo disponible : </td>
+		    <td><font class=info>[in_customers.atime]</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td width="50%" valign="top">
+					<fieldset><legend>Información de facturación</legend>
+					<table border="0" cellspacing="0" cellpadding="2" width="100%">		
+						<tr>
+						  <td valign="top"  nowrap><font class=info>Nombre :</td>
+						  <td><font class=info>[in_shp_name]<br>
+						</tr>
+						<tr>
+							<td valign="top"  nowrap><font class=info>Dirección : </td>
+						  	<td><font class=info>[in_address1]<br>
+						  	[in_address2]<br>
+						    [in_address3]
+						  </td>
+						</tr>
+						<tr>
+						<tr>
+						  <td valign="top"  nowrap><font class=info>Urbanización : </td>
+						  <td><font class=info>[in_urbanization]</td>
+						</tr>
+						<tr>			
+							<td valign="top"  nowrap><font class=info>Ciudad : </td>
+							<td><font class=info>[in_city]</td>
+						</tr>
+						<tr>
+						 	<td valign="top"  nowrap><font class=info>Estado / Código Postal : </td>
+						  <td><font class=info>[in_state], [in_zip]</td>
+						</tr>
+						<tr>
+							<td><font class=info>País : </td>
+							<td><font class=info>[in_country]</td>		 
+						</tr>
+						<tr>
+							<td valign="top"  nowrap><font class=info>Notas : </td>
+						  <td><font class=info>[in_billingnotes]</td>
+						</tr>		
+					</table>
+					</fieldset>
+		  	</td>
+		  <td width="50%" valign="top">
+					<fieldset><legend>Información de envío</legend>
+					<table border="0" cellspacing="0" cellpadding="2" width="100%">
+						<tr>
+						  <td valign="top"  nowrap><font class=info>Dirección :</td>
+						  <td><font class=info>[in_shp_address1]<br>
+						  	[in_shp_address2]<br>
+						  	[in_shp_address3]
+						  </td>
+						</tr>
+						<tr>
+						<tr>
+						  <td valign="top"  nowrap><font class=info>Urbanización : </td>
+						  <td><font class=info>[in_shp_urbanization]</td>
+						</tr>
+						<tr>			
+							<td valign="top"  nowrap><font class=info>Ciudad : </td>
+							<td><font class=info>[in_shp_city]</td>
+						</tr>
+						<tr>
+						 	<td valign="top"  nowrap><font class=info>Estado / Código Postal : </td>
+						  <td><font class=info>[in_shp_state] [in_shp_zip]</td>
+						</tr>
+						<tr>
+							<td><font class=info>País : </td>
+							<td><font class=info>[in_shp_country]</td>		 
+						</tr>
+						<tr>
+							<td valign="top" nowrap><font class=info>Notas : </td>
+						   <td><font class=info>[in_shp_notes]</td>
+						</tr>
+						<tr>
+							<td valign="top" nowrap><font class=info>Envío Type : </td>
+						    <td>[in_shp_type]</td>
+						</tr>
+					</table>
+					</fieldset>
+		  	</td>
+		</tr>
+	</table>
+	&nbsp;
+  <fieldset><legend>Notas de Orden</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		    <td valign="top" width="10%"><font class=infot>Notas : </td>
+		    <td><font class=info>[in_ordernotes]</td>
+		 	</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="7" width="100%"   style="border:1px solid #333333;border-bottom:0px solid #333333;" >
+			<tr>
+		    <td colspan="5" align="center" style="border-left:0px solid #555555;border-bottom:1px solid #555555;"><font class="infot">Totales de la orden
+		    </td>
+		 	</tr>			
+			<tr>
+		    <td width="20%" align="center" style="border-left:0px solid #555555;border-bottom:1px solid #555555;"><font class="infot">Artículos Totales</td>
+		    <td width="20%" align="center" style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class="infot">Neto total</td>
+		    <td width="20%" align="center" style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class="infot">+ Gastos de envío</td>
+		    <td width="20%" align="center" style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class="infot">+ Impuestos</td>
+		    <td width="20%" align="center" style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class="infot">Total del pedido</td>
+		 	</tr>
+			<tr>
+		    <td align="center" style="border-left:0px solid #555555;border-bottom:1px solid #555555;"><font class="info">[in_orderqty]</td>
+		    <td align="center" style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class="info">[va_ordernet]</td>
+		    <td align="center" style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class="info">[va_ordershp]</td>
+		    <td align="center" style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class="info">[va_total_taxes] ([in_va_tax]%)</td>
+		    <td align="center" style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class="info">[va_total_order]</td>
+		 	</tr>
+		</table>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="100%"  style="border:1px solid #333333;border-bottom:0px solid #333333;" >
+		<tr>
+		    <td colspan="6" align="center" style="border-left:0px solid #555555;border-bottom:1px solid #555555;"><font class="infot">Artículos de la Orden</td>
+	    </tr>
+		<tr>
+			<td style="border-left:0px solid #555555;border-bottom:1px solid #555555;"><font class="infot">ID</td>
+			<td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class="infot">Modelo / Nombre</td>
+			<td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class="infot">Número de Serie</td>
+			<td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class="infot">Fecha del envío</td>
+			<td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class="infot">Cant</td>
+			<td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class="infot">Precio de venta</td>
+		</tr>
+		[fc_load_order_products]
+	</table>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="100%"  style="border:1px solid #333333;border-bottom:0px solid #333333;">
+		[fc_load_order_payments]
+	</table>
+	&nbsp;

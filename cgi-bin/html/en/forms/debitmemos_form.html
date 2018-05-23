@@ -1,0 +1,49 @@
+&nbsp;
+<fieldset><legend>Debit Memo</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="25%">ID Customers : <span class="smallfieldterr">[er_id_customers]</span></td>
+		    <td class="smalltext"><input type="text" name="id_customers" value="[in_id_customers]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	<a href="/cgi-bin/common/apps/schid?db=sl_customers&cmd=customers&fname=id_customers&returnid=id_customers&value=" title="Search for Customers" class="fancy_modal_iframe">
+		  			<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+		  		</a>
+		    </td>
+		</tr>
+
+		<tr>
+			<td width="30%">Reference :  <span class="smallfieldterr">[er_reference]</span></td>
+			<td><input name="reference" value="[in_reference]" size="80" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Description :  <span class="smallfieldterr">[er_description]</span></td>
+			<td class="smalltext"><textarea name="description" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description]</textarea> </td>
+		</tr>
+		<tr>
+			<td width="30%">Type :  </td>
+			<td>
+			<select name='type' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				[fc_build_select_debitmemos_type]
+			</select>
+			</td>
+		</tr>	
+		<tr>
+			<td width="30%">Status :  <span class="smallfieldterr">[er_status]</span></td>
+			<td>[in_status] [va_action_status]</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+<input type='hidden' name='status' value='[in_status]'>
+
+<script language="JavaScript">
+<!--
+
+	var service = false;
+	var sku = false;
+
+	chg_radio('status','[in_status]');
+	chg_select('type','[in_type]');
+	
+
+//-->
+</script>

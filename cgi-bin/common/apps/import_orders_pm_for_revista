@@ -1,0 +1,1082 @@
+#!/usr/bin/perl
+#######################################################################
+#######################################################################
+#######################################################################
+use DBI;
+use DBIx::Connector;
+use DBD::mysql;
+
+# Load the form information and set the config file and userid.
+local(%in) = &parse_form;
+local(%config, %cfg, %usr);
+
+# Required Libraries
+# --------------------------------------------------------
+eval {
+	require ("../subs/auth.cgi");
+	require ("../subs/sub.base.html.cgi");
+};
+
+if ($@) { &cgierr ("Error loading required Libraries",300,$@); }
+
+eval { &main; };
+if ($@) { &cgierr("Fatal error, 301, $@"); }
+
+exit;
+
+sub main {	
+	$|++;
+	print "Content-type: text/html\n\n";
+
+	# aplico la 2 porque este proceso fue diseñado para TMK
+	#$in{'e'} = 2 if (!$in{'e'});
+	$in{'e'} = 2;
+	
+	&load_settings;
+
+	$sys{'fmt_curr_decimal_digits'} = 2 if(!$sys{'fmt_curr_decimal_digits'});
+
+	print "<h4>DIREKSYS($in{'e'}) - CARGA MASIVA DE ORDENES DE VENTA - CLUB INOVA</h5>";
+	my $email_text = 'Cargado masivo de Ordenes -- '.localtime."\n";
+
+	# Numero de orden de cliente
+	if (1==1){
+
+		&connect_db;
+
+		#############################################
+		my $id_del_servicio = 1035;
+		my $neto_del_servicio = 90;
+		my $porcentaje_del_servicio = 16;
+		my $iva_del_servicio = ($neto_del_servicio * ($porcentaje_del_servicio/100));
+		my $total_del_servicio = ($neto_del_servicio + $iva_del_servicio);
+
+		my $field_authcode = '';
+		my $field_date_apply = '';
+
+		my $id_salesorigins = 24;
+		my $id_products = 600000000 + $id_del_servicio;
+
+
+		## Validacion del servicio
+		my ($sth) = &Do_SQL("SELECT Name, CURDATE() date_dinamico, CURTIME() time_dinamico FROM sl_services WHERE ID_services='$id_del_servicio';");
+		my ($nombre_del_servicio,$date_dinamico,$time_dinamico) = $sth->fetchrow_array();
+
+		my $id_admin_users = 1;
+
+		my $log = '';
+		print "ID = $id_del_servicio<br>";
+		print "Nombre = $nombre_del_servicio<br>";
+		print "Neto = $neto_del_servicio<br>";
+		print "% IVA = $porcentaje_del_servicio<br>";
+		print "IVA = $iva_del_servicio<br>";
+		print "<br>";
+		print "date_dinamico = $date_dinamico<br>";
+		print "time_dinamico = $time_dinamico<br>";
+		$log .= "ID = $id_del_servicio<br>\n";
+		$log .= "Nombre = $nombre_del_servicio<br>\n";
+		$log .= "Neto = $neto_del_servicio<br>\n";
+		$log .= "% IVA = $porcentaje_del_servicio<br>\n";
+		$log .= "IVA = $iva_del_servicio<br>\n";
+		$log .= "<br>\n";
+		$log .= "date_dinamico = $date_dinamico<br>\n";
+		$log .= "time_dinamico = $time_dinamico<br>\n";
+
+		if ($nombre_del_servicio eq ''){
+			print "El servicio es incorrecto, favor de verificarlo<br>";
+			$log .= "El servicio es incorrecto, favor de verificarlo<br>\n";
+			return;
+		}
+
+		&Do_SQL("START TRANSACTION");
+
+		#################################################################3
+		## Desde CSV para PhoneMart
+		$dir = $cfg{'path_layouts'}."banorte_pm_iclub.csv"; #Cambiar el nombre del archivo por este
+		if (-e $dir and -r $dir and open (FILE, $dir)) {
+			print "existe --- DESDE ARCHIVO CSV";
+			$log .= "existe --- DESDE ARCHIVO CSV\n";
+
+			print "<br><table width='100%' cellpadding='3' border='1' style='font-family:verdana;font-size:10px'>";
+			print "<tr>";
+			print "		<th>ORD. VENTA</th>";
+			print "		<th>ID CLIENTE</th>";
+			print "		<th>FECHA</th>";
+			#print "		<th>MONTO</th>";
+			print "		<th>TARJETA</th>";
+			print "		<th>COD. AUT.</th>";
+			print "		<th>OBS</th>";
+			print "</tr>";
+			$log .= "<br><table width='100%' cellpadding='3' border='1' style='font-family:verdana;font-size:10px'>\n";
+			$log .= "<tr>\n";
+			$log .= "		<th>ORD. VENTA</th>\n";
+			$log .= "		<th>ID CLIENTE</th>\n";
+			$log .= "		<th>FECHA</th>\n";
+			#$log .= "		<th>MONTO</th>\n";
+			$log .= "		<th>TARJETA</th>\n";
+			$log .= "		<th>COD. AUT.</th>\n";
+			$log .= "		<th>OBS</th>\n";
+			$log .= "</tr>\n";
+
+			my $errors = 0;
+			my $registers1 = 0;
+			my $orders_created = 0;
+			while ($record = <FILE>) {
+				my $obs='';
+				if ($registers1 >= 0){#and $registers1 < 2 #Agregar para prueba de 2 ordenes
+					my @fields = split "," , $record;
+					my $field_idcliente = $fields[4];
+					my $field_fecha = $fields[2];
+					my $field_tarjeta = $fields[0];
+					my $field_cod_aut = $fields[1];
+					#my $field_ccv = $fields[4];
+					## Formato de Campo para vigencia
+					# $field_vigencia =~ s/\///g;
+					# my ($vigencia_month,$vigencia_year) = split("/",$field_vigencia);
+					# my $message_vigencia = "Year=$vigencia_year <br> Month=$vigencia_month";
+
+					if( $field_authcode eq '' ){
+						$field_authcode = $field_cod_aut;
+						$field_date_apply = $field_fecha;
+					}
+
+					## Busqueda del cliente correspondiente
+					my ($sth) = &Do_SQL("SELECT * FROM sl_customers WHERE ID_customers='$field_idcliente';");
+					my ($rec) = $sth->fetchrow_hashref();
+					
+
+					my $id_orders_new;
+					if ($rec->{'ID_customers'}){
+						my $customer = ($rec->{'FirstName'} ne '')? &filter_values($rec->{'FirstName'}):"";
+						$customer .= ($rec->{'LastName1'} ne '')? " ".&filter_values($rec->{'LastName1'}):"";
+						$customer .= ($rec->{'LastName2'} ne '')? " ".&filter_values($rec->{'LastName2'}):"";
+
+						$rec->{'ID_zones'} = 0;
+
+						$rec->{'Address1'} = &filter_values($rec->{'Address1'});
+						$rec->{'Address2'} = &filter_values($rec->{'Address2'});
+						$rec->{'Address3'} = &filter_values($rec->{'Address3'});
+						$rec->{'Urbanization'} = &filter_values($rec->{'Urbanization'});
+
+						## Registro en sl_orders
+						$sql = "INSERT INTO clubinova_orders (ID_orders, ID_orders_alias, ID_customers, Address1, Address2, Address3, Urbanization, City, State, Zip, Country, shp_type, shp_name, shp_Address1, shp_Address2, shp_Address3, shp_Urbanization, shp_City, shp_State, shp_Zip, shp_Country, shp_Notes, ID_zones, OrderQty, OrderShp, OrderDisc, OrderTax, OrderNet, PostedDate, dayspay, repeatedcustomer, ID_salesorigins, Ptype, Pterms, language, StatusPrd, StatusPay, Status, Date, Time, ID_admin_users) VALUES
+						(NULL, '', '$rec->{'ID_customers'}', '$rec->{'Address1'}', '$rec->{'Address2'}', '$rec->{'Address3'}', '$rec->{'Urbanization'}', '$rec->{'City'}', '$rec->{'State'}', '$rec->{'Zip'}', '$rec->{'Country'}', 1, '$customer', '$rec->{'Address1'}', '$rec->{'Address2'}', '$rec->{'Address3'}', '$rec->{'Urbanization'}', '$rec->{'City'}', '$rec->{'State'}', '$rec->{'Zip'}', '$rec->{'Country'}', 'Carga masiva para cobro mensual de Revista CLub Inova', '$rec->{'ID_zones'}', 1, 0, 0, '$iva_del_servicio', '$neto_del_servicio', NULL, 1, 'Yes', '$id_salesorigins', 'Credit-Card', 'CONTADO', 'spanish', 'None', 'None', 'Processed', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+						my $sth_order = &Do_SQL($sql);
+						$id_orders_new = $sth_order->{'mysql_insertid'};
+
+						## Registro en clubinova_orders_products
+						$sql = "INSERT INTO clubinova_orders_products (ID_products, ID_orders, Quantity, SalePrice, Shipping, Cost, Tax, Tax_percent, Discount, FP, ShpTax, ShpTax_percent, Status, Date, Time, ID_admin_users) 
+						VALUES ($id_products, $id_orders_new, 1, $neto_del_servicio, 0, 0, $iva_del_servicio, ($porcentaje_del_servicio / 100), 0, 1, 0, 0, 'Active', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+						&Do_SQL($sql);
+
+						## Registro en clubinova_orders_payments
+						$rec->{'PmtField1'} = "";
+						$rec->{'PmtField2'} = $customer;
+						$rec->{'PmtField3'} = substr($field_tarjeta, 0, 6)."xxxxxx".substr($field_tarjeta, -4); # $field_tarjeta
+						$rec->{'PmtField4'} = 'xxxx'; # $field_vigencia
+						$rec->{'PmtField5'} = 'xxx'; # $field_ccv
+						$rec->{'PmtField7'} = "CreditCard";
+						$rec->{'PmtField8'} = "1";
+						$rec->{'PmtField9'} = "Banorte";
+						$rec->{'PmtField10'} = "";
+						$sql = "INSERT INTO clubinova_orders_payments(ID_orders, Type, PmtField1, PmtField2, PmtField3, PmtField4, PmtField5, PmtField6, PmtField7, PmtField8, PmtField9, PmtField10, Amount , Reason, Paymentdate, AuthCode, Captured, CapDate, PostedDate, Status, Date, Time, ID_admin_users) 
+						VALUES($id_orders_new, 'Credit-Card', '$rec->{'PmtField1'}', '$rec->{'PmtField2'}', '$rec->{'PmtField3'}', '$rec->{'PmtField4'}', '$rec->{'PmtField5'}', '$rec->{'PmtField6'}', '$rec->{'PmtField7'}', '$rec->{'PmtField8'}', '$rec->{'PmtField9'}', '$rec->{'PmtField10'}', '$total_del_servicio' , 'Sale', '$field_fecha', '$field_cod_aut', 'Yes', '$field_fecha', NULL, 'Approved', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+						$sth_order_pay = &Do_SQL($sql);
+						my ($id_orders_payments_new) = $sth_order_pay->{'mysql_insertid'};
+
+						## Registro en sl_orders_cardsdata
+						# $rec->{'card_number'} = &LeoDecrypt($field_tarjeta);
+						# $rec->{'card_date'} = &LeoDecrypt($field_vigencia);
+						# $rec->{'card_cvn'} = &LeoDecrypt($field_ccv);
+						# $sql = "INSERT INTO sl_orders_cardsdata (ID_orders, ID_orders_payments, card_number, card_date, card_cvn, Date, Time, ID_admin_users)
+						# VALUES($id_orders_new, $id_orders_payments_new, '$rec->{'card_number'}', '$rec->{'card_date'}', '$rec->{'card_cvn'}', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+						# &Do_SQL($sql);
+
+						########################
+						### Contabilidad
+						########################
+						# &Do_SQL("INSERT INTO sl_movements (ID_accounts, Amount, Reference, EffDate, tableused, ID_tableused, ID_tablerelated, tablerelated, Category, Credebit, Status, Date, Time, ID_admin_users )
+						# 							VALUES (1051, $total_del_servicio, '', '$field_fecha', 'sl_orders', '$id_orders_new', 'sl_orders_payments', '$id_orders_payments_new', 'Anticipo Clientes', 'Debit','Active', CURDATE(), CURTIME(), '$id_admin_users');");
+						# &Do_SQL("INSERT INTO sl_movements (ID_accounts, Amount, Reference, EffDate, tableused, ID_tableused, ID_tablerelated, tablerelated, Category, Credebit, Status, Date, Time, ID_admin_users )
+						# 							VALUES (1175, $total_del_servicio, '', '$field_fecha', 'sl_orders', '$id_orders_new', 'sl_orders_payments', '$id_orders_payments_new', 'Anticipo Clientes', 'Credit','Active', CURDATE(), CURTIME(), '$id_admin_users');");
+
+						# ### Notas
+						# &Do_SQL("INSERT INTO sl_orders_notes SET 
+						# 			ID_orders = ".$id_orders_new." 
+						# 			, Notes = 'Pedido generado por proceso automatizado para Revista Inova Club'
+						# 			, Type = 'Low'
+						# 			, Date = CURDATE()
+						# 			, Time = CURTIME()
+						# 			, ID_admin_users = ".$id_admin_users.";");
+						++$orders_created;
+					}else{
+						$obs .= "ID de cliente no encontrado";
+						
+					}
+					#Ult. ID_orders = 9919258
+					print "<tr>";
+					print "		<th>$id_orders_new</th>";
+					print "		<th>$field_idcliente</th>";
+					print "		<th>$field_fecha</th>";
+					print "		<th>$field_tarjeta</th>";
+					#print "		<th>$field_vigencia</th>";
+					print "		<th>$field_cod_aut</th>";
+					print "		<th>$obs</th>";
+					print "</tr>";
+					$log .= "<tr>\n";
+					$log .= "		<th>$id_orders_new</th>\n";
+					$log .= "		<th>$field_idcliente</th>\n";
+					$log .= "		<th>$field_fecha</th>\n";
+					$log .= "		<th>$field_tarjeta</th>\n";
+					#$log .= "		<th>$field_vigencia</th>\n";
+					$log .= "		<th>$field_cod_aut</th>\n";
+					$log .= "		<th>$obs</th>\n";
+					$log .= "</tr>\n";
+				}
+				
+				$registers1++;
+			}
+			$registers1--;
+
+
+			###------------------------------------------------------------
+			### Se crea la orden por el total en sl_orders
+			###------------------------------------------------------------
+			## Busqueda del cliente correspondiente
+			my ($sth) = &Do_SQL("SELECT * FROM sl_customers WHERE ID_customers=100000;");
+			my ($rec) = $sth->fetchrow_hashref();
+			
+			my $customer = ($rec->{'FirstName'} ne '')? &filter_values($rec->{'FirstName'}):"";
+			$customer .= ($rec->{'LastName1'} ne '')? " ".&filter_values($rec->{'LastName1'}):"";
+			$customer .= ($rec->{'LastName2'} ne '')? " ".&filter_values($rec->{'LastName2'}):"";
+
+			$rec->{'ID_zones'} = 0;
+
+			$rec->{'Address1'} = &filter_values($rec->{'Address1'});
+			$rec->{'Address2'} = &filter_values($rec->{'Address2'});
+			$rec->{'Address3'} = &filter_values($rec->{'Address3'});
+			$rec->{'Urbanization'} = &filter_values($rec->{'Urbanization'});
+
+			$total_neto_del_servicio = round($orders_created * $neto_del_servicio, 2);
+			$total_iva_del_servicio = round($orders_created * $iva_del_servicio, 2);
+			$total_del_servicio = round($orders_created * $total_del_servicio, 2);
+
+			########################
+			### Registro en sl_orders
+			########################
+			$sql = "INSERT INTO sl_orders (ID_orders, ID_orders_alias, ID_customers, Address1, Address2, Address3, Urbanization, City, State, Zip, Country, shp_type, shp_name, shp_Address1, shp_Address2, shp_Address3, shp_Urbanization, shp_City, shp_State, shp_Zip, shp_Country, shp_Notes, ID_zones, OrderQty, OrderShp, OrderDisc, OrderTax, OrderNet, PostedDate, dayspay, repeatedcustomer, ID_salesorigins, Ptype, Pterms, language, StatusPrd, StatusPay, Status, Date, Time, ID_admin_users) VALUES
+			(NULL, '', '$rec->{'ID_customers'}', '$rec->{'Address1'}', '$rec->{'Address2'}', '$rec->{'Address3'}', '$rec->{'Urbanization'}', '$rec->{'City'}', '$rec->{'State'}', '$rec->{'Zip'}', '$rec->{'Country'}', 1, '$customer', '$rec->{'Address1'}', '$rec->{'Address2'}', '$rec->{'Address3'}', '$rec->{'Urbanization'}', '$rec->{'City'}', '$rec->{'State'}', '$rec->{'Zip'}', '$rec->{'Country'}', 'Carga masiva para cobro mensual de Revista CLub Inova', '$rec->{'ID_zones'}', $orders_created, 0, 0, '$total_iva_del_servicio', '$total_neto_del_servicio', NULL, 1, 'Yes', '$id_salesorigins', 'Credit-Card', 'CONTADO', 'spanish', 'None', 'None', 'Processed', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+			my $sth_order = &Do_SQL($sql);
+			my $id_orders_new = $sth_order->{'mysql_insertid'};
+			########################
+			### Registro en sl_orders_products
+			########################
+			$sql = "INSERT INTO sl_orders_products (ID_products, ID_orders, Quantity, SalePrice, Shipping, Cost, Tax, Tax_percent, Discount, FP, ShpTax, ShpTax_percent, Status, Date, Time, ID_admin_users) 
+			VALUES ($id_products, $id_orders_new, $orders_created, $total_neto_del_servicio, 0, 0, $total_iva_del_servicio, ($porcentaje_del_servicio / 100), 0, 1, 0, 0, 'Active', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+			&Do_SQL($sql);
+			########################
+			### Registro en sl_orders_payments
+			########################
+			$rec->{'PmtField1'} = "";
+			$rec->{'PmtField2'} = $customer;
+			$rec->{'PmtField3'} = "000000xxxxxx0000"; # $field_tarjeta
+			$rec->{'PmtField4'} = 'xxxx'; # $field_vigencia
+			$rec->{'PmtField5'} = 'xxx'; # $field_ccv
+			$rec->{'PmtField7'} = "CreditCard";
+			$rec->{'PmtField8'} = "1";
+			$rec->{'PmtField9'} = "Banorte";
+			$rec->{'PmtField10'} = "";
+			$sql = "INSERT INTO sl_orders_payments(ID_orders, Type, PmtField1, PmtField2, PmtField3, PmtField4, PmtField5, PmtField6, PmtField7, PmtField8, PmtField9, PmtField10, Amount , Reason, Paymentdate, AuthCode, Captured, CapDate, PostedDate, Status, Date, Time, ID_admin_users) 
+			VALUES($id_orders_new, 'Credit-Card', '$rec->{'PmtField1'}', '$rec->{'PmtField2'}', '$rec->{'PmtField3'}', '$rec->{'PmtField4'}', '$rec->{'PmtField5'}', '$rec->{'PmtField6'}', '$rec->{'PmtField7'}', '$rec->{'PmtField8'}', '$rec->{'PmtField9'}', '$rec->{'PmtField10'}', '$total_del_servicio' , 'Sale', '$field_date_apply', '$field_authcode', 'Yes', '$field_date_apply', NULL, 'Approved', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+			$sth_order_pay = &Do_SQL($sql);
+			my ($id_orders_payments_new) = $sth_order_pay->{'mysql_insertid'};
+			########################
+			### Contabilidad
+			########################
+			&Do_SQL("INSERT INTO sl_movements (ID_accounts, Amount, Reference, EffDate, tableused, ID_tableused, ID_tablerelated, tablerelated, Category, Credebit, Status, Date, Time, ID_admin_users )
+										VALUES (1051, $total_del_servicio, '', '$field_date_apply', 'sl_orders', '$id_orders_new', 'sl_orders_payments', '$id_orders_payments_new', 'Anticipo Clientes', 'Debit','Active', CURDATE(), CURTIME(), '$id_admin_users');");
+			&Do_SQL("INSERT INTO sl_movements (ID_accounts, Amount, Reference, EffDate, tableused, ID_tableused, ID_tablerelated, tablerelated, Category, Credebit, Status, Date, Time, ID_admin_users )
+										VALUES (1175, $total_del_servicio, '', '$field_date_apply', 'sl_orders', '$id_orders_new', 'sl_orders_payments', '$id_orders_payments_new', 'Anticipo Clientes', 'Credit','Active', CURDATE(), CURTIME(), '$id_admin_users');");
+
+			### Notas
+			&Do_SQL("INSERT INTO sl_orders_notes SET 
+						ID_orders = ".$id_orders_new." 
+						, Notes = 'Pedido generado por proceso automatizado para Revista Inova Club'
+						, Type = 'Low'
+						, Date = CURDATE()
+						, Time = CURTIME()
+						, ID_admin_users = ".$id_admin_users.";");
+
+			### Se actualiza el orders_alias de las ordenes detalle
+			&Do_SQL("UPDATE clubinova_orders SET ID_orders_alias = '".$id_orders_new."' 
+					 WHERE Date = CURDATE() AND (TIMESTAMPDIFF(MINUTE, CONCAT(Date,' ',Time), NOW()) BETWEEN 0 AND 10);");
+			###------------------------------------------------------------
+
+			print '</table>';
+			$log .= "</table>\n";
+
+			print "Total de Registros: ".$registers1."<br>\n";
+			$log .= "Total de Registros: ".$registers1."<br>\n";
+			print "Ordenes ClubInova Creadas: ".$orders_created."<br>\n";
+			$log .= "Ordenes ClubInova Creadas: ".$orders_created."<br>\n";
+			print "Orden Creada: <b>".$id_orders_new."</b><br>\n";
+			$log .= "Orden Creada: ".$id_orders_new."<br>\n";
+
+			### Se genera el archivo con los datos obtenidos de la CC
+			if( open(my ($file),">", $cfg{'path_layouts'}."import_orders_pm_for_revista_log.txt") ){
+				print $file $log;
+				close($file);
+			}else{
+				&cgierr("Unable to open $fname");
+			}
+		}else{
+			print "NO existe -- SE VAN A GENERAR DESDE DIREKSYS";
+			return;
+			$sql = "SELECT
+				sl_orders.ID_orders
+				, sl_orders.ID_orders_alias
+				, sl_orders.ID_customers
+				, sl_orders.Address1
+				, sl_orders.Address2
+				, sl_orders.Address3
+				, sl_orders.Urbanization
+				, sl_orders.City
+				, sl_orders.State
+				, sl_orders.Zip
+				, sl_orders.Country
+				, sl_orders.shp_type -- 1
+				, sl_orders.shp_name
+				, sl_orders.shp_Address1
+				, sl_orders.shp_Address2
+				, sl_orders.shp_Address3
+				, sl_orders.shp_Urbanization
+				, sl_orders.shp_City
+				, sl_orders.shp_State
+				, sl_orders.shp_Zip
+				, sl_orders.shp_Country
+				, sl_orders.shp_Notes -- Carga masiva
+				, sl_orders.ID_zones
+				, sl_orders.OrderQty --
+				, sl_orders.OrderShp
+				, sl_orders.OrderDisc
+				, sl_orders.OrderTax
+				, sl_orders.OrderNet
+				, sl_orders.PostedDate -- grabar NULL
+				, sl_orders.dayspay -- 1
+				, sl_orders.repeatedcustomer -- Yes
+				, sl_orders.ID_salesorigins -- dato dinamico
+				, sl_orders.Ptype -- Credit-Card
+				, sl_orders.Pterms -- CONTADO
+				, sl_orders.language -- spanish
+				, sl_orders.StatusPrd
+				, sl_orders.StatusPay
+				, sl_orders.Status
+				, sl_orders.Date
+				, sl_orders.Time
+				, sl_orders.ID_admin_users
+				, '--->'
+				, sl_orders_payments.Type
+				, sl_orders_payments.PmtField1
+				, sl_orders_payments.PmtField2
+				, sl_orders_payments.PmtField3
+				, sl_orders_payments.PmtField4
+				, sl_orders_payments.PmtField5
+				, sl_orders_payments.PmtField6
+				, sl_orders_payments.PmtField7
+				, sl_orders_payments.PmtField8
+				, sl_orders_payments.PmtField10
+				, '--->'
+				, sl_orders_cardsdata.card_number
+				, sl_orders_cardsdata.card_date
+				, sl_orders_cardsdata.card_cvn
+			FROM sl_orders
+			INNER JOIN sl_orders_payments on sl_orders_payments.ID_orders=sl_orders.ID_orders
+			INNER JOIN sl_orders_cardsdata ON sl_orders_cardsdata.ID_orders_payments=sl_orders_payments.ID_orders_payments
+			WHERE sl_orders_payments.Captured='Yes'
+			AND sl_orders_payments.Status ='Approved'
+			AND sl_orders_payments.Reason='Sale'
+			AND sl_orders_payments.PmtField3 like '37%'
+			AND sl_orders.ID_orders IN(
+				9511841,
+				9486221,
+				9582124,
+				9531541,
+				9279153,
+				9618678,
+				9564621,
+				9474543,
+				9508205,
+				9523226
+			);";
+			$values_dinamico = '';
+
+			$sth2 = &Do_SQL($sql);
+			while (my $rec = $sth2->fetchrow_hashref()){
+				## Registro en sl_orders
+				$sql = "INSERT INTO sl_orders (ID_orders, ID_orders_alias, ID_customers, Address1, Address2, Address3, Urbanization, City, State, Zip, Country, shp_type, shp_name, shp_Address1, shp_Address2, shp_Address3, shp_Urbanization, shp_City, shp_State, shp_Zip, shp_Country, shp_Notes, ID_zones, OrderQty, OrderShp, OrderDisc, OrderTax, OrderNet, PostedDate, dayspay, repeatedcustomer, ID_salesorigins, Ptype, Pterms, language, StatusPrd, StatusPay, Status, Date, Time, ID_admin_users) VALUES
+				(NULL, NULL, '$rec->{'ID_customers'}', '$rec->{'Address1'}', '$rec->{'Address2'}', '$rec->{'Address3'}', '$rec->{'Urbanization'}', '$rec->{'City'}', '$rec->{'State'}', '$rec->{'Zip'}', '$rec->{'Country'}', 1, '$rec->{'shp_name'}', '$rec->{'shp_Address1'}', '$rec->{'shp_Address2'}', '$rec->{'shp_Address3'}', '$rec->{'shp_Urbanization'}', '$rec->{'shp_City'}', '$rec->{'shp_State'}', '$rec->{'shp_Zip'}', '$rec->{'shp_Country'}', 'Carga masiva para cobro mensual de Revista CLub Inova', '$rec->{'ID_zones'}', 1, 0, 0, '$iva_del_servicio', '$neto_del_servicio', NULL, 1, 'Yes', '$id_salesorigins', 'Credit-Card', 'CONTADO', 'spanish', 'None', 'None', 'New', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+				my $sth_order = &Do_SQL($sql);
+				my ($id_orders_new) = $sth_order->{'mysql_insertid'};
+
+				## Registro en sl_orders_products
+				$sql = "INSERT INTO sl_orders_products (ID_products, ID_orders, Quantity, SalePrice, Shipping, Cost, Tax, Tax_percent, Discount, FP, ShpTax, ShpTax_percent, Status, Date, Time, ID_admin_users) 
+				VALUES ($id_products, $id_orders_new, 1, $neto_del_servicio, 0, 0, $iva_del_servicio, $porcentaje_del_servicio, 0, 1, 0, 0, 'Active', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+				&Do_SQL($sql);
+
+				## Registro en sl_orders_payments
+				$sql = "INSERT INTO sl_orders_payments(ID_orders, Type, PmtField1, PmtField2, PmtField3, PmtField4, PmtField5, PmtField6, PmtField7, PmtField8, PmtField10, Amount , Reason, Paymentdate, AuthCode, Captured, CapDate, PostedDate, Status, Date, Time, ID_admin_users) 
+				VALUES($id_orders_new, 'Credit-Card', '$rec->{'PmtField1'}', '$rec->{'PmtField2'}', '$rec->{'PmtField3'}', '$rec->{'PmtField4'}', '$rec->{'PmtField5'}', '$rec->{'PmtField6'}', '$rec->{'PmtField7'}', '$rec->{'PmtField8'}', '$rec->{'PmtField10'}', '$total_del_servicio' , 'Sale', '$date_dinamico', '', NULL, NULL, NULL, 'Approved', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+				$sth_order_pay = &Do_SQL($sql);
+				my ($id_orders_payments_new) = $sth_order_pay->{'mysql_insertid'};
+
+				## Registro en sl_orders_cardsdata
+				$sql = "INSERT INTO sl_orders_cardsdata (ID_orders, ID_orders_payments, card_number, card_date, card_cvn, Date, Time, ID_admin_users)
+				VALUES($id_orders_new, $id_orders_payments_new, '$rec->{'card_number'}', '$rec->{'card_date'}', '$rec->{'card_cvn'}', '$date_dinamico', '$time_dinamico', '$id_admin_users');";
+				&Do_SQL($sql);
+
+			}
+		}
+
+		# print "<br>".$sql."<br>";
+
+		&Do_SQL("COMMIT");
+
+
+		return;
+		###################################################################################################
+		if(-e $dir and $in{'no'}) {
+
+			# cambiar a nombre archivo dinamico
+			$file1 = 'amex_'.$in{'no'}.'.csv';
+			$dir1 = $dir.$file1;
+
+			if(-r $dir1 and -r $dir2) {
+				print "abriendo: ".$dir1." <br>";
+
+				my $OC_SANBORNS='NULL';
+
+				# lee archivo 1
+				# paso 2 - una vez que se encuentre el archivo hay que recorrer primero el que tiene el resumen
+				my ($string) = '';
+				my ($registers1) = 0;
+				my (@product, @cve_product, @product_price, @product_tax);
+
+				if(-r $dir1 and open (FILE, $dir1)) {
+					
+					print "<br><table width='100%' cellpadding='3' border='1' style='font-family:verdana;font-size:10px'>";
+					print "<tr>";
+					print "		<th>ID PARTS</th>";
+					print "		<th>UPC</th>";
+					print "		<th>PRECIO DIREKSYS</th>";
+					print "		<th>PRECIO REQUEST</th>";
+					print "		<th>COMMENTS</th>";
+					print "</tr>";
+
+					my $errors=0;
+
+					while ($record = <FILE>) {
+						chomp $record;
+						$registers1++;
+
+						my ($err_messages2);
+						if ($record =~ m/\"/) {
+							$errors++;
+							$err_messages2 = qq|<span style='color:red;'>ERROR DETECTADO EN $dir1: $record </span><br>|;
+						}
+
+						my @fields = split "," , $record;
+						
+						## si el campo 2 empieza con  comillas y hay un campo  3 y 4 esta pasando basura y es necesario corregirlo
+						if($fields[2] =~ m/\"/ and $fields[3] and $fields[4]) {
+							$fields[2] = $fields[2].$fields[3];
+							$fields[3] = $fields[4];
+						}
+
+						my $field_id_product = $fields[0];
+						my $field_desc_product = $fields[1];
+						my $field_qty_product = $fields[2];
+						my $field_price_product = $fields[3];
+						my $field_tax_product = $fields[4];
+
+						if ($field_id_product ne '' and $field_price_product ne '' and $field_tax_product ne ''){
+							
+							$OC_SANBORNS = $fields[5] if ($fields[5]); # ----------------ORDEN DE COMPRA DEL CLIENTE
+
+							# limpiando campo de caracteres de formato
+							$fields[2] =~ s/[\" \$]//g;
+
+							$product[$registers1] = $field_id_product;
+							$cve_product[$registers1] = $field_desc_product;
+							$product_qty[$registers1] = $field_qty_product;
+							$product_price[$registers1] = $field_price_product;
+							$product_tax_percent[$registers1] = $field_tax_product;
+
+							## como los costos del producto son sin impuesto, hay que calcular el impuesto y el total
+							## precio neto
+							my $tax = $field_tax_product / 100;
+							my $tax_product = $field_price_product * $tax;
+							$tax_product = sprintf("%.".$sys{'fmt_curr_decimal_digits'}."f", $tax_product);
+							my $price_product_wtax = $field_price_product + $tax_product;
+
+							$product_tax[$registers1] = $tax_product;
+							$product_price_wtax[$registers1] = $price_product_wtax;
+
+							# CLAVE IDENTIFICADOR DEL PRODUCTO | DESCRIPCION DEL PRODUCTO | PRECIO |  IVA % | IVA CANTIDAD | PRECIO CON IMPUESTO
+
+							# Se agrega una validacion extra para detectar que los productos solicitados existan antes de ejecutar cualquier proceso.
+							
+							
+							my ($sth) = &Do_SQL("SELECT (SELECT SPrice FROM sl_customers_parts WHERE ID_customers='$id_customer' AND ID_parts=sl_skus.ID_products)as SPrice, sl_skus.ID_sku_products as ID_parts FROM sl_skus 
+							WHERE 1 AND sl_skus.UPC='$field_id_product';");
+							my ($price_direksys, $id_parts_direksys) = $sth->fetchrow_array();
+							my $err_messages='';
+
+							print "<tr>";
+							print "		<td>$id_parts_direksys</td>";
+							print "		<td>$field_id_product</td>";
+							print "		<td>$price_direksys</td>";
+							print "		<td>$field_price_product</td>";
+							
+							if (!$id_parts_direksys){
+								$errors++;
+								$err_messages.="<span style='color:red;'>EL PRODUCTO $field_id_product NO FUE ENCONTRADO EN EL DIREKSYS.</span><br>";
+							}elsif ($price_direksys != $field_price_product){
+								$errors++;
+								$err_messages.="<span style='color:red;'>EL PRECIO DEL PRODUCTO $field_id_product NO COINCIDE CON EL PRECIO EN DIREKSYS.</span><br>";
+							}
+							
+							print "		<td>$err_messages2$err_messages</td>";
+							print "</tr>";
+						}
+
+					}
+					print "</table><br>";
+
+					if(-r $dir2 and open (FILE, $dir2)) {
+						while ($record = <FILE>) {
+							chomp $record;
+							$registers2++;
+
+							if ($record =~ m/\"/) {
+								$errors++;
+								print qq|<span style='color:red;'>ERROR DETECTADO EN $dir2: $record </span><br>|;
+							}
+						}
+					}else{
+						$errors++;
+						print qq|<span style='color:red;'>$dir2 no encontrado </span><br>|;
+					}
+
+
+
+					if($registers1 > 0) {
+						print "$registers1 records found in dir1"." <br>";
+						if ($errors++){
+							print "SE ENCONTRARON ERRORES EN EL PROCESO, CORRIJALOS PARA CONTINUAR:<br>";
+							return;
+						}
+					}else {
+						print "no records found in dir1"." <br>";
+						return;
+					}
+
+					close FILE;
+					
+
+				}else{
+					print "<span style='color:red;'>$dir1 no encontrado </span><br>";
+					return;
+				}
+				if($in{'process'} eq 'analyze' or $in{'process'} eq 'commit'){
+					if ($OC_SANBORNS != $in{'no'}){
+						print "<span style='color:red;'>EL NO DE ORDEN DE COMPRA NO COINCIDE CON LA INFORMACION DEL ARCHIVO.</span><br>";				
+						return;
+					}else{
+						
+						my ($sth) = &Do_SQL("SELECT COUNT(*) FROM sl_orders WHERE sl_orders.ID_orders_alias='$OC_SANBORNS' AND sl_orders.ID_customers='$id_customer'");
+						my $file_invalid = $sth->fetchrow_array();
+
+						if ($file_invalid){
+							print "<span style='color:red;'>YA EXISTEN ORDENES DE VENTA EN DIREKSYS CON ESTE NODE ORDEN DE COMPRA.</span><br>";				
+
+							return if (!$in{'forced'});
+						}
+					}
+
+					print "abriendo: ".$dir2." <br>";;
+					
+					# lee archivo 2
+					my ($registers2) = 0; # lo limitaremos al no de productos que obtuvimos arriba
+					my (@office_key, @office_desc,);
+					if(-r $dir2 and open (FILE, $dir2)) {		
+						while ($record = <FILE>) {
+							chomp $record;
+							$registers2++;
+
+							if ($record =~ m/\"/) {
+								$errors++;
+								$err_messages2 = qq|<span style='color:red;'>ERROR DETECTADO EN: $record </span><br>|;
+								print qq|<span style='color:red;'>ERROR DETECTADO EN $dir2: $record </span><br>|;
+							}
+
+							my @fields = split "," , $record;
+
+
+							# limpiando campo de caracteres de formato
+							if($fields[0]) {
+								# $fields[0] =~ s/[\" \$]//g;
+								if($fields[0] =~ m/\-/ ) {
+									my @fields2 = split "-" , $fields[0];
+
+									$office_key[$registers2] = $fields2[0];
+									$office_desc[$registers2] = $fields2[1];
+								}
+							}
+
+							$customer_code = $office_key[$registers2];
+							$customer_alias = $office_desc[$registers2];
+
+
+							#podriamos poner en la nota el nombre del archivo del que se obtuvo la informacion
+							$orders_notes = 'Esta Orden fue creada por procesamiento de Carga Masiva de Direksys.';
+
+							# por cada registro(tienda) se crea una orden
+							# hasta  esta parte ya debo conocer el id del cliente y sus respectivos datos
+							# voy a ir a buscar su ultima compra y me voy a traer sus datos
+
+							my ($sth_last_order) = &Do_SQL("SELECT * FROM sl_orders WHERE ID_customers = '$id_customer' LIMIT 1;");
+							$rec_last_order = $sth_last_order->fetchrow_hashref;
+							
+							my ($sth_customer) = &Do_SQL("SELECT *, (SELECT ifnull(CreditDays,0) FROM sl_terms WHERE Type='Sales' AND Status='Active' AND Name=sl_customers.Pterms LIMIT 1)CreditDays FROM sl_customers WHERE ID_customers = '$id_customer';");
+							$rec_customer = $sth_customer->fetchrow_hashref;
+
+							# datos del envio de la tienda correspondiente
+							if ($customer_code ne '' and $customer_alias ne ''){
+								if($in{'customer'} ne '100090'){
+									$fields[0] =~ s/^\s+|\s+$//g;
+									#$query="SELECT * FROM cu_customers_addresses WHERE ID_customers=$id_customer AND Code = '$fields[0]' LIMIT 1;";
+									$query="SELECT * FROM cu_customers_addresses WHERE ID_customers=$id_customer AND Alias like ('%$customer_code%-%$customer_alias%') LIMIT 1;";
+								}else{
+									$customer_code =~ s/^\s+|\s+$//g;
+									$customer_alias =~ s/^\s+|\s+$//g;
+									$query="SELECT * FROM cu_customers_addresses WHERE ID_customers=$id_customer AND Alias like ('%$customer_alias%') LIMIT 1;";
+									#$query="SELECT * FROM cu_customers_addresses WHERE ID_customers=$id_customer AND Alias like ('%$customer_code%-%$customer_alias%') LIMIT 1;";
+									#$query="SELECT * FROM cu_customers_addresses WHERE ID_customers=$id_customer AND Code = '$customer_code-$customer_alias' LIMIT 1;";
+								}
+								my ($sth_customer_shpaddress) = &Do_SQL($query);
+								$rec_customershpaddress = $sth_customer_shpaddress->fetchrow_hashref;
+							}else{
+								$rec_customershpaddress=0;
+							}
+							
+							# revisar si el cliente existe
+							# si existe entonces crea la orden con sus datos
+							my $id_customers_addresses = int($rec_customershpaddress->{'ID_customers_addresses'});
+							if (int($rec_customer->{'ID_customers'}) > 0 and $id_customers_addresses > 0) {
+								##si hay shpaddress entonces shpaddress sino entonces la del customer
+								if($rec_customershpaddress->{'ID_customers_addresses'} > 0) {
+									$rec_customer->{'Address1'} = $rec_customershpaddress->{'Address1'};
+									$rec_customer->{'Address2'} = $rec_customershpaddress->{'Address2'};
+									$rec_customer->{'Address3'} = $rec_customershpaddress->{'Address2'};
+									$rec_customer->{'Urbanization'} = $rec_customershpaddress->{'Urbanization'};
+									$rec_customer->{'City'} = $rec_customershpaddress->{'City'};
+									$rec_customer->{'State'} = $rec_customershpaddress->{'State'};
+									$rec_customer->{'Zip'} = $rec_customershpaddress->{'Zip'};
+									$rec_customer->{'Country'} = $rec_customershpaddress->{'Country'};
+								}
+
+								if($in{'process'} eq 'commit') {
+									$sth_order = &Do_SQL("INSERT INTO sl_orders SET ID_orders=NULL,  trackordernumber=NULL,  ID_customers=".$id_customer.", ID_orders_alias='".$OC_SANBORNS."'
+										,  Pterms='".$rec_customer->{'Pterms'}."'
+										,  Ptype='Deposit'
+										,  id_customers_addresses='".$rec_customershpaddress->{'ID_customers_addresses'}."'
+										,  Address1='".$rec_customer->{'Address1'}."'
+										,  Address2='".$rec_customer->{'Address2'}."'
+										,  Address3='".$rec_customer->{'Address3'}."'
+										,  Urbanization='".$rec_customer->{'Urbanization'}."'
+										,  City='".$rec_customer->{'City'}."'
+										,  State='".$rec_customer->{'State'}."'
+										,  Zip='".$rec_customer->{'Zip'}."'
+										,  Country='".$rec_customer->{'Country'}."'
+										,  BillingNotes=NULL,  shp_type=1,  shp_name=NULL
+										,  shp_Address1='".$rec_customer->{'Address1'}."'
+										,  shp_Address2='".$rec_customer->{'Address2'}."'
+										,  shp_Address3='".$rec_customer->{'Address3'}."'
+										,  shp_Urbanization='".$rec_customer->{'Urbanization'}."'
+										,  shp_City='".$rec_customer->{'City'}."'
+										,  shp_State='".$rec_customer->{'State'}."'
+										,  shp_Zip='".$rec_customer->{'Zip'}."'
+										,  shp_Country='".$rec_customer->{'Country'}."'
+										,  shp_Notes=NULL,  ID_zones=0,  OrderNotes='$orders_notes'
+										,  OrderQty=0.00,  OrderShp=0.00,  OrderDisc=0.00,  OrderTax=0.16,  OrderNet=NULL,  ID_salesorigins=5,  ID_pricelevels=99,  dayspay=NULL,  ID_orders_related=0
+										,  question1=NULL,  answer1=NULL,  question2=NULL,  answer2=NULL,  question3=NULL,  answer3=NULL,  question4=NULL,  answer4=NULL,  question5=NULL,  answer5=NULL,  repeatedcustomer='Yes',  Coupon=0,  Flags=0,  DNIS=0,  ID_mediacontracts=0,  DIDS7=0,  Letter=0,  ID_warehouses=0,  first_call=NULL
+										,  language='spanish',  StatusPrd='None',  StatusPay='None',  Status='New',  Date=CURDATE(),  Time=CURTIME(),  ID_admin_users=1");
+									$id_orders_new = $sth_order->{'mysql_insertid'};
+								}
+								
+								if (int($id_orders_new)>0) {
+									print "<br>SE CREO LA ORDEN <strong>$id_orders_new</strong> PARA EL CLIENTE <strong>$id_customer</strong>, SUCURSAL <strong>$customer_code - $customer_alias</strong> EN EL SISTEMA.<br>";
+									$email_text .= "Se creo la Oorden No.: $id_orders_new para el Cliente ID: $id_customer, en el sistema.\n";
+
+									# de 1 hasta el numero de productos indicados arriba, se hace el recorrido de cada producto agregando cuantos quiere para esta tienda de cada uno
+									# Inserta los productos	
+									my $qty;
+									my $total = 0;
+									my $tax = 0;
+									my $SalePrice = 0;
+									my $ID_products = 100000000;
+
+									my $total_OrderQty = 0;
+									my $total_OrderTax = 0;
+									my $total_OrderNet = 0;					
+
+									for my $i(1..$registers1) {
+										$qty = int($fields[$i]);
+
+										$product_price[$i] =~ s/ \$//g;
+
+										$SalePrice = $product_price[$i] * $qty;
+										$tax = $SalePrice * ($product_tax_percent[$i] / 100);
+
+										### para que pueda insertar la cantidad debe ser ,mayor que cero
+										if($qty > 0) {
+
+											# una validacion mas, confirmamos que el producto exista y este activo
+											my $id_parts = $product[$i];
+											$sth_val_parts = &Do_SQL("SELECT (SELECT SPrice FROM sl_customers_parts WHERE ID_customers=100105 AND ID_parts=sl_skus.ID_products)as SPrice, sl_skus.ID_sku_products as ID_parts FROM sl_skus WHERE 1 AND sl_skus.UPC='".$id_parts."' AND sl_skus.Status='Active'");
+											 # "SELECT 400000000+ID_parts as ID_parts FROM sl_customers_parts INNER JOIN sl_parts USING (ID_parts) WHERE ID_customers=$id_customer AND sku_customers='$id_parts' AND sl_parts.Status='Active'"
+											$rec_parts = $sth_val_parts->fetchrow_hashref;
+
+											if (int($rec_parts->{'ID_parts'}) > 0) {
+
+												$sth_parts = &Do_SQL("INSERT INTO sl_orders_products SET
+													ID_orders_products = NULL
+													, ID_products=".$ID_products."
+													, ID_orders=".$id_orders_new."
+													, ID_packinglist=0
+													, Related_ID_products=".$rec_parts->{'ID_parts'}."
+													, Quantity=".$qty."
+													, SalePrice=".($qty * $product_price[$i])."
+													, Shipping=0
+													, Cost=0
+													, Tax=".$tax."
+													, Tax_percent=".($product_tax_percent[$i] / 100)."
+													, Discount=0
+													, FP=1
+													, Status='Active'
+													, Date=Curdate()
+													, Time=NOW()
+													, ID_admin_users=1");
+												
+												# /*, ShpDate=DATE_SUB('$due_date',INTERVAL $p_terms DAY)
+												# , PostedDate=DATE_SUB('$due_date',INTERVAL $p_terms DAY)*/
+												
+												$total_OrderQty += $qty;
+												$total_OrderTax += $tax;
+												$total_OrderNet += $SalePrice;
+
+												if ($rec_parts->{'SPrice'} == $product_price[$i]){
+													print 'SE AGREGAN <strong>'.$qty.'</strong> PIEZAS DEL PRODUCTO <strong>'.$rec_parts->{'ID_parts'}."-".$cve_product[$i].'</strong> COSTO DIREKSYS '.&format_price($rec_parts->{'SPrice'}).' COSTO NUEVO <strong>'.&format_price($product_price[$i]).'</strong> A LA ORDEN.<br>';
+												}else{
+													print '<span style="color:red;">SE AGREGAN <strong>'.$qty.'</strong> PIEZAS DEL PRODUCTO <strong>'.$rec_parts->{'ID_parts'}."-".$cve_product[$i].'</strong> COSTO DIREKSYS '.&format_price($rec_parts->{'SPrice'}).' COSTO NUEVO <strong>'.&format_price($product_price[$i]).'</strong> A LA ORDEN.</span><br>';
+												}
+
+												$email_text .= 'Se agregan '.$qty.' piezas del producto "'.$rec_parts->{'ID_parts'}."-".$cve_product[$i].'" a la Orden '.$id_orders_new.".\n";
+
+
+												# $ID_products++;
+												$ID_products+=1000000;
+											}else {
+												print '<br><span style="color:red;">NO FUE POSIBLE AGREGAR EL PRODUCTO <strong>'.$rec_parts->{'ID_parts'}."-".$product[$i].'</strong> A LA ORDEN<span style="color:red;">.';
+												$email_text .= "No fue posible agregar el producto $cve_product[$i] a la Orden $id_orders_new.\n";
+
+											}
+										}
+
+									}
+
+									# suma las catidades de productos de una misma tienda para generar una orden por tienda
+									# hay q sumar y hacer un update sobre sl_orders y listo
+									print '<br>total_OrderQty = '.$total_OrderQty;
+									print '<br>total_OrderTax = '.$total_OrderTax;
+									print '<br>total_OrderNet = '.$total_OrderNet;
+									
+									$email_text .= "Los totales de la Orden '.$id_orders_new.'. son los siguientes:\n";
+									$email_text .= 'OrderQty = '.$total_OrderQty."\n";
+									$email_text .= 'OrderTax = '.$total_OrderTax."\n";
+									$email_text .= 'OrderNet = '.$total_OrderNet."\n";
+
+									my $total_Order = $total_OrderNet + $total_OrderTax;
+
+									&Do_SQL("UPDATE sl_orders SET OrderQty=$total_OrderQty, OrderNet=$total_OrderNet WHERE ID_orders=".$id_orders_new);
+										
+									# ---------------------- Pago de la Orden 
+									my ($sth_ord_payments) = &Do_SQL("INSERT INTO `sl_orders_payments` (`ID_orders_payments`, `ID_orders`, `Type`, `PmtField1`, `PmtField2`, `PmtField3`, `PmtField4`, `PmtField5`, `PmtField6`, `PmtField7`, `PmtField8`, `PmtField9`, `Amount`, `Reason`, `Paymentdate`, `AuthCode`, `AuthDateTime`, `Captured`, `CapDate`, `PostedDate`, `Status`, `Date`, `Time`, `ID_admin_users`) VALUES
+									(NULL, '".$id_orders_new."', 'Deposit', '', '', '', '', '', '', '', '', '', '".$total_Order."', 'Sale', DATE_ADD(CURDATE(), INTERVAL ".$rec_customer->{'CreditDays'}." DAY), '', '', NULL, NULL,'0000-00-00', 'Approved', CURDATE(), 'CURTIME()', 1 )");
+									$id_orders_payments = $sth_ord_payments->{'mysql_insertid'};
+									
+									if (int($id_orders_payments)>0){
+										print "<br>SE AGREGO EL PAGO <strong>$id_orders_payments</strong> A LA ORDEN <strong>$id_orders_new</strong>.";
+										$email_text .= "Se agrego el pago $id_orders_payments a la orden $id_orders_new.\n";
+									}else{
+										print "<br>NO FUE POSIBLE AGREGAR EL PAGO A LA ORDEN <strong>$id_orders_new</strong>.";
+										$email_text .= "No fue posible agregar el pago a la Orden $id_orders_new \n";
+									}
+
+
+									# ---------------------- Nota a la Orden 
+									&Do_SQL("INSERT INTO sl_orders_notes SET ID_orders = '$id_orders_new', Notes='Esta Orden fue creada por procesamiento masivo desde Direksys',Type = 'Low', Date = CURDATE(), Time = CURTIME(), ID_admin_users = '1' ;");
+
+								}else{
+									print "<br>NO FUE POSIBLE CREAR LA ORDEN PARA EL CLIENTE: <strong>$id_customer</strong> SUCURSAL: <strong>$customer_code - $customer_alias</strong>";
+									$email_text .= "No fue posible crear la Orden para el Cliente ".$id_customer." Sucursal $customer_code - $customer_alias.\n";
+								}
+
+							}else {
+								print "<br>LA SUCURSAL $id_customers_addresses::<strong>$customer_code - $customer_alias</strong> DEL CLIENTE CON ID $id_customer NO FUE ENCONTRADO EN EL SISTEMA.";
+								#print "SELECT * FROM cu_customers_addresses WHERE ID_customers=$id_customer AND Alias like ('%$customer_alias%') LIMIT 1;<br/>";
+								print $query."<br/>";
+								$email_text .= "El cliente con id $id_customer no fue encontrado en el sistema.\n";
+
+							}
+
+							print "<br>";
+					
+						}
+						print "<br>";
+
+						if($registers2 > 0) {
+							print "$registers2 records found in dir2";
+							$email_text .= "$registers2 records found in dir2.\n";
+
+						}else {
+							print "no records found in dir2";
+						}
+
+						close FILE;
+					}else{
+						print "<span style='color:red;'>$dir2 no encontrado </span><br>";
+					}
+				}
+
+	  			&send_text_mail($cfg{'from_email'},'adiaz@inovaus.com',"Resumen de Carga masiva de ordenes.", $email_text) if($in{'process'} eq 'commit');
+			}else{
+				print "<span style='color:red;'>ERROR AL LEER LOS ARCHIVOS FUENTE <strong>$file1</strong> y <strong>$file2</strong>.</span><br>";
+				print "$dir1<br>";
+				print "$dir2<br>";
+			}
+		 
+		}else{
+			print "<span style='color:red;'>dir '$dir' not found </span><br>";
+			$email_text .= "El archivo '$dir' no fue encontrado.\n";
+
+		}
+
+		&disconnect_db;
+
+	}
+}
+
+#########################################################
+##			Query				##
+##########################################################
+sub parse_form {
+# --------------------------------------------------------
+	my (@pairs, %in);
+	my ($buffer, $pair, $name, $value);
+
+	if ($ENV{'REQUEST_METHOD'} eq 'GET') {
+		@pairs = split(/&/, $ENV{'QUERY_STRING'});
+	}elsif ($ENV{'REQUEST_METHOD'} eq 'POST') {
+		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
+ 		@pairs = split(/&/, $buffer);
+	}else {
+		&cgierr ("This script must be called from the Web\nusing either GET or POST requests\n\n");
+	}
+	PAIR: foreach $pair (@pairs) {
+		($name, $value) = split(/=/, $pair);
+
+		$name =~ tr/+/ /;
+		$name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		$name = lc($name);
+
+		$value =~ tr/+/ /;
+		$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+
+		$value =~ s/^\s+//g;
+		$value =~ s/\s+$//g;
+
+		#$value =~ s/\r//g;
+		$value =~ s/<!--(.|\n)*-->//g;			# Remove SSI.
+		if ($value eq "---") { next PAIR; }		# This is used as a default choice for select lists and is ignored.
+		(exists $in{$name}) ?
+			($in{$name} .= "|$value") :		# If we have multiple select, then we tack on
+			($in{$name}  = $value);			# using the ~~ as a seperator.
+	}
+	return %in;
+}
+
+##################################################################
+#     CGIERR   	#
+##################################################################
+sub cgierr {
+# --------------------------------------------------------
+# Last Modified on: 11/10/08 11:58:21
+# Last Modified by: MCC C. Gabriel Varela S: Se corrige la forma de mostrar la fecha
+	my (@sys_err) = @_;
+	print "Content-type: text/html\n\n";
+
+	my ($key,$env,$out_in,$out_env);
+	if (!$cfg{'cd'}){
+		print qq|
+						<head>
+										<title>CGI - ERROR</title>
+						</head>					
+						<body BGCOLOR="#FFFFFF" LINK="#FF0000" VLINK="#FF0000" ALINK="#FF0000">
+					
+							<table BORDER="0" WIDTH="500" CELLPADDING="10" CELLSPACING="10">
+							  <tr>
+							    <td BGCOLOR="#FF0000" colspan="2"><font size="5" color="#FFFFFF" face="Arial"><b>CGI-Error</b></font></td>
+							  </tr>
+							</table>
+							<table BORDER="0" WIDTH="550" CELLPADDING="2" CELLSPACING="0">|;
+								$sys_err[0]	and print "\n<tr>\n  <td valign='top' width='200'><font face='Arial' size='3'>Error Message</font></td>\n  <td><font face='Arial' size='3' color='#FF0000'><b>$sys_err[0]</b></font></td>\n</tr>\n";
+								$sys_err[1]	and print "<tr>\n  <td width='200'><font face='Arial' size='2'>Error Code</font></td>\n  <td><font face='Arial' size='2'>$sys_err[1]</font></td>\n";
+								$sys_err[2]	and print "<tr>\n  <td valign='top' width='200'><font face='Arial' size='2'>System Message</font></td>\n  <td><font face='Arial' size='2'>$sys_err[2]</font></td>\n";
+								print qq|
+							<tr>
+							  <td colspan="2"><p>&nbsp</p><font face='Arial' size='2'>If the problem percist, please contact us with the above Information.</font><br>
+									<font face='Arial' size='2'><a href="mailto:$systememail">$systememail</a></font></td>
+							</tr>
+							  </table>
+						</body>
+						</html>|;
+		######################################
+		### Save CGI ERR			
+		##############################
+		my ($ip);
+		my (@outmsg) = @sys_err;
+		my ($sec, $min, $hour, $day, $mon, $year, $dweek, $dyear, $daylight) = localtime(time());
+		$year+=1900;
+		$mon++;
+		my ($time,$date) = ("$hour:$min:$sec","$mon-$day-$year");
+		
+		foreach $key (sort keys %in) {
+			$outmsg[3] .= "$key=$in{$key},";
+		}
+		
+		foreach $env (sort keys %ENV) {
+			$outmsg[4] .= "$env=$ENV{$env},";
+		}
+		
+		for (0..4){
+			$outmsg[$_] =~ s/\n|\r/ /g;
+			$outmsg[$_] =~ s/\|/ /g;
+		}
+		
+		if ($ENV{'REMOTE_ADDR'}){
+			$ip = $ENV{'REMOTE_ADDR'};
+		}elsif ($ENV{'REMOTE_HOST'}){
+			$ip = $ENV{'REMOTE_HOST'};
+		}elsif ($ENV{'HTTP_CLIENT_IP'}){
+			$ip = $ENV{'HTTP_CLIENT_IP'};
+		}else{
+			$ip = "Unknow";
+		}
+	
+		(!$cfg{'cgierr_log_file'}) and ($cfg{'cgierr_log_file'} = './logs/cgierr.log');
+		if (open (LOG, ">>$cfg{'cgierr_log_file'}")){;
+			print LOG "$usr{'username'}|$outmsg[0]|$outmsg[1]|$outmsg[2]|$outmsg[3]|$outmsg[4]|$time|$date|$ip\n";
+			close AUTH;
+		}
+	
+
+	}else{
+		print "<PRE>\n\nCGI ERROR\n==========================================\n";
+					$sys_err[0]	and print "Error Message       : $sys_err[0]\n";
+					$sys_err[1]	and print "Error Code          : $sys_err[1]\n";
+					$sys_err[2]	and print "System Message      : $sys_err[2]\n";
+					$0			and print "Script Location     : $0\n";
+					$]			and print "Perl Version        : $]\n";
+					$sid		and print "Session ID          : $sid\n";
+
+
+		print "\nForm Variables IN\n-------------------------------------------\n";
+		
+		foreach $key (sort keys %in) {
+			my $space = " " x (20 - length($key));
+			$out_in .= "$key=$in{$key},";
+			print "$key$space: $in{$key}\n";
+		}
+		
+		print "\nForm Variables ERROR\n-------------------------------------------\n";
+		foreach $key (sort keys %error) {
+			my $space = " " x (20 - length($key));
+			print "$key$space: $error{$key}\n";
+		}
+		
+		print "\nEnvironment Variables\n-------------------------------------------\n";
+		foreach $env (sort keys %ENV) {
+			my $space = " " x (20 - length($env));
+			$out_env .= "$env=$ENV{$env},";
+			print "$env$space: $ENV{$env}\n";
+		}
+		
+		print "\n</PRE>";
+
+	}
+
+	exit -1;
+}
+
+sub load_settings {
+	my ($fname);
+	
+	if ($in{'e'}) {
+		$fname = "../general.e".$in{'e'}.".cfg";
+	}else {
+		$fname = "../general.ex.cfg";
+	}
+
+	## general
+	open (CFG, "<$fname") or &cgierr ("Unable to open: $fname,160,$!");
+	LINE: while (<CFG>) {
+		(/^#/)      and next LINE;
+		(/^\s*$/)   and next LINE;
+		$line = $_;
+		$line =~ s/\n|\r//g;
+		my ($td,$name,$value) = split (/\||\=/, $line,3);
+		if ($td eq "conf") {
+			$cfg{$name} = $value;
+			next LINE;
+		}elsif ($td eq "sys"){
+			$sys{$name} = $value;
+			next LINE;
+		}
+	}
+	close CFG;
+
+}
+
+sub check_ip {
+# --------------------------------------------------------
+	my ($ip, $ipfilter) = @_;
+	
+	my (@ip) = split(/\./,$ip,4);
+	my (@allowip) = split(/\,/,$ipfilter,4);
+	
+	for my $i(0..$#allowip){
+		$allowip[$i] =~ s/\n|\r//g;
+		$ok = 1;
+		my (@ipfilter) = split(/\./,$allowip[$i],4);
+		for my $x(0..3){
+			if ($ip[$x] ne $ipfilter[$x] and $ipfilter[$x] ne 'x'){
+				$ok = 0;
+			}
+		}
+	}
+	return $ok;
+}
+
+
+1;

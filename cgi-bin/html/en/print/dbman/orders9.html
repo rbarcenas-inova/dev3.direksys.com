@@ -1,0 +1,165 @@
+<STYLE TYPE="text/css">
+@page  {
+	/* auto is the initial value */
+	size: auto;
+	/* this affects the margin in the printer settings */
+	margin: 0mm 0mm 0mm 0mm;
+}
+
+font.part
+{font-family:  arial;background: ;color:#000000;font-size: 13px;	font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.line {float:left; overflow:hidden; 	width:100%; max-height:15px;	padding-left:0px;	display:block;	}
+font.zebratxt 
+{font-family:  arial;background: ;color:#000000;font-size: 11px;	font-weight: normal;line-height:14pt;}
+td.tbltextttl
+{font-family:  arial;background: ;color:#000000;font-size: 12px;	font-weight: normal;line-height:10pt;}
+td.line 
+{	height:15px;	max-height:15px;	padding-left:0px;overflow:hidden; border:1px solid;	}
+
+body
+{padding:0px;margin:0px;font-family: arial;font-size:10px;line-height:14px;color:#222222;background-color:silver;}
+
+font.idnum
+{font-family:  arial;background: ;color:#000000;font-size: 23px;	font-weight: bold;text-decoration: none;cursor: default;line-height:23pt;	text-transform:uppercase;   }
+
+font.shipto
+{font-family:  arial;background: ;color:#000000;font-size: 15px;	font-weight: bold;text-decoration: none;cursor: default;line-height:16pt;	text-transform:uppercase;   }
+font.zipto
+{font-family:  arial;background: ;color:#000000;font-size: 22px;	font-weight: bold;text-decoration: none;cursor: default;line-height:22pt;	text-transform:uppercase;}
+
+font.big2
+{font-family:  arial;background: ;color:#000000;font-size: 25px;	font-weight: normal;text-decoration: none;cursor: default;line-height:16pt;	text-transform:uppercase;}
+font.bname
+{font-family:  arial;background: ;color:#000000;font-size: 27px;	font-weight: normal;text-decoration: none;cursor: default;line-height:27pt;	text-transform:uppercase;}
+	
+font.bname2
+{font-family:  arial;background: ;color:#000000;font-size: 34px;	font-weight: normal;text-decoration: none;cursor: default;line-height:27pt;	text-transform:uppercase;}
+	
+font.big
+{font-family:  arial;background: ;color:#000000;font-size: 25px;	font-weight: normal;text-decoration: none;cursor: default;line-height:22pt;	text-transform:uppercase;}
+
+font.med
+{font-family:  arial;background: ;color:#000000;font-size: 17px;	font-weight: bold;text-decoration: none;cursor: default;line-height:18pt;	text-transform:uppercase;   }
+	
+font.pretxt2
+{font-family:  arial;background: ;color:#000000;font-size: 14px;	font-weight: bold;line-height:12pt;	text-transform:uppercase;}
+	
+font.fiscal
+{font-family:  arial;background: ;color:#000000;font-size: 14px;	font-weight: bold;line-height:14px;	text-transform:uppercase;}
+	
+font.pretxt 
+{font-family:  arial;background: ;color:#000000;font-size: 14px;	font-weight: bold;line-height:16pt;	text-transform:uppercase;}
+	
+font.orid
+{font-family:  arial;background: ;color:#000000;font-size: 24px;	font-weight: bold;text-decoration: none;cursor: default;line-height:24pt;	text-transform:uppercase;}
+	
+font.char
+{font-family:  arial;background: ;color:#000000;font-size: 32px;	font-weight: bold;text-decoration: none;cursor: default;line-height:32pt;	text-transform:uppercase;}
+td.tbltextttl
+{text-align:center;font-weight: bold;}
+</STYLE>
+
+
+<center>
+
+	<table border=0 cellpadding=0 cellspacing=0 width="480px" height="750px" bgcolor=white>
+		<td valign=top>
+			[fc_load_shplabel_info]
+
+	
+					<!-- REMITENTE -->
+					<table align="center" width="100%" border=0  cellpadding=0 cellspacing=3>
+						<td align=left width=245px>
+							<img src="[va_imgurl]/packing_list/inovablack.png" style="margin-right:10pt" border=0 width=240px></td>
+						<td valign=bottom>
+							<table width=100%>[fc_show_companyinfo]</table>
+					</td>
+					</table>
+					<!-- REMITENTE -->
+					<!--hr style="color: #000;background-color: #000;height: 4px;margin-bottom:10px;"-->
+					<img src=/sitimages/main/phr.jpg  style="width: 100%; height: 4px; margin-top:5px;">
+					
+			<center>	
+				<font class=big>[in_ptype]</font>
+				<span style="display: inline-block; float: right; padding-right: 2px;">[ur_id_admin_users]</span>
+			</center>
+					<!-- DESTINATARIO -->
+				
+					<table cellpadding=0 cellspacing=0 width=95% border=0 style="margin-top:1px;">
+						<td><font class=shipto>&nbsp; DESTINATARIO:</font></td>
+						<td align=right><font class=med><u>[in_customers.atime]</u></td>
+					</table>
+
+					
+					<div style="height:215px;overflow:hidden;margin:0 20 0 20;">
+						<font class=shipto>
+						<font class=big>Nombre: [in_shp_name]</font> <br>
+						Calle: [in_shp_address1]<!--calle--><br>
+						Col: [in_shp_urbanization]<!--colonia--> <br>
+						Entre: [in_shp_address2]<!--entrecalle--> <br>
+						Del/Mpio: [in_shp_city] <!--delegamuni--> <br>
+						Estado: [in_shp_state]<!--estado--> 
+						<font class=big2>C.P. [in_shp_zip]</font><!--cp--><br>
+						<font class=med><u>Tel:  [va_phone]</u><!--tel--></font><br>
+						</font>
+					</div>
+										
+										
+					<!-- DESTINATARIO -->
+
+					<img src=/sitimages/main/phr.jpg  style="width: 100%; height: 2px; margin-top:4px;">
+					
+					<div ><font class=pretxt>&nbsp; NOTAS:</font></div>
+
+					<div style="height:90px;overflow:hidden;margin:0 20 0 20;">
+						<font class=pretxt>	[in_shp_address3] | [in_shp_notes] | [in_ordernotes]
+					</div>
+
+					
+
+
+					<!--img src=/sitimages/main/phr.jpg  style="width: 100%; height: 2px; "-->
+					
+					
+										
+					<table cellpadding=5 cellspacing=0 style="border:2px solid #333333;padding:0px;width:99%;-moz-border-radius: 5px;border-radius: 5px;margin-top:5px;" >
+						<td align=center>
+							
+							<table border=0 cellpadding=0 cellspacing=0 width=100%>
+								<!--td align=center>
+									<font class=pretxt>
+									Número de Orden:<br>
+									<font class=idnum>[in_id_orders]</font><br>
+									Fecha Orden:  [in_date]<br>
+								</td-->
+								<td align=center>
+									<div style="height:100px;overflow:hidden;">
+										<img src="/cgi-bin/common/apps/barcode?code=[va_e_prefix][in_id_orders]&h=55" style="margin-top:6px" border="0" width=300px height=150px>
+									</div>
+									<font class=med>[va_e_prefix][in_id_orders]</font>
+								</td>
+							</table>
+							
+						</td>
+					</table> 
+					
+					
+					
+
+					
+					
+					<table align="center" width="100%" cellpadding=0 cellspacing=4 border=0>
+						<tr>
+							<td valign=top width=31%><font class=pretxt2>&nbsp;Remesa:   <br>&nbsp;&nbsp; [in_id_warehouses_batches]</td>
+							<td valign=top width=31%><font class=pretxt2>No. Guia:   <br>&nbsp; [va_tracking]</td>
+							<td valign=top width=38% rowspan=2><font class=pretxt2><span style="position:relative;left:-7px;">Mensajero:</span>  <br> [ln_id_warehouses@sl_warehouses:Name]</td>
+						</tr>
+						<tr>
+							<td valign=top><font class=pretxt2>&nbsp;Alta:  <br>&nbsp;&nbsp; [in_date]</td>
+							<td valign=top><font class=pretxt2>Asign:   <br>&nbsp; [va_batch_date]</td>
+						</tr>
+					</table>
+		</td>
+	</table>
+	</body>
+</html>

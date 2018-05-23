@@ -1,0 +1,223 @@
+[ip_header]
+<style>
+	
+	ul ul {
+	    margin: 0;
+	    padding-left: 40px;
+	    display: none;
+	}
+	li:hover{
+		font-weight: normal;
+	}
+	ul.tree li {
+	    cursor: default;
+	    font-weight: bold;
+	    margin-left: 15px;
+	    padding: 4px 0;
+	}
+	ul.tree li ul li{
+		list-style:none;	
+	}
+
+.table {
+    border: solid 1px #DDEEEE;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 12px Arial, sans-serif;
+}
+.table thead th {
+    background-color: #DDEFEF;
+    border: solid 1px #DDEEEE;
+    color: #336B6B;
+    padding: 10px;
+    text-align: center;
+    text-shadow: 1px 1px 1px #fff;
+}
+.table tbody td {
+    border: solid 1px #DDEEEE;
+    color: #333;
+    padding: 5px;
+    text-shadow: 1px 1px 1px #fff;
+    font: normal 10px Arial, sans-serif;
+}
+.table {
+    overflow: hidden;
+    z-index: 1;
+}
+.table tbody td, .table thead th {
+    position: relative;
+}
+.table tbody td:hover::before {
+    background-color: #CCE7E7;
+    content:'\00a0';
+    height: 100%;
+    left: -5000px;
+    position: absolute;
+    top: 0;
+    width: 10000px;
+    z-index: -1;
+}
+.table tbody td:hover::after {
+    background-color: #CCE7E7;
+    content:'\00a0';
+    height: 10000px;
+    left: 0;
+    position: absolute;
+    top: -5000px;
+    width: 100%;
+    z-index: -1;
+}
+#filter_form{
+	/*background-color: #FF914A;*/
+}
+#trial_balance{
+	/*background-color: #83D800;*/
+	margin: 10px 0;
+}
+.table tbody td.highlights{
+	font-weight: bold;
+}
+</style>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: [va_expanditem], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+				<tr>
+					<td width="70%" align="center"></td>
+					<td width="30%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]")'>Balanza de Comprobaci&oacute;n</td>
+				</tr>
+			</table>
+<!-- Start Main Area  -->
+
+	<div style="background-color:#ffffff;margin:15px;">
+		<div id="filter_form" style="[va_display_filter_form]">
+			<h1 class="titletext">Balanza de Comprobaci&oacute;n</h1>
+			<form action="/cgi-bin/mod/[ur_application]/admin" method="post">
+				<input type="hidden" name="cmd" value="[in_cmd]">
+				<input type="hidden" name="action" value="1">
+				<fieldset><legend>Filtros</legend>
+					<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+						<!-- <tr>
+						    <td width="20%">
+						    	<label for="fiscal_year">Ejercicio : </label>
+						    	<span class="smallfieldterr">[er_fiscal_year]</span>
+						    </td>
+						    <td class="smalltext">
+						    	<select name="fiscal_year" id="fiscal_year"  class="input">
+									<option value="">...</option>
+									[fc_build_select_fiscal_year]
+								</select>
+					    	</td>
+						</tr> -->
+						<tr>
+						    <td width="20%">
+						    	<label for="id_accounting_periods">Per&iacute;odo : </label>
+						    	<span class="smallfieldterr">[er_id_accounting_periods]</span>
+						    </td>
+						    <td class="smalltext">
+						    	<select name="id_accounting_periods" id="id_accounting_periods"  class="input">
+									<option value="">Selecciona un periodo</option>
+									[fc_build_select_accounting_periods]
+								</select>
+					    	</td>
+						</tr>
+						<tr>
+						    <td width="20%">
+						    	<label for="id_accounting_periods">A nivel de : </label>
+						    	<span class="smallfieldterr">[er_nivel]</span>
+						    </td>
+						    <td class="smalltext">
+						    	<input type="radio" name="level" id="level_all" class="" value="" checked>
+						    	<label for="level_all">Todos</label><br>
+						    	<input type="radio" name="level" id="level_2" class="" value="2">
+						    	<label for="level_2">Cuentas de Mayor</label><br>
+						    	<input type="radio" name="level" id="level_4" class="" value="4">
+						    	<label for="level_4">Cuentas de &uacute;ltimo nivel</label>
+					    	</td>
+						</tr>
+						<tr>
+						    <td width="20%">
+						    	Cuentas : <span class="smallfieldterr">[er_cuentas_choice]</span>
+						    </td>
+						    <td class="smalltext"><hr>
+						    	<input type="radio" name="cuentas_choice" id="cuentas_choice_1" class="" value="1" checked>
+						    	<label for="cuentas_choice_1">Todas</label><br>
+						    	<!-- <input type="radio" name="cuentas_choice" id="cuentas_choice_2" class="" value="2">
+						    	<label for="cuentas_choice_2">Con movimientos</label><br>
+						    	<input type="radio" name="cuentas_choice" id="cuentas_choice_3" class="" value="3">
+						    	<label for="cuentas_choice_2">Saldo actual no igual a cero</label><br>
+						    	<input type="radio" name="cuentas_choice" id="cuentas_choice_4" class="" value="4">
+						    	<label for="cuentas_choice_4">Movimientos y saldo no cero</label><br> -->
+						    	<input type="radio" name="cuentas_choice" id="cuentas_choice_5" class="" value="5">
+						    	<label for="cuentas_choice_5">Movimientos o saldo no cero</label>
+					    	</td>
+						</tr>
+					</table>
+				</fieldset>
+				&nbsp;
+				<p align="center">
+					<input type="submit" value="Generar" class="button">
+				</p>
+			</form>
+		</div>
+		<div id="trial_balance" style="[va_display_trial_balance]">
+			<span style="float:left;">
+				<a href="/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]&type=csv&export=1&action=1&id_accounting_periods=[in_id_accounting_periods]&level=[in_level]&cuentas_choice=[in_cuentas_choice]">
+					<img border="0" src="[va_imgurl]/[ur_pref_style]/b_xls.gif" width="24" height="24" title="Export" alt="Export">
+				</a>
+			</span>
+
+			<h2 align="center">[va_company_name]</h2>
+			<h2 align="center">Balanza de Comprobaci&oacute;n del [va_from_date] al [va_to_date]</h2>
+			<table class="table" id="balanza" width="100%">
+				<thead>
+					<tr>
+						<th>Cuenta</th>
+						<th>Nombre</th>
+						<th>Saldo Inicial</th>
+						<th>Cargos</th>
+						<th>Abonos</th>
+						<th>Saldo Final</th>
+						<th>Detalle</th>
+					</tr>
+				</thead>
+				[va_table_body]
+			</table>
+			<br>
+		</div>
+	</div>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script language="javascript">
+<!--
+
+    $(document).ready(function() {
+
+		chg_select('id_accounting_periods','[in_id_accounting_periods]');
+		chg_radio('nivel','[in_nivel]');
+		chg_radio('cuentas_choice','[in_cuentas_choice]');
+	});
+
+
+//-->
+</script>
+
+[ip_footer]

@@ -1,0 +1,145 @@
+	<fieldset><legend>CRM Ticket ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_crmtickets] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton] &nbsp;
+							[fc_func_list_manager] &nbsp;
+							[fc_custom_id_link]
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+	<tr>
+		<td width="50%" valign="top">
+			<fieldset><legend>Ticket</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">		
+				<tr>
+				   <td class='smalltext' width="30%" valign="top">ID  : </td>
+				   <td class='smalltext'><a href="/cgi-bin/mod/[ur_application]/dbman?[va_refurl]">[in_id_ref]</a> / [in_id_type]</td>
+				</tr>
+				<tr>
+				   <td class='smalltext' width="30%" valign="top">Phone  : </td>
+				   <td class='smalltext'>[in_caller_id]</td>
+				</tr>
+				<tr>
+				   <td class='smalltext' width="30%">Type: </td>
+				   	<td class='smalltext'>[in_type] </td>
+				</tr>
+				<tr>
+				   <td class='smalltext' width="30%">Description: </td>
+				   	<td class='smalltext'>[in_description]</td>
+				</tr>
+				<tr>
+				   <td class='smalltext' width="30%">User Type: </td>
+				   	<td class='smalltext'>[in_users_type]</td>
+				</tr>
+				<tr>
+				   <td class='smalltext' width="30%">User: </td>
+				   	<td class='smalltext'>[va_name_users_assigned]<span class="smallfieldterr">[va_err_assigned]</span></td>
+				</tr>
+				<tr>
+				    <td class='smalltext' width="30%" valign="top">Status : </td>
+				    <td class="smalltext">[va_status]<br>
+				    	[va_change_status]
+				    </td>
+				</tr>
+				<tr>
+				    <td class='smalltext' width="30%" valign="top">Events: </td>
+				    <td class="smalltext">
+				    	<br>
+				    	<table cellpadding="2" width="100%">
+				    		<tr>
+				    			<td></td>
+				    			<td>Date</td>
+				    			<td>Elapsed Days</td>
+				    		</tr>
+				    		<tr>
+				    			<td>Created:</td>
+				    			<td>[in_date]</td>
+				    			<td>[va_t_asignacion]</td>
+				    		</tr>
+				    		<tr>
+				    			<td>In Process:</td>
+				    			<td>[in_date_process]</td>
+				    			<td>[va_t_gestion]</td>
+				    		</tr>
+				    		<tr>
+				    			<td>Closed:</td>
+				    			<td>[in_date_close]</td>
+				    			<td>[va_t_solucion]</td>
+				    		</tr>
+				    	</table>
+				    </td>
+				</tr>
+
+			</table>
+		</fieldset></td>
+	<td width="50%" valign="top">
+		<fieldset><legend>Customer/Order Info</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">		
+				<tr>
+				   <td class='smalltext' width="30%" valign="top">Name  : </td>
+				   <td class='smalltext'>[va_custname]</td>
+				</tr>
+				<tr>
+				   <td class='smalltext' width="30%">Order :</td>
+				   	<td class='smalltext'>[va_orderinfo] </td>
+				</tr>
+				<tr>
+				   <td class='smalltext' width="30%" valign="top">Items in Order : </td>
+				   	<td class='smalltext'>[va_orderitems]</td>
+				</tr>
+				<tr>
+				    <td class='smalltext' width="30%">Order Status : </td>
+				    <td class="smalltext">[va_orderstatus]</tr>
+			</table>
+		</fieldset></td>
+				   		</fieldset></td>
+	</tr>
+</table>
+				   
+
+<script language="javascript">
+<!--
+	chg_select('Id_zones','[in_Id_zones]');
+	chg_select('State','[in_State]');
+	chg_select('StateFullName','[in_StateFullName]');
+	chg_radio('Status','[in_Status]');
+	
+function choose_add_order(){
+	popup_show('popup_add_order', 'item_drag_add_order', 'popup_exit_add_order', 'element-right', -1, -1,'orderid');
+}
+	
+	
+//-->
+</script>
+
+
+<div id="popup_add_order" style="visibility: hidden; display: none; background-color: #ffffff;">
+	<div class="menu_bar_title" id="item_drag_add_order">
+	<img id="popup_exit_add_order" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+	&nbsp;&nbsp;&nbsp;Search for Order
+	</div>
+	<div class="formtable">
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=advorders&returnid=ID_ref&returnfield=ID_orders" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+		<H2>Unable to do the script</H2>
+		<H3>Please update your Browser</H3>
+		</IFRAME>	
+	</div>
+</div>
+

@@ -1,0 +1,1005 @@
+START TRANSACTION;
+
+/*--------- ID_orders :: 10053548 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=3110.02
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053548
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=3110.02
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053548
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10053548 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10053562 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=1314.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053562
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=1314.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053562
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10053562 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10053624 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=1314.01
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053624
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=1314.01
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053624
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10053624 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10053647 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=2613.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053647
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=2613.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053647
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+
+/*--------- ID_orders :: 10053687 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=1912.01
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053687
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=1912.01
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053687
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10053687 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10053697 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=2914.02
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053697
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=2914.02
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053697
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10053697 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10053735 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=1214.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053735
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=1214.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053735
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10053735 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10053826 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=3615.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053826
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=3615.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053826
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10053826 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10053851 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=1513.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053851
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=1513.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053851
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10053851 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10053853 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=
+				, EffDate=''
+				, tableused='sl_orders'
+				, ID_tableused=10053853
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=
+				, EffDate=''
+				, tableused='sl_orders'
+				, ID_tableused=10053853
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10053853 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10053889 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=3615.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053889
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=3615.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10053889
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10053889 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10053954 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=
+				, EffDate=''
+				, tableused='sl_orders'
+				, ID_tableused=10053954
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=
+				, EffDate=''
+				, tableused='sl_orders'
+				, ID_tableused=10053954
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10053954 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10054016 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=2564.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10054016
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=2564.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10054016
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10054016 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10054118 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=1815.01
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10054118
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=1815.01
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10054118
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10054118 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10054169 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=2314.02
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10054169
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=2314.02
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10054169
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10054169 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10054226 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=3615.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10054226
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=3615.00
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10054226
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10054226 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10054237 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=3110.02
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10054237
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=3110.02
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10054237
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10054237 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10054258 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=2214.02
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10054258
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=2214.02
+				, EffDate='2016-06-01'
+				, tableused='sl_orders'
+				, ID_tableused=10054258
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10054258 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10054472 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=2615.01
+				, EffDate='2016-06-02'
+				, tableused='sl_orders'
+				, ID_tableused=10054472
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=2615.01
+				, EffDate='2016-06-02'
+				, tableused='sl_orders'
+				, ID_tableused=10054472
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10054472 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10054491 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=1912.01
+				, EffDate='2016-06-02'
+				, tableused='sl_orders'
+				, ID_tableused=10054491
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=1912.01
+				, EffDate='2016-06-02'
+				, tableused='sl_orders'
+				, ID_tableused=10054491
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10054491 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10054528 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=1513.00
+				, EffDate='2016-06-02'
+				, tableused='sl_orders'
+				, ID_tableused=10054528
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=1513.00
+				, EffDate='2016-06-02'
+				, tableused='sl_orders'
+				, ID_tableused=10054528
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10054528 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10054540 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=3907.01
+				, EffDate='2016-06-02'
+				, tableused='sl_orders'
+				, ID_tableused=10054540
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=3907.01
+				, EffDate='2016-06-02'
+				, tableused='sl_orders'
+				, ID_tableused=10054540
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10054540 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10054821 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=485.00
+				, EffDate='2016-06-02'
+				, tableused='sl_orders'
+				, ID_tableused=10054821
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=485.00
+				, EffDate='2016-06-02'
+				, tableused='sl_orders'
+				, ID_tableused=10054821
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10054821 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+/*--------- ID_orders :: 10054901 ---------*/
+/*------ Anticipos ------*/
+INSERT INTO sl_movements SET 
+				ID_accounts=1517
+				, Amount=4115.00
+				, EffDate='2016-06-02'
+				, tableused='sl_orders'
+				, ID_tableused=10054901
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Debit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+INSERT INTO sl_movements SET 
+				ID_accounts=1518
+				, Amount=4115.00
+				, EffDate='2016-06-02'
+				, tableused='sl_orders'
+				, ID_tableused=10054901
+				, tablerelated=''
+				, ID_tablerelated=0
+				, Category='Anticipo Clientes'
+				, Credebit='Credit'
+				, ID_segments=0
+				, ID_journalentries=0
+				, Status='Active'
+				, Date=CURDATE()
+				, Time=CURTIME()
+				, ID_admin_users=11;
+UPDATE sl_movements SET ID_accounts = 1518
+						 WHERE tableused='sl_orders' 
+						 	AND ID_tableused=10054901 
+						 	AND ID_accounts=1074 
+						 	AND Category='Ventas' 
+						 	AND Credebit='Debit' 
+						 	AND `Status`='Active';
+
+
+COMMIT;

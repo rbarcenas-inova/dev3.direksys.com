@@ -1,0 +1,49 @@
+	&nbsp;
+	<fieldset><legend>Extra Charges Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Name : <span class="smallfieldterr">[er_name]</span></td>
+		    <td class="smalltext"><input type="text" name="name" value="[in_name]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width="30%">Description:<span class="smallfieldterr">[er_description]</span></td>
+			<td class="smalltext"><textarea name="description" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description]</textarea></td>
+		</tr>
+		<tr>
+			<td width="30%">Account:<span class="smallfieldterr">[er_id_accounts]</span></td>
+			<td class="smalltext">
+				<select name="id_accounts" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			      	<option value="---">---</option>
+			        [fc_build_select_accounting]
+				</select></td>
+		</tr>
+		<tr>
+		    <td width="30%">In COGS : <span class="smallfieldterr">[er_incogs]</span></td>
+		    <td class="smalltext">[br_incogs@sl_extracharges]</td>
+		 </tr>		
+		 <tr>
+		    <td width="30%">Tax Percent : <span class="smallfieldterr">[er_tax_percent]</span></td>
+		    <td class="smalltext"><input type="text" name="tax_percent" value="[in_tax_percent]" size="6" maxlength="6" onFocus='focusOn( this )' onBlur='focusOff( this )'> %</td>
+		 </tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+	
+  <fieldset><legend>Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		    <td class="smalltext">[br_status@sl_extracharges]</td>
+		 </tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_select('id_accounts','[in_id_accounts]');
+	chg_radio('status','[in_status]');
+	chg_radio('incogs','[in_incogs]');
+
+//-->
+</script>

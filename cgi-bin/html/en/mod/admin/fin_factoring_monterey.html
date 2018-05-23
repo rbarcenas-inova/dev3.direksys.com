@@ -1,0 +1,90 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				    <td class="titletext" align="left" colspan="2">Creating Monterey File</td>
+				</tr>
+				<tr>
+				    <td class="stdtxterr" colspan="2">[va_message]</td>
+			  </tr>
+		   </table>
+
+			 <form action="/cgi-bin/mod/admin/admin" method="post" name="sitform" target="upwin" onsubmit="upwin()">
+				 <input type="hidden" name="cmd" value="fin_factoring_monterey">
+				 <input type="hidden" name="action" value="1">
+
+
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+					<td align="center" class="menu_bar_title">Select Capture Date</td>
+			  </tr>
+			  <tr>
+					  <td align="center">Date : <span class="smallfieldterr">[er_capdate]</span>
+							<input type="text" id="capdate" name="capdate" value="[in_capdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							<a href="#"><img src="[va_imgurl]/[ur_pref_style]/calendar.gif" id="trigger" border="0"></a>
+						</td>
+			  </tr>
+			  <tr>
+					  <td align="center">Orders Range : <span class="smallfieldterr">[er_capdate]</span>
+							<input type="text" name="from_id" value="[in_from_id]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> - 
+							<input type="text" name="to_id" value="[in_to_id]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+			  </tr>
+			  <tr>
+					  <td align="center">Limit : <span class="smallfieldterr">[er_limit]</span>
+							<input type="text" name="limit" value="[in_limit]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			  </tr>			  
+			  <tr>
+					<td align="center"><input type="checkbox" name="testmode" value="ON" class="checkbox" checked> Crete File in Test Mode</td>
+			  </tr>
+				<tr>
+					<td align="center"><input type="submit" value="Run" class="button"></td>
+			  </tr>
+			</table>	
+			&nbsp;
+
+			<script language="javascript">
+			<!--
+			
+				chg_radio('capdate','[in_capdate]');
+			
+				Calendar.setup(
+				{
+					inputField : "capdate",
+					ifFormat : "%Y/%m/%d", // the date format
+					button : "trigger" // ID of the button
+				});
+				
+			//-->
+			</script>
+			
+			
+			<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+

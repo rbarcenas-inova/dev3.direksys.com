@@ -1,0 +1,48 @@
+ &nbsp;
+	<fieldset><legend>ID</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		  	<td width="30%" class="titletext">ID Branch :</td>
+		    <td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_perms] 
+					    	<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=usr_permtree&modify=[in_id_perms]"><img src='[va_imgurl]/[ur_pref_style]/b_edit.gif' title='Edit' alt='' border='0'></a>
+					    	<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=usr_permtree&search=Print&toprint=[in_id_perms]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.gif' title='Print' alt='' border='0'></a>
+						</div>
+					</div>
+				
+				</td>
+		 </tr>
+		 <tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+		</table>
+	</fieldset>  
+	&nbsp;
+	<fieldset><legend>Permission Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Name  : </td>
+		    <td class="smalltext">[in_name]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">Perm Code  : </td>
+		    <td class="smalltext">[in_perm]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">Is a Node  : </td>
+		    <td class="smalltext">[in_node]</td>
+		 </tr>
+		<tr>
+			<td>Application : </td>
+			<td class="smalltext">[in_application]</td>
+		</tr>		 
+		<tr>
+			<td>Parent Perm :</td>
+			<td class="smalltext">([in_id_parent]) [va_parent]</td>
+		</tr>
+	</table>
+	</fieldset>

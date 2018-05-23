@@ -1,0 +1,1209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="es-mx" lang="es-mx">
+<head>
+
+
+  <title>Direksys : [va_page_title]</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+  <link rel="STYLESHEET" href="[va_imgurl]/[ur_pref_style]/main.css" type="text/css">
+  <script language="JavaScript1.2" src="[va_imgurl]/[ur_pref_style]/main.js" type="text/javascript"></script>
+  <link rel="icon" href="/favicon.ico" type="image/x-ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <script language="JavaScript1.2" type="text/javascript">
+    function logoff(){
+      if (confirm("Are you sure want to Exit?    ")){
+      this.location.href = '/cgi-bin/mod/[ur_application]/admin?logoff=1';
+       }  // End if
+    }  // End function
+
+  </script>
+  
+  <!-- Direksys v2 -->  
+  <link rel="stylesheet" type="text/css" href="[va_imgurl]app_bar/mod/Xtyle[in_e].css" />
+  <!-- Direksys v2 -->  
+
+
+  
+  <!-- Calendar -->
+  <style type="text/css">@import url([va_imgurl]/jscalendar/calendar-win2k-1.css);</style>
+  <link rel="stylesheet" type="text/css" media="all" href="[va_imgurl]/jscalendar/skins/aqua/theme.css" title="Aqua">
+  <script type="text/javascript" src="[va_imgurl]/jscalendar/calendar.js"></script>
+  <script type="text/javascript" src="[va_imgurl]/[ur_pref_style]/calendar_lang.js"></script>
+  <script type="text/javascript" src="[va_imgurl]/jscalendar/calendar-setup.js"></script>
+  <script type="text/javascript" src="[va_imgurl]/[ur_pref_style]/popup.js"></script>
+  <script type="text/javascript" src="[va_imgurl]/[ur_pref_style]/dropdown.js"></script>
+  <!-- Calendar -->
+  
+  <!--  dhtmltree -->
+  <script type="text/javascript" src="[va_imgurl][ur_pref_style]/mktree.js"></script>
+  <link rel="stylesheet" type="text/css" media="all" href="[va_imgurl][ur_pref_style]/mktree.css">
+  <!--  dhtmltree -->
+  
+  <!-- YUI -->
+  <script type="text/javascript" src="[va_yui_url]build/yahoo-dom-event/yahoo-dom-event.js"></script>
+  <script type="text/javascript" src="[va_yui_url]build/element/element-beta-min.js"></script>
+  <script type="text/javascript" src="[va_yui_url]build/connection/connection-min.js"></script>
+  <script type="text/javascript" src="[va_yui_url]build/tabview/tabview-min.js"></script>
+  <script type="text/javascript" src="[va_yui_url]build/calendar/calendar-min.js"></script>
+  <script type="text/javascript" src="[va_yui_url]build/button/button-min.js"></script>
+  <script type="text/javascript" src="[va_yui_url]build/dragdrop/dragdrop-min.js"></script>
+  <script type="text/javascript" src="[va_yui_url]build/container/container-min.js"></script>
+  <script type="text/javascript" src="[va_yui_url]build/accordionview/utilities.js"></script>
+  <link rel="stylesheet" type="text/css" href="[va_yui_url]build/fonts/fonts-min.css" />
+  <link rel="stylesheet" type="text/css" href="[va_yui_url]build/calendar/assets/skins/sam/calendar.css" />
+  <link rel="stylesheet" type="text/css" href="[va_yui_url]build/button/assets/skins/sam/button.css" />
+  <link rel="stylesheet" type="text/css" href="[va_yui_url]build/container/assets/skins/sam/container.css" />
+
+  <script type="text/javascript" src="/yui_v2.7/build/datasource/datasource-min.js"></script>
+  <script type="text/javascript" src="/yui_v2.7/build/autocomplete/autocomplete-min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/yui_v2.7/build/autocomplete/assets/skins/sam/autocomplete.css" />
+  <!-- YUI -->
+
+<!-- Jquery -->
+
+<link rel="stylesheet" href="/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src=" /libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+<!--
+<link rel="stylesheet" href="/jquery-ui-1.8.16/jquery-ui.css" type="text/css" media="screen" />
+<script type="text/javascript" language="JavaScript" src="/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" language="JavaScript" src="/jquery-ui-1.8.16/jquery-ui.min.js"></script>
+-->
+
+<script type="text/javascript" language="JavaScript" src="[va_imgurl]/jquery-events.js"></script>
+<script type="text/javascript" language="JavaScript" src="[va_imgurl]/jquery-events.administration.js"></script>
+<!-- Jquery -->
+
+<!-- JqueryTools -->
+<script type="text/javascript" src="/jquery.tools.min.js"></script>
+<!-- JqueryTools -->
+
+<!-- FancyBox -->
+<script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="/fancybox/jquery.easing-1.3.4.pack.js"></script>
+<link rel="stylesheet" href="/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+<!-- FancyBox -->
+
+<!-- Jquery Editable http://www.arashkarimzadeh.com/jquery/7-editable-jquery-plugin.html (TODO: Revisar Nuevo plugin) -->
+<script type="text/javascript" src="/jquery.editable-1.3.3.min.js"></script>
+<!-- Jquery Editable -->
+
+<!-- anylinkcssmenu -->
+<script type="text/javascript" language="JavaScript" src="[va_imgurl]anylinkcssmenu.js"></script>
+<script type="text/javascript">
+  //anylinkcssmenu.init("menu_anchors_class") ////Pass in the CSS class of anchor links (that contain a sub menu)
+  anylinkcssmenu.init("anchorclass");
+</script>
+<!-- anylinkcssmenu -->
+
+
+<!-- RGraph -->
+[va_highcharts_js]
+[va_rgraph_js]
+<!-- RGraph -->
+
+  [va_highchart1]
+  [va_highchart2]
+  [va_highchart3]
+  [va_highchart4]
+  [va_highchart5]
+  [va_highchart6]
+  [va_highchart7]
+  [va_highchart8]
+
+<script>
+    /**
+    * The onload function creates the graph
+    */
+    window.onload = function ()
+    {
+      
+        showTheTime();
+        hidehelp();
+
+        [va_funnelchart1]
+        [va_funnelchart2]
+        [va_funnelchart3]
+
+        [va_meterchart1]
+        [va_meterchart2]
+        [va_meterchart3]
+        [va_meterchart4]
+        [va_meterchart5]
+        [va_meterchart6]
+        [va_meterchart7]
+        [va_meterchart8]
+
+    }
+</script>
+
+
+
+       
+</head>
+<!--onload="showTheTime();hidehelp()"-->
+<body class="yui-skin-sam">	
+  <table border="0" cellspacing="0" cellpadding="0"   width=98% align=center>
+    <tr>
+      <td>
+
+
+  
+
+
+   <table border="0" cellspacing="0" cellpadding="0"  width=100% id="top1">
+    <tr>
+      <td width=230px>
+        <!-- <a href=/cgi-bin/mod/[ur_application]/admin?cmd=home> -->
+          <img src=[va_imgurl]app_bar/mod/direksys-logo.png border=0>
+        <!-- </a> -->
+      </td>
+      <td align=left><font class=userinfo>  
+      <font class=username>[ur_FirstName] [ur_LastName]</font><br>
+      ID: [ur_ID_admin_users]&nbsp;&nbsp;|&nbsp;&nbsp;
+      Exten: [ur_extension]&nbsp;&nbsp;|&nbsp;&nbsp;
+      Time : <span id="showtime"></span>
+      </td>
+      
+      <td align=right valign=top>
+        <table cellpadding=0 cellspacing=0>
+          <td align="center" valign=top onclick="helponoff()" background=[va_imgurl]app_bar/mod/icobg1.png width="74px"><span id="helpleg_img"><img id="img_voxhelp" src=[va_imgurl]app_bar/mod/help[ck_voxhelp].png width="74px" height="30px" style="cursor:pointer;"></span></td>
+          <td nowrap background=[va_imgurl]app_bar/mod/icobg2.png>
+            <a href='/cgi-bin/mod/[ur_application]/admin?cmd=home'><img src='[va_imgurl]app_bar/mod/ico-home.jpg' title='Home Page' alt='Home Page' border='0'></a> 
+            <!-- manuales
+            <a href='/manuals/'><img src='[va_imgurl]app_bar/mod/ico-manuals.jpg' title='Manuals' alt='Manuals' border='0'></a> 
+            -->
+            <a href='javascript:logoff()'><img src='[va_imgurl]app_bar/mod/ico-exit.jpg' title='Logoff' alt='Logoff' border='0'></a>
+          </td>
+          <td>
+            <img src=[va_imgurl]app_bar/mod/icobg3.png>
+          </td>
+        </table>
+    
+    
+
+	
+      </td>
+    </tr>
+  </table>
+
+                
+  <!--  Esto seria [fc_header_links] start -->
+    <table border="0" cellspacing="0" cellpadding="0"   width=100%>
+    <tr>
+      <td width=7px>
+        <img src=[va_imgurl]app_bar/mod/menubg1.png width="7px" height="100%">
+      </td>
+      <td width=100% background=[va_imgurl]app_bar/mod/menubg2.png>
+        <table border="0" cellspacing="0" cellpadding="0">
+          <td valign=middle align=left nowrap>&nbsp; <img src=[va_imgurl]app_bar/mod/dmenu.png border=0></td>
+          <td valign=middle align=left><img src=[va_imgurl]app_bar/mod/menubgdiv.png></td>
+ 
+
+ 
+        </table>
+      </td>
+      <td width=7px>
+      	    
+        
+        <img src=[va_imgurl]app_bar/mod/menubg3.png>
+      </td>
+    </tr>
+  </table>
+  <!--  Esto seria [fc_header_links] fin -->
+  
+
+
+
+
+  &nbsp; 
+  [fc_new_messages]
+
+
+
+
+<!--[!--ip_header--]-->
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+
+
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+<script type="text/javascript" src="/sitimages//jquery-events.cc-inbound.js"></script>
+<STYLE TYPE="text/css"> 
+font.script
+{font-family:  verdana;background: ;color:#444444;font-size: 13px;font-weight: normal;text-decoration: none;cursor: default;line-height:19px;}
+
+font.data
+{font-family:  century gothic, verdana;background: ;color:#333333;font-size: 14px;font-weight: normal;text-decoration: none;cursor: default;line-height:19px;}
+font.acor
+{font-family:  century gothic, verdana;background: ;color:#0068b0;font-size: 17px;font-weight: bold;text-decoration: none;cursor: default;line-height:21px;}
+
+
+font.desglo
+{font-family:  verdana;background: ;color:#444444;font-size: 12px;font-weight: normal;text-decoration: none;cursor: default;line-height:15px;}
+font.descue
+{font-family:  verdana;background: ;color:#ff0000;font-size: 12px;font-weight: normal;text-decoration: none;cursor: default;line-height:15px;}
+
+A.gen:link		{
+	background-color: #90ba2b;
+	background-image: url(/sitimages/app_bar/mod/button.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	border: none;
+	color:#ffffff;
+	cursor: pointer;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 13px;
+	height: 35px;
+	border-left: 1px solid #77ac07;
+	border-right: 1px solid #77ac07;
+	border-top: 1px solid #77ac07;
+	border-bottom: 1px solid #77ac07;
+	padding: 9px 15px 9px 15px;
+	text-align:center;
+	text-decoration: none;
+}
+A.gen:visited		{
+	background-color: #90ba2b;
+	background-image: url(/sitimages/app_bar/mod/button.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	border: none;
+	color:#ffffff;
+	cursor: pointer;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 13px;
+	height: 35px;
+	border-left: 1px solid #77ac07;
+	border-right: 1px solid #77ac07;
+	border-top: 1px solid #77ac07;
+	border-bottom: 1px solid #77ac07;
+	padding: 9px 15px 9px 15px;
+	text-align:center;
+	text-decoration: none;
+}
+A.gen:hover		{
+	background-color: #90ba2b;
+	background-image: url(/sitimages/app_bar/mod/button2.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	border: none;
+	color:#ffffff;
+	cursor: pointer;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 13px;
+	height: 35px;
+	border-left: 1px solid #8ec012;
+	border-right: 1px solid #8ec012;
+	border-top: 1px solid #8ec012;
+	border-bottom: 1px solid #8ec012;
+	padding: 9px 15px 9px 15px;
+}
+
+
+
+ 
+
+
+</STYLE>
+
+
+ 
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform" id="productshow">
+<input type="hidden" name="cmd" value="console_order">
+<input type="hidden" name="step" value="2">
+<input type="hidden" name="action" value="add_to_basket">
+
+<input type="hidden" name="skupro" value="1">
+<input type="hidden" id="id_products" name="id_products" value="0">
+<input type="hidden" id="overwrite_option" name="overwrite_option" value="0">
+
+
+
+
+
+	<div style="background-color:#ffffff;margin:15px; ">
+
+<font face="Century gothic, verdana" size=4>Proceso para atención con modulo de CRM Tickets</font> 
+<br><br>
+
+
+<fieldset><legend>Arboles de Decision</legend>
+	<div id="showquestion" class="answers"></div>
+
+
+
+
+
+
+	<table width="100%" border="1" cellspacing="1" cellpadding="2" id="questions" >
+
+	<tr>
+	<td>No</td>
+	<td>Question/Heading </td>
+	<td>Answers </td>
+	</tr>
+	
+	
+	
+	
+	
+	
+	
+	<tr>
+	<td>1</td>
+	<td> <font class=acor>¿Cliente cuenta con ticket?</font><br> </td>
+	<td>
+		<ul style="padding-left:30px;">
+		<li id="2">Si</li>
+		<li id="10">No</li> 
+		</ul>
+	</td>
+	</tr>
+
+	<tr>
+	<td>2</td>
+	<td>
+ <font class=data>verificar el status del ticket y proceso actual del mismo.</font><br>
+<font class=acor>¿El ticket esta en tiempo?</font><br>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="3">Si</li>
+		<li id="4">No</li>
+	</ul></td>
+	</tr>
+
+
+	<tr>
+	<td>3</td>
+	<td>
+ <font class=data>programar envío a través de mensaje o correo electrónico de manera directa a cliente, informando el avance del mismo.</font><br>
+<font class=acor>texto</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>4</td>
+	<td>
+ <font class=data>se da información a cliente acerca de la orden y solicitud de la misma con pestaña  de consulta exprés.
+</font><br>
+<font class=acor>programar envío a través de mensaje o correo electrónico de manera directa a cliente, informando el avance del mismo.
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+
+
+
+
+	<tr>
+	<td>10</td>
+	<td>
+ <font class=data>Procede a identificar el ticket necesario</font><br>
+<font class=acor>¿Dónde o Cómo compro su producto?</font><br>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="40">Por TV <font color="#888888">- Cliente Inova</font></li>
+		<li id="40">Por Internet <font color="#888888">- Cliente Inova</font></li>
+		<li id="40">Por Catálogo <font color="#888888">- Cliente Inova</font></li>
+		<li id="11">Por Tienda departamental <font color="#888888">- Cliente de Distribuidor</font></li>
+	</ul></td>
+	</tr>
+
+
+	<tr>
+	<td>11</td>
+	<td>
+ <font class=data>Determinar cambio físico o reposición de lentes</font><br>
+<font class=acor>¿Requiere hacer un cambio físico o el producto que compró es Eagle eyes?</font><br>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="20">Cambio físico.</li>
+		<li id="30">Reposición de lentes <font color="#888888">- Eagleeyes</font></li>
+	</ul></td>
+	</tr>
+
+
+
+
+
+	<tr>
+	<td>20</td>
+	<td>
+ <font class=acor>proporcionar información para envío de documentación para tramite de cambio físico.</font><br>
+<font class=data>Requisitos:<br>
+- Identificación oficial<br>
+- Ticket de compra<br>
+- Póliza de garantía<br></font><br><br>
+ <font class=acor>se solicita envío de formato para tramite de cambio físico, una vez se tenga documentación por correo electrónico.</font><br><br>
+<font class=data><b>Si el cliente es local</b><br>
+ se le indicara acudir a almacén para tramite.<br><br>
+<b>si el cliente es foráneo</b><br>
+ se levantara ticket con documentación de respaldo por correo electrónico a servicio al cliente.</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>30</td>
+	<td>
+ <font class=acor>proporcionar información para envío de documentación para tramite de reposición.</font><br>
+<font class=data>Requisitos:<br>
+- Identificación oficial<br>
+- Ticket de compra<br>
+- Póliza de garantía<br>
+- Acta ministerial<br></font><br><br>
+<font class=data><b>Si el cliente es local</b><br>
+ se le indicara acudir a almacén para tramite.<br><br>
+<b>si el cliente es foráneo</b><br>
+ se levantara ticket con documentación de respaldo por correo electrónico a servicio al cliente.</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+
+
+
+
+	<tr>
+	<td>40</td>
+	<td>
+ <font class=data>Verificar recepción del producto</font><br>
+<font class=acor>¿Ya recibió el producto?</font><br>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="100">Si</font></li>
+		<li id="200"><del>No</del></font></li>
+	</ul></td>
+	</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<tr>
+	<td>100</td>
+	<td>
+ <font class=data>Motivo de su llamada</font><br>
+<font class=acor>¿Cúal es el Motivo de su llamada?</font><br>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="110">Anomalía con el producto</font></li>
+		<li id="130">Anomalía en la entrega</li>
+		<li id="140">Facturación</li>
+		<li id="145">Reposición</li>
+		<li id="150">solicitud de reembolso</font></li>		
+	</ul></td>
+	</tr>
+
+
+
+	<tr>
+	<td>110</td>
+	<td>
+ <font class=data>El sistema previamente identificará si hay registro de devolución, posterior a entrega</font><br>
+<font class=acor>¿el sistema registro devolución?</font><br>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="111">Si</font></li>
+		<li id="116">No</font></li>		
+	</ul></td>
+	</tr>
+
+
+	<tr>
+	<td>111</td>
+	<td>
+ <font class=data>El sistema podrá habilitar herramientas para calculo de costos, dependiendo de canal de venta con el fin de hacer retención.</font><br>
+<font class=acor>Texto</font><br>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="112">Cancelación de continuidad</font></li>
+		<li id="113">Reembolso por devolución de cliente</font></li>
+		<li id="114">Cambio físico foráneo</font></li>
+		<li id="115">Cambio físico parcial</font></li>		
+	</ul></td>
+	</tr>
+
+
+
+
+	<tr>
+	<td>112</td>
+	<td>
+ <font class=acor>cancelación de continuidad</font><br>
+<font class=data>si es cancelación de continuidad se envía a ventas para eliminar proceso
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a> &nbsp; 
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Enviar a Ventas para elminiar proceso</a><br><br>
+	</td>
+	</tr>
+
+
+
+	<tr>
+	<td>113</td>
+	<td>
+ <font class=data>si el tramite es reembolso o cambio físico se enviara documentación para tramite.</font><br><br>
+<font class=acor>
+<font class=data><b>Si el cliente es local</b><br>
+Si es local el cliente acudirá a almacén con documentos<br><br>
+si no se ha atendido solicitud una vez se reciba el producto, se enviara a servicio al cliente para  respuesta. si no se ha registrado la entrega se enviara a devoluciones de almacén para registrar la misma</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>114</td>
+	<td>
+ <font class=data>si el tramite es reembolso o cambio físico se enviara documentación para tramite.</font><br><br>
+<font class=acor>
+<font class=data><b>si el cliente es foráneo</b><br>
+Si el cliente es foráneo enviara producto, y se atenderá una vez se reciba en almacén.
+<br><br>
+si no se ha atendido solicitud una vez se reciba el producto, se enviara a servicio al cliente para  respuesta. si no se ha registrado la entrega se enviara a devoluciones de almacén para registrar la misma</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+	<tr>
+	<td>115</td>
+	<td>
+ <font class=data>si el tramite es reembolso o cambio físico se enviara documentación para tramite.</font><br><br>
+<font class=acor>
+<font class=data><b>Si el cliente es local</b><br>
+Si es local el cliente acudirá a almacén con documentos<br><br>
+si no se ha atendido solicitud una vez se reciba el producto, se enviara a servicio al cliente para  respuesta. si no se ha registrado la entrega se enviara a devoluciones de almacén para registrar la misma</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+
+
+
+
+
+
+	<tr>
+	<td>116</td>
+	<td>
+ <font class=data>no registro devolución</font><br>
+ <font class=acor>¿Qué quiere hacer ahora?</font><br>
+</font><br>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="117">Cambio físico a domicilio</font></li> 
+		<li id="118">Reembolso con recolección a domicilio</font></li> 
+		<li id="119">Envío de piezas Body Crunch</font></li> 
+		<li id="120">Reposición</font></li> 
+		<li id="121">Reporte de entrega con faltante</font></li> 
+		<li id="122">Entrega con faltante</font></li> 
+		<li id="123">Cancelación de continuidad</font></li> 
+	</ul>
+	</td>
+	</tr>
+
+	<tr>
+	<td>117</td>
+	<td><font class=data>
+<font class=acor>Corroboraran la localidad del cliente </font><br>
+si se trata se cambio físico a domicilio, recolección a domicilio o envío de pza. se pasara a servicio al cliente y logística para acudir por el producto.
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+	<tr>
+	<td>118</td>
+	<td> <font class=data>
+<font class=acor>Corroboraran la localidad del cliente </font><br>
+si se trata se cambio físico a domicilio, recolección a domicilio o envío de pza. se pasara a servicio al cliente y logística para acudir por el producto.
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+	<tr>
+	<td>119</td>
+	<td> <font class=data>
+<font class=acor>Corroboraran la localidad del cliente </font><br>
+si se trata se cambio físico a domicilio, recolección a domicilio o envío de pza. se pasara a servicio al cliente y logística para acudir por el producto.
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+
+	<tr>
+	<td>120</td>
+	<td> <font class=data>
+<font class=acor>si se trata de reposición</font><br>
+una vez se tenga documentación<br><br>
+<font class=data><b>Si el cliente es local</b><br>
+si es local se indica al cliente acudir a almacén para reponer producto.<br><br>
+<b>si el cliente es foráneo</b><br>
+si es foráneo se levanta ticket y se envía a servicio al cliente con documentación de respaldo para envío  de producto.
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>121</td>
+	<td> <font class=data>
+<font class=acor>Falta algún articulo de la configuración de producto u orden</font><br>
+se envía ticket de reporte a logística y se envía grabación, además de solicitar fotos al cliente
+<br><br>
+una vez se reciban fotos por correo electrónico se envía ticket a logística adjuntando fotografías
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>122</td>
+	<td> <font class=data>
+<font class=acor>Falta algún articulo de la configuración de producto u orden</font><br>
+se envía ticket de reporte a logística y se envía grabación, además de solicitar fotos al cliente
+<br><br>
+una vez se reciban fotos por correo electrónico se envía ticket a logística adjuntando fotografías
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>123</td>
+	<td> <font class=data>
+<font class=acor>Cancelación de continuidad</font><br>
+Si es cancelación de continuidad se envía a ventas para eliminar proceso
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+		
+
+
+
+
+
+
+
+
+	<tr>
+	<td>130</td>
+	<td>
+ <font class=data>Anomalía en la entrega</font><br>
+ <font class=acor>¿Qué quiere hacer ahora?</font><br>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="131">Promesa falsa  </font></li> 
+		<li id="132">No se entrego un producto u articulo que el cliente esperaba</font></li> 
+		<li id="136">El cliente recibió un producto distinto</font></li> 
+	</ul>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>131</td>
+	<td> <font class=data>
+<font class=acor>promesa falsa</font><br>
+si es promesa falsa  se manda  a PFRVT  para validar grabación
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>132</td>
+	<td>
+ <font class=data> 
+ <font class=acor>No se entrego un producto u articulo que el cliente esperaba</font><br>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="133">envío de pieza</font></li> 
+		<li id="134">reporte de entrega con faltante</font></li> 
+		<li id="135">entrega con faltante</font></li> 
+		<li id="131"> PFRVT</font></li> 
+	</ul>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>133</td>
+	<td> <font class=data>
+<font class=acor>envío de pieza</font><br>
+se envía ticket de reporte a logística y se envía grabación, además de solicitar fotos al cliente
+<br><br>
+una vez se reciban fotos por correo electrónico se envía ticket a logística adjuntando fotografías
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>134</td>
+	<td> <font class=data>
+<font class=acor>reporte de entrega con faltante</font><br>
+se envía ticket de reporte a logística y se envía grabación, además de solicitar fotos al cliente
+<br><br>
+una vez se reciban fotos por correo electrónico se envía ticket a logística adjuntando fotografías
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>135</td>
+	<td> <font class=data>
+<font class=acor>entrega con faltante</font><br>
+se envía ticket de reporte a logística y se envía grabación, además de solicitar fotos al cliente
+<br><br>
+una vez se reciban fotos por correo electrónico se envía ticket a logística adjuntando fotografías
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+
+
+
+	<tr>
+	<td>136</td>
+	<td>
+ <font class=data> 
+ <font class=acor>El cliente recibió un producto distinto</font><br>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="137">reembolso por devolución del cliente</font></li> 
+		<li id="138">cambio físico a domicilio</font></li> 
+	</ul>
+	</td>
+	</tr>
+
+
+
+	<tr>
+	<td>137</td>
+	<td> <font class=data>
+<font class=acor>reembolso por devolución del cliente</font><br>
+se da tramite para cambio físico 
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>138</td>
+	<td> <font class=data>
+<font class=acor>cambio físico a domicilio</font><br>
+se da tramite para cambio físico 
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+
+
+	<tr>
+	<td>140</td>
+	<td> <font class=data>Facturación</font><br>
+<font class=acor>¿se registra entrega en Direksys?</font><br>
+<font class=data>se capturan datos y se canaliza con facturación para emitir documento
+<br><br>
+en envía a logística para registro de entrega y se capturan datos para emitir documento.
+
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>145</td>
+	<td> <font class=data>Reposición</font><br>
+<font class=acor>se solicita envío de documentación por correo electrónico</font><br>
+<font class=data>se capturan datos y se canaliza con facturación para emitir documento
+<br><br>
+una vez se tenga documentación.
+<br><br>
+<font class=data><b>Si el cliente es local</b><br>
+si es local se indica al cliente acudir a almacén para reponer producto.<br><br>
+<b>si el cliente es foráneo</b><br>
+si es foráneo se levanta ticket y se envía a servicio al cliente con documentación de respaldo para envío  de producto.
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+
+
+	<tr>
+	<td>150</td>
+	<td> <font class=data>solicitud de reembolso</font><br>
+<font class=acor>¿Qué quiere hacer?</font><br>
+</td>
+	<td>
+	<ul style="padding-left:30px;">
+		<li id="151">Si el cliente ya tenia una tramite de reembolso con claves vencidas.</font></li> 
+		<li id="152">El cliente no dese al producto recibido</font></li> 
+		<li id="153">El cliente detecta  cargos en su tarjeta.</font></li> 
+		<li id="154">desistió de un cambio de producto o cambio físico</font></li> 
+	</ul>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>151</td>
+	<td> <font class=data>solicitud de reembolso</font><br>
+<font class=acor>¿Qué quiere hacer?</font><br>
+</td>
+	<td>
+	<ul style="padding-left:30px;">
+		<li id="155">Reembolso por DIE vencido</font></li> 
+	</ul>
+	</td>
+	</tr>
+
+	<tr>
+	<td>155</td>
+	<td> <font class=data>reembolso</font><br>
+<font class=acor>Reembolso por DIE vencido</font><br>
+<font class=data>se envía a finanzas para para generar tramite.
+</font><br>
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+
+
+
+	<tr>
+	<td>152</td>
+	<td> <font class=data>solicitud de reembolso</font><br>
+<font class=acor>el cliente no dese al producto recibido.</font><br>
+</td>
+	<td>
+	<ul style="padding-left:30px;">
+		<li id="156">Reembolso por devolución de cliente</font></li> 
+		<li id="157">Reembolso con recolección a domicilio</font></li> 
+	</ul>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>156</td>
+	<td> <font class=data>reembolso</font><br>
+<font class=acor>Reembolso por devolución de cliente</font><br>
+<font class=data>se dará tramite para devolución del producto en base a localidad del cliente
+<br><br>
+<font class=data><b>Si el cliente es local</b><br>
+si es cliente local se solicitara acudir a almacén para tramite directo con documentación.<br><br>
+si el cliente no puede acudir se enviara ticket a servicio al cliente y logística para recolección a domicilio.
+<br><br>
+<b>si el cliente es foráneo</b><br>
+si es cliente foráneo se solicitara envío de producto con documentación y se atenderá en almacén<br><br>
+si al recibir no se atiende el tramite se enviara ticket a finanzas para su atención.
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+	<tr>
+	<td>157</td>
+	<td> <font class=data>reembolso</font><br>
+<font class=acor>Reembolso con recolección a domicilio</font><br>
+<font class=data>se dará tramite para devolución del producto en base a localidad del cliente
+<br><br>
+<font class=data><b>Si el cliente es local</b><br>
+si es cliente local se solicitara acudir a almacén para tramite directo con documentación.<br><br>
+si el cliente no puede acudir se enviara ticket a servicio al cliente y logística para recolección a domicilio.
+<br><br>
+<b>si el cliente es foráneo</b><br>
+si es cliente foráneo se solicitara envío de producto con documentación y se atenderá en almacén<br><br>
+si al recibir no se atiende el tramite se enviara ticket a finanzas para su atención.
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+
+
+
+	<tr>
+	<td>153</td>
+	<td> <font class=data>El cliente detecta  cargos en su tarjeta</font><br>
+<font class=acor>el cliente detecta  cargos en su tarjeta.</font><br>
+
+</td>
+	<td>
+	<ul style="padding-left:30px;">
+		<li id="158">Reembolso por cargo doble o deposito adicional</font></li> 
+	</ul>
+	</td>
+	</tr>
+
+
+
+	<tr>
+	<td>158</td>
+	<td> <font class=data>reembolso</font><br>
+<font class=acor>Reembolso por cargo doble o deposito adicional</font><br>
+<font class=data>se validara que no tenga ordenes duplicadas dentro de Direksys.
+<br><br>
+se solicita envío de documentación por correo electrónico.
+<br><br>
+una vez se tenga documentación se volverá a validar cargo y en caso de proceder se enviara ticket a finanzas para su tramite.
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+
+
+
+
+	<tr>
+	<td>154</td>
+	<td> <font class=data>reembolso</font><br>
+<font class=acor>desistió de un cambio de producto o cambio físico.</font><br>
+</td>
+	<td>
+	<ul style="padding-left:30px;">
+		<li id="159">reemboloso por diferencia en costo (deposito de más)</font></li> 
+	</ul>
+	</td>
+	</tr>
+
+
+
+	<tr>
+	<td>159</td>
+	<td> <font class=data>reembolso</font><br>
+<font class=acor>reemboloso por diferencia en costo (deposito de más)</font><br>
+<font class=data><b>si fue deposito para cambio físico</b><br> se enviara a servicio al cliente para no procesar cambio.
+	<br><br>
+si ya hay nueva orden y esta no esta asignada a remesa se cancelara con servicio al cliente. si esta agregada se enviara a logística y almacén para sacar de remesa.
+<br><br>
+una vez detenida la orden se enviara a finanzas para ser atendida.
+<br><br>
+si la orden ya esta en transito se, ya no procederá tramite. 
+<br><br><br>
+
+
+<b>si se trata de un cambio de producto</b><br> y no se ha modificado la orden.
+<br><br>
+se solicitara documentación por correo electrónico  y se enviara junto con ticket a finanzas para su atención.
+
+</td>
+	<td><br>
+		<a href="/cgi-bin/mod/crm/dbman?cmd=opr_crmtickets&add=1" class="gen">Generar Ticket</a><br><br>
+	</td>
+	</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<tr>
+	<td>200</td>
+	<td>
+ <font class=data>Motivo de su llamada</font><br>
+<font class=acor>¿Cúal es el Motivo de su llamada?</font><br>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="201">Quiere cambiar configuración de la orden</font></li>
+		<li id="230">Cancelar orden</li>
+		<li id="240">Cambiar condiciones para la entrega</li>
+		<li id="250">Tiene cargo que no reconoce</li>
+		<li id="260"><del>Quiere saber motivo por el que no ha recibido el producto</del></font></li>		
+	</ul></td>
+	</tr>
+
+
+
+
+
+	<tr>
+	<td>201</td>
+	<td>
+ <font class=data>Motivo de su llamada</font><br>
+<font class=acor>¿Qué desea hacer?</font><br>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="202">Agregar Producto</font></li> 	
+		<li id="203">Eliminar Producto</font></li> 	
+		<li id="204">Cambiar Producto</font></li> 	
+	</ul></td>
+	</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</table>
+</fieldset>
+
+</form>
+&nbsp;
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[ip_footer]

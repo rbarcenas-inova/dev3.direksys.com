@@ -1,0 +1,89 @@
+[ip_header_small]
+
+<table border="0" cellspacing="0" cellpadding="10" width="100%" height="100%" bgcolor=white>
+	<tr>
+		<td valign=top>
+			
+			<form action="/cgi-bin/common/apps/ajaxbuild" method="post" name="sitform" onsubmit="return confirm_apply();">
+				<input type="hidden" name="action" value="1">
+				<input type="hidden" name="id_customers" value="[in_id_customers]">
+				<input type="hidden" name="ajaxbuild" value="customer_ar_debtcancellation">
+				
+					<table width="100%" border="0" cellspacing="0" cellpadding="0"  align="center">
+						<tbody>
+							<tr>
+								<td class="tbltextttl">
+									<a href='/cgi-bin/common/apps/ajaxbuild?ajaxbuild=customer_ar_debtcancellation&id_customers=[in_id_customers]&[va_rndnumber]")'><img src="/sitimages//default/b_reload.gif" title="Refresh" alt="" border="0"></a>&nbsp;<span class="stdtxterr">[va_messages]</span>
+
+
+			 						<div id="div-invoice-info" [va_this_application_style]>
+										<fieldset>
+											<legend>Invoice List</legend>
+											<p>[va_message]</p>
+											<p><label>
+													<input type="checkbox" id="checkAll" style="cursor:pointer"/> Select All
+											</label></p>
+											<table border="0" cellspacing="0" cellpadding="2" width="100%">
+												<tbody>
+													<tr>
+														<td width="10%"></td>
+														<td width="15%">Order</td>
+														<td width="15%">Invoice</td>
+														<td width="30%" align="right">Invoice Amount</td>
+														<td width="30%" align="right">Invoice Debt</td>
+														<td></td>
+													</tr>
+												</tbody>
+												[va_result_list]
+											</tbody></table>
+										</fieldset>
+									</div>	
+
+									<div id="div-resume-info" [va_this_application_style]>
+										<p align="center">
+											<input type="submit" id="act_button" name="actbutton" value="Send" class="button">
+										</p>
+									</div>	
+									
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</form>
+
+<script type="text/javascript">
+
+	chg_select('id_banks','[in_id_banks]');
+	
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		$.ajaxSetup({
+	    	timeout: 60000
+	    });
+
+		$("#checkAll").change(function () {
+		    $("input:checkbox").prop('checked', $(this).prop("checked"));
+		});
+
+
+	});
+	
+	function confirm_apply() {
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+
+	$(function(){
+		$( "#cfm_button" ).click();
+		$( "#res_button" ).click();
+	});
+
+</script>
+

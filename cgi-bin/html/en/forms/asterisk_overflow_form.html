@@ -1,0 +1,165 @@
+<fieldset>
+	<legend>Asterisk Overflow</legend>
+	<table width="100%" cellspacing="0" cellpadding="2" border="0">
+		<tbody>
+			<tr>
+				<td width="30%">Did :  <span class="smallfieldterr"></span></td>
+				<td>
+					<input id="Did" name="Did" value="[in_did]" size="10" onfocus="focusOn( this )" onblur="focusOff( this )" type="text" readonly="readonly" class="input">
+					<!--<a href="admin?cmd=accountsTree&element_id=did&element_descrip=campania" title="DID's Campa&ntilde;as" class="fancy_modal_iframe">
+ 						<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+ 					</a>-->
+ 					<a href="/cgi-bin/common/apps/schid?db=sl_asterisk_did&cmd=asterisk_did&fname=Did&returnid=Did&returnfield=Did"  title="Search" class="fancy_modal_iframe">
+					<!--<a name="tabs" id="tabs">&nbsp;</a>-->
+					
+						<img src="/sitimages//default/icsearchsmall.gif" border="0">
+					</a>
+					<a name="tabs" id="tabs">&nbsp;</a>
+ 					<!--&nbsp;<span id="campania"></span>-->
+				</td>
+			</tr>
+			<tr>
+				<td width="30%">% Server .24 :  <span class="smallfieldterr">[er_porcentaje_trk1]</span></td>
+				<td><input class="input" name="porcentaje_trk1" value="[in_porcentaje_trk1]" maxlength ="3" size="3" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">%</td>
+			</tr>
+			<tr>
+				<td width="30%">% Server .25 :  <span class="smallfieldterr">[er_porcentaje_trk2]</span></td>
+				<td><input class="input" name="porcentaje_trk2" value="[in_porcentaje_trk2]" maxlength ="3" size="3" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">%</td>
+			</tr>
+			<tr>
+				<td width="30%">% Server Inconcert :  <span class="smallfieldterr">[er_porcentaje_trk3]</span></td>
+				<td><input class="input" name="porcentaje_trk3" value="[in_porcentaje_trk3]" maxlength ="3" size="3" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">%
+				</td>
+			</tr>
+			<tr>
+				<td width="30%">Date :  <span class="smallfieldterr">[er_fecha]</span></td>
+				<td>
+				<input class="input" id="fecha" size="20" name="fecha" value="[in_fecha]" onfocus="focusOn( this )" onblur="focusOff( this )">&nbsp;
+					<script language="javascript">
+					<!--
+
+					$(document).ready(function() {
+
+					$(document).ajaxError(function(e, xhr, settings, exception) {
+					alert('error in: ' + settings.url + ' '+'error:' + xhr.responseText );
+					});
+
+					var dates = $( '#fecha' ).datepicker({
+					minDate: new Date(),
+					maxDate: null,
+					dateFormat: 'yy-mm-dd',
+					//defaultDate: '-2m',
+					changeMonth: true,
+					numberOfMonths: 3,
+					});
+
+					});
+					//-->
+					</script>
+				</td>
+			</tr>
+			<tr>
+				<td width="30%">Start Time :  <span class="smallfieldterr">[er_hora_ini]</span></td>
+				<td>
+					<select class="input" id="hora_ini" name="hora_ini">
+						<option selected>00</option>
+						<option>01</option>
+						<option>02</option>
+						<option>03</option>
+						<option>04</option>
+						<option>05</option>
+						<option>06</option>
+						<option>07</option>
+						<option>08</option>
+						<option>09</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+						<option>13</option>
+						<option>14</option>
+						<option>15</option>
+						<option>16</option>
+						<option>17</option>
+						<option>18</option>
+						<option>19</option>
+						<option>20</option>
+						<option>21</option>
+						<option>22</option>
+						<option>23</option>
+					</select> Hrs.
+					<select class="input" id="min_ini" name="min_ini">
+						<option>00</option>
+						<option>05</option>
+						<option>10</option>
+						<option>15</option>
+						<option>20</option>
+						<option>25</option>
+						<option>30</option>
+						<option>35</option>
+						<option>40</option>
+						<option>45</option>
+						<option>50</option>
+						<option>55</option>
+					</select> Min.
+					<!--<input name="hora_ini" value="[in_hora_ini]" size="" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">-->
+				</td>
+			</tr>
+			<tr>
+				<td width="30%">End Time :  <span class="smallfieldterr">[er_hora_fin]</span></td>
+				<td>
+					<select class="input" id="hora_fin" name="hora_fin">
+						<option selected>00</option>
+						<option>01</option>
+						<option>02</option>
+						<option>03</option>
+						<option>04</option>
+						<option>05</option>
+						<option>06</option>
+						<option>07</option>
+						<option>08</option>
+						<option>09</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+						<option>13</option>
+						<option>14</option>
+						<option>15</option>
+						<option>16</option>
+						<option>17</option>
+						<option>18</option>
+						<option>19</option>
+						<option>20</option>
+						<option>21</option>
+						<option>22</option>
+						<option>23</option>
+					</select> Hrs.
+					<select class="input" id="min_fin" name="min_fin">
+						<option>00</option>
+						<option>05</option>
+						<option>10</option>
+						<option>15</option>
+						<option>20</option>
+						<option>25</option>
+						<option>30</option>
+						<option>35</option>
+						<option>40</option>
+						<option>45</option>
+						<option>50</option>
+						<option>55</option>
+					</select> Min.
+					<!-- <input name="hora_fin" value="[in_hora_fin]" size="" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">-->
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</fieldset>
+
+<script type="text/javascript">
+
+	$("#hora_ini").val(("[in_hora_ini]").split(":")[0]);
+	$("#min_ini").val(("[in_hora_ini]").split(":")[1]);
+
+	$("#hora_fin").val(("[in_hora_fin]").split(":")[0]);
+	$("#min_fin").val(("[in_hora_fin]").split(":")[1]);
+
+</script>

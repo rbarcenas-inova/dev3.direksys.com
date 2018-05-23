@@ -1,0 +1,269 @@
+[ip_header]
+
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+	var dates = $( "#from_date, #to_date, #equal_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:[fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+	<!-- Start Main Area  ->
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		<tr>
+			<td width="30%" align="center"></td>
+			<td width="35%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_fin_avsn")'>AVS N</td>
+			<td width="35%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_fin_wreceipt")'>Warehouse Receipt</td>
+		</tr>
+	</table>
+	-->
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	&nbsp;
+  <form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="rep_fin_chargestdc">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="export" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">Finance : Charges TDC</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Filters</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			    <td width="30%" class="menu_bar_title">Field Name</td>
+			    <td align="center" width="23%" class="menu_bar_title">From</td>
+			    <td align="center" width="23%" class="menu_bar_title">To</td>
+			    <td align="center" width="23%" class="menu_bar_title">Equal</td>
+			</tr>
+			
+			<tr>
+			    <td width="30%">ID Orden : </td>
+			    <td class="smalltext"><input name="from_id_order" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			    <td class="smalltext"><input name="to_id_order" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			    <td class="smalltext"><input name="equal_id_order" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			 </tr>
+
+			<tr>
+			    <td width="30%">ID Pago : </td>
+			    <td class="smalltext"><input name="from_id_payment" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			    <td class="smalltext"><input name="to_id_payment" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			    <td class="smalltext"><input name="equal_id_payment" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			</tr>
+			<!--
+			<tr>
+			    <td width="30%">Tipo Pago : </td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">
+			    	<select name="equal_paytype" onfocus="focusOn( this )" onblur="focusOff( this )">
+			    		<option value=""></option>
+			    		[fc_build_select_orderspay_type]
+			    	</select>
+			    </td>
+			</tr>
+			-->
+			<tr>
+			    <td width="30%">Estatus Orden : </td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">
+			    	<select name="equal_status" onfocus="focusOn( this )" onblur="focusOff( this )">
+			    		<option value=""></option>
+			    		[fc_build_select_order_status]
+			    	</select>
+			    </td>
+			</tr>
+			<tr>
+			    <td width="30%">Cod. Autorizacion : </td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">
+			    	<input name="equal_auth_code" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+			    	<input name="equal_auth_code_text" value="1" type="hidden" />
+			    </td>
+			</tr>
+			<tr>
+			    <td width="30%">Captura : </td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">
+			    	<select name="equal_captured" onfocus="focusOn( this )" onblur="focusOff( this )">
+			    		<option value=""></option>
+			    		<option value='Yes'>Yes</option>
+						<option value='No'>No</option>
+			    	</select>
+			    </td>
+			</tr>
+			<tr>
+			    <td width="30%">Fecha Orden : </td>
+			    <td class="smalltext"><input id="from_date" name="from_date" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			    <td class="smalltext"><input id="to_date" name="to_date" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			    <td class="smalltext"><input id="equal_date" name="equal_date" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			</tr>
+			<tr>
+			    <td width="30%">Numero de Meses a Pagar : </td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">
+			    	<input name="month_topay" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+			    	<input name="month_topay_text" value="1" type="hidden" />
+			    </td>
+			</tr>
+			<tr>
+			    <td width="30%">ID Cliente : </td>
+			    <td class="smalltext"><input name="from_id_customer" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			    <td class="smalltext"><input name="to_id_customer" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			    <td class="smalltext"><input name="equal_id_customer" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			</tr>
+			<tr>
+			    <td width="30%">Cliente : </td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext"><input name="equal_name_customer" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			</tr>
+			<tr>
+			    <td width="30%">Calle Y No : </td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">
+			    	<input name="equal_address" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+			    	<input name="equal_address_text" value="1" type="hidden" />
+			    </td>
+			</tr>
+			<tr>
+			    <td width="30%">Colonia : </td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">
+			    	<input name="equal_urbanization" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+			    	<input name="equal_urbanization_text" value="1" type="hidden" />
+			    </td>
+			</tr>
+			<tr>
+			    <td width="30%">Delegacion/Municipio : </td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">
+			    	<input name="equal_city" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+			    	<input name="equal_city_text" value="1" type="hidden" />
+			    </td>
+			</tr>
+			<tr>
+			    <td width="30%">Estado : </td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">
+			    	<select name="equal_state" onfocus="focusOn( this )" onblur="focusOff( this )">
+			    		<option value=""></option>
+			    		[fc_build_select_orders_state]
+			    	</select>
+			    </td>
+			</tr>
+			<tr>
+			    <td width="30%">CP : </td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">
+			    	<input name="equal_zipcode" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+			    	<input name="equal_zipcode_text" value="1" type="hidden" />
+			    </td>
+			</tr>
+			<tr>
+			    <td width="30%">ID Usuario : </td>
+			    <td class="smalltext"><input name="from_id_user" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			    <td class="smalltext"><input name="to_id_user" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			    <td class="smalltext"><input name="equal_id_user" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			</tr>
+			<tr>
+			    <td width="30%">Forma de pago : </td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">
+			    	<select name="equal_ptype" onfocus="focusOn( this )" onblur="focusOff( this )">
+			    		<option value=""></option>			    		
+			    		[fc_build_select_orders_ptype]
+			    	</select>
+			    </td>
+			</tr>
+			<tr>
+			    <td width="30%">Telefono : </td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">&nbsp;</td>
+			    <td class="smalltext">
+			    	<input name="equal_phone" value="" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+			    	<input name="equal_phone_text" value="1" type="hidden" />
+			    </td>
+			</tr>
+		</table>
+	</fieldset>
+	<fieldset><legend>Sorting</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+	   		<td class="smalltext" valign="top" width="30%">Sort By:</td>
+	   		<td class="smalltext">
+		   		<input type="radio" class="radio" name="sortorder" value="ASC"> Ascending
+		   		<input type="radio" class="radio" name="sortorder" value="DESC" checked> Descending
+	   		</td>
+			</tr>
+		</table>
+	</fieldset>
+
+	<p align="center"><input type="submit" value="Run" class="button"></p>
+  </form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

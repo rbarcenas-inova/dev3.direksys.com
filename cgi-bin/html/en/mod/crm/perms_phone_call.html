@@ -1,0 +1,107 @@
+[ip_header]
+
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="" align="center"></td>
+		<td width="23%" class="cell_[va_cellall]" align="center" onClick='trjump("/cgi-bin/mod/crm/admin?cmd=control_panel")'>All</td>
+		<td width="23%" class="cell_[va_cellincall]" align="center" onClick='trjump("/cgi-bin/mod/crm/admin?cmd=control_panel&status=in_call")'>In Call</td>
+	    <td width="23%" class='cell_[va_cellidle]' align='center' onClick='trjump("/cgi-bin/mod/crm/admin?cmd=control_panel&status=idle")'>Idle</td>
+		<td width="23%" class="cell_[va_cellperms]" align="center" onClick='trjump("/cgi-bin/mod/crm/admin?cmd=control_panel&status=perms")'>Perms</td>
+	  </tr>
+	</table>
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Control Panel</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="menu_bar_title" width="2%" height="5"></td>
+		    <td class="menu_bar_title" width="19%" height="5"></td>
+		    <td class="menu_bar_title" width="19%" height="5"></td>
+		    <td class="menu_bar_title" width="19%" height="5"></td>
+		    <td class="menu_bar_title" width="19%" height="5"></td>
+		    <td class="menu_bar_title" width="19%" height="5"></td>
+		    <td class="menu_bar_title" width="2%" height="5"></td>
+		 </tr>
+		[va_searchresult]
+		<tr>
+		    <td class="menu_bar_title" width="2%" height="5"></td>
+		    <td class="menu_bar_title" width="19%" height="5"></td>
+		    <td class="menu_bar_title" width="19%" height="5"></td>
+		    <td class="menu_bar_title" width="19%" height="5"></td>
+		    <td class="menu_bar_title" width="19%" height="5"></td>
+		    <td class="menu_bar_title" width="19%" height="5"></td>
+		    <td class="menu_bar_title" width="2%" height="5"></td>
+		 </tr>
+	</table>
+	<!-- Fancybox -->
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#apply_perms_calls').click(function() {
+			$('#apply_perms_calls').hide();
+			$('#img_perms_calls').show();
+			if ($('input[name=input_perms_call]:checked').val() == null) {
+				alert('Please select Alllow or Disallow permissions');
+				$('#apply_perms_calls').show();
+				$('#img_perms_calls').hide();
+				return;
+			} else {
+				$.ajax({
+					contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+					url: '/cgi-bin/common/apps/ajaxbuild',
+					dataType: 'json',
+					data: {
+						ajaxbuild: "call_permisions",
+						users: $('#text_perms_calls').val(),
+						type: $('input[name=input_perms_call]:checked').val()
+					},
+					success: function(data) {
+						alert(data.res);
+						location.reload();
+					}
+				});
+			}
+		});
+	});
+</script>
+
+[ip_footer]

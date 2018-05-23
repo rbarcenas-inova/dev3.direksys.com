@@ -1,0 +1,714 @@
+[ip_header_console]
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<style>
+.ui-autocomplete-loading {
+background: white url('http://jqueryui.com/resources/demos/autocomplete/images/ui-anim_basic_16x16.gif') right center no-repeat;
+}
+</style>
+<script type="text/javascript">
+<!--	
+	
+/*
+	onload = function(){
+		var showone = "[in_tab]";
+		if(showone == ""){
+			popup_show('popup_script', 'script_drag', 'script_exit', 'element-right', -1, -1,'wumsg');
+		}
+	}
+*/
+
+$(function() {
+    function split( val ) {
+        return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+        return split( term ).pop();
+    }
+    $( "#sch_state" )
+    // don't navigate away from the field on tab when selecting an item
+        .bind( "keydown", function( event ) {
+            if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).data( "ui-autocomplete" ).menu.active ) {
+            event.preventDefault();
+            }
+        })
+            .autocomplete({
+                source: function( request, response ) {
+					
+//                    $.getJSON( "/cgi-bin/common/apps/ajaxbuild", {
+//						ajaxbuild: "get_state_zc",
+//                    term: extractLast( request.term )
+//                    }, response );
+					$.ajax({
+							contentType: 'application/x-www-form-urlencoded;charset=ISO-8859-1',
+							url: '/cgi-bin/common/apps/ajaxbuild',
+							data: {
+								ajaxbuild: "get_state_zc",
+								state_name: encodeURIComponent(request.term)
+							},
+							success: function( data ) {
+								if (data == 'Error') {
+									alert('No se encontraron datos');
+								} else {
+									response(eval(data));
+								}
+								$('#sch_state').removeClass('ui-autocomplete-loading');
+								//if(data != null && data != 'Error'){
+								//	$("#list_zip_codes").show(500);
+								//	$("#list_zip_codes").html(data);
+								//}else if(data == 'Error') {
+								//	alert('No se encontraron datos');
+								//}	
+							}
+					});
+                },
+                search: function() {
+                    // custom minLength
+                    var term = extractLast( this.value );
+                    if ( term.length < 2 ) {
+                    return false;
+                    }
+                },
+                focus: function() {
+                    // prevent value inserted on focus
+                    return false;
+                },
+                select: function( event, ui ) {
+                    var terms = split( this.value );
+                    // remove the current input
+                    terms.pop();
+                    // add the selected item
+                    terms.push( ui.item.value );
+                    // add placeholder to get the comma-and-space at the end
+                    terms.push( "" );
+                    this.value = terms.join( "" );
+					$("#div_sch_city").show(500);
+                    return false;
+                }
+            });
+});
+
+$(function() {
+    function split( val ) {
+        return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+        return split( term ).pop();
+    }
+    $( "#sch_city" )
+    // don't navigate away from the field on tab when selecting an item
+        .bind( "keydown", function( event ) {
+            if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).data( "ui-autocomplete" ).menu.active ) {
+            event.preventDefault();
+            }
+        })
+            .autocomplete({
+                source: function( request, response ) {
+					
+//                    
+					$.ajax({
+							url: '/cgi-bin/common/apps/ajaxbuild',
+							data: {
+								ajaxbuild: "get_city_zc",
+								city_name: request.term,
+								state_name: $("#sch_state").val()
+							},
+							success: function( data ) {
+								if (data == 'Error') {
+									alert('No se encontraron datos');
+								} else {
+									response(eval(data));
+								}
+								$('#sch_city').removeClass('ui-autocomplete-loading');
+								
+							}
+					});
+                },
+                search: function() {
+                    // custom minLength
+                    var term = extractLast( this.value );
+                    if ( term.length < 2 ) {
+                    return false;
+                    }
+                },
+                focus: function() {
+                    // prevent value inserted on focus
+                    return false;
+                },
+                select: function( event, ui ) {
+                    var terms = split( this.value );
+                    // remove the current input
+                    terms.pop();
+                    // add the selected item
+                    terms.push( ui.item.value );
+                    // add placeholder to get the comma-and-space at the end
+                    terms.push( "" );
+                    this.value = terms.join( "" );
+					$("#div_sch_urbanization").show(500);
+                    return false;
+                }
+            });
+});
+
+$(function() {
+    function split( val ) {
+        return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+        return split( term ).pop();
+    }
+    $( "#sch_urbanization" )
+    // don't navigate away from the field on tab when selecting an item
+        .bind( "keydown", function( event ) {
+            if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).data( "ui-autocomplete" ).menu.active ) {
+            event.preventDefault();
+            }
+        })
+            .autocomplete({
+                source: function( request, response ) {
+					
+//                    
+					$.ajax({
+							contentType: 'application/x-www-form-urlencoded;charset=ISO-8859-1',
+							url: '/cgi-bin/common/apps/ajaxbuild',
+							data: {
+								ajaxbuild: "get_urbanization_zc",
+								urbanization_name: request.term,
+								city_name: encodeURIComponent($("#sch_city").val()),
+								state_name: $("#sch_state").val()
+							},
+							success: function( data ) {
+								if (data == 'Error') {
+									alert('No se encontraron datos');
+								} else {
+									response(eval(data));
+								}
+								$('#sch_urbanization').removeClass('ui-autocomplete-loading');
+								//if(data != null && data != 'Error'){
+								//	$("#list_zip_codes").show(500);
+								//	$("#list_zip_codes").html(data);
+								//}else if(data == 'Error') {
+								//	alert('No se encontraron datos');
+								//}	
+							}
+					});
+                },
+                search: function() {
+                    // custom minLength
+                    var term = extractLast( this.value );
+                    if ( term.length < 2 ) {
+                    return false;
+                    }
+                },
+                focus: function() {
+                    // prevent value inserted on focus
+                    return false;
+                },
+                select: function( event, ui ) {
+                    var terms = split( this.value );
+                    // remove the current input
+                    terms.pop();
+                    // add the selected item
+                    terms.push( ui.item.value );
+                    // add placeholder to get the comma-and-space at the end
+                    terms.push( "" );
+                    this.value = terms.join( "" );
+					
+                    return false;
+                }
+            });
+});
+
+function get_address_data(obj) {
+	var zip_code=$(obj).find("input[name='zip_code_aux']").val();
+	var county_name=$(obj).find("input[name='county_name_aux']").val();
+	var city=$(obj).find("input[name='city_aux']").val();
+	var state=$(obj).find("input[name='state_full_name_aux']").val();
+	$("input[name='urbanization']").val(county_name);
+	$("input[name='city']").val(city);
+	$("input[name='zip']").val(zip_code);
+	$('select[name="state"]').val(state);
+	$("input[name='state']").val(state);
+	$("#list_zip_codes").hide(500);
+}
+
+$(document).ready(function() {
+	$("form[name='sitform']").submit(function(e){
+		//e.preventDefault();
+		
+		error = 0;
+		message = "Por favor indique: \n";
+		
+		var urbanization_val = $.trim($("input[name='urbanization']").val());
+		urbanization_length = urbanization_val.length;
+		if (urbanization_length < 3) {
+			message = message + "  - la colonia \n";
+			error++;
+		} 
+		
+		var address1_val = $.trim($("input[name='address1']").val());
+		address1_length = address1_val.length;
+		if (address1_length < 2) {
+			message = message + "  - la calle y el numero\n";
+			error++;
+		} 
+
+		var address2_val = $.trim($("input[name='address2']").val());
+		address2_length = address2_val.length;
+		if (address2_length < 2) {
+			message = message + "  - entre que calles \n";
+			error++;
+		} 
+
+		var address3_val = $.trim($("input[name='address3']").val());
+		address3_length = address3_val.length;
+		if (address3_length < 2) {
+			message = message + "  - las referencias ";
+			error++;
+		} 
+		
+		if (error >0){
+			alert(message);
+			return false;
+		}
+		
+	});
+	$("#search_zc_btn").click(function (e){
+		e.preventDefault();
+		$.ajax({
+				url: '/cgi-bin/common/apps/ajaxbuild',
+				data: {
+					ajaxbuild: "get_zc_by_address",
+					urbanization_name: $("#sch_urbanization").val(),
+					city_name: $("#sch_city").val(),
+					state_name: $("#sch_state").val()
+				},
+				success: function( data ) {
+					if(data != null && data != 'Error'){
+						$("#list_zip_codes").show(500);
+						$("#list_zip_codes").html(data);
+					}else if(data == 'Error') {
+						alert('No se encontraron datos');
+					}	
+				}
+		});
+	});
+	
+	$("#lens_ctl").click(function() {
+		$("#div_search_zc").toggle(500);
+		$("#div_sch_zp_by_address").fadeOut(100);
+	});
+	$("#lens_address_ctl").click(function() {
+		$("#div_sch_zp_by_address").toggle(500);
+		$("#div_search_zc").fadeOut(100);
+	});
+	
+	$("#search_btn").click(function(e) {
+		e.preventDefault();
+		$.ajax({
+				url: '/cgi-bin/common/apps/ajaxbuild',
+				data: {
+					ajaxbuild: "get_address_by_zc",
+					zip_code: $("#zip_code").val()
+				},
+				success: function( data ) {
+					if(data != null && data != 'Error'){
+						$("#list_zip_codes").show(500);
+						$("#list_zip_codes").html(data);
+					}else if(data == 'Error') {
+						alert('No se encontraron datos');
+					}	
+				}
+		});
+		return false;
+	});
+	$("#lens_input_ctl").click(function(e) {
+		e.preventDefault();
+		$.ajax({
+				url: '/cgi-bin/common/apps/ajaxbuild',
+				data: {
+					ajaxbuild: "get_address_by_zc",
+					zip_code: $('input[name="zip"]').val(),
+					type: 'get_num_results'
+				},
+				success: function( data ) {
+					//*****************************************************************************
+					if(data != null && data != 'Error'){
+						if (parseInt(data) > 1) {
+							$('#zip_code').val($('input[name="zip"]').val());
+							$('#multiple_urbs').fadeIn(500,function(){$('#multiple_urbs').fadeOut(6000);});
+							$("#search_btn").click();
+							//$("#list_zip_codes").show(500);
+							//$("#list_zip_codes").html(data);
+						} else {
+							$.ajax({
+								url: '/cgi-bin/common/apps/ajaxbuild',
+								data: {
+									ajaxbuild: "get_address_by_zc",
+									zip_code: $('input[name="zip"]').val(),
+									type: 'get_result'
+								},
+								success: function( data ) {
+									if(data != null && data != 'Error'){
+										
+										var split = data.split('|');
+										var county_name=split[0];
+										var city=split[1];
+										var state=split[2];
+										$("input[name='urbanization']").val(county_name);
+										$("input[name='city']").val(city);
+										$('select[name="state"]').val(state);
+										$('input[name="state"]').val(state);
+
+									}else if(data == 'Error') {
+										alert('No se encontraron datos');
+									}	
+								}
+						});
+						}
+					}else if(data == 'Error') {
+						alert('No se encontraron datos');
+					}
+					//*****************************************************************************
+				}
+		});
+		return false;
+	});
+
+		//$(document).ajaxError(function(e, xhr, settings, exception) {
+		//		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		//}); 
+
+		$("#fancybox_email_and_cellphone").fancybox({
+				'margin'				:	'1',
+				'padding'				:	'1',
+				'autoScale'			: false,
+				'centerOnScroll': true,
+				'transitionIn'	: 'none',
+				'transitionOut'	: 'none',
+				'autoDimensions':	'true',
+				'overlayOpacity':	'0.3',
+				'onComplete'		: function() {
+						$("#fancybox-wrap").css({'margin-top':'10px', 'margin-bottom':'auto'}); 
+				}
+			});
+		
+		$("#fancybox_search_address").fancybox({
+				'margin'				:	'1',
+				'padding'				:	'1',
+				'autoScale'			: false,
+				'centerOnScroll': true,
+				'transitionIn'	: 'none',
+				'transitionOut'	: 'none',
+				'autoDimensions':	'true',
+				'overlayOpacity':	'0.3',
+				'onComplete'		: function() {
+						$("#fancybox-wrap").css({'margin-top':'10px', 'margin-bottom':'auto'}); 
+				}
+			});
+		
+		$( '#search_address' ).click(function() {
+
+			var number = $( 'input:text[name=search_address_number]' ).val();
+			var zipcode = $( 'input:text[name=search_address_zip]' ).val();
+			var step = $( 'input:hidden[name=search_address_step]' ).val();
+// 			alert("Step: "+step);
+				$.ajaxSetup({ timeout: ( 15 * 1000 ) });
+				$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'search_address1', 'number':number,'zipcode':zipcode,'step':step},function(response,status,xhr){
+						
+						if (status == "error") {
+ 								alert(msg);
+						}else{
+								if(response.match(/error/gi)){
+			    					alert("La Dirección no es válida.\r\n"+response);
+			    			}else{
+									document.getElementById('modal_address').innerHTML = response;
+									$( "#fancybox_search_address" ).trigger('click');
+								}
+						}
+			
+				});
+		});
+
+		$( '#search_address_button' ).click(function() {
+
+			var number = $( 'input:text[name=address1]' ).val();
+			var zipcode = $( 'input:text[name=zip]' ).val();
+			var step = $( 'input:hidden[name=search_address_step]' ).val();
+// 			alert("Step: "+step);
+				$.ajaxSetup({ timeout: ( 15 * 1000 ) });
+				$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'search_address1', 'number':number,'zipcode':zipcode,'step':step},function(response,status,xhr){
+						
+						if (status == "error") {
+ 								alert(msg);
+						}else{
+								if(response.match(/error/gi)){
+			    					alert("La Dirección no es válida.\r\n"+response);
+			    			}else{
+									document.getElementById('modal_address').innerHTML = response;
+									$( "#fancybox_search_address" ).trigger('click');
+								}
+						}
+			
+				});
+		});
+
+		/*$( '#check_address' ).click(function() {
+
+			var email = $( 'input:hidden[name=email]' ).val();
+			var cellphone = $( 'input:hidden[name=cellphone]' ).val();
+				$.ajaxSetup({ timeout: ( 15 * 1000 ) });
+				$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'verify_email_and_cellphone', 'email':email, 'cellphone':cellphone},function(response,status,xhr){
+// 						alert(status);
+						if (status == "error") {
+ 								alert(msg);
+						}else{
+								if(response.match(/error/gi)){
+			    					alert("Los datos no son válidos.\r\n"+response);
+			    			}else{
+									document.getElementById('modal_email_and_cellphone').innerHTML = response;
+									$( "#fancybox_email_and_cellphone" ).trigger('click');
+								}
+						}
+			
+				});
+		});*/
+		var email = $( 'input:hidden[name=email]' ).val();
+		var cellphone = $( 'input:hidden[name=cellphone]' ).val();
+		var contact_mode = $( 'input:hidden[name=contact_mode]' ).val();
+		var email_and_cellphone_use = $( 'input:hidden[name=email_and_cellphone_use]' ).val();
+// 		alert('Values: '+contact_mode+','+email+','+cellphone+','+isNaN([in_tab]));
+		//if(isNaN([in_tab]) && (email=='' && cellphone=='' && contact_mode!='phone_call')&& email_and_cellphone_use==1){
+		//		$( "#fancybox_email_and_cellphone" ).trigger('click');	
+		//}
+		
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td valign="top" align="left" bgcolor="#ffffff">
+			
+		<table width="100%" height=41px border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+				<td>&nbsp;</td>
+				<td class="cell_on" width="14%" align="center">Consola [va_salesorigins.channel]</td>
+		 </tr>
+		</table>
+		
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+				
+					[fc_customer_header]
+			<br>
+			
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform" onsubmit="">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="4">
+	<input type="hidden" name="country_tab" value="us">
+	<input type="hidden" name="action" value="1">
+	
+<fieldset><legend>Creando Nueva Orden : Info. de Pagos</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td class="stdtxterr" colspan="2">[va_message]<td>
+		</tr>
+		<tr>
+	      <td colspan="2">
+	      	
+	      	
+	      	
+	      		      	  		
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+			
+			
+			</td>
+	   </tr>	
+		<tr>
+		  <td width="30%">Nombre del Cliente : </td>
+		  <td class="smalltext">[in_firstname] [in_lastname1] [in_lastname2]</td>
+		</tr>
+		<tr>
+		  <td colspan="2">[fc_products_inorder]</td>
+		</tr>	
+		<tr>			
+			<td valign="top" colspan="2">Buscar por código postal
+		  		<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0" name="lens_ctl" id="lens_ctl" style="cursor: pointer;" />
+				<div style="display: block;" id="div_search_zc">
+					<br/>
+					<label for="zip_code" class='smalltext'>CP: </label> 
+					<br/>
+					<input type="text" id="zip_code" name="zip_code" value="[va_zipcode]" size="25" />
+					<br/><br/>
+					<input type="button" class="button" value="Buscar" name="search_btn" id="search_btn" />
+					<br/><br/>
+				</div>
+				<br/>
+				Buscar por Estado, Colonia y Ciudad
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0" name="lens_address_ctl" id="lens_address_ctl" style="cursor: pointer;" />
+				<div style="margin-top: 5px; margin-bottom: 5px; display: none;" id="div_sch_zp_by_address">
+					<div style="margin-top: 5px; margin-bottom: 5px;">
+						<div class="ui-widget">
+							<label for="sch_state">Estado: </label>
+							<input id="sch_state" size="50" />
+						</div>
+					</div>
+					
+					<div style="margin-top: 5px; margin-bottom: 5px; display: none;" id="div_sch_city">
+						<div class="ui-widget">
+							<label for="sch_city">Delegaci&oacute;n / Municipio: </label>
+							<input id="sch_city" size="50" />
+						</div>
+					</div>
+					
+					<div style="margin-top: 5px; margin-bottom: 5px; display: none;" id="div_sch_urbanization">
+						<div class="ui-widget">
+							<label for="sch_urbanization">Colonia: </label>
+							<input id="sch_urbanization" size="50" />
+						</div>
+						
+						<input type="submit" class="button" value="Buscar" name="search_zc_btn" id="search_zc_btn" style="margin-top: 10px; margin-bottom: 5px;" />
+					</div>
+				</div>
+				<div style="clear: both;"></div>
+				<div id="list_zip_codes">
+					
+				</div>
+		  	</td>
+		</tr>
+		<tr>			
+			<td valign="top" colspan="2">Dirección  :
+		  		<input type="hidden" name="search_address_step" value="[in_step]">		  		
+		  	</td>
+		</tr>
+		<tr>
+			<td>Calle y N&uacute;mero : </td>
+			<td class="smalltext">
+				<input type="text" name="address1" value="[in_customers.address1]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this ); verifyTextOnly( this );' onkeypress='return textOnly(event)'> <span class="smallfieldterr">[er_address1]</span>
+		   	</td>
+		</tr>
+		<tr style="background-color: #f0f0f0;">
+			<td>Colonia / Barrio : </td>
+			<td class="smalltext">
+				<input type="text" name="urbanization" value="[in_customers.urbanization]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )' readonly> <span class="smallfieldterr">[er_urbanization]</span>
+		   	</td>
+		</tr>
+		<tr>
+			<td>Entre Calles : </td>
+			<td class="smalltext">
+				<input type="text" name="address2" value="[in_customers.address2]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this ); verifyTextOnly( this );' onkeypress='return textOnly(event)'> <span class="smallfieldterr">[er_address2]</span>
+		   	</td>
+		</tr>
+		<tr style="background-color: #f0f0f0;">
+			<td>Referencias : </td>
+			<td class="smalltext">
+				<input type="text" name="address3" value="[in_customers.address3]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this ); verifyTextOnly( this );' onkeypress='return textOnly(event)'> <span class="smallfieldterr">[er_address3]</span>
+		   	</td>
+		</tr>
+		<tr>
+			<td>Municipio / Delegaci&oacute;n : </td>
+			<td class="smalltext">
+				<input type="text" name="city" value="[in_customers.city]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )' readonly> <span class="smallfieldterr">[er_city]</span>
+		   	</td>
+		</tr>
+		<tr style="background-color: #f0f0f0;">
+			<td>Estado : </td>
+			<td class="smalltext">
+				<input type="text" name="state" value="[in_state]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )' readonly>
+				<!-- 
+				<select name="state" id="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					[bs_State@sl_orders]
+				</select> 
+				-->
+				<span class="smallfieldterr">[er_state]</span>
+		   	</td>
+		</tr>
+		<!--input type="hidden" name="city" value="[in_city]" size="30"-->
+		<tr>
+		 	<td width="30%">C&oacute;digo Postal: </td>
+		  	<td class="smalltext">
+		  			<!--input type="hidden" name="state" value="[in_state]" size="30"-->
+		  			<input type="hidden" name="email" value="[in_email]" size="30">
+		  			<input type="hidden" name="cellphone" value="[in_cellphone]" size="30">
+		  			<input type="hidden" name="email_and_cellphone_use" value="[in_email_and_cellphone_use]" size="30">
+		  			<input type="hidden" name="contact_mode" value="[in_contact_mode]" size="30">
+					<input type="text" name="zip" value="[in_zip]" size="8" onocus='focusOn( this )' onBlur='focusOff( this )' readonly> <span class="smallfieldterr">[er_zip]</span>
+					<!--<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0" name="lens_input_ctl" id="lens_input_ctl" style="cursor: pointer;" />-->
+					<span class="smallfieldterr" style="display: none;" id="multiple_urbs">Se encontraron varios resultados</span>
+					
+					<!--input type="submit" value="Revisar" class="button" name="check_address" -->
+					<!--<input type="button" value="Revisar" class="button" name="search_address_button" id="search_address_button">-->
+					
+					<!-- Fancybox -->
+					<a id="fancybox_email_and_cellphone" href="#modal_email_and_cellphone"></a>
+					<div style="display: none;">
+						<div id="modal_email_and_cellphone" style="width:500px;overflow:auto;text-align:center;">
+							<iframe src="/cgi-bin/common/apps/ajaxbuild?ajaxbuild=email_and_cellphone&email=[in_email]&cellphone=[in_cellphone]" width="490" height=350>
+							  <p>Your browser does not support iframes.</p>
+							</iframe>
+						</div>
+					</div>
+					<!-- Fancybox -->
+					
+			</td>
+		</tr>
+		<tr style="background-color: #f0f0f0;">
+		 	<td width="30%" valign="top">Notas  : <span class="smallfieldterr">[er_billingnotes]</span></td>
+		    <td class="smalltext"><textarea name="billingnotes" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_billingnotes]</textarea> </td>
+		</tr>		
+		<tr>
+		  <td colspan="2" align="center"><input type="checkbox" name="sameshipping" id="sameshipping_same" value="same" class="checkbox" checked="checked"> <label for="sameshipping_same">Direcci&oacute;n de cobro igual a la de envio</label></td>
+		</tr>		
+		<tr>
+		  <td colspan="2" align="center">
+		  	<!--input type="button" name="smbtn" value="Revisar Direccion" class="button" OnClick="btnaddress()"-->
+		  	<input type="submit" name="smbtn" value="Continuar" class="button">
+		  </td>
+		</tr>		
+	</table>
+</fieldset>
+<script language="javascript">
+<!--
+
+chg_select('state','[in_state]');
+chg_chkbox('sameshipping','[in_sameshipping]');
+
+function btnaddress(){
+	if (self.document.sitform.smbtn.value=='Continuar (a Info de Envio) >>'){
+		//self.document.sitform.smbtn.type='submit';
+		self.document.sitform.submit();
+	}else{
+		setTimeout("self.document.sitform.smbtn.value='Continuar (a Info de Envio) >>'",5000);
+		popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'address');
+		//loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=check_address&address1='+self.document.sitform.address1.value+'&address2='+self.document.sitform.address2.value+'&address3='+self.document.sitform.address3.value+'&city='+self.document.sitform.city.value+'&urbanization='+self.document.sitform.urbanization.value+'&zip='+self.document.sitform.zip.value);
+		loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=check_address&address1='+self.document.sitform.address1.value+'&address2='+self.document.sitform.address2.value+'&address3='+self.document.sitform.address3.value+'&city='+self.document.sitform.city.value+'&zip='+self.document.sitform.zip.value);
+	}
+}
+
+//-->
+</script>
+
+
+			<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+    </td>
+    </tr>
+</table>	
+			
+[ip_footer_console]
+

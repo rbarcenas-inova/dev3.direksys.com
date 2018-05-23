@@ -1,0 +1,37 @@
+<form method="post" action="[va_script_url]">
+	<input type="hidden" name="id_manifests" value="[in_id_manifests]">
+	<input type="hidden" name="view" value="[in_id_manifests]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="1">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+	    <td class="tbltextttl" >
+	    	<a href='javascript:trjump("[va_script_url]?cmd=[in_cmd]&view=[in_id_manifests]&tab=[va_activetab]&tabs=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+	    	<a href="javascript:prnwin('[va_script_url]?cmd=[in_cmd]&search=Print&tab=1&tabcmd=manifests&toprint=[in_id_manifests]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+	    	Items : [va_matches]</td>
+	    <td class="small_text" align="right">&nbsp;<br></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			 	<table id="tbl-id-in" width="98%" align="center" cellspacing="2" cellpadding="2" class="formtable">
+					<tr>
+						<td align="center" class="menu_bar_title">&nbsp;</td>
+						<td align="center" class="menu_bar_title">ID</td>
+						<td align="center" class="menu_bar_title">Name</td>
+						<td align="center" class="menu_bar_title">From Warehouse / Location</td>
+						<td align="center" class="menu_bar_title">To Warehouse / Location</td>
+						<td align="center" class="menu_bar_title">Quantity</td>
+					</tr>
+				 	[va_searchresults]
+				</table>
+				&nbsp;
+			</td>
+		</tr>
+	</table>
+</form>
+
+
+
+

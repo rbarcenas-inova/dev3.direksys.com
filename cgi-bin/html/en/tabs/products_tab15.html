@@ -1,0 +1,37 @@
+
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+
+	<input type="hidden" name="id_products" value="[in_id_products]">
+	<input type="hidden" name="view" value="[in_id_products]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="15">
+
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="add_new" value="1">
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+	<tr>
+	<td class="tbltextttl">
+	<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_products]&tab=15&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+	Records : [va_matches]</td>
+	</tr>
+	<tr>
+		<td>
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+			<tr>
+				<td class="menu_bar_title" align="center">Actions</td>
+				<td class="menu_bar_title">ID Image</td>
+				<td class="menu_bar_title">Image</td>
+				<td class="menu_bar_title">List Order</td>
+			</tr>
+				[va_searchresults]
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+</table>
+
+</form>

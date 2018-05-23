@@ -1,0 +1,195 @@
+[ip_template_overlay]
+
+	&nbsp;
+	<fieldset><legend>Customer Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Customer ID : </td>
+			<td class="titletext">
+				<div class="top_icons">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_customers] &nbsp;
+							[fc_template_idbutton]
+							[fc_template_prnbutton]
+							[fc_func_list_manager]
+							<a href="/cgi-bin/common/apps/ajaxbuild?ajaxbuild=customer_addpmt&id_customers=[in_id_customers]" title="Add Payment" class="fancy_modal_iframe">
+								<img src="[va_imgurl][ur_pref_style]/b_addpayment.gif" title="Add Payment" alt="Add Payment" height="24" width="24" border="0">
+							</a>
+							<a href="/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_ar_aging_periods&id_customers=[in_id_customers]&action=1" title="AR Aging Periods" alt="AR Aging Periods">
+								<img src="[va_imgurl][ur_pref_style]/b_xls.gif" title="AR Aging Periods" alt="AR Aging Periods" height="24" width="24" border="0">
+							</a>
+						</div>
+					</div>
+					
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Customer Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">CID : </td>
+		    <td class="smalltext">[in_cid]</td>
+		</tr>
+		<tr>
+			<td>Company Name: </td>
+			<td class="smalltext">[in_company_name]</td>		 
+		</tr>
+		<tr>
+			<td>RFC: </td>
+			<td class="smalltext">[in_rfc]</td>		 
+		</tr>
+		<tr>
+		    <td width="30%">Name  : </td>
+		    <td class="smalltext">[in_firstname]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Last Name (Father) : </td>
+		    <td class="smalltext">[in_lastname1]</td>
+		</tr>
+		<tr>
+		  	<td width="30%">Last Name (Mother) : </td>
+		    <td class="smalltext">[in_lastname2]</td>
+		</tr>	
+		<tr>
+		  	<td width="30%">Sex : </td>
+		    <td class="smalltext">[in_sex]</td>
+		</tr>
+		  	<td width="30%">Phone 1 : </td>
+		    <td class="smalltext">[in_phone1]</td>
+			</tr>
+		<tr>
+		  	<td width="30%">Phone 2 : </td>
+		    <td class="smalltext">[in_phone2]</td>
+		</tr>	
+		<tr>
+		  	<td width="30%">Cellphone : </td>
+		    <td class="smalltext">[in_cellphone]</td>
+		</tr>	
+		<tr>
+		  	<td width="30%">Available Time : </td>
+		    <td class="smalltext">[in_atime]</td>
+		</tr>									 	 		 
+		<tr>
+		    <td width="30%">Vendor Number : </td>
+		    <td class="smalltext">[in_personalid]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">SSN : </td>
+		    <td class="smalltext">[in_ssn]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">Email : </td>
+		    <td class="smalltext">[in_email]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Password : </td>
+		    <td class="smalltext">[in_password] [va_pass_chg_button]</td>
+		</tr>				 
+		<tr>
+			<td valign="top" width="30%">Birthday : </td>
+			<td class="smalltext">[in_birthday]</td>
+		</tr>
+
+		<tr>
+			<td valign="top" width="30%">Dirección : </td>
+			<td class="smalltext">[in_address1] [in_address2] [in_urbanization]</td>
+		</tr>
+		<!--<tr>
+			<td valign="top" width="30%">Urbanization : </td>
+			<td class="smalltext">[in_urbanization]</td>
+		</tr>	-->	
+		<tr>
+			<td valign="top" width="30%">Del. o Mun. / Estado / CP : </td>
+			<td class="smalltext">[in_city] [in_state] [in_zip]</td>
+		</tr>
+		<tr>
+			<td>Pais : </td>
+			<td class="smalltext">[in_country]</td>		 
+		</tr>
+		<tr>
+			<td>Type: </td>
+			<td class="smalltext">[in_type]</td>		 
+		</tr>
+		<tr>
+			<td>Currency: </td>
+			<td class="smalltext">[in_currency]</td>		 
+		</tr>
+		<tr>
+			<td>Birth Country: </td>
+			<td class="smalltext">[in_birthcountry]</td>		 
+		</tr>
+		<tr>
+			<td>Contact Mode: </td>
+			<td class="smalltext">[in_contact_mode]</td>		 
+		</tr>
+		<tr>
+			<td>Payment Terms: </td>
+			<td class="smalltext">[in_pterms]</td>		 
+		</tr>
+		<tr>
+			<td>GLN: </td>
+			<td class="smalltext">[in_gln]</td>		 
+		</tr>
+	</table>
+	</fieldset>
+
+<fieldset><legend>Accounts</legend>
+ 	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+ 		<tr>
+ 	    	<td width="30%">Account Debit  : </td>
+ 	    	<td class="smalltext">[in_id_accounts_debit]</td>
+ 	 	</tr>
+ 	 	<tr>
+ 	    	<td width="30%">Account Credit  : </td>
+ 	    	<td class="smalltext">[in_id_accounts_credit]</td>
+ 	 	</tr>
+ 	</table>
+ </fieldset>
+
+
+	[va_customers_sat_info]
+	&nbsp;
+   <fieldset><legend>Customer Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Status  :</td>
+		    <td class="smalltext">[in_status] &nbsp;&nbsp;&nbsp;&nbsp; Change to : [va_chgstatus]</td>
+		 </tr>
+  	</table>
+	</fieldset>
+	&nbsp;
+
+<script language="JavaScript" type="text/javascript">
+
+	function add_payment(){
+		popup_show('popup_addpmt', 'item_drag', 'popup_exit', 'element-right', -1, -1,'initab');
+	}
+
+</script>
+
+	
+<!-- Non Inventory Item  -->
+	<div id="popup_addpmt" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="item_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Payment </td>
+			<td align=right width=20px><img id="popup_exit" name="popup_exit" src="/sitimages/default/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div>
+	<IFRAME SRC="/cgi-bin/common/apps/ajaxbuild?ajaxbuild=customer_addpmt&id_customers=[in_id_customers]&[va_rndnumber]" name="rcmd" TITLE="Recieve Commands" width="900" height="720" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+	<H2>Unable to do the script</H2>
+	<H3>Please update your Browser</H3>
+	</IFRAME>	
+	</div></div>
+
+
+

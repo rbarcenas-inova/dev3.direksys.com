@@ -1,0 +1,267 @@
+	&nbsp;
+	<fieldset><legend>Supply Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">Model  : <span class="smallfieldterr">[er_model]</span></td>
+		    <td class="smalltext"><input type="text" name="model" value="[in_model]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Name  : <span class="smallfieldterr">[er_name]</span></td>
+		    <td class="smalltext"><input type="text" name="name" value="[in_name]" size="60" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		<tr>
+		    <td valign="top" width="30%">Small Description : <span class="smallfieldterr">[er_smalldescription]</span></td>
+		    <td class="smalltext"><textarea name="smalldescription" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_smalldescription]</textarea> </td>
+		 </tr>
+		<tr>
+		    <td valign="top" width="30%">Full Description : <span class="smallfieldterr">[er_description]</span></td>
+		    <td class="smalltext"><textarea name="description" cols="50" rows="5" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description]</textarea> </td>
+		 </tr>
+		<tr>
+		    <td valign="top" width="30%">Small Description(EN) : <span class="smallfieldterr">[er_smalldescription_en]</span></td>
+		    <td class="smalltext"><textarea name="smalldescription_en" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_smalldescription_en]</textarea> </td>
+		 </tr>
+		<tr>
+		    <td valign="top" width="30%">Full Description(EN) : <span class="smallfieldterr">[er_description_en]</span></td>
+		    <td class="smalltext"><textarea name="description_en" cols="50" rows="5" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description_en]</textarea> </td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Shipping Specs</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">Weight  : <span class="smallfieldterr">[er_weight]</span></td>
+		    <td class="smalltext"><input type="text" name="weight" value="[in_weight]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">Lb</span></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Dimensions (w x h x l)  : <span class="smallfieldterr">[er_sizeW] [er_sizeh] [er_sizel]</span></td>
+		    <td class="help_on"><input type="text" name="sizew" value="[in_sizew]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'> 
+		    				x <input type="text" name="sizeh" value="[in_sizeh]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    				x <input type="text" name="sizel" value="[in_sizel]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    					in</td>
+		 </tr>
+		<tr>
+		    <td width="30%">Packing : <span class="smallfieldterr">[er_packing]</span></td>
+		    <td class="smalltext"><select name="packing" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	               <option value="">---</option>
+	               [fc_build_select_prd_packing]
+               </select></td>
+		 </tr>
+		<tr>
+	    <td width="30%">Handling Specs : <span class="smallfieldterr">[er_handling]</span></td>
+	    <td class="smalltext"><select name="handling" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+         <option value="">---</option>
+         [fc_build_select_prd_handlingspecs]
+       </select>
+      </td>
+		</tr>
+		<tr>
+	    <td width="30%">Warehouse Handling  : <span class="smallfieldterr">[er_warehousehandling]</span></td>
+	    <td class="smalltext"><select name="warehousehandling" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+         <option value="">---</option>
+         [fc_build_select_prd_handlingwarehouse]
+       </select>
+      </td>
+		</tr>
+		<tr>
+	    <td width="30%">Supply Type : <span class="smallfieldterr">[er_producttype]</span></td>
+	    <td class="smalltext"><select name="producttype" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+         <option value="">---</option>
+         [fc_build_select_prd_type]
+       </select>
+      </td>
+		</tr>
+		<tr>
+	    <td width="30%">Supply Documentation : <span class="smallfieldterr">[er_productdocs]</span></td>
+	    <td class="smalltext"><select name="productdocs" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+         <option value="">---</option>
+         [fc_build_select_prd_docs]
+       </select>
+      </td>
+		</tr>
+		<tr>
+		  <td width="30%" valign="top">Jewelry Packing Options : </td>
+		  <td class="smalltext"><select name="id_packingopts" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	               <option value="">---</option>
+	               [fc_build_select_prd_pckopts]
+               </select><br>
+               <span class="help_on">The shipping Charges will be calculated based on the box,<br>NOT by the weight</span></td>
+		</tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Cost</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">Wholesale Cost FOB  : <span class="smallfieldterr">[er_wholesalepriceorigin]</span></td>
+		    <td class="smalltext"><input type="text" name="wholesalepriceorigin" value="[in_wholesalepriceorigin]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">in US$ FOB Origin</span></td>
+		 </tr>
+		<tr>
+		    <td width="30%">FOB Point : <span class="smallfieldterr">[er_wholesaleorigin]</span></td>
+		    <td class="smalltext"><input type="text" name="wholesaleorigin" value="[in_wholesaleorigin]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> </td>
+		 </tr>
+		<tr>
+		    <td width="30%">Wholesale Cost  : <span class="smallfieldterr">[er_wholesaleprice]</span></td>
+		    <td class="smalltext"><input type="text" name="wholesaleprice" value="[in_wholesaleprice]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">in US$ FOB Miami</span></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Discount  : <span class="smallfieldterr">[er_discount]</span></td>
+		    <td class="smalltext"><input type="text" name="discount" value="[in_discount]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Net Cost  : <span class="smallfieldterr">[er_sltv_netcost]</span></td>
+		    <td class="smalltext"><input type="text" name="sltv_netcost" value="[in_sltv_netcost]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>	 		 
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Pricing</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">Break Even Volume : <span class="smallfieldterr">[er_breakevenvolume]</span></td>
+		    <td class="smalltext"><input type="text" name="breakevenvolume" value="[in_breakevenvolume]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Margin : <span class="smallfieldterr">[er_margin]</span></td>
+		    <td class="smalltext"><input type="text" name="margin" value="[in_margin]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Air Time Minutes : <span class="smallfieldterr">[er_airtimeminutes]</span></td>
+		    <td class="smalltext"><input type="text" name="airtimeminutes" value="[in_airtimeminutes]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Min Accepted Price (MAP) : <span class="smallfieldterr">[er_map]</span></td>
+		    <td class="smalltext"><input type="text" name="map" value="[in_map]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">in US$</span></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Retail Price(MSRP)  : <span class="smallfieldterr">[er_msrp]</span></td>
+		    <td class="smalltext"><input type="text" name="msrp" value="[in_msrp]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">in US$</span></td>
+		</tr>
+		<tr>
+		  <td colspan="2"><hr color="#C0C0C0"></td>
+		</tr>
+		<tr>
+		  <td width="30%">Sales Price <span class="help_on">(Active)</span> : <input type="hidden" name="oldpactive" value="[in_pactive]"></td>
+		  <td class="smalltext">
+					<select name="spricename" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		               <option value="">---</option>
+		               [fc_build_select_pricesnames]
+	               </select><span class="smallfieldterr">[er_spricename]</span>
+			  		<input type="text" name="sprice" value="[in_sprice]" size="10" onFocus='blur( this )'>
+			  		<input type="hidden" name="oldsprice" value="[in_sprice]">
+			  		<span class="smallfieldterr">[er_sprice]</span></td>
+		</tr>
+		<tr>
+		  <td width="30%"><input type="radio" name="pactive" class="radio" value="SPrice1"> Ref Sales Price1  : </td>
+		  <td class="smalltext">
+					<select name="sprice1name" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		               <option value="">---</option>
+		               [fc_build_select_pricesnames]
+	               </select><span class="smallfieldterr">[er_sprice1name]</span>
+			  		<input type="text" name="sprice1" value="[in_sprice1]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			  		<input type="hidden" name="oldsprice1" value="[in_sprice]">
+			  		<span class="smallfieldterr">[er_sprice1]</span></td>
+		</tr>
+		<tr>
+		  <td width="30%"><input type="radio" name="pactive" class="radio" value="SPrice2"> Ref Sales Price2  : </td>
+		  <td class="smalltext">
+					<select name="sprice2name" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		               <option value="">---</option>
+		               [fc_build_select_pricesnames]
+	               </select><span class="smallfieldterr">[er_sprice2name]</span>
+			  		<input type="text" name="sprice2" value="[in_sprice2]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			  		<input type="hidden" name="oldsprice2" value="[in_sprice]">
+			  		<span class="smallfieldterr">[er_sprice2]</span></td>
+		</tr>
+		<tr>
+		  <td width="30%"><input type="radio" name="pactive" class="radio" value="SPrice3"> Ref Sales Price3  : </td>
+		  <td class="smalltext">
+					<select name="sprice3name" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		               <option value="">---</option>
+		               [fc_build_select_pricesnames]
+	               </select><span class="smallfieldterr">[er_sprice3name]</span>
+			  		<input type="text" name="sprice3" value="[in_sprice3]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			  		<input type="hidden" name="oldsprice3" value="[in_sprice]">
+			  		<span class="smallfieldterr">[er_sprice3]</span></td>
+		</tr>
+		<tr>
+		  <td width="30%"><input type="radio" name="pactive" class="radio" value="SPrice4"> Ref Sales Price4  : </td>
+		  <td class="smalltext">
+					<select name="sprice4name" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		               <option value="">---</option>
+		               [fc_build_select_pricesnames]
+	               </select><span class="smallfieldterr">[er_sprice4name]</span>
+			  		<input type="text" name="sprice4" value="[in_sprice4]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			  		<input type="hidden" name="oldsprice4" value="[in_sprice]">
+			  		<span class="smallfieldterr">[er_sprice4]</span></td>
+		</tr>
+	</table>
+	</fieldset>		
+	&nbsp;
+	<fieldset><legend>Brand Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">Brand  : <span class="smallfieldterr">[er_id_brands]</span></td>
+		    <td class="smalltext"><select name="id_brands" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	               <option value="">---</option>
+	               [fc_build_select_brands]
+               </select></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Brand SKU  : <span class="smallfieldterr">[er_manufactersku]</span></td>
+		    <td class="smalltext"><input type="text" name="manufactersku" value="[in_manufactersku]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Stock Management</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">Minimum Stock : <span class="smallfieldterr">[er_minimumstock]</span></td>
+		    <td class="smalltext"><input type="text" name="minimumstock" value="[in_minimumstock]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">Quantity in Units</span></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Maximum Stock : <span class="smallfieldterr">[er_maximumstock]</span></td>
+		    <td class="smalltext"><input type="text" name="maximumstock" value="[in_maximumstock]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">Quantity in Units</span></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Lead Time : <span class="smallfieldterr">[er_edt]</span></td>
+		    <td class="smalltext"><input type="text" name="edt" value="[in_edt]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">in Days</span></td>
+		 </tr>
+	</table>
+	</fieldset>		
+	&nbsp;
+     <fieldset><legend>Supply Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		 <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		 <td class="smalltext">	<input type="hidden" name="status" value="[in_status]" class="radio">[in_status]</td>
+		 </tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+chg_select('id_brands','[in_id_brands]');
+chg_select('packing','[in_packing]');
+chg_select('productdocs','[in_productdocs]');
+chg_select('handling','[in_handling]');
+chg_select('producttype','[in_producttype]');
+chg_select('warehousehandling','[in_warehousehandling]');
+chg_select('supplierpacking','[in_supplierpacking]');
+chg_select('id_packingopts','[in_id_packingopts]');
+
+chg_select('spricename','[in_spricename]');
+chg_select('sprice1name','[in_sprice1name]');
+chg_select('sprice2name','[in_sprice2name]');
+chg_select('sprice3name','[in_sprice3name]');
+chg_select('sprice4name','[in_sprice4name]');
+chg_radio('pactive','[in_pactive]');
+
+
+
+//-->
+</script>
+

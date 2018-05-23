@@ -1,0 +1,54 @@
+[ip_header_small]
+<body bgcolor="#EEEEEE" topmargin="0">
+
+<!-- Start Main Area  -->
+
+<form action="/cgi-bin/common/apps/custom" name="sitform" method="POST">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="id" value="[in_id]">
+	<input type="hidden" name="tab" value="1">
+	<input type="hidden" name="action" value="1">
+
+<center>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+  <tr>
+    <td width="30%" align="center"></td>
+    <td width="35%" class="cell_on" align="center" ><a href="/cgi-bin/common/apps/custom?cmd=mer_po&tab=1&id=[in_id]">Pre Receipt</a></td>
+    <td width="35%" class="cell_off" align="center"><a href="/cgi-bin/common/apps/custom?cmd=mer_po&tab=2&id=[in_id]">Pre Payment</a></td>
+  </tr>
+</table>
+
+<center>
+
+<table border="0" width="95%" cellspacing="0" cellpadding="2" class="gborder">
+  <tr>
+    <td bgcolor="#3E76DD" class="tbltextttlwte">&nbsp; Purchase Order (Transition Operations)</td>
+  </tr>
+  <tr>
+    <td class="stdtxterr">[va_message]</td>
+  </tr>
+  <tr>
+    <td class="tbltextttl">Records : [va_matches]</td>
+  </tr>  
+  <tr>
+    <td><table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+			<tr>
+			    <td class="menu_bar_title">#</td>
+			    <td class="menu_bar_title">ID</td>
+			    <td class="menu_bar_title">Description</td>
+			    <td class="menu_bar_title">Qty</td>
+			    <td class="menu_bar_title">Unit Price</td>
+			    <td class="menu_bar_title">Received</td>
+			    <td class="menu_bar_title">Total</td>
+			 </tr>
+			[va_searchresults]
+	  </table></td>
+  </tr>  
+</table>
+<p align="center"><input value="Update Record" class="button" type="submit"></p>
+</center>
+
+
+</body>
+</html>

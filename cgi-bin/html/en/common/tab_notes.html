@@ -1,0 +1,53 @@
+
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+	<input type="hidden" name="[fc_template_idname]" value="[fc_template_idvalue]">
+	<input type="hidden" name="view" value="[fc_template_idvalue]">
+	<input type="hidden" name="tabaction" value="1">
+	<input type="hidden" name="tab" value="[in_tab]">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+      <td class="tbltextttl"><span class='fieldterr'>[va_tabmessages]</span>&nbsp;</td>
+    </tr>
+		<tr>
+			<td class="tbltextttl">
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[fc_template_idvalue]&tab=[va_activetab]&tabs=[in_tab]&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+				<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=4&tabcmd=[va_tab_name]&toprint=[fc_template_idvalue]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+				Notes : [va_matches]</td>
+	   		<td class="smalltext">Filter By : 
+	   			[va_tab_filterby]
+			</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+	 	</tr>
+		<tr>
+			<td colspan="3">
+		 		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+					  <td class="menu_bar_title">Date/Time/User</td>
+					  <td class="menu_bar_title">Type</td>
+					  <td class="menu_bar_title" colspan="2">Notes</td>
+					 </tr>
+				 [va_searchresults]
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" class="smallfieldterr">&nbsp;[va_tabmessages]</td>
+		</tr>
+		<tr>
+			<td class="menu_bar_title" colspan="3">Add New Note</td>
+		</tr>	
+		<tr>
+			<td class="smalltext" colspan="3">
+				[va_notetypes]
+		
+			<textarea name="notestxt" style="width: 95%" cols="50" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_notes]</textarea></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="3">
+				<input type="submit" value="Add Notes" class="button">
+				</form>
+				</td>
+		</tr>
+	</table>

@@ -1,0 +1,6 @@
+###################################
+### Menu General
+#####################################
+
+## Products
+mer_products_htab15=Action,Image,ID Product,Type,Order

@@ -1,0 +1,36 @@
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%" class="formtable">
+			<tr>
+		    <td colspan="5" align="center" class="menu_bar_title">Order Totals</td>
+		 	</tr>			
+			<tr>
+		    <td width="20%" align="center">Total Items</td>
+		    <td width="20%" align="center">Total Net</td>
+		    <td width="20%" align="center">+ Shipping</td>
+		    <td width="20%" align="center">+ Taxes</td>
+		    <td width="20%" align="center">Total Order</td>
+		 	</tr>
+			<tr>
+		    <td class="smalltext" align="center">[in_orderqty]</td>
+		    <td class="smalltext" align="center">[va_ordernet]</td>
+		    <td class="smalltext" align="center">[va_ordershp]</td>
+		    <td class="smalltext" align="center">[va_total_taxes] ([va_tax]%)</td>
+		    <td class="smalltext" align="center">[va_total_order]</td>
+		 	</tr>
+		</table>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title" colspan="6" align="center">Items in Order</td>
+	    </tr>
+		<tr>
+			<td class="menu_bar_title">ID</td>
+			<td class="menu_bar_title">Model/Name</td>
+			<td class="menu_bar_title">Serial Number</td>
+			<td class="menu_bar_title">Ship Date</td>
+			<td class="menu_bar_title">Qty</td>
+			<td class="menu_bar_title">Sale Price</td>
+		</tr>
+	[fc_load_order_products]
+	</table>
+	&nbsp;

@@ -1,0 +1,80 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<table class="tab" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+	  <tbody><tr>
+	    <td width="30%" align="center"></td>
+	    <td width="12%" class="[va_new]" align="center" onClick='trjump("/cgi-bin/mod/ecom/admin?cmd=eco_techsupp")'>New</td>
+	    <td width="11%" class="[va_continue]" align="center" onClick='trjump("/cgi-bin/mod/ecom/admin?cmd=eco_techsupp&get_status=continue")'>Continued</td>
+	    <td width="12%" class='[va_answer]' align='center' onClick='trjump("/cgi-bin/mod/ecom/admin?cmd=eco_techsupp&get_status=answer")'>Answered</td>
+	    <td width="11%" class='[va_reopen]' align='center' onClick='trjump("/cgi-bin/mod/ecom/admin?cmd=eco_techsupp&get_status=reopen")'>Re Opened</td>
+	    <td width="12%" class='[va_close]' align='center' onClick='trjump("/cgi-bin/mod/ecom/admin?cmd=eco_techsupp&get_status=close")'>Closed</td>
+	    <td width="11%" class='[va_void]' align='center' onClick='trjump("/cgi-bin/mod/ecom/admin?cmd=eco_techsupp&get_status=void")'>Void</td>
+	  </tr>
+	</tbody></table>
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	    <tr>
+	        <td class="titletext" align="center" colspan="2">Message Detail: [in_view]</td>
+	    </tr>
+	    <tr>
+	        <td class="stdtxterr" colspan="2">[va_message]</td>
+	    </tr>
+	    <tr>
+	        <td class="tbltextttl">Messages : [va_matches]</td>
+	        <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+	    </tr>
+	</table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title">Name</td>
+		    <td class="menu_bar_title">&nbsp;</td>
+		    <td class="menu_bar_title" align="center">ID Order</td>
+		    <td class="menu_bar_title">&nbsp;</td>
+		    <td class="menu_bar_title" align="center">Note</td>
+		    <td class="menu_bar_title">&nbsp;</td>
+		    <td class="menu_bar_title" align="center">Order Status</td>
+		    <td class="menu_bar_title">&nbsp;</td>
+		    <td class="menu_bar_title" align="center">Date / Time</td>
+		 </tr>
+		[va_searchresults]
+	</table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	    <tr>
+	        <td class="tbltextttl">Messages : [va_matches]</td>
+	        <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+	    </tr>
+	</table>
+	&nbsp;
+	[ip_eco_techsupport_reply]
+<!-- End Main Area  -->
+      </td>
+   </tr>
+</table>
+
+[ip_footer]

@@ -1,0 +1,200 @@
+[ip_header]
+
+<!-- ALL jQuery Tools. No jQuery library -->
+<script type="text/javascript" src="/jquery.editable-1.3.3.min.js"></script>
+
+
+<script>
+<!--
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('URL: ' + settings.url + ' \n'+'Error:' + xhr.responseText + '\nType:' + exception);
+			xhr.abort();
+		});
+
+		$.ajaxSetup({ timeout: ( 10 * 60 * 1000 ) });
+
+
+		var dates = $( "#from_date, #to_date" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			minDate: new Date(2012,08-1,1),
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+			onSelect: function( selectedDate ) {
+				var option = this.id == "from_date" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+
+
+		//Destination Editable
+		$('.field_editable').editable({
+			type:'select',
+			options:{'0':'0 -- Not Assigned'[va_inbound_agents]},
+			editBy:'dblclick',
+			submit:'Assign',
+			cancel:'Cancel',
+			onSubmit:function(content){
+				var id = this.attr('id');
+				var prev_value = content.previous;
+				var new_value = content.current;
+
+				
+				if(prev_value != new_value){
+					$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'assign_leads_flash', 'id_leads_flash':id, 'old':prev_value, 'new':new_value},function(response,status,xhr){
+
+						if (status == "error") {
+							alert(msg);
+						}else{
+							if(response.match(/error/gi)){
+								alert("Error:\r\n"+response);
+								$('#'+id+'').css('background-color','#FF7F50');
+								$('#'+id+'').html(prev_value);
+							}else{
+								$('#'+id+'').css('background-color','#F1EDC2');
+							}
+						}
+	
+					});
+				}
+				
+			},
+		});
+
+
+
+	});
+-->
+</script>
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+		<table class="tab" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+		  <tbody><tr>
+		    <td align="center" width="30%"></td>
+			<td class="cell_on" onclick="trjump(&quot;/cgi-bin/mod/crm/admin?cmd=leads_flash_home&quot;)" align="center" width="17%">Llamada Leadflash</td>
+			<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/crm/dbman?cmd=leads_flash&amp;add=1&quot;)" align="center" width="17%">Add</td>
+			<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/crm/dbman?cmd=leads_flash&amp;search=form&quot;)" align="center" width="17%">Search</td>
+			<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/crm/dbman?cmd=leads_flash&amp;search=listall&amp;so=DESC&amp;sb=ID_leads_flash&quot;)" align="center" width="17%">View / Edit / Delete</td>
+		  </tr>
+		</tbody></table>
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+			&nbsp;
+			<form action="/cgi-bin/mod/crm/admin" method="post" name="sitform" onsubmit="return disableSubmits();">
+				<input type="hidden" name="cmd" value="leads_flash">
+				<input type="hidden" name="action" value="1">
+				&nbsp;
+				<fieldset>
+					<legend>Filter Info</legend>
+					<table border="0" cellspacing="0" cellpadding="2" width="100%">
+						<tr>
+							<td class='smalltext' nowrap width="20%">Date From / Date To:</td>
+							<td class='smalltext'>
+								<input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>&nbsp;&nbsp;
+								<input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>&nbsp;&nbsp;
+							</td>
+						<tr>
+							<td class='smalltext' nowrap width="20%">Assigned To:</td>
+							<td class='smalltext'>
+								<select name="id_admin_users">
+									<option value="-1">---</option>
+									<option value="0">Not Assigned</option>
+									[fc_build_select_inbound_agents]
+								</select>
+							</td>
+						</tr>
+					</table>
+					&nbsp;
+					<center><input type="submit" value="Search" class="button"></center>
+					&nbsp;
+					<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+							<td align="center" class="menu_bar_title"> Lead Flash</td>
+					</tr>
+					<tr>
+							<td align="center" class="titletext">[va_matches]</td>
+					</tr>
+					<tr>
+					<td class="stdtxterr">[va_message]</td>
+					</tr>
+					</table>
+					&nbsp;
+				</fieldset>
+			</form>
+			&nbsp;
+
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+		    		<td class="tbltextttl">Orders : [va_matches]</td>
+		    		<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 		</tr>
+     		</table>
+     		&nbsp;
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+				    <td class="menu_bar_title">Lead</td>
+				    <td class="menu_bar_title">Name</td>  
+				    <td class="menu_bar_title">Contact Time</td>
+				    <td class="menu_bar_title">Products</td>
+				    <td class="menu_bar_title">Status</td>
+				    <td class="menu_bar_title">Date</td>
+				    <td class="menu_bar_title">Assigned To</td>
+				</tr>
+				[va_searchresults]
+  			</table>
+  			&nbsp;
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td class="tbltextttl">Orders : [va_matches]</td>
+					<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+				</tr>
+			</table>  
+
+		<!-- End Main Area  -->
+
+		</td>
+	</tr>
+</table>
+
+<script language="javascript" type="text/javascript">
+<!--
+
+	chg_select('id_admin_users',[in_id_admin_users])
+
+-->
+</script>
+
+[ip_footer]

@@ -1,0 +1,56 @@
+[ip_header_blank]
+[va_javascriptvar]
+
+<form method="post" action="/cgi-bin/common/apps/ajaxbuild" name="sitform">
+	<input type="hidden" name="id_customers" value="[in_id_customers]">
+	<input type="hidden" name="ajaxbuild" value="email_and_cellphone">
+	<input type="hidden" name="view" value="[in_id_customers]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="cmd" value="[in_cmdo]">
+	<table width="100%" border="0"  class="gborder" align="center">
+		<tr>
+			<td colspan="3" class="smallfieldterr"><P style='font-size:14'>[va_tabmessages]</P></td>
+		</tr>
+		<tr>
+			<td class="menu_bar_title" colspan="3" align="center">
+				<P style='font-size:14'>Verificación y autorización de envío a Email y celular.</P></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<P class="stdtxterr" align="center">El email será validado, por lo tanto si el cliente <u>NO TIENE EMAIL</u> o <u>NO TIENE CELULAR</u><br>
+					 no se podrán hacer notificaciones al cliente (envíos, etc.).</P>
+			</td>
+		</tr>
+		<tr>
+			<td>Email: <span class="smallfieldterr">*[er_email]</span></td>
+			<td>
+				<input name="email" value="[in_email]" type="text" size=35 onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+			<td>Celular: <span class="smallfieldterr">*[er_cellphone]</span></td>
+			<td>
+				<input name="cellphone" value="[in_cellphone]" type="text" size=35 onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+			<td>Qué medio prefiere para contactarlo?: <span class="smallfieldterr">*[er_contact_mode]</span></td>
+			<td>
+				<input type='radio' name='contact_mode' value='email' checked=chedked>Email<br>
+				<input type='radio' name='contact_mode' value='sms'>Mensaje a Celular<br>
+				<input type='radio' name='contact_mode' value='phone_call'>Llamada por teléfono<br>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="3"><input type="submit" value="Aceptar" class="button"></td>
+		</tr>
+	</table>
+</form>
+
+<script language="javascript">
+<!--
+
+chg_radio('contact_mode','[in_contact_mode]');
+
+//-->
+</script>

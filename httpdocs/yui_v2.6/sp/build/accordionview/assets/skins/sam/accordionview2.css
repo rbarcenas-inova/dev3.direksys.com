@@ -1,0 +1,199 @@
+ul{
+	margin:1px;
+	padding:0;
+}
+
+/* accordion1 */
+.yui-skin-sam .yui-accordionview div.yui-accordion-content {
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+.yui-skin-sam .hidden {
+	visibility: hidden;
+	position: absolute;
+}
+
+.yui-skin-sam .almosthidden {
+	position: absolute;
+	left: -9999px;
+	z-index: -10;
+}
+
+.yui-skin-sam .yui-accordionview {
+	border-bottom: 1px #A3A3A3 solid;
+}
+
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel {
+	display: inline;
+}
+
+.yui-skin-sam ul.yui-accordionview ul.yui-accordionview {
+    zoom: 1;
+}
+
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle {
+	display: block;
+	border: 1px #fff solid;
+	border-bottom: none;
+	padding: 0.3em;
+	height: 1.5em;
+	padding-left: 0.5em;
+	color: #2f2f2f;
+	font-size: 12px;
+	text-decoration: none;
+	background: url(color2.png) repeat-x;
+	background-position: 0 -14px;
+	position: relative;
+	cursor: pointer;
+}
+
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle:hover {
+	background: url(color2.png) repeat-x;
+	background-position: 0 -26px;
+}
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle.active {
+	background: url(color2.png) repeat-x;
+	background-position: 0 -26px;
+	border-bottom: 1px #243356 solid;
+	font-size: 13px;
+	font-weight:bold;
+	color: #2f2f2f;
+}
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle.active:hover {
+	background: url(color2.png) repeat-x;
+	background-position: 0 -26px;
+}
+
+.yui-skin-sam .yui-accordion-content {
+	border-left: 1px #A3A3A3 solid;
+	border-right: 1px #A3A3A3 solid;
+	background: #fff;
+    _zoom: 1;
+}
+
+.yui-skin-sam ul.submenu {
+	background: #fff;
+}
+
+.yui-skin-sam ul.submenu li a {
+	display: block;
+	height: 1.5em;
+	line-height: 1.5em;
+	padding: 0.3em;
+	padding-left: 0.5em;
+	text-decoration: none;
+	color: #000;
+}
+.yui-skin-sam ul.submenu li a:hover {
+	background: #b3d4ff;
+}
+.yui-skin-sam ul.submenu li a:visited, .yui-skin-sam .yui-accordionview li.yui-accordion-panel a.link:visited {
+	color: #777;
+}
+
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle:focus {
+	text-decoration: underline;
+}
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle.activepanel {
+	text-decoration: underline;
+}
+
+
+
+/* accordion-products */
+.accordion-products .yui-accordionview div.yui-accordion-content {
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+.accordion-products .hidden {
+	visibility: hidden;
+	position: absolute;
+}
+
+.accordion-products .almosthidden {
+	position: absolute;
+	left: -9999px;
+	z-index: -10;
+}
+
+.accordion-products .yui-accordionview {
+	border-bottom: 1px #A3A3A3 solid;
+}
+
+.accordion-products .yui-accordionview li.yui-accordion-panel {
+	display: inline;
+}
+
+.accordion-products ul.yui-accordionview ul.yui-accordionview {
+    zoom: 1;
+}
+
+.accordion-products .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle {
+	display: block;
+	border: 1px #d3d3d3 solid;
+	border-bottom: none;
+	padding: 0.3em;
+	height: 1.5em;
+	padding-left: 0.5em;
+	color: #242424;
+	font-size: 12px;
+	text-decoration: none;
+	background: url(sprite.png) repeat-x;
+	background-position: 0 -1502px;
+	position: relative;
+	cursor: pointer;
+}
+
+.accordion-products .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle:hover {
+	background: url(sprite.png) repeat-x;
+	background-position: 0 -100px;
+}
+.accordion-products .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle.active {
+	background: url(sprite.png) repeat-x;
+	background-position: 0 -100px;
+	border-color: #243356;
+	border-bottom: 1px #243356 solid;
+	font-size: 13px;
+	font-weight:bold;
+	color: #242424;
+}
+.accordion-products .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle.active:hover {
+	background: url(sprite.png) repeat-x;
+	background-position: 0 -100px;
+}
+
+.accordion-products .yui-accordion-content {
+	border-left: 1px #A3A3A3 solid;
+	border-right: 1px #A3A3A3 solid;
+	background: #fff;
+    _zoom: 1;
+}
+
+.accordion-products ul.submenu {
+	background: #fff;
+}
+
+.accordion-products ul.submenu li a {
+	display: block;
+	height: 1.5em;
+	line-height: 1.5em;
+	padding: 0.3em;
+	padding-left: 0.5em;
+	text-decoration: none;
+	color: #000;
+}
+.accordion-products ul.submenu li a:hover {
+	background: #b3d4ff;
+}
+.accordion-products ul.submenu li a:visited, .accordion-products .yui-accordionview li.yui-accordion-panel a.link:visited {
+	color: #777;
+}
+
+.accordion-products .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle:focus {
+	text-decoration: underline;
+}
+.accordion-products .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle.activepanel {
+	text-decoration: underline;
+}

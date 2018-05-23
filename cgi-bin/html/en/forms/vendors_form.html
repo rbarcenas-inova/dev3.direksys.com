@@ -1,0 +1,311 @@
+	&nbsp;
+	<fieldset><legend>Vendor Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">
+		  	<label for="companyname">Company Name</label> : 
+		  	<span class="smallfieldterr">[er_companyname]</span>
+		 </td>
+			<td class="smalltext">
+				<input type="text" id="companyname" name="companyname" value="[in_companyname]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+
+		<tr>
+		  <td width="30%">
+		  	<label for="rfc">RFC</label> : 
+		  	<span class="smallfieldterr">[er_rfc]</span>
+		 </td>
+			<td class="smalltext">
+				<input type="text" id="rfc" name="rfc" value="[in_rfc]" size="30" maxlength="13" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+
+		<tr>
+		  	<td width="30%">
+		  		<label for="category_nacional">Category</label> :
+		  		</select> <span class="smallfieldterr">[er_category]</span>
+		  	</td>
+			<td class="smalltext">	
+		  		[br_category@sl_vendors]	
+     		</td>
+		</tr>
+
+	</table>
+	</fieldset>
+
+	&nbsp;
+	
+	<fieldset><legend>Vendor Address Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		
+		<tr>
+		    <td valign="top" width="30%">Address : <span class="smallfieldterr">[er_address]</span></td>
+		    <td class="smalltext"><textarea name="address" cols="50" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_address]</textarea> </td>
+		</tr>
+	
+		<tr>
+		  	<td width="30%">
+		  		<label for="city">City</label>/
+		  		<label for="state">State</label>/
+		  		<label for="zip">Zip</label> :
+		  	</td>
+			<td class="smalltext">
+				<input type="text" id="city" name="city" value="[in_city]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_city]</span>
+				<select id="state" name="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					[fc_build_select_vendorstate]
+				</select> <span class="smallfieldterr">[er_state]</span>
+				<input type="text" id="zip" name="zip" value="[in_zip]" size="8" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_zip]</span>
+     		</td>
+		 </tr>
+
+  		<tr>
+		    <td width="30%">
+		    	<label for="country">Country</label> : 
+		    	<span class="smallfieldterr">[er_country]</span>
+		    </td>
+		    <td class="smalltext">
+		    	<select id="country" name="country" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					[bs_country@sl_vendors]
+				</select>
+			</td>
+		 </tr>
+
+  		<tr>
+		    <td width="30%">
+		    	<label for="phone">Phone</label> : 
+		    	<span class="smallfieldterr">[er_phone]</span>
+		    </td>
+		    <td class="smalltext">
+		    	<input type="text" id="phone" name="phone" value="[in_phone]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    </td>
+		 </tr>
+  		
+ 		<tr>
+		    <td width="30%">
+		    	<label for="fax">Fax</label> : 
+		    	<span class="smallfieldterr">[er_fax]</span>
+		    </td>
+		    <td class="smalltext">
+		    	<input type="text" id="fax" name="fax" value="[in_fax]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    </td>
+		</tr>
+  		
+  		<tr>
+		    <td width="30%">
+		    	<label for="websiste">WebSite</label>  : 
+		    	<span class="smallfieldterr">[er_website]</span>
+		    </td>
+		    <td class="smalltext">
+		    	<input type="text" id="websiste" name="website" value="[in_website]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    </td>
+		 </tr>
+		
+		<!--<tr>
+		    <td width="30%">
+		    	<label for="websiste">Email</label>  : 
+		    	<span class="smallfieldterr">[er_email]</span>
+		    </td>
+		    <td class="smalltext">
+		    	<input type="text" id="email" name="email" value="[in_email]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    </td>
+		 </tr>-->
+
+	</table>
+	</fieldset>
+
+	&nbsp;
+	
+	<fieldset><legend>Vendor Payment Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">
+		    	<label for="paymentmethod_cheque">Method</label> : 
+		    	<span class="smallfieldterr">[er_paymentmethod]</span>
+		    </td>
+		    <td class="smalltext">
+	        	[br_paymentmethod@sl_vendors]
+			</td>
+		</tr>
+		<tr>
+		    <td width="30%">
+		    	<label for="paymentmethod_cheque">PO Terms : </label>
+		    	<span class="smallfieldterr">[er_paymentmethod]</span>
+		    </td>		
+		   	<td class="smalltext">
+		   		<select name="poterms" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+          			<option value="">---</option>
+						[fc_build_select_po_terms]
+				</select>
+			</td>
+		</tr>		
+	</table>
+	</fieldset>
+
+	&nbsp;
+
+	<fieldset><legend>Vendor Bank Info</legend>	
+  	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+ 		<tr>
+		    <td width="30%">
+		    	<label for="bankname">Name</label> : 
+		    	<span class="smallfieldterr">[er_bankname]</span>
+		    </td>
+		    <td class="smalltext">
+		    	<input type="text" id="bankname" name="bankname" value="[in_bankname]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    </td>
+		</tr>
+
+		<tr>
+		    <td width="30%">
+		    	<label for="bankbranch">Bank Vendor ID</label>  : 
+		    	<span class="smallfieldterr">[er_bankid]</span>
+		    </td>
+		    <td class="smalltext">
+		    	<input type="text" id="bankid" name="bankid" value="[in_bankid]" size="30" maxsize="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    </td>
+		</tr>
+  		
+  		<tr>
+		    <td width="30%">
+		    	<label for="bankbranch">Branch</label>  : 
+		    	<span class="smallfieldterr">[er_bankbranch]</span>
+		    </td>
+		    <td class="smalltext">
+		    	<input type="text" id="bankbranch" name="bankbranch" value="[in_bankbranch]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    </td>
+		</tr>
+
+		<tr>
+		    <td width="30%">
+		    	<label for="bankaccount">Account</label> : 
+		    	<span class="smallfieldterr">[er_bankaccount]</span>
+		    </td>
+		    <td class="smalltext">
+		    	<input type="text" id="bankaccount" name="bankaccount" value="[in_bankaccount]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    </td>
+		</tr> 
+
+		<tr>
+		    <td width="30%">
+		    	<label for="bankwt">CLABE</label> : 
+		    	<span class="smallfieldterr">[er_bankwt]</span>
+		    </td>
+		    <td class="smalltext">
+		    	<input type="text" id="bankwt" name="bankwt" value="[in_bankwt]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    </td>
+		</tr> 
+
+		<tr>
+		    <td width="30%">
+		    	<label for="currency">Currency</label> : 
+		    	<span class="smallfieldterr">[er_currency]</span>
+		    </td>
+		    <td class="smalltext">
+		    	[br_currency@sl_vendors]
+		    </td>
+		</tr> 
+	</table>
+	</fieldset>	
+
+	&nbsp;
+
+   	<fieldset><legend>Comments</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		    	<td valign="top" width="30%">
+		    		<label for="comments">Comments</label> :
+		    		<span class="smallfieldterr">[er_comments]</span>
+		    	</td>
+		    	<td class="smalltext">
+		    		<textarea id="comments" name="comments" cols="50" style="width:90%" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_comments]</textarea> 
+		    	</td>
+		 	</tr>
+		</table>
+	</fieldset>
+
+	&nbsp;
+
+	<fieldset><legend>Accounts</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  			<tr>
+		    	<td width="30%">
+		    		<label for="status_active">Account Debit</label>  : 
+		    		<span class="smallfieldterr">[er_id_accounts_debit]</span></td>
+		    	<td class="smalltext">
+		    		<input name="id_accounts_debit" id="id_accounts_debit" value="[in_id_accounts_debit]" size="10" maxlenght="10" type="text" class="input" readonly="readonly">
+				<a href="admin?cmd=accountsTree&element_id=id_accounts_debit&element_descrip=debit_account_name" title="Chart of Accounts" class="fancy_modal_iframe">
+					<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+				</a>
+				&nbsp;<span id="debit_account_name"></span>
+     			</td>
+		 	</tr>
+		 	<tr>
+		    	<td width="30%">
+		    		<label>Account Credit</label>  : 
+		    		<span class="smallfieldterr">[er_id_accounts_credit]</span></td>
+		    	<td class="smalltext">
+		    		<input name="id_accounts_credit" id="id_accounts_credit" value="[in_id_accounts_credit]" size="10" maxlenght="10" type="text" class="input"  readonly="readonly">
+				<a href="admin?cmd=accountsTree&element_id=id_accounts_credit&element_descrip=credit_account_name" title="Chart of Accounts" class="fancy_modal_iframe">
+					<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+				</a>
+				&nbsp;<span id="credit_account_name"></span>
+     			</td>
+		 	</tr>
+  		</table>
+	</fieldset>
+
+	<fieldset><legend>Vendor Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  			<tr>
+		    	<td width="30%">
+		    		<label for="status_active">Status</label>  : 
+		    		<span class="smallfieldterr">[er_status]</span></td>
+		    	<td class="smalltext">
+		    		[br_status@sl_vendors]
+     			</td>
+		 	</tr>
+		 	<tr>
+		    	<td width="30%">
+		    		<label>View in Adjustments</label>  : 
+		    		<span class="smallfieldterr">[er_adjustment]</span></td>
+		    	<td class="smalltext">
+		    		[br_adjustment@sl_vendors]
+     			</td>
+		 	</tr>
+  		</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+chg_radio('taxprd','[in_taxprd]');
+chg_radio('taxser','[in_taxser]');
+chg_radio('taxcountry','[in_taxcountry]');
+chg_radio('category','[in_category]');
+chg_radio('paymentmethod','[in_paymentmethod]');
+chg_radio('status','[in_status]');
+chg_radio('adjustment','[in_adjustment]');
+chg_radio('currency','[in_currency]')
+
+chg_chkbox('type','[in_type]');
+
+chg_select('accountingtemplate','[in_accountingtemplate]');
+chg_select('state','[in_state]');
+chg_select('country','[in_country]');
+$.urlParam = function(name){
+    var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	if (results !== null) {
+		return results[1] || 0;
+	} else {
+		return null;
+	}
+}
+if (!($.urlParam('search') == 'form' && $.urlParam('cmd')=='mer_vendors')) {
+	chg_select('poterms','[in_poterms]');
+}
+
+//-->
+</script>
+

@@ -1,0 +1,78 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->				
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+			    <td class="titletext" align="left" colspan="2">Report Orders Day </td>
+				</tr>
+				<tr>
+			    <td class="stdtxterr" colspan="2">[va_message]</td>
+		  	</tr>
+	    </table>
+			<form action="/cgi-bin/mod/admin/admin" method="post" name="sitform">
+				<input type="hidden" name="action" value="1">
+				<input type="hidden" name="cmd" value="fin_reporder_day_list">
+				<input type="hidden" name="reportdate" value="[in_reportdate]">				
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+					<td  align="center" class="menu_bar_title"> Orders Day
+				  </td>
+			  </tr>				
+				<tr>			  	
+					<td align="center">Date : 
+						<input type="text" id="reportdate" name="reportdate" value="[in_reportdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					</td>
+				</tr>													
+				<tr>
+					<td align="center"><br><input type="submit" value="Report" class="button">
+				  </td>
+			  </tr>				
+			</table>
+	   </form>	
+		<script language="javascript">
+		<!--					
+
+		    $(document).ready(function() {
+
+				/*AJAX Error handler*/
+				$(document).ajaxError(function(e, xhr, settings, exception) {
+				alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+				});
+
+				var dates = $( "#reportdate" ).datepicker({
+					dateFormat: 'yy-mm-dd',
+					defaultDate: "-2m",
+					maxDate: new Date(),
+					changeMonth: true,
+					numberOfMonths: 3,
+				});
+
+		    });
+		//-->
+		</script>		
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

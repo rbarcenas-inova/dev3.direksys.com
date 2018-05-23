@@ -1,0 +1,335 @@
+[ip_header_pos]
+
+
+
+
+
+
+<style>
+
+/* use a semi-transparent image for the overlay */
+#overlay {
+	background-image:url(/jquerytools/overlay/transparent.png);
+	color:#fff;
+	height:540px;
+}
+
+/* container for external content. uses vertical scrollbar, if needed */
+div.contentWrap {
+	height:541px;
+	overflow-y:auto;
+}
+/* the overlayed element */
+.apple_overlay {
+
+	/* initially overlay is hidden */
+	display:none;
+
+	/* growing background image */
+	background-image:url(/jquerytools/overlay/white.png);
+
+	/*
+		width after the growing animation finishes
+		height is automatically calculated
+	*/
+	width:540px;
+
+	/* some padding to layout nested elements nicely  */
+	padding:35pxUD 
+	/* a little styling */
+	font-size:11px;
+}
+
+/* default close button positioned on upper right corner */
+.apple_overlay .close {
+	background-image:url(/jquerytools/overlay/close.png);
+	position:absolute; right:5px; top:5px;
+	cursor:pointer;
+	height:35px;
+	width:35px;
+}
+
+</style>
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" valign=top align=left>	
+			
+
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+
+
+
+  
+	<div id="wrapper">
+
+		<div style="width:70%;float:left; background-color: ; " id="mainContent">
+			<table border=0 width="100%">
+				<td>
+					<font face="century gothic, sanserif" size=3></font>
+					<br> 
+					<br>
+
+
+					<table cellpadding=0 cellspacing=0 border=0 width=98%>
+						<tr>
+							<td class="tbltextttl">Productos : [va_matches]</td>
+							<td class="tbltextttl" align="right">P&aacute;ginas :  [va_pageslist]</td>
+						</tr>
+					</table>
+
+
+					<table border="0" cellspacing="0" cellpadding="0" width="98%" class="formtable">
+					    <tr>
+					    	<td colspan="2">		
+								<table border="0" cellspacing="0" cellpadding="4" width="100%">
+									<tr>
+										<td class="menu_bar_title" width="60px" align='center'>Vista</td>
+										<td class="menu_bar_title" >Producto</td>
+					 					<td class="menu_bar_title" align='right'>Precio</td>
+					 					<td class="menu_bar_title" align='center'>Cant</td>
+					 					<td class="menu_bar_title">Inv</td>
+									</tr>
+									[va_searchresults]
+					    	 	</table>
+					    	</td>
+				    	</tr>		  
+					</table>	
+
+					<table cellpadding=0 cellspacing=0 border=0 width=98%>
+						<tr>
+							<td class="tbltextttl">Productos : [va_matches]</td>
+							<td class="tbltextttl" align="right">P&aacute;ginas :  [va_pageslist]</td>
+						</tr>
+					</table>
+					<br>
+
+				</td>
+			</table>
+		</div>
+
+
+
+		<div style="float:left; width:30%; background-color: ;" id="sideBar">
+			<div id="sticker">
+				<table border="0" cellspacing="0" cellpadding="0" width="100%" class="formtable" style="-moz-border-radius: 4px; border-radius: 4px;">
+					<tr>
+						<td>
+							<table id="skulist" cellspacing="0" cellpadding="3" style="width:100%;" border=0>
+								<tr height="35px" bgcolor="#123772">
+									<td colspan="5">
+										<font color="#ffffff" face="century gothic, verdana" size="3">&nbsp;<img src="/sitimages/pos/cartico.png" width="24px"> Carrito de Compras</font>
+									</td>
+								</tr>
+								<tr height="25px">
+									<td bgcolor="#1d51a2" width=18px><font color="#ffffff">&nbsp;</font></td>
+									<td bgcolor="#1d51a2" width=35px align=center><font color="#ffffff">Cant</font></td>
+									<td bgcolor="#1d51a2"><font color="#ffffff">Producto</font></td>
+									<td bgcolor="#1d51a2" align=right><font color="#ffffff">Precio&nbsp;&nbsp;</font></td>
+								</tr>
+							</table>
+							<table border="0" style="width:100%;font-weight:bold;">
+								<tr>
+									<td width="70%" align="right">Total</td>
+									<td align="right">$ <span id="total_order_print">0.00</span>&nbsp;</td>
+								</tr>
+							</table>	
+						</td>
+					</tr>
+			 	</table>
+			</div>
+			<center>
+				<input type="hidden" id="total_order" value="0.00"/>
+				
+				<input type="submit" value="Crear Pedido" class="button" onclick="submitOrder()"><br>
+
+				<form method="post" action="/cgi-bin/mod/pos/admin" id="add_cart">
+					<input type="hidden" name="cmd" value="console">
+					<input type="hidden" name="step" value="0">
+					<input type="hidden" name="action" value="add_to_cart">
+					<input type="hidden" name="e" value="[in_e]">
+				</form>
+			</center>
+	</div>
+ 
+
+
+</td>
+</tr>
+</table>
+
+<script type="text/javascript">
+
+if(localStorage.getItem('debug')){
+	localStorage.clear();
+}
+
+function submitOrder(){
+	if(confirm("Estas seguro de creear el Pedido?")){                             
+		for(var key in localStorage) {                        
+	        var listSku = localStorage.getItem(key);
+	        console.log(listSku);
+	        if(listSku){    
+				objeto = JSON.parse(listSku);
+				$("<input type='hidden' name='add_"+key+"' value='"+objeto.qty+"' />").appendTo("#add_cart");
+	        }    
+		}
+		$("#add_cart").submit();
+	}
+}
+
+	function getSKU(id){
+		var skuparts = id;
+		var parts = skuparts.split("_");
+		var sku = parts[1];
+		return sku;
+		
+	}
+
+	/*
+	@(#)File:           $RCSfile: console_step0.html $
+	@(#)Version:        $Revision: 1.1 $
+	@(#)Last changed:   $Date: 2014/07/24 $
+	@(#)Purpose:        Format Money
+	@(#)Author:         Arturo Hernandez
+	@(#)Product:        :PRODUCT:
+	@(#)Vars:        	:formatMoney(total , c, d, t):
+	*/
+	function formatMoney(p){
+		var n = p, 
+		c = isNaN(c = Math.abs(c)) ? 2 : c, 
+		d = d == undefined ? "." : d, 
+		t = t == undefined ? "," : t, 
+		s = n < 0 ? "-" : "", 
+		i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
+		j = (j = i.length) > 3 ? j % 3 : 0;
+		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+	}
+
+	function updateCart(){
+		$(".loadtr").remove();
+                
+		totalItems = localStorage.length;
+                
+		var totalOrder = 0;
+		var i = 0;
+		for(var key in localStorage) {
+			i++;
+			var dif = i % 2;
+			var bakground = (dif == 0) ? '#f2f2f2' : '#fff';
+			var listSku = localStorage.getItem(key);
+            if(listSku){
+                objeto = JSON.parse(listSku);
+                console.log(objeto);
+                var trlist = '<tr class="loadtr" bgcolor="'+bakground+'" style="height:30px;"><td><img onclick="removeItemSku('+objeto.sku+')" src="/sitimages/default/b_drop.png" style="cursor:pointer;" id="drop_'+objeto.sku+'" title="Remove Item"/></td><td align="center">'+objeto.qty+'</td><td>'+objeto.model+'<br>ID: '+objeto.sku+'</td><td align="right">$ '+formatMoney(objeto.priceItem)+'</td></tr>';
+                $(trlist).appendTo("#skulist");
+                totalOrder+=objeto.priceItem;
+            }
+            
+		}
+        console.log(totalOrder)  ;
+		$("#total_order_print").html(formatMoney(totalOrder));
+          
+	}
+
+	function updateSKU(sku){
+		var items = parseFloat($("#total_"+sku).val());
+		var total_inv = parseFloat($("#inv_"+sku).val());
+		if(total_inv < items){
+			alert("Cantidad no disponible.");
+			$("#total_"+sku).val('');
+			return false;
+		}
+		if(localStorage.getItem(sku) === null){
+			//TODO: No existe el SKU
+		}else{
+			//TODO: Obtenemos el precio del Sku
+			var priceSkuDelete = localStorage.getItem(sku);
+			var obj = JSON.parse(priceSkuDelete);
+			var priceDelete = parseFloat(obj.priceItem);
+			//localStorage['totalOrder'] = localStorage['totalOrder'] - priceDelete;
+			localStorage.removeItem(sku);
+		}
+		var priceSku = $("#price_"+sku).val();
+		var totalPrice = parseFloat(items * priceSku);
+		var model = $("#model_"+sku).val();
+		var itemstorage = {'sku': sku, 'qty': items, 'price': priceSku, 'priceItem': totalPrice, 'model': model};
+		var totalOrder = localStorage.getItem('totalOrder');
+		localStorage[sku] = JSON.stringify(itemstorage);
+		/**
+		if(totalOrder === null){
+			localStorage['totalOrder'] = totalPrice;
+		}else{
+			localStorage['totalOrder'] = parseFloat(localStorage['totalOrder']) + totalPrice;
+		}*/
+
+	}
+
+	function removeItemSku(sku){
+		localStorage.removeItem(sku);
+		updateCart();
+	}
+	$( document ).ready(function() {
+		totalItems = localStorage.length;
+		if(totalItems > 0){
+			updateCart();
+		}
+		//localStorage.clear();
+		var s = $("#sideBar");
+	    var pos = s.position();                    
+	    $(window).scroll(function() {
+	        var windowpos = $(window).scrollTop();
+	        
+	        if (windowpos >= pos.top) {
+	        	//alert(windowpos);
+	        	position = (windowpos - 300);
+	        	s.css('margin-top', position+'px');
+	        } else {
+	           s.css('margin-top', '8px');
+	        }
+	    });
+
+		$(".addSKU").click(function (){
+			var skuparts = $(this).attr("id");
+			var parts = skuparts.split("_");
+			var sku = parts[1];
+			if($("#total_"+sku).val() >= 1){
+				//TODO: Pasar a otra consola				
+				
+				updateSKU(sku);
+				updateCart();
+				/*
+				$("#hide_"+sku).appendTo("#skulist");
+				$("#hide_"+sku).show();				
+				$("#total_order_print").html(total_print);
+				*/
+			}else{
+				//TODO: Error , necesita agregar al menos un item de este sku
+				$("#total_"+sku).focus();
+
+			}
+		});
+
+		//Input change
+		$(".inputchange").blur(function (){
+			var items = parseFloat($(this).val());
+			var id = getSKU($(this).attr('id'));
+			var value = $("#price_"+id).val();
+			var totalPrice = items * value;
+			totalPrice = formatMoney(totalPrice, '2','.',',');
+			$("#fullPrice_"+id).html('$ '+totalPrice);
+			$("#cant_"+id).html(items);
+			
+
+
+		});
+	});
+	
+</script>
+
+[ip_footer]
+
+

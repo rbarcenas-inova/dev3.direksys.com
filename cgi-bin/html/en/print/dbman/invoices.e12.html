@@ -1,0 +1,188 @@
+<STYLE TYPE="text/css">
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+
+fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+</STYLE>
+
+<table width="100%" cellspacing="0" cellpadding="2" border="0">
+	<tbody>
+		<tr>
+		    <td align="center" colspan="2" class="titletext">[va_link_to_pdf]</td>
+		 </tr>
+		<tr>
+		    <td colspan="2" class="stdtxterr"></td>
+		 </tr>
+	</tbody>
+</table>
+
+<table cellpadding=0 cellspacing=0 border=0>
+	<td align=left>
+		<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px>
+	</td>
+	[fc_show_companyinfo]
+	<td align=left valign=bottom>
+	<font class=dir>
+		No. de Serie del Certificado del Emisor: <br>
+		No. de Serie del Certificado del SAT: 
+	</td>	
+</table>
+
+<center>
+	<hr style="color: #000;background-color: #000;height: 1px;">
+	<font class=its>F A C T U R A </font>
+	<br>
+	<hr style="color: #000;background-color: #000;height: 1px;">
+	<br>
+</center>	
+
+<table cellpadding=5 cellspacing=0  style="border:1px solid #333333;border-bottom:0px;" width=100%>
+	<tr bgcolor=#ffffff>
+		<td style="border-bottom:1px solid #333333;" width=500px>
+		<font class=infot>CLIENTE 
+		</td>
+		<td style="border-bottom:1px solid #333333;border-left:1px solid #333333;">
+		<font class=infot>FECHA Y HORA
+		</td>
+		<td style="border-bottom:1px solid #333333;border-left:1px solid #333333;">
+		<font class=infot>
+		</td>
+	</tr>
+	
+	<tr bgcolor=#ffffff>
+		<td style="border-bottom:1px solid #333333;" valign=top align=left>
+		<font class=info>			
+		<b>[in_customer_fname]</b> <BR>
+		[in_customer_fcode]<BR>
+		[in_customer_address_street] [in_customer_address_num] [in_customer_address_num2] <BR>
+		[in_customer_address_urbanization], [in_customer_address_state]. CP [in_customer_address_zipcode], [in_customer_address_country]<BR>
+	<BR>
+		<b>Observaciones:</b><br/>
+		[va_ordernotes]
+		</td>
+		<td style="border-bottom:1px solid #333333;border-left:1px solid #333333;" valign=top align=left>
+		<font class=info>
+		<b>EMISION:</b><br>
+		[in_doc_date]
+		<br><br>
+		<b>CERTIFICACION:</b><br>	
+		</td>
+		<td style="border-bottom:1px solid #333333;border-left:1px solid #333333;" valign=top align=left>
+		<font class=info>
+			<b>FOLIO: </b><br>
+			[va_serial]
+			<br><BR>
+			<b>FOLIO FISCAL:</b><br>
+			[in_uuid]
+		</td>
+	</tr>
+</table>
+<br>
+
+<table cellpadding=5 cellspacing=0  style="border:1px solid #333333;border-bottom:0px; " width=100%>
+	<tr bgcolor=#ffffff>
+		<td style="border-bottom:1px solid #333333;" width=500px>
+		<font class=info><b>Expedido en:</b>
+			 [in_place_consignment]
+		</td>
+		<td style="border-bottom:1px solid #333333;border-left:1px solid #333333;">
+		<font class=info> 
+		</td>
+	</tr>
+	
+	<tr bgcolor=#ffffff>
+		<td style="border-bottom:1px solid #333333;" valign=top align=left>
+		<font class=info>
+		<b>Entrega en:</b><br>
+		
+		[va_street]  [va_num] [va_num2] <br/>
+		[va_urbanization]  [va_district]<br/>
+		[va_city] [va_state]
+		C.P: [va_zipcode]  [va_country]<br/>		
+		<br>
+		</td>
+		<td style="border-bottom:1px solid #333333;border-left:1px solid #333333;" valign=top align=left>
+		<font class=info>
+			
+			<b>No. Orden Compra:</b> [va_id_order]<br>
+			<b>No. Pedido Cl:</b> [va_id_order_alias] <br>
+			<b>No. Contrarecibo:</b> [va_exchange_receipt] <br>
+			<b>D&iacuteas Cr&eacutedito:</b> [va_credit_days]  <br>
+			<b>Condiciones:</b> [va_conditions]  <br>
+			<b>Lote:</b> [va_batch] <br>
+		</td>
+	</tr>
+</table>
+<br>
+
+<table cellpadding=5 cellspacing=0  style="border:1px solid #333333;border-bottom:0px;" width=100%>
+	<tr bgcolor=#ffffff>
+		<td style="border-bottom:1px solid #333333;">
+		<font class=infot>CANTIDAD
+		</td>
+		<td style="border-bottom:1px solid #333333;border-left:1px solid #333333;">
+		<font class=infot>UM
+		</td>
+		<td style="border-bottom:1px solid #333333;border-left:1px solid #333333;">
+		<font class=infot>DESCRIPCION
+		</td>
+		<td style="border-bottom:1px solid #333333;border-left:1px solid #333333;" align=right valign=top>
+		<font class=infot>P UNIT 
+		</td>
+		<td style="border-bottom:1px solid #333333;border-left:1px solid #333333;" align=right valign=top>
+		<font class=infot>IMPORTE
+		</td>
+	</tr>
+	[va_results]
+	<tr bgcolor=#ffffff>
+		
+		<td style="border-top:1px solid #333333;border-bottom:1px solid #333333;" colspan=3 align=left valign=top>
+		<font class=infot><!--CUATRO MIL OCHENTA Y UN PESOS 33/100 M.N.-->
+		</td>
+		<td style="border-top:1px solid #333333;border-bottom:1px solid #333333;border-left:1px solid #333333;" align=right valign=top>
+		<font class=infot>Subtotal:<br>
+		Total Descuentos:<br>
+		<!--Total Cargos:<br>-->
+		Subtotal:<br>
+		[va_tax_names]
+		Total:<br>
+		</td>
+		<td style="border-top:1px solid #333333;border-bottom:1px solid #333333;border-left:1px solid #333333;" align=right valign=top>
+		<font class=info>[va_subtotal]<br>
+			[in_discount]<br>
+			<!--0.00<br>-->
+			[va_total]<br>
+			[va_taxes]
+			[va_gran_total]<br>
+		</td>
+	</tr>	
+</table>

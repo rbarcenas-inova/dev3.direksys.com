@@ -1,0 +1,183 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table class="tab" cellpadding="0" cellspacing="0" align="center" border="0" width="100%">
+	  <tbody><tr>
+		<td align="center" width="30%"></td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/dbman?cmd=mer_products&amp;search=form&quot;)" align="center" width="23%">Search</td>
+		<td class="cell_on" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/dbman?cmd=mer_products&amp;search=advform&quot;)" align="center" width="23%">Adv Search</td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/dbman?cmd=mer_products&amp;search=listall&quot;)" align="center" width="23%">View / Edit / Delete</td>
+	  </tr>
+	</tbody></table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+  <form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="mer_products">
+	<input type="hidden" name="search" value="advSearch">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td class="titletext" align="left" colspan="2">Advanced Search Product</td>
+		</tr>
+		<tr>
+		  <td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+	</table>
+	<fieldset><legend>Advanced Search Form</legend>
+		<table border="0" cellspacing="0" cellpadding="4" width="100%">
+			<tr>
+				<td align="right">Product ID : <span class="smallfieldterr">[er_id_products] </span></td>
+				<td><input type="text" name="sl_products.id_products" value="[in_id_products]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		  </tr>
+			<tr>
+				<td align="right">Model : <span class="smallfieldterr">[er_model] </span></td>
+				<td><input type="text" name="sl_products.model" value="[in_model]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		  </tr>
+			<tr>
+				<td align="right">Title : <span class="smallfieldterr">[er_name] </span></td>
+				<td><input type="text" name="sl_products.name" value="[in_name]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		  </tr>
+			<tr>
+				<td align="right">Price From: </td><td><input type="text" name="from_sprice" value="[in_from_sprice]" size="8" onFocus='focusOn( this )' onBlur='focusOff( this )'> &nbsp;
+					To: &nbsp; <input type="text" name="to_sprice" value="[in_to_sprice]" size="8" onFocus='focusOn( this )' onBlur='focusOff( this )'>					
+				</td>
+		  </tr>
+			<tr>
+				<td align="right">Product Type : <span class="smallfieldterr">[er_prdtype]</span></td>
+				<td>
+					<select name="sl_products.producttype" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			        <option value="---">---</option>
+			        [fc_build_select_prdtype]
+					</select>
+				</td>
+		  </tr>
+			<tr>
+		    <td align="right">Brand : <span class="smallfieldterr">[er_id_brands]</span></td>
+		    <td class="smalltext"><select name="sl_products.id_brands" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+           <option value="---">---</option>
+           [fc_build_select_brands]
+       		</select>
+       	</td>
+			</tr>
+			<tr>
+			    <td align="right">Manufacturer SKU : <span class="smallfieldterr">[er_manufactersku]</span></td>
+			    <td class="smalltext"><input type="text" name="sl_products.manufactersku" value="[in_manufactersku]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+			    <td align="right" valign="top">Flexipago : <span class="smallfieldterr">[er_flexipago]</span></td>
+			    <td class="smalltext"><select name="flexipago" onFocus='focusOn( this )' onBlur='focusOff( this )' multiple="multiple" size="3">
+				  			<option value="">---</option>
+				  			<option value="1">None</option>
+				  			<option value="2">2 Payments</option>
+				  			<option value="3">3 Payments</option>
+				  			<option value="4">4 Payments</option>
+				  			<option value="5">5 Payments</option>
+				  			<option value="6">6 Payments</option>
+				  			<option value="7">7 Payments</option>
+				  			<option value="8">8 Payments</option>
+				  			<option value="9">9 Payments</option>
+				  			<option value="10">10 Payments</option>
+				  			<option value="11">11 Payments</option>
+				  			<option value="12">12 Payments</option>
+				  			<option value="13">13 Payments</option>
+				  			<option value="14">14 Payments</option>
+				  			<option value="15">15 Payments</option>
+				  			<option value="16">16 Payments</option>
+				  			<option value="17">17 Payments</option>
+				  			<option value="18">18 Payments</option>
+				  			<option value="19">19 Payments</option>
+				  			<option value="20">20 Payments</option>
+				  			<option value="21">21 Payments</option>
+				  			<option value="22">22 Payments</option>
+				  			<option value="23">23 Payments</option>
+				  			<option value="24">24 Payments</option>
+			             </select>
+			    </td>
+			</tr>
+			<tr>
+			   	<td align="right" valign="top">User Type Visibility : <span class="smallfieldterr">[er_user_type]</span></td>
+			   	<td><span class="smalltext">[fc_build_checkbox_usertype]</td>
+			</tr>
+			<tr>
+			    <td align="right" valign="top">Status : <span class="smallfieldterr">[er_status]</span></td>
+			    <td class="smalltext">
+			      	<input name="status" value="Testing" type="checkbox" class="checkbox"> Testing &nbsp;
+			      	<input name="status" value="On-Air" type="checkbox" class="checkbox"> On-Air &nbsp;
+			      	<input name="status" value="Up Sell" type="checkbox" class="checkbox"> Up Sell &nbsp;
+			      	<input name="status" value="Web Only" type="checkbox" class="checkbox"> Web Only &nbsp;
+			      	<br>
+			      	<input name="status" value="Active" type="checkbox" class="checkbox"> Active &nbsp;
+			      	<input name="status" value="Inactive" type="checkbox" class="checkbox"> Inactive
+			    </td>
+			</tr>
+			
+		</table>	
+		</fieldset>
+		&nbsp;
+	<fieldset><legend>UPC (Barcode)</legend>
+		<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+			<td>UPC : <span class="smallfieldterr">[er_upc]</span></td>
+			<td><input type="text" name="upc" value="[in_upc]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+	</table>
+	</fieldset>		
+		
+		&nbsp;
+		<fieldset><legend>Categories</legend>
+		<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+			<td>Category : <span class="smallfieldterr">[er_id_categories]</span></td>
+			<td><select name="sl_products_categories.id_categories" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					[fc_build_select_prdcategories]
+      		</select></td>
+		</tr>
+	</table>
+		</fieldset>
+		[ip_forms:search_form]
+		<p align="center"><input type="submit" value="Search" class="button"></p>
+	  </form>	
+<script language="javascript">
+<!--
+
+   
+	chg_select('sb','[in_sb]');
+	chg_select('sl_products.producttype','[in_sl_products.producttype]');
+	chg_select('sl_products.id_brands','[in_sl_products.id_brands]');
+	chg_select('sl_products_categories.id_categories','[in_sl_products_categories.id_categories]');
+	chg_chkbox('user_type','[in_user_type]')
+  
+  document.sitform.id_products.focus();
+
+//-->
+</script>
+
+  </form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

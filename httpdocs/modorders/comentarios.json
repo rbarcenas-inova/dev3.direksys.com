@@ -1,0 +1,212 @@
+[
+	{
+		"category" : "COMENTARIO CONFIRMACION DE DATOS",
+		"content" : [{
+			"label": "COMENTARIO CONFIRMACION DE DATOS",
+			"content" : "*** SE CONFIRMAN DATOS ATC VIGENCIA 30 DN ****\nRecuerda que este comentario lo ingresaras en todas las ordenes que te corresponda confirmar los datos de la orden y tendrA una vigencia de 30 dIa naturales (contar de lunes a domingo) aplica para ordenes del sistema PHONEMART y DIREKSYS"
+		}]
+	},{
+		"category" : "CITAS SAC",
+		"content" : [{
+			"label": "CITA SAC",
+			"content" : "FECHA DE ENTREGA:\nES REEMBOLSO O CAMBIO FISICO?\nQUE PRODUCTO DEVUELVE?\nQUE PRODUCTO SOLICITA (sOlo para cambio fIsico)?\nCONTAMOS CON FICHA DE DEPOSITO (EN CASO DE QUE APLIQUE)?\nFECHA Y HORA DE CITA:\nMOTIVO:\nRecuerda a tu cliente que debe presentarse a nuestro almacEn con el producto y la documentaciOn\nrequerida 15 antes de lo acordado"
+		}]
+	},{
+		"category" : "COMENTARIO CONFIRMACION DE DATOS",
+		"content" : [{
+			"label": "COMENTARIO CONFIRMACION DE DATOS",
+			"content" : "*** SE CONFIRMAN DATOS ATC VIGENCIA 30 DN ****\nRecuerda que este comentario lo ingresaras en todas las ordenes que te corresponda confirmar los datos de la orden y tendrA una vigencia de 30 dIa naturales (contar de lunes a domingo) aplica para ordenes del sistema PHONEMART y DIREKSYS"
+		}]
+	},{
+		"category" : "CUPON 20% DE DESCUENTO",
+		"content" : [{
+			"label": "CUPON DESCUENTO",
+			"content" : "MOTIVO:\nE-MAIL:\nORDEN"
+		}]
+	},
+	{
+		"category" : "CAMBIOS FISICOS",
+		"content" : [{
+			"label": "CF DIST",
+			"content" : "NOMBRE DEL CLIENTE:\nNUM. DE GUIA:\nSE REGISTRA DEVOLUCION EN LA GUIA?\nPRODUCTO DEVUELTO Y COSTO:\nPRODUCTO SOLICITADO Y COSTO:\nMOTIVO DEL CF:\nYA CONTAMOS CON LA DOCUMENTACION DEL CLIENTE?\nTELEFONOS:\nINGRESA EL DOMICILIO COMPLETO DE ENTREGA:\nREFERENCIAS:"
+		},
+		{
+			"label": "CF A DOM",
+			"content" : "FECHA DE ENTREGA:\nPRODUCTO A DEVOLVER Y COSTO?\nPRODUCTO SOLICITADO Y COSTO?\nMOTIVO DEL CF:\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nEL CLIENTE SOLICITO CAMBIO DE DOMICILIO?\nREFERENCIAS:\nEXPLICA POR QUE RAZON SOLICITASTE EL CF A DOMICILIO:\nRecuErdale a tu cliente que nuestro mensajero acudirA a su domicilio en 10 dIas hAbiles para realizar el intercambio de productos y que es necesario que tenga preparado el producto con la documentaciOn"
+		},
+		{
+			"label": "CF P/DEV (FOR)",
+			"content" : "LA ORDEN ESTA EN SHIPPED?\nFECHA DE DEVOLUCION:\nPRODUCTO DEVUELTO Y COSTO?\nPRODUCTO SOLICITADO Y COSTO?\nMOTIVO DEL CF:\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nREFERENCIAS:\nEL CLIENTE SOLICITO CAMBIO DE DOMICILIO?\n"
+		}]
+	},
+	{
+		"category" : "CANCELACIONES",
+		"content" : [{
+			"label": "CANCELACION COD",
+			"content" : "APLICASTE 3 INTENTOS DE RETENCION?\nHAY REMESA AGREGADA?\nLA ORDEN ES COD?\nMOTIVO DE LA CANCELACION:\nRecuerda que este tipo de cancelaciones las debes de realizar tU en lInea y no debes levantar el ticket."
+		},{
+			"label":"CANCELACION MUNDO INOVA",
+			"content" : "MUNDO INOVA:\nNOMBRE DEL TITULAR DE LA COMPRA:\nNOMBRE DE LA PERSONA QUE SOLICITA LA CANCELACION:\nDE QUE PLATAFORMA ES EL PEDIDO?\nCON QUE NUMERO INICIA EL PEDIDO?\nCUAL ES EL CARGO ($$$) QUE REPORTA EL CLIENTE?\nQUE TIEMPO HA TRANSCURRIDO DE ALTA DE LA ORDEN AL DIA DE HOY (MESES O DIAS)?\nTELEFONO(S) PARA CONTACTAR AL SOLICITANTE:\nCONFIRMASTE CON EL CLIENTE QUE EL MONTO REPORTADO YA ESTA REFLEJADO EN SU ESTADO DE CUENTA?\nEMAIL:\nMOTIVO DE LA CANCELACION?"
+		},{
+			"label": "CANCELACION LLAMADA",
+			"content" : "NOMBRE DEL CLIENTE:\nTELEFONO(S) CON CLAVE LADA:\nRecuErdale a tu cliente que el tiempo de soluciOn serA de 48 horas hAbiles y es necesario que envIes esta informaciOn por chat al Area de E-mail (YasmIn/Sandra)"
+		},{
+			"label": "CANCELACION PP",
+			"content" : "LA ORDEN ESTA EN NEW, PENDING O VOID?\nSE REGISTRA EL PAGO EN PAYMENTS?\nAPLICASTE MINIMO 1 INTENTO DE RETENCION?\nMOTIVO DE LA CANCELACION:\nRecuerda que esta cancelaciOn se solicita al supervisor en lInea y por medio de un chat."
+		},{
+			"label": "CANCELACION CONTIN",
+			"content" : "LA ORDEN ES PREPAGO?\nAPLICASTE MINIMO 1 INTENTO DE RETENCION?\nMOTIVO DE LA CANCELACION:\nRecuerda a tu cliente que en su prOximo estado de cuenta ya no se tendrA que ver reflejado el cargo y es necesario que envies esta informaciOn por chat al Area de E-mail (YasmIn/Sandy)."
+		},{
+			"label": "CANCELACION INOVA C",
+			"content" : "NOMBRE DEL TITULAR DE LA COMPRA:\nNUMERO DE ORDEN:\nFECHA DE ALTA DE ORDEN:\nNOMBRE DE LA PERSONA QUE SOLICITA LA CANCELACION:\nTELEFONO(S):\nEMAIL:\nLE LLEGO LA REVISTA?\nSE LE REALIZO EL COBRO?\nMOTIVO:\nIndica a tu cliente que se pasarA la solicitud al Area correspondiente; sin embargo es necesario que tambiEn le brindes el telEfono de INOVA CLUB 5002-2077"
+		}]
+	},
+	{
+		"category" : "ENVIOS",
+		"content" : [{
+			"label": "ENVIO X CNR",
+			"content" : "LA ORDEN ESTA EN NEW, PENDING O VOID?\nSE REGISTRA PAGO EN PAYMENTS?\nCUANTOS PRODUCTOS HAY EN INVENTARIO?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nCONTAMOS CON LA DOCUMENTACION (IFE, EDO DE CUENTA/FICHA)?\nREFERENCIAS:\n"
+		},{
+			"label": "ENVIO D SHIPING",
+			"content" : "LA ORDEN LLEVA MAS DE 48 HRS SIN SER SURTIDA?\nLA ORDEN ESTA EN PROCESSED?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nREFERENCIAS:\nRecuerda que para estos productos no hay garantIa de satisfacciOn total, solo tienen 30 dIas de garantIa por defecto de fabricaciOn y el cambio de producto sOlo serA por el mismo, NO aplica reembolso."
+		},{
+			"label": "ENVIO PZAS",
+			"content" : "HAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nPIEZA O PRODUCTO SOLICITADO?\nMOTIVO DE LA SOLICITUD:\nREFERENCIAS:"
+		},{
+			"label": "ENVIO PZAS (DF / METRO)",
+			"content" : "HAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nPIEZA O PRODUCTO SOLICITADO?\nMOTIVO DE LA SOLICITUD:\nREFERENCIAS:\nRecuerda que este ticket se atenderA como su fuera un cambio fIsico a domicilio; Por tal motivo solicitarAs a tu cliente el tiempo de entrega de 10 dIas hAbiles."
+		},{
+			"label": "ENVIO PZAS BC",
+			"content" : "TIENE LA VERSION IMPORTADA DE BODY CRUNCH?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nNUMERO Y NOMBRE DE PIEZA SOLICITADA?\nMOTIVO DE LA SOLICITUD:\nREFERENCIAS:\nRecuerda que la versiOn importada del Body Crunch viene totalmente desarmada y los pedales son similares a los de una bicicleta."
+		},{
+			"label": "ENVIO URGENTE",
+			"content" : "LA ORDEN ESTA EN PROCESSED?\nCUANTOS PRODUCTOS HAY EN INVENTARIO?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nREFERENCIAS:\nRecuerda que el tiempo de espera para esta solicitud es de 7 dIas hAbiles, no importando lalocalidad del cliente."
+		}]
+	},
+	{
+		"category" : "EXTRAVIOS",
+		"content" : [{
+			"label": "CNRF",
+			"content" : "LA ORDEN ES PREPAGO?\nNOMBRE DE LA MENSAJERIA:\nNUMERO DE GUIA:\nFECHA DE ENTREGA:\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nEL CLIENTE CONOCE A LA PERSONA QUE SE LE ENTREGO?\nAGREGA MAS REFERENCIAS Y TELEFONOS DE CONTACTO:\nSi la orden es COD no debes levantar este ticket; para estos casos tendrAs que transferir la llamada a ventas para una nueva orden."
+		},{
+			"label": "ECF",
+			"content" : "NOMBRE DE LA MENSAJERIA:\nNUM. DE GUIA:\nFECHA DE ENTREGA?\nQUE PRODUCTO(S) RECIBIO?\nQUE PRODUCTO(S) LE FALTO?\nDESCRIBE EL TIPO DE EMPAQUE:\nDESCRIBE LAS ANOMALIAS DETECTADAS EN EL EMPAQUE:\nDESCRIBE EL TIPO DE SELLO:\nDESCRIBE LAS ANOMALIAS DETECTADAS EN EL SELLO:\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nYA CONTAMOS CON LAS 3 FOTOGRAFIAS DEL CLIENTE?\nNO OLVIDES REPORTAR ESTA ECF VIA CHAT!!\nRecuerda pedir a tu cliente enviar 3 fotografIas de las caras del empaque; El tiempo de respuesta para la investigaciOn serA de 72 hrs hAbiles."
+		},{
+			"label": "GSM",
+			"content" : "LA ORDEN ESTA EN TRANSITO?\nNOMBRE DE LA MENSAJERIA:\nNUMERO DE GUIA:\nFECHA DE ULTIMO MOVIMIENTO?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nREFERENCIAS:\n"
+		},{
+			"label": "SINIESTRO",
+			"content" : "LA ORDEN ESTA EN TRANSITO?\nNOMBRE DE LA MENSAJERIA:\nPOR QUE MEDIO SE NOTIFICO EL ROBO/EXTRAVIO?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nREFERENCIAS:\n"
+		},{
+			"label": "REPOSICION EE",
+			"content" : "ESTA DENTRO DEL TIEMPO DE GARANTIA?\nTE ASEGURASTE DE QUE SEA LA UNICA REPOSICION QUE SOLICITA?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nYA CONTAMOS CON LA DOCUMENTACION?\nMODELO A REPONER:\nNOMBRE DEL CLIENTE (EN CASO DE SER DE DISTRIBUIDOR):"
+		}]
+	},
+	{
+		"category" : "FACTURA/ PEDIMENTO",
+		"content" : [{
+			"label": "FACTURA",
+			"content" : "LA ORDEN ESTA EN SHIPPED?\nFECHA DE ENTREGA:\nEMAIL:\nNOMBRE O RAZON SOCIAL:\nRFC:\nCALLE Y NUMERO:\nCOLONIA:\nMUN/ DELEGACION:\nESTADO:\nCP:\nRecuerda que este ticket sOlo se levanta si la pAgina de internet ya no le permite capturar la factura de nuevo al cliente, el tiempo de espera serA de 5 dIas hAbiles."
+		},{
+			"label": "PEDIMENTO",
+			"content" : "FECHA DE ENTREGA:\nNOMBRE COMPLETO DEL CLIENTE:\nEMAIL:\nRecueda que el tiempo de espera para esta solicitud serA de 5 dIas hAbiles"
+		}]
+	},
+	{
+		"category" : "REEMBOLSOS ATC",
+		"content" : [{
+			"label": "ATC P. DEV",
+			"content" : "HAY DEVOLUCION EN DKS?\nNOMBRE TAL CUAL IFE:\nTELEFONO DEL QUE SE COMUNICA?\nMOTIVO:Recuerda que las claves se liberan en 48 horas; sin embargo el tiempo de espera que darAs a tu cliente es de 7 dIas hAbiles. Tiene que cobrar en una sucursal Bancomer"
+		},{
+			"label": "ATC D. CTE",
+			"content" : "FECHA DE ENTREGA:\nDENTRO DE LA GARANTIA DE SATISFACCION TOTAL?\nDEVOLUCION REGISTRADA EN DKS?\nNOMBRE TAL CUAL\nIFE:\nPRODUCTO DEVUELTO:\nMOTIVO:\nRecuerda que las claves se liberan en 48 horas; sin embargo el tiempo de espera que darAs a tu cliente es de 7 dIas hAbiles. Tiene que cobrar en una sucursal Bancomer"
+		},{
+			"label": "NO SURT",
+			"content" : "NOMBRE TAL CUAL IFE:\nLA ORDEN ESTA EN ESTATUS PENDING?\nTELEFONO DEL QUE SE COMUNICA?\nMOTIVO:\nOBSERVACIONES:\nRecuerda que las claves se liberan en 48 horas; sin embargo el tiempo de espera que darAs a tu cliente es de 7 dIas hAbiles. Tiene que cobrar en una sucursal Bancomer"
+		},{
+			"label": "ATC",
+			"content" : "NOMBRE TAL CUAL IFE:\nEXISTE UN PRIMER TICKET DE REEMBOLSO?\nMOTIVO:\nOBSERVACIONES:\nRecuerda que las claves se liberan en 48 horas; sin embargo el tiempo de espera que darAs a tu cliente es de 7 dIas hAbiles. Tiene que cobrar en una sucursal Bancomer"
+		},{
+			"label": "RECOL DOM",
+			"content" : "FECHA DE ENTREGA:\nDENTRO DE LA GARANTIA DE SATISFACCION TOTAL?\nSE CONFIRMO DOMICILIO Y TELEFONO?\nNOMBRE TAL CUAL IFE:\nTELEFONO DEL QUE SE COMUNICA:\nPRODUCTO DEVUELTO:\nMOTIVO:\nRecuerda que las claves se liberan en 48 horas; sin embargo el tiempo de espera que darAs a tu cliente es de 7 dIas hAbiles. Tiene que cobrar en una sucursal Bancomer"
+		},{
+			"label": "EXTRAVIO",
+			"content" : "HAY COMENTARIO DE LOGISTICA DE EXTRAVIO O DEVOLUCION?\nNUM DE GUIA:\nNOMBRE TAL CUAL\nIFE:\nTELEFONO DEL QUE SE COMUNICA:\nMOTIVO:\nOBSERVACIONES:\nRecuerda que las claves se liberan en 48 horas; sin embargo el tiempo de espera que darAs a tu cliente es de 7 dIas hAbiles. Tiene que cobrar en una sucursal Bancomer"
+		},{
+			"label": "CARGO DOB",
+			"content" : "SE VALIDO QUE SEA CARGO DOBLE?\nCONTAMOS CON DOCUMENTACION?\nNOMBRE TAL CUAL\nIFE:\nMOTIVO:\nOBSERVACIONES:\nRecuerda que las claves se liberan en 48 horas; sin embargo el tiempo de espera que darAs a tu cliente es de 7 dIas hAbiles. Tiene que cobrar en una sucursal Bancomer"
+		}]
+	},
+	{
+		"category" : "PROMESAS FALSAS",
+		"content" : [{
+			"label": "PFRVT",
+			"content" : "ESTA DENTRO DE LOS 60 DIAS A PARTIR DE LA CREACION DE LA ORDEN?\nTELEFONO DEL QUE SE COMUNICA CON CLAVE LADA?\nDESCRIBE A DETALLE EL MOTIVO DE LA SOLICITUD:\nAREA QUE COMETE OMISION?\nRecuerda que el tiempo de espera para una grabaciOn es de 48 horas hAbiles"
+		}]
+	},
+	{
+		"category" : "REENVIOS",
+		"content" : [{
+			"label": "REENVIO CF",
+			"content" : "SE ATENDIO UN CAMBIO FISICO EN LA ORDEN?\nCUANTOS PRODUCTOS HAY EN INVENTARIO?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nREFERENCIAS:\nHAY DEVOLUCION EN DKS?\nNUM. DE GUIA:\n"
+		},{
+			"label": "REENVIO COD",
+			"content" : "LA ORDEN ESTA EN CANCELLED?\nCUANTOS PRODUCTOS HAY EN INVENTARIO?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nREFERENCIAS:\nHAY DEVOLUCION EN DKS?\nGUIA DE DEVOLUCION:\nSOLICITASTE A SUPERVISION EL CAMBIO DE ESTATUS A PROCESSED?\n"
+		},{
+			"label": "REENVIO PP",
+			"content" : "LA ORDEN ESTA EN SHIPPED?\nCUANTOS PRODUCTOS HAY EN INVENTARIO?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nREFERENCIAS:\nHAY DEVOLUCION EN DKS?\nGUIA DE DEVOLUCION:\n"
+		}]
+	},
+	{
+		"category" : "OTROS",
+		"content" : [{
+			"label": "AGILIZAR ENTREGA",
+			"content" : "ESTATUS ACTUAL?\nEXSITE ALGUN\nTICKET?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nREFERENCIAS:\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nDIA Y HORARIO DE ENTREGA QUE SOLICITA EL CLIENTE:\nOBSERVACIONES:\nRecuerda que estas peticiones las enviaras por un chat a CARMEN ARTEAGA EXT. 1097 y no tienes que levantar ticket. "
+		},{
+			"label": "AGILIZAR TICKET",
+			"content" : "ESTATUS ACTUAL?\nTIPO DE TICKET?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO\nOBSERVACIONES:\nRecuerda que estas peticiones las enviaras por un chat a CARMEN ARTEAGA EXT. 1097 y no tienes que levantar ticket. "
+		},{
+			"label": "CAMBIO FORM PAGO",
+			"content" : "FORMA DE PAGO ACTUAL?\nFORMA DE PAGO QUE SOLICITA?\nMOTIVO:\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nRecuerda que estas peticiones las enviaras por un chat a CARMEN ARTEAGA EXT. 1097 y no tienes que levantar ticket. "
+		},{
+			"label": "FORMATO(REEM/CF)",
+			"content" : "FECHA DE ENTREGA?\nGUIA DE RASTREO?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nE-MAIL:\nMOTIVO:\nRecuerda que estas peticiones las enviaras por un chat a CARMEN ARTEAGA EXT. 1097 y no tienes que levantar ticket. "
+		},{
+			"label": "REGISTRAR DEV",
+			"content" : "FECHA DE ENTREGA EN ALMACEN?\nNUMERO DE GUIA?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO\nRecuerda que estas peticiones las enviaras por un chat a CARMEN ARTEAGA EXT. 1097 y no tienes\nque levantar ticket. "},{
+			"label": "REGISTRAR ENTREGA ",
+			"content" : "FECHA DE ENTREGA?\nNUM DE GUIA?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO\nRecuerda que estas peticiones las enviaras por un chat a CARMEN ARTEAGA EXT. 1097 y no tienes que levantar ticket. "
+		},{
+			"label": "REINTENTO COBRO",
+			"content" : "ESTATUS ACTUAL?\nPAYMENTS TIENE COBRO?\nPAYLOGS TIENE COBRO?\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nHAY COMENTARIOS DE FRAUDE/CONTRACARGO?\nRecuerda que estas peticiones las enviaras por un chat a CARMEN ARTEAGA EXT. 1097 y no tienes que levantar ticket. "
+		},{
+			"label": "SEGUIMIENTO ECF / CNRF",
+			"content" : "FECHA DE LEVANTAMIENTO DE TICKET:\nYA PASO EL TIEMPO ESTIPULADO PARA SOLUCION DEL TRAMITE?\nMOTIVO:\n"
+		}]
+	},{
+		"category" : "COMENTARIOS IMPORTANTES",
+		"content" : [{
+			"label": "REPORTE CF FORA",
+			"content" : "PRODUCTO DEVUELTO Y COSTO?\nPRODUCTO SOLICITADO Y COSTO?\nMOTIVO DEL CF A DETALLE:\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nEL CLIENTE SOLICITO CAMBIO DE DOMICILIO?\nBRINDASTE EL PROCEDIMIENTO PARA EL RETORNO DEL \nPRODUCTO POR ESTAFETA (CUENTA CONCENTRADORA/ RAZON SOCIAL)?\nRecuerda pedir a tu cliente que se comunique 5 dIas hAbiles despuEs con su guIa de rastreo para poder levantar el ticket de cambio fIsico."
+		},{
+			"label": "REPORTE ENVIO PZAS FORA",
+			"content" : "PIEZA DEVUELTA(EN CASO DE QUE APLIQUE)?\nPIEZA SOLICITADA?\nMOTIVO A DETALLE:\nCONFIRMASTE DOMICILIO Y TELEFONOS?\nEL CLIENTE SOLICITO CAMBIO DE DOMICILIO?\nSOLICITASTE A TU CTE ENVIAR DOCUMENTACION?"
+		},{
+			"label": "REPORTE REPOSICION EE",
+			"content" : "ESTA DENTRO DEL TIEMPO DE GARANTIA?\nTE ASEGURASTE DE QUE SEA LA UNICA REPOSICION QUE SOLICITA?\nINGRESA DOMICILIO DE ENTREGA COMPLETO Y TELEFONOS:\nMODELO A REPONER:\nEsta estructura tendrAs que utilizarla en la primera llamada que reporta el robo/extravIo de sus Eagle Eyes, no olvides solicitar documentaciOn: Acta de hechos ante el MP(que incluya marca y modelo) e IFE al correo de validaciones7@inova.com.mx "
+		},{
+			"label": "REPORTE DEV INMED",
+			"content" : "ESTATUS DE LA ORDEN:\nFECHA DE ASIGNACION DE MENSAJERIA?\nFORMA DE PAGO?\nMOTIVO:\nRecuerda que estas peticiones las enviaras por un chat a CARMEN ARTEAGA EXT. 1097 y no tienes que levantar ticket. "
+		},{
+			"label": "REPORTE SACAR DE REMESA",
+			"content" : "TIENE REMESA?\nFORMA DE PAGO?\nTE ASEGURASTE QUE LA ORDEN NO ESTA EN TRANSITO?\nMOTIVO:\nRecuerda que estas peticiones las enviaras por un chat a CARMEN ARTEAGA EXT. 1097 y no tienes que levantar ticket."
+		},{
+			"label": "REPORTE CAM MAY PROD",
+			"content" : "TE ASEGURASTE DE QUE LA ORDEN AUN NO ESTA EN TRANSITO Y SIN REMESA AGREGADA?\nPRODUCTO ANTERIOR Y COSTO?\nPRODUCTO SOLICITADO Y COSTO?\nMOTIVO:\nRecuerda que estas peticiones las enviaras por un chat a Area de E-mail."
+		},{
+			"label": "REPORTE CAMBIO MAY DOM",
+			"content" : "FORMA DE PAGO:\nMOTIVO DEL CAMBIO:\nCONFIRMASTE LOS ULTIMOS 4 DIG DE LA TARJETA DE CREDITO (ORDEN PREPAGO)?\nSE CONFIRMO DOMICILIO ANTERIOR?\nDOMICILIO NUEVO.\nCALLE Y NUM:\nCOLONIA:\nENTRECALLES:\nREFERENCIAS:\nDELEG/MUN:\nESTADO Y CP:\nHAY COMENTARIOS DE FRAUDES/CONTRACARGO?\nRecuerda que estas peticiones las enviaras por un chat a CARMEN ARTEAGA EXT. 1097 y no tienes que levantar ticket. "
+		}]
+	}
+]
+

@@ -1,0 +1,111 @@
+[ip_header]
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:[fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>		
+		</td>	</table>	</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->				
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_prod")'>Products</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_mm")'>Media</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_pay")'>Payments</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_usr")'>Users</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_cust")'>Customers</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_good_bad_l")'>Good/Bad</td>
+	    <td width="10%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_araging")'>AR Aging</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	    <tr>
+	        <td class="titletext" align="center" colspan="2">Orders AR Aging</td>
+	    </tr>
+	    <tr>
+	        <td class="stdtxterr" colspan="2">[va_message]</td>
+	    </tr>
+	</table>
+	<form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+	    <input type="hidden" name="action" value="1">
+	    <input type="hidden" name="cmd" value="rep_orders_araging">
+	    <fieldset><legend>Query</legend>
+	        <table border="0" cellspacing="0" cellpadding="4" width="100%">	
+		  <tr>
+		      <td width="25%"valign="top">Date : <span class="smallfieldterr">[er_date]</span></td>
+		      <td class="smalltext">
+			<input type="text" id="date" name="date" value="[in_date]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'><span class="smallfieldterr">[er_date]</span>
+		      </td>
+		  </tr>
+		  <tr>
+		      <td width="25%"valign="top">Status : <span class="smallfieldterr">[er_status]</span></td>
+		      <td class="smalltext">
+				  <input type="checkbox" name="status" value="-1" class="checkbox" checked onclick="showDiv_checkbox('b_id_status',this.name);">All Status&nbsp;
+				  <div id="b_id_status" style="display:none;">
+					  [fc_build_checkbox_order_status]
+				  </div>
+				  <br><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'>
+			  </td>
+		  </tr>
+		  <tr>
+		      <td width="25%" valign="top">Other Filters:</td>
+		      <td class="smalltext"><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'><br>
+			<input type="checkbox" class="checkbox" name="excludevoid" value="on" checked> Exclude Void and System Error</td>
+		  </tr>				
+	        </table>
+	    </fieldset>
+	    <fieldset>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+	   		<td class="smalltext" valign="top" width="25%">User Type :</td>
+	   		<td class="smalltext">
+		   		[fc_build_checkbox_usertype]
+	   		</td>
+			</tr>
+		</table>
+	</fieldset>
+	<p align="center"><input type="submit" value="Run" class="button"></p>
+	</form>
+	<script language="javascript">
+	<!--					
+
+	    $(document).ready(function() {
+
+			/*AJAX Error handler*/
+			$(document).ajaxError(function(e, xhr, settings, exception) {
+				alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+			});
+
+			var dates = $( "#date" ).datepicker({
+				dateFormat: 'yy-mm-dd',
+				defaultDate: "-2m",
+				maxDate: new Date(),
+				changeMonth: true,
+				numberOfMonths: 3,
+			});
+
+	    });
+	//-->
+	</script>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

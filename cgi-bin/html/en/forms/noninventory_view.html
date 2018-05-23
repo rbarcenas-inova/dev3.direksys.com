@@ -1,0 +1,84 @@
+	<a name='tabs' id='tabs'>&nbsp;</a>
+	<fieldset><legend>Non Inventory Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_noninventory] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]&nbsp;
+					  		[fc_func_list_manager]
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		 <tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>	
+	</table>
+	</fieldset>	
+	&nbsp;	
+	<fieldset><legend>General Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Name : </td>
+		    <td class="smalltext">[in_name]</td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Description : </td>
+		  <td class="smalltext">[in_description] </td>
+		 </tr>
+		<tr>
+		    <td width="30%">Any Vendor : </td>
+		    <td class="smalltext">[in_anyvendor]</td>
+		</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Accounting</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  	<td valign="top" width="50%" class="smalltext">Purchase Account : ([in_purchaseid_accounts]) [va_paccount_name]</td>
+		  	<td valign="top" width="50%" class="smalltext">Asset Account : ([in_assetid_accounts]) [va_aaccount_name]</span></td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="50%" class="smalltext">Sale Tax : [in_tax] %</td>
+		  	<td valign="top" width="50%" class="smalltext">&nbsp;</td>
+		</tr>
+  	</table>
+	</fieldset>
+ 	&nbsp;
+	<fieldset><legend>Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			    <td width="30%">Status  : </td>
+			    <td class="smalltext">[in_status]</td>
+			</tr>
+  	</table>
+	</fieldset>
+	
+<div id="popup_additem" style="visibility: hidden; display: none; background-color: #ffffff;">
+	<div class="menu_bar_title" id="item_drag">
+		<img id="popup_exit2" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+		&nbsp;&nbsp;&nbsp;Add Vendor
+	</div>
+	<div class="formtable">
+	
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=noninventory_addvendor&id_noninventory=[in_id_noninventory]" name="rcmd" TITLE="Recieve Commands" width="400" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+		</IFRAME>	
+
+	</div>
+</div>
+
+<script language="JavaScript">
+	function add_vendor(){
+		popup_show('popup_additem', 'item_drag', 'popup_exit2', 'element-right', -1, -1,'tabs');
+	}
+</script>

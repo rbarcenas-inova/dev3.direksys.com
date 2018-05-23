@@ -1,0 +1,125 @@
+[ip_header]
+<script type="text/javascript" src="/jquery-token/jquery.tokeninput.js"></script>
+<link rel="stylesheet" href="/jquery-token/token-input.css" type="text/css" />
+<link rel="stylesheet" href="/jquery-token/token-input-facebook.css" type="text/css" />
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 8, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+				<tr>
+					<td width="20%" align="center"></td>
+					<td width="20%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=usr_admin_perm")'>Users Permissions Manager</td>
+					<td width="20%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=group_admin_perm")'>Groups Permissions Manager</td>
+					<td width="20%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=usr_users_perms_list")'>User Permissions List</td>
+					<td width="20%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=usr_view_groups_perm")'>Group Permissions List</td>
+				</tr>
+			</table>
+<!-- Start Main Area  -->
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td align="center"><h1 class="titletext" >Groups Permissions Manager</h1></td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	<div id="formuser" style="[va_display2]">
+
+		<form method="post" action="/cgi-bin/mod/admin/admin" id="form">
+			<input type="hidden" name="cmd" value="usr_group_admin_perm" />
+			<input type="hidden" name="action" value="1" />
+			<input type="hidden" name="type" id="type" value="admin" />
+			
+			<fieldset><legend>Add Permission</legend>
+				<table border="0" width="100%" >
+					<tr>
+						<td width="30%" align="left">
+							<label for="groups">For Groups: </label><span class="smallfieldterr">[er_groups]</span>
+						</td>
+						<td>
+							<input type="text" name="groups" id="groups" /> 
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			&nbsp;
+			<fieldset><legend>Detail Permission</legend>
+				<table border="0" width="100%" >
+					<tr>
+						<td width="30%" align="left">
+							Application : <span class="smallfieldterr">[er_application]</span>
+						</td>
+						<td>
+							<select id="application" name="application">
+								<option value=""></option>
+								[bs_application@admin_perms]
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td width="30%" align="left">
+							Command : <span class="smallfieldterr">[er_new_command]</span>
+						</td>
+						<td>
+							<input type="text" name='new_command' value="[in_new_command]" id="new_command" placeholder="Command" style="width:150px;height:20px;" />
+						</td>
+					</tr>
+					<tr>
+						<td width="30%" align="left">
+							Grant : <span class="smallfieldterr">[er_ptype]</span>
+						</td>
+						<td>
+							<input type="radio" class="radio" id="ptype_allow"  value="allow" name="ptype">
+							<label for="ptype_allow">Allow</label>
+							<input type="radio" class="radio" id="ptype_disallow" value="diallow" name="ptype">
+							<label for="ptype_disallow">Disallow</label>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			&nbsp;
+			<div align="center"><input value="Add Record" class="button" type="submit"></div>
+			
+		</form>
+	</div>
+
+		<script type="text/javascript">
+		chg_select('application','[in_application]');
+		chg_radio('ptype','[in_ptype]');
+
+        $(document).ready(function() {
+
+        	$("#groups").tokenInput("/cgi-bin/common/apps/ajaxbuild?ajaxbuild=search_group", {
+				preventDuplicates: true
+			});
+			
+			
+			$("#form").submit(function (event) {
+
+			});
+			
+         });
+
+        </script>
+		</td>
+	</tr>
+</table>
+[ip_footer]

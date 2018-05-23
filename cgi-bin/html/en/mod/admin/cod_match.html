@@ -1,0 +1,58 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			[ip_menu]
+			&nbsp;
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="5%" align="center"></td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=packing_fadd")'>Single Items</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=packing_fadd&mult=1")'>Multiple Items</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=packing_fadd&xd=1")'>Exp delivery</td>
+	    <td class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=orders&&search=advform")'>Search Orders</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td class="titletext" align="left" colspan="2">View Order : [in_id_orders]</td>
+				</tr>
+				<tr>
+					<td class="stdtxterr" colspan="2">[va_message]</td>
+				</tr>
+			</table>
+			&nbsp;
+			<fieldset><legend>Order Info</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td width="30%" class="titletext">Order ID  : </td>
+					<td class="titletext">[in_id_orders] &nbsp;
+						[fc_hasreturn]
+					</td>
+				</tr>
+				<tr>
+					<td width="30%" class="smalltext">Date / Time /user  : </td>
+					<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+				</tr>		
+			</table>
+			</fieldset>
+			&nbsp;
+			[ip_forms:orders_view_wman]
+			
+			&nbsp;			<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

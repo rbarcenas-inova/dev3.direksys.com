@@ -1,0 +1,63 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+			  <tr>
+			    <td width="30%" align="center"></td>
+			    <td width="15%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/pos/dbman?cmd=opr_orders&search=listall&sb=id_orders&so=DESC")'>View / Edit / Delete</td>
+			  </tr>
+			</table>
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+			
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center" colspan="2">Orders</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Sales / Orders Links</legend>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+			<td valign="top" width="50%">
+		  	<ul class='nslist'>
+		    	<li class='nslist'>Ordenes Pendientes
+		    		<ul class='nslist'>
+		    			<li class='nslist'><a href="/cgi-bin/mod/pos/dbman?cmd=opr_orders&search=Search&Status=Pending&sb=id_orders&so=DESC">Orders Pendientes (Status = Pending)</a></li>
+		    		</ul>
+		    	</li>
+		    </ul></td>
+		  <td valign="top" width="50%">
+		  	&nbsp;
+		  </td>
+		</tr>
+  </table>
+	</fieldset>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

@@ -1,0 +1,66 @@
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+});
+
+-->
+</script>
+
+	<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="mer_products">
+	<input type="hidden" name="view" value="[in_id_products]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="[in_tab]">
+	<input type="hidden" name="belongsto" value="[in_belongsto]">
+	<input type="hidden" name="upd_links" value="[in_id_products]">
+
+	<div class="container_white">
+
+		<br>
+		<center class="titletext">
+			<p>Ecommerce Links: [in_belongsto] ([in_id_products])</p>
+		</center>
+		<span class="stdtxterr">[va_message]</span>
+		&nbsp;
+		<fieldset><legend>Link Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+
+			[va_list_name]
+
+			<!--tr style="background-color:#EEEED1;">
+				<td width="35%">New URL: <span class="smallfieldterr">[er_another_name]</span></td>
+				<td class="smalltext"><input type="text" name="another_name" value="[in_another_name]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				<td>&nbsp;</a>
+			</tr-->
+
+		</table>
+		</fieldset>
+		&nbsp;
+
+		<center>
+			<input type="submit" id="btn_submit" value="Send" class="button">
+		</center>
+		<br><br>
+
+	</div>
+
+	</form>
+
+	<script language="javascript">
+	<!--
+
+		chg_select('prior_id_packingopts','[in_id_packingopts]');
+		chg_select('prior_flexipago','[in_flexipago]');
+
+		chg_chkbox('prior_paytype','[in_paytype]');
+
+
+	//-->
+	</script>
+

@@ -1,0 +1,50 @@
+<style>
+
+div.stepnum{
+	background-color: #ffffff;
+	display:block;		
+	padding:0px 10px;
+	font-family: arial;		color:#262626;			
+	font-size: 25px;
+	-moz-border-radius: 50px; 
+		border-radius: 50px;
+}
+
+
+ </style>
+ 
+ 	<fieldset style="background-color:#444444; border: 1px solid #111111;">
+ 		
+ 		<!--legend>Datos del Cliente</legend-->
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width='2%' rowspan="3"><div class=stepnum>[in_step]</div></td>
+			<td valign="top" align="right" width="100"><font color=#bbbbbb>Cliente :</td>
+			<td valign="top" class="" align="left"><font color=#ffffff><b>[va_membership]
+		  	 ([in_customers.id_customers]</a>) [in_customers.FirstName] [in_customers.LastName1] [in_customers.LastName2]
+		  	 <!--(<a href="javascript:return false;" onClick="trjump('/cgi-bin/mod/pos/dbman?cmd=opr_customers&view=[in_customers.id_customers]&tab=2#tabs')">[in_customers.id_customers]</a>) [in_customers.FirstName] [in_customers.LastName1] [in_customers.LastName2]-->
+			  </td>
+			  <td valign="top" align="right" width="100"><font color=#bbbbbb>Municipio :</td>
+				<td valign="top" align="left"><font color=#ffffff><b>[in_customers.City]</td>
+			<td rowspan="3" width="60">[fc_showprodfam]</td>
+		 </tr>
+		 <tr>
+		 	<td valign="top" align="right"><font color=#bbbbbb>Direcci&oacute;n :</td>
+		 	<td valign="top" align="left"> <font color=#ffffff><b>
+		  	[in_customers.Address1] [in_customers.Address2] [in_customers.Address3]
+		  </td>
+		  <td valign="top" align="right"><font color=#bbbbbb>Estado :</td>
+		 	<td valign="top" class="smalltext" align="left"><font color=#ffffff><b>
+		 		[in_customers.State]</td>
+		 </tr>
+		 <tr>
+		 	<td valign="top" align="right"><font color=#bbbbbb>Inf. de Contacto :</td>
+		 	<td valign="top" align="left"> <font color=#ffffff><b>
+		  	[in_customers.Phone1] [in_customers.Phone2] &nbsp;&nbsp;&nbsp;[in_customers.CellPhone] &nbsp;&nbsp;&nbsp;[in_customers.email]
+		  </td>
+		  <td valign="top" align="right"><font color=#bbbbbb>C&oacute;digo Postal :</td>
+		 	<td valign="top" align="left"> <font color=#ffffff><b>
+		 		[in_customers.Zip]</td>
+		 </tr>
+	</table>
+	</fieldset>

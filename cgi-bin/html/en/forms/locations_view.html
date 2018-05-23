@@ -1,0 +1,66 @@
+	&nbsp;
+	<fieldset><legend>Locations Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Locations ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_ID_locations] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]
+							<a href="/cgi-bin/mod/[ur_application]/admin?cmd=opr_warehouses_inventory_locations&id_warehouses=[in_ID_Warehouses]&id_locations=[in_ID_locations]&export=1" title="Export Full Inventory" alt="Export Full Inventory">
+								<img border="0" src="[va_imgurl]/[ur_pref_style]/b_xls.gif" width="24" height="24" title="Export Full Inventory" alt="Export Full Inventory">
+							</a>
+							<a href="/cgi-bin/common/apps/full_kardex.pl?id_locations=[in_view]"  class='fancy_modal_iframe'>
+								<img src='[va_imgurl]/[ur_pref_style]/kardex.png' title='Kardex' alt='Kardex' border='0' width='24' height='24'>
+							</a>
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Location Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Warehouse : </td>
+		  <td class="smalltext"><a href="[va_script_url]?cmd=opr_warehouses&view=[in_ID_Warehouses]">([in_ID_warehouses])</a> [ln_ID_warehouses@sl_warehouses:Name]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Code  : </td>
+		  <td class="smalltext">[in_Code]</td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Upc : </td>
+		  <td class="smalltext">[in_UPC]</td>
+		</tr>
+		
+		<tr>
+		  <td valign="top" width="30%">Description :</td>
+		  <td class="smalltext">[in_Description]<br></td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+     <fieldset><legend>Location Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Locked  : </td>
+		    <td class="smalltext">[in_Locked]</td>
+		 </tr>
+		 <tr>
+		    <td width="30%">Status  : </td>
+		    <td class="smalltext">[in_Status]</td>
+		 </tr>
+  	</table>
+	</fieldset>
+	&nbsp;
+	

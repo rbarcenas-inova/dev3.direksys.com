@@ -1,0 +1,134 @@
+[ip_header]
+	
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 6, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+			&nbsp;
+			<form action="/cgi-bin/mod/admin/admin" method="post" name="sitform" onsubmit="return disableSubmits();">
+				<input type="hidden" name="cmd" value="mm_did0">
+				<input type="hidden" name="action" value="1">
+				<input type="hidden" name="search" value="listall">
+				&nbsp;
+				<fieldset>
+					<legend>Filter Info</legend>
+					<table border="0" cellspacing="0" cellpadding="2" width="100%">
+						<tr>
+							<td class='smalltext' nowrap width="20%">Date From / Date To:</td>
+							<td class='smalltext'>
+								<input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>&nbsp;&nbsp;
+								<input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>&nbsp;&nbsp;
+								<input type="submit" value="Search" class="button">
+							</td>
+						</tr>
+					</table>
+					&nbsp;
+					<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+							<td align="center" class="menu_bar_title"> Orders With DID=0</td>
+					</tr>
+					<tr>
+							<td align="center" class="titletext">[va_matches]</td>
+					</tr>
+					<tr>
+					<td class="stdtxterr">[va_message]</td>
+					</tr>
+					</table>
+					&nbsp;
+				</fieldset>
+			</form>
+  <form action="/cgi-bin/mod/admin/admin" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="med_uploadcode">
+	<input type="hidden" name="action" value="1">
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="tbltextttl">Orders : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title">ID</td>
+		    <td class="menu_bar_title">Name / City, State</td>		    
+		    <td class="menu_bar_title">Phones</td>
+		    <td class="menu_bar_title">Date / Time</td>
+		    <td class="menu_bar_title">Order</td>
+		    <td class="menu_bar_title">Assign</td>
+		 </tr>
+		[va_searchresults]
+  </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">Orders : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>  
+  </form>			
+<div class="apple_overlay" id="overlay">
+	<!-- the external content is loaded inside this tag -->
+	<div class="contentWrap"></div>
+
+</div>
+<!--<div id="ajaxcontent">&nbsp;</div>-->
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('URL: ' + settings.url + ' \n'+'Error:' + xhr.responseText + '\nType:' + exception);
+		xhr.abort();
+	});
+
+	$.ajaxSetup({ timeout: ( 10 * 60 * 1000 ) });
+
+
+	var dates = $( "#from_date, #to_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2011,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+});
+
+-->
+</script>
+
+[ip_footer]
+
+

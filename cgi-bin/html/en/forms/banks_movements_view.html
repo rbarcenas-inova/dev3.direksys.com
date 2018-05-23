@@ -1,0 +1,190 @@
+	&nbsp;
+	<fieldset><legend>Banks Movements Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Banks Movements ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_banks_movements] &nbsp;
+							<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&modify=[in_id_banks_movements]"><img src='[va_imgurl]/[ur_pref_style]/b_edit.gif' title='Edit' alt='' border='0'></a>
+					  		[fc_template_prnbutton]
+					  		[va_cancel_btn]
+					  		<a href="/cgi-bin/mod/admin/dbman?cmd=[in_cmd]&view=[in_view]&delete=1&action=1" onclick="return Confirm_to_continue()"><img src="[va_imgurl]/[ur_pref_style]/trash.png" title="Delete" alt="Delete" border="0"></a>
+					  		<a href="/cgi-bin/common/apps/ajaxfinance?cmd=movements_editor&id_banks_movements=[in_view]&tablename=banks_movements&edit_type=banks_movements" class="fancy_modal_iframe" title="Movements Editor">
+								<img border="0" alt="Edit" title="Edit Movements" src="[va_imgurl]/[ur_pref_style]/icon-edit-movements.png" height="24" width="24">
+							</a>
+							[va_invoices_link]
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Banks Movements Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Bank  : </td>
+			<td class="smalltext"><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=fin_banks&view=[in_id_banks]">([in_id_banks])</a> [in_banks_name]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Bank Account : </td>
+			<td class="smalltext">[in_subaccountof]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">ABA-ACH : </td>
+			<td class="smalltext">[in_aba-ach]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Bank Currency : </td>
+			<td class="smalltext">[in_currency]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Bank Date : </td>
+			<td class="smalltext">[in_bankdate]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Type : </td>
+			<td class="smalltext">[in_type]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Amount : </td>
+			<td class="smalltext">$ [in_amount]</td>
+		</tr>
+		<tr style="[va_show_currency_exchange]">
+			<td valign="top" width="30%">Exchange Rate : </td>
+			<td class="smalltext">[in_currency_exchange]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Payment Method :  </td>
+			<td class="smalltext">[in_doc_type]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Reference Number : </td>
+			<td class="smalltext">[in_refnum]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Reference Number Custom: </td>
+			<td class="smalltext">[in_refnumcustom]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Reference Bank Account: </td>
+			<td class="smalltext">[in_refbankaccount]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Memo : </td>
+			<td class="smalltext">[in_memo]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Conciliation Date : </td>
+			<td class="smalltext">[in_consdate]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Status : </td>
+			<td class="smalltext">[in_status]</td>
+		</tr>	
+	</table><a name='tabs' id='tabs'>&nbsp;</a>
+	</fieldset>
+	&nbsp;
+
+	
+<!--  Search Customer  -->
+<div id="search_cust" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+<div class="menu_bar_title" id="item_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Search for a Customer in_id_banks_movements</td>
+			<td align=right width=20px><img id="popup_exiti" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+<!--in_id_banks_movements
+&nbsp;&nbsp;&nbsp;Search for a Customer-->
+</div>
+<div >
+<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=customers_submit&pathurlmov=/cgi-bin/mod/admin/dbman&cmdrecieve=[in_cmd]&view=[in_id_banks_movements]&tab=[in_tab]" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+<H2>Unable to do the script</H2>
+<H3>Please update your Browser</H3>
+</IFRAME>	
+</div></div>
+
+<div id="search_vendors" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+<div class="menu_bar_title" id="item_drag1">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Search for a Vendor</td>
+			<td align=right width=20px><img id="popup_exit1" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+</div>
+<div >
+<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=vendors_submit&pathurlmov=/cgi-bin/mod/admin/dbman&cmdrecieve=[in_cmd]&view=[in_id_banks_movements]&tab=[in_tab]" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+<H2>Unable to do the script</H2>
+<H3>Please update your Browser</H3>
+</IFRAME>	
+</div></div>
+
+<div id="popup_addservices" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+<div class="menu_bar_title" id="services_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Services to the Order</td>
+			<td align=right width=20px><img id="popup_exit3" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+
+</div>
+<div >
+<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=po_addparts&id_purchaseorders=201&rndnumber=[va_rndnumber]" name="rcmd" id="rcmd_services" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+<H2>Unable to do the script</H2>
+<H3>Please update your Browser</H3>
+</IFRAME>	
+</div></div>
+
+<div id="search_account" name="search_account" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+    <div class="menu_bar_title" id="item_drag2">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Search for an Account</td>
+			<td align=right width=20px><img id="popup_exit_acc" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+    </div>
+    <div >
+        <IFRAME SRC="/cgi-bin/common/apps/schid?cmd=accounts_submit&pathurlmov=/cgi-bin/mod/admin/dbman&cmdrecieve=[in_cmd]&view=[in_view]&tab=2&element_id=id_account&hide_element=search_account" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+        <H2>Unable to do the script</H2>
+        <H3>Please update your Browser</H3>
+        </IFRAME>	
+    </div>
+</div>
+
+<script language="JavaScript">
+	function add_vendor(){
+		popup_show('popup_vendors', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'vendors');
+	}
+
+
+	function add_services(){
+		var objFrame=document.getElementById("rcmd_services");
+		objFrame.src="/cgi-bin/common/apps/ajaxorder_wqty?cmd=editing_order&id_orders=[in_id_orders]&path=[va_script_url]&cmdo=[in_cmd]&dototemp=YES&edit_finished=[in_edit_finished]";
+		popup_show('popup_addservices', 'services_drag', 'popup_exit3', 'element-left', -1, -1,'tabs');
+	}
+	
+	$(document).ready(function() {
+		
+	});
+	
+	function checkall(bx) {
+		var cbs = document.getElementsByTagName('input');
+		for(var i=0; i < cbs.length; i++) {
+			if(cbs[i].type == 'checkbox') {
+				cbs[i].checked = bx.checked;
+			}
+		}
+	}
+
+	function Confirm_to_continue() {
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+</script>

@@ -1,0 +1,29 @@
+<select name="ajax" id="chosen" data-placeholder="ID Product / Service ">
+	<option value="[in_chosen]" selected>[in_chosen]</option>
+</select>
+
+<script src="/chosen/chosen.jquery.min.js"></script>
+<script src="/chosen/chosen.ajaxaddition.jquery.js"></script>
+
+<link rel="stylesheet" href="/chosen/chosen.min.css">
+
+<script language="JavaScript">
+<!--
+	$('#chosen').chosen({
+		width: "95%",
+		allow_single_deselect:true
+	});
+
+	$('#chosen').ajaxChosen({
+           dataType: 'json',
+           type: 'POST',
+           url:'/cgi-bin/common/apps/ajaxbuild',
+           data: {
+           		keyboard : $('.chosen-search input').val(),
+           		ajaxbuild: 'search_products',
+           }
+	},{
+		loadingImg: '/chosen/loading.gif'
+	});
+//-->
+</script>

@@ -1,0 +1,87 @@
+	&nbsp;
+	<fieldset><legend>Zip Codes</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">		
+		<tr>
+		   <td class='smalltext' width="30%">Zip Code : <span class="smallfieldterr">[er_ZipCode]</span></td>
+		   <td class='smalltext'><input type="text" name="ZipCode" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' value="[in_ZipCode]"></td>
+		</tr>
+		<tr>
+		   <td class='smalltext' width="30%">ID Zones : <span class="smallfieldterr">[er_Id_zipcodes]</span></td>
+		   <td class='smalltext'>
+		   		<select name='Id_zones' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		   			<option value=''>---</option>
+		   			[fc_build_select_zones]
+				</select></td>
+		</tr>
+		<tr>
+		   <td class='smalltext' width="30%">State : <span class="smallfieldterr">[er_State]</span></td>
+		   <td class='smalltext'>
+		   <select name='State' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		   			<option value=''>---</option>
+		   			[fc_build_select_zipcode_states_acronym]
+				</select>
+			</td>
+		</tr>
+		<tr>
+		   <td class='smalltext' width="30%">State Fullname: <span class="smallfieldterr">[er_StateFullName]</span></td>
+		   	<td class='smalltext'>
+		   <select name='StateFullName' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		   			<option value=''>---</option>
+		   			[fc_build_select_zipcode_states]
+				</select>
+		   </td>
+		   <td class='smalltext'>
+		   </td>
+		</tr>
+
+		<tr>
+		   <td class='smalltext' width="30%">City: <span class="smallfieldterr">[er_City]</span></td>
+		   	<td class='smalltext'>
+		   <input type="text" name="City" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )' value="[in_City]"></td>
+		   <td class='smalltext'>
+		   </td>
+		</tr>
+
+		<tr>
+		   <td class='smalltext' width="30%">Province: <span class="smallfieldterr">[er_City]</span></td>
+		   	<td class='smalltext'>
+		   <input type="text" name="CountyName" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )' value="[in_CountyName]"></td>
+		   <td class='smalltext'>
+		   </td>
+		</tr>
+		<tr>
+		   <td class='smalltext' width="30%">Metropolitan Area: <span class="smallfieldterr">[er_metropolitanarea]</span></td>
+		   	<td class="smalltext">
+			<span class="checa">
+				<input id="MetropolitAnarea_Yes" name="MetropolitanArea" value="Yes" class="radio" type="radio"> 
+				<label for="MetropolitAnarea_Yes">Yes</label>
+			</span>
+			<span class="checa">
+				<input id="MetropolitAnarea_No" name="MetropolitanArea" value="No" class="radio" type="radio"> 
+				<label for="MetropolitAnarea_No">No</label>
+			</span>
+		</td>
+		   <td class='smalltext'>
+		   </td>
+		</tr>
+		<tr>
+		    <td class='smalltext' width="30%">Status : <span class="smallfieldterr">[er_Status]</span></td>
+		    <td class="smalltext">
+		    	<input type="radio" name="Status" value="Active" class="radio">Active
+                <input type="radio" name="Status" value="Inactive" class="radio">Inactive</td>
+		 </tr>
+	</table>
+</fieldset>
+
+<script language="javascript">
+<!--
+	chg_select('Id_zones','[in_Id_zones]');
+	chg_select('State','[in_State]');
+	chg_select('StateFullName','[in_StateFullName]');
+	chg_radio('Status','[in_Status]');
+	chg_radio('MetropolitanArea','[in_metropolitanarea]');
+	// chg_radio('borderzone','[in_borderzone]');
+//-->
+</script>
+
+

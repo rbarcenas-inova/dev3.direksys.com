@@ -1,0 +1,529 @@
+
+<table border="0" cellspacing="0" cellpadding="0"   width=100% bgcolor="#000000" background=[va_imgurl]app_bar/mod/botbg.jpg>
+    <tr>
+      <td>
+        <table cellpadding=0 cellspacing=0 width=100% border=0>
+          <td width=150px>&nbsp;</td>
+          <td valign=top align=center>
+            <!-- <a id="img_direksys_footer" title="Go Home"  href="/cgi-bin/mod/[ur_application]/admin?cmd=home" /> -->
+            <img src=[va_imgurl]app_bar/mod/logo2.png border=0 width=160px> 
+            <!-- </a> -->
+          </td>
+          <td width=150px>&nbsp;</td>
+        </table>
+      </td>
+    </tr>
+   </table>
+    <br>
+
+<!--temporales start-->
+<STYLE TYPE="text/css"> 
+
+</STYLE>
+<!--temporales fin-->
+
+
+
+<STYLE TYPE="text/css">
+	div.superhover {	 border:0px solid #aaaaaa;
+		width:175px;	
+		background-color:#ffffff;	 
+		padding: 5px 3px;  
+		-moz-box-shadow: 0 0px 8px #777777;	
+		-webkit-box-shadow: 0 0px 8px #777777;	
+		box-shadow: 0 0px 8px #777777;	    
+		position:fixed;
+		bottom:0px;
+		left:0px;
+		z-index:100000000;
+		-moz-border-top-right-radius: 7px;
+		border-top-right-radius: 7px;
+	}
+	   
+	   
+	div.superhover:hover {	 
+		border:0px solid #aaaaaa;
+		background-color:#ffffff;
+		/*padding: 9px;*/
+		-moz-box-shadow: 0 0px 10px #777777;
+		-webkit-box-shadow: 0 0px 10px #777777;
+		box-shadow: 0 0px 10px #777777;
+	}
+
+
+	.gosearch {
+	    border: 1px solid #aaaaaa;
+	    background-color: #ffffff;
+		font-family: verdana, arial;
+		color:#727272;
+		font-size: 14px;
+	    width:150px;height:26px;
+	    background: url(/sitimages/app_bar/mod/inpdeg.jpg) top left;
+	    background-repeat: no-repeat;
+		line-height:17px;
+		-moz-border-radius: 7px;
+		border-radius: 7px;
+		padding-left:10px;
+	}
+
+	.gosearch:hover {
+	    border: 1px solid #777777;
+	    background-color: #ffffff;
+		font-family: verdana, arial;
+		color:#727272;
+		font-size: 14px;
+		line-height:17px;
+		-moz-border-radius: 7px;
+		border-radius: 7px;
+		-moz-box-shadow: 0 0px 3px #dadada;
+		-webkit-box-shadow: 0 0px 3px #dadada;
+		box-shadow: 0 0px 3px #dadada;
+	}
+
+	input.bgo {
+		background-color: #90ba2b;
+		background-image: url(/sitimages/app_bar/mod/button.png);
+		background-position: center bottom;
+		background-repeat: repeat;
+		border: none;
+		color:#ffffff;
+		cursor: pointer;
+		font-family: Arial;
+		font-weight: bold;
+		font-size: 13px;
+		height: 30px;
+		border: 1px solid #77ac07;
+		padding-left:15px;
+		padding-right:15px;
+		text-align:center;
+		-moz-border-radius: 0px 7px;
+		border-radius: 0px 7px 7px 0px;
+		position:relative;
+		left:-10px;
+		top:-1px;
+	}
+
+	input.bgo:hover {
+		background-color: #90ba2b;
+		background-image: url(/sitimages/app_bar/mod/button2.png);
+		background-position: center bottom;
+		background-repeat: repeat;
+		border: none;
+		color:#ffffff;
+		border: 1px solid #8ec012;
+
+	}
+
+	div.expiration_notification {
+    border: 1px solid #faebcc;
+    width: 40%;
+    height: 12%;
+    background-color: #fcf8e3;
+    padding: 10px 10px;
+    -moz-box-shadow: 0 0px 8px #777777;
+    -webkit-box-shadow: 0 0px 8px #777777;
+    box-shadow: 0 0px 8px #777777;
+    position: fixed;
+    bottom: 0px;
+    left: 30%;
+    z-index: 100000000;
+    -moz-border-radius: 7px 7px 0px 0px;
+    border-radius: 7px 7px 0px 0px;
+    -moz-border-radius: 7px 7px 0px 0px;
+    border-radius: 7px 7px 0px 0px;
+    text-align: center;
+
+	}
+
+	div.expiration_notification a{
+		color: red;
+	}
+</STYLE>
+
+
+
+<div class="superhover" style="display:none;">
+	<form name="express_search" id="express_search" style="margin-bottom: 0;"> 
+		<input name="id" type="text" id="id_order_footer" value="" class="gosearch" placeholder="ID de Orden" maxlength="10" autofocus /><span ondblclick="hide_search();">|||</span>
+		<!-- <input type="button" value="Buscar" id="button_order_footer" class="bgo"> -->
+	</form>
+</div>
+
+<div class="expiration_notification" style="display:none;"> 
+	<img src="/sitimages/candado.png" style="height:42px; margin:-5px 30px -10px 0px;" >
+ 	<b>
+		Your password expires on <span id="number_days2"> [ur_expiration]</span>.
+ 		<a href="/cgi-bin/mod/[ur_application]/admin?cmd=myprefs_mypass">Update here.</a>
+ 	</b>
+</div>
+
+ <script>
+
+ 	function hide_search(){
+ 		$(".superhover").hide();
+ 		setCookie('express_search','hide',10000);
+ 	}
+
+// window.addEventListener('beforeunload', function(event) {
+	
+// }); 
+$(document).ready(function(){
+	//  $( ":submit" ).on('click', function(){
+	//  	if ($(this).attr('loading') != 0){
+	//  		$('#blockscreen').fadeIn();
+	//  	}
+	//  });
+
+	// $( "form" ).submit(function( event ) {
+	// 	$('#blockscreen').fadeOut();
+	// });
+	// $( document ).ajaxSend(function( event, request, settings ) {
+	// 	if(settings.url == '/cgi-bin/html/en/common/outsideval.php')
+	// 		return;
+	//     $('#blockscreen').fadeIn();
+	//   });
+	// $( document ).ajaxComplete(function( event,request, settings ) {
+	// 	if(settings.url == '/cgi-bin/html/en/common/outsideval.php')
+	// 		return;
+	//   $('#blockscreen').fadeOut();
+	// });
+	if("[ur_application]" == "crm" || "[ur_application]" == "admin"){
+		if ( getCookie('express_search') == '' )  
+			$(".superhover").show();
+	}
+	
+	$('#express_search').on('submit', function(){
+		var new_value = parseInt($("#id_order_footer").val());
+		$("#id_order_footer").val(new_value);
+		var id_orders = $("#id_order_footer").val()
+
+		if ($.trim(id_orders) == '' || isNaN(id_orders)){
+
+			$("#id_order_footer").val('');
+			$("#id_order_footer").focus();
+			return false;
+		}
+		
+		if ("[ur_application]" == "crm"){			
+			$.fancybox({
+				'autoSize': true,
+				'width': 700,
+				'height': 200,
+				'href': '/cgi-bin/common/apps/ajaxbuild',
+				'type': 'ajax',
+				ajax: {
+					data: { ajaxbuild: "fastCheckOrder", id_order: id_orders, noajax: 'yes' }
+				},
+				'onComplete': function() {					
+					$("#fancybox-wrap").css({'top':'20px', 'bottom':'auto'});
+					$(document).scrollTop(0);
+				}
+			});
+		}
+
+		if ("[ur_application]" == "admin"){
+			window.location.href = "[va_cgiurl]/mod/[ur_application]/dbman?cmd=opr_orders&view="+id_orders+"";
+		}
+
+		return false;
+	});
+
+	$('#button_order_footer').on('click', function(){
+		var new_value = parseInt($("#id_order_footer").val());
+		$("#id_order_footer").val(new_value);
+		var id_orders = $("#id_order_footer").val()
+
+		if ($.trim(id_orders) == '' || isNaN(id_orders)){
+
+			$("#id_order_footer").val('');
+			$("#id_order_footer").focus();
+			return false;
+		}
+
+		if ("[ur_application]" == "crm"){
+			$.fancybox({
+				'autoSize': true,
+				'width': 700,
+				'height': 200,
+				'href': '/cgi-bin/common/apps/ajaxbuild',
+				'type': 'ajax',
+				ajax: {
+					data: { ajaxbuild: "fastCheckOrder", id_order: id_orders, noajax: 'yes' }
+				},
+				'onComplete': function() {
+					$("#fancybox-wrap").css({'top':'20px', 'bottom':'auto'});
+					$(document).scrollTop(0);
+				}
+			});
+		}
+
+		if ("[ur_application]" == "admin"){
+			window.location.href = "[va_cgiurl]/mod/[ur_application]/dbman?cmd=opr_orders&view="+id_orders+"";
+		}
+	});
+
+	// hide #scroll first
+	$("#gotopfade").hide();
+
+
+
+	if("[ur_application]" != "sales")
+		$("#fly2").hide();
+	// fade in #scroll
+	$(function () {
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 100) {
+				$('#gotopfade').fadeIn();
+			} else {
+				$('#gotopfade').fadeOut();
+			}
+
+
+
+		if ($(this).scrollTop() > 75) {
+			$('#fly2').show();
+		} else {
+			$('#fly2').hide();
+		}
+	
+
+
+
+
+
+
+    var scroller_anchormenu = $(".scroller_anchormenu").offset().top;
+    if ($(this).scrollTop() >= scroller_anchormenu && $('.scrollermenu').css('position') != 'fixed')
+    {    
+        $('.scrollermenu').css({
+            'background': '',
+            'border': '0px solid #000',
+            'position': 'fixed',
+            'top': '0',
+            'margin-top': '2px'
+        });
+        $('.scroller_anchormenu').css('height', '50px');
+    }
+    else if ($(this).scrollTop() < scroller_anchormenu && $('.scrollermenu').css('position') != 'relative')
+    {    
+    	$('.scroller_anchormenu').css('height', '0px');
+        $('.scrollermenu').css({
+            'background': '',
+            'border': '0px solid #CCC',
+            'position': 'relative'
+        });
+    }
+
+
+
+		});
+
+		// scroll body to 0px on click
+		$('#gotopfade a').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 777);
+			return false;
+		});
+	});
+
+
+  $("a#ref_azteca").fancybox({
+    'hideOnContentClick': true
+  });
+
+  /* IFRAME */
+  $(".fancy_modal_iframe").fancybox({
+    'width'       : '85%',
+    'height'      : '85%',
+    'autoScale'       : 'false',
+    'transitionIn'    : 'elastic',
+    'transitionOut'   : 'elastic',
+    'type'        : 'iframe'
+
+  });
+  
+  $(".fancy_modal_iframe_mante").fancybox({
+    'width'       : '60%',
+    'height'      : '70%',
+    'autoScale'       : 'false',
+    'transitionIn'    : 'none',
+    'transitionOut'   : 'none',
+    'type'        : 'iframe',
+    'padding' : '0',
+
+  });
+
+  $(".fancy_modal_iframe_expir").fancybox({
+    'width'       : '60%',
+    'height'      : '70%', 
+    'transitionIn'    : 'none',
+    'transitionOut'   : 'none',
+    'type'        : 'iframe',
+    'padding' : '0',
+
+  });
+  
+	$(".fancy_modal_iframe_outside").fancybox({
+		'width'			: '60%', 
+		'height'		: '80%',
+   	 'autoScale'       : 'false',
+		'transitionIn'	: 'none',
+		'transitionOut'	: 'none',
+		'type'			: 'iframe',
+		'padding'		: '0',
+	});
+
+  $(".fancy_modal_iframe_ajax").fancybox({
+    
+    ajax : {
+        type  : "GET",
+        'width'       : '85%',
+      'height'      : '85%',
+          'autoScale'       : false,
+          'transitionIn'    : 'none',
+      'transitionOut'   : 'none'
+    }
+  });
+
+  /* A INLINE*/
+  $("a.fancy_modal_inline").fancybox({
+    'hideOnContentClick': true
+  });
+
+});
+</script>
+
+<STYLE TYPE="text/css"> 
+ 
+a.scrolls img {
+filter:alpha(opacity=90);   
+-moz-opacity: 0.9;   
+opacity: 0.9;
+cursor: hand;-moz-border-radius: 50%;
+border-radius: 50%;
+}
+
+a.scrolls:hover img {
+filter:alpha(opacity=100); 
+-moz-opacity: 1.0; 
+opacity: 1.0;
+}
+
+</STYLE>
+
+<p id=gotopfade  style="position:fixed;bottom:0px;right:5px;"><a  href="#top1" class="scrolls" id="topid1"><img id="img_top1" title="Go Up" src=/sitimages/gototop.png border=0></a></p>
+            
+
+  <div id="ajax_windows" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999; -moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+    <div class="menu_bar_title" id="ajax_drag" align="left">
+    <table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Direksys</td>
+			<td align=right width=20px><img id="ajax_exit" name="ajax_exit" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+    </div>
+    <table width=100% cellpadding=0 cellspacing=7px align=center><td>
+    <div id="ajaxcontent">
+      &nbsp;
+    </div>
+  </td></table>
+  </div>&nbsp;
+
+
+
+
+
+ 
+
+         <script>
+
+
+			function setCookie(cname, cvalue, exminutes) {
+				var d = new Date();
+				d.setTime(d.getTime() + (exminutes*60*60*1000));//
+				var expires = "expires="+d.toUTCString();
+				document.cookie = cname + "=" + cvalue + "; " + expires;
+			}
+
+			function getCookie(cname) {
+				var name = cname + "=";
+				var ca = document.cookie.split(';');
+				for(var i=0; i<ca.length; i++) {
+				    var c = ca[i];
+				    while (c.charAt(0)==' ') c = c.substring(1);
+				    if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
+				}
+			    return "";
+			}
+
+			/*
+            $(document).ready(function(){
+            	
+            	if( getCookie('Mantenimiento') == '')
+			    {
+			      console.log('CrearCookie');
+			      setCookie('Mantenimiento', 'Activo', 2);
+			      $('#suscribemodal').trigger('click');
+			    }else{
+			      console.log( getCookie('Mantenimiento') );
+			    }
+
+            });			
+            */
+
+
+            $(document).ready(function(){
+            	password_expiration('[ur_expiration]','[va_days_expiration]');	
+			    // Muestra la alerta de contraseña próxima a expirar
+			    var cur_date = new Date();
+            	day_until_expiration = isNaN([va_days_until_expiration])? 0:[va_days_until_expiration]+0;
+
+            	if( day_until_expiration > 0 )
+            	{
+			    	var pswd_exp_old_time = 0, diff_time = 600;
+			    	if( sessionStorage.getItem('pswd_exp_time') )
+			    	{
+				    	pswd_exp_old_time = sessionStorage.getItem('pswd_exp_time');
+				    	diff_time = parseInt((cur_date.getTime() - pswd_exp_old_time) / 1000); // Dif. en segundos
+				    }
+
+
+				    if( diff_time >= (day_until_expiration * 180) || !sessionStorage.getItem('pswd_exp_time') )
+				    {	
+					    sessionStorage.setItem('pswd_exp_time', cur_date.getTime());
+				    }
+
+			    }else{
+			      	console.log( cur_date );
+			    }
+
+
+			    // Muestra la alerta de seguridad(vigilando)
+			    if( !sessionStorage.getItem('Inside') ){
+
+			    	console.log('Set sessionStorage :: Inside = Activo');
+			    	sessionStorage.setItem('Inside', 'Activo');
+			    	$('#insidemodal').trigger('click');
+
+			    }
+
+            });			
+
+
+   
+
+        </script>
+       <script>
+      	if('sales' == '[ur_application]'){
+      		var username_alias= '[va_username_ref]';
+      		if(username_alias != ''){
+      			var id_admin_users = '[ur_ID_admin_users]'
+	      		port = 8081;
+				$('body').append('<script src = "http://172.20.27.84:'+port+'/public/js/autoload.js"><\/script>');
+      		}
+      	}
+      	[fc_notificaction_js]
+      	
+      </script>
+  </body>
+</html> 

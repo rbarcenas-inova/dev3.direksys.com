@@ -1,0 +1,187 @@
+[ip_header]
+<link rel="stylesheet" href="/libs/jsgrid/jsgrid.css">
+<link rel="stylesheet" href="/libs/jsgrid/jsgrid-theme.css" />
+<script src="/finkok/common/js/jquery.mask.min.js"></script>
+<script src="/libs/jsgrid/jsgrid.js"></script>
+<style>
+    .stdtext, p, td {
+        font-family: Arial;
+        font-size: 10px;
+    }
+   
+    #top_div_messages {
+        background-color: #f3e63f;
+        border-radius: 5px;
+        display: none;
+        font-family: Arial;
+        font-size: 12px;
+        margin: 5px;
+        padding: 5px 10px;
+        text-align: center;
+        position: absolute;
+        width: 97%;
+        top: 0;
+        left: 0;
+    }
+
+    #open_newTab {
+        position: absolute;
+        right: 10px;
+        top: 15px;
+        z-index: 99999;
+    }
+
+    .jsgrid-header-cell {
+        font-size: 11px;
+    }
+
+    #totales_contabilidad table td, #tab-history > div > div table td {
+        font-size: 15px;
+        font-weight: bold;
+        text-align: right;
+        width: 150px;
+    }
+
+    #totales_contabilidad tbody td[data-total], #tab-history > div > div table tbody td[data-total] {
+        color: red;
+    }
+    #totales_contabilidad tbody td[data-total="0.00"], #tab-history > div > div table tbody td[data-total="0.00"] {
+        color: green;
+    }
+
+
+
+    /*Tabs Style*/
+    .tabs {
+        background: #fff none repeat scroll 0 0;
+        padding: 10px;
+    }
+    .tabs .tabcontainer > div{
+        display:none;
+    }
+    .active{
+        display: block !important;
+    }
+    .tabs > ul {
+        list-style: outside none none;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+
+    }
+    .tabs > ul li {
+        border-bottom: 10px solid 1px #111;
+    }
+    .tabs li.open{
+        /*background-color: blue*/
+    }
+    .tabs > ul li a {
+        font-size: 17px;
+        text-decoration: none;
+        color: #000;
+    }
+    .tabs > ul li {
+        border-bottom: 3px solid #ccc;
+        float: left;
+        text-align: center;
+        width: 50%;
+    }
+    .tabs > ul li.open {
+        border-color: #0275d8;
+    }
+    .tabcontainer {
+        padding: 20px;
+    }
+    /*Tabs Style*/
+
+
+
+
+    .history {
+        margin: 0 auto;
+        width: 80%;
+    }
+    .history th {
+        background: #f9f9f9 none repeat scroll 0 0;
+        font-size: 9px;
+        padding: 5px;
+        text-transform: uppercase;
+    }
+    .history td {
+        padding: 3px;
+        text-transform: uppercase;
+        cursor: default;
+    }
+
+    .history tr[data-status="Inactive"] td{
+        text-decoration: line-through;
+    }
+    .history > table {
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+    }
+    .history tr {
+        border-bottom: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+    }
+    .history td:nth-child(4), .history td:nth-child(5) {
+        font-weight: bolder;
+        padding: 0 15px;
+    }
+
+
+</style>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+		<td width="17%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=fin_journalentries_home")'>Journal Entries</td>
+		<td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=fin_journalentries&add=1")'>Add</td>
+		<td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=fin_journalentries&search=form")'>Search</td>
+		<td width="17%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=fin_journalentries&search=listall&so=DESC&sb=ID_journalentries")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="left" colspan="2">Journal Entries</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Journal Entries Links</legend>
+		<ul class='nslist'>
+	    	<li><a href="/cgi-bin/mod/[ur_application]/admin?cmd=fin_journalentries_full">Journal Entry Full</a></li>
+	    </ul>
+        &nbsp;
+        <ul class='nslist'>
+            <li><a href="/cgi-bin/mod/[ur_application]/admin?cmd=acc_layout_load">Layout Load</a></li>
+        </ul>
+	</fieldset>	
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

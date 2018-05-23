@@ -1,0 +1,155 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:[fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_orders_customers_info")'> Orders/Cust. Info</td>
+		<td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_orders_filter")'>Orders Filters</td>
+		<td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_noorder")'>Calls without Order</td>
+		<td width="14%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_salesbysku")'>Sales by SKU</td>
+		<td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_prodfam")'>Sales by ProdFam</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	&nbsp;
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td class="titletext" align="center">Business Intelligence : Sales By SKU</td>
+				</tr>
+				<tr>
+					<td class="stdtxterr">[va_message]</td>
+				</tr>
+			</table>
+			&nbsp;
+			[va_report_tbl]
+			&nbsp;
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				    <td class="tbltextttl">
+				    	<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]&print=1&[in_qs]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+				    	&nbsp;&nbsp;
+				    	<a href="/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]&export=1&[in_qs]"><img src='[va_imgurl]/[ur_pref_style]/b_xls.gif' title='Print' alt='' border='0'></a>
+				    	&nbsp;&nbsp;
+				    	Records : [va_matches]</td>
+				    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+				</tr>
+		  </table>
+			<table border="0" cellspacing="0" cellpadding="1" width="100%" class="formtable">
+				<tr><td colspan="11" align="center">Wholesale Orders</td></tr>
+				<tr>
+				<tr style="height:40px;">
+				    <td colspan="2" align="center" class="menu_bar_title">Orders Quantity</td>
+				    <td colspan="4" align="center" class="menu_bar_title">Order Net</td>
+				    <td colspan="4" align="center" class="menu_bar_title">Cost</td>
+				    <td colspan="2" align="center" class="menu_bar_title">SKUs</td>
+				</tr>
+				[va_searchresults2]
+				<tr><td colspan="11">&nbsp;</td></tr>
+				<tr><td colspan="11" align="center">Regular Orders</td></tr>
+				<tr style="height:40px;">
+				    <td width="100" align="center" class="menu_bar_title">Product ID</td>
+				    <td width="310" align="center" class="menu_bar_title">Product Name</td>
+				    <td width="100" align="center" class="menu_bar_title">Orders $$</td>
+				    <td width="100" align="center" class="menu_bar_title">TV Order $$</td>
+				    <td width="100" align="center" class="menu_bar_title">Web Order $$</td>
+				    <td width="100" align="center" class="menu_bar_title">Cost</td>
+				    <td width="50" align="center" class="menu_bar_title">SKUs</td>
+				    <td width="50" align="center" class="menu_bar_title">Orders Qty</td>
+				    <td width="80" align="center" class="menu_bar_title">Return $$</td>
+				    <td width="50" align="center" class="menu_bar_title">Return SKUs</td>
+				    <td width="50" align="center" class="menu_bar_title">Return Orders</td>
+				</tr>
+				  <td align="center" colspan="11" width="100%">
+				    <div align="center" style="width:100%;height:400px;overflow:auto;">
+				      <table border="0" cellspacing="0" cellpadding="2" width="100%" class="formtable">
+				        [va_searchresults]
+				      </table>
+				    </div>
+				  </td>
+				</tr>  
+		  </table>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td class="tbltextttl">Records : [va_matches]</td>
+					<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+				</tr>
+			</table>
+			&nbsp;
+	    <table border="0" cellspacing="0" cellpadding="2" width="40%" align="center" class="formtable">
+		    <tr>
+			    <td class="menu_bar_title" colspan="3" align="center">Totals</td>
+		    </tr>
+		    <tr>
+			    <td>Total SPrice:</td>
+			    <td align="right">[va_sprice_orders]</td>
+			    <td></td>
+		    </tr>
+		    <tr>
+			    <td>Total Phone(Shipped):</td>
+			    <td align="right">[va_sprice_phone]</td>
+			    <td align="right">&nbsp;</td>
+		    </tr>
+		    <tr>
+			    <td>Total Web(Shipped):</td>
+			    <td align="right">[va_sprice_web]</td>
+			    <td align="right">&nbsp;</td>
+		    </tr>
+		    <tr>
+			    <td>Total Cost(Shipped):</td>
+			    <td align="right">[va_cost_orders]</td>
+			    <td align="right">&nbsp;</td>
+		    </tr>
+		    <tr>
+			    <td>Total SKUs(Shipped):</td>
+			    <td align="right">[va_skus_orders]</td>
+			    <td align="right">&nbsp;</td>
+		    </tr>
+		    <tr>
+			    <td>Total Orders Qty(Shipped):</td>
+			    <td align="right">[va_qty_orders]</td>
+			    <td align="right">&nbsp;</td>
+		    </tr>
+		    <tr><td colspan="3">&nbsp;</td></tr>
+		    <tr>
+			    <td>Total SPrice(Returns):</td>
+			    <td align="right">[va_ret_orders]</td>
+			    <td align="right">&nbsp;</td>
+		    </tr>
+		    <tr>
+			    <td>Total SKUs(Returns):</td>
+			    <td align="right">[va_ret_skus]</td>
+			    <td align="right">&nbsp;</td>
+		    </tr>
+		    <tr>
+			    <td>Total Orders Qty(Returns):</td>
+			    <td align="right">[va_ret_qty]</td>
+			    <td align="right">&nbsp;</td>
+		    </tr>
+	    </table>
+	    &nbsp;
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

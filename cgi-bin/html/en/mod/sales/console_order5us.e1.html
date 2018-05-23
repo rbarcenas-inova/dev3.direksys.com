@@ -1,0 +1,323 @@
+[ip_header_console]
+
+<script type="text/javascript">
+<!--	
+
+	/*
+		onload = function(){
+			var showone = "[in_tab]";
+			if(showone == ""){
+				popup_show('popup_script', 'script_drag', 'script_exit', 'element-right', -1, -1,'wumsg');
+			}
+		}
+	*/
+	$(document)
+	    .ready(function () {
+
+	    //$(document).ajaxError(function (e, xhr, settings, exception) {
+	    //    alert('error in: ' + settings.url + ' \n' + 'error:\n' + xhr.responseText);
+	    //});
+
+	    $("#fancybox_email_and_cellphone")
+	        .fancybox({
+	        'margin': '1',
+	            'padding': '1',
+	            'autoScale': false,
+	            'centerOnScroll': true,
+	            'transitionIn': 'none',
+	            'transitionOut': 'none',
+	            'autoDimensions': 'true',
+	            'overlayOpacity': '0.3',
+	            'onComplete': function () {
+	            $("#fancybox-wrap")
+	                .css({
+	                'margin-top': '10px',
+	                'margin-bottom': 'auto'
+	            });
+	        }
+	    });
+
+	    $("#fancybox_search_address")
+	        .fancybox({
+	        'margin': '1',
+	            'padding': '1',
+	            'autoScale': false,
+	            'centerOnScroll': true,
+	            'transitionIn': 'none',
+	            'transitionOut': 'none',
+	            'autoDimensions': 'true',
+	            'overlayOpacity': '0.3',
+	            'onComplete': function () {
+	            $("#fancybox-wrap")
+	                .css({
+	                'margin-top': '10px',
+	                'margin-bottom': 'auto'
+	            });
+	        }
+	    });
+
+	    $('#search_address')
+	        .click(function () {
+
+	        var number = $('input:text[name=search_address_number]').val();
+	        var zipcode = $('input:text[name=search_address_zip]').val();
+	        var step = $('input:hidden[name=search_address_step]').val();
+	        //alert("Step: "+step);
+	        $.ajaxSetup({
+	            timeout: (15 * 1000)
+	        });
+	        $.post('/cgi-bin/common/apps/ajaxbuild', {
+	            'ajaxbuild': 'search_address1',
+	            'number': number,
+	            'zipcode': zipcode,
+	            'step': step
+	        }, function (response, status, xhr) {
+
+	            if(status == "error") {
+	                alert(msg);
+	            }
+	            else {
+	                if(response.match(/error/gi)) {
+	                    alert("La Dirección no es válida.\r\n" + response);
+	                }
+	                else {
+	                    document.getElementById('modal_address')
+	                        .innerHTML = response;
+	                    $("#fancybox_search_address")
+	                        .trigger('click');
+	                }
+	            }
+
+	        });
+	    });
+
+	    $('#search_address_button')
+	        .click(function () {
+
+	        var number = $('input:text[name=shp_address1]').val();
+	        var zipcode = $('input:text[name=shp_zip]').val();
+	        var step = $('input:hidden[name=search_address_step]').val();
+	        //alert("Step: "+step);
+	        $.ajaxSetup({
+	            timeout: (15 * 1000)
+	        });
+	        $.post('/cgi-bin/common/apps/ajaxbuild', {
+	            'ajaxbuild': 'search_address1',
+	            'number': number,
+	            'zipcode': zipcode,
+	            'step': step
+	        }, function (response, status, xhr) {
+
+	            if(status == "error") {
+	                alert(msg);
+	            }
+	            else {
+	                if(response.match(/error/gi)) {
+	                    alert("La Dirección no es válida.\r\n" + response);
+	                }
+	                else {
+	                    document.getElementById('modal_address')
+	                        .innerHTML = response;
+	                    $("#fancybox_search_address")
+	                        .trigger('click');
+	                }
+	            }
+
+	        });
+	    });
+
+	    /*$( '#check_address' ).click(function() {
+
+				var email = $( 'input:hidden[name=email]' ).val();
+				var cellphone = $( 'input:hidden[name=cellphone]' ).val();
+					$.ajaxSetup({ timeout: ( 15 * 1000 ) });
+					$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'verify_email_and_cellphone', 'email':email, 'cellphone':cellphone},function(response,status,xhr){
+					//alert(status);
+							if (status == "error") {
+	 								alert(msg);
+							}else{
+									if(response.match(/error/gi)){
+				    					alert("Los datos no son válidos.\r\n"+response);
+				    			}else{
+										document.getElementById('modal_email_and_cellphone').innerHTML = response;
+										$( "#fancybox_email_and_cellphone" ).trigger('click');
+									}
+							}
+				
+					});
+			});*/
+	    var email = $('input:hidden[name=email]').val();
+	    var cellphone = $('input:hidden[name=cellphone]').val();
+	    var contact_mode = $('input:hidden[name=contact_mode]').val();
+	    var email_and_cellphone_use = $('input:hidden[name=email_and_cellphone_use]').val();
+	    //alert('Values: '+email+','+cellphone+','+isNaN([in_tab]));
+	    if(isNaN([in_tab]) && (email == '' && cellphone == '' && contact_mode != 'phone_call') && email_and_cellphone_use == 1) {
+	        $("#fancybox_email_and_cellphone")
+	            .trigger('click');
+	    }
+
+	});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td valign="top" align="left" bgcolor="#ffffff">
+			
+		<table width="100%" height=41px border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+				<td>&nbsp;</td>
+				<td class="cell_on" width="14%" align="center">Consola [va_salesorigins.channel]</td>
+		 </tr>
+		</table>
+		
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+				
+				
+		[fc_customer_header]
+			<br>
+			
+
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="5">
+	<input type="hidden" name="country_tab" value="us">
+	<input type="hidden" name="action" value="1">
+	
+<fieldset><legend>Creando Nueva Orden : Información de Envio</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td class="stdtxterr" colspan="2">[va_message]<td>
+		</tr>
+		<tr>
+	      <td colspan="2">
+	      	
+	      		      	  		
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+			
+			</td>
+	   </tr>	
+		<tr>
+		  <td width="30%">Nombre Cliente  : </td>
+		  <td class="smalltext">[in_firstname] [in_lastname1] [in_lastname2]</td>
+		</tr>
+		<tr>
+		  <td colspan="2">[fc_products_inorder]</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+				  <tr>
+						<td width="80%" align="center"></td>
+						<td width="20%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&step=5&country_tab=us")'>USA/Canada</td>
+				  </tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%">Nombre Persona Recibe  : <span class="smallfieldterr">[er_shp_name]</span></td>
+		  <td class="smalltext"><input type="text" name="shp_name" value="[in_shp_name]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>			
+		<tr>
+		  <!--<td valign="top" width="30%">Dirección  :<a name='address' id='address'></a> <a href='#address' id='ajax_btn' onClick="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'address');loadDoc('console?cmd=check_shp_address&address1='+self.document.sitform.shp_address1.value+'&address2='+self.document.sitform.shp_address2.value+'&address3='+self.document.sitform.shp_address3.value+'&city='+self.document.sitform.shp_city.value+'&state='+self.document.sitform.shp_state.value+'&zip='+self.document.sitform.shp_zip.value);">Revisar</a></td>-->
+		    <td valign="top" width="30%">Dirección  :
+		    	<input type="hidden" name="search_address_step" value="[in_step]">
+		    	<!-- Fancybox -->
+		    	<a id="fancybox_search_address" href="#modal_address"></a>
+		    	<div style="display: none;">
+		    		<div id="modal_address" style="width:500px;overflow:auto;text-align:center;">
+		    			Insert an iframe here.
+		    		</div>
+		    	</div>
+		    	<!-- Fancybox -->
+		    	<img src="/sitimages/main/icsearchsmall.gif" name="search_address" id="search_address" border="0">
+		    	<a name='address' id='address'></a> <a href='#address' id='ajax_btn' onClick="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'address');loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=check_address&address1='+self.document.sitform.address1.value+'&address2='+self.document.sitform.address2.value+'&address3='+self.document.sitform.address3.value+'&city='+self.document.sitform.city.value+'&zip='+self.document.sitform.zip.value);">Revisar</a><br>
+		    	<span class="smallfieldterr">(Incluye # Apt. , Trailer, Ste, etc)</span>
+		  	</td>
+			<td class="smalltext">
+				<input type="text" name="shp_address1" value="[in_shp_address1]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_shp_address1]</span><br />
+				<input type="text" name="shp_address2" value="[in_shp_address2]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_shp_address2]</span><br />
+				<input type="text" name="shp_address3" value="[in_shp_address3]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_shp_address3]</span>
+		   	</td>
+		</tr>
+		<tr>
+		  <td width="30%">Urbanización  : <span class="smallfieldterr">[er_shp_urbanization]</span></td>
+		  <td class="smalltext"><input type="text" name="shp_urbanization" value="[in_shp_urbanization]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		 	<td width="30%">Ciudad (una de las siguientes) : <span class="smallfieldterr">[er_shp_city]</span></td>
+		 	<td class="smalltext">[in_city_to_show]
+		 		<input type="hidden" name="shp_city" value="[in_shp_city]" size="30" maxsize="25">
+		 	</td>
+		</tr>
+		<tr>
+		 	<td width="30%">Estado/Zip : </td>
+		  <td class="smalltext">[in_shp_state]
+		  			<input type="hidden" name="shp_state" value="[in_shp_state]" size="30">
+		  			<input type="hidden" name="email" value="[in_email]" size="30">
+		  			<input type="hidden" name="cellphone" value="[in_cellphone]" size="30">
+		  			<input type="hidden" name="email_and_cellphone_use" value="[in_email_and_cellphone_use]" size="30">
+		  			<input type="hidden" name="contact_mode" value="[in_contact_mode]" size="30">
+						 <span class="smallfieldterr">[er_shp_state]</span>
+					<input type="text" name="shp_zip" value="[in_shp_zip]" size="8" onocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_shp_zip]</span>
+					<input type="submit" value="Revisar" class="button" name="check_address">
+					<!--<input type="button" value="Revisar" class="button" name="search_address_button" id="search_address_button">-->
+					
+					<!-- Fancybox -->
+					<a id="fancybox_email_and_cellphone" href="#modal_email_and_cellphone"></a>
+					<div style="display: none;">
+						<div id="modal_email_and_cellphone" style="width:500px;overflow:auto;text-align:center;">
+							<iframe src="/cgi-bin/common/apps/ajaxbuild?ajaxbuild=email_and_cellphone&email=[in_email]&cellphone=[in_cellphone]" width="490" height=350>
+							  <p>Your browser does not support iframes.</p>
+							</iframe>
+						</div>
+					</div>
+					<!-- Fancybox -->
+			</td>
+		</tr>
+		<tr>
+		 	<td width="30%" valign="top">Notas del Envío  : <span class="smallfieldterr">[er_shp_notes]</span></td>
+		    <td class="smalltext"><textarea name="shp_notes" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_shp_notes]</textarea> </td>
+		</tr>		
+		<tr>
+		  <td colspan="2" align="center"><input type="button" name="smbtn" value="Revisar Direccion" class="button" OnClick="btnaddress()"></td>
+		</tr>		
+	</table>
+</fieldset>
+<script language="javascript">
+<!--
+
+chg_chkbox('sameshipping','[in_sameshipping]');
+
+function btnaddress(){
+	if (self.document.sitform.smbtn.value=='Continuar (a Tipo de Envio) >>'){
+		//self.document.sitform.smbtn.type='submit';
+		self.document.sitform.submit();
+	}else{
+		setTimeout("self.document.sitform.smbtn.value='Continuar (a Tipo de Envio) >>'",5000);
+		popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'address');
+		//loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=check_address&address1='+self.document.sitform.address1.value+'&address2='+self.document.sitform.address2.value+'&address3='+self.document.sitform.address3.value+'&city='+self.document.sitform.city.value+'&urbanization='+self.document.sitform.urbanization.value+'&zip='+self.document.sitform.zip.value);
+		loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=check_address&address1='+self.document.sitform.shp_address1.value+'&address2='+self.document.sitform.shp_address2.value+'&address3='+self.document.sitform.shp_address3.value+'&city='+self.document.sitform.shp_city.value+'&zip='+self.document.sitform.shp_zip.value);
+	}
+}
+
+//-->
+</script>
+
+
+    </td>
+    </tr>
+</table>	
+			
+[ip_footer_console]
+
+

@@ -1,0 +1,57 @@
+&nbsp;
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="id_tracking_email" value="[in_id_tracking_email]">
+	<input type="hidden" name="view" value="[in_view]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="1">
+	<input type="hidden" name="tabsl" value="1">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	&nbsp;
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+      <td class="tbltextttl"><span class='fieldterr'>[va_tabmessages]</span>&nbsp;</td>
+    </tr>
+		<tr>
+			<td class="tbltextttl">
+				Notes : [va_matches]
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_tracking_email]&tab=[va_activetab]&tabs=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a name='tabs' id='tabs'>&nbsp;</a>
+			</td>
+	   	<td class="smalltext">Filter By : 
+	   		<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_tracking_email]&tab=1&filter=High">High</a> - 
+				<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_tracking_email]&tab=1&filter=Medium">Medium</a> - 
+				<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_tracking_email]&tab=1&filter=Low">Low</a></td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+	 	</tr>
+		<tr>
+			<td colspan="3">
+		 		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+					  <td class="menu_bar_title">Date/Time/User</td>
+					  <td class="menu_bar_title">Type</td>
+					  <td class="menu_bar_title" colspan="2">Notes</td>
+					 </tr>
+				 [va_searchresults]
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" class="smallfieldterr">&nbsp;[va_tabmessages]</td>
+		</tr>
+		<tr>
+			<td class="menu_bar_title" colspan="3">Add New Note</td>
+		</tr>	
+		<tr>
+			<td class="smalltext" colspan="3">
+				<input type="radio" name="notestype" class="radio" value="High">High
+				<input type="radio" name="notestype" class="radio" value="Medium">Medium
+				<input type="radio" name="notestype" class="radio" value="Low">Low			
+			<textarea name="notes" style="width: 100%" cols="50" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_notes]</textarea></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="3"><input type="submit" value="Add Notes" class="button"></td>
+		</tr>
+	</table>
+</form>

@@ -1,0 +1,66 @@
+[ip_header_small]
+<script src="/sitimages/FCKeditor/ckeditor.js"></script>
+	<span class="smallfieldterr">[va_message]</span>
+
+  <form action="/cgi-bin/common/apps/ajaxbuild" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="ajaxbuild" value="mer_products">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="opt" value="[in_opt]">
+	<input type="hidden" name="id_products" value="[in_id_products]">
+
+<table border="0" cellspacing="0" cellpadding="4" width="[ur_table_width]" class="container_white">
+	<tr>
+		<td>
+&nbsp;
+<fieldset><legend>Description</legend>
+	<table border="0" cellspacing="0" cellpadding="5" width="100%">	
+		<tr>
+		  <td width="30%">Small Description  : <span class="smallfieldterr">[er_smalldescription]</span><br />
+		  	<textarea cols="80" id="smalldescription" name="smalldescription" rows="3">[in_smalldescription]</textarea>
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">Large Description  : <span class="smallfieldterr">[er_Description]</span><br />
+		  <textarea cols="80" id="Description" name="Description" rows="10">[in_Description]</textarea>
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">Small Description [EN] : <span class="smallfieldterr">[er_smalldescription_en]</span><br />
+		  <textarea cols="80" id="smalldescription_en" name="smalldescription_en" rows="3">[in_smalldescription_en]</textarea>
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">Large Description [EN] : <span class="smallfieldterr">[er_Description_en]</span><br />
+		  <textarea cols="80" id="Description_en" name="Description_en" rows="10">[in_Description_en]</textarea>
+		  </td>
+		</tr>					
+	</table>
+ </fieldset>
+&nbsp;
+	</td>
+</tr>
+</table>
+
+<p align="center"><input type="submit" value="Update Record" class="button"></p>
+  </form>
+
+<script>
+/*
+CKEDITOR.replace( 'smalldescription', {
+	toolbar: [
+		[ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
+		[ 'FontSize', 'TextColor', 'BGColor' ]
+	]
+});
+*/
+CKEDITOR.replace( 'Description');
+/*
+CKEDITOR.replace( 'smalldescription_en', {
+	toolbar: [
+		[ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
+		[ 'FontSize', 'TextColor', 'BGColor' ]
+	]
+});
+*/
+CKEDITOR.replace( 'Description_en');
+</script>

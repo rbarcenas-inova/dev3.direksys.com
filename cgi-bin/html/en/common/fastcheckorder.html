@@ -1,0 +1,108 @@
+ <div style="[va_iderror];min-width:500px;min-height:50px;margin:auto;text-align:center;padding-top:30px;color:#ff0f0f;font-size:16px;">
+	[va_errormsg]
+</div>
+<div style="[va_idok];min-width:900px;max-width:1024px;min-height:450px;" id="checkOrder">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%" style="margin-bottom:10px;">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">No. de Pedido : [va_id_order] <img id="risk" style="cursor:pointer;" src='/sitimages/default/warning.gif'  border='0'> </td>
+		</tr>
+	</table>
+		 
+
+<table>
+	<td valign=top>
+	<fieldset>
+		<legend>Estatus del Pedido</legend>
+		
+		<img src=/sitimages/fastcheck/[va_status].png width=100% height="35px" title="[va_status]" alt="[va_status]">
+ 		Fecha de Pedido: [va_orderdate]
+ <br><br>
+		Cliente: <b>[va_customer_name]</b>
+		<table cellpadding=0 cellspacing=15px width=100% border=0>
+			<td valign=top width=60%>
+				<font class=sub>Informaci&oacute;n de Envio:</font>
+					<div style="margin-left:25px;margin-top:5px;line-height:16px;">
+							Persona que recibe: <br><b>[va_shp_name]</b><br>
+							Calle y n&uacute;mero: <b>[va_address1]</b><br>   
+							Colonia: <b>[va_urbanization]</b> <b>[va_city]</b><br> 
+							Estado: <b>[va_state]</b> CP:<b>[va_zip]</b><br> 
+							Pa&iacute;s:<b>[va_country]</b><br><br> 
+							Entre: <i><b>[va_address2]</b></i> <br>
+					</div>
+			</td>
+			<td valign=top width=40%>
+				<font class=sub>Informaci&oacute;n de Cobro:</font>
+					<div style="margin-left:25px;margin-top:5px;line-height:16px;">
+					Total: <font size=5>[va_total]</font><br>
+					Forma de Pago:  <b>[va_ptype]</b><br>
+				  Cobro Registrado: [va_capdate]<br>
+				  Canal de Venta:  <b>[va_salesorigins]</b><br>
+					</div>
+					<div>
+						Substatus del producto: <b>[va_statusprd]</b><br>
+						Substatus del pago: <b>[va_statuspay]</b>
+					</div>
+			</td>
+			<tr>
+				<td>				
+					<font class=sub>Tel&eacute;fonos:</font>
+					<div style="margin-left:25px;margin-top:5px;line-height:16px;">
+						<b></b> Casa: [va_phone1]<br> Oficina: [va_phone2] <br>Celular: [va_cellphone] <br>Email: [va_email]
+					</div>
+				</td>
+				<td rowspan=2 align=center valign=top><br>
+					<a href="/cgi-bin/mod/[va_application]/dbman?cmd=opr_orders&view=[va_id_order]"><img src=/sitimages/fastcheck/masinfo.png alt="Más información" title="Más información"></a>
+				</td>
+			</tr>
+			<tr>
+				<td>		<hr>		
+					<font class=sub>Notas de Envio:</font>
+					<div style="margin-left:25px;margin-top:5px;line-height:16px;">
+						[va_address3]<br>
+						[va_notes]
+						
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><font class=sub>Folio Unico de Facturaci&oacute;n</font> :<span style="color:#019CCD;">[fc_orders_folio_cfdi_online]</span></td>
+			</tr>
+		</table>	
+	</fieldset>
+</td>
+<td valign=top>
+	<fieldset>
+		<legend>Productos</legend>
+			 [va_listproducts]		
+	</fieldset>
+
+</div>
+
+
+ 
+
+
+</td>
+</table>
+<div id="ajax_windows_ajax" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999; -moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+    <div class="menu_bar_title" id="ajax_drag_ajax" align="left">
+    <table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Direksys</td>
+			<td align=right width=20px><img id="ajax_exit_ajax" name="ajax_exit" src="/sitimages/default/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+    </div>
+    <table width=100% cellpadding=0 cellspacing=7px align=center><td>
+    <div id="ajaxcontent_ajax"></div>
+  </td></table>
+  </div>
+<script type="text/javascript">
+	$("#risk_order").appendTo("#ajaxcontent_ajax");
+	//$(".formtable").hide();
+	$("#risk").click(function (){	
+		popup_show('ajax_windows_ajax', 'ajax_drag_ajax', 'ajax_exit_ajax', 'element-right', -950, -1, 'checkOrder')
+	});
+</script>
+ 
+
+

@@ -1,0 +1,89 @@
+[ip_header]
+
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="720" class="container_white">
+	<tr>
+		<td width="140" align="center" valign="top">
+			[ip_menu_main]
+			&nbsp;
+			[ip_imgman:menu]
+			&nbsp;
+			[fc_menu_custom]
+			&nbsp;
+		</td>
+		<td valign="top">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="50%" align="center"></td>
+	    <td width="25%" class="cell_off" align="center" onClick='trjump("/cgi-bin/imgman/dbman?cmd=categories")'>Add Category</td>
+	    <td width="25%" class='cell_on' align='center' onClick='trjump("/cgi-bin/imgman/dbman?cmd=categories&search=listall")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+
+
+<form action="/cgi-bin/imgman/dbman" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="categories">
+	<input type="hidden" name="edit" value="1">
+	<input type="hidden" name="id_categories" value="[in_id_categories]">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Editing Category : [in_id_suppliers]</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Category Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="25%">Name  : <span class="smallfieldterr">[er_name]</span></td>
+		    <td class="smalltext"><input type="text" name="Name" value="[in_name]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+  		<tr>
+		    <td width="25%">Parent Category  : <span class="smallfieldterr">[er_parentid]</span></td>
+		    <td class="smalltext"><input type="text" name="parentid" value="[in_parentid]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<a href="javascript:search_id('id_categories','db=sl_categories&cmd=categories&returnid=parentid')"><img border="0" src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" width="18" height="18"></a>&nbsp; <span id="disp_name"> </span></td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+     <fieldset><legend>Comments</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td valign="top" width="25%">Comments : <span class="smallfieldterr">[er_comments]</span></td>
+		    <td class="smalltext"><textarea name="comments" cols="50" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_comments]</textarea> </td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+     <fieldset><legend>Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="25%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		    <td class="smalltext"><input type="radio" name="status" value="Active" class="radio">Active
+                                   <input type="radio" name="status" value="Inactive" class="radio">Inactive</td>
+		 </tr>
+  	</table>
+	</fieldset>
+	<p align="center"><input type="submit" value="Update Category" class="button"></p>
+  </form>
+
+<script language="javascript">
+<!--
+
+chg_radio('status','[in_status]');
+
+//-->
+</script>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

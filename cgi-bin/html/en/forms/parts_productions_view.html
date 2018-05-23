@@ -1,0 +1,300 @@
+
+<fieldset>
+	<legend>SKUs Production</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">SKUs Production ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_parts_productions] &nbsp;
+							<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_parts_productions&modify=[in_id_parts_productions]"><img src='/sitimages//default/b_edit.gif' title='Edit' alt='' border='0'></a>
+					  	    <a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=mer_parts_productions&search=Print&toprint=[in_id_parts_productions]')"><img src='/sitimages//default/b_print.gif' title='Print' alt='' border='0'></a>
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] &nbsp; Created by : ([in_id_admin_users]) [ln_id_admin_users@admin_users:FirstName] [ln_id_admin_users@admin_users:LastName]</td>
+		</tr>		
+	</table>
+</fieldset>
+&nbsp;
+<fieldset>
+	<legend>SKUs Production</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width='30%'>Warehouse:</td>
+			<td class='smalltext' id='td_id_warehouses'>
+				<span id='span_id_warehouses'> 
+					<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=opr_warehouses&view=[in_id_warehouses]">([in_id_warehouses])[ln_id_warehouses@sl_warehouses:Name]</a></span> 
+			</td>
+		</tr>
+		<tr>
+			<td width='30%'>Name</td>
+			<td class='smalltext' id='td_name'>
+				<span id='span_name'>[in_name]</span> </td>
+		</tr>
+		<tr>
+			<td width='30%'>Type</td>
+			<td class='smalltext' id='td_name'>
+				<span id='span_type'>[in_type]</span> </td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+
+<div id="skus" [va_this_style]>
+	<fieldset>
+		<legend>SKUs In/Out</legend>
+		<label for="id-in"><strong>Sku In:</strong></label> ( SKU:Search by ID|Name|Location @@ Quantity)
+		<div id="div-id-in" [va_this_style]>
+			<input type="text" id="id-in" name="id-in" value="" size="90">&nbsp; X &nbsp;
+			<input type="text" id="qty-in" name="qty-in" value="" size="6">
+			<input type="button" id="btn-in" name="btn-in" value="Add This" style="display:none;">
+		</div>
+		&nbsp;
+		<div id="div-ids-in" style="width:98%;height:[va_div_height_in]px;">
+			[va_ids_in]
+		</div>
+		<br>
+		<label for="id-out"><strong>Sku Out:</strong></label> ( SKU:Search by ID|Name @@ Location @@ Quantity)
+		<div id="div-id-out" [va_this_style]>
+			<input type="text" id="id-out" name="id-out" value="" size="60">&nbsp; Location: &nbsp;
+			<input type="text" id="loc-out" name="loc-out" value="" size="10">&nbsp; X: &nbsp;
+			<input type="text" id="qty-out" name="qty-out" value="" size="6">
+			<span id="span-pct-out" [va_this_type]>&nbsp; % &nbsp;
+				<input type="text" id="pct-out" name="pct-out" value="" size="6">
+			</span>	
+			<button id="btn-out" name="btn-out" style="display:none;">Add This</button>
+		</div>
+		&nbsp;
+		<div id="div-ids-out" style="width:98%;height:[va_div_height_out]px;">
+			[va_ids_out]
+		</div>
+	</fieldset>
+</div>
+
+&nbsp;	
+<fieldset>
+	<legend>SKUs Production Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+    		<td width="30%">Status  :</td>
+    		<td class="smalltext" id='td_status'>
+    			<span id='span_status'>
+    				[in_status] | Change to [va_changestatus]
+    			</span> 
+    		</td>
+ 		</tr>
+	</table>
+</fieldset>
+&nbsp;	
+
+<script language="JavaScript">
+<!--
+	
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		$.ajaxSetup({
+	    	timeout: 60000
+	    });
+
+		var type = '[in_type]';
+		/* Hide PCT span in implode*/
+		if(type == 'Implode') {
+			$( '#span-pct-out' ).css('display','none');
+		}
+
+		/* Reset textbox & fadeOut button onFocus */
+		$( "#id-in, #id-out" ).focus(function(){
+			var p = $(this).attr('id').split('-');
+		  	var prefix = p[1];
+		  	$( "#id-" + prefix).val('');
+		  	$( "#qty-" + prefix).val('');
+		  	$( "#pct-out").val('');
+		  	$( "#loc-out").val('');
+		  	$( "#btn-" + prefix).fadeOut(1000);
+
+		  	if(type == 'Explode' && $( '#tbl-id-in' ).length > 0 ) {
+				$( "#id-in" ).attr('disabled','disable');
+		  		$( "#qty-in" ).attr('disabled','disable');
+			}else{
+				$( "#id-in" ).removeAttr('disabled');
+				$( "#qty-in" ).removeAttr('disabled');
+			}
+
+		});
+
+		/* Drop Row*/
+		$( ".rdrop" ).live('click',function(){
+			var p = $(this).attr('id').split('-',3);
+		  	var prefix = p[1];
+		  	var idppi = parseInt(p[2]) || 0;
+
+		  	$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'parts_productions_edit', 'id':[in_id_parts_productions], 'type':prefix + ':drop', 'id_warehouses':0 , 'keyword':'', 'idppi':idppi, 'data_in':'' },function(response,status,xhr){		  									
+
+				if (status == "error") {
+					alert(msg);
+					$( '#id-' +prefix ).focus();
+				}else{
+					if(response.match(/error/gi)){
+						alert(response + "\r\nPlease Try again");
+						$( '#id-' +prefix ).focus();
+					}else{
+						$( '#div-ids-' + prefix ).html(response).animate({height: '-=22'},1000);
+						$( '#id-' + prefix ).removeAttr('disabled');
+						$( '#id-' + prefix ).focus();
+					}
+				}
+			});
+
+		  	
+		});				
+
+
+		/* Adding Items */
+		$( "#btn-in, #btn-out" ).click(function(e){
+			var p = $(this).attr('id').split('-');
+		  	var prefix = p[1];
+
+		  	var t,id,upc,loc,qty,pct;
+
+		  	if(prefix == 'in'){
+		  		t = $( '#id-' + prefix ).val().split(' @@ ',5);
+		  		id = parseInt(t[0]) || 0;
+		  		upc = parseInt(t[1]) || 0;
+		  		loc = t[3];
+		  		qty = parseInt(t[4]) || 0;
+		  		//loc = t[2];
+		  		//qty = parseInt(t[3]) || 0;
+		  	}else{
+		  		t = $( '#id-' + prefix ).val().split(' @@ ',2);
+		  		id = parseInt(t[0]) || 0;
+		  		loc = $( '#loc-' + prefix ).val();
+		  		//loc = $( '#loc-' + prefix ).val();
+		  		qty = 0;
+		  	}
+
+		  	var nqty = parseInt($( '#qty-' + prefix ).val()) || 0;
+		  	var pct = type == 'Implode' ? 0 : parseFloat($( '#pct-out' ).val()) || 0;
+		  	var nid = id + ':' + loc + ':' + nqty + ':' + pct;
+		  	var idppi = 0;
+
+		  	var this_idwh = [in_id_warehouses];
+
+		  	if(prefix == 'in' && qty < nqty){
+		  		alert('Quantity greater than allowed : ' + qty);
+		  		return false;
+		  	}else if(prefix == 'in' && nqty == 0){
+		  		alert('Please fill out Quantity Box');
+		  		return false;
+		  	}/*else if(type == 'Explode' && prefix == 'out' && pct == 0){
+		  		alert('Please fill out Percentage Box');
+		  		return false;
+		  	}*/
+
+		  	$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'parts_productions_edit', 'id':[in_id_parts_productions], 'type':prefix + ':add', 'id_warehouses':this_idwh , 'keyword':'', 'idppi':idppi, 'data_in':nid },function(response,status,xhr){		  									
+
+				if (status == "error") {
+					alert(msg);
+					$( '#id-' +prefix ).focus();
+				}else{
+					if(response.match(/error/gi)){
+						alert(response + "\r\nPlease Try again");
+						$( '#id-' +prefix ).focus();
+					}else{
+						$( '#div-ids-' + prefix ).html(response).animate({height: '+=22'},1000);
+						$( '#id-' +prefix ).focus();
+					}
+				}
+			});
+
+
+		});
+
+
+		/* Data Send*/
+		$( '#btn-send' ).click(function(){
+			var ins = $( '#ids-in' ).val();
+			var outs = $( '#ids-out' ).val();
+			
+			if(ins != '' && outs != ''){
+
+				$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'parts_productions_save', 'id_parts_productions':[in_id_parts_productions], 'in':ins, 'out':outs },function(response,status,xhr){
+
+					if (status == "error") {
+						alert(msg);
+					}else{
+						if(response.match(/error/gi)){
+							alert(response + "\r\nPlease Try again");
+						}else{
+							self.location = '/cgi-bin/mod/[ur_application]/dbman?cmd=mer_parts_productions&view=[in_id_parts_productions]';
+						}
+					}
+				});
+
+			}else{
+				alert('Please fill out In and Out data');
+			}
+
+
+		});	
+
+
+
+	});	
+
+
+	$(function() {
+		var availableIDs = [
+		  [va_ids_autocomplete]
+		];
+
+		$( "#id-in" ).autocomplete({
+
+			source: availableIDs,
+		  	change: function( event, ui ) {
+		  		$( '#btn-in' ).fadeIn(1000);
+		  	}
+		});
+
+	});
+
+	$(function() {
+		var availableIDs = [
+		  [va_ids_autocomplete_out]
+		];
+
+		$( "#id-out" ).autocomplete({
+			source: availableIDs,
+		});
+
+	});
+
+	$(function() {
+		var availableIDs = [
+		  [va_loc_out]
+		];
+
+		$( "#loc-out" ).autocomplete({
+
+			source: availableIDs,
+		  	change: function( event, ui ) {
+		  		$( '#btn-out' ).fadeIn(1000);
+		  	}
+		});
+
+	});
+
+
+//-->
+</script>

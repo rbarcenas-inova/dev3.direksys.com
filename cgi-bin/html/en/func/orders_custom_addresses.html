@@ -1,0 +1,25 @@
+            <tr>
+                <td width="30%">Usar otra direcci&oacute;n : </td>
+                <td class="smalltext">
+                    <select name="id_customers_addresses" id="id_customers_addresses" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+                        <option value="">---</option>
+                            [fc_build_select_customers_address]
+                    </select>                   
+                    <script language="javascript">
+                    <!--
+                        $(document).ready(function() {
+                            $('#id_customers_addresses').change(function () {
+                                var id_customers_address = $(this).val();
+                                var id_orders_alias = $('input[name="id_orders_alias"]').val();
+                                if (id_customers_address !='') {
+                                    if ('[in_add]'=='1')
+                                        trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&add=1&id_customers=[in_id_customers]&loadaddress=1&id_customers_addresses='+id_customers_address+'&id_orders_alias='+id_orders_alias+'#id_customers_address');
+                                    else if ('[in_modify]'=='[in_id_orders]' || '[in_edit]'=='1')
+                                        trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&modify=[in_modify]&id_customers=[in_id_customers]&loadaddress=1&id_customers_addresses='+id_customers_address+'&id_orders_alias='+id_orders_alias+'#id_customers_address');
+                                }
+                            });
+                        });
+                    //-->
+                    </script>
+                </td>
+            </tr>

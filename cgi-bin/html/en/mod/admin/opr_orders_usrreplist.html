@@ -1,0 +1,79 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="10%" align="center"></td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=opr_orders_home")'>Home</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=opr_orders_board")'>Top Sales</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=opr_orders_dashboard")'>Dashboard</td>
+	    <td class='cell_[va_rep1]' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=opr_orders_prod")'>Sales/Prod. Rep.</td>
+	    <td class='cell_[va_rep2]' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=opr_orders_pay")'>Sales/Payments Rep.</td>
+	    <td class='cell_[va_rep3]' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=opr_orders_usr")'>Sales/Users Rep.</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+	&nbsp;
+	[va_report_tbl]
+	&nbsp;	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td class="tbltextttl">Records : [va_matches]</td>
+	    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+	    <td class="menu_bar_title">Description</td>
+	    <td class="menu_bar_title" colspan="2">Count</td>
+	    <td class="menu_bar_title" colspan="2">STotal</td>		    
+		</tr>
+		[va_searchresults]
+  </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">Records : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>  
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="40%" align="center" class="formtable">
+		<tr>
+			<td class="menu_bar_title" colspan="2" align="center">Totals</td>
+		</tr>
+		<tr>
+			<td>Totals Count:</td>
+			<td align="right">[va_tot_cant]</td>
+		</tr>
+		<tr>
+			<td>Total Amount:</td>
+			<td align="right">[va_tot_amount]</td>
+		</tr>
+	</table>	
+	&nbsp;
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

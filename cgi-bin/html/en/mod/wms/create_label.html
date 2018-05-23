@@ -1,0 +1,74 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+			<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform" target="upwin" onsubmit="upwin()">
+				<input type="hidden" name="cmd" value="print_label">
+				<input type="hidden" name="action" value="1">
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					<tr>
+					  <td class="titletext" align="center" colspan="2">Labels To Print</td>
+					</tr>
+					<tr>
+					  <td class="stdtxterr" colspan="2">[va_message]</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td class='stdtxterr_blue'>Enter the 9-Digit Product ID and/or the Universal Product Code (UPC)</td>
+					</tr>					
+				</table>
+				&nbsp;
+				<fieldset><legend>Label Info</legend>
+					<table border="0" cellspacing="0" cellpadding="2" width="100%">					
+						<tr>
+						  <td width="30%">Product ID (9-Digit) : <span class="smallfieldterr">[er_id_products]</span></td>
+						  <td class="smalltext"><input type="text" name="id_products" value="[in_id_products]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+						</tr>
+						<tr>
+						  <td width="30%">UPC : <span class="smallfieldterr">[er_upc]</span></td>
+						  <td class="smalltext"><input type="text" name="upc" value="[in_upc]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+						</tr>											
+						<tr>
+						  <td colspan="2"></td>
+						</tr>
+						<tr>
+						  <td width="30%">Any UPC : <span class="smallfieldterr">[er_xupc]</span></td>
+						  <td class="smalltext"><input type="text" name="xupc" value="[in_xupc]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						  	<span class="help_on">Will not be check in Direksys database</span></td>
+						</tr>
+
+					</table>
+				</fieldset>
+				<p align="center"><input type="submit" name="print_label" value="Print Labels" class="button"></p>		
+				&nbsp;
+			</form>
+			<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

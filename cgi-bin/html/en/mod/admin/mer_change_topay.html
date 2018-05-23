@@ -1,0 +1,270 @@
+[ip_header]
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+	<div id="loading" style="[va_loading]width:200px;margin:auto;text-align:center;"><div><h3>Changing Status To Pay</h3></div><img src="/modtrans/common/img/loader.gif" /> </div>
+	<div id="results" style="[va_display]">
+		<form method="post" action="/cgi-bin/mod/admin/admin" novalidate id="form">
+			<input type="hidden" name="cmd" value="mer_change_topay" />
+			<input type="hidden" name="action" value="1" />
+			<table width="100%" border="0" cellspacing="0" cellpadding="2" class="gborder listresultsform" align="center"  >
+				<tr>
+					<td width="50%" align="left" class="titletext">Change Status "To Pay"</td>
+					<td colspan="2" align="right" class="tbltextttl"></td>
+				</tr>
+				<tr>
+					<td colspan="3">
+					 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+						 <tr>
+							<td class="menu_bar_title">Vendor</td>
+							<td class="menu_bar_title" align="right">Amount</td>
+							<td class="menu_bar_title" align="right">Amount Due</td>
+						 </tr>
+						 [va_searchresults]
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="50%" align="left" class="tbltextttl">Records: [va_matches]</td>
+				</tr>
+				
+			</table>
+			<span class="listresultsform" >[va_button_p]</span>
+		</form>
+	</div>
+	<div id="resultApply" style="[va_display2]">
+		<fieldset><legend>Summary Result Changed To Pay</legend>
+			<table width="100%" border="0" cellspacing="0" cellpadding="4" class="gborder" align="center">
+				<tr>
+					<td class="menu_bar_title">ID Bill</td>
+				</tr>
+			[va_searchresultapply]
+			</table>
+		</fieldset>
+	</div>
+	[va_error]
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script>
+	$("#form").submit(function (event) {
+		$("#results").hide();
+		$("#loading").show();
+		if (confirm('Are you sure you want to continue?')){
+		
+		}else{
+			$("#results").show();
+			$("#loading").hide();
+			return false;
+		}
+		
+		
+	});
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#duedate, #toduedate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			numberOfMonths: 3,
+			minDate: new Date(2009,1-1,1),
+			onSelect: function( selectedDate ) {
+				var option = this.id == "duedate" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+		
+		var dates2 = $( "#bankdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			numberOfMonths: 3
+		});
+		
+		
+	});
+	
+	$(".collapse").click(function (){
+		var currentId = $(this).attr('id');
+		var partes = currentId.split("_");
+		$("#list_"+partes[1]).toggle();
+		if($("#collapse_"+partes[1]).val() == 'close'){
+			$("#collapse_"+partes[1]).val('open');
+			$("#link_"+partes[1]).attr('src', '/sitimages/icon-collapse-minus.gif');
+		}else{
+			$("#collapse_"+partes[1]).val('close');
+			$("#link_"+partes[1]).attr('src', '/sitimages/icon-collapse-plus.gif');
+		}
+	});
+
+	$(document).ready(function() {
+		var jsonData = jQuery.parseJSON( '[va_json]' );
+		var totalAmount = 0;
+		for(var obj in jsonData){
+			if(jsonData.hasOwnProperty(obj)){
+				for(var prop in jsonData[obj]){
+					if(jsonData[obj].hasOwnProperty(prop)){
+						var number = Number(jsonData[obj]['AmountDue'].replace(/[^0-9\.]+/g,""));
+						number = number.toFixed(3);
+						var idToValue = 'valueVendorAmount_'+obj;
+						$("#amountTotal_"+obj).html(jsonData[obj]['Amount']);
+						$("#amountDueTotal_"+obj).html('<input type="hidden" id="reset_'+obj+'" /><div style="cursor:pointer;color:#ff0f0f;" onclick="loadValuesfor('+obj+'); print_amount(\'valueVendorAmount_'+obj+'\', \''+number+'\')" >'+jsonData[obj]['AmountDue']+'</div>');
+						
+					}
+				}
+			}
+		}
+		var totalsvalue = formatMoney([va_totalsinput], 2, '.', ',');
+		$("#totals").html('[va_currency] '+totalsvalue);
+	});
+	function findDuplicate(value) {
+        var result = 0;
+        $(".refnum").each(function(){
+            if (this.value == value) {
+                result++;
+            }
+        });
+        return result - 1;
+    }
+	function loadValuesfor(id){
+		if($("#reset_"+id).val() == 'all'){
+			$(".check_"+id).attr('checked', false);
+			$("#reset_"+id).val('');
+		}else{
+			$(".check_"+id).attr('checked', true);
+			$("#reset_"+id).val('all');
+
+		}
+	}
+	$(".inputBill").blur( function (){
+		var idItem = $(this).attr('id');
+		var partes = idItem.split('_');
+		var inputBlur = parseFloat($(this).val());
+		var valueAmountDue = parseFloat($("#valueAmountDue_"+partes[1]).val());
+		var clases = $(this).attr('class');
+		partClass = clases.split(' ');
+		var IdVendor = getVendorId(partClass[0]);
+		if(inputBlur > valueAmountDue || inputBlur < 1){
+			$("#error_"+partes[1]).html('[va_bills_amount_invalid]');
+			$(this).val('');
+			$(this).focus();
+			updateTotal(IdVendor);
+		}else{
+			$("#error_"+partes[1]).html('');
+			
+			updateTotal(IdVendor);
+		}
+	});
+	
+	function getVendorId(clase){
+		var partVendor = clase.split('_');
+		var IdVendor = partVendor[1];
+		return IdVendor;
+	}
+	
+	function updateTotal(IdVendor){
+		var totalVendor = 0;
+		var valueAmount = 0;
+		var totalPaid = 0;
+		
+		
+		$("#reset_"+IdVendor).val('all');
+		totalVendor = totalVendor.toFixed(3);
+		$("#valueVendorAmount_"+IdVendor).val(totalVendor);
+		$(".amountVendorTotal").each(function (){
+			valueVendor = $(this).val();
+			valueVendor = parseFloat(valueVendor);
+			if(isNaN(valueVendor)){
+				valueVendor = 0;
+			}
+			totalPaid = valueVendor + totalPaid;
+		});
+		totalPaid = formatMoney(totalPaid, 2, '.', ',');
+		$("#totals_paid").html('[va_currency] '+totalPaid);
+		//alert($('input[name=doc_type]').val());
+		
+	}
+	function print_amount(id,amount) {
+		
+		var partes = id.split("_");	
+		$('#check_'+partes[1]).attr('checked', 'checked');
+		var clases = $('#'+id).attr('class');
+		//partClass = clases.split(' ');
+		
+		return false;
+	}
+
+	
+function formatMoney (n, c, d, t){
+	
+    c = isNaN(c = Math.abs(c)) ? 2 : c, 
+    d = d == undefined ? "." : d, 
+    t = t == undefined ? "," : t, 
+    s = n < 0 ? "-" : "", 
+    i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
+    j = (j = i.length) > 3 ? j % 3 : 0;
+   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+};
+function confirm_pay() {
+	if (confirm('Are you sure you want to continue?'))
+		return true;
+	else
+		return false;
+}
+	$("#id_banks").change(function (){
+		var bankValue = $('#id_banks option:selected').text();
+		var regExp = /\(([^)]+)\)/;
+		var matches = regExp.exec(bankValue);
+		if(matches[1] != '[va_currency]'){
+			$("#exchange").show();
+		}else{
+			$("#exchange").hide();
+		}
+	});
+	$(".refauto").click(function (){
+		if($(this).is(':checked')){
+			var idItem = $(this).attr('id');
+			var partes = idItem.split('_');
+			$("#refVendor_"+partes[1]).val('');
+		}
+		
+	});
+	$(".refnum").blur(function (){
+		
+	});
+	function loadExchangeRate(obj) {
+		var url = '/cgi-bin/common/apps/ajaxbuild';
+		var param = 'ajaxbuild=exchange_rate';
+		$.post(url, param, function(data){
+		   $('#'+obj).val(data)
+		});
+	}
+</script>
+[ip_footer]

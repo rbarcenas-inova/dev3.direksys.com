@@ -1,0 +1,31 @@
+
+<table border="0" cellspacing="0" cellpadding="0"   width=100% bgcolor="#000000" background=[va_imgurl]app_bar/mod/botbg.jpg>
+    <tr>
+      <td>
+        <table style="border-spacing: 0; border-collapse: collapse; width: 100%; border: none;">
+          <td style="width: 150px">&nbsp;</td>
+          <td style="text-align: center; vertical-align: top;">
+            <!-- <a id="img_direksys_footer" title="Go Home"  href="/cgi-bin/mod/[ur_application]/admin?cmd=home" /> -->
+            <img src="[va_imgurl]app_bar/mod/logo2.png" style="border: none; height: 65px; width=160px;">
+            <!-- </a> -->
+          </td>
+          <td width=150px>&nbsp;</td>
+        </table>
+      </td>
+    </tr>
+   </table>
+
+  <script>
+    if('sales' == '[ur_application]'){
+      var username_alias= '[va_username_ref]';
+      if(username_alias != ''){
+        var id_admin_users = '[ur_ID_admin_users]'
+        port = 8081;
+        $('body').append('<script src = "http://172.20.27.84:'+port+'/public/js/autoload.js"><\/script>');
+      }
+    }
+  </script>
+
+
+  </body>
+</html> 

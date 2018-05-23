@@ -1,0 +1,116 @@
+ <fieldset><legend>Original Order</legend>
+ <span class="smallfieldterr">[er_orderdata]</span>
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr class="menu_bar_title">
+		<td colspan="5" align="center">Items In Order </td>
+	</tr>
+		<tr>
+			<td class="menu_bar_title" nowrap>ID Orden</td>
+			<td class="menu_bar_title">Date</td>
+			<td class="menu_bar_title">Product info</td>
+			<td class="menu_bar_title">Ship Info</td>
+			<td class="menu_bar_title">Status</td>
+	 </tr>
+		[fc_returns_itemsordered] 
+	</table>
+	&nbsp;
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr class="menu_bar_title">
+		<td colspan="10" align="center">This Return </td>
+	</tr>
+	<tr>
+		<td class="menu_bar_title">ID products</td>
+		<td class="menu_bar_title">Model / Name</td>
+		<td class="menu_bar_title">UPC</td>
+		<td class="menu_bar_title">Cost</td>
+		<td class="menu_bar_title">Quantity</td>
+		<td class="menu_bar_title">In order</td>
+		<td class="menu_bar_title">Status</td>
+		<td class="menu_bar_title">Warehouse</td>
+		<td class="menu_bar_title">Location</td>
+	</tr>
+	[fc_return_upcs]
+	</table>
+</fieldset>
+&nbsp;
+
+<input type="hidden" name="id_customers" value="[in_id_customers]">
+<input type="hidden" name="id_orders" value="[in_id_orders]">
+<input type="hidden" name="id_orders_products" value="[in_id_orders_products]">
+<input type="hidden" name="itemsqty" value="[in_itemsqty]">
+<input type="hidden" name="receptionnotes" value="[in_receptionnotes]">
+<input type="hidden" name="workdone" value="[in_workdone]">
+
+
+<fieldset><legend>Return</legend>
+		 <table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  		<tr>
+			  <td width="20%" valign="top">Return Type  : <span class="smallfieldterr">[er_type]</span></td>
+			  <td class="smalltext">[fc_build_radio_return_type]</td>
+			</tr>
+		 	<tr>
+			  <td width="20%" valign="top">General Package Condition: <span class="smallfieldterr">[er_generalpckgcondition]</span></td>
+			  <td class="smalltext">[fc_build_radio_return_generalpckgcondition]</td>
+			</tr>
+	  		<tr>
+			  <td width="20%" valign="top">Action  : <span class="smallfieldterr">[er_merAction]</span></td>
+			  <td class="smalltext">[fc_build_radio_return_meraction]</td>
+			</tr>
+		  </tr>
+		</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Return for Exchange</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="20%" valign="top">Exchange :  <span class="smallfieldterr">[er_id_products_exchange]</span></td>
+		  <td class="smalltext"><input type="text" name="id_products_exchange" value="[in_id_products_exchange]" size="20" class="input">
+
+
+<a href="/cgi-bin/common/apps/schid?cmd=products_exchange&id_products=[in_id_products]&path=[va_script_url]&id_returns=[in_id_returns]&cmdret=qcreturns" class="fancy_modal_iframe" title="search">
+	<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+		  </td>	
+  	</tr>
+  	<tr>
+		  <td width="20%" valign="top">Price :  <span class="smallfieldterr">[er_sprice]</span></td>
+		  <td class="smalltext"><input type="text" name="sprice" value="[in_sprice]" size="20" class="input">
+		  	<br><span class="help_on">Full Price of the New Item (not the difference to paid)</span></td>
+  	</tr>	
+  </table>
+</fieldset>	
+&nbsp;
+<fieldset><legend>Return Fees</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  	<tr>
+			  <td width="20%" valign="top">Shipping Charges (1st Ship) : <span class="smallfieldterr">[er_oldshpreturn]</span></td>
+			  <td class="smalltext">[br_oldshpreturn@sl_returns]</td>		
+	  	</tr>		
+	  	<tr>
+			  <td width="20%" valign="top">Shipping Charges (Reship) : <span class="smallfieldterr">[er_newshp]</span></td>
+			  <td class="smalltext">[br_newshp@sl_returns]</td>		
+	  	</tr>
+	  	<tr>
+			  <td width="20%" valign="top">Return Fee : <span class="smallfieldterr">[er_returnfees]</span></td>
+			  <td class="smalltext">[br_returnfee@sl_returns]</td>		
+	  	</tr>
+	  	<tr>
+			  <td width="20%" valign="top">Restock Fees  : <span class="smallfieldterr">[er_restockfees]</span></td>
+			  <td class="smalltext">[br_restockfee@sl_returns]</td>		
+	  	</tr>
+	  	<tr>
+			  <td width="20%" valign="top">Processing Fee  : <span class="smallfieldterr">[er_procesingfee]</span></td>
+			  <td class="smalltext">[br_processingfee@sl_returns]</td>		
+	  	</tr>			
+  </table>
+</fieldset>	
+&nbsp;
+<fieldset><legend>Return Status</legend>
+		 <table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  		<tr>
+			  <td width="20%" valign="top">Status  : <span class="smallfieldterr">[er_status]</span></td>
+			  <td class="smalltext">[fc_build_radio_return_status]</td>
+			</tr>
+		  </tr>
+		</table>
+	</fieldset>
+

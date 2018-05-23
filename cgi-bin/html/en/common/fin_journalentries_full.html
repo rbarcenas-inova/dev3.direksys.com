@@ -1,0 +1,147 @@
+[ip_header]
+
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+	var dates = $( "#from_date, #to_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+		<td width="17%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=fin_journalentries_home")'>Journal Entries</td>
+		<td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=fin_journalentries&add=1")'>Add</td>
+		<td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=fin_journalentries&search=form")'>Search</td>
+		<td width="17%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=fin_journalentries&search=listall&so=DESC&sb=ID_journalentries")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	&nbsp;
+  <form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="fin_journalentries_full">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">Finance & Accounting / Journal Entries Full</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Query</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+		    <td width="25%">From Date : <span class="smallfieldterr">[er_from_date]</span></td>
+		    <td class="smalltext"><input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    </td>
+			</tr>
+			<tr>
+		    <td width="25%">To Date : <span class="smallfieldterr">[er_to_date]</span></td>
+		    <td class="smalltext"><input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    </td>
+			</tr>
+			 <tr>
+			 	<td width="30%">ID Journal Entry : <span class="smallfieldterr"></span></td>
+				<td class="smalltext">
+					<input id="id_journalentries" name="id_journalentries" value="" size="10" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+
+
+
+
+<a href="/cgi-bin/common/apps/schid?db=sl_journalentries&cmd=journalentries&fname=id_journalentries&value="  title="Search" class="fancy_modal_iframe">
+
+					<img src="/sitimages/default/icsearchsmall.gif" border="0"></a>
+
+					<a name="tabs" id="tabs">&nbsp;</a>
+				</td>
+			</tr>
+			<tr>
+	   			<td width="30%">Status :</td>
+				<td class="smalltext">
+		   			[bc_status@sl_journalentries]
+				</td>
+			</tr>
+			<tr>
+	   			<td width="30%">Categories :</td>
+				<td class="smalltext">
+		   			[bc_category@sl_movements]
+				</td>
+			</tr>
+			<!--
+			<tr>
+	   			<td width="30%">Include Full History? :</td>
+				<td class="smalltext">
+		   			<input type="checkbox" id="history" name="history" value="1" class="checkbox"/> Yes
+				</td>
+			</tr>
+		-->
+		</table>
+	</fieldset>
+
+	<p align="center"><input type="submit" value="Run" class="button"></p>
+  </form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script language="javascript">
+<!--			
+
+	chg_chkbox('status','[in_status]');
+
+//-->
+</script>
+
+
+
+[ip_footer]

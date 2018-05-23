@@ -1,0 +1,430 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+	
+	<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform" target="upwin" onsubmit="upwin()">
+	<input type="hidden" name="cmd" value="packing_fadd_form">
+	<input type="hidden" name="action" value="full">
+
+	
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			    <td class="titletext" align="center" colspan="2">Auto Fulfillment Process |  [va_string_ptype]</td>
+			 </tr>
+			<tr>
+			   <td colspan="2"><span class="help_on">The process will set In Fulfillment Status to Processed Orders based on inventory stock</span></td>
+			 </tr>
+			<tr>
+			    <td class="stdtxterr" colspan="2">[va_message][va_multi]</td>
+			 </tr>
+	     </table>
+
+
+		<fieldset><legend>Information  [va_string_ptype]</legend>
+
+			<div id="tofulfill_form">
+
+				<table cellpadding="0px" border="0" cellspacing="0" width="100%">
+
+					<tr height="45px">
+						<td align="center" colspan="5" class="smalltext" >
+							
+							Select Warehouse : 
+							<br><br>
+
+							<select name="id_warehouses" id="fm-id_warehouses" class="input"><option value="0">---</option>[fc_build_select_regular_warehouses]</select>
+							<span class="smallfieldterr">[er_id_warehouses]</span>
+							<br><br>
+
+
+							Select States [optional | Hold down the control (ctrl) button to select multiple options]
+							<br><br>
+							<input type="checkbox" name="states_excude" id="fm-states_excude" value="1" class='radio'> Exclude
+							<br>
+							<select name="state" id="fm-states" size="20" multiple><option>---</option>[fc_build_select_orders_state]</select>
+							<span class="smallfieldterr">[er_state]</span>
+							<br><br>
+
+							Select Priority
+							<br><br>
+
+							<label style="border: 1px solid #dddddd; padding:10px; margin-right: 15px; ">
+								<input type="radio" name="orderby" id="fm-orderby_asc" value="asc" class='radio' checked>
+								Oldest First
+							</label> 
+							&nbsp;&nbsp;
+							<label style="border: 1px solid #dddddd; padding:10px; margin-right: 15px; ">
+								<input type="radio" name="orderby" id="fm-orderby_desc" value="desc" class='radio'>
+								Newest First
+							</label>
+							<br><br>
+
+							Only Express
+
+							<br><br>
+							<label style="border: 1px solid #dddddd; padding:10px; margin-right: 15px; ">
+								<input type="checkbox" name="express" id="fm-express" value="1" class='radio'>
+								Yes
+							</label>
+							<br><br>
+
+							Out of Stock [optional | Mark Order if no stock ]
+							<br><br>
+							<label style="border: 1px solid #dddddd; padding:10px; margin-right: 15px; ">
+								<input type="checkbox" name="ostock" id="fm-ostock" value="1" class='checkbox'>
+								Yes
+
+							</label> 
+
+							<br><br><br><br>
+
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input id="fm_tofulfill_submit" type="button" value="Assing to Fulfill" class="button">
+						</td>
+
+						</td>		  
+					</tr>
+
+					<td width=5% style="border-left:1px dashed silver;">&nbsp;</td>
+
+					<td width=40% valign=top>
+						<table border="0" cellspacing="0" cellpadding="4" width="100%" class="">
+							<tr>
+								<td class="smalltext" nowrap="true">
+
+									Select Zones [optional]<br>
+									Hold down the control (ctrl) button to select multiple options]
+									<br><br>
+									<input type="checkbox" name="zones_exclude" id="fm-zones_exclude" value="1" class='radio'> Exclude
+									<br>
+									<select name="state" id="fm-zones" size="30" multiple style="width: 450px;"><option>---</option>[fc_build_select_zones]</select>
+									<span class="smallfieldterr">[er_zones]</span>
+									<br><br>
+
+								</td>  
+							</tr>
+						</table>
+					</td>
+
+					<td width=2% style="border-left:1px dashed silver;">&nbsp;</td>
+
+					<td width=50% valign="top">
+
+						<table border="0" cellspacing="0" cellpadding="4" width="100%" class="">
+							<tr >
+								<td class="smalltext" nowrap="true">
+
+									Select Priority
+									<br><br>
+									<label style="border: 1px solid #dddddd; padding:10px; margin-right: 15px; ">
+										<input type="radio" name="orderby" id="fm-orderby_asc" value="asc" class='radio' checked>
+										Oldest First
+									</label> 
+									&nbsp;&nbsp;
+									<label style="border: 1px solid #dddddd; padding:10px; margin-right: 15px; ">
+										<input type="radio" name="orderby" id="fm-orderby_desc" value="desc" class='radio'>
+										Newest First
+									</label>
+									<br><br>
+
+									Only Express
+									<br><br>
+									<label style="border: 1px solid #dddddd; padding:10px; margin-right: 15px; ">
+										<input type="checkbox" name="express" id="fm-express" value="1" class='radio'>
+										Yes
+									</label>
+									<br><br>
+
+									Out of Stock [optional]<br>
+									Mark Order if no stock ]
+									<br><br>
+									<label style="border: 1px solid #dddddd; padding:10px; margin-right: 15px; ">
+										<input type="checkbox" name="ostock" id="fm-ostock" value="1" class='checkbox'>
+										Yes
+									</label> 
+
+									<br><br>
+
+								</td>	  
+							</tr>
+
+							<tr >
+								<td class="smalltext" nowrap="true">
+									
+									<table border="0" cellspacing="0" cellpadding="4" width="100%" class="">
+										<tr height="100px">
+											<td width="45%" valign="middle" align="center">
+													[va_infulfillment_image]
+													&nbsp;&nbsp;&nbsp;&nbsp;
+													<span id="sp-infulfillment_orders">[va_infulfillment_orders]</span>
+											</td>
+
+											<td width=2% style="border-left:1px dashed silver;">&nbsp;</td>
+
+											<td width="45%" valign="middle" align="center">
+												[va_ostock_image]
+												&nbsp;&nbsp;&nbsp;&nbsp;
+												<span id="sp-ostock_orders">[va_ostock_orders]</span>
+											</td>
+										</tr>
+									</table>
+
+								</td>
+							</tr>
+
+						</table>
+					</td>
+
+					<td width=2% style="border-left:1px dashed silver;">&nbsp;</td>
+
+					<tr height="45px">
+						<td align="center" colspan="5">
+							
+							<input id="fm_tofulfill_submit" type="button" value="Assign to Fulfill [va_string_ptype]" class="button">
+
+						</td>		  
+					</tr>
+				</table>
+
+			</div>
+
+
+			<div id="tofulfill_response" style="display:none">
+				<p id="tofulfill_response_content">OK, The job's done</p>
+				<p align="center"><input align="center" id="fm_tofulfill_back" type="button" value="Back to Assign" class="button"></p>
+			</div>
+
+
+	     </fieldset>
+
+	</form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script language="javascript">
+<!--
+
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		$.ajaxSetup({
+	    	timeout: 60000
+	    });
+
+		/*Load Wait Panel from YUI*/
+		[fc_show_wait_dialog]
+
+
+		/* In Fulfillment to None */
+		$( "#img-infulfillment_on" ).click(function(e){
+
+			var fcod = parseInt('[in_cod]') || 0;
+
+			YAHOO.example.container.wait.show();
+		  	$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'packing_fadd_auto','infulfillment':'1','cod':fcod },function(response,status,xhr){
+
+				if (status == "error") {
+
+					alert(msg);
+					YAHOO.example.container.wait.hide();
+
+				}else{
+
+					if(response.match(/error/gi)){
+
+						YAHOO.example.container.wait.hide();
+						alert(response + "\r\nPlease Try again");
+					
+					}else{
+
+						YAHOO.example.container.wait.hide();
+						$( "#img-infulfillment_on" ).attr('src','/sitimages/packing_list/infullfilment_off.png');
+						$( '#sp-infulfillment_orders' ).html('0');
+
+
+					}
+				}
+
+			});
+
+		});
+
+
+		/* Out of Stock to None */
+		$( "#img-ostock_on" ).click(function(e){
+
+			var fcod = parseInt('[in_cod]') || 0;
+
+			YAHOO.example.container.wait.show();
+		  	$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'packing_fadd_auto','ostock':'1','cod':fcod },function(response,status,xhr){
+
+				if (status == "error") {
+
+					alert(msg);
+					YAHOO.example.container.wait.hide();
+
+				}else{
+
+					if(response.match(/error/gi)){
+
+						YAHOO.example.container.wait.hide();
+						alert(response + "\r\nPlease Try again");
+					
+					}else{
+
+						YAHOO.example.container.wait.hide();
+						$( "#img-ostock_on" ).attr('src','/sitimages/packing_list/outofstock_off.png');
+						$( '#sp-ostock_orders' ).html('0');
+
+
+					}
+				}
+
+			});
+
+		});
+
+
+		
+		$("#fm-zones option").each(function() {
+			$(this).css('display', 'none');
+		});
+		$('#fm-id_warehouses').change(function(event) {
+			var this_zones = $(this).find(':selected').attr('data-zones');
+			if( this_zones != '' && this_zones != undefined ){
+
+				var ids_zones = this_zones.split(',');
+				$("#fm-zones option").each(function() {
+
+					var this_val = $(this).val();
+					for( var i=0; i<ids_zones.length; i++ ){
+						if( this_val == ids_zones[i] ){
+							$(this).css('display', 'block');
+							break;
+						}else{
+							$(this).css('display', 'none');								
+						}
+					}
+
+				});
+
+			}else if( $(this).val() == '0' ){
+
+				$("#fm-zones option").each(function() {
+					$(this).css('display', 'none');
+				});
+
+			}else{
+
+				$("#fm-zones option").each(function() {
+					$(this).css('display', 'block');
+				});
+
+			}
+		});
+
+
+	    /* To Fulfill Process */
+		$( "#fm_tofulfill_submit" ).click(function(e){
+
+			var idwh = parseInt($( '#fm-id_warehouses' ).val()) || 0;
+		  	var zones = $( '#fm-zones' ).val() || 0;
+		  	var zones_exclude = parseInt($( '#fm-zones_exclude:checked' ).val()) || 0;
+		  	var orderby = $( '#fm-orderby_desc:checked' ).val() || 'asc';
+
+		  	var express = parseInt($( '#fm-express:checked' ).val()) || 0;
+		  	var ostock = $( '#fm-ostock:checked' ).val() || 0;
+		  	var fcod = parseInt('[in_cod]') || 0;
+		  	var nid = idwh + '::' + zones + '::' + zones_exclude + '::'  + orderby + '::' + fcod + '::' + express + '::' + ostock + '::[in_cmd]';
+
+
+		  	if(idwh == 0){
+
+		  		alert("Select at least Warehouse");
+		  		return false;
+
+		  	}else if(zones == 0 && zones_exclude == 1){
+
+				alert("No Zone Selected to Exclude");
+		  		return false;		  		
+
+		  	}
+
+
+		  	YAHOO.example.container.wait.show();
+		  	$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'packing_fadd_auto','data_in':nid },function(response,status,xhr){
+
+				if (status == "error") {
+
+					alert(msg);
+					$( '#id-in' ).focus();
+					YAHOO.example.container.wait.hide();
+					$( "#fm_tofulfill_submit" ).show(2000); 
+
+				}else{
+
+					if(response.match(/error/gi)){
+
+						YAHOO.example.container.wait.hide();
+						alert(response + "\r\nPlease Try again");
+						$( "#fm_tofulfill_submit" ).show(2000);
+					
+					}else{
+
+						YAHOO.example.container.wait.hide();
+						$( "#tofulfill_form" ).hide();
+						$( "#tofulfill_response" ).show(2500);
+						$( '#tofulfill_response_content' ).html('<pre>' + response + '</pre>');
+
+
+					}
+				}
+
+			});
+
+		});
+
+
+		$( "#fm_tofulfill_back" ).click(function(e){
+
+			$( '#tofulfill_response_content' ).html('');
+			$( "#tofulfill_response" ).hide();
+			$( "#tofulfill_form" ).show(2500);
+
+		});	
+
+
+	});
+
+-->
+</script>
+
+[ip_footer]

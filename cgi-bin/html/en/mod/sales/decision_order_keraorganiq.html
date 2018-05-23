@@ -1,0 +1,157 @@
+<script type="text/javascript" src="/sitimages//jquery-events.cc-inbound.js"></script>
+
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+<!-- Start Main Area  -->
+		
+
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	<tr>
+		<td class="titletext" align="center" colspan="2">Arboles de Decision</td>
+	</tr>
+	<tr>
+		<td class="stdtxterr" colspan="2">[va_message]</td>
+	</tr>
+</table>
+&nbsp;
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform" id="productshow">
+<input type="hidden" name="cmd" value="console_order">
+<input type="hidden" name="step" value="2">
+<input type="hidden" name="action" value="add_to_basket">
+
+<input type="hidden" name="skupro" value="1">
+<input type="hidden" id="id_products" name="id_products" value="0">
+<input type="hidden" id="overwrite_option" name="overwrite_option" value="0">
+
+<fieldset><legend>Keraorganiq</legend>
+	<div id="showquestion" class="answers"></div>
+
+	<table width="100%" border="0" cellspacing="1" cellpadding="2" id="questions" >
+	<tr>
+	<td>No</td>
+	<td>Question/Heading </td>
+	<td>Answers </td>
+	</tr>
+	<tr>
+	<td>1</td>
+	<td>Tarjeta de Credito</td>
+	<td><ul>
+		<li id="20">Si</li>
+		<li id="10">No</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>20</td>
+	<td>Pruebelo por 30 dias por $29.99 + S&H y un solo pago de $149.99 a 30 dias</td>
+	<td><ul>
+		<li id="4">Si</li>
+		<li id="3">No, esta muy caro</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>3</td>
+	<td>Un solo pago Hoy de $149.99 + S&H</td>
+	<td><ul>
+		<li id="5">Si</li>
+		<li id="6">No, esta muy caro</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>4</td>
+	<td>&nbsp;</td>
+	<td><a href="javascript:return false;" id="1522151">Generar Pedido</a></td>
+	</tr>
+	<tr>
+	<td>5</td>
+	<td>&nbsp;</td>
+	<td>Generar Pedido con Producto <a id="2522151">Generar Pedido</a></td>
+	</tr>
+	<tr>
+	<td>6</td>
+	<td>Un solo pago hoy de $149.99 (Envio Gratis)</td>
+	<td><ul>
+		<li id="7">Si</li>
+		<li id="8">No tengo dinero</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>7</td>
+	<td>&nbsp;</td>
+	<td><a href="javascript:return false;" id="3522151">Generar Pedido</a></td>
+	</tr>
+	<tr>
+	<td>8</td>
+	<td>Dos Cuotas Mensuales de $74.50 + $9.99 S&H</td>
+	<td><ul>
+		<li id="9">Si</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>9</td>
+	<td>&nbsp;</td>
+	<td><a href="javascript:return false;" id="3522151">Generar Pedido *</a></td>
+	</tr>
+	<tr>
+	<td>10</td>
+	<td>$179 + S&H</td>
+	<td><ul>
+		<li id="11">Si</li>
+		<li id="12">No, Muy caro</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>11</td>
+	<td>&nbsp;</td>
+	<td><a href="javascript:return false;" id="1522151">Generar Pedido</a></td>
+	</tr>
+	<tr>
+	<td>12</td>
+	<td>$179 (Envio Gratis) </td>
+	<td><ul>
+		<li id="13">Si</li>
+		<li id="14">No, Muy caro</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>13</td>
+	<td>&nbsp;</td>
+	<td><a href="javascript:return false;" id="1522151">Generar Pedido</a></td>
+	</tr>
+	<tr>
+	<td>14</td>
+	<td>Downsale: Kit Basico (Paso 1 y 2) $149.99 + S&H</td>
+	<td><ul>
+		<li id="15">Si</li>
+		<li id="16">No, Muy caro</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>15</td>
+	<td>&nbsp;</td>
+	<td><a href="javascript:return false;" id="1900087">Generar Pedido</a></td>
+	</tr>
+	<tr>
+	<td>16</td>
+	<td>Downsale: Full Kit $149.99 + S&H</td>
+	<td><ul>
+		<li id="17">Si</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>17</td>
+	<td>&nbsp;</td>
+	<td><a href="javascript:return false;" id="3522151">Generar Pedido</a></td>
+	</tr>
+	</table>
+</fieldset>
+
+</form>
+&nbsp;
+
+<!-- End Main Area  -->

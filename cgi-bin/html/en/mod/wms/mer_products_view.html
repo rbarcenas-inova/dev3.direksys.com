@@ -1,0 +1,167 @@
+[ip_header]
+
+
+<script language="JavaScript">
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+});  // document readyState
+
+
+// Overlay
+$(function() {
+
+	$("a[rel]").live('click', function(e) {
+
+		// if the function argument is given to overlay,
+		// it is assumed to be the onBeforeLoad event listener
+		$(this).overlay({
+
+			effect: 'apple',
+
+
+			onBeforeLoad: function() {
+
+				$(".apple_overlay .contentWrap").html('<div style="height:422px;width:537px;background-color:#fff;text-align:center;position:relative;"><img style="position:absolute;top:50%;left:50%;margin-top:-25px;margin-left:-25px;" alt="Loading..." src="[va_imgurl]/processing.gif" /><br>Loading...Please Wait</div>');
+
+				// grab wrapper element inside content
+				var wrap = this.getOverlay().find(".contentWrap");
+
+				// load the page specified in the trigger
+				wrap.load(this.getTrigger().attr("href"));
+			}
+
+		});
+		e.preventDefault();
+	});
+
+});
+
+</script>
+
+<style>
+
+/* use a semi-transparent image for the overlay */
+#overlay {
+	background-image:url(/jquerytools/overlay/transparent.png);
+	color:#fff;
+	height:580px;
+}
+
+/* container for external content. uses vertical scrollbar, if needed */
+div.contentWrap {
+	height:581px;
+	overflow-y:auto;
+}
+/* the overlayed element */
+.apple_overlay {
+
+	/* initially overlay is hidden */
+	display:none;
+
+	/* growing background image */
+	background-image:url(/jquerytools/overlay/white.png);
+
+	/*
+		width after the growing animation finishes
+		height is automatically calculated
+	*/
+	width:540px;
+
+	/* some padding to layout nested elements nicely  */
+	padding:35px;
+
+	/* a little styling */
+	font-size:11px;
+}
+
+/* default close button positioned on upper right corner */
+.apple_overlay .close {
+	background-image:url(/jquerytools/overlay/close.png);
+	position:absolute; right:5px; top:5px;
+	cursor:pointer;
+	height:35px;
+	width:35px;
+}
+
+</style>
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table class="tab" border="0" cellpadding="0" cellspacing="0" width="100%" align="center">
+	  <tbody>
+	  		<tr>
+		    	<td width="30%" align="center"></td>
+				<td class="cell_off" onclick="trjump('/cgi-bin/mod/wms/dbman?cmd=mer_products&search=form')" width="23%" align="center">Search</td>
+				<td class="cell_off" onclick="trjump('/cgi-bin/mod/wms/dbman?cmd=mer_products&search=advform')" width="23%" align="center">Adv Search</td>
+				<td class="cell_on" onclick="trjump('/cgi-bin/mod/wms/dbman?cmd=mer_products&search=listall')" width="23%" align="center">View / Edit / Delete</td>
+	  		</tr>
+		</tbody>
+	</table>
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center" colspan="2">View Product : [in_id_products_code]</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>		 
+	</table>
+	&nbsp;
+		[ip_forms:products_view]
+	&nbsp;
+	<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>	
+	<script type="text/javascript">
+		var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+	</script>
+	
+	
+	
+	<script type="text/javascript">
+var productAcc = new YAHOO.widget.AccordionView('productsaccordion', {collapsible: true, animationSpeed: '0.4', width: 'auto', animate: true, effect: YAHOO.util.Easing.easeNone});
+
+$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('width','auto');
+$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('background','url(/sitimages/app_bar/mod/tabh.png)');
+$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('background-repeat','repeat-x');
+$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('color','#222222');
+$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('border-left','1px #ccc solid');
+$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('border-right','1px #bbb solid');
+$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('border-top','1px #ddd solid');
+$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('border-bottom','1px #ccc solid');
+$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('padding-top','10px');
+$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('padding-left','10px');
+$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('font-weight','normal');
+
+</script>
+
+	&nbsp;
+	[tb_products]
+	&nbsp;
+	
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

@@ -1,0 +1,189 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center style="background-image:url([va_imgurl]menu/menubg.jpg); background-repeat:repeat-x; background-position: top left;">
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="23%" class="cell_[va_oitems]" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=cod_orderstobefulfilled&orders=1")'>By Orders</td>
+		<td width="24%" class="cell_[va_zones]" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=cod_orderstobefulfilled&zones=1")'>By Zones</td>
+	    <td width="23%" class="cell_[va_sitems]" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=cod_orderstobefulfilled&items=1")'>By Items</td>		
+	  </tr>
+	</table>
+
+	
+	
+	<div style="background-color:#ffffff;margin:15px;">
+	
+	
+<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="cod_orderstobefulfilled">
+	<input type="hidden" name="zones" value="1">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="id_zones" value="[in_id_zones]">
+	
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Assigning Orders of: <span class="stdtext">([in_id_zones]) [va_zonename]</span></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class="menu_bar_title" nowrap>&nbsp;</td>
+		    <td class="menu_bar_title" nowrap>Warehouse</td>
+		    <td class="menu_bar_title">Name</td>
+		    <td class="menu_bar_title" align="center">Actual Batch</td>
+		    <!--<td class="menu_bar_title" align="center">Qty Orders</td>
+		    <td class="menu_bar_title" align="center">Total OrderNet</td>
+		    <td class="menu_bar_title" align="right">Total Items</td>-->
+		 </tr>
+		[va_searchresults]
+     </table>
+     &nbsp;
+    <fieldset><legend>Advanced Filtering</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">Date (From / To) : </td>
+		    <td class="smalltext">
+		    	<span class="smallfieldterr">[er_from_date]</span>
+		    	<input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				&nbsp; / &nbsp;
+				<input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_to_date]</span>
+		    </td>
+		 </tr>
+		<tr>
+		    <td width="30%">Amount (From / To) : </td>
+		    <td class="smalltext">
+		    	<span class="smallfieldterr">[er_from_amount]</span>
+		    	<input type="text" id="from_amount" name="from_amount" value="[in_from_amount]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				&nbsp; / &nbsp;
+				<input type="text" id="to_amount" name="to_amount" value="[in_to_amount]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_to_amount]</span>
+		    </td>
+		 </tr>
+		<tr>
+		  <td width="30%">Product ID : <span class="smallfieldterr">[er_sid_products]</span></td>
+		  <td class="smalltext">
+		  	<select name="sid_products" id="sid_products">
+		  		<option value="---"></option>
+		  		[va_filterby_ids]
+		  	</select>
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">City : <span class="smallfieldterr">[er_shp_city]</span></td>
+		  <td class="smalltext">
+		  	<select name="shp_city" id="shp_city">
+		  		<option value="---"></option>
+		  		[va_filterby_city]
+		  	</select>
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">Express Delivery : <span class="smallfieldterr">[er_shp_type]</span></td>
+		  <td class="smalltext">
+		  	<input type='checkbox' class='checkbox' id='shp_type' name='shp_type' value='2'>
+		  </td>
+		</tr> 
+	</table>
+	</fieldset>
+	<p align="center"><input type="submit"  value="Filter" class="button" id="btn_filter" name="btn_filter"></p>
+     &nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="tbltextttl">Orders : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable" id="tbl_res">
+		<tr>
+			<td class="menu_bar_title" nowrap OnClick="chk_all()">&nbsp;</td>
+		    <td class="menu_bar_title" align="center">Order ID</td>
+		    <td class="menu_bar_title" align="center">Express Delivery</td>
+		    <td class="menu_bar_title">ZipCode</td>
+		    <td class="menu_bar_title">Date</td>
+		    <td class="menu_bar_title">First /Last Name</td>
+		    <td class="menu_bar_title">Items</td>
+		    <td class="menu_bar_title">Total</td>
+		 </tr>
+		[va_ordsearchresults]
+  </table>
+ 	&nbsp;
+<p align="center"><input type="submit"  value="Assign Checked" class="button" id="btn_sbmt"></p>
+</form>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+<script type="text/javascript">
+<!--
+    
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#from_date, #to_date" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			minDate: new Date(2013,1-1,1),
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+			onSelect: function( selectedDate ) {
+				var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+
+
+	
+		$('#tbl_res input:checkbox').click(function () {
+
+			var count = 0;
+			$('#tbl_res input:checkbox').each(function () {
+				if($(this).attr('checked')) {
+					count++;
+				}
+			});
+			$("#btn_sbmt").val('Assign Checked (' + count + ')');
+			
+	    });
+
+
+	});
+	chg_chkbox('shp_type','[in_shp_type]');
+
+-->    
+</script>

@@ -1,0 +1,57 @@
+[ip_header_blank]
+<table cellpadding=0 cellspacing=10 width=100% height=100% bgcolor=#ffffff><td valign=top align=left>
+ <form action="[va_script_url]" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="[in_id_name]" value="[in_id_value]">
+	<input type="hidden" name="[in_id_name2]" value="[in_id_value2]">
+	<input type="hidden" name="[in_id_name3]" value="[in_id_value3]">
+	<input type="hidden" name="[in_id_name4]" value="[in_id_value4]">
+	<input type="hidden" name="action" value="1">	
+	<input type="hidden" name="path" value="[in_path]">	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td align="center"><input type="text" name="keyword" value="[in_keyword]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'> 
+		    	<input type="submit" value="Search" class="button"></td>
+		 </tr>
+     </table>
+</form>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="tbltextttl">Records : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		[va_header]
+		[va_searchresults]
+  </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">Records : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>  
+
+<!-- End Main Area  -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function setid(id, zipcode) {		
+	if (id > 0) {
+		var ajaxtype = '[in_returnid]';
+		//if(ajaxtype == 'id_zipcodes') {
+			//window.top.document.forms[0].[in_returnid].value=id;
+		window.top.document.forms[0].id_zip_code.value=id;
+		window.top.document.forms[0].zipcode.value=zipcode;
+		window.top.document.getElementById('popup_zipcodes').style.visibility='hidden';
+		window.top.document.getElementById('popup_zipcodes').style.display='none';
+		//}
+		
+		// Close Fancybox
+		parent.$.fancybox.close();
+	}
+}
+//-->
+</script>		
+</td>
+	</tr>
+</table>

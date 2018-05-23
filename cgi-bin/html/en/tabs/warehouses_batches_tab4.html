@@ -1,0 +1,59 @@
+&nbsp;
+<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform">
+	<input type="hidden" name="view" value="[in_id_warehouses_batches]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="[in_tab]">
+	<input type="hidden" name="add_new" value="1">
+	<input type="hidden" name="tabsl" value="[in_tab]">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+
+	<fieldset style="display:[va_chkperm]"><legend>Add Payment</legend>
+		<table>
+		<tr>
+			<td align="center" class="" width="25%"> <b>Bank</b></td>
+			<td align="center" class="" width="15%"> <b>Amount</b></td>
+			<td align="center" class="" width="30%"> <b>Reference</b></td>
+			<td align="center" class="" width="35%"> <b>Notes</b></td>
+		</tr>
+		<tr>
+			<td align="center" class="">
+				<select id="id_banks" name="id_banks" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					[fc_build_select_banks_accounts]
+				</select>
+			</td>
+			<td align="center" class="">
+				<input type="text" id="amount" name="amount" size="10">
+			</td>
+			<td align="center" class="">
+				<input type="text" id="refid" name="refid" size="10">
+			</td>
+			<td align="center" class="">
+				<textarea name="notes" id="notes" cols="30" rows="5"></textarea>
+			</td>
+			<td align="center"><br><input type="submit" value="Add" class="button"></td></tr>
+		</table>
+		
+	</fieldset>
+</form>	
+&nbsp;
+	<table width="100%" cellspacing="0" cellpadding="4" border="0" class="gborder">
+		<tbody>
+		<tr>
+			<td class="tbltextttl" colspan="6">
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_warehouses_batches]&tab=[in_tab]&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+				Records : [va_matches]
+				<span class='fieldterr'>[va_tabmessages]</span>
+			</td>
+		</tr>
+		</tr>		
+		<tr>
+			<td align="center" class="menu_bar_title" width="10%">&nbsp;</td>
+			<td align="center" class="menu_bar_title" width="30%"> <b>Bank</b></td>
+			<td align="center" class="menu_bar_title" width="25%"> <b>Reference</b></td>
+			<td align="center" class="menu_bar_title" width="15%"> <b>Date</b></td>
+			<td align="center" class="menu_bar_title" width="15%"> <b>Amount</b></td>
+		</tr>
+		[va_searchresults]
+		</tbody>
+	</table>

@@ -1,0 +1,27 @@
+
+var funnel = new RGraph.Funnel([va_funnel_options]);
+
+funnel.Set('chart.title', [va_funnel_title]);
+
+
+funnel.Set('chart.shadow', true);
+funnel.Set('chart.shadow.color', 'gray');
+funnel.Set('chart.shadow.blur', 25);
+funnel.Set('chart.shadow.offsetx', 0);
+funnel.Set('chart.shadow.offsety', 0);
+
+if (!RGraph.isIE8()) {
+	funnel.Set('chart.tooltips', [[va_funnel_tooltips]
+  function (idx) {return '';}
+]);
+
+funnel.Set('chart.key.position', 'gutter');
+funnel.Set('chart.tooltips.effect', 'fade');
+funnel.Set('chart.zoom.hdir', 'center');
+funnel.Set('chart.zoom.vdir', 'up');
+funnel.Set('chart.contextmenu', [['Zoom in', RGraph.Zoom]]);
+}
+
+funnel.Set('chart.labels', [[va_funnel_labels]]);
+funnel.Set('chart.text.boxed', true);
+funnel.Draw();

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>Direksys : [va_page_title]</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<link REL="STYLESHEET" HREF="[va_imgurl]/[ur_pref_style]/main.css" TYPE="text/css">
+		<script type="text/javascript" src="[va_imgurl]/[ur_pref_style]/main.js"></script>
+		<script type="text/javascript" src="/libs/jquery.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function() {
+
+			$('#frm_notes').submit(function(event) {
+				
+				if( $('input:radio[name=notestype]:checked').val() == undefined ){
+					alert("El campo Type es requerido");
+					return false;
+				}
+
+				if( $("#notestxt").val() == '' ){
+					alert("El campo Notes es requerido");
+					return false;
+				}
+
+				if( $('#file_attached').val() == '' ){
+					alert("El campo File attached es requerido");
+					return false;
+				}
+
+				return true;
+			});
+
+		});
+		</script>
+	</head>
+	<body bgcolor="#EEEEEE" topmargin="5">
+	<!-- Start Main Area  -->
+		<center>
+		[va_html]
+		</center>
+	</body>
+</html>

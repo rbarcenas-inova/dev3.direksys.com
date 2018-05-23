@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="UTF-8">
+		<title>S A N T A N D E R</title>		
+		<script type="text/javascript" src="../../../applet/qz-print2.0/js/dependencies/rsvp-3.1.0.min.js"></script>
+		<script type="text/javascript" src="../../../applet/qz-print2.0/js/dependencies/sha-256.min.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="../../../applet/qz-print2.0/js/qz-tray.js"></script>
+
+		<script type="text/javascript">
+
+			qz.websocket.connect().then(
+				function() { 
+					alert("Connected!"); 
+				}
+			);
+
+			qz.printers.find("EPSON FX-890 Ver 2.0").then(function(found) {
+			  alert("Printer: " + found);
+			});			
+			
+			content = "[va_txt_banorte]";
+
+			function printHex() {
+				var config = qz.configs.create("EPSON FX-890 Ver 2.0");
+				var data = [
+				  { type: 'raw', format: 'hex', data: content } // or data: '1B00'
+				];
+				qz.print(config, data).catch(function(e) { console.log(e); });
+
+
+				console.log(config);
+				console.log(data); 
+
+			}			
+
+		</script>	
+		<STYLE TYPE="text/css">
+ 
+
+
+			font.dir
+			{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+			font.id
+			{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+			font.idno
+			{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+			font.note
+			{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+			font.goto
+			{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+			font.gid
+			{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+			font.gtxt
+			{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+			font.gracias
+			{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+			font.info
+			{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+			font.infot
+			{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+			font.detalles
+			{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+			font.infotit
+			{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+			font.its
+			{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+
+
+			fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+			#box_check{
+				width: 600px;
+				background-color: #FFF;
+				border: dashed 0px #000;
+			}
+
+			input.button {
+				background-color: #90ba2b;
+				background-image: url(/sitimages/app_bar/mod/button.png);
+				background-position: center bottom;
+				background-repeat: repeat;
+				color:#ffffff;
+				cursor: pointer;
+				font-family: Arial;
+				font-weight: bold;
+				font-size: 13px;
+				height: 35px;
+				border: 1px solid #77ac07;
+				padding-left:10px;
+				padding-right:10px;
+				text-align:center;
+				-moz-border-radius: 7px;
+				border-radius: 7px;
+			}
+
+			input.button:hover {
+				background-color: #90ba2b;
+				background-image: url(/sitimages/app_bar/mod/button2.png);
+				border: 1px solid #8ec012;
+			}			
+		
+		</STYLE>
+	</head>
+	<body margin=0 padding=0>
+
+<center>
+		<div id="box_check">
+			
+			<table border="0px" cellspacing="0" cellpadding="0" width="" style="width:500px; height:176px; position:relative;top:0;left:0;background-image: url(/sitimages/santanderbg.jpg); 
+background-repeat: no-repeat; 
+background-position: top left;">	
+					<tr>
+						<td colspan=11 height=35px></td> 
+						<td colspan=8  align=center valign=bottom><span style="font-size:8px; font-family: tahoma, Verdana, Geneva, sans-serif;">[va_date_check]</td>
+						<td colspan=2 ></td>
+					</tr>
+					<tr>
+						<td colspan=13 height=35px align=left valign=bottom>
+						<font style="font-size:10px; font-family:tahoma,  Verdana, Geneva, sans-serif;">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [va_beneficiary_check]</td>
+						<td colspan=3 ></td>
+						<td colspan=4  align=left  valign=bottom>
+						<font style="font-size:10px; font-family: tahoma, Verdana, Geneva, sans-serif;"> 
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [va_amount_check]						</td>
+						<td width=25px ></td>
+					</tr>
+
+
+
+					<tr>
+						<td colspan=21 height=27px><span style="font-size:8px; font-family: tahoma, Verdana, Geneva, sans-serif;">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [va_amount_letter_check]</td> 
+					</tr>
+					
+					<tr>
+						<td width=25px ></td><td width=25px ></td><td width=25px ></td>
+						<td width=25px ></td><td width=25px ></td><td width=25px ></td>
+						<td width=25px ></td><td width=25px ></td><td width=25px ></td>
+						<td width=25px ></td><td width=25px ></td><td width=25px ></td>
+						<td width=25px ></td><td width=25px ></td><td width=25px ></td>
+						<td width=25px ></td><td width=25px ></td><td width=25px ></td>
+						<td width=25px ></td><td width=25px ></td><td width=25px ></td>
+					</tr>
+				</table>
+<br><br>
+				<input type="button" onClick="printHex()" class="button" value=" Imprimir Cheque " /><br /><br />
+		</div>
+	</body>
+</html>

@@ -1,0 +1,120 @@
+&nbsp;
+<fieldset><legend>ID de cuenta</legend>
+		<table width="100%" cellspacing="0" cellpadding="2" border="0">
+			<tbody><tr>
+		  	<td width="30%" class="titletext">ID de cuenta  :</td>
+		    <td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_accounts]
+					    	<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=fin_accounts&amp;modify=[in_id_accounts]"><img border="0" alt="" title="Edit" src="/sitimages//default/b_edit.gif"></a> &nbsp;
+							<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=fin_accounts&amp;search=Print&amp;toprint=[in_id_accounts]')"><img border="0" alt="" title="Print" src="/sitimages//default/b_print.gif"></a> &nbsp;
+						</div>
+					</div>
+				
+
+			</td>
+		 </tr>
+		 <tr>
+			<td width="30%" class="smalltext">Fecha / Hora / Usuario  : </td>
+			<td class="smalltext">[in_date] [in_time] Creado por : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+		</tbody></table>
+</fieldset>
+<br>
+<fieldset><legend>Informacion general de la cuenta</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">N&uacute;mero de cuenta :  <span class="smallfieldterr"></span></td>
+			<td class="smalltext">
+				<input type="hidden" id="id_accounting" value="[in_id_accounting]">
+				<span  id="spnIdAccounting">[in_id_accounting]</span>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Nombre :  </td>
+			<td class="smalltext">[in_name]</td>
+		</tr>
+				<tr>
+			<td width="30%">Cuenta padre :  <span class="smallfieldterr"></span></td>
+			<td class="smalltext"><span id="spnParent">[va_id_parent_accounting]</div></td>
+		</tr>
+		<tr>
+			<td width="30%">Tipo de cuenta :  <span class="smallfieldterr"></span></td>
+			<td class="smalltext">[fc_name_account_nature]</td>
+		</tr>
+		<tr>
+			<td width="30%">Agrupador SAT :  <span class="smallfieldterr"></span></td>
+			<td class="smalltext">[fc_get_agrupadorsat]</td>
+		</tr>
+		<tr>
+			<td width="30%">Segmento :  <span class="smallfieldterr"></span></td>
+			<td class="smalltext">[in_segment]</td>
+			
+		</tr>
+		<tr>
+			<td width="30%">Es cuenta detalle :  <span class="smallfieldterr"></span></td>
+			<td class="smalltext">[in_isdetailaccount]</td>
+		</tr>
+	</table>
+</fieldset>
+<br>
+<fieldset><legend>Estatus de la cuenta</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		 	<tr>
+				<td valign="top" width="30%" valign="top">Estatus: </td> 
+				<td class="smalltext" valign="top">[va_status]
+					&nbsp;&nbsp;&nbsp; 
+					<span class='smalltext'>Cambiar Estatus a:</span>
+					[va_changestatus]
+				</td>
+			</tr>
+  		</table>
+	</fieldset>
+
+<script>
+
+	formatAccount();
+	var account="[in_id_accounts]";
+	function formatAccount() {
+		var obj=document.getElementById('id_accounting');
+		var numbers = obj.value.replace(/\D/g, ''),
+		char = {3: '-', 5: '-' };
+		obj.value = '';
+		for (var i = 0; i < numbers.length; i++) {
+		    obj.value += (char[i] || '') + numbers[i];
+		}
+		$('#spnIdAccounting').text($('#id_accounting').val());
+	}
+
+	//Si se trae un valor para modificar, se llena el span con el nombre de la cuenta y el identificador
+	// var parent=get_value('http://mx.direksys.com/cgi-bin/common/apps/ajaxbuild','ajaxbuild=getRecordParentByAccount&padre='+account);
+		
+	// var cuentacompleta=parent.split('-');
+	// var cuenta=cuentacompleta[0];
+	// var nombrecuenta=cuentacompleta[1];
+	// cuenta=cuenta[0]+cuenta[1]+cuenta[2]+'-'+cuenta[3]+cuenta[4]+'-'+cuenta[5]+cuenta[6]+cuenta[7];
+	// $('#spnParent').empty().append(cuenta+' '+nombrecuenta);
+
+	// function get_value(purl, pparameters) {
+	//     var valor = "N/A_";
+	//     $.ajax({
+	//         url: purl,
+	//         type: 'POST',
+	//         data: pparameters,
+	//         async: false,
+	//         cache: false,
+	//         dataType: 'text',
+	//         timeout: 30000,
+	//         error: function(a, b) {
+	//             valor = b;
+	//         },
+	//         success: function(msg) {
+	//             valor = msg;
+	//         }
+	//     });   
+	//     return valor;
+	// }
+
+</script>

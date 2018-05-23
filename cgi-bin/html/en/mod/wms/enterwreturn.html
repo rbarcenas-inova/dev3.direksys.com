@@ -1,0 +1,136 @@
+[ip_header_blank]
+  <!-- Direksys v2 -->  
+  <link rel="stylesheet" type="text/css" href="[va_imgurl]app_bar/mod/Xtyle[in_e].css" />
+  <!-- Direksys v2 -->  
+
+<!-- Jquery -->
+<link rel="stylesheet" href="/libs/jqueryui/1.9.1/themes/cupertino/jquery-ui.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src=" /libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script type="text/javascript" language="JavaScript" src="/sitimages//jquery-events.js"></script>
+<script type="text/javascript" language="JavaScript" src="/sitimages//jquery-events.administration.js"></script>
+<!-- Jquery -->
+
+<!-- JqueryTools -->
+<script type="text/javascript" src="/jquery.tools.min.js"></script>
+<!-- JqueryTools -->
+
+
+
+
+
+
+<table border="0" cellspacing="0" cellpadding="0" style="background-color:#ffffff;  -moz-border-radius: 0px 0px 10px 10px;border-radius:  0px 0px 10px 10px ; ">
+  <tr>
+    <td width=10px>
+       &nbsp;
+    </td>
+    <td width=100% >
+      <div style="position:relative;left:0px;">
+            
+        <div class="scroller_anchor"></div> 
+          <div class="scroller">
+              <table border="0" cellspacing="0" cellpadding="0">
+                <td valign=middle align=left nowrap>&nbsp;  <img src=[va_imgurl]app_bar/mod/direksysRN.png border=0 height=25px> </td>
+                <td valign=middle align=left><img src=[va_imgurl]app_bar/mod/menubgdiv.png></td>
+                    <td valign=middle align=left nowrap>
+                                  
+                  <font class="compania">[va_app_title] </font> 
+                    </a>
+                </td>
+
+
+
+                <td valign=middle align=left>
+                  <img src=[va_imgurl]app_bar/mod/menubgdiv.png>
+                </td>
+              </table>
+
+          </div>
+      </div>
+
+    </td>
+  </tr>
+</table>
+
+
+	<div style="background-color:#ffffff; margin:15px;border:1px solid #666666;">
+		
+
+
+
+
+
+<form action="[va_cgiurl]" method="POST" name="sitform" onsubmit="deactivate_button();">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="cmd" value="enterwreturn">
+		
+<!-- Start Main Area  -->
+ 
+	<div style="margin:15px;">
+
+
+
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+			<td class="titletext" colspan="2" align="center">
+				Enter Order Return
+			</td>
+		</tr>
+		<tr>
+			<td><span class="bigerrtext">[va_error]</span>
+				<span class="stdtxterr">
+<!-- start_err_msg  -->
+[va_message]
+<!-- end_err_msg  -->
+</span></td>
+		</tr>
+		<tr>
+	    	<td valign="top">Enter Return <span class="help_on">(Order ID / Location UPC @ sku x QTY (no spaces, Order ID w/Prefix,SKU or UPC is Valid)</span><br>
+		    	<textarea name="tracking" cols="50" style="width:98%;height:80px;" rows="5"  class="input">[in_tracking]</textarea>		
+		    	Return Date <input type="text" id="retdate" name="retdate" value="[in_retdate]" size="20"  class="input"><br>
+		    	Notes (opc) <input type="text"  name="note" value="[in_note]" size="20" style="width:98%;height:80px;"  class="input"><br><br>
+		    </td>
+ 		 </tr>
+ 		 <tr>
+ 		 	<td align="center"><input type="submit" name="enterbutton" id="enterbutton" value="Enter Return" class="button"></td>
+ 		</tr>
+    </table>
+	</fieldset>
+	
+</form>	
+
+<script language="javascript">
+<!--
+	
+	function deactivate_button()
+	{
+		document.sitform.enterbutton.disabled=true;
+	}
+	
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#retdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: new Date(),
+			minDate: new Date(),
+			maxDate: "+6m",
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+	
+//-->
+</script>
+	
+  
+
+  </div>
+</div>
+

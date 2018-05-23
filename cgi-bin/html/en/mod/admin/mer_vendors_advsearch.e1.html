@@ -1,0 +1,82 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="15%" align="center"></td>
+	    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=mer_vendors_home")'>Vendor</td>
+	    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=mer_vendors")'>Add</td>
+	    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=mer_vendors&search=form")'>Search</td>
+	    <td width="17%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=mer_vendors&search=advform")'>Advanced Search</td>
+	    <td width="17%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=mer_vendors&search=listall")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+  <form action="/cgi-bin/mod/admin/dbman" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="mer_vendors">
+	<input type="hidden" name="search" value="advSearch">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="left" colspan="2">Advanced Search Vendor : [in_id_vendors]</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	<fieldset><legend>Advanced Search</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">Vendor ID  : <span class="smallfieldterr">[er_id_vendors]</span></td>
+		    <td class="smalltext"><input type="text" name="id_vendors" value="[in_id_vendors]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+	</table>
+	</fieldset>
+	[ip_forms:vendors_form2]
+	&nbsp;
+	[ip_forms:search_form]
+	<p align="center"><input type="submit" value="Search Vendor" class="button"></p>
+  </form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script language="javascript">
+<!--
+
+   
+	chg_select('sb','[in_sb]');
+	chg_select('sl_products.producttype','[in_sl_products.producttype]');
+	chg_select('sl_products.id_brands','[in_sl_products.id_brands]');
+	chg_select('sl_products_categories.id_categories','[in_sl_products_categories.id_categories]');
+  
+  document.sitform.id_products.focus();
+
+//-->
+</script>
+
+[ip_footer]

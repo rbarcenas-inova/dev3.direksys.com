@@ -1,0 +1,71 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table class="tab" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+	  <tbody><tr>
+	    <td align="center" width="30%"></td>
+		<td class="cell_on" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=mer_categories_home&quot;)" align="center" width="17%">Categories</td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mer_categories&amp;add=1&quot;)" align="center" width="17%">Add</td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mer_categories&amp;search=form&quot;)" align="center" width="17%">Search</td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mer_categories&amp;search=listall&quot;)" align="center" width="17%">View / Edit / Delete</td>
+	  </tr>
+	</tbody></table>
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="left" colspan="2">Categories</td>
+		</tr>
+		<tr>
+			<td colspan="2"><span class="help_on">This are the Categories in your database, To view the supplier information click on "V" To Edit it, click on "E" or "D" if you want to delete it</span></td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+		<tr>
+		  <td class="tbltextttl" colspan="2">Categories : [va_matches]</td>
+		</tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+	    <td class="menu_bar_title">ID</td>
+	    <td class="menu_bar_title">Title</td>
+	    <td class="menu_bar_title">Vendors</td>
+	    <td class="menu_bar_title">Products</td>
+		</tr>
+		[va_searchresults]
+  </table>
+  
+  	<p align="center" class="smalltext">
+  		<a href="/cgi-bin/mod/admin/admin?cmd=mer_categories_flist&rebuildcats=1">.</a>&nbsp;
+  		<a href="/cgi-bin/mod/admin/admin?cmd=mer_categories_flist&copysets=1">..</a>
+  		<a href="/cgi-bin/mod/admin/admin?cmd=mer_categories_flist&exportqry=1" target="_blank">...</a>
+  		
+  		</p>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

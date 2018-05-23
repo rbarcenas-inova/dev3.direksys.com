@@ -1,0 +1,263 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">View Purchase Order : [in_id_purchaseorders]</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Purchase Order Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td width="30%" valign="top">Vendor ID :</span></td>
+	    <td class="smalltext">([in_id_vendors]) [va_vendor_name]</td>
+		 </tr>
+		<tr>
+			<td valign="top" width="30%">Vendor Ref Number :</td>
+		  <td class="smalltext">[in_refnumber]</td>
+		</tr>
+  		<tr>
+		  <td width="30%">PO Date :</td>
+		  <td class="smalltext">[in_podate]</td>
+		</tr>
+		<tr>
+		  <td width="30%">PO Type :</td>
+		  <td class="smalltext">[in_type]</td>
+		</tr>
+  		<tr>
+		  <td width="30%">PO Cancel Date :</td>
+		  <td class="smalltext">[in_canceldate]</td>
+		</tr>
+  		<tr>
+		  <td width="30%">PO Terms :</td>
+		  <td class="smalltext">[in_poterms]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Description : <span class="smallfieldterr">[er_poterms_desc]</span></td>
+			<td class="smalltext">[in_poterms_desc]</td>
+		</tr>
+  		<tr>
+		  <td width="30%">Ship Via  :</td>
+		  <td class="smalltext">[in_shipvia]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Ship Via Description :</td>
+		  <td class="smalltext">[in_other_desc]</td>			
+		</tr>
+  		<tr>
+		  <td width="30%" valign="top">Ship To  :</td>
+		  <td class="smalltext">[in_id_warehouses] [va_warehouseinfo]</td>
+		</tr>
+		<tr>
+  		<tr>
+		  <td width="30%">EDT Date :</td>
+		  <td class="smalltext">[in_etd]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Currency:</td>
+		  <td class="smalltext">[ln_id_vendors@sl_vendors:Currency]</td>
+		</tr>
+  		<tr>
+		  <td width="30%">Paid:</td>
+		  <td class="smalltext">[fc_paidpo]</td>
+		</tr>
+	</table>
+	</fieldset>		
+
+  <p class="txtlegend">Purchase Order<a name='tabs' id='tabs'>&nbsp;</a>
+	<table id="[tbl_po_list]" border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class="menu_bar_title" nowrap align="center">#</td>
+			<td class="menu_bar_title" nowrap align="center">ID</td>
+			<td class="menu_bar_title" align="center">Vendor SKU</td>
+			<td class="menu_bar_title" align="center">Description</td>
+			<td class="menu_bar_title" align="center">Qty</td>
+			<td class="menu_bar_title" align="center">Unit Price</td>
+			<td class="menu_bar_title" align="center">Tax(%)</td>
+			<td class="menu_bar_title" align="center">Received</td>
+			<td class="menu_bar_title" align="center">STotal</td>
+			<td class="menu_bar_title" align="center">Tax($)</td>
+			<td class="menu_bar_title" align="center">Total</td>
+		 </tr>
+		 [va_polist]
+		<tr>
+			<td colspan="11"><hr class="menu_bar_title"></td>
+		</tr>			 
+		<tr>
+	    	<!--<td colspan="10" align="right" class="smalltext">Total = </td>-->
+		<td colspan="9" class="smalltext" align="right" nowrap>[va_posubtot]</td>
+		<td class="smalltext" align="right" nowrap>[va_potottax]</td>
+		
+	    	<td class="smalltext" align="right" nowrap>[va_pototal]</td>
+		</tr>
+	</table>
+</p>
+	<fieldset ><legend id="shipping_instructions">Shipping Instructions</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td class="smalltext">[va_shipping_inst]</td>
+		</tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+  <fieldset><legend>Purchase Order Authorization</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Final Decision by :</td>
+		  <td class="smalltext">([in_authby]) [in_authby_name]</td>
+		</tr>
+ 		<tr>
+		  <td width="30%">Authorized Status :</td>
+		  <td class="smalltext">[in_auth]</td>
+		  
+		</tr>
+	</table>
+	</fieldset>	
+	&nbsp;	
+  <fieldset><legend>Purchase Order Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		  	<td width="30%">Status  : </td>
+		 		<td class="smalltext">[in_status]&nbsp;&nbsp;[va_reopen]</td> 	  
+		 	</tr>
+  	</table>
+	</fieldset>
+	&nbsp;
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+<script language="JavaScript">
+
+
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		$.ajaxSetup({
+	    	timeout: 60000
+	    });
+
+		/* 
+			Todos los elementos <span> con clase editable se convierten a editable
+			Todos llevan el formato span_action_id
+			action = qty, price
+			id = id de la tabla id_purchaseorders_items
+			Para saber cual elemento se esta convirtiendo
+		*/
+		$('span.editable').editable( {
+			submit:'Update',
+			editBy:'dblclick',
+			cancel:'Cancel',
+			onSubmit:function(content) {
+				var data = $(this).attr('id').split('_');
+				var f = data[1];
+				var id = data[2];
+
+				if(f == 'received') {
+					var prev_value = parseInt(content.previous.replace(',',''));
+					var new_value = parseInt(content.current.replace(',',''));
+
+				}else{
+					var prev_value = parseFloat(content.previous.replace('$',''));
+					var new_value = parseFloat(content.current.replace('$',''));
+				}
+
+				if(prev_value != new_value){
+					$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'po_update', 'id_po_items':id, 'field': f, 'old':prev_value, 'new':new_value},function(response,status,xhr){
+						if (status == "error") {
+							alert(msg);
+							$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/checkmark_off.gif" title="Done">');
+						}else{
+							if(response.match(/error/gi)){
+								alert("Error:\r\n"+response);
+								$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl][ur_pref_style]/checkmark_off.gif" title="Done">');
+							}else{
+								if(f == 'price') {
+									$('#span_' + f + '_' + id).html('\$'+parseFloat(new_value));
+								}
+								$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/checkmark.gif" title="Done">');
+							}
+						}
+						$('#span_chg_' + f + '_' + id).fadeIn(2000);
+					});
+
+					setTimeout(function(){
+							$('#span_chg_' + f + '_' + id).fadeOut(2000);
+					},3000);
+					
+					setTimeout(function(){
+						$('#span_chg_' + f + '_' + id).fadeIn(2000);
+						$('#span_chg_' + f + '_' + id).html('<img id="#btn_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/b_edit.png" title="Click to edit Cost" style="cursor:pointer;">');
+					},5000);
+		
+				}else{
+					$('#span_chg_' + f + '_' + id).fadeIn(2000);
+				}
+			},
+			onCancel:function(){ 
+				var data = $(this).attr('id').split('_');
+				var f = data[1];
+				var id = data[2];
+				$('#span_chg_' + f + '_' + id).fadeIn(2000);
+			}
+		});
+
+
+		/* 
+			Evento de click de los lapices. Todos los lapices con clase triggers_editable
+			Todos llevan el formato btn_chg_action_if 
+			action = qty, price, taxp
+			id = id de la tabla id_purchaseorders_items
+			Para saber cual elemento poner a editable
+			Independitentemente del lapiz, se puede hacer doble click en el elemento para hacerlo funcionar
+		*/
+		$('img.triggers_editable').live('click',function(){
+			[va_po_blocked]
+			var data = $(this).attr('id').split('_');
+			var f = data[2];
+			var id_poi = data[3];
+			$('#span_chg_' + f + '_' + id_poi).fadeOut();
+			$('#span_' + f + '_' + id_poi).dblclick();
+		});
+
+	});
+
+
+
+</script>
+
+
+[ip_footer]

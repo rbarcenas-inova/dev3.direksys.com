@@ -1,0 +1,123 @@
+[ip_header]
+
+<script>
+<!--
+$(document).ready(function() {
+
+	var dates = $( "#from_date, #to_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:[fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="70%" align="center"></td>
+	    <td width="30%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]")'>Inventory Valuation</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+  <form method="get" name="sitform" target="">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">Inventory Valuation</td>
+		</tr>
+		<tr>
+			<td style="color: gray; font-weight: bold;">Method Cost: [va_method_cost]</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Transactions</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			    <td width="20%">Include details : </td>
+			    <td class="smalltext">
+			    	<input type="checkbox" name="details" value="warehouse">
+			    	<!--input type="radio" name="level_details" value="sku" class="radio" checked="true"> SKU &nbsp;&nbsp;&nbsp;
+			    	<input type="radio" name="level_details" value="warehouse" class="radio"> Almacen -->
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">SKU : <span class="smallfieldterr">[er_id_products]</span></td>
+			    <td class="smalltext">
+			    	40000 <input type="number" id="id_products" name="id_products" value="[in_id_products]" size="4" class="input">
+			    	<a href="/cgi-bin/common/apps/schid?db=sl_parts&cmd=parts&fname=id_products&value=" title="Search SKU" class="fancy_modal_iframe">
+						<img src="/sitimages//default/icsearchsmall.gif" border="0">
+					</a>
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">UPC : <span class="smallfieldterr">[er_upc]</span></td>
+			    <td class="smalltext">
+			    	<input type="number" id="upc" name="upc" value="[in_upc]" size="15" class="input">
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">Warehouses: </td>
+			    <td class="smalltext">
+			    	[fc_build_checkbox_warehouses]
+		    	</td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+
+	<p align="center"><input type="submit" value="Export" class="button" loading="0"></p>
+  </form>
+
+<script type="text/javascript">
+<!--
+	chg_radio('id_warehouses','[in_id_warehouses]');
+-->
+</script>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

@@ -1,0 +1,108 @@
+&nbsp;
+	<table width="100%" cellspacing="0" cellpadding="4" border="0" class="gborder">
+		<tbody>
+		<tr>
+			<td>
+				
+<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform">
+	<input name="cmd" value="usrgroup" type="hidden">
+	<input name="action" value="1" type="hidden">
+	<input name="view" value="[in_id_admin_groups]" type="hidden">
+	<input name="tab" value="2" type="hidden">
+	<input name="addperm" value="1" type="hidden">
+	
+	
+	<table align="center" border="0" cellpadding="4" cellspacing="0" width="100%" class="formtable">
+		<tr>
+			<td class="titletext" colspan="4" align="center"><a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_admin_groups]&tab=[in_tab]&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp; Add New Perm</td>
+		</tr>
+		<tr>
+		    <td class="stdtxterr" colspan="4">[va_message]</td>
+		</tr>
+		<tr>
+		    <td class="smalltext" colspan="4">Application :</td>
+		</tr>
+		<tr>
+			<td colspan="4" align="left">
+				<div>[br_application@admin_perms]</div>
+			</td>
+		</tr>
+		<tr>
+		    <td class="smalltext" colspan="4">Type :</td>
+		</tr>
+		<tr>
+			<td colspan="2" width="50%" align="center">
+				<input type='radio' class='radio' id="type_admin" name="type" value="admin">
+				<label for="type_admin">Admin</label>
+			</td>
+			<td colspan="2" width="50%" align="center">
+				<input type='radio' class='radio' id="type_dbman" name="type" value="dbman">
+				<label for="type_dbman">dbman</label>
+			</td>
+		</tr>		
+		<tr>
+			<td>Command</td>
+			<td><input name="admin_cmd" value="[in_admin_cmd]" size="20" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			<td>Command</td>
+			<td><input name="dbman_cmd" value="[in_dbman_cmd]" size="20" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>Basics</td>
+			<td>
+				<input type='checkbox' class='checkbox' id="dbman_view_on" name="dbman_view" value="on">
+				<label for="dbman_view_on">View</label>
+				<input type='checkbox' class='checkbox' id="dbman_edit_on" name="dbman_edit" value="on">
+				<label for="dbman_edit_on">Edit</label>
+				<input type='checkbox' class='checkbox' id="dbman_del_on" name="dbman_del" value="on">
+				<label for="dbman_del_on">Delete</label>
+				<input type='checkbox' class='checkbox' id="dbman_add_on" name="dbman_add" value="on">
+				<label for="dbman_add_on">Add</label>
+				<input type='checkbox' class='checkbox' id="dbman_print_on" name="dbman_print" value="on">
+				<label for="dbman_print_on">Print</label>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td valign="top">Tabs</td>
+			<td><input type='checkbox' class='checkbox' id="dbman_tab1_on" name="dbman_tab1" value="on"><label for="dbman_tab1_on">1</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab2_on" name="dbman_tab2" value="on"><label for="dbman_tab1_on">2</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab3_on" name="dbman_tab3" value="on"><label for="dbman_tab1_on">3</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab4_on" name="dbman_tab4" value="on"><label for="dbman_tab1_on">4</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab5_on" name="dbman_tab5" value="on"><label for="dbman_tab1_on">5</label><br>
+				<input type='checkbox' class='checkbox' id="dbman_tab6_on" name="dbman_tab6" value="on"><label for="dbman_tab1_on">6</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab7_on" name="dbman_tab7" value="on"><label for="dbman_tab1_on">7</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab8_on" name="dbman_tab8" value="on"><label for="dbman_tab1_on">8</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab9_on" name="dbman_tab9" value="on"><label for="dbman_tab1_on">9</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab10_on" name="dbman_tab10" value="on"><label for="dbman_tab1_on">10</label><br>
+				<input type='checkbox' class='checkbox' id="dbman_tab11_on" name="dbman_tab11" value="on"><label for="dbman_tab1_on">11</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab12_on" name="dbman_tab12" value="on"><label for="dbman_tab1_on">12</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab13_on" name="dbman_tab13" value="on"><label for="dbman_tab1_on">13</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab14_on" name="dbman_tab14" value="on"><label for="dbman_tab1_on">14</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab15_on" name="dbman_tab15" value="on"><label for="dbman_tab1_on">15</label><br>
+				<input type='checkbox' class='checkbox' id="dbman_tab16_on" name="dbman_tab16" value="on"><label for="dbman_tab1_on">16</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab17_on" name="dbman_tab17" value="on"><label for="dbman_tab1_on">17</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab18_on" name="dbman_tab18" value="on"><label for="dbman_tab1_on">18</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab19_on" name="dbman_tab19" value="on"><label for="dbman_tab1_on">19</label>
+				<input type='checkbox' class='checkbox' id="dbman_tab20_on" name="dbman_tab20" value="on"><label for="dbman_tab1_on">20</label></td>
+		</tr>
+	</table>
+<p align="center"><input value="Add Record" class="button" type="submit"></p>
+<p>&nbsp;</p>
+
+<script language="javascript">
+<!--
+
+	chg_radio('type','[in_type]');
+	chg_radio('application','[in_application]');
+	chg_radio('contact_mode','');
+
+</script>
+</form>
+				
+				</td>
+		</tr>
+		</tbody>
+	</table>

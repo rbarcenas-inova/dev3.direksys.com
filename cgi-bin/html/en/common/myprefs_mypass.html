@@ -1,0 +1,183 @@
+[ip_header]
+
+<style type="text/css">
+	.dvPswdSec1{ background-image: url(/sitimages/default/password/01.png);	display: inline-block; height: 20px; width: 100px; }
+	.dvPswdSec2{ background-image: url(/sitimages/default/password/02.png);	display: inline-block; height: 20px; width: 100px; }
+	.dvPswdSec3{ background-image: url(/sitimages/default/password/03.png);	display: inline-block; height: 20px; width: 100px; }
+	.dvPswdSec4{ background-image: url(/sitimages/default/password/04.png);	display: inline-block; height: 20px; width: 100px; }
+	.dvPswdSec5{ background-image: url(/sitimages/default/password/05.png);	display: inline-block; height: 20px; width: 100px; }
+	.dvPswdMatch{ }
+	.dvPswdNoMatch{	background-image: url(/sitimages/default/b_warning.png); display: inline-block;	height: 16px; width: 16px; }
+</style>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: [fc_template_myprefsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<table class="tab" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+	  <tbody><tr>
+	    <td align="center" width="30%"></td>
+		<td width="14%" class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=myprefs&quot;)" align="center" width="23%">Preferences</td>
+		<td width="14%" class="cell_on" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=myprefs_mypass&quot;)" align="center" width="23%">Password</td>
+		<td width="14%" class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=myprefs_wpage&quot;)" align="center" width="23%">Homepage</td>
+		<td width="14%" class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=myprefs_mlogs&quot;)" align="center" width="23%">Logs</td>
+		<td width="14%" class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=help&quot;)" align="center" width="23%">Help</td>
+	  </tr>
+	</tbody></table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	
+	<form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform"><!-- onsubmit="return disableSubmits();" -->
+		<input type="hidden" name="cmd" value="myprefs_mypass">
+		<input type="hidden" name="action" value="1">
+		
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>	
+		    <td class="titletext" align="left" colspan="2">My Password</td>
+		 </tr>
+		<tr>	
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+
+    <fieldset><legend>My Password</legend>
+     <table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>	
+		    <td width="30%">Old Password</td>
+		    <td colspan=2><input type="password" name="oldpass" id="oldpass" size="20" class="input">
+		    	<img src="/sitimages//default/line1.gif" title="line" alt="" border="0" width=100% height=1px style="margin-top:7px;margin-bottom:7px;"></td>
+		 </tr>
+		<tr>	
+		    <td width="30%" valign="top">New Password</td>
+		    <td class="smalltext"  valign="top" width=300px>
+		    	<input type="password" name="newpass1" id="newpass1" size="20" maxlength="16" class="input">
+		    	<div id="dvPswdSec"></div>
+		    </td>
+		    <td rowspan=5>
+
+		    	<font size=2 face="century gothic">
+		    		Debe especificar una contrase&ntilde;a segura con las siguientes caracter&iacute;sticas:
+		    	</font>		    	
+				<div style="margin: 15px;">
+					<img src="/sitimages/default/b_ok.png"> Un tama&ntilde;o de entre 8 y 16 caracteres<br />
+					<img src="/sitimages/default/b_ok.png"> Letras (A-Z, a-z), almenos una may&uacute;scula<br />
+					<img src="/sitimages/default/b_ok.png"> Almenos un n&uacute;mero (0-9)<br />
+					<img src="/sitimages/default/b_ok.png"> <b>El nivel m&iacute;nimo de su contrase&ntilde;a debe de ser <span style="color: #98B54B; font-weight: bold;">Buena</span></b><br />
+					<img src="/sitimages/default/b_ok.png"> La nueva contrase&ntilde;a debe ser diferente a la actual 
+		    	</div>
+
+		    </td>
+
+		 </tr>
+		<tr>	<td width="30%" valign="top">Repeat New Password</td>
+		    <td class="smalltext" valign="top">
+		    		 <input type="password" name="newpass2" id="newpass2" size="20" maxlength="16" class="input">
+		    		 <div id="dvPswdMatch"></div>
+		    </td>
+		 </tr>	
+		 <tr><td colspan="2">&nbsp;</td></tr>
+		 <tr><td colspan="2">&nbsp;</td></tr>
+		 <tr><td colspan="2">&nbsp;</td></tr>
+      </table>
+	</fieldset>
+		<p align="center"><input type="submit" value="Submit Changes" class="button"></p>
+
+	</form>
+
+<!-- End Main Area  -->		
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+<script type="text/javascript">
+	var pswd_ok = 0;
+	$(document).ready(function($) {
+		$('form[name=sitform]').submit(function(event) {
+			if( $('#newpass1').val() == $('#newpass2').val() ){
+				if( !pswd_val($('#newpass1').val()) || pswd_ok == 0 ){
+					$('td .stdtxterr').html('Password is not secure');
+					return false;
+				}
+			}else{
+				$('td .stdtxterr').html('Passwords do not match');
+				return false;
+			}
+
+			if( $('#oldpass').val() == '' ){
+				$('td .stdtxterr').html('Old password is required');
+				return false;
+			}
+
+			return true;
+		});
+		// Valida el nivel del pswd
+		$('#newpass1').keyup(function(event) {
+			var this_val = $(this).val();
+			if( this_val.length < 8 ){
+				if( this_val.length > 0 )
+					$('#dvPswdSec').removeClass().addClass('dvPswdSec1');
+				else
+					$('#dvPswdSec').removeClass();
+				pswd_ok = 0;
+			}else{
+				var rslt_eval = pswd_val(this_val);
+				if( rslt_eval >= 1 ){
+					var lgth_pswd = this_val.length;
+					if( lgth_pswd >= 8 && lgth_pswd < 10 ){
+						$('#dvPswdSec').removeClass().addClass('dvPswdSec3');
+						pswd_ok = 1;
+					}else if( ((lgth_pswd >= 10 && lgth_pswd < 16) && rslt_eval == 1) || (lgth_pswd < 12 && rslt_eval == 2) ){
+						$('#dvPswdSec').removeClass().addClass('dvPswdSec4');
+						pswd_ok = 1;
+					}else if( rslt_eval == 2 ){
+						$('#dvPswdSec').removeClass().addClass('dvPswdSec5');
+						pswd_ok = 1;
+					}				
+				}else{
+					$('#dvPswdSec').removeClass().addClass('dvPswdSec2');
+					pswd_ok = 0;
+				}
+			}
+		});
+		// Valida el match ente los dos pswds
+		$('#newpass2').keyup(function(event) {
+			var this_val = $(this).val();
+			if( this_val.length > 0 && this_val != $('#newpass1').val() ){
+				$('#dvPswdMatch').removeClass().addClass('dvPswdNoMatch');
+			}else{
+				$('#dvPswdMatch').removeClass();
+			}
+		});	
+	});
+
+	function pswd_val(str){
+		var pattern_lv1 = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*([^\'\"\{\}\[\]\(\)\s])$/;
+		var pattern_lv2 = /(?=^.{10,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*([^\'\"\{\}\[\]\(\)\s])$/;
+		if( str.match(pattern_lv2) && str != '' ){
+			return 2;
+		}else if( str.match(pattern_lv1) && str != '' ){
+			return 1;
+		}else{
+			return false;
+		}
+	}
+
+</script>

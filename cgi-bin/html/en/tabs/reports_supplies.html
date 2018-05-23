@@ -1,0 +1,108 @@
+[ip_header]
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="720" class="container_white">
+	<tr>
+		<td width="140" align="center" valign="top">
+			[ip_menu_main]
+			&nbsp;
+			[ip_menu_merchandise]
+			&nbsp;
+			[fc_menu_custom]
+			&nbsp;
+		</td>
+		<td valign="top">
+<!-- Start Main Area  -->
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">General Supplies Report</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>General Report</legend>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+			<td>Supplies</td>
+			<td>Assembled Supplies</td>
+		</tr>
+		<tr>
+		    <td valign="top">
+		    		<ul>
+			    		<li>By Status</li>
+			    		<ul>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&Status=Testing&sx=1">Testing : [va_status_testing]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&Status=On-Air&sx=1">On-Air : [va_status_on-air]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&Status=Active&sx=1">Active : [va_status_active]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&Status=Inactive&sx=1">Inactive : [va_status_inactive]</a></li>
+			    		</ul>
+			    		<li>By Prices</li>
+			    		<ul>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&to_SPrice=1&sb=SPrice">Without Price : [va_price_0]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&From_SPrice=1.00&to_Sprice=19.99&sb=SPrice">$1.00 to $19.99 : [va_pricerange1]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&From_SPrice=19.98&to_Sprice=30&sb=SPrice">$19.99 to $29.99 : [va_pricerange2]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&From_SPrice=29.98&to_Sprice=50&sb=SPrice">$29.99 to $49.99 : [va_pricerange3]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&From_SPrice=49.98&to_Sprice=90&sb=SPrice">$49.99 to $89.99 : [va_pricerange4]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&From_SPrice=89.98&to_Sprice=150&sb=SPrice">$89.99 to $149.99 : [va_pricerange5]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&From_SPrice=149.98&to_Sprice=1000&sb=SPrice">$149.99 to $999.99 : [va_pricerange6]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&From_SPrice=999.98&to_Sprice=2000&sb=SPrice">$999.99 to $1999.99 : [va_pricerange7]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&From_SPrice=1999.98&to_Sprice=5000&sb=SPrice">$1999.99 to $5000.00 : [va_pricerange8]</a></li>
+			    		</ul>
+			    		<li>By Information</li>
+			    		<ul>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&Name=None&sx=1">No Name : [va_infoname]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&SmallDescription=None&sx=1">No Small Description : [va_infosmdesc]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&Description=None&sx=1">No Description : [va_infodesc]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&SmallDescription_en=None&sx=1">No Small Description (en) : [va_infosmdesc_en]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&Description_en=None&sx=1">No Description (en) : [va_infodesc_en]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&To_Weight=0.1&sx=1">No Weight  : [va_infoweight]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&SizeW=0&SizeH=0&SizeL=0&st=or&sx=1">No Dimensions  : [va_infodims]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&To_MSRP=1&sx=1">No MSRP  : [va_infomsrp]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&To_MAP=1&sx=1">No MAP  : [va_infomap]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_supplies&search=Search&To_SLTV_NetCost=1&sx=1">No Cost  : [va_infocost]</a></li>
+			    		</ul>
+		    	</ul></td>
+		    <td valign="top">		
+		    		<ul>
+			    		<li>By Status</li>
+			    		<ul>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&Status=Testing&sx=1">Testing : [va_setstatus_testing]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&Status=On-Air&sx=1">On-Air : [va_setstatus_on-air]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&Status=Active&sx=1">Active : [va_setstatus_active]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&Status=Inactive&sx=1">Inactive : [va_setstatus_inactive]</a></li>
+			    		</ul>
+			    		<li>By Prices</li>
+			    		<ul>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&to_Sprice=1&sb=SPrice">Without Price : [va_setprice_0]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&From_SPrice=1&to_Sprice=19.99&sb=SPrice">$1.00 to $19.99 : [va_setpricerange1]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&From_SPrice=19.98&to_Sprice=30&sb=SPrice">$19.99 to $29.99 : [va_setpricerange2]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&From_SPrice=29.98&to_Sprice=50&sb=SPrice">$29.99 to $49.99 : [va_setpricerange3]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&From_SPrice=49.98&to_Sprice=90&sb=SPrice">$49.99 to $89.99 : [va_setpricerange4]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&From_SPrice=89.98&to_Sprice=150&sb=SPrice">$89.99 to $149.99 : [va_setpricerange5]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&From_SPrice=149.98&to_Sprice=1000&sb=SPrice">$149.99 to $999.99 : [va_setpricerange6]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&From_SPrice=999.98&to_Sprice=2000&sb=SPrice">$999.99 to $1999.99 : [va_setpricerange7]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&From_SPrice=1999.98&to_Sprice=5000&sb=SPrice">$1999.99 to $5000.00 : [va_setpRicerange8]</a></li>
+			    		</ul>
+			    		<li>By Information</li>
+			    		<ul>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&Name=None&sx=1">No Name : [va_setinfoname]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&SmallDescription=None&sx=1">No Small Description : [va_setinfosmdesc]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&Description=None&sx=1">No Description : [va_setinfodesc]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&SmallDescription_en=None&sx=1">No Small Description (en) : [va_setinfosmdesc_en]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&Description_en=None&sx=1">No Description (en) : [va_setinfodesc_en]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&Weight=0&sx=1">No Weight  : [va_setinfoweight]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&SizeW=0&SizeH=0&SizeL=0&st=or&sx=1">No Dimensions  : [va_setinfodims]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&To_MSRP=1&sx=1">No MSRP  : [va_setinfomsrp]</a></li>
+			    			<li><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_setsupplies&search=Search&To_MAP=1&sx=1">No MAP  : [va_setinfomap]</a></li>
+
+			    		</ul>
+		    	</ul></td>
+ 		 </tr>
+    </table>
+	</fieldset>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

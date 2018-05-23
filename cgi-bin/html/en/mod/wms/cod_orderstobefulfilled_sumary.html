@@ -1,0 +1,807 @@
+[ip_header]
+
+<style>
+<!--
+
+ 
+
+input:disabled {	
+	opacity: .3;
+	filter: alpha(opacity=30);
+	cursor: default;
+}
+
+-->
+</style>
+
+
+<style>
+<!--
+
+/* define height and width of scrollable area. Add 16px to width for scrollbar          */
+div.tableContainer {
+	clear: both;
+	border: 1px solid #CCC;
+	height: 285px;
+	overflow: auto;
+	width: 740px
+}
+
+/* Reset overflow value to hidden for all non-IE browsers. */
+html>body div.tableContainer {
+	overflow: hidden;
+	width: 740px
+}
+
+/* define width of table. IE browsers only                 */
+div.tableContainer table {
+	float: left;
+	width: 740px
+}
+
+
+
+
+/* set table header to a fixed position. WinIE 6.x only                                       */
+/* In WinIE 6.x, any element with a position property set to relative and is a child of       */
+/* an element that has an overflow property set, the relative value translates into fixed.    */
+/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
+thead.fixedHeader tr {
+	position: relative
+}
+
+/* set THEAD element to have block level attributes. All other non-IE browsers            */
+/* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
+html>body thead.fixedHeader tr {
+	display: block
+}
+
+/* make the TH elements pretty */
+thead.fixedHeader th {
+	 
+	border-left: 1px ;
+	border-right: 1px ;
+	border-top: 1px ;
+	font-weight: normal;
+	padding: 4px 3px;
+	text-align: left
+}
+
+/* make the A elements pretty. makes for nice clickable headers                */
+thead.fixedHeader a, thead.fixedHeader a:link, thead.fixedHeader a:visited {
+	 
+	display: block;
+	 
+	width: 100%
+}
+
+/* make the A elements pretty. makes for nice clickable headers                */
+/* WARNING: swapping the background on hover may cause problems in WinIE 6.x   */
+thead.fixedHeader a:hover {
+	 
+	display: block;
+	 
+	width: 100%
+}
+
+/* define the table content to be scrollable                                              */
+/* set TBODY element to have block level attributes. All other non-IE browsers            */
+/* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
+/* induced side effect is that child TDs no longer accept width: auto                     */
+html>body tbody.scrollContent {
+	display: block;
+	height: 262px;
+	/*height: 100%;*/
+	overflow: auto;
+	width: 100%
+}
+
+/* make TD elements pretty. Provide alternating classes for striping the table */
+/* http://www.alistapart.com/articles/zebratables/                             */
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td {
+	/*background: #FFF;*/
+	border-bottom: none;
+	border-left: none;
+	/*border-right: 1px solid #CCC;
+	border-top: 1px solid #DDD;*/
+	padding: 2px 3px 3px 4px
+}
+
+tbody.scrollContent tr.alternateRow td {
+	background: #EEE;
+	border-bottom: none;
+	border-left: none;
+	border-right: 1px solid #CCC;
+	border-top: 1px solid #DDD;
+	padding: 2px 3px 3px 4px
+}
+/* define width of TH elements: 1st, 2nd, and 3rd respectively.          */
+/* Add 16px to last TH for scrollbar padding. All other non-IE browsers. */
+/* http://www.w3.org/TR/REC-CSS2/selector.html#adjacent-selectors        */
+html>body thead.fixedHeader th {
+	/* width: 200px*/
+	width: 200px
+}
+
+html>body thead.fixedHeader th + th {
+	width: 240px
+}
+
+html>body thead.fixedHeader th + th + th {
+	width: 316px
+}
+
+/* define width of TD elements: 1st, 2nd, and 3rd respectively.          */
+/* All other non-IE browsers.                                            */
+/* http://www.w3.org/TR/REC-CSS2/selector.html#adjacent-selectors        */
+html>body tbody.scrollContent td {
+	/*width: 200px*/
+}
+
+html>body tbody.scrollContent td + td {
+	width: 240px
+}
+
+html>body tbody.scrollContent td + td + td {
+	width: 300px
+}
+-->
+</style>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px align="center" valign="top">
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+ <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="50%" align="center"></td>
+	    <!-- <td class="cell_[va_mitems]" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=cod_preorderstobefulfilled")'>To Fulfill</td>-->
+	    <td class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=cod_preorderstobefulfilled&wareho=1")'>Search Orders</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=cod_preorderstobefulfilled&orders=1")'>By Orders</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=cod_preorderstobefulfilled&items=1")'>By Items</td>
+	  </tr>
+	</table>
+	
+	
+	
+	
+	
+	<div style="background-color:#ffffff;margin:15px;">
+	
+	
+	<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="cod_orderstobefulfilled">
+	<input type="hidden" name="search" value="process">
+	<input type="hidden" name="action" value="1">
+ 
+ &nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Sumary Orders to Process</td>
+		 </tr>
+		<tr>
+		   <td colspan="2"><span class="help_on">&nbsp;</span></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message][va_multi]</td>
+		 </tr>
+	 
+     </table>
+     
+  
+	  
+  
+	&nbsp;
+	&nbsp;
+	<fieldset><legend>Remittance Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Shipment ID: </span></td>
+		    <td class="smalltext">[in_companyname] 10002</td>
+		 </tr>
+		<tr>
+		    <td width="30%">Warehouse :</span></td>
+		    <td class="smalltext">[in_companyname] Federico Dieringer</td>
+		 </tr>
+		<tr>
+		    <td valign="top" width="30%">Zone :</td>
+		    <td class="smalltext">[in_address]South, North, Western</td>
+		 </tr>
+		 
+		<tr>
+		    <td width="30%">Orders:</td>
+		    <td class="smalltext">[in_city] [in_state] [in_zip] 30</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Items Products :</td>
+		    <td class="smalltext">[in_country] 300</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Date:</td>
+		    <td class="smalltext">[in_country] 2012-01-01 to 201201-03</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Totals :</td>
+		    <td class="smalltext">[in_phone] $1500.00</td>
+		 </tr>
+  		 
+	</table>
+	</fieldset>
+	 
+	&nbsp;
+     <fieldset><legend> Add Comments</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">
+		<input name="name" style="width: 100%;" onfocus="focusOn( this )" onblur="focusOff( this )" type="text" size="60" value=""/>
+			</td>
+		   
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+ 
+	  
+	  
+	  
+ 
+	 <fieldset><legend>Warehouses/Orders</legend> 
+	 
+	 
+	  
+	
+	 
+	
+ 
+	   
+	   
+	   
+	   
+	  
+	   
+	  
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		 <tr>
+		    <td class="titletext" align="center" colspan="2">Orders</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">
+		    	Items : 20 [va_matches]</td>
+		    </td>
+		 </tr>
+     </table>
+     
+	 <div  id="tableContainer" style="height: 600px; width: 1060px" class="tableContainer">
+<table border="0" cellspacing="0" cellpadding="4" width="100%" style="width:1060px; height: 600px" class="scrollTable formtable">
+     
+ <thead class="fixedHeader">
+		<tr>
+		    
+		    
+		    <th  width="1.5%" class="menu_bar_title"  >&nbsp;</th>
+		    <th width="3%"  class="menu_bar_title"  >Order ID</th>
+		    <th width="4%" align="left" class="menu_bar_title">Date</th>
+		    <th width="4%" align="left" class="menu_bar_title">Zone</th>
+		    <th width="4%" class="menu_bar_title">City</th>
+		    <th  width="30%" class="menu_bar_title">Country</th>
+		    <th width="4%" class="menu_bar_title">Quantity</th> 
+		    <th width="4%" class="menu_bar_title">Total</th>
+		    
+		    <th  width="4%" class="menu_bar_title">Warehouse</th>
+		    
+		    
+		 </tr>
+		 
+		 </thead>
+		  
+		<tbody class="scrollContent" style="height: 550px">
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+<tr  bgcolor="#ffffff" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td width="1.5%" class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td width="3%" class="smalltext" valign="top" align="center">298828</td>  
+  <td width="4%" class="smalltext" valign="top">2012-07-11</td>
+  <td width="4%" class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td width="30%" class="smalltext" valign="top">Cell content 2 </td>
+  <td width="4%" class="smalltext" valign="top">10</td>
+  <td width="4%" class="smalltext" valign="top">$ 240.00</td>
+  <td width="4%" class="smalltext" valign="top">Alejandro Herrera</td>
+</tr>
+<tr bgcolor="#f2f2f2" onmouseover="m_over(this)" onmouseout="m_out(this)"  style="">
+  <td class="smalltext" valign="top" align="center"><input name="del__501348" width="15" height="15" style="border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none;" onclick="notest=false;return;" type="image" src="/sitimages//default/delete.png" value="D"/></td> 
+  <td class="smalltext" valign="top" align="center">298828</td>  <td class="smalltext" valign="top">2012-07-11</td>
+  <td class="smalltext" valign="top">south</td>
+  <td width="4%" class="smalltext" valign="top">Cell content</td>
+  <td class="smalltext" valign="top">Cell content 2 </td>
+  <td class="smalltext" valign="top">10</td>
+    <td width="4%" class="smalltext" valign="top">$ 200.00</td>
+  <td class="smalltext" valign="top">Federico Dieringer</td>
+</tr>
+  
+ 
+
+     </tbody>
+     
+    
+     </table>
+     
+    
+     
+</div>
+
+ <table border="0" cellspacing="0" cellpadding="2" width="100%">
+						<tr>
+
+							 
+							<td width="20%" class="tbltextttl"> &nbsp;</td>
+							<td    colspan="3" class="tbltextttl"> <hr> </td>
+							<td width="20%" class="tbltextttl"> &nbsp;</td>
+
+							 
+						</tr>
+						<tr>
+
+							 <td width="10%" class="tbltextttl">Items : 20 [va_matches] &nbsp;&nbsp;&nbsp; Selected : 3&nbsp;&nbsp;&nbsp; Products Contained: 30</td>
+							 
+  <td class="smalltext" valign="top" align="center">689</td>  <td class="smalltext" valign="top">$2500.00</td>
+  <td class="smalltext" valign="top">&nbsp;</td>
+  <td width="4%" class="smalltext" valign="top">&nbsp;</td>
+  
+
+							 
+						</tr>
+						<tr>
+
+							 
+							<td width="60%" class="tbltextttl"> &nbsp;</td>
+							<td width="10%" class="tbltextttl">&nbsp;</td>
+							<td width="10%" class="tbltextttl">&nbsp;</td>
+							<td width="8%" class="tbltextttl">&nbsp;</td>
+							<td width="8%" class="tbltextttl">&nbsp;</td>
+
+
+							 
+						</tr>
+					</table>
+
+	</fieldset>	
+
+					
+
+					 
+						<p align="center"><input type="submit" value="Process" class="button"></p><br>
+					<!-- End Main Area  -->
+
+		</td>
+	</tr>
+</table>
+</form>
+[ip_footer]

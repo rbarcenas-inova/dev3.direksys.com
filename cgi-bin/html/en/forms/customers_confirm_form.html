@@ -1,0 +1,59 @@
+	&nbsp;
+	<fieldset><legend>Datos del Cliente</legend>
+	<table border="0" cellspacing="0" cellpadding="5" width="100%">
+		<tr>
+		  <td width="30%" align="right">
+			<label for="firstname">Nombres : </label><span class="smallfieldterr">[er_firstname]</span>
+		  </td>
+		  <td class="smalltext" valign="bottom"><input type="text" id="firstname" name="firstname" value="[in_firstname]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%" align="right">
+		    <label for="lastname1">Apellido Paterno : </label><span class="smallfieldterr">[er_lastname1]</span>
+		  </td>
+		  <td class="smalltext"><input type="text" id="lastname1" name="lastname1" value="[in_lastname1]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%" align="right">
+		    <label for="lastname2">Apellido Materno : </label><span class="smallfieldterr">[er_lastname2]</span>
+		  </td>
+		  <td class="smalltext"><input type="text" id="lastname2" name="lastname2" value="[in_lastname2]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%" align="right">
+		    <label for="phone">Tel&eacute;fono : </label><span class="smallfieldterr">[er_phone]</span>
+		  </td>
+		  <td class="smalltext"><input type="text" id="phone" name="phone" value="[in_phone]" maxlength="13"  size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'> <a href="#phone" name="phone" onclick="self.document.sitform.phone.value='[in_cid]'">&lt;&lt; Copiar</a></td>
+		</tr>
+		<tr>
+		  <td width="30%" align="right">
+		    <label for="cidt">CID : </label><span class="smallfieldterr">[er_cidt]</span></td>
+		  <td class="smalltext"><input type="text" id="cidt" name="cidt" value="[in_cidt]" maxlength="13"  size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'> <a href="#cidt" name="cidt" onclick="self.document.sitform.cidt.value='[in_cid]'">&lt;&lt; Copiar</a></td>
+		</tr>
+		<tr>
+			<td width="30%" align="right">
+			  <label for="id_customers">ID cliente  : </label><span class="smallfieldterr">[er_id_customers]</span></td>
+			<td class="smalltext"><input type="text" id="id_customers" name="id_customers" value="[in_id_customers]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		 <tr>
+			<td width="30%" align="right">
+			  <label for="id_orders">ID orden  : </label><span class="smallfieldterr">[er_id_orders]</span></td>
+			<td class="smalltext"><input type="text" id="id_orders" name="id_orders" value="[in_id_orders]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Opciones de B&uacute;squeda</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td align="center"><input name="ST" id="ST_or" value="or" checked="" type="radio" class="radio"> <label for="ST_or">con <b>cualquiera</b> de las palabras (O)</label>
+        <input name="ST" id="ST_and" value="and" type="radio" class="radio"> <label for="ST_and">con <b>todas</b> las palabras (Y)</label></td>
+      </tr>
+	</table>
+	</fieldset>
+	<script type="text/javascript">
+		chg_radio('ST','[in_st]');
+		if ('[in_st]' == ''){
+			$('#ST_and').prop( "checked", true );
+		}
+	</script>

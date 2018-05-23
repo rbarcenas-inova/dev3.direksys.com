@@ -1,0 +1,275 @@
+[ip_header_newsales]
+
+<script type="text/javascript" src="/libs/sales/js/mod10.js?v1.1"></script>
+	
+	<table cellpadding="0" cellspacing="1" border="0" width="100%" bgcolor="#cccccc" style="height: 500px; min-width: 1050px;">
+		<tr bgcolor="#ffffff">
+			[ip_sales_shop_cart]
+			
+			<td valign="top" align="left">
+				<div class="content">
+					
+					[ip_sales_header_info]
+					
+					[ip_sales_header_steps]
+
+					<div id="step4" class="div_step" style="">
+						<h1>Pago</h1>
+
+						<form action="/cgi-bin/mod/sales/admin" method="post" name="frm_sales" id="frm_sales_step4" autocomplete="off">
+							<input type="hidden" name="cmd" id="cmd" value="console_sales">
+							<input type="hidden" name="step" id="step" value="5">
+							<input type="hidden" name="action" id="action" value="pay_info">
+							<input type="hidden" name="id_salesorigins" id="id_salesorigins" value="[va_id_salesorigins]">
+							<input type="hidden" name="customer_name" id="customer_name" value="[va_fullname]">
+							<input type="hidden" name="phone" id="phone" value="[va_phone]">
+							<input type="hidden" name="zipcode" id="zipcode" value="[va_zipcode]">
+							<input type="hidden" name="shp_zipcode" id="shp_zipcode" value="[va_shp_zipcode]">
+							
+							<input type="hidden" name="full_data" id="full_data" value="[va_full_data]">
+							<input type="hidden" name="products" id="products" value="[va_products]">
+							<input type="hidden" name="pay_type" id="pay_type" value="[va_pay_type]">
+							<input type="hidden" name="total_pmts" id="total_pmts" value="[va_total_pmts]">
+							<input type="hidden" name="shipping" id="shipping" value="[va_shipping]">
+							<input type="hidden" name="shp_type" id="shp_type" value="[va_shp_type]">
+							<input type="hidden" name="pmtfield1" id="pmtfield1" value="[va_pmtfield1]">
+
+
+							<!-- pago Credit Card start -->
+							<div id="div_credit_card" style="display: none;">
+								<h2>Informaci&oacute;n de Pago : Credit Card</h2>
+								<table width=100% cellpadding=0 cellspacing=0 border=0>
+									<tr>
+										<td class="cont">
+
+											<div class="line">
+												<div class="inptxtv3">Tipo Tarjeta : <span id="error_pmtfield7" style="color: #b40404;"></span></div>
+												<div class="inpboxv3">
+													<table border="0" cellpadding="0" cellspacing="0" width="100%">
+														<tr>
+															<td valign="top" width="10px">
+																<input type="radio" class="radio" name="pmtfield7" id="pmtfield7_Debit" value='DebitCard'>
+															</td>
+															<td  nowrap align=left>
+																<label for="pmtfield7_Debit"><b>Tarjeta Debito</b> </label>
+															</td>
+															<td valign="top" width="10px">
+																<input type="radio" class="radio" name="pmtfield7" id="pmtfield7_Credit" value='CreditCard'>
+															</td>
+															<td  nowrap align=left>
+																<label for="pmtfield7_Credit"><b>Tarjeta Credito</b> </label> 
+															</td>															
+														</tr>
+													</table>		
+												</div>
+											</div>
+											<div class="line">
+												<div class="inptxtv3">Nombre en Tarjeta : [er_pmtfield2]</div>
+												<div class="inpboxv3">
+													<input type="text" name="pmtfield2" id="pmtfield2" value="[va_pmtfield2]" maxlength="30" class="input" placeholder="Nombre del tarjetahabiente"> 
+													<a id="samecustomer" href="#">
+														<img src="/sitimages/sales/ico-sameclient.png" width="20px" class="ico" title="Mismo cliente">
+													</a>
+												</div>
+											</div> 
+											<div class="line">
+												<div class="inptxtv3">N&uacute;mero Tarjeta # : [er_pmtfield3]</div>
+												<div class="inpboxv3">
+													<input type="text" name="pmtfield3" id="pmtfield3" value="[va_pmtfield3]" maxlength="16" class="input" placeholder="0000000000000000">
+													<div id="div_img_pmtfield1" style="display: inline-block;"></div>
+												</div>
+											</div>
+											
+											<div class="line">
+												<div class="inptxtv3">Expiraci&oacute;n : [er_pmtfield4]</div>
+												<div class="inpboxv3">
+													<select size="1" name="month" id="month" class="input" style="width: 140px; height: 28px;">
+														<option value=""></option>
+														<option value="01">01 | Enero</option>
+														<option value="02">02 | Febrero</option>
+														<option value="03">03 | Marzo</option>
+														<option value="04">04 | Abril</option>
+														<option value="05">05 | Mayo</option>
+														<option value="06">06 | Junio</option>
+														<option value="07">07 | Julio</option>
+														<option value="08">08 | Agosto</option>
+														<option value="09">09 | Septiembre</option>
+														<option value="10">10 | Octubre</option>
+														<option value="11">11 | Noviembre</option>
+														<option value="12">12 | Diciembre</option>
+													</select>
+													<select size="1" name="year" id="year" class="input" style="width: 72px; height: 28px;">
+														<option value=""></option>
+														[fc_build_exp_date_opts]
+													</select>
+													<span id="error_exp_cc" style="color: #b40404; display: inline-block;"></span>
+													<br>
+													<span class="help">La Expiraci&oacute;n debe ser al menos 3 meses despu&eacute;s de la &uacute;ltima cuota</span>
+												</div>
+											</div> 
+
+
+											<div class="line">
+												<div class="inptxtv3">C&oacute;digo de seguridad : [er_pmtfield5]</div>
+												<div class="inpboxv3">
+													<input type="text" name="pmtfield5" id="pmtfield5" value="[va_pmtfield5]" maxlength="4" class="input" style="width: 50px;" >
+													<span id="error_pmtfield5" style="color: #b40404; display: inline-block;"></span>
+												</div>
+											</div> 
+											<div class="line">
+												<div class="inptxtv3">Tel&eacute;fono Casa : [er_pmtfield6]</div>
+												<div class="inpboxv3">
+													<input type="text" name="pmtfield6" id="pmtfield6" value="[va_pmtfield6]" maxlength="10"  class="input" style="width: 110px;">
+													<a id="samephone" href="#">
+														<img src="/sitimages/sales/phone_small.png" width="20px" class="ico" title="Mismo tel&eacute;fono">
+													</a>
+													<br><span class="help">10 numeros sin parentesis o guiones</span>
+												</div>
+											</div> 											
+											<div style="display:block; clear: both;"></div>
+											<div style="border: 1px solid #0489B1; border-radius: 5px; display: block; font-size: 8pt; padding: 5px; margin: auto auto; margin-top: 20px; margin-left: 10px; text-align: left;">
+												<img src="/sitimages/sales/info48.png" style="width: 24px;" class="ico">
+												La validaci&oacute;n de los datos se realizar&aacute; cuando de click en el bot&oacute;n <b>Siguiente</b>.
+											</div>
+										</td>
+
+										<td class="div">
+										</td>
+
+										<td class="cont">
+											<div class="silver">
+												<a href="#" id="lnk_pay_type_chg_cc" class="lnk_pay_type_chg" style="float: left; margin-right: 10px;">
+													<img src="/sitimages/sales/chpaytype.png">
+												</a>
+												<div>
+													<font size="3">&iquest;Cambiar tipo de pago?</font><br>
+													Esto <b>borrar&aacute;</b> los productos del carrito de compra.
+												</div>
+											</div>
+
+											<div class="silver">
+												<div style="border-bottom: 1px dotted silver; display: block; vertical-align: middle;">
+													<span style="font-size: 10pt;">Tajetas aceptadas: </span>
+													<img src="[va_imgurl]/visa.png" border="0" alt="Visa" title="Visa" style="margin-right: 15px; vertical-align: middle;">	
+													<img src="[va_imgurl]/mastercard.png" border="0" alt="Mastercard" title="Mastercard" style="margin-right: 15px; vertical-align: middle;">
+													<img src="[va_imgurl]/americanexpress.png" border="0" alt="American Express" title="American Express" style="vertical-align: middle;">
+												</div><br />
+												<center>
+													<font size=3>C&oacute;digo de seguridad</font><br>
+													&iquest;D&oacute;nde se encuentra?<br><br>
+													<img src="/sitimages/cvn1.png"> 
+													<img src="/sitimages/cvn2.png">
+												</center>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<!-- pago Credit Card end -->
+
+
+							<!-- pago referenciado start -->
+							<div id="div_referenced_deposit" style="display: none;">
+								<h2>Informaci&oacute;n de Pago: Pago Referenciado</h2>
+
+								[ip_sales_deposit_info]
+								<table width=100% cellpadding=0 cellspacing=0 border=0>
+									<tr>
+										<td colspan="3" style="padding: 10px 0 15px 0;">
+											<div class="silver" style="width: 35%; margin: auto auto; color: gray;">
+												<a href="#" id="lnk_pay_type_chg_ref" class="lnk_pay_type_chg" style="float: left; margin-right: 10px;">
+													<img src="/sitimages/sales/chpaytype.png">
+												</a>
+												<div>
+													<font size="3">&iquest;Cambiar forma de pago?</font><br>
+													Esto <b>borrar&aacute;</b> los productos del carrito de compra.
+												</div>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<!-- pago referenciado end -->
+
+
+							<!-- pago COD start -->
+							<div id="div_cod" style="display: none;">
+								<h2>Informaci&oacute;n de Pago: COD (Contra entrega)</h2>
+
+								<table width="100%" cellpadding="0" cellspacing="0" border="0">
+									<tr>
+										<td class="cont">
+											<div class="silver" style="margin-left: 5px; border: 1px solid #21610B; border-radius: 0px; display: block; min-height: 30px; padding: 5px;">
+												<div style="float: left;">
+													<img src="/sitimages/sales/iconCOD.png" class="ico" style="vertical-align:middle; border-radius: 50%; border: 1px solid #D8D8D8; padding: 5px; max-width: 40px; margin-right: 10px;">
+												</div>
+												<div style="padding: 10px 1px 3px 1px;">
+													En este caso usted pagar&aacute; al momento de recibir su(s) producto(s).
+												</div>
+												<div style="clear: both;"></div>
+											</div>
+										</td>
+										<td class="div" style="width: 15px;">
+										</td>
+										<td class="cont">
+											<div class="silver">
+												<a href="#" id="lnk_pay_type_chg_cod" class="lnk_pay_type_chg" style="float: left; margin-right: 10px;">
+													<img src="/sitimages/sales/chpaytype.png">
+												</a>
+												<div>
+													<font size="3">&iquest;Cambiar forma de pago?</font><br>
+													Esto <b>borrar&aacute;</b> los productos del carrito de compra.
+												</div>
+											</div>
+										</td>									
+									</tr>
+								</table>	
+							</div>
+							<!-- pago COD end -->
+
+
+							<center>
+								<input type="button" id="btn_submit" value="Siguiente" class="buttonv2">
+							</center>	
+						</form>					
+
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+
+	<div id="speech_main" class="speech_main">
+		<div id="div_hide" class="speech_title">
+			<a href="#" id="lnk_hide_speech" style="position: relative;" title="Ocultar">
+				<img src="/sitimages/sales/minimize.png" alt="minimize">
+			</a>
+		</div>
+		<div class="speech_content">
+			<img src="/sitimages/default/console-head.png" style="margin: 5px 10px 5px 0px; width: 50px; float: left;">
+			<div class="speech_content_text">
+				[va_speech_content]
+			</div>			
+			<div style="clear: both;"></div>
+			<div style="text-align: right; width: 100%; display: block;">
+				<span style="text-align: left; font-size: 8pt; margin-right: 20px;">[va_speech_code]</span>
+				<label style="font-size: 8pt; width: auto; position: relative;"><input type="checkbox" name="chk_speech_nevershow" id="chk_speech_nevershow" value="1">No volver a mostrar</label>
+			</div>
+		</div>
+	</div>
+
+	<div id="div_speech_icon" class="div_speech_icon" style="display: none;">
+		<a href="#">
+			<img src="/sitimages/default/console-head.png" style="width: 45px; height: 45px;">
+		</a>
+	</div>
+
+[ip_footer_console]
+
+<script type="text/javascript">	
+	chg_radio('pmtfield7','[va_pmtfield7]');
+	chg_radio('pmtfield1','[va_pmtfield1]');
+	chg_select('month','[va_cc_month]');
+	chg_select('year','[va_cc_year]');
+</script>

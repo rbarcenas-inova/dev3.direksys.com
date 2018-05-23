@@ -1,0 +1,38 @@
+[ip_header_blank]
+[ip_forms:sltv_header]
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	<tr>
+	  <td class="titletext" align="left" colspan="2">Accounts Summary </td>
+	</tr>
+	<tr>
+	  <td align="center" colspan="2">
+	  	<strong>From:</strong> [in_reportdate] <br>&nbsp;&nbsp;&nbsp;&nbsp;
+	  	<strong>To:</strong> [in_reportdateto]
+	</td>
+	</tr>
+	<tr>
+	  <td class="stdtxterr" colspan="2">[va_message]</td>
+	</tr>
+</table>
+&nbsp;
+<div class="accordion-products">
+	<div>&nbsp;
+		<table width="80%" border="0" cellspacing="0" cellpadding="0" align="center" style="background-color:#fff;">
+			<tr style="background-color:#CDCDC1;">
+				<td valign='top' align='left'><strong>ID Account</strong></td>
+				<td valign='top' align='left'><strong>Name</strong></td>
+				<td valign='top' align='right'><strong>Debits</strong></td>
+				<td valign='top' align='right'><strong>Credits</strong></td>
+			</tr>
+			[va_searchresults]
+			<tr><td colspan="4">&nbsp;</td></tr>
+			<tr style="background-color:#CDCDC1;">
+				<td valign='top' align='left'><strong>Total</strong></td>
+				<td valign='top' align='left'>&nbsp;</td>
+				<td valign='top' align='right'><strong>[va_tdebits]</strong></td>
+				<td valign='top' align='right'><strong>[va_tcredits]</strong></td>
+			</tr>
+		</table>
+		&nbsp;
+	</div>
+</div>

@@ -1,0 +1,151 @@
+[ip_header]
+
+<style type="text/css">
+.resumen{
+	position: relative;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #555;
+    word-wrap: break-word;
+    background: #FFF;
+    padding: 5px;
+    border: solid 1px #999;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: antialiased;
+}
+
+.resumen p{
+	display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.error{
+	color:red;
+}
+
+.greentext{
+	color:green;
+}
+
+.resumen table{border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+.resumen table td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+.resumen table th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+
+</style>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="70%" align="center"></td>
+	    <td width="30%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]")'>Load Wholeshale Orders</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+	<form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform" enctype="multipart/form-data">
+		<input type="hidden" name="cmd" value="[in_cmd]">
+		<input type="hidden" name="action" value="1">
+
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td class="titletext" align="center">Load wholeshale orders from layout</td>
+			</tr>
+			<tr>
+				<td class="stdtxterr">[va_message]</td>
+			</tr>
+		</table>
+		&nbsp;
+		<fieldset><legend>Wholeshale Order Info</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+				<tr>
+				    <td width="20%">ID Customer : <span class="smallfieldterr">[er_id_customers]</span></td>
+				    <td class="smalltext">
+				    	<input type="number" id="id_customers" name="id_customers" value="[in_id_customers]" size="10" class="input" readonly="" required="">
+				    	<a href="/cgi-bin/common/apps/schid?cmd=customers&b=sl_customers&fname=id_customers&ajaxtype=1" title="Search for Customer" class="fancy_modal_iframe">
+							<img src="/sitimages//default/icsearchsmall.gif" border="0">
+						</a>
+			    	</td>
+				</tr>
+				<tr>
+				    <td width="20%">Customer Purchase Order Number : <span class="smallfieldterr">[er_id_orders_alias]</span></td>
+				    <td class="smalltext">
+				    	<input type="text" id="id_orders_alias" name="id_orders_alias" value="[in_id_orders_alias]" size="50" class="input" required="">
+			    	</td>
+				</tr>
+			</table>
+		</fieldset>
+		&nbsp;
+		<fieldset><legend>Branch detail</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+				<tr>
+				    <td width="20%">File layout : <span class="smallfieldterr">[er_branch_detail]</span></td>
+				    <td class="smalltext">
+				    	<input type="file" id="branch_detail" name="branch_detail" value="[in_branch_detail]" accept=".csv" class="input" required="">
+			    	</td>
+			    <tr>
+			</table>
+		</fieldset>
+		&nbsp;
+		<fieldset><legend>Product detail</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+				<tr>
+				    <td width="20%">File layout : <span class="smallfieldterr">[er_product_detail]</span></td>
+				    <td class="smalltext">
+				    	<input type="file" id="product_detail" name="product_detail" value="[in_product_detail]" accept=".csv" class="input" required="">
+			    	</td>
+				</tr>
+			</table>
+		</fieldset>
+		&nbsp;
+
+		<p align="center"><input type="submit" value="Submit" class="button" loading="0"></p>
+	</form>
+	
+	[va_summary]
+
+
+<script type="text/javascript">
+<!--
+	// Check for the various File API support.
+	if (window.File && window.FileReader && window.FileList && window.Blob) {
+	  // Great success! All the File APIs are supported.
+	} else {
+	  alert('The File APIs are not fully supported in this browser.');
+	}
+
+	chg_radio('ptype','[in_ptype]');
+	chg_radio('invoice_type','[in_invoice_type]');
+	chg_radio('id_salesorigins','[in_id_salesorigins]');
+	chg_radio('type','[in_type]');
+	chg_radio('currency','[in_currency]');
+-->
+</script>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

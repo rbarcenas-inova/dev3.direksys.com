@@ -1,0 +1,35 @@
+&nbsp;
+<fieldset><legend>Segments</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tbody><tr>
+			<td width="30%">ID Segments Compaq :  <span class="smallfieldterr">[er_id_segments]</span></td>
+			<td><input type="text" name="id_segments" value="[in_id_segments]" size="25" onfocus="focusOn( this )" onblur="focusOff( this )"></td>
+		</tr>
+		<tr>
+			<td width="30%">ID Parent :  <span class="smallfieldterr">[er_id_parent]</span></td>
+			<td>
+				<select name="id_parent" onfocus="focusOn( this )" onblur="focusOff( this )">
+					[fc_build_select_segments]
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Name :  <span class="smallfieldterr">[er_name]</span></td>
+			<td>
+				<input size="80" name="name" value="[in_name]" onfocus="focusOn( this )" onblur="focusOff( this )">
+			</td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="30%">Status : </td>
+		  	<td class="smalltext">[fc_segments_status]</td>
+		</tr>
+	</tbody>
+	</table>
+</fieldset>
+
+<script language="javascript">
+<!--
+	chg_select('id_parent','[in_id_parent]');
+	chg_radio('status','[in_status]');
+
+</script>

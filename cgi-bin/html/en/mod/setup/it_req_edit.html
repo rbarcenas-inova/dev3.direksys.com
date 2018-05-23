@@ -1,0 +1,68 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 9, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+			[fc_menu_custom]
+			&nbsp;
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="40%" align="center"></td>
+	    <td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=it_req")'>Add Requirement</td>
+			<td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=it_req&search=form")'>Search</td>
+	    <td width="20%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=it_req&search=listall")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+	
+  <form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="it_req">
+	<input type="hidden" name="edit" value="1">
+	<input type="hidden" name="id_itrequests" value="[in_id_itrequests]">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Editing Support Request : [in_id_itrequests]</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Request Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Request ID : </td>
+			<td class="titletext">[in_id_itrequests] &nbsp;
+				<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=it_req&view=[in_id_itrequests]"><img src='[va_imgurl]/[ur_pref_style]/b_view.gif' title='View' alt='' border='0'></a>
+		  	<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=it_req&search=Print&toprint=[in_id_itrequests]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.gif' title='Print' alt='' border='0'></a>
+			</td>
+		</tr>
+	</table>
+	</fieldset>			
+	&nbsp;	
+	[ip_forms:req_form]
+	<p align="center"><input type="submit" value="Update Request" class="button"></p>
+  </form>
+ 	&nbsp;
+	[tb_req]	
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

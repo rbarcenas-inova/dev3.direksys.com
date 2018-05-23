@@ -1,0 +1,179 @@
+	&nbsp;
+	<fieldset><legend>Customer Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">CID  : <span class="smallfieldterr">[er_cid]</span></td>
+		  <td class="smalltext"><input type="text" name="cid" value="[in_cid]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>		
+		<tr>
+		  <td width="30%">Company Name  : <span class="smallfieldterr">[er_company_name]</span></td>
+		  <td class="smalltext"><input type="text" name="company_name" value="[in_company_name]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>	
+		<tr>
+		  <td width="30%">Name  : <span class="smallfieldterr">[er_firstname]</span></td>
+		  <td class="smalltext"><input type="text" name="firstname" value="[in_firstname]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Last Name (Father) : <span class="smallfieldterr">[er_lastname1]</span></td>
+		  <td class="smalltext"><input type="text" name="lastname1" value="[in_lastname1]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>	
+		<tr>
+		  <td width="30%">Last Name (Mother) : <span class="smallfieldterr">[er_lastname2]</span></td>
+		  <td class="smalltext"><input type="text" name="lastname2" value="[in_lastname2]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Sex : <span class="smallfieldterr">[er_sex]</span></td>
+		  <td class="smalltext">
+		  	<input type="radio" name="sex" value="Male" class="radio">Male
+		  	<input type="radio" name="sex" value="Female" class="radio">Female
+		</tr>
+		<tr>
+		  <td width="30%">Phone 1  : <span class="smallfieldterr">[er_phone1]</span></td>
+		  <td class="smalltext"><input type="text" name="phone1" value="[in_phone1]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Phone 2  : <span class="smallfieldterr">[er_phone2]</span></td>
+		  <td class="smalltext"><input type="text" name="phone2" value="[in_phone2]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Cellphone  : <span class="smallfieldterr">[er_cellphone]</span></td>
+		  <td class="smalltext"><input type="text" name="cellphone" value="[in_cellphone]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Available Time  : <span class="smallfieldterr">[er_atime]</span></td>
+		  <td class="smalltext">
+		  	<input type="radio" name="atime" value="Mañana" class="radio">Morning
+		  	<input type="radio" name="atime" value="Tarde" class="radio">Evening
+		  	<input type="radio" name="atime" value="Noche" class="radio">Night
+		  	<input type="radio" name="atime" value="Todo el Día" class="radio">All Day</td>
+		</tr>
+		<tr>
+			<td width="30%">Type: <span class="smallfieldterr">[er_type]</span></td>
+			<td class="smalltext"><select name='Type' onFocus='focusOn( this )' onBlur='focusOff( this )'><option value=''>---</option>[fc_selecttype]</select></td>
+		<tr>
+		<tr>
+			<td width="30%">Birth Country: <span class="smallfieldterr">[er_birthcountry]</span></td>
+			<td>
+		  	<select name="birthcountry" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					[fc_build_select_birthcountry]
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Contact Type: <span class="smallfieldterr">[er_contact_mode]</span></td>
+			<td class="smalltext">
+		  	<input type="radio" name="contact_mode" value="sms" class="radio">SMS
+		  	<input type="radio" name="contact_mode" value="email" class="radio">Email
+		  	<input type="radio" name="contact_mode" value="phone_call" class="radio">Phone call</td>
+		<tr>
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Default Shipping Address</legend>	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td valign="top" width="30%">Address :</td>
+		   <td class="smalltext">
+		   		<input type="text" name="address1" value="[in_address1]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address1]</span><br>
+		   		<input type="text" name="address2" value="[in_address2]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address2]</span><br>
+		   		<input type="text" name="address3" value="[in_address3]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address3]</span>
+		   	</td>
+		</tr>
+		<tr>
+		  <td width="30%">Urbanization : <span class="smallfieldterr">[er_urbanization]</span></td>
+		  <td class="smalltext"><input type="text" name="urbanization" value="[in_urbanization]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		 	<td width="30%">City : <span class="smallfieldterr">[er_city]</span></td>
+		  <td class="smalltext">
+					<input type="text" name="city" value="[in_city]" size="30" oocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		 	<td width="30%">State/Zip : </td>
+		  <td class="smalltext">
+				<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+						[fc_build_select_opr_customersstate]
+				</select> <span class="smallfieldterr">[er_state]</span>
+					<input type="text" name="zip" value="[in_zip]" size="8" oocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_zip]</span>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Country : <span class="smallfieldterr">[er_country]</span></td>
+			<td class="smalltext"><input type="text" name="country" value="[in_country]" size="30" oocus='focusOn( this )' onBlur='focusOff( this )'></td>		 
+		</tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+  <fieldset><legend>Optional Info</legend>	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">						
+		<tr>
+		  <td width="30%">Personal ID  : <span class="smallfieldterr">[er_personalid]</span></td>
+		  <td class="smalltext"><input type="text" name="personalid" value="[in_personalid]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">SSN  : <span class="smallfieldterr">[er_ssn]</span></td>
+		  <td class="smalltext"><input type="text" name="ssn" value="[in_ssn]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Email  : <span class="smallfieldterr">[er_email]</span></td>
+		  <td class="smalltext"><input type="text" name="email" value="[in_email]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Password  : <span class="smallfieldterr">[er_password]</span></td>
+		  <td class="smalltext"><input type="text" name="password" value="[in_password]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>	
+		<tr>
+		  <td width="30%">Birthday  : <span class="smallfieldterr">[er_birthday]</span></td>
+		  <td class="smalltext">
+				<input type="text" id="birthday" name="birthday" value="[in_birthday]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;	
+  <fieldset><legend>Customer Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		   <td class="smalltext">[in_status]<input type="hidden" name="status" value="[in_status]"></td>
+		 </tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_radio('sex','[in_sex]');
+	chg_radio('contact_mode','[in_contact_mode]');
+	chg_radio('status','[in_status]');
+	chg_radio('atime','[in_atime]');
+	chg_select('state','[in_state]');
+	chg_select('Type','[in_type]');
+	chg_select('birthcountry','[in_birthcountry]');
+
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#birthday" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			maxDate: new Date(),
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 3,
+		});
+
+    });
+
+//-->
+</script>
+
+<input type="hidden" name="bday_month" value="[in_bday_month]">
+<input type="hidden" name="bday_day" value="[in_bday_day]">

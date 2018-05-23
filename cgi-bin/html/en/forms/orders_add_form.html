@@ -1,0 +1,185 @@
+	&nbsp;
+	<fieldset><legend>Order Billing Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" valign="bottom">Customer ID : <span class="smallfieldterr">[er_id_customers]</span></td>
+			<td class="titletext">[in_id_customers]</td>
+		</tr>				
+		<tr>
+		  <td valign="top" width="30%">Address : <span class="smallfieldterr">[er_address1]</span></td>
+		  <td class="smalltext">
+				<input type="text" name="address1" value="[in_address1]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'><br>
+		   	<input type="text" name="address2" value="[in_address2]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'><br>
+		   	<input type="text" name="address3" value="[in_address3]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		<tr>
+		<tr>
+		  <td valign="top" width="30%">Urbanization : <span class="smallfieldterr">[er_urbanization]</span></td>
+		  <td class="smalltext"><input type="text" name="urbanization" value="[in_urbanization]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>			
+			<td width="30%">City : <span class="smallfieldterr">[er_city]</span></td>
+			<td class="smalltext">
+				<input type="text" name="city" value="[in_city]" size="30" oocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		 	<td width="30%">State/Zip : </td>
+		  <td class="smalltext">
+				<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+						[fc_build_select_opr_salesstate]
+				</select> <span class="smallfieldterr">[er_state]</span>
+				<input type="text" name="zip" value="[in_zip]" size="8" oocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_zip]</span>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Country : <span class="smallfieldterr">[er_country]</span></td>
+			<td class="smalltext"><input type="text" name="country" value="[in_country]" size="30" oocus='focusOn( this )' onBlur='focusOff( this )'></td>		 
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Billing Notes : <span class="smallfieldterr">[er_billingnotes]</span></td>
+		  <td class="smalltext"><textarea name="billingnotes" cols="50" style="width:100%" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_billingnotes]</textarea> </td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Order Shipping Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td valign="top" width="30%">Shipping Name : <span class="smallfieldterr">[er_shp_name]</span></td>
+		  <td class="smalltext"><input type="text" name="shp_name" value="[in_shp_name]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Address :</td>
+			<td class="smalltext">
+				<input type="text" name="shp_address1" value="[in_shp_address1]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_shp_address1]</span><br>
+				<input type="text" name="shp_address2" value="[in_shp_address2]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_shp_address2]</span><br>
+				<input type="text" name="shp_address3" value="[in_shp_address3]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_shp_address3]</span>
+			</td>
+		<tr>
+		<tr>
+		  <td valign="top" width="30%">Urbanization : <span class="smallfieldterr">[er_shp_urbanization]</span></td>
+		  <td class="smalltext"><input type="text" name="shp_urbanization" value="[in_shp_urbanization]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>			
+			<td width="30%">City : <span class="smallfieldterr">[er_shp_city]</span></td>
+			<td class="smalltext">
+				<input type="text" name="shp_city" value="[in_shp_city]" size="30" oocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		 	<td width="30%">State/Zip : </td>
+		  <td class="smalltext">
+				<select name="shp_state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+						[fc_build_select_opr_salesstate]
+				</select> <span class="smallfieldterr">[er_shp_state]</span>
+				<input type="text" name="shp_zip" value="[in_shp_zip]" size="8" oocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_zip]</span>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Country : <span class="smallfieldterr">[er_shp_country]</span></td>
+			<td class="smalltext"><input type="text" name="shp_Country" value="[in_shp_country]" size="30" oocus='focusOn( this )' onBlur='focusOff( this )'></td>		 
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Shipping Notes : <span class="smallfieldterr">[er_shp_notes]</span></td>
+		  <td class="smalltext"><textarea name="shp_notes" cols="50" style="width:100%" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_shp_notes]</textarea> </td>
+		 </tr>
+		</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Order Notes</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		    <td valign="top" width="30%">Notes : <span class="smallfieldterr">[er_ordernotes]</span></td>
+		    <td class="smalltext"><textarea name="ordernotes" cols="50" style="width:100%" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_ordernotes]</textarea> </td>
+		 	</tr>
+		</table>
+	</fieldset>
+	&nbsp;		
+	<fieldset><legend>Order/Shipping </legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Order Type  : <span class="smallfieldterr">[er_ptype]</span></td>
+		    <td class="smalltext">
+			[fc_build_radio_ptype]
+		    </td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Shipping Type  : <span class="smallfieldterr">[er_shp_type]</span></td>
+		    <td class="smalltext">
+				<input type="radio" name="shp_type" value="1" class="radio">Standard Delivery 
+				<input type="radio" name="shp_type" value="2" class="radio">Express Delivery
+				<input type="radio" name="shp_type" value="3" class="radio">Scheduled Delivery      	        	
+		    </td>
+		 </tr>
+		 <tr>
+		    <td width="30%">Language  : <span class="smallfieldterr">[er_language]</span></td>
+		    <td class="smalltext">
+					<input type="radio" name="language" value="english" class="radio">English
+		  		<input type="radio" name="language" value="spanish" class="radio" checked="checked">Spanish    	        	
+		    </td>
+		 </tr>
+  	</table>
+	</fieldset>		
+	&nbsp;
+		<fieldset><legend>Show Price Level Info</legend>	
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td valign="top" width="30%" valign="top">Price Level: </td> 
+				<td class="smalltext" valign="top">([in_id_pricelevels]) [fc_load_pricelevel_name]</td>
+			</tr>
+			[fc_load_station_qa]
+		</table>
+	</fieldset>
+	&nbsp;
+	
+	
+<script language="javascript">
+<!--
+
+	chg_select('state','[in_state]');
+	chg_select('shp_state','[in_shp_state]');
+	chg_radio('shp_type','[in_shp_type]');
+	chg_radio('status','[in_status]');
+	chg_radio('statusprd','[in_statusprd]');
+	chg_radio('statuspay','[in_statuspay]');
+	chg_radio('ptype','[in_ptype]');
+
+//-->
+</script>
+
+<input type="hidden" name="id_pricelevels" value="[in_id_pricelevels]">
+<input type="hidden" name="discount" value="[in_discount]">
+<input type="hidden" name="orderdisc" value="[in_orderdisc]">
+
+<input type="hidden" name="orderqty" value="[in_orderqty]">
+<input type="hidden" name="ordernet" value="[in_ordernet]">
+<input type="hidden" name="ordershp" value="[in_ordershp]">
+<input type="hidden" name="ordertax" value="[in_ordertax]">
+
+<!-- order questions/answers -->
+<input type="hidden" name="question1" value="[in_question1]">
+<input type="hidden" name="question2" value="[in_question2]">
+<input type="hidden" name="question3" value="[in_question3]">
+<input type="hidden" name="question4" value="[in_question4]">
+<input type="hidden" name="question5" value="[in_question5]">
+
+<input type="hidden" name="answer1" value="[in_answer1]">
+<input type="hidden" name="answer2" value="[in_answer2]">
+<input type="hidden" name="answer3" value="[in_answer3]">
+<input type="hidden" name="answer4" value="[in_answer4]">
+<input type="hidden" name="answer5" value="[in_answer5]">
+
+<input type="hidden" name="dayspay" value="[in_dayspay]">
+
+<input type="hidden" name="repeatedcustomer" value="[in_repeatedcustomer]">
+
+<input type="hidden" name="flags" value="[in_flags]">
+
+<input type="hidden" name="status" value="[in_status]">
+<input type="hidden" name="statuspay" value="[in_statuspay]">
+<input type="hidden" name="statusprd" value="[in_statuspay]">
+
+<input type="hidden" name="first_call" value="No">

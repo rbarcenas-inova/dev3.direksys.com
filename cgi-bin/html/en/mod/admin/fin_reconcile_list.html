@@ -1,0 +1,814 @@
+[ip_header]
+<script type="application/x-javascript" src="/accounting.min.js"></script>
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_home")'>Financial Home</td>
+	    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reports")'>Sales Reports</td>
+	    <td width="18%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reconcile")'>Reconcile</td>
+	    <td width="18%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reports_fp")'>Flex Pay</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="left" colspan="2">Reconcile Bank</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+		
+	</table>
+	&nbsp;		
+	<fieldset><legend>Statement info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<!--
+			<tr>
+			    <td width="30%">Previous Balance: </td>
+			    <td class="smalltext" colspan="2">[va_prev_balance_fmt] @ [va_prev_balance_date]</td>
+			</tr> 
+			<tr>
+			    <td width="30%">New Balance: </td>
+			    <td class="smalltext" colspan="2">[va_new_balance_fmt] @ [in_reconcile_date]</td>
+			</tr>
+			<tr>
+			    <td width="30%">Concilation: </td>
+			    <td colspan="2"><span id="cons_balance" class="titletext">$ 0</span> &nbsp; Difference &nbsp; <span id="cons_dif" class="titletext">$ [va_difference]</span></td>
+			</tr>
+			-->
+			<tr>
+			    <td colspan="3">Name: <span>[va_bank_name]</span> Account: <span>[va_bank_account]</span></td>
+			</tr>
+			<!--
+			<tr>
+			    <td colspan="3">
+					Total Debit: <span class="titletext">[va_debit_amount]</span>  Total Credit: <span class="titletext">[va_credit_amount]</span>
+					Credit - Debit: <span class="titletext">[va_total_balance_amount]</span>
+				</td>
+			    
+			</tr>
+			-->
+			<tr>
+			    <td width="30%">Interval: </td>
+			    <td colspan="2">From Date:&nbsp;<span>[in_from_date]</span> &nbsp; To Date:&nbsp;<span>[in_to_date]</span></td>
+			</tr>
+			<!--
+			<tr>
+				<td>&nbsp;</td>
+				<td>Bank Statement</td>
+				<td>Direksys</td>
+			</tr>
+			-->
+			<!--
+			<tr>
+			    <td width="30%">Reconciled amount: </td>
+			    <td>
+					<span name="rec_amount_res" class="titletext">0</span>
+					Debit: <span name="rec_amount_debit" class="titletext">0</span>
+					Credit: <span name="rec_amount_credit" class="titletext">0</span>
+					(Credit - Debit): <span name="rec_amount_c_d" class="titletext">0</span>
+				</td>
+				<td><span>tres</span></td>
+			</tr>
+			<tr>
+			    <td width="30%">Unreconciled amount: </td>
+			    <td><span name="unrec_amount_res" class="titletext">0</span></td>
+				<td><span>cuatro</span></td>
+			</tr>
+			-->
+			<!--
+			<tr>
+				<td width="30%">Balance: </td>
+			    <td colspan="2">
+					Opening: <span name="">[va_opening_balance]</span>
+					Reconciled: <span>[va_opening_balance_or]</span>
+					<br/>
+					Closing: <span>[va_closing_balance]</span>
+					Reconciled: <span>[va_closing_balance_or]</span>
+					<br/>
+					op am: [va_amount_o]
+					<br/>
+					clo am: [va_amount_c]
+					<br/>
+					op am r: [va_amount_or]
+					<br/>
+					clo am r: [va_amount_cor]
+					<br/>
+					op balance bank: [va_op_balance]
+					<br/>
+					aut balance: [va_balance_aut_recon]
+					
+				</td>
+			</tr>
+			-->
+			<tr>
+				<td colspan="3">
+					<table border="0" cellspacing="0" width="100%">
+						<tr>
+							<td colspan="3">
+								Balance
+							</td>
+						</tr>
+						<tr>
+							<td width="30%">
+								Opening:
+							</td>
+							<td colspan="2" id="td_opening">
+								[va_opening_balance]
+							</td>
+						</tr>
+						<tr>
+							<td width="30%">
+								Closing:
+							</td>
+							<td colspan="2" id="td_closing">
+								[va_closing_balance]
+							</td>
+						</tr>
+						<tr>
+							<td width="30%">
+								Selected:
+							</td>
+							<td colspan="2" id="td_closing">
+								<span name="final_balance"></span>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+
+  <form action="/cgi-bin/mod/admin/admin" method="post" name="sitform">
+	<div>
+		<input type="reset" value="Add Credit" class="button"  name="button_credit" onclick="window.open('/cgi-bin/mod/[ur_application]/dbman?cmd=fin_banks_movements&add=1&id_banks=[in_id_banks]&type=Credits&bankdate=[in_reconcile_date]','_blank'); rewritte_on_new_bankmovement(); return false;" style="margin-right: 10px; width: 100px;" />
+		<input type="submit" value="Add Debit" class="button"  name="button_debit" onclick="window.open('/cgi-bin/mod/[ur_application]/dbman?cmd=fin_banks_movements&add=1&id_banks=[in_id_banks]&type=Debits&bankdate=[in_reconcile_date]','_blank'); rewritte_on_new_bankmovement(); return false;" style="margin-left: 10px; width: 100px;" />
+	</div>
+	<br/>
+	<!--<div><input type="reset" value="Clear All" class="button"  name="button_clear" /> <input type="submit" value="Select All" class="button"  name="button_select_all" /></div>-->
+	<input type="hidden" name="cmd" value="fin_reconcile" />
+	<input type="hidden" name="id_banks" value="[in_id_banks]" />
+	<input type="hidden" name="balance" value="[in_balance]" />
+	<input type="hidden" name="reconcile_date" value="[in_reconcile_date]" />
+	<input type="hidden" name="action" value="1" />
+	
+<!-- ************************************************************************************ -->
+<!-- ************************************************************************************ -->
+<!-- ************************************************************************************ -->
+<div style="font-weight: bold; font-size: 12px; font-family: Arial; margin: 10px 0;">
+	Banking Extract
+</div>
+<div style="width: 100%; height: 350px; float: left; overflow-y: auto; background-color: #EEEEEE;">
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td class="tbltextttl">
+	    	<a href="javascript:prnwin('/cgi-bin/mod/admin/admin?cmd=[in_cmd]&print=1&[in_qs]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+	    	Records : [va_ext_matches]</td>
+	    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>
+	
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class="menu_bar_title" align="center" width="5%">ID</td>
+		    <td class="menu_bar_title" align="center" width="5%">Date</td>
+		    <td class="menu_bar_title" align="center" width="20%">Reference Number</td>
+		    <td class="menu_bar_title" align="center" width="35%">Memo</td>	    
+		    <td class="menu_bar_title" align="center" width="10%">Debit</td>
+		    <td class="menu_bar_title" align="center" width="10%">Credit</td>
+			<td class="menu_bar_title" align="center" width="10%">Balance</td>
+			<td class="menu_bar_title" align="center" width="10%">Related IDs</td>
+		    <td class="menu_bar_title">
+				<!-- <input type="checkbox" name="left_checkall" id="left_checkall" value="" /> -->
+			</td>
+		</tr>
+		
+		<!-- ************************************************************************************ -->
+		<!--
+		<tr>
+			<td><a href="/cgi-bin/mod/admin/dbman?cmd=fin_banks_movements&amp;view=240">240</a></td>
+			<td>2013-06-25</td>
+			<td></td>
+			<td>MDIS0000024060</td>
+			<td nowrap="" align="right">$  830.71</td>
+			<td nowrap="" align="right">$  0.00</td>
+			<td nowrap="" align="right">
+				<font color="red">- $  830.71</font>
+			</td>
+			<td align="right" nowrap>
+				<input type="text" name="exct_linked_id" value="" />
+			</td>
+			<td nowrap="" align="center">
+				<input type="hidden" name="banking_exct_amount" value="-830.71" />
+				<input type="checkbox" value="830.71" name="exct_amount_ok" onclick="select_int_movement(this);" class="checkbox">
+			</td>
+		</tr>
+		<tr>
+			<td><a href="/cgi-bin/mod/admin/dbman?cmd=fin_banks_movements&amp;view=240">240</a></td>
+			<td>2013-06-25</td>
+			<td></td>
+			<td>MDIS0000024060</td>
+			<td nowrap="" align="right">$  0.00</td>
+			<td nowrap="" align="right">$   5663.50</td>
+			<td nowrap="" align="right">
+				<font color="black"> $   5663.50</font>
+			</td>
+			<td align="right" nowrap>
+				<input type="text" name="exct_linked_id" value="" />
+			</td>
+			<td nowrap="" align="center">
+				<input type="hidden" name="banking_exct_amount" value="5663.50" />
+				<input type="checkbox" value="5663.50" name="exct_amount_ok" onclick="select_int_movement(this);" class="checkbox" />
+			</td>
+		</tr>
+		<tr>
+			<td><a href="/cgi-bin/mod/admin/dbman?cmd=fin_banks_movements&amp;view=240">240</a></td>
+			<td>2013-06-25</td>
+			<td></td>
+			<td>MDIS0000024060</td>
+			<td nowrap="" align="right">$  0.00</td>
+			<td nowrap="" align="right">$  696000.00</td>
+			<td nowrap="" align="right">
+				<font color="black"> $  696000.00</font>
+			</td>
+			<td align="right" nowrap>
+				<input type="text" name="exct_linked_id" value="" />
+			</td>
+			<td nowrap="" align="center">
+				<input type="hidden" name="banking_exct_amount" value="696000.00" />
+				<input type="checkbox" value="830.71" name="exct_amount_ok" onclick="select_int_movement(this);" class="checkbox" />
+			</td>
+		</tr>
+		<tr>
+			<td><a href="/cgi-bin/mod/admin/dbman?cmd=fin_banks_movements&amp;view=240">240</a></td>
+			<td>2013-06-25</td>
+			<td></td>
+			<td>MDIS0000024060</td>
+			<td nowrap="" align="right">$  0.00</td>
+			<td nowrap="" align="right">$  906000.00</td>
+			<td nowrap="" align="right">
+				<font color="black"> $  906000.00</font>
+			</td>
+			<td align="right" nowrap>
+				<input type="text" name="exct_linked_id" value="" />
+			</td>
+			<td nowrap="" align="center">
+				<input type="hidden" name="banking_exct_amount" value="906000.00" />
+				<input type="checkbox" value="906000.00" name="exct_amount_ok" onclick="select_int_movement(this);" class="checkbox" />
+			</td>
+		</tr>
+		<tr>
+			<td><a href="/cgi-bin/mod/admin/dbman?cmd=fin_banks_movements&amp;view=240">240</a></td>
+			<td>2013-06-25</td>
+			<td></td>
+			<td>MDIS0000024060</td>
+			<td nowrap="" align="right">$  0.00</td>
+			<td nowrap="" align="right">$   209647.92</td>
+			<td nowrap="" align="right">
+				<font color="black"> $   209647.92</font>
+			</td>
+			<td align="right" nowrap>
+				<input type="text" name="exct_linked_id" value="" />
+			</td>
+			<td nowrap="" align="center">
+				<input type="hidden" name="banking_exct_amount" value="-209647.92" />
+				<input type="checkbox" value="209647.92" name="exct_amount_ok" onclick="select_int_movement(this);" class="checkbox" />
+			</td>
+		</tr>
+		-->
+		<!-- ************************************************************************************ -->
+		[va_extracts]
+	</table>
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">
+				Records : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>
+	<hr />
+</div>
+
+<!-- ************************************************************************************ -->
+<!-- ************************************************************************************ -->
+<!-- ************************************************************************************ -->
+
+<div style="font-weight: bold; font-size: 12px; font-family: Arial; margin: 10px 0; clear: both; padding-top: 10px;">
+	Captured movements
+</div>
+<div style="width: 100%; height: 350px; float: left; overflow-y: auto;">
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td class="tbltextttl">
+	    	<a href="javascript:prnwin('/cgi-bin/mod/admin/admin?cmd=[in_cmd]&print=1&[in_qs]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+	    	Records : [va_matches]</td>
+	    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class="menu_bar_title" align="center" width="5%">ID</td>
+		    <td class="menu_bar_title" align="center" width="5%">Date</td>
+		    <td class="menu_bar_title" align="center" width="20%">Reference Number</td>
+		    <td class="menu_bar_title" align="center" width="35%">Memo</td>	    
+		    <td class="menu_bar_title" align="center" width="10%">Debit</td>
+		    <td class="menu_bar_title" align="center" width="10%">Credit</td>
+			<td class="menu_bar_title" align="center" width="10%">Balance</td>
+			<td class="menu_bar_title" align="center" width="10%">Clasification</td>
+		    <td class="menu_bar_title"><!-- <input type="checkbox" name="checkall" id="checkall" value="" /> --></td>
+		</tr>
+		[va_searchresults]
+  </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">
+				Records : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>
+</div>
+	&nbsp;
+	<center><input type="submit" value="Reconcile Now" name="button_reconcile_now" class="button" style="display: none;" /></center>
+	<center><input type="submit" value="Reconcile Now" name="button_exec_reconcile" class="button" /></center>
+	<!--<div><input type="reset" value="Clear All" class="button" name="button_clear" /> <input type="submit" value="Select All" class="button" name="button_select_all" /></div>-->
+  </form>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+<script language="javascript">
+	var window_focus;
+function update_balance() {
+	//var balance = [va_prev_balance];
+	var balance = 0;
+	
+	for (var f=0; f<self.document.forms.length; f++){
+		for (var i=0; i<self.document.forms[f].length; i++){
+    		if (self.document.forms[f].elements[i].name == 'amount_ok'){
+               //balance = balance + self.document.forms[f].elements[i].value*1;
+               // && self.document.forms[f].elements[i].checked == 'true'
+			   var id_banks_movements = $(self.document.forms[f].elements[i]).parent().prev().children('input[name="con_idbanksmovements"]').attr('value');
+			   if((self.document.forms[f].elements[i].checked.toString()) == 'true'){
+               		//alert(self.document.forms[f].elements[i].value);
+					//alert('__-');
+					//alert($(self.document.forms[f].elements[i]).parent().prev().children('input').attr('value'));
+					balance += parseFloat($(self.document.forms[f].elements[i]).parent().prev().children('input[name="con_amounts"]').attr('value'));
+					
+					$(self.document.forms[f].elements[i]).parent().prev().children('input[name="con_idselected"]').attr('value',id_banks_movements);
+					
+					setCookieRec('id_banks_movements|'+id_banks_movements,id_banks_movements,'10');
+					
+				}else{
+           			$(self.document.forms[f].elements[i]).parent().prev().children('input[name="con_idselected"]').attr('value','');
+					delete_cookie('id_banks_movements|'+id_banks_movements);
+           		}
+			}
+       }
+   	}
+	balance = balance.toFixed(2);
+	$('#cons_balance').html('$ '+balance);
+	var difference = parseFloat('[va_difference]') + parseFloat(balance);
+	difference = difference.toFixed(2);
+	$('#cons_dif').html('$ '+difference);
+	$('#cons_dif').data('difference',difference);
+	if (difference == 0) {
+		//$('input[name="button_reconcile_now"]').attr('style','');
+		$('input[name="button_reconcile_now"]').show(300);
+	} else {
+		$('input[name="button_reconcile_now"]').hide(300);
+	}
+	
+
+}
+function set_balance_from_cookies() {
+	for (var f=0; f<self.document.forms.length; f++){
+		for (var i=0; i<self.document.forms[f].length; i++){
+    		if (self.document.forms[f].elements[i].name == 'amount_ok') {
+				
+				var cookies = get_cookies_array();
+				for(var name in cookies) {
+					if (name.indexOf("|") > -1) {
+						
+						var id_banks_movements = $(self.document.forms[f].elements[i]).parent().prev().children('input[name="con_idbanksmovements"]').attr('value');
+						
+						var split = name.split('|');
+						var name_value = split[0];
+						var id_bmovements = split[1];
+						
+						if (id_banks_movements == id_bmovements) {
+							$(self.document.forms[f].elements[i]).parent().prev().children('input[name="con_idselected"]').attr('value',id_banks_movements);
+							$(self.document.forms[f].elements[i]).prop('checked','checked');
+						}
+						
+					}
+				}
+			}
+       }
+   	}
+	update_balance();
+}
+
+	$(document).ready(function (){
+		$('#td_opening').html(accounting.formatMoney($('#td_opening').html()));
+		$('#td_closing').html(accounting.formatMoney($('#td_closing').html()));
+		$("img[name='show_rel_mments']").click(function(){
+			var id_stment = $(this).attr('lang');
+			var altsrc = $(this).attr('altsrc');
+			
+			if ($(this).data('status') === undefined) {
+				$(this).data('status','online');
+				$(this).data('origsrc',$(this).attr('src'));
+			}
+			if ($(this).data('status') == 'online') {
+				$("tr[name='recon_lines_"+id_stment+"']").show();
+				$(this).attr('src',altsrc);
+				$(this).data('status','offline');
+			} else if ($(this).data('status') == 'offline') {
+				$("tr[name='recon_lines_"+id_stment+"']").hide();
+				$(this).attr('src',$(this).data('origsrc'));
+				$(this).data('status','online');
+			}
+			
+		});
+		
+		$(window).focus(function() {
+			window_focus = true;
+		}).blur(function() {
+				window_focus = false;
+			});
+		$(document).one('click',function() {
+		   //setInterval(function() { $('body').prepend('has focus ' + window_focus + '<br>'); }, 1000);
+		   //location.reload();
+//		   $.ajax({
+//  url: "/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]&action=1&id_banks=[in_id_banks]&balance=[in_balance]&reconcile_date=[in_reconcile_date]",
+//  context: document.body,
+//  success: function(s,x){
+//    $(this).html(s);
+//  }
+//});
+		});
+		
+		
+		
+		$('input[name="button_select_all"]').click(function(e){
+			e.preventDefault();
+			for (var f=0; f<self.document.forms.length; f++){
+				for (var i=0; i<self.document.forms[f].length; i++){
+					if (self.document.forms[f].elements[i].name == 'amount_ok'){
+					   
+						var id_banks_movements = $(self.document.forms[f].elements[i]).parent().prev().children('input[name="con_idbanksmovements"]').attr('value');
+						$(self.document.forms[f].elements[i]).parent().prev().children('input[name="con_idselected"]').attr('value',id_banks_movements);
+						setCookieRec('id_banks_movements|'+id_banks_movements,id_banks_movements,'10');
+						
+						$(self.document.forms[f].elements[i]).prop('checked','checked');
+					}
+			   }
+			}
+			update_balance();
+			
+			return false;
+		});
+		$('input[name="button_clear"]').click(function(e){
+			e.preventDefault();
+			
+			for (var f=0; f<self.document.forms.length; f++){
+				for (var i=0; i<self.document.forms[f].length; i++){
+					if (self.document.forms[f].elements[i].name == 'amount_ok'){
+						var id_banks_movements = $(self.document.forms[f].elements[i]).parent().prev().children('input[name="con_idbanksmovements"]').attr('value');
+						$(self.document.forms[f].elements[i]).parent().prev().children('input[name="con_idselected"]').attr('value','');
+						delete_cookie('id_banks_movements|'+id_banks_movements);
+						$(self.document.forms[f].elements[i]).prop('checked',false);
+					}
+			   }
+			}
+			
+			update_balance();
+		});
+		$('#checkall').click(function() {
+				if ($(this).attr('checked')=='checked') {
+					//************************************************************************************
+					for (var f=0; f<self.document.forms.length; f++){
+						for (var i=0; i<self.document.forms[f].length; i++){
+							if (self.document.forms[f].elements[i].name == 'amount_ok'){
+							   
+								var id_banks_movements = $(self.document.forms[f].elements[i]).parent().prev().children('input[name="con_idbanksmovements"]').attr('value');
+								$(self.document.forms[f].elements[i]).parent().prev().children('input[name="con_idselected"]').attr('value',id_banks_movements);
+								setCookieRec('id_banks_movements|'+id_banks_movements,id_banks_movements,'10');
+								
+								$(self.document.forms[f].elements[i]).prop('checked','checked');
+							}
+					   }
+					}
+					update_balance();	
+					//************************************************************************************
+				}else {
+					//************************************************************************************
+					for (var f=0; f<self.document.forms.length; f++){
+						for (var i=0; i<self.document.forms[f].length; i++){
+							if (self.document.forms[f].elements[i].name == 'amount_ok'){
+								var id_banks_movements = $(self.document.forms[f].elements[i]).parent().prev().children('input[name="con_idbanksmovements"]').attr('value');
+								$(self.document.forms[f].elements[i]).parent().prev().children('input[name="con_idselected"]').attr('value','');
+								delete_cookie('id_banks_movements|'+id_banks_movements);
+								$(self.document.forms[f].elements[i]).prop('checked',false);
+							}
+					   }
+					}
+					update_balance();
+					//************************************************************************************
+				}
+			});
+		$('form[name="sitform"]').submit(function(){
+			$('input[name="exct_linked_id"]').each(function(){
+				$(this).prop('disabled',false);
+			});
+			return true;
+			if ($('#cons_dif').data('difference') == 0) {
+				return (true && confirm_authorize());
+			} else {
+				alert('There must be no difference');
+				return false;
+			}
+		});
+		set_balance_from_cookies();
+		
+		$('img[name="ed_rel_ids"]').click(function(){
+			var input_linked_ids = $(this).siblings('input[name="exct_linked_id"]');
+			var status_linked_ids = input_linked_ids.prop('disabled');
+			var exct_date = $(this).parent().siblings().eq(1).text();
+			$('body').data('exct_date',exct_date);
+			
+			if (status_linked_ids) {
+				input_linked_ids.prop('disabled',false);
+			} else {
+				var input_values = $.trim(input_linked_ids.val());
+				input_linked_ids.prop('disabled',true);
+				var array_input_values = input_values.split(',');
+				
+				if (input_linked_ids.data('ids') === undefined || (input_linked_ids.data('str_ids') != input_values)) {
+					if (input_linked_ids.data('ids') === undefined) {
+						input_linked_ids.data({ids: array_input_values});
+					}
+					
+					if (input_linked_ids.data('str_ids') != input_values) {
+						var prev_ids = input_linked_ids.data('ids');
+						for ( i = 0,l = prev_ids.length; i < l; i++ ) {
+							deselect_movement_by_id(prev_ids[i]);
+						}
+						
+						input_linked_ids.data({str_ids: input_values});
+						input_linked_ids.data({ids: array_input_values});
+					}
+					
+				}
+				
+				for ( i = 0,l = array_input_values.length; i < l; i++ ) {
+					select_movement_by_id(array_input_values[i]);
+					
+					//var obj_cbox = $(this).parent().siblings(':last').children('input[name="exct_amount_ok"]');
+					//select_int_movement(obj_cbox);
+				}
+				//sum_recon_amounts();
+				sum_recon_amounts2();
+			}
+		});
+		
+	});
+	
+	function sum_recon_amounts2() {
+		var ids_amounts = [va_ids_amounts];
+		var result = 0.00;
+		var opening_balance = [va_opening_balance];
+		result = opening_balance;
+		$('input[name="exct_linked_id"]').each(function () {
+			var exct_linked_id = $(this).val();
+			if (ids_amounts[exct_linked_id] !== undefined) {
+				result += ids_amounts[exct_linked_id];
+			}
+		});
+		$("span[name='final_balance']").html(accounting.formatMoney(result.toFixed(2)));
+		//alert(result.toFixed(2));
+	}
+	function rewritte_on_new_bankmovement() {
+		var myInterval = setInterval(function() {
+			if (window_focus) {
+				$.ajax({
+					url: "/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]&action=1&id_banks=[in_id_banks]&balance=[in_balance]&reconcile_date=[in_reconcile_date]",
+					context: document.body,
+					success: function(s,x){
+					  $(this).html(s);
+					}
+				});
+				stop_interval(myInterval);
+			}
+			
+		}, 1500);
+	}
+	function stop_interval(intObj) {
+		clearInterval(intObj);
+	}
+	
+	function setCookieRec(c_name,value,expiredays){
+		var exdate=new Date();
+		
+		exdate.setDate(exdate.getDate()+expiredays);
+		document.cookie=c_name+ '=' +value+
+		((expiredays==null) ? '' : ';expires='+exdate.toGMTString())+';path=/;';
+	}
+	
+	function get_cookies_array() {
+		var cookies = { };
+		if (document.cookie && document.cookie != '') {
+			var split = document.cookie.split(';');
+			for (var i = 0; i < split.length; i++) {
+				var name_value = split[i].split("=");
+				name_value[0] = name_value[0].replace(/^ /, '');
+				cookies[decodeURIComponent(name_value[0])] = decodeURIComponent(name_value[1]);
+			}
+		}
+		return cookies;
+	}
+	
+	function delete_cookie(name) {
+		document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/;';
+	}
+	
+	function confirm_authorize() {
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+	
+	function select_int_movement(obj) {
+		//alert($(obj).siblings('input').val());
+		
+			var banking_ext_val = $(obj).siblings('input').val();
+			var movements_found = false;
+			var checked = false;
+			checked = $(obj).prop("checked");
+			var num_results = 0;
+			var diff_date = false;
+			
+			var banking_ext_date = $(obj).parent().siblings().eq(1).text();
+			var banking_ext_rel_ids = $(obj).parent().siblings().eq(7).find('input[name="exct_linked_id"]');
+			//alert(banking_ext_rel_ids.val());
+			$('input[name="con_amounts"]').each(function(i,amnt){
+				var banking_mvmt_date = $(this).parent().siblings().eq(1).text();
+				//if ((parseFloat(amnt.value) > 114256) && (parseFloat(amnt.value) < 114258)) {
+				//	alert('uno '+ parseFloat(banking_ext_val) +' dos ' + parseFloat(amnt.value));
+				//}
+				
+				if (parseFloat(banking_ext_val) == parseFloat(amnt.value) && banking_ext_date == banking_mvmt_date) {
+					//if (checked) {
+						num_results ++;
+					//}
+				} else if (banking_ext_date != banking_mvmt_date && parseFloat(banking_ext_val) == parseFloat(amnt.value)) {
+						diff_date = true;
+						
+				}
+			});
+			
+			if (num_results == 1) {
+				$('input[name="con_amounts"]').each(function(i,amnt){
+					var banking_mvmt_date = $(this).parent().siblings().eq(1).text();
+					var banking_mvmt_id = $(this).parent().siblings().eq(0).text();
+					
+					if (parseFloat(banking_ext_val) == parseFloat(amnt.value) && banking_ext_date == banking_mvmt_date) {
+						
+						if (checked) {
+							deselect_from_cbox(obj);
+							$(this).parent().siblings(':last').children('input[name="amount_ok"]').prop("checked", true ).focus();
+							banking_ext_rel_ids.val(banking_mvmt_id);
+							var row = $(this).parent().parent();
+							row.css('background-color', '#FFA500');
+							setTimeout(function(){row.css('background-color', 'white');},1500);
+						} else {
+							banking_ext_rel_ids.val('');
+							$(this).parent().siblings(':last').children('input[name="amount_ok"]').prop("checked", false );
+							
+							deselect_from_cbox(obj);
+						}
+						movements_found = true;
+						
+					}
+				});
+			} else if (checked && (num_results > 1) ) {
+				alert('Found ' + num_results + ' movements');
+			} else if (checked && (num_results == 0) ) {
+				if (diff_date) {
+					alert('There is no movement on the indicated date ');
+				} else {
+					alert('Not found movement');
+				}
+			}
+			
+		
+	}
+	function select_movement_by_id(linked_id) {
+		var id_exists = false;
+		$('a[name="a_id_mments"]').each(function(){
+			if (parseInt($(this).text()) == parseInt(linked_id)) {
+				var cap_date = $(this).parent().siblings().eq(0).text();
+				if (cap_date == $('body').data('exct_date')) {
+					$(this).parent().siblings(':last').children('input[name="amount_ok"]').prop("checked", true ).focus();
+					var row = $(this).parent().parent();
+					row.css('background-color', '#FFA500');
+					setTimeout(function(){row.css('background-color', 'white');},1500);
+				} else {
+					alert("The dates do not match");
+				}
+				id_exists = true;
+			}
+		});
+		if (!id_exists && linked_id != '') {
+			alert('The id = ' + linked_id + ' does not exist');
+		}
+	}
+	function deselect_movement_by_id(linked_id) {
+		$('a[name="a_id_mments"]').each(function(){
+			if (parseInt($(this).text()) == parseInt(linked_id)) {
+				$(this).parent().siblings(':last').children('input[name="amount_ok"]').prop("checked", false );
+			}
+		});
+	}
+	function deselect_from_cbox(obj) {
+		var input_linked_ids = $(obj).parent().siblings(':last').eq(-1).children('input[name="exct_linked_id"]');
+		var prev_ids = input_linked_ids.data('ids');
+		for ( i = 0,l = prev_ids.length; i < l; i++ ) {
+			deselect_movement_by_id(prev_ids[i]);
+		}
+	}
+	function sum_recon_amounts() {
+		
+		$('span[name="unrec_amount_res"]').text('0');
+		$('span[name="rec_amount_res"]').text('0');
+		$('span[name="rec_amount_credit"]').text('0');
+		$('span[name="rec_amount_debit"]').text('0');
+		$('input[name="banking_exct_amount"]').each(function(){
+			var linked_ids = $.trim($(this).parent().siblings(':last').eq(-1).children('input[name="exct_linked_id"]').val());
+			if (linked_ids.length > 0) {
+				var rec_amount_credit = 0;
+				var rec_amount_debit = 0;
+				if (parseFloat($(this).val()) >= 0) {
+					rec_amount_credit = parseFloat($(this).val());
+				} else {
+					rec_amount_debit = parseFloat($(this).val());
+				}
+				var prev_amount_credit = parseFloat($('span[name="rec_amount_credit"]').text());
+				var prev_amount_debit = parseFloat($('span[name="rec_amount_debit"]').text());
+				
+				$('span[name="rec_amount_credit"]').text(rec_amount_credit + parseFloat(prev_amount_credit));
+				$('span[name="rec_amount_debit"]').text(rec_amount_debit + parseFloat(prev_amount_debit));
+				$('span[name="rec_amount_c_d"]').text(parseFloat($('span[name="rec_amount_credit"]').text()) + parseFloat($('span[name="rec_amount_debit"]').text()));
+				
+				var rec_amount_res = parseFloat($('span[name="rec_amount_res"]').text());
+				var actual_val = parseFloat($(this).val());
+				//alert(rec_amount_res + ' ___ ' +actual_val);
+				$('span[name="rec_amount_res"]').text(rec_amount_res + actual_val);
+			} /*else if (linked_ids.length == 0) {
+				var unrec_amount_res = parseFloat($('span[name="unrec_amount_res"]').text());
+				var unrec_actual_val = parseFloat($(this).val());
+				$('span[name="unrec_amount_res"]').text((unrec_amount_res + unrec_actual_val).toFixed(2));
+			}*/
+		});
+		//sum_unrecon_amounts();
+	}
+	function sum_unrecon_amounts() {
+		//unrec_amount_res
+		$('span[name="unrec_amount_res"]').text('0');
+		$('input[name="banking_exct_amount"]').each(function(){
+			var linked_ids = $.trim($(this).parent().siblings(':last').eq(-1).children('input[name="exct_linked_id"]').val());
+			if (linked_ids.length == 0) {
+				var unrec_amount_res = parseFloat($('span[name="unrec_amount_res"]').text());
+				var unrec_actual_val = parseFloat($(this).val());
+				//alert(rec_amount_res + ' ___ ' +actual_val);
+				$('span[name="unrec_amount_res"]').text((unrec_amount_res + unrec_actual_val).toFixed(2));
+			}
+		});
+	}
+</script>
+
+
+
+[ip_footer]

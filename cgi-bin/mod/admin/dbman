@@ -1,0 +1,145 @@
+#!/usr/bin/perl
+#######################################################################
+#######################################################################
+#######################################################################
+use DBI;
+use DBIx::Connector;
+use DBD::mysql;
+
+# Load the form information and set the config file and userid.
+local(%in) = &parse_form;
+local($sid,@db_cols,%db_select_fields,%db_valid_types,%db_not_null,%error,%va,%perm,%db_valid_length,$tpath);
+$in{'sid'} ? ($sid   = $in{'sid'}): ($sid   = '');
+
+##########################################################
+##			Required Librariers			##
+##########################################################
+
+# --------------------------------------------------------
+eval {
+	require ("../../common/subs/auth.cgi");
+	require ("../../common/subs/sub.base.html.cgi");
+	require ("sub.base.html.cgi");
+	require ("sub.func.html.cgi");
+	require ("dbman.cfg");
+	require ("dbman.html.cgi");
+	require ("../../common/subs/sub.func.html.cgi");
+	require ("../../common/subs/sub.add.html.cgi");
+	require ("../../common/subs/sub.edit.html.cgi");
+	require ("../../common/subs/sub.search.html.cgi");
+	require ("../../common/subs/sub.delete.html.cgi");
+	require ("../../common/subs/sub.dbman.html.cgi");
+};
+
+if ($@) { &cgierr ("Error loading required libraries",100,$@); }
+eval { &main; };
+if ($@) { &cgierr("Fatal error",101,$@); }
+
+exit;
+
+##########################################################
+##			MAIN : DBMAN			##
+##########################################################
+
+sub main {
+# --------------------------------------------------------
+# Created :  Carlos Haas 01/01/2007 6:47:28 PM
+# Last Update : 
+# Locked by : 
+# Description :
+#
+#
+
+	$|++;
+	if($in{'second_conn'}==1){
+		&connect_db_w($cfg{'dbi_db_pbx'},$cfg{'dbi_host_pbx'},$cfg{'dbi_user_pbx'},$cfg{'dbi_pw_pbx'});
+	}else{
+		&connect_db;
+	}
+	&auth_cleanup;
+	my ($status) = &auth_check_password;
+
+	#### Check Normal Mode
+	if ($cfg{'oper_mode'} eq 'updating'){
+		&html_updating;
+		return;
+	}elsif($cfg{'oper_mode'} eq 'closed'){
+		&html_closed;
+		return;
+	}elsif($usr{'application'} ne 'admin' and $status eq "ok"){
+		&html_notavail;
+		return;
+	}
+	
+	if ($status eq "ok") {
+		$in{'view'} = int($in{'view'});
+		################# Main Menu. #########################
+		if (!$in{'cmd'})        { &html_base_home('home.html');
+		}elsif ($in{'cmd'} eq 'unauthcmd') 	{ &html_unauth;
+		}elsif ($in{'add'}) 	{ &html_add_select;
+		}elsif ($in{'search'})	{ &html_search_select;
+		}elsif ($in{'edit'})	{ &html_edit_select;
+		}elsif ($in{'modify'})	{ &html_modify_form_record; 
+		}elsif ($in{'lookfor'})	{ &html_small_search; 
+		}elsif ($in{'view'})	{ &html_view_record; 
+		}else{
+			foreach $key (keys %in) {
+				if ($in{$key} eq &trans_txt('btn_edit')){
+					$in{'modify'} = substr($key,5);
+					$in{'edit'}   = "Select" ;
+					&html_edit_select;
+					return;
+				}elsif ($key =~ /del__(\d+)\.x/){
+					$in{'delete'} = $1;
+					&html_delete;
+					return;
+				}elsif ($in{$key} eq &trans_txt('btn_view')){	
+					$in{'view'} = substr($key,5);
+					&html_view_record;
+					return;
+				}
+			}
+			$in{'sb'} = $db_cols[0] if (!$in{'sb'});
+			$in{'so'} = "DESC" if (!$in{'so'});
+			$in{'search'} = "listall";
+			&html_search_select;
+		}
+	}else {
+		&html_login_form($status);
+	}
+	
+	&disconnect_db;
+}
+
+####################################################################
+########                 UTILITIES                          ########
+####################################################################
+
+sub parse_form {
+# --------------------------------------------------------
+# Forms Involved: 
+# Created on: 1/1/2007 9:43AM
+# Last Modified on:
+# Last Modified by:
+# Author: 
+# Description : Decoding Form Data. This is taken in %in hash as pairs.
+# Parameters : 
+	
+	use CGI;
+
+	my (@pairs, %in);
+	my ($buffer, $pair, $name, $value);
+	if ($ENV{'REQUEST_METHOD'} eq 'GET' or $ENV{'REQUEST_METHOD'} eq 'POST') {
+		$cgi = new CGI;
+		%in = $cgi->Vars;
+		%in = map { lc $_ => $in{$_} } keys %in;
+	}else {
+		&cgierr ("This script must be called from the Web\nusing either GET or POST requests\n\n");
+	}
+
+	foreach my $key (keys %in){
+		$in{$key} =~ s/\0/\|/g;
+	}
+
+	return %in;
+}

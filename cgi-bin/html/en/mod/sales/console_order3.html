@@ -1,0 +1,361 @@
+[ip_header_console]
+
+<script type="text/javascript">
+<!--	
+	
+/*
+	onload = function(){
+		var showone = "[in_tab]";
+		if(showone == ""){
+			popup_show('popup_script', 'script_drag', 'script_exit', 'element-right', -1, -1,'wumsg');
+		}
+	}
+*/
+$(document).ready(function() {
+
+		$("#fancybox_cupon_form").fancybox({
+				'margin'				:	'1',
+				'padding'				:	'1',
+				'autoScale'			: false,
+				'centerOnScroll': true,
+				'transitionIn'	: 'none',
+				'transitionOut'	: 'none',
+				'autoDimensions':	'true',
+				'overlayOpacity':	'0.3',
+				'onComplete'		: function() {
+						$("#fancybox-wrap").css({'margin-top':'10px', 'margin-bottom':'auto'}); 
+				}
+			});
+
+
+
+		$( '#check_cupon' ).click(function() {
+
+			var cupon = $( 'input:text[name=cupon]' ).val();
+				$.ajaxSetup({ timeout: ( 15 * 1000 ) });
+				$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'ajax_info_cupon', 'cupon':cupon},function(response,status,xhr){
+						
+						if (status == "error") {
+ 								alert(msg);
+						}else{
+								if(response.match(/error/gi)){
+			    					alert("El cupón no es válido.\r\n"+response);
+			    			}else{
+									document.getElementById('modal_cupon').innerHTML = response;
+									$( "#fancybox_cupon_form" ).trigger('click');
+								}
+						}
+			
+				});
+		});
+		
+// 		if(isNaN([in_tab])){
+// 				$( "#fancybox_cupon_form" ).trigger('click');	
+// 		}
+		
+});
+
+-->
+
+function validate_Form()
+{
+	return (Correct_Email() && allPhoneNumberPresent());
+}
+
+
+function Correct_Email(){
+
+	email = ($('#email').val()).trim();
+
+	if(email.length > 0)
+	{
+		valid_email =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(email);
+		if(valid_email == false)
+		{
+			alert("Proporcione un Correo electrónico correcto.");
+			return false;
+		}
+
+	}
+	return true;
+}
+
+
+function allPhoneNumberPresent(){
+
+	validatePhone1 = validatePhone();
+
+	phone1 		= ($('#phone1').val()).trim();
+	cellphone 	= ($('#cellphone').val()).trim();
+	phone2 		= ($('#phone2').val()).trim();
+	if(phone1.length == 0 || cellphone.length == 0 || phone2.length == 0)
+	{
+		alert("Debe ingresar todos los telefonos");
+		return false;
+	}
+	else if(validatePhone1 == false)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+	
+}
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td valign="top" align="left" bgcolor="#ffffff">
+			
+		<table width="100%" height=41px border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+				<td>&nbsp;</td>
+				<td class="cell_on" width="14%" align="center">Consola [va_salesorigins.channel]</td>
+		 </tr>
+		</table>
+		
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+				
+				
+	[fc_customer_header]
+			<br>
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform" onsubmit="return validate_Form();" >
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="3">
+	<input type="hidden" name="zip" value="[in_customers.zip]">
+	<input type="hidden" name="city" value="[in_customers.city]">
+	<input type="hidden" name="state" value="[in_customers.state]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="id_pricelevels" value="1">
+	<input type="hidden" name="birthcountry" value="Estados Unidos">
+	
+<fieldset><legend>Crear Nueva Orden : Informaci&oacute;n del Cliente</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%" class="formtable">
+		<tr>
+		  <td>[fc_products_inorder]</td>
+		</tr>	
+	</table>
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td class="stdtxterr" colspan="2">[va_message]<td>
+		</tr>
+		<tr>
+	  	<td colspan="2">
+	  		<a href='#wumsg' id='wumsg'></a>
+	  		
+	  		
+	  		
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+
+	  		</td>
+	  </tr> 	
+		<tr>
+		  <td width="30%" valign="bottom">Nombre : <span class="smallfieldterr">[er_firstname]</span></td>
+		  <td class="smalltext" valign="bottom"><input type="text" name="firstname" value="[in_firstname]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )' onkeypress="return letterOnly( event );"> </td>
+		</tr>
+		<tr>
+		  <td width="30%">Apellido Paterno : <span class="smallfieldterr">[er_lastname1]</span></td>
+		  <td class="smalltext"><input type="text" name="lastname1" value="[in_lastname1]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )' onkeypress="return letterOnly( event );"></td>
+		</tr>
+		<tr>
+		  <td width="30%">Apellido Materno : <span class="smallfieldterr">[er_lastname2]</span></td>
+		  <td class="smalltext"><input type="text" name="lastname2" value="[in_lastname2]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )' onkeypress="return letterOnly( event );"></td>
+		</tr>
+		<tr>
+		  <td width="30%">Correo electrónico (Opcional) : <span class="smallfieldterr">[er_email]</span></td>
+		  <td class="smalltext"><input type="text" name="email" id="email" value="[in_email]" maxlength="100" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )' ></td>
+		</tr>
+		<tr>
+		  <td width="30%">Tel&eacute;fono (D&iacute;a/Primario) : <span class="smallfieldterr">[er_phone1]</span></td>
+		  <td class="smalltext"><input type="text" name="phone1" id="phone1" value="[in_phone1]" maxlength="13"  size="20" onFocus='focusOn( this )' onBlur='focusOff( this ); verifyPhoneNumbersOnly( this );' onkeypress="return phoneNumberOnly( event );">
+		  	<span style="cursor:pointer;padding-left:5px;" onclick="self.document.sitform.phone1.value='[in_cid]'">Mismo del que llama</span>
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">Celular : <span class="smallfieldterr">[er_cellphone]</span></td>
+		  <td class="smalltext"><input type="text" name="cellphone" id="cellphone" value="[in_cellphone]" maxlength="10" size="20" onFocus='focusOn( this )' onBlur='focusOff( this ); verifyPhoneNumbersOnly( this );' onkeypress="return phoneNumberOnly( event );"> <!--<a href="#phone3" name="phone3" onclick="self.document.sitform.cellphone.value='[in_cid]'">&lt;&lt; Copiar</a>--></td>
+		</tr>
+		<tr>
+		  <td width="30%">Tel&eacute;fono (Opcional) : <span class="smallfieldterr">[er_phone2]</span></td>
+		  <td class="smalltext"><input type="text" name="phone2" id="phone2" value="[in_phone2]" maxlength="10" size="20" onFocus='focusOn( this )' onBlur='focusOff( this ); verifyPhoneNumbersOnly( this );' onkeypress="return phoneNumberOnly( event );"></td>
+		</tr>
+		<tr>
+		  <td width="30%">Fecha Cumplea&ntilde;os : <span class="smallfieldterr">[er_birthday]</span></td>
+		  <td class="smalltext">
+		  	<input type="text" id="birthday" name="birthday" value="[in_birthday]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">G&eacutenero : <span class="smallfieldterr">[er_sex]</span></td>
+		  <td class="smalltext">
+		  	<input type="radio" name="sex" id="sex_Male" value="Male" class="radio"><label for="sex_Male">Masculino</label>
+		  	<input type="radio" name="sex" id="sex_Female" value="Female" class="radio"><label for="sex_Female">Femenino</label>
+		</tr>
+
+		<tr>
+		  <td width="30%">¿Nos ha Comprado antes? : <span class="smallfieldterr">[er_repeatedcustomer]</span></td>
+		  <td class="smalltext">
+		  	<input type="radio" name="repeatedcustomer" id="repeatedcustomer_Yes" value="Yes" class="radio"><label for="repeatedcustomer_Yes">Si</label>
+		  	<input type="radio" name="repeatedcustomer" id="repeatedcustomer_No" value="No" class="radio" checked><label for="repeatedcustomer_No">No</label>
+		</tr>
+		
+		<tr>
+		  <td width="30%">Horario   : <span class="smallfieldterr">[er_atime]</span><br><span class="help_on">Horario de Preferencia?</span></td>
+		  <td class="smalltext" valign="top">
+		  	<input type="radio" name="atime" id="atime_manana" value="MAÑANA" class="radio"><label for="atime_manana">Ma&ntilde;ana</label>
+		  	<input type="radio" name="atime" id="atime_tarde" value="TARDE" class="radio"><label for="atime_tarde">Tarde</label>
+		  	<input type="radio" name="atime" id="atime_noche" value="NOCHE" class="radio"><label for="atime_noche">Noche</label>
+		  	<input type="radio" name="atime" id="atime_todoeldia" value="TODO EL DIA" class="radio"><label for="atime_todoeldia">Todo el Día</label>
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">Forma de pago : <span class="smallfieldterr">[er_pay_type]</td>
+		  <td class="smalltext">
+		  	[va_avpaytypes]
+		  	</td>
+		</tr>
+		<tr>
+		  <td width="30%">¿Como desea que lo contactemos? : <span class="smallfieldterr">[er_pay_type]</td>
+		  <td class="smalltext">
+		  	[br_contact_mode@sl_customers]
+		  	</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><br>
+				<table border="0" cellspacing="0" cellpadding="2" width="60%" bgcolor="#E1E1E1" class="formtable">
+					<tr>
+						<td class="menu_bar_title" align="center" colspan="2">Informaci&oacute;n Importante pero no Requerida</td>
+					</tr>
+					<tr height="30">
+					  <td> &nbsp; Cup&oacute;n Descuento : <span class="smallfieldterr">[er_cupon]</span></td>
+					  <td class="smalltext"><input type="text" name="cupon" value="[in_cupon]" maxlength="20" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					  	<input type="button" value="Revisar" class="button" name="check_cupon" id="check_cupon">
+					  	
+					  	<!-- Fancybox -->
+					<a id="fancybox_cupon_form" href="#modal_cupon"></a>
+					<div style="display: none;">
+						<div id="modal_cupon" style="width:500px;overflow:auto;text-align:center;">
+							Insert an iframe here.
+						</div>
+					</div>
+					<!-- Fancybox -->
+					  	
+					  	</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+		  <td colspan="2" align="center"><br><input type="submit"  value="Continuar (a Info. de Pagos)>>" class="button"></td>
+		</tr>		
+	</table>
+</fieldset>
+
+
+<script language="javascript">
+<!--
+
+function validatePhone(){
+
+  var areaCodes = new Array([fc_load_areacodes]);
+  var thisPhone = document.getElementById('phone1');
+  thisPhone.value = thisPhone.value.replace(/[^0-9.]/g, "");
+  
+  var thisPhone2 = document.getElementById('phone2')
+  thisPhone2.value = thisPhone2.value.replace(/[^0-9.]/g, "");
+
+  var thisCellPhone = document.getElementById('cellphone');
+  thisCellPhone.value = thisCellPhone.value.replace(/[^0-9.]/g, "");
+  
+  var validPhone = $.inArray(thisPhone.value.substring(0,[fc_tel_prefix_lenght]),areaCodes);
+  var validprefixPhone = $.inArray(thisPhone.value.substring(0,2),areaCodes);
+
+  var validPhone2 = $.inArray(thisPhone2.value.substring(0,[fc_tel_prefix_lenght]),areaCodes);
+  var validprefixPhone2 = $.inArray(thisPhone2.value.substring(0,2),areaCodes);
+
+  var validCellPhone = $.inArray(thisCellPhone.value.substring(0,[fc_tel_prefix_lenght]),areaCodes);
+  
+  if((validPhone == -1 && validprefixPhone == -1) || thisPhone.value.length < [fc_tel_lenght] || isNaN(thisPhone.value)) {
+  	
+  	if(thisPhone.value.length == 8) {
+  		alert('El telefono '+ thisPhone.value +' no es valido, lada requerida');
+  	}else if(validPhone == -1 && validprefixPhone == -1) {
+  		alert('La lada proporcionada no es valida.');
+  	}else{
+    	alert('El telefono '+ thisPhone.value +' no es valido ');
+    }
+    thisPhone.focus();
+
+    return false;
+  }
+
+  if(thisCellPhone.value.length > 0 && thisCellPhone.value.length < [fc_tel_lenght] && (isNaN(thisCellPhone.value) || validCellPhone == -1)) {
+    alert('El telefono celular '+ thisCellPhone.value +' no es valido');
+    thisCellPhone.focus();
+    
+    return false;
+  }
+  
+  if(thisPhone2.value.length > 0 )
+  	if(thisPhone2.value.length < [fc_tel_lenght]  || isNaN(thisPhone2.value) || (validPhone2 == -1 && validprefixPhone2 == -1)) {
+	    alert('El telefono adicional '+ thisPhone2.value +' no es valido');
+	    thisPhone2.focus();
+	    
+	    return false;
+  	}
+
+}
+
+chg_radio('atime','[in_atime]');
+chg_radio('pay_type','[in_pay_type]');
+chg_select('birthcountry','[in_birthcountry]');
+//chg_select('id_pricelevels','[in_id_pricelevels]');
+chg_radio('sex','[in_sex]');
+chg_radio('repeatedcustomer','[in_repeatedcustomer]');
+chg_radio('contact_mode','phone_call');
+
+$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#birthday" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-17Y",
+			minDate: "-100Y",
+			maxDate: "-17Y",
+			changeMonth: true,
+			changeYear: true
+		});
+
+		if ('[in_pterms]'.length == 0) {
+			$(":radio[name='pterms']").prop('checked', false);
+		}
+	});
+
+//-->
+</script>
+
+    </td>
+    </tr>
+</table>
+
+
+			
+[ip_footer_console]
+
+

@@ -1,0 +1,167 @@
+[ip_header]
+
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="15%" align="center"></td>
+	    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=mer_vendors_home")'>Vendor</td>
+	    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=mer_vendors")'>Add</td>
+	    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=mer_vendors&search=form")'>Search</td>
+	    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=mer_vendors&search=advform")'>Advanced Search</td>
+	    <td width="17%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=mer_vendors&search=listall")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+
+<form action="/cgi-bin/mod/admin/dbman" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="mer_vendors">
+	<input type="hidden" name="view" value="[in_id_vendors]">
+	<input type="hidden" name="action" value="update_contact">
+	<input type="hidden" name="id_vendors_contacts" value="[in_id_vendors_contacts]">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="left" colspan="2">Editing Vendor Contact</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	<fieldset><legend>Vendor Contact Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td>First Name : <span class="smallfieldterr">[er_firstname]</span></td>
+		  <td><input name="contact_firstname" value="[in_firstname]" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td>Last Name 1 : <span class="smallfieldterr">[er_lastname1]</span></td>
+		  <td><input name="contact_lastname1" value="[in_lastname1]" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td>Last Name 2 : <span class="smallfieldterr">[er_lastname2]</span></td>
+		  <td><input name="contact_lastname2" value="[in_lastname2]" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td>Title : <span class="smallfieldterr">[er_title]</span></td>
+		  <td><input name="contact_title" value="[in_title]" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td>Phone : <span class="smallfieldterr">[er_phone]</span></td>
+		  <td><input name="contact_phone" value="[in_phone]" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td>Mobile : <span class="smallfieldterr">[er_mobile]</span></td>
+		  <td><input name="contact_mobile" value="[in_mobile]" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td>Fax : <span class="smallfieldterr">[er_fax]</span></td>
+		  <td><input name="contact_fax" value="[in_fax]" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td>E-mail : <span class="smallfieldterr">[er_email]</span></td>
+		  <td><input name="contact_email" value="[in_email]" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td>IM : <span class="smallfieldterr">[er_im]</span></td>
+		  <td><input name="contact_im" value="[in_im]" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td>Status : <span class="smallfieldterr">[er_status]</span></td>
+		  <td>
+		  	<span class="checa"><input id="Status_active" name="contact_status" value="Active" class="radio" type="radio"> <label for="Status_active">Active</label></span>
+		  	<span class="checa"><input id="Status_inactive" name="contact_status" value="Inactive" class="radio" type="radio"> <label for="Status_inactive">Inactive</label></span>
+		  </td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Created Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Created Date / Time : </td>
+		    <td class="smalltext">[in_date] / [in_time]</td>
+		 </tr>
+		<tr>
+		    <td width="30%" valign="top">Created by : </td>
+		    <td class="smalltext">([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		 </tr>
+     </table>
+	</fieldset>	
+	<p align="center">
+		<input type="submit" name="return" value="Return" class="button">
+		<input type="submit" name="update" value="Update Vendor Contact" class="button"></p>
+  </form>
+	<fieldset><legend>Vendor Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Vendor ID :</span></td>
+		    <td class="smalltext">[in_vendors_id_vendors]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">Company Name :</span></td>
+		    <td class="smalltext">[in_vendors_companyname]</td>
+		 </tr>
+		<tr>
+		    <td valign="top" width="30%">Address :</td>
+		    <td class="smalltext">[in_vendors_address]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">City/State/Zip :</td>
+		    <td class="smalltext">[in_vendors_city] [in_vendors_state] [in_vendors_zip]</span>
+                    </td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Country :</td>
+		    <td class="smalltext">[in_vendors_country]</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Phone :</td>
+		    <td class="smalltext">[in_vendors_phone]</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Phone2  :</td>
+		    <td class="smalltext">[in_vendors_phone2]</td>
+		 </tr>
+ 		<tr>
+		    <td width="30%">Fax :</td>
+		    <td class="smalltext">[in_vendors_fax]</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">WebSite  : </td>
+		    <td class="smalltext"><a href="[in_vendors_website]" target="_blank">[in_vendors_website]</a></td>
+		 </tr>
+	</table>
+	</fieldset>
+	<p>&nbsp;</p>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+chg_radio('contact_status','[in_status]');
+</script>
+
+[ip_footer]

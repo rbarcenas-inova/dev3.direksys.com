@@ -1,0 +1,88 @@
+[ip_header_small]
+
+
+
+<span class="smallfieldterr">[va_message]</span>
+
+  <form action="/cgi-bin/common/apps/ajaxbuild" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="ajaxbuild" value="mer_products">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="opt" value="[in_opt]">
+	<input type="hidden" name="id_products" value="[in_id_products]">
+
+<table border="0" cellspacing="0" cellpadding="4" width="[ur_table_width]" class="container_white">
+	<tr>
+		<td>
+&nbsp;
+<fieldset><legend>Cost</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>			
+			    <td width="30%">FOB Point: <span class="smallfieldterr">[er_wholesaleorigin]</span></td>
+			    <td class="smalltext"><input type="text" name="wholesaleorigin" value="[in_wholesaleorigin]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> </td> 	    
+			</tr>		
+			<tr>
+			    <td width="30%">Net Cost: <span class="smallfieldterr">[er_sltv_netcost]</span></td>
+			    <td class="smalltext"><input type="text" name="sltv_netcost" value="[in_sltv_netcost]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">in US$</span></td>
+			</tr>	 		 
+			<tr>
+				  <td width="30%">Freight/pc:<span class="smallfieldterr">[er_wholesalepriceorigin]</span></td>
+			    <td class="smalltext"><input type="text" name="wholesalepriceorigin" value="[in_wholesalepriceorigin]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">in US$</span></td>
+		  </tr>
+			<tr>
+			    <td width="30%">Tariff : <span class="smallfieldterr">[er_tariff]</span></td>
+			    <td class="smalltext"><input type="text" name="tariff" value="[in_tariff]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on"></span></td>
+			</tr>		
+			<tr>
+			    <td width="30%">Duty : <span class="smallfieldterr">[er_wholesaleprice]</span></td>
+			    <td class="smalltext"><input type="text" name="wholesaleprice" value="[in_wholesaleprice]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">in % </span></td>
+			</tr>	
+			<tr>
+			    <td width="30%">Discount : <span class="smallfieldterr">[er_discount]</span></td>
+			    <td class="smalltext"><input type="text" name="discount" value="[in_discount]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on"> </span></td>
+			</tr>		
+	</table>
+ </fieldset>
+&nbsp;
+	</td>
+</tr>
+</table>
+
+
+<script type="text/javascript">
+<!--
+
+
+	chg_select('id_manufacters','[in_id_manufacters]');
+	chg_select('packing','[in_packing]');
+	chg_select('productdocs','[in_productdocs]');
+	chg_select('handling','[in_handling]');
+	chg_select('producttype','[in_producttype]');
+	chg_select('warehousehandling','[in_warehousehandling]');
+	chg_select('supplierpacking','[in_supplierpacking]');
+	chg_select('id_packingopts','[in_id_packingopts]');
+	chg_select('sprice1name','[in_sprice1name]');
+	chg_select('sprice2name','[in_sprice2name]');
+	chg_select('sprice3name','[in_sprice3name]');
+	chg_select('sprice4name','[in_sprice4name]');
+	chg_select('flexipago','[in_flexipago]');
+	chg_select('id_brands','[in_id_brands]');
+	chg_select('id_products_speech','[in_id_products_speech]');
+	chg_select('id_services_related','[in_id_services_related]');
+	
+	chg_chkbox('paytype','[in_paytype]');
+	chg_chkbox('dids','[in_dids]');
+	chg_chkbox('web_available','[in_web_available]');
+	
+	chg_radio('shipping_table','[in_shipping_table]');
+	chg_radio('pricetype','[in_pricetype]');
+	chg_radio('dropshipment','[in_dropshipment]');
+	chg_radio('isfinal','[in_isfinal]');
+	chg_radio('pactive','[in_pactive]');
+	chg_radio('free_shp_opt','[in_free_shp_opt]');	
+	
+
+//-->
+</script>
+
+<p align="center"><input type="submit" value="Update Record" class="button"></p>
+  </form>

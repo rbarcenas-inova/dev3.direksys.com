@@ -1,0 +1,27 @@
+[ip_header_blank]
+[va_javascriptvar]
+
+<script type='text/javascript'>
+	//<![CDATA[
+		onload = function(){
+			//top.location.href='[va_location]?cmd=eco_orders';
+			top.location.href='[va_location]?cmd=eco_orders&id_customers=[in_id_customers]';
+		}
+	//]]>
+	</script>
+
+	<table width="100%" border="0"  class="gborder" align="center">
+		<tr>
+			<td colspan="3" class="smallfieldterr"><P style='font-size:14'>[va_tabmessages]</P></td>
+		</tr>
+		<tr>
+			<td colspan="3" class="smallfieldterr">
+			<form>
+				<input type="submit" value="Cerrar Ventana" class="button" onclick="javascript:top.location.href='[va_location]?cmd=eco_orders&id_customers=[in_id_customers]';">
+			</form>
+			</td>
+		</tr>
+	</table>
+
+
+

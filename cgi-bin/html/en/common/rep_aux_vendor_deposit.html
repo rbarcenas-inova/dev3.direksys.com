@@ -1,0 +1,110 @@
+[ip_header]
+
+<script>
+<!--
+$(document).ready(function() {
+
+	var dates = $( "#effdate_from, #effdate_to" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2013,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		changeYear: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "effdate_from" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+});
+-->
+</script>
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="60%" align="center"></td>
+	    <td width="20%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_aux_account_payable")'>Account Payable</td>
+	    <td width="20%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_aux_vendor_deposit")'>Vendor Deposit</td>
+	    <td width="20%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_aux_account_customers")'>Account Receivable</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+  <form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="export" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">Auxiliary : Vendor Deposit</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Filters</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			    <td width="20%">ID Vendor : <span class="smallfieldterr">[er_id_vendors]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="id_vendors" name="id_vendors" value="[in_id_vendors]" size="15" class="input" placeholder="ID Vendor">
+			    	<a href="/cgi-bin/common/apps/schid?cmd=vendors&db=sl_vendors&fname=id_vendors&ajaxtype=1" title="Search for Vendors" class="fancy_modal_iframe">
+						<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+					</a>
+		    	</td>
+			</tr>
+
+			<tr>
+			    <td width="20%">Date : <span class="smallfieldterr">[er_effdate_from] [er_effdate_to]</span></td>
+			    <td class="smalltext"><input type="text" id="effdate_from" name="effdate_from" value="[in_effdate_from]" size="10" placeholder="From" class="input">
+			    	 <font size=4 color=#aaaaaa>&nbsp; &#10140; &nbsp;</font>
+			    	<input type="text" id="effdate_to" name="effdate_to" value="[in_effdate_to]" size="10" placeholder="To" class="input"></td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	
+	<p align="center"><input type="submit" value="Export" class="button" loading="0"></p>
+  </form>
+
+<script type="text/javascript">
+<!--
+	//chg_checkbox('category','[in_category]');
+-->
+</script>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

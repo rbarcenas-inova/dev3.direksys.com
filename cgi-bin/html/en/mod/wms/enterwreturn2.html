@@ -1,0 +1,73 @@
+[ip_header_blank]
+
+<!-- Jquery -->
+<link rel="stylesheet" href="/libs/jqueryui/1.9.1/themes/cupertino/jquery-ui.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src=" /libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script type="text/javascript" language="JavaScript" src="/sitimages//jquery-events.js"></script>
+<script type="text/javascript" language="JavaScript" src="/sitimages//jquery-events.administration.js"></script>
+<!-- Jquery -->
+
+<!-- JqueryTools -->
+<script type="text/javascript" src="/jquery.tools.min.js"></script>
+<!-- JqueryTools -->
+
+<form action="[va_cgiurl]" method="POST" name="sitform" onsubmit="deactivate_button();">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="cmd" value="enterwreturn2">
+		
+<!-- Start Main Area  -->
+	<fieldset><legend>Enter Order Return</legend>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+			<td><span class="bigerrtext">[va_error]</span>
+				<span class="stdtxterr">
+<!-- start_err_msg  -->
+[va_message]
+<!-- end_err_msg  -->
+</span></td>
+		</tr>
+		<tr>
+	    	<td valign="top">Enter Return <span class="help_on">(Order ID / Location UPC @ sku x QTY (no spaces, Order ID w/Prefix,SKU or UPC is Valid)</span><br>
+		    	<textarea name="tracking" cols="50" style="width:100%" rows="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_tracking]</textarea>		
+		    	Return Date <input type="text" id="retdate" name="retdate" value="[in_retdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'><br>
+		    	Nota (opc) <input type="text"  name="note" value="[in_note]" size="20" style="width:100%" onFocus='focusOn( this )' onBlur='focusOff( this )'><br><br>
+		    </td>
+ 		 </tr>
+ 		 <tr>
+ 		 	<td align="center"><input type="submit" name="enterbutton" id="enterbutton" value="Enter Return" class="button"></td>
+ 		</tr>
+    </table>
+	</fieldset>
+	
+</form>	
+
+<script language="javascript">
+<!--
+	
+	function deactivate_button()
+	{
+		document.sitform.enterbutton.disabled=true;
+	}
+	
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#retdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: new Date(),
+			minDate: new Date(),
+			maxDate: "+6m",
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+	
+//-->
+</script>
+	

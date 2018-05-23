@@ -1,0 +1,448 @@
+#!/usr/bin/perl -w
+
+use HTTP::Request::Common qw(POST);
+use HTML::Form;
+use LWP::UserAgent;
+use Switch;
+
+local(%in) = &parse_form;
+local($sid,%cses,%cfg);
+$in{'sid'} ? ($sid   = $in{'sid'}): ($sid   = '');
+
+##### Loading File Location
+# --------------------------------------------------------
+open (CFG, "<../general.cfg") or &cgierr ("Unable to open: setup.cfg,150,$!");
+LINE: while (<CFG>) {
+	(/^#/)      and next LINE;
+	(/^\s*$/)   and next LINE;
+	$line = $_;
+	$line =~ s/\n|\r//g;
+	my ($td,$name,$value) = split (/\||\=/, $line,3);
+	if ($td eq "conf") {
+		$cfg{$name} = $value;
+		next LINE;
+	}elsif ($td eq "sys"){
+		$sys{$name} = $value;
+		next LINE;
+	}
+}
+close CFG;
+
+eval { &main; };
+if ($@) { &cgierr("Fatal error",101,$@); }
+
+exit;
+
+
+sub main {
+# --------------------------------------------------------
+	my ($output);
+	print "Content-type: text/html\n\n";
+	print "chk";
+	if ($in{'fromapp'} eq 'sales' and !$sys{'ck_verification_inb'}){
+		$pre_approved = 1;
+	}elsif(!$sys{'ck_verification'} and !$in{'fromapp'}){
+		$pre_approved = 1;
+	}
+	
+
+	
+	#	if (open(AUTH, ">$cfg{'auth_dir_cc'}$sid")){
+	#		print AUTH "decision=REJECT\n";
+	#		print AUTH "PayNetECheckAuthorizationNumber=0000\n";
+	#		print AUTH "PayNetECheckDate=-----\n";
+	#	}
+	#	close AUTH;	
+	#	return;		
+	
+
+	#print "sending info $sid";
+	&load_callsession;
+
+	my (%rec);
+	
+	#SI Driver License State
+	$rec{'SI'} = substr($cses{'pmtfield7'},0,2);
+
+	#Customer_Id
+	$rec{'Customer_Id'} = $cses{'id_customers'};
+	
+
+	#SA Current Address Street
+	$rec{'SA'} = $cses{'address1'};
+	#CT Current Address
+	$rec{'CT'} = $cses{'city'};
+	#ST State
+	$rec{'ST'} = substr($cses{'state'},0,2);	
+	#ZP zip code
+	$rec{'ZP'} = $cses{'zip'};
+	#HP Home Phone
+	$rec{'HP'} = $cses{'pmtfield9'};
+
+	
+	#NM Company Name 
+	$rec{'NM'} = $cses{'pmtfield1'};	
+	
+	#FM&nbsp; FULL MCIR  *063100277*0911895435434*12215467*
+	$rec{'FM'} = "*$cses{'pmtfield2'}*$cses{'pmtfield3'}*$cses{'pmtfield4'}*";
+
+	#Driver Licence
+	$rec{'DL'} = $cses{'pmtfield6'};
+	
+	#Chk_Check_No
+	$rec{'Chk_Check_No'} = $cses{'pmtfield4'};
+	
+	#DB Date of Birth MMDDYYY
+	($month,$day,$year) = split(/-/,$cses{'pmtfield5'},3);
+	$rec{'DB'} = "$month$day$year";
+	
+	#Chk_Check_Type
+	$rec{'Chk_Check_Type'} = uc($cses{'pmtfield8'});
+	
+	#Extended_Results
+	$rec{'Extended_Results'} = 'X';
+	
+	#Chk_Station_Number
+	if ($rec{'Chk_Check_Type'} eq 'P'){
+		$rec{'Chk_Station_Number'} = "1069512205";
+		my (@ary) = split(/,/,$cses{'pmtfield1'},2);
+		#FN First Name
+		$rec{'FN'} = $ary[0];
+		#LN last name
+		$rec{'LN'} = $ary[1];	
+	}else{
+		$rec{'Chk_Station_Number'} = "1069512303";
+		$rec{'NM'} = $cses{'pmtfield1'};
+	}
+		# 1069512205 = TEL Personal<br>
+		# 1069512303 = TEL Company<br>
+		# 1069586906 = WEB Personal<br>
+		# 1069587000 = WEB Company<br>
+	
+	#Total_Amount_of_Purchase
+	$rec{'Total_Amount_of_Purchase'} = $cses{'total_order'};
+	
+	#Paynet
+	$rec{'Paynet'} = "Pay+By+Check";
+	
+	#Merchant_Transaction_No
+	$rec{'Merchant_Transaction_No'} = "1184080536785";
+	
+	#Service_Request
+	$rec{'Service_Request'} = "L1a";
+	
+	#Merchant_Id
+	$rec{'Merchant_Id'} = "0000214781";
+
+	############
+	$output = "## Submitted Data\n";
+	foreach $key (keys %rec){
+		$tmpStr .= "$key=$rec{$key}&";
+		$output .= "$key=$rec{$key}\n";
+	}
+	chop($tmpStr);
+	$output .= "\n\n";
+	
+	#foreach $key (keys %cses){
+	#	$output .= "cses:$key=$cses{$key}\n";
+	#}
+	#print "1";
+	#$output =~s/\n/<br>/g;
+	#print $output;
+	#exit;
+
+	if ($pre_approved){
+		if (open(AUTH, ">$cfg{'auth_dir_cc'}$sid")){
+			print AUTH $output;
+			print AUTH "decision=ACCEPT\n";
+			print AUTH "PayNetECheckAuthorizationNumber=0000\n";
+			print AUTH "PayNetECheckDate=-----\n";
+			print AUTH "########## PRE - APPROVED MODE !!!!!!\n";
+		}
+		close AUTH;	
+		return;	
+	}
+	
+	$ua = LWP::UserAgent->new;
+	$ua->default_header('Authorization' => "Basic UGF5TmV0LlNob3Bsbjo1ZW14NGdueGdhaHQxNDN3cXVr");
+	
+	$req = HTTP::Request->new(POST =>'https://transprod.certegy.com/webapp/PayNet/L1/pgMerchantL1');
+	#$req = HTTP::Request->new(POST =>'https://transtest2.certegy.com/webapp/PayNet/L1/pgMerchantL1');
+	$req->content_type('application/x-www-form-urlencoded');
+	$req->content($tmpStr);
+	$response = $ua->request($req);
+	$reply = $response->content;
+	
+	#print "start<br>";
+	#print $reply;
+	#print "end<br>";
+	
+	$merchantId =  trans( substr( $reply, 2, 13 ) );
+	$transNum = trans( substr( $reply, 15, 30 ) );
+	$transId = trans( substr( $reply, 45, 30 ) );
+	$transStatus = trans( substr( $reply, 75, 2 ) );
+	$echeckAuth = trans( substr($reply, 77, 8) );
+	$echeckNum = trans( substr($reply, 85, 10) );
+	$echeckDate = trans( substr($reply, 95, 8) );
+	$echeckAmt = trans( substr($reply, 103, 10) );
+	$response = trans( substr($reply, 113, 4) );
+	
+	if ($response ne '0101'){
+		$output .= "decision=REJECT\n";
+		$do_2step = 0;
+	}else{
+		$do_2step = 1;
+	}
+	### First Step Resp
+	$output .= "MerchantID=$merchantId\n";
+	$output .= "MerchantTransactionNumber=$transNum\n";
+	$output .= "PayNetTransactionID=$transId\n";
+	$output .= "PayNetTransactionStatus=$transStatus\n";
+	$output .= "PayNetECheckAuthorizationNumber=$echeckAuth\n";
+	$output .= "PayNetECheckNumber=$echeckNum\n";
+	$output .= "PayNetECheckDate=$echeckDate\n";
+	$output .= "PayNetECheckAmount=$echeckAmt\n";
+	$output .= "PayNetResponseSubcode=$response\n";
+	#$output .= "PayNetResponse=".getCodeDef( $transStatus, $response )."\n";
+
+	print "2";
+	
+	if ($do_2step ){
+		$merchantId = int($merchantId);
+		$transId = int($transId);
+		$echeckAmt =~ s/\s//g;
+		#sleep(2);
+		$tmpstr = "Merchant_Id=0000214781&PayNet_Transaction_Id=$transId&Request_Type=RECEIPT&Adjustment_Amount=$echeckAmt&Paynet=Cancel+Auth"; 
+		#print "<br>Return STR<br>$tmpstr<br>";
+		
+		$ua = LWP::UserAgent->new;
+		$ua->default_header('Authorization' => "Basic UGF5TmV0LlNob3Bsbjo1ZW14NGdueGdhaHQxNDN3cXVr");
+		
+		#$req2 = HTTP::Request->new(POST =>'https://transprod.certegy.com/webapp/PayNet/Receipt/pgReceiptVerification');
+		#$req = HTTP::Request->new(POST =>'https://transtest2.certegy.com/webapp/PayNet/Receipt/pgReceiptVerification');
+		
+		#$response = $ua->get("https://transtest2.certegy.com/webapp/PayNet/Receipt/pgReceiptVerification?$tmpstr");
+		$response = $ua->get("https://transprod.certegy.com/webapp/PayNet/Receipt/pgReceiptVerification?$tmpstr");
+		
+		$output .= "SecondResponse\n";
+		
+		print "3";
+		if ($response->is_success){
+			$output .= "Response=OK\n";
+			$txt = $response->content;
+			$txt = substr($txt,36);
+			$txt =~ s/<INPUT name="//g;
+			$txt =~ s/" type="hidden" value="/=/g;
+			$txt =~ s/" >//g;
+			$txt =~ s/    //g;
+			$txt =~ s/<\/body>//g;
+			$txt =~ s/<\/html>//g;
+			$txt =~ s/>//g;
+			$txt =~ s/<//g;
+			
+			$output .= $txt;
+		}else{
+			$output .= "Error=" . $response->status_line;
+		}
+	}
+	if (open(AUTH, ">$cfg{'auth_dir_cc'}$sid")){
+		print AUTH $output;
+	}
+	#print "Content-type: text/html\n\n";
+}
+
+sub load_callsession {
+# --------------------------------------------------------
+	open(AUTH, "<$cfg{'auth_dir'}/call$sid") or &cgierr("Unable to open file: $cfg{'auth_dir'}/call$sid",702,$!);
+	LINE: while (<AUTH>) {
+		$line = $_;
+		$line =~ s/\r|\n//g;
+		($line =~ /([^=]+)=(.*)/) or (next LINE);
+		$cses{$1} = $2;
+		$cses{$1} =~ s/~~/\n/g;
+	}
+	close AUTH;
+	return;
+}
+
+
+sub trans {
+# --------------------------------------------------------
+	my ($line) = @_[0];
+	$line =~ tr/+//;
+	#$line =~ s/\n|\r//g;
+	$line =~ s/\+//g;
+	return $line;
+}
+
+sub getCodeDef {
+# --------------------------------------------------------
+	$code = $_[0];
+	$subcode = $_[1];
+	
+	if( $code = "97" ) {
+		switch( $subcode ) {
+			case "0000" { return "Unexpected Input Error" }
+			case "0001" { return "Invalid or missing First Name (Letters and spaces only)" }
+			case "0002" { return "Invalid or missing Last Name (Letters, spaces and hyphens only)" }			
+			case "0002" { return "Unexpected Input Error" }
+			case "9005" { return "Invalid e-mail (Letters and digits. Must contain \'@\' also." }
+			else      	{ return "Something else..." }
+		}			
+	}
+	else {
+		#print "Something else<br>";
+	}
+}
+
+
+##################################################################
+#     CGIERR   	#
+##################################################################
+sub cgierr {
+# --------------------------------------------------------
+# Last Modified on: 11/10/08 12:27:26
+# Last Modified by: MCC C. Gabriel Varela S: Se corrige la forma de mostrar la fecha
+	my (@sys_err) = @_;
+	print "Content-type: text/html\n\n";
+
+	my ($key,$env,$out_in,$out_env);
+	if (!$cfg{'cd'}){
+		print qq|
+					<head>
+									<title>CGI - ERROR</title>
+					</head>					
+					<body BGCOLOR="#FFFFFF" LINK="#FF0000" VLINK="#FF0000" ALINK="#FF0000">
+					
+									<table BORDER="0" WIDTH="500" CELLPADDING="10" CELLSPACING="10">
+									  <tr>
+									    <td BGCOLOR="#FF0000" colspan="2"><font size="5" color="#FFFFFF" face="Arial"><b>CGI-Error</b></font></td>
+									  </tr>
+									</table>
+									<table BORDER="0" WIDTH="550" CELLPADDING="2" CELLSPACING="0">|;
+										$sys_err[0]	and print "\n<tr>\n  <td valign='top' width='200'><font face='Arial' size='3'>Error Message</font></td>\n  <td><font face='Arial' size='3' color='#FF0000'><b>$sys_err[0]</b></font></td>\n</tr>\n";
+										$sys_err[1]	and print "<tr>\n  <td width='200'><font face='Arial' size='2'>Error Code</font></td>\n  <td><font face='Arial' size='2'>$sys_err[1]</font></td>\n";
+										$sys_err[2]	and print "<tr>\n  <td valign='top' width='200'><font face='Arial' size='2'>System Message</font></td>\n  <td><font face='Arial' size='2'>$sys_err[2]</font></td>\n";
+										print qq|
+									<tr>
+									  <td colspan="2"><p>&nbsp</p><font face='Arial' size='2'>If the problem percist, please contact us with the above Information.</font><br>
+											<font face='Arial' size='2'><a href="mailto:$systememail">$systememail</a></font></td>
+									</tr>
+									  </table>
+					</body>
+					</html>|;
+		######################################
+		### Save CGI ERR			
+		##############################
+		my ($ip);
+		my (@outmsg) = @sys_err;
+		my ($sec, $min, $hour, $day, $mon, $year, $dweek, $dyear, $daylight) = localtime(time());
+		$year+=1900;
+		$mon++;
+		my ($time,$date) = ("$hour:$min:$sec","$mon-$day-$year");
+		
+		foreach $key (sort keys %in) {
+			$outmsg[3] .= "$key=$in{$key},";
+		}
+		
+		foreach $env (sort keys %ENV) {
+			$outmsg[4] .= "$env=$ENV{$env},";
+		}
+		
+		for (0..4){
+			$outmsg[$_] =~ s/\n|\r/ /g;
+			$outmsg[$_] =~ s/\|/ /g;
+		}
+		
+		if ($ENV{'REMOTE_ADDR'}){
+			$ip = $ENV{'REMOTE_ADDR'};
+		}elsif ($ENV{'REMOTE_HOST'}){
+			$ip = $ENV{'REMOTE_HOST'};
+		}elsif ($ENV{'HTTP_CLIENT_IP'}){
+			$ip = $ENV{'HTTP_CLIENT_IP'};
+		}else{
+			$ip = "Unknow";
+		}
+	
+		(!$cfg{'cgierr_log_file'}) and ($cfg{'cgierr_log_file'} = './logs/cgierr.log');
+		if (open (LOG, ">>$cfg{'cgierr_log_file'}")){;
+			print LOG "$usr{'username'}|$outmsg[0]|$outmsg[1]|$outmsg[2]|$outmsg[3]|$outmsg[4]|$time|$date|$ip\n";
+			close AUTH;
+		}
+	
+
+	}else{
+		print "<PRE>\n\nCGI ERROR\n==========================================\n";
+					$sys_err[0]	and print "Error Message       : $sys_err[0]\n";
+					$sys_err[1]	and print "Error Code          : $sys_err[1]\n";
+					$sys_err[2]	and print "System Message      : $sys_err[2]\n";
+					$0			and print "Script Location     : $0\n";
+					$]			and print "Perl Version        : $]\n";
+					$sid		and print "Session ID          : $sid\n";
+
+
+		print "\nForm Variables IN\n-------------------------------------------\n";
+		
+		foreach $key (sort keys %in) {
+			my $space = " " x (20 - length($key));
+			$out_in .= "$key=$in{$key},";
+			print "$key$space: $in{$key}\n";
+		}
+		
+		print "\nForm Variables ERROR\n-------------------------------------------\n";
+		foreach $key (sort keys %error) {
+			my $space = " " x (20 - length($key));
+			print "$key$space: $error{$key}\n";
+		}
+		
+		print "\nEnvironment Variables\n-------------------------------------------\n";
+		foreach $env (sort keys %ENV) {
+			my $space = " " x (20 - length($env));
+			$out_env .= "$env=$ENV{$env},";
+			print "$env$space: $ENV{$env}\n";
+		}
+		
+		print "\n</PRE>";
+
+	}
+
+	exit -1;
+}
+
+sub parse_form {
+# --------------------------------------------------------
+
+	my (@pairs, %in);
+	my ($buffer, $pair, $name, $value);
+
+	if ($ENV{'REQUEST_METHOD'} eq 'GET') {
+		@pairs = split(/&/, $ENV{'QUERY_STRING'});
+	}
+	elsif ($ENV{'REQUEST_METHOD'} eq 'POST') {
+		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
+ 		@pairs = split(/&/, $buffer);
+	}
+	else {
+		&cgierr ("This script must be called from the Web\nusing either GET or POST requests\n\n");
+	}
+	PAIR: foreach $pair (@pairs) {
+		($name, $value) = split(/=/, $pair);
+
+		$name =~ tr/+/ /;
+		$name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		$name = $name;
+
+		$value =~ tr/+/ /;
+		$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+
+		$value =~ s/^\s+//g;
+		$value =~ s/\s+$//g;
+
+		#$value =~ s/\r//g;
+		if ($value eq "---") { next PAIR; }		# This is used as a default choice for select lists and is ignored.
+		(exists $in{$name}) ?
+			($in{$name} .= "|$value") :		# If we have multiple select, then we tack on
+			($in{$name}  = $value);			# using the ~~ as a seperator.
+	}
+	return %in;
+}

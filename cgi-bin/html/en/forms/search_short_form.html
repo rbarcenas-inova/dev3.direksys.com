@@ -1,0 +1,24 @@
+	&nbsp;
+	<fieldset><legend>Search Options</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td align="center"><input name="ST" value="or" checked="checked" type="radio" class="radio"> with <b>any</b> of the words (OR)
+        <input name="ST" value="and" type="radio" class="radio"> with <b>all</b> of the words (AND)
+      	<input name="sx" value="1" type="checkbox" class="checkbox" checked> Exact Match</td>
+      </tr>
+      <tr>
+      	<td align="center"><input name="keyword" size="40" maxlength="255" type="text"  onFocus='focusOn( this )' onBlur='focusOff( this )'> Keyword Search (will match against all fields)</td>
+      </tr>
+      <tr>
+      	<td align="center">Sort By:        
+					<select name="sb"  onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option>---</option>
+						[fc_build_select_sortby]
+					</select>     	
+      		Sort : <input name="so" value="asc" checked="checked" type="radio" class="radio">Ascending or
+      		<input name="so" value="desc" type="radio" class="radio">Descending
+        <br>
+	    </td>
+		 </tr>
+	</table>
+	</fieldset>

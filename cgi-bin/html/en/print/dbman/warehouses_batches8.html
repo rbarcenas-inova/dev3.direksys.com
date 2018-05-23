@@ -1,0 +1,78 @@
+<STYLE TYPE="text/css">
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+</STYLE>
+
+<center>
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td><font class=info>
+
+<table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:15px;">
+	<tr>
+		<td align=left>
+			<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px>
+		</td>
+		[fc_show_companyinfo]
+		<td align="center" width="40%">
+			<span style="text-align:center;font-size:22px">[ln_id_warehouses@sl_warehouses:Name]</span>
+			<br><br>
+			<span style="text-align:left;font-size:12px">Batch: [in_id_warehouses_batches]</span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span style="text-align:left;font-size:12px">Date: [in_date]</span>
+		</td>
+	</tr>
+	<tr>
+		<td align=center colspan=3>
+			<hr style="color: #000;background-color: #000;height: 1px;margin-bottom:15px;">
+
+<span style ="text-align:left;font-size:22px;"> PRODUCT REQUIREMENT </span>
+		</td>
+</table>
+ 
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="" align="center">
+	<tr>
+		<td colspan="2">
+		 	<table border="0" cellspacing="0" cellpadding="7" width="100%" style="border:1px solid #333333;border-bottom:0px solid #333333;">
+				<tr>
+				    <td style="border-left:0px solid #555555;border-bottom:1px solid #555555;" align="center"><font class=infot>Code</td>
+				    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;" align="center"><font class=infot>Product</td>
+				    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;" align="center"><font class=infot>Quantity</td>
+				    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;" align="center"><font class=infot>Amount</td>
+			 	</tr>
+			 	[va_searchresults]
+			</table>
+			&nbsp;
+		</td>
+	</tr>
+</table>

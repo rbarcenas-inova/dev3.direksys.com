@@ -1,0 +1,106 @@
+[ip_header]
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="720" class="container_white">
+	<tr>
+		<td width="140" align="center" valign="top">
+			[ip_menu_main]
+			&nbsp;
+			[ip_imgman:menu]
+			&nbsp;
+			[fc_menu_custom]
+			&nbsp;
+		</td>
+		<td valign="top">
+<!-- Start Main Area  -->
+
+	<form action="/cgi-bin/imgman/admin" method="post" name="sitform" onsubmit="return disableSubmits();">
+		<input type="hidden" name="cmd" value="edit_img">
+		<input type="hidden" name="action" value="1">
+		
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="50%" align="center"></td>
+	    <td class="cell_on" align="center" onClick='trjump("/cgi-bin/imgman/admin?cmd=home")'>Images</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/imgman/admin?cmd=upload")'>Upload</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/imgman/admin?cmd=gallery")'>Gallery</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/imgman/dbman?cmd=categories")'>Add Category</td>
+	  </tr>
+	</table>
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center">Editing Image : [in_fname]</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>File Info: </legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td rowspan="5"><a href="#"><img src="[va_imglink]" border="0"></a></td>
+		 </tr>		
+		<tr>
+		    <td>File Type:</td>
+		    <td>[va_filetype]</td>
+		    <td>&nbsp;&nbsp;</td>
+		    <td>File Size:</td>
+		    <td>[va_filesize] bytes</td>
+		 </tr>
+		<tr>
+		    <td>Image Size :</td>
+		    <td>[va_imgsizew]<span class="smalltext">px</span> x [va_imgsizeh]<span class="smalltext">px</span></td>
+		    <td>&nbsp;&nbsp;</td>
+		    <td>Resolution</td>
+		    <td>[va_imgresx] x [va_imgresy] (dpi)</td>
+		 </tr>
+     </table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Modify Image: </legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td>Resize:</td>
+		    <td><input type="text" name="newwidth" value="[in_newwidth]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    		x
+		    	  <input type="text" name="newheight" value="[in_newheight]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	  
+		    	  <a href="javascript:resize(5)"><img src="[va_imgurl]/[ur_pref_style]/arr.up.gif" border="0"></a>
+		    	  <a href="javascript:resize(-5)"><img src="[va_imgurl]/[ur_pref_style]/arr.down.gif" border="0"></a></td>
+		    <td>&nbsp;&nbsp;</td>
+		 </tr>
+		<tr>
+		    <td valign="top">Add Efects :</td>
+		    <td class="smalltext"><input type="radio" class="radio" name="effect" value="Equalize"> Equalize<br>
+		    	<input type="radio" class="radio" name="effect" value="AddNoise,Uniform"> Add Noise (Uniform)<br>
+		    	<input type="radio" class="radio" name="effect" value="AddNoise,Gaussian"> Add Noise (Gaussian)<br>
+		    	<input type="radio" class="radio" name="effect" value="AddNoise,Multiplicative"> Add Noise (Multiplicative)<br>
+		    	<input type="radio" class="radio" name="effect" value="AddNoise,Impulse"> Add Noise (Impulse)<br>
+		    
+		    	</td>
+		 </tr>
+     </table>
+	</fieldset>
+<script language="javascript">
+<!--
+	function resize(mult){
+		parent.document.sitform.newwidth.value= Math.round(parent.document.sitform.newwidth.value*(1+mult/100));
+		parent.document.sitform.newheight.value= Math.round(parent.document.sitform.newwidth.value*(1+mult/100));
+	}
+	chg_radio('status','Active');
+	//chg_radio('effect','Equalize');
+//-->
+</script>
+	<p align="center"><input type="button" value="Preview" class="button" onClick="preview_img('[in_fname]')">
+		<input type="submit" value="Save" class="button">
+		</p>
+	<p>&nbsp;</p>
+</form>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

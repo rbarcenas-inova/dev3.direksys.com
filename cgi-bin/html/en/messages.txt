@@ -1,0 +1,1403 @@
+##### General ###########
+perms_insufficient_perms=Insufficient Perms to execute the action requested
+accounting_needed=Accounting Definition Needed
+record_added=Record Successfully Added
+base_plist=Width Headers,No Headers
+base_xlist=Regular List
+notavailable=N/A
+
+##### Accounting ########
+acc_grouped_resume=Resumen Agrupado
+acc_ungrouped_resume=Movimientos No Agrupados
+acc_journal_entry=Poliza
+acc_error=Hubo un error al generar la contabilidad. No se pudo continuar el proceso.
+
+opr_orders_movements_added=Movement Added
+opr_orders_movements_updated=Movement Edited
+opr_orders_movements_deleted=Movement Deleted
+
+##### NEW Revised #######
+tab_add=Add
+tab_search=Search
+tab_ved=View / Edit / Delete
+tab_advsearch=Adv Search
+gen_error=<div class=error>General Error</div>
+shpinfo=Shiping Info
+recepinfo=Return Date
+
+appname_admin=Administration
+appname_wms=Warehouse Manager
+appname_rep=Reports
+appname_setup=Setup
+appname_crm=CRM
+appname_sales=Sales
+appname_ecom=eCommerce
+appname_pos=POS
+appname_accounting=Accounting
+
+
+unauth_action=Unauthorized Action
+usrgroup_htab1=Complete Name,Username,Email,Usere Type,Status
+usrgroup_htab2=Application,Command
+
+##### NEW From Order Edit app #######
+cond_original=Original
+cond_edited=Edited
+cond_new=New
+cond_paid=Paid-Locked
+cond_shipped=Shipped-Locked
+apporders_itemadded=Item Temporary Added to the order, Add another one, or Return?
+apporders_taxunauth=<div class=error>You are not Autorhized to remove the taxes on the order</div>
+apporders_codadded=COD Payment Added/Updated
+apporders_cardadded=Credit Card Payment Added
+apporders_depositadded=Deposit Payment Added
+apporders_addpayment=A new Payment is Required  for [va_tdiff]
+apporders_addcredit=A new Credit/Refund is Required for [va_tdiff]
+apporders_nopayment=No payments are required.
+apporders_noedit=Invalid payment or no payment selected
+apporders_pmtupdated=Payment Updated
+apporders_origprod=Original Product
+apporders_newprod=New Product
+apporders_origpmt=Original Payment
+apporders_newpmt=New Payment
+apporders_actinsert=Insert
+apporders_actupdate=Update
+apporders_actskipped=Skipped
+apporders_payments=payments
+apporders_cant_edit= order can not be edited because  their status is 
+apporders_cant_add_product=Add Product is not available
+apporders_cant_add_service=Add Service is not available
+apporders_cant_add_sku=Add SKU is not available
+apporders_cant_add_cod=Add COD Payment is not available
+apporders_cant_add_creditcard=Add Credit Card Paymentis not available
+apporders_cant_add_deposit=Add Deposit Paymentis not available
+apporders_promo_pricing_not_available=Promo Pricing is not available
+error_percent_price_promo=The total percent is incorrect
+updated_percent_price_promo=Percents updated
+deleted_percent_price_promo=Percents setup has been deleted
+
+#tabs
+### Customers Tabs Headers
+opr_customers_htab1=Date/Time/User,Type,Notes
+opr_customers_htab2=Date/Time,Order Number,Product Number,Product Name/Model,Status
+opr_customers_htab3=ID,Tipo,Status,Date,Time
+opr_customers_htab4=ID,Tipo,Accion,Status,Date
+opr_customers_htab5=ID,Reason,Status,Date,Time
+opr_customers_htab6=Date,Time,ChargeBackTo,ProdCategory,Status
+opr_customers_htab7=ID,Reason,Status,Date,Time
+opr_customers_htab8=Date,Time,Info,User,IP
+opr_customers_htab9=&nbsp;,ID,Invoice,Customer,Status,Date
+opr_customers_htab13=ID,Order Date,Ship Date,Days,Balance,Invoices
+opr_customers_addpmt_done=All payments done, Please close the window to finish.
+
+## opr_warehouses Tabs Headers
+opr_warehouses_htab1=Item ID,Model / Name,Qty
+opr_warehouses_htab5=In/Out,Date,Time,Type / ID,Location,Qty
+opr_warehouses_htab2=Country,State,City
+opr_warehouses_htab3=ID,Code,UPC,Status
+opr_warehouses_htab6=Date,SKU,Name,Location,Type,Quantity,User
+
+## opr_locations Tabs Headers
+opr_locations_unknown=Location Unknow
+opr_locations_htab1=Item ID,Model / Name,Qty
+opr_locations_htab4=Item ID,Model / Name,Qty
+opr_locations_htab5=Date,SKU,Name,Location,Type,Quantity,User
+
+## Adjustments Tabs Headers
+opr_adjustments_approved=Adjustment Approved and Processed
+opr_adjustments_error_cost=Invalid Cost=0
+opr_adjustments_htab1=SKU ID,Model / Name,Warehouse,Location,Adj To,Adjustment,COGS
+adjustments_htab1=SKU ID,Model / Name,Warehouse,Location,Adj To,Adjustment,COGS
+
+## Supplies Tabs Headers
+opr_supplies_htab1=&nbsp;,Vendor ID / Name,Last Purchase,Total Purchase,Status
+opr_supplies_htab2=PO ID,Quantity,Received,Price,Date
+
+## Vendors Tabs Headers
+mer_vendors_htab1=Item ID,Vendor SKU,Model / Name
+mer_vendors_htab2=PO ID,PO Date,PO Terms,Warehouse,Auth,Status
+mer_vendors_htab3=ID,Date,Bank,Account,Method,Ref Num,Currency,Amount
+mer_vendors_htab8=Bill ID,Type,Invoice,Currency,Due Date,Amount,Status
+
+## Parts
+mer_parts_htab1=ID,Model/Name,Price
+mer_parts_htab3=PO ID,Date,Vendor,Qty,Received,Price
+mer_parts_htab5=Date,Warehouse,Type,Quantity,Cost
+mer_parts_htab6=Item ID,Name,Transaction,ID,Quantity,Cost,Date,User
+mer_parts_htab9=Warehouse,Type,Location,Quantity
+mer_parts_htab10=Action,WH Location,WH Qty,Lot Location,Lot Qty,Field1,Field2,Field3,Field4,Field5,Field6
+
+mer_parts_cost_from_transfer=From Initial Load
+mer_parts_cost_from_sl_purchaseorders=From Purchase Order
+mer_parts_cost_from_sl_returns=From Return
+mer_parts_cost_from_sl_adjustments=From Adjustment
+mer_parts_cost_from_sl_manifests=From Transfer
+mer_parts_cost_from_sl_parts_productions=From Implode/Explode
+mer_parts_lots_errores=There are [va_err] errors, They must be fixed
+mer_parts_cost_invalid=Invalid Cost for this SKU:
+
+mer_parts_duplicate_upc=duplicate upc
+mer_parts_nolotinfo=Missing Lot information
+mer_parts_lotactive=Lot Information Activated
+mer_parts_lotinactive=Lot Information Inactivated
+mer_parts_lotadded=Lot Information Added
+mer_parts_lotdeleted=Lot Information Deleted
+mer_parts_tecs_specs_mod=Tecs Specs modified
+mer_parts_completed=The Production process is completed successfully
+
+
+## Purchase Orders
+mer_po_htab1=&nbsp;,Item ID,Vendor SKU / Area,Model / Name,Qty,Unit Price,Tax(%),Recvd,SubTotal,Tax($),Total
+mer_po_htab5=ID Bill, ,Vendor,Bill Date,Due Date,Status,Amount
+mer_po_htab6=ID W. Receipt,ID,Qty,Date
+mer_po_htab7=PO ID,PO Date,PO Terms,Warehouse,Auth,Status
+mer_po_print_observations=Observations
+
+mer_po_reopen=Reopen this P.O.
+mer_po_reopened=P.O. Reopened
+mer_po_itemsreceived=P.O. has recieved items.
+mer_po_addwreceipt_question=Generate New W. Receipt?
+mer_po_addwreceipt=Add W. Receipt
+mer_po_received=P.O. Received
+mer_po_currency_unequal=PO currency exchange rate must be established before reception
+mer_po_blocked_rs=PO Blocked. Status Incorrect or Already Completed
+mer_po_rvendor_nolines=No Items were found in the P.O.
+mer_po_rvendor_wmessage=Return To Vendor Type Requires P.O and Warehouse Selection (Items must be placed in pack location)
+mer_po_idwh_missing=Warehouse Required
+mer_po_idpo_missing=Original P.O. Required
+mer_po_rvendor_wlnoitem=No stock found in pack Warehouse for SKU 
+mer_po_rvendor_wlinsufficient=Quantity in Warehouse is lesser than the expected for SKU 
+mer_po_grater_qty=Quantity is greater than expected
+mer_po_lesser_qty=Quantity is lesser than expected
+mer_po_toreceive_list=Items To Receive
+mer_po_received_list=Items Received
+mer_po_pending_receipts=Pending Receipts
+mer_po_note_added=P.O. Receipt Note Added
+mer_po_noteadded=P.O. Note Added
+mer_po_items_segment_blocked=PO status must be New to Assign Segment
+mer_po_items_segment_null=Please Select a Segment to Assign
+
+mer_po_noninventory_received=Non Inventory Merchandise Received
+mer_po_noninventory_accouting_missing=Accounting data is missing
+mer_po_currency_required=Date of payment is required
+mer_po_auth_processed=Authorization processed succesfully
+mer_po_cost_cero=Cost is cero
+mer_po_auth_request=Send auth request
+mer_po_deductible=Change deductible
+
+## Warehouse Receipts
+mer_wreceipts_added=Record Added
+mer_wreceipts_updated=Record Updated
+mer_wreceipts_notedit=W. Receipt can not be edited because it has already been processed
+mer_wreceipts_noteadded=Note Added
+mer_wreceipts_cancel=Cancel
+mer_wreceipts_cancelled=W. Receipt Cancelled
+mer_wreceipts_itemsreceived=W. Receipt has recieved items.
+mer_wreceipts_chg_in_process=W. Receipt In Process
+mer_wreceipts_nomatch_items=Not match total items
+mer_wreceipts_no_customs=No customs data
+
+### Zones
+opr_zones_noteadded=Note added
+opr_zones_added=Zone Added
+opr_zones_zip_added=ZipCode Added
+opr_zones_zip_deleted=ZipCode Removed
+opr_zones_updated=Zone Updated
+opr_zones_deleted=Zone Deleted
+opr_zones_warehouse_added=Warehouse Assigned
+
+##Returns
+opr_returns_htab2=Return ID,Order ID,Date,Type,Status
+opr_returns_added=Return Added
+opr_returns_resolved_chargeback=Return Resolved as Chargeback
+opr_returns_chgstatus=Return Status updated succesfully
+
+## Bills
+mer_bills_htab1=&nbsp;,PO ID,PO Date,PO Terms,Amount PO,Amount Received,Billed Amount
+mer_bills_htab3=Name,Type,Vendor,Amount,Date,Status
+mer_bills_htab5=&nbsp;,ID,Bank Name,Account,Date,Ref Num,Memo,Type,Amount,Exchange Rate,Amount
+mer_bills_htab5b=&nbsp;,ID,Bank Name,Account,Date,Ref Num,Memo,Type,Amount
+mer_bills_added=Bills Added
+mer_bills_updated=Bills Updated
+mer_bills_amount_edited=Amount Edited
+mer_bills_cancel=Cancel payments
+mer_bills_canceled=Cancelleded payments
+mer_bills_topending=Changed to Pending
+mer_bills_toprocessed=Changed to Processed
+mer_bills_toshipped=Changed to Shipped
+mer_bills_bank_accounting_missing=No accounting record related to this bank
+mer_bills_payment_canceled=Payment Cancelled
+mer_bills_movsalready=The bill seems to have been processed already (movs  > 0)
+mer_bills_autoproc=The bill amount has a conflict with the indicated value in configuration file
+mer_bills_to_deposit=Change to Deposit
+mer_bills_to_deposit_invalid=Invalid Operation. Maybe Not same month | PO Bill | Deposit Already Applied ?
+mer_bills_auth_to_pay=Authorized Bill for payment
+
+bills_expenses_line_added=New Line Added
+bills_amount_invalid=Amount Invalid
+bills_amounts_not_match=The sum of the amounts do not match
+bills_notprocess=Bills can not be process because it has already been processed
+bills_applied=Bills Applied
+bills_not_applied=Bills Not Applied
+bills_applied_delete=Delete bills applied
+bills_paid= Bill Paid
+bills_already_paid=Bills already paid
+bills_partial_payment=Bill Partial Payment Added
+bills_partially_paid=Bill Partially Paid
+bills_required=Bills Required to continue
+bills_pays_noapply_verify_currency=Some payments were not applied. Check the currency
+bills_nopaid_currency=Unapplied payment, currency problem
+bills_amount_edited=Amount Edited
+bills_amount_available_invalid=The amount available is insufficient or assign a higher amount of available
+bills_list_deposits_no_vendorid=Select a Vendor
+bills_deposit_credit_notprocess=Deposits/Credits can not be applied. Check the currency
+bills_payment_added=Payment Added
+bills_deposit_credit_applied=Deposits/Credits applied to Bill
+bills_note_added=Bills Note Added
+bills_check_currency=Check the currency
+bills_tab_info_for_bills=This info is only for Bills
+bills_change_status=Bill status has changed
+bills_account_trans_active=Accounting transactions active
+
+bills_expenses_line_amount_higher=The amount assigned is higher to available
+bills_expenses_addbtn=Apply Payment
+bills_expenses_confbtn=Confirm Payment
+bills_expenses_resbtn=Modify Payment
+
+
+
+## Brands
+mer_brands_htab1=Prod ID,Model,Name,Price
+opr_customers_htab2=Date / Time,Order ID,Product ID,Name/Model,Status
+
+## Packing options
+mer_packingopts_htab1=Prod ID,Model,Name,Price
+
+## SKUS transfers Tabs Headers
+opr_skustransfers_htab1= &nbsp ,From SKU,&nbsp,&nbsp,To SKU,&nbsp
+
+### Campaigns Tabs Headers
+eccampaign_htab1=Date/Time/User,Type,Notes
+eccampaign_htab2=Period,Sent,Opened,Open rate,Clicked, Click rate, Sales total, Orders, Orders/Opentrack,Sales ratio,Orders/emails,Ticket
+
+
+
+
+unauth_action=Unauthorized Action
+
+### OlD Messaged
+
+password_error=<div class=notas>Usuario o Clave Inv&aacute;lida</div>
+password_expiration=<div class=error>Clave expirada</div>
+ip_not_trusted=<span class="error"><div style="border: 1px solid #fbca6b; padding: 8px; background-color:#fdfdb3;margin-top:5px;">Acceso remoto no autorizado.<br><strong>IP:#IP#</strong><br>Favor de contactar a soporte@direksys.com</div></span>
+ip_not_allowed=<span class="error"><div style="border: 1px solid #fbca6b; padding: 8px; background-color:#fdfdb3;margin-top:5px;">IP no autorizada.<br>Favor de contactar a soporte@direksys.com</div></span>
+reqfields_short=<div class=notas>Alguno de los campos esta incompleto, inv&aacute;lido o en blanco.</div>
+reqfields=<div class=notas>Alguno de los campos esta incompleto, inv&aacute;lido o en blanco.<br>Por favor revisar los registros e intentarlo de nuevo</div>
+email_passwd=<div class=good>Password successfully sent to the email provided</div>
+no_passwd=<div class=error>The password cannot be empty</div>
+passwd_updated=<div class=good>Password successfully updated</div>
+no_expiration=Never Expires
+prefsupdated=<div class=good>Your Preferences has been updated</div>
+searcherror=Unable to find the requested record. Please try again later
+not_auth=<div class=error>No Autorizado</div>
+auth_in_process=<div class=notas>En proceso de autorizaci&oacute;n</div>
+na=Not Applicable
+change_password=<div class=error>Debe Cambiar la clave de su sistema AHORA!!!</div>
+havelist=Tienes listas activas en en Menu Main!! 
+user_not_found=No user found with the user id provided
+empty_user_id=<div class=error>This field cannot be empty. Please enter a valid user id</div>
+invalid_old_pass=<div class=error>The old pass does not match with your current password</div>
+invalid_new_pass=<div class=error>The new password does not macth with the repeated one or the length is invalid.</div>
+password_updated=<div class=good>Password Updated</div>
+no_product_sel=<div class=error>No products selected</div>
+record_updated=<div class=good>Record Updated</div>
+
+
+no_imgs_available=No hay images disponibles para este producto
+no_qa_available=No questions/answers available for this order
+
+shipped=Enviado en : 
+
+days=D?as
+stotal=Sub Total = 
+total=Total = 
+shipping=Envio y Manejo = 
+discounts=Descuentos = 
+taxes=Impuestos = 
+flexipago=Sus Pagos F&aacute;ciles
+invalid_params=Invalid Parameters
+choices=Choices
+
+groupby=Group By
+
+
+### User manager
+pageusrman=User Manager
+pageusrgrp=Group Manager
+usrgrp_add=User Group Added
+usrgrp_upd=User Group Updated
+usrgrp_del=User Group Deleted
+usr_add=User Added :
+usr_upd=User Updated :
+usr_del=User Deleted :
+usr_sesdroped=User Session Dropped
+usr_sesnone=No Active Sessions
+usr_perm=<div class=good>User Permmissions Updated</div>
+usr_add_err=<div class=error>User "[username]" NOT added Invalid/Repeated username</div>
+usr_add_ok=User : [username] added : Password :[password])
+
+usrman_updated=User Updated :
+usrman_added=User Added :
+usrman_appvsmultiapp=Choose one of MultiApp values
+usrman_perm_unknown=Perm unknown
+usrman_perm_already_exists=Perm already exists
+usrman_chgstatus=Status changed successfully
+usrman_chgstatus_active=Status changed to Active
+usrman_chgstatus_inactive=Status changed to Inactive
+usrman_authorizer_unassigned=Authorizer not asigned for this user
+usrman_chgstatus_cancel=Status changed to Cancel
+usrman_requires_permission=Requires Permission
+usrman_unable_edit_cancel_user=Unable to edit canceled user
+
+inorders_add=Inorders Added :
+rmas_upd=Rmas Updated :
+
+## FIELDS ERROR MESSAGES
+invalid=Inv&aacute;lido
+valid=V&aacute;lido
+invalidlen=largo Inv&aacute;lido
+required=Requerido
+repeated=Repetido
+notmatch=No Hay Registros
+notfound=No se Encuentra
+tendigitnum=Debe ser un n&uacute;mero de 10 digitos
+none=No
+invalidemail=&#9679; El Email es Inv&aacute;lido<br>
+notdefined=No Definido
+notassigned=No Asignado
+notappliead=The action requested was not applied
+actionapplied=Action Succesfully applied. 
+blocked=Record Blocked
+done=Done
+
+## LOGIN PAGE
+nologin=<div style="border: 1px solid #fbca6b; padding: 8px; background-color:#fdfdb3;margin-top:5px;">Por favor Ingrese</div>
+log_invalidlogin=Usuario o Clave Incorrecta :
+log_sesexpired=Your Session Expired
+ 
+
+				
+### SEARCH PAGE // GENERAL USE
+btn_view=V
+btn_edit=E
+btn_del=D
+btn_play=P
+btn_tree=T
+btn_save=S
+btn_apply=A
+btn_drop=D
+btn_sel=SEL
+btn_enable=E
+btn_disable=D
+btn_order=Ord
+btn_inv=Inv
+btn_plist=PL
+btn_add=Add
+
+start=Start
+stop=Stop
+
+order_return=Orden en estado de cambio/reenv&iacute;o
+search_nomatches=Not Records Found
+search_matches=Records Found
+dbconn_err=Unable to connect to the dabase
+regist_report=Not Registered
+record_updated=Registro actualizado
+record_added=Registro Agregado
+comments_no=No hay Comentarios
+comments_legend=Comentario Agregado por ([ID_admin_users]) [FirstName] [LastName] en [Date] [Time]<br>----------------------------------------------------------------------------------------------<br>[Comments]
+extenlist=[extenType]/[Name] &lt;[Number]&gt; Cuenta : [ID_accounts]
+
+#### DATABASE MESSAGES
+db_error=Error en Base Datos : &nbsp;
+
+
+### ADMINISTRATION TOOLS
+pageadmin=Administration Tools
+admin_backup=Backup Schedule to do it inmediatly
+admin_filetype_sitpbx=Direksys PBX configuration Files
+cdr=Call Detail Records
+
+admin_delbackup=Backup file Deleted
+admin_notable=No table Selected or Maintenance task. Please Select One
+admin_tablecheck=Table Checked :
+admin_tablerepair=Table Repaired :
+admin_dellogs=Logs Deleted :
+admin_delcdrs=CDRs Deleted :
+admin_apache_ok=Webserver restrated
+admin_apache_err=Unable to restart Webserver
+admin_server_reboot=Server Reboot
+admin_server_shutdown=Server Shutdown
+admin_server_apache=Webserver restart
+admin_server_apacheok=Web server restarted succesfully
+admin_server_apacheerr=Unable to start the Web server
+admin_server_postgresqlok=Database server restarted succesfully
+admin_server_postgresqlerr=Unable to start the Database server
+admin_server_postgresql=Database Server restarted
+admin_server_pbx=Direksys PBX Server restarted
+admin_server_pbxok=Direksys PBX Server restarted succesfully
+admin_server_pbxerr=Unable to start Direksys PBX
+admin_server_datetime=Date/Time Updated
+admin_server_ssherr=Unable to Start/Stop Direksys Remote Access Server 
+admin_server_sshok=Direksys Remote Accesss Server Start/stop succesfully
+
+### OTHER TO CLASSIFY
+pagepanel=Control Panel
+changeto=Change to
+
+pageprefs_mypass=Change My Password
+
+
+### PREFERENCES
+pageprefs_wpage=Welcome Page Preferences
+pageprefs_mvox=My Voip
+prefs_mvox_updated=my VoIP preferences updated
+pageprefs_mlogs=My Logs
+pagehome=Home Page
+pageprefs=General Preferences
+
+
+pageuserman=User Manager
+pagehome=Direksys VOIP Home Page
+pageabout=About Direksys
+pagechgpasswd=Change Password
+pageprefs=Vox General Preferences
+pageegwhome=Groupware Home
+pageitools=Internet Tools
+pagemore_apps=More Direksys applications
+
+
+#### LOGS MESSAGES
+pagelogs=Logs File
+login=Ingreso
+logout=Salida
+
+
+### SCHID
+schid_invalid_params=Invalid Parameters Request
+schid_notfind=unable to find record or no record specified:
+pageschid=Search
+
+### View Orders
+opr_orders_cant_edit_order_processed = Cant edit order processed
+order_msg=No tiene productos
+opr_orders_invoice_added=New Invoice Added
+opr_orders_invoice_noauth=Not authorized to generate invoices
+opr_orders_invoice_noitems=The order has no items
+opr_orders_order_edited=Order Edited
+opr_orders_invoice_already_exists=The invoice already exists
+opr_orders_invoice_invalid_upc=The order has items without UPC
+opr_orders_quantity_invalid=Quantity is greater than expected
+opr_orders_generate_invoice=Generate Invoice
+opr_orders_generate_creditnote=Generate Credit Note
+invoices_order_not_shipped=Error, Order not Shipped
+opr_orders_cc_to_cod=The order has been changed from CC to COD
+opr_orders_cod_to_cc=The order has been changed from COD to CC
+opr_orders_invalid_cc_to_cod=It was not possible to change to COD
+opr_orders_invalid_cc_to_rd=It was not possible to change to Referenced Deposit
+opr_orders_invalid_rd_to_cc=It was not possible to change to Credit-Card
+opr_orders_zone_updated=Orders Zone Updated
+opr_orders_cancelled_automatically=Order Cancelled Automatically
+opr_orders_toreferenced_deposit_applied=The order has been changed to Referenced Deposit
+opr_orders_multiple_payments=Multiple Payments detected in Order
+opr_orders_no_payments=No payments in this order
+opr_orders_banco_azteca=Banco Azteca
+opr_orders_banorte=Banorte
+opr_orders_banking_references=Banking References
+opr_orders_show_references=Show Banking References
+opr_orders_postdated=Importante, este pedido ha sido postfechado
+opr_orders_viewed=Order Viewed :
+opr_orders_viewed_fast=Order Viewed FM :
+opr_returns_viewed= Returns Viewed :
+opr_orders_exchangerate_missing=No hay tipo de cambio disponible
+opr_orders_already_scanned=Order already scanned
+opr_orders_chargebacks_no_products_available=No hay productos activos para el proceso
+opr_orders_chargebacks_nocc=La orden no es Tarjeta de Credito
+opr_orders_chargebacks_nochargeback=No se inserto el registro
+opr_orders_chargebacks_nopayment=No se encontro el cobro original
+opr_orders_chargebacks_opened=Proceso de contracargo abierto
+opr_orders_chargebacks_closed=Proceso de contracargo finalizado
+opr_orders_chargebacks_activebacth=No es posible generar el proceso. Los productos se encuentra en remesa: 
+opr_orders_chargebacks_isshipped=La orden esta enviada, al generar este contracargo, se acepta la perdida del dinero.
+opr_orders_chargebacks_isshipped_notok=No se puede continuar sin aceptar la perdida.
+opr_orders_chargebacks_creditmemo_new=C.M. from Chargeback Process
+opr_orders_nochgstatus_cod=No se puede modificar el Status a esta orden COD
+opr_orders_refunds_opened=Proceso de reembolso abierto
+opr_orders_refunds_closed=Proceso de reembolso finalizado
+opr_orders_nochgstatus_shipped_processed=No se puede establecer el Status de la orden en Processed cuando ya esta en Shipped
+opr_orders_cod_prodpay_difference=La orden contiene diferencias entre montos de producto vs pago. 
+opr_orders_error_match_against=Verifica que el nombre no contenga los siguientes caracteres: ( ).
+
+opr_manifests_viewed= Manifests Viewed :
+mer_bills_viewed= Bills Viewed :
+opr_locations_viewed= Locations Viewed :
+warehouses_batches_viewed= Batches Viewed :
+opr_cosas_nuevas_viewed= New stuff Viewed :
+usrptree_viewed= User Tree Viewed :
+opr_crmtickets_viewed= CRM ticket Viewed :
+opr_packinglist_viewed= Packing List Viewed :
+mer_wreceipts_viewed= WReceipts Viewed :
+opr_skustransfers_viewed= SKU Transfers Viewed :
+acc_keypoints_viewed= Keypoints viewed :
+acc_keypfunctions_viewed= Key Functions Viewed :
+opr_origins_viewed= Origins Viewed :
+opr_invoices_viewed= Invoices Viewed :
+opr_warehouses_viewed= Warehouse Viewed :
+
+ 
+
+### EGW messages (Welcome Page)
+egw_nomsgs=No Messages
+egw_noilogs=No Infologs
+egw_ttslogs=No Open Trouble Tickets
+cdr_nomsgs=No Calls
+news_nomsgs=No News
+
+############################
+### NEW MESSAGES
+############################
+en=English
+sp=Spanish
+
+wpage_navmenu=Navigation Menu
+wpage_messages=Messages
+wpage_infologs=Info Logs
+wpage_tts_assigned=Trouble Ticket System (assigned to you)
+wpage_tts_opened=Trouble Ticket System (opened by you)
+wpage_voip_cdr=Call Details records
+
+log_daterequired="From" and "To" Date are required
+log_recdeleted=Records Deleted :
+log_unauthlogin=Unauthorized login information :
+
+
+pageupfile=Uploading Files
+upfile_unauth=Your not authorize to Upload Files
+upfile_nofile=No file to Upload
+upfile_ok=File Uploaded successfully
+upfile_exists=The file already exists
+upfile_err=Unable to Upload the file
+upfile_not_allowed=File Extension Not Allowed
+upfile_not_records_found=No Records Found on File
+upfile_target_not_exists=The Target Directory Not Exists
+upfile_target_not_written=The Target Directory Can Not be Written
+
+admin_filetype_sitdbs=Direksys Database files
+admin_filetype_unknow=Unknow Filetype
+admin_filetype_ccenter=Direksys Call Center
+admin_filetype_sales=Direksys Sales
+admin_filetype_egw=Direksys groupware
+admin_filetype_dbman=Direksys Information Manager
+
+voicemai_added=VoiceMail Added:
+
+## Setip
+pagesetup=Advanced
+setup_adv_nofiles=Unable to open the configuration Files
+setup_advanced_edit=Configuration File Updated
+setup_terms_added=New Term Added
+setup_terms_updated=Term Updated
+
+reg_infoupdated=Registration Information Updated
+reg_keyupdated=Key Updated
+reg_notregistered=Your Direksys is not Registered
+page_not_available=This Application is not available for you.
+page_unauth=Your are not Authorized to perform this action
+
+
+dbsfldtypes=Alphanumeric,Numeric,Decimal,Date,Time,Text Box,List
+
+invoice_fp=En los proximos d?as le llegar? por correo el listado de sus pagos y sus vencimientos
+invoice_fpen=The pending payments and payment dates will be sent to you by email.
+
+
+### REPORTS
+report_error=Invalid Report ID
+report_filter_required=Filter required for this report
+
+
+### ADD BULK
+pagebulkadd=Bulk User Add
+
+
+### AJAX /OPR
+opr_orders_to_radrs=Order Status Changed to Review Address
+opr_orders_to_rpay=Order Status Changed to Review Payment
+opr_orders_to_pend=Order Status Changed to Pending
+opr_orders_to_can=Order Status Changed to Cancelled
+opr_orders_to_proc=Order Status  Changed to Processed
+opr_orders_credit=Refund to Credit Card
+opr_orders_credit_error=Error During The Refund
+opr_orders_to_pd=Order Status  Changed to Processed
+opr_orders_captured=Order Has Been Captured
+opr_orders_caperror=Error during the capture
+opr_orders_flagadd=Flag Added
+opr_orders_flagdel=Flag Removed
+opr_orders_cod_reactivated=COD Order Reactivated
+cod_reactivated=COD Order Reactivated
+
+order_shpauthorized=Order Authorized
+
+no_layaway=This order is no elegible for this payment method, please change products or payment method
+
+extenpass_updated=Extenpass updated
+sl_adjustments_itemasdded=Adjustment item added
+sl_adjustments_itemsdeleted=Adjustment item deleted
+adjustment_fileprocessed=File processed Succesfully
+sl_adjustments_notesadded=Adjustment note added
+atcfol_noteadded=Actfol note added
+opr_chargebacks_noteadded=Chargebacks note added
+opr_claims_noteadded=Claims note added
+customers_noteadded=Customer Note Added
+opr_orders_products_updated=Cleanup Mode Product Updated
+opr_orders_pay_updated=Orders payments updated
+opr_orders_group_payments=Orders payments grouped
+bulk_opr_orders_pay_updated=Multiple Orders payments updated
+orders_products_added=Orders Product Added
+orders_payments_added=Orders Payments Added
+opr_returns_noteadded=Returns Note Added
+opr_customers_notes_viewed=Customers Notes Viewed
+currency_no_editable=Currency no editable
+preorders_payments_updated=Orders Payments Updated
+bulk_preorders_pay_updated=Multiple Prerders payments updated
+preorders_payments_added=Preorders Payments Added
+returns_updated=Returns updated
+returns_upcs_added=Returns upcs added
+returns_upcs_deleted=Returns upcs deleted
+returns_creditmemo_new=C.M. from Return Process
+previous_creditmemo=Folio capturado previamente con el CM
+incomplete_return_in_cm=Credit Memo can not be applied, Return pending
+returns_creditmemo_generalerror=There was a problem creating the Return. Please Contact the IT Department
+returns_exchange_processed=Exchange Processed
+returns_void_backtoinventory=Impossible to Set Void, Inventory already returned.
+returns_chargeback_nocredit=No se encontro monto a acreditar
+returns_chargeback_nomovement=No se encontro contabilidad
+returns_chargeback_nooriginal=Monto original diferente o Tipo de orden no es Tarjeta
+warehouses_noteadded=Warehouses Note Added
+opr_warehouses_added=Warehouses Added
+payment_captured_by_cron=Payment Captured by Direksys Cron
+payment_charged= Payment charged
+
+warehouses_location_updated=Warehouses Location Updated
+warehouses_location_added=Warehouses Location Added
+warehouses_location_note_added=Warehouses Location Note Added
+skus_cost_updated=SKUs cost updated
+skus_invalid_cost=Invalid Cost
+cybcaptreport_added=Cybcapreport Added
+mediacost_updated=Media Cost Updated
+mediacost_added=Media Cost Added
+chargesale_added=Chargesale Added
+orders_payments_updated=Orders Payments Updated
+orders_products_updated=Orders Products Updated
+shows_items_updated=Shows Items Updated
+shows_orders=Show Order Added
+returns_upcs_updated=Returns upcs updated
+adjustments_updated=Adjustments updated
+adjustments_denied=Adjustment Denied
+adjustments_item_updated=Adjustments Item updated
+preorders_products_updated=Preorders Products Updated
+payments_authorized=Payment Authorized
+payments_check_paylogs=Check Paylogs for further information
+payments_zero_captured=Order with no captured payments.
+payments_invalid_authcode=Invalid authorization code
+payments_not_captured=One or more payments uncaptured
+
+
+orders_updated=Order Updated
+orders_updated2=Order Updated
+orders_added=Order Added
+list_updated=List Updated
+list_added=List Added
+preorders_updated=Preorder Updated
+preorder_plog_added=Preorder Paylog Added
+refill_set_inactive=Refill Order Inactive
+refill_payment_not_auth=Refill Payment Not Auth
+customer_added=Customer Added
+orders_note_added=Orders Note Added
+orders_product_qty_split=Product quantity split
+order_plog_added=Order Paylog Added
+part_shipping_info_added=Orders Parts Info Added
+part_shipping_info_updated=Orders Parts Info Updated
+orders_posteddate_updated=Orders Posteddate Updated
+preorders_to_can=Preorder Status Changed to Cancelled
+cod_to_order=Order Created from COD
+repmemo_invoice=Orden de Reenv&iacute;o de Piezas
+cod_order_notvalid=Orden COD esta en transito o tiene Status incorrecto
+
+
+refill_disclaimer_title=** Incluye Plan de Continuidad para Clientes VIP
+refill_disclaimer_desc=El plan de continuidad consiste en que usted recibir? la misma orden originalmente comprada, pero cada 30 ? 60 d?as (30 d?as si compr? tratamiento para un mes y 60 si compr? para dos meses). Usted puede cancelar hasta una semana antes de que se venza el periodo de su siguiente  orden, sin costo alguno ni penalidad. S?lo se aceptan devoluciones de productos que lleguen da?ados al destino.
+
+##ATC Emails
+email_viewed=Email seen
+email_moved_to_deleted_failed=There was a failed attempt to move the email to the TRASH Folder
+email_moved_to_archived_failed=There was a failed attempt to move the email to the ARCHIVED Folder
+email_repliedok=The email has been replied successfully
+email_moved_to_archived=The email was moved to the ARCHIVED folder successfully
+email_moved_to_deleted=The email was moved to the TRASH folder successfully
+trackingemail_reply_failed=There was a failed attempt to reply the email.
+
+## ATC Emails tabs headers
+
+mypassword_confirmation=Su nueva clave de acceso
+customer_chg_pass=A customer password change was carried out.
+
+#Secret coupon
+orders_secret_coupon=A product was given using secret coupon
+
+
+
+contracts_data_locked=Attention: The contract data would change soon due to a recent change made to its info.
+## Sales origins
+tochg_so=Updated sales origins successfully
+tochg_none_so=Not Updated
+ 
+
+### Leads Flash
+leads_flash_added=Lead Added: 
+leads_flash_noteadded=New Note Added
+leads_flash_st_updated=Status Updated
+
+###Zones
+zones_noteadded=Adjustment note added
+zones_added=New Zone Added
+zones_zip_added=New Zip Code Added
+zones_zip_deleted=The Zip code was deleted
+zones_updated=Zone Updated
+zones_deleted=Zone Deleted
+zones_zip_declined=The zipcode was not added because it is already registered in another zone.
+
+##Batch Zip Codes
+bzipcodes_loaded=Batch Loaded
+bzipcodes_accepted=Accepted
+bzipcodes_declined=Declined
+bzipcodes_declinedzc=Zip Codes Declined
+
+## Reports
+date=Date
+status=Status
+product=Product
+category=Category 
+state=State
+history=History
+month=Month
+categories=Categories
+report_name=Report Name
+by_user=By User
+from_date=From Date
+from_number=From Number
+to_date=To Date
+unable_do_script=Unable to do the script
+update_browser=Please update your Browser
+void_system_error_excluded=Void and System Error Excluded
+reports_user_name=User Name
+reports_user_admin=Admin User
+reports_day=Day
+reoprts_from_schedule=Desde Horario
+reoprts_to_schedule=Hasta Horario
+reports_half_hour=Half Hour
+reports_hour=Hour
+report_dids=DIDs
+reports_type=Type
+reports_customer=Customer
+reports_products_exception=Products Exeption
+reports_order_type=Order Type
+reports_first_call=First Call Order
+reports_price_levels=Price Levels
+reports_sales_origins=Sale Origins
+reports_units=Report Units
+reports_ordernet=Products / Order Net (Shipping & Taxes not Included)
+reports_callsnet=Calls / Order Net (Shipping & Taxes not Included)
+report_order_date=Order Date
+report_captured_date=Captured Date
+report_payment_type=Payment Type
+reports_captured_date=Captured Date
+reports_sort_by=Sort by
+reports_by_user=By User
+reports_group_by=Group by
+reports_created_by=Create by
+reports_id_orders=ID_orders
+report_payment_due=Payments due
+report_payment_paid=Payments paid
+report_payment_payable=Payments payable
+report_payment_total=Payments total
+reports_duration=Duración
+reports_classification=Calificación
+reports_call_notes=Call Notes
+reports_all_calls=All Calls
+reports_yes=Yes
+reports_no=No
+reports_required=All the fields are required. Please fill them properly and try again.
+reports_calls=Calls
+reports_orders=Orders
+reports_orders_cod=Orders COD
+reports_sales=Sales
+reports_total_amount=Total Amount
+reports_product=Product
+reports_sales_behavior=Sales Behavior
+reports_selected_fields=Selected Fields
+reports_station=Station
+reports_customer_freq=Customer Frequency / Order Net (Shipping & Taxes not Included)
+reports_customer_sex=Customer Sex / Order Net (Shipping & Taxes not Included)
+
+## rep_orders_prod
+rep_orders_p_date=Order Date
+rep_orders_p_sdate=Ship Date
+rep_orders_p_shipping=Shipping
+rep_orders_p_shippingt=Only Free Shipping
+rep_orders_p_pexception=Payment Exeption
+rep_orders_p_unassigned=Unassigned
+rep_orders_p_saleso=Sale Origins
+rep_orders_p_discounts=Discounts
+rep_orders_p_nincluded=NOT included
+rep_orders_p_sale_origin=Sale Origins
+rep_orders_p_dids_usa=DIDs USA
+rep_orders_p_dids_mex=DIDs MX
+rep_orders_p_id_half=Product ID / Half Hour
+rep_orders_p_id_hour=Product ID / Hour
+rep_orders_p_idproduct=Product ID
+rep_orders_p_shipping_c=Shipping Charges (Exclude Services)
+rep_orders_p_skus=SKUs
+rep_orders_p_profit=Product Profit
+rep_orders_p_order_status=Order Status
+rep_orders_p_per_hour=Per Hour
+
+## rep_orders_mm
+rep_orders_mm_dmas=DMA
+
+## rep_orders_pay
+rep_orders_pay_date=Payment Date (FP)
+rep_orders_pay_type_pay=Payment Type / Payment
+rep_orders_pay_type_pay_type=Payment Type / Order
+rep_orders_pay_flexipago=Flexipagos
+rep_orders_pay_flexipago_aging=Flexipago/Aging
+rep_orders_pay_flexipago_coll=Flexipago/ In Collection
+rep_orders_pay_account_receivable=Account Receivable
+rep_orders_pay_flexipago_amount_range=Flexipago Amount Range
+rep_orders_pay_flexipago__payments=lexipago Payments
+rep_orders_pay_payments_amounts_taxes=Payments / Amounts (Shipping & Taxes Included)
+rep_orders_pay_orders_amounts_taxes=Orders / Amounts (Shipping & Taxes Included)
+
+## rep_orders_cust
+rep_orders_cust_daily_sales=Daily Sales Profit
+
+## rep_orders_araging
+rep_orders_araging_report_name=Flexipago/ AR Aging
+rep_orders_araging_as_off=As off
+rep_orders_araging_pd_91_more=FP Past Due (91 or more days)
+rep_orders_araging_pd_61_90=FP Past Due (61-90 days)
+rep_orders_araging_pd_31_60=FP Past Due (31-60 days)
+rep_orders_araging_pd_1_30=FP Past Due (1-30 days)
+rep_orders_araging_fp_due=FP Due 
+rep_orders_araging_fp_1_30=FP (1-30 days)
+rep_orders_araging_fp_31_60=FP (31-60 days)
+rep_orders_araging_fp_61_90=FP (61-90 days)
+rep_orders_araging_fp_91_more=FP (91 or more days)
+
+## drop_calls
+drop_calls_less_one_minute=Menos de un minuto
+drop_calls_one_to_three=1 to 3 mins
+drop_calls_excluded_notes=Exclude records with notes
+
+##rep_cdr_tot
+rep_cdr_tot_report_name_hour=Calls/Orders/Orders COD by Hour
+rep_cdr_tot_report_name_30=Calls/Orders/Orders COD by 30 mins
+rep_cdr_tot_report_name_day=Calls/Orders/Orders COD by Day
+
+## rep_orders_good_bad_l
+rep_orders_good_bad_name=Good/Bad Analysis
+
+rep_bi_orders_statistics=Estadistica por pedido
+
+## rep_bi_capture
+rep_bi_capture_headers=TPago,DID,Orden,Status,Fecha,Hora,Estado,Municipio,TotalOrden,Monto Capturado,Fecha Captura,Usuario
+
+## rep_bi_sales_behavior
+rep_bi_sales_behavior_period=Report Base Period
+rep_bi_sales_behavior_comparison=Report Comparison Period
+
+## rep_bi_twilio_messages
+rep_bi_twilio_messages_rname=Twilio Messages (SMS)
+
+## rep_cdr_didord
+rep_cdr_didord_headers='DATE','TIME','DNIS','ID ORDER','ID CUSTOMER','CITY','STATE','ZIP','SHP STATE','NAME','ORDER NET','ORDER SHP','ORDER DISC','ORDER TAX','ORDER NET + ORDER SHP','PAY TYPE'
+
+## rep_cdr_ord
+rep_cdr_ord_name_hour=Calls/Orders by Hour
+rep_cdr_ord_name_30=Calls/Orders by 30 mins
+rep_cdr_ord_name_day=Calls/Orders by Day
+
+#################################
+########### Scanning section 
+#################################
+scan_no_stock=No stock for UPC:
+warehouse=Warehouse
+scan_upc_kit=is a SET/Kit
+scan_upc_unknown=Invalid or unknow UPC:
+scan_order_unknown=Invalid, Missing or Unknow Order
+scan_order_invalid_warehouse_deliveryzone=Invalid Warehouse. Not assigned to serve this Order Zone.
+scan_order_nocoverage=Invalid, Coverage not asigned
+scan_order_invalid_status=Invalid Order Status
+scan_order_codincomplete=Invalid, COD Order Incomplete or Already Sent
+scan_order_unknown_tracking=Invalid, Missing or Unknow Tracking Number
+scan_order_noupc=Invalid, Missing or Unknow UPC codes.
+scan_order_upcshipped=Shipped on
+scan_order_upcnorder=not in the Order or already shipped
+scan_order_errortotals=Error in totals . Need authorization code. 
+scan_order_riskerror=Risk Orders Need Authorization
+scan_order_pieces=pieces scanned
+scan_order_assignedto=Assigned to 
+scan_order_cemail=Ship Email sent to client
+scan_order_csms=Ship SMS sent to client
+scan_order_wreturn_qtylesser=Quantity Scanned was lesser than Returned
+scan_order_customer_unknown=Order Customer Not Found
+scan_order_customer_suspended=The customer is Suspended. Need Authorization code.
+scan_order_customer_conditional=The customer is Conditionated. Need Authorization code.
+scan_order_customer_inactive=The customer is Inactive. Need Authorization code.
+scan_order_wreturn_noidreturn=Return was not created
+scan_order_wbo_fail=Order must be alone in a Batch
+scan_order_incomplete=Scan Order Incomplete
+scan_order_complete=Scan Order Complete
+scan_order_services_amount=Order amount not match
+
+scan_cm_invalid_status=Invalid CreditMemo Status
+scan_cm_customer_unknown=Customer Not Found
+scan_cm_onlyone=Only One Credit memo per Scan
+scan_cm_wreturn_qty=Invalid Quantity
+scan_cm_unknown=Unkown Credit Memo ID
+scan_cm_processed=Credit Memo Processed.
+
+enternewcmreturn_cost_not_found=Cost not found for
+
+
+
+###################################################
+###  Scanning section ESPA?L (Enter Shipment)
+###################################################
+entershipment_scan_no_stock=Sin stock para el UPC:
+entershipment_warehouse=Almacen (Warehouse)
+entershipment_scan_upc_kit=es un SET/Kit
+entershipment_scan_upc_unknown=UPC Inv&aacute;lido o Desconocido
+entershipment_scan_order_unknown=Orden Inv&aacute;lida, Faltante o Desconocida
+entershipment_scan_order_nocoverage=Inv&aacute;lido, Cobertura no Asignada
+entershipment_scan_order_invalid_status=Estatus de orden invalido
+entershipment_scan_order_codincomplete=Inv&aacute;lido, Orden COD Incompleta o ya Fue Enviada
+entershipment_scan_order_unknown_tracking=Inv&aacute;lido, N&uacute;mero de rastreo Faltante o Desconocido
+entershipment_scan_order_noupc=Inv&aacute;lido, C&oacute;digo UPC Faltante o Desconocido.
+entershipment_scan_order_upcshipped=Enviado el
+entershipment_scan_order_upcnorder=No en la Orden o ya Fue enviada
+entershipment_scan_order_errortotals=Error en los Totales. Necesita el c&oacute;digo de autorizaci&oacute;n (<i>Authorization Code</i>) 
+entershipment_scan_order_riskerror=<b>Orden Riesgosa.</b> Necesita el c&oacute;digo de autorización (<i>Authorization Code</i>)
+entershipment_scan_order_pieces=Piezas escaneadas
+entershipment_scan_order_assignedto=Asignadas a
+entershipment_scan_order_cemail=Email enviado al Cliente
+entershipment_scan_order_csms=SMS enviado al Cliente
+entershipment_scan_order_csms_failed=Fallo envio de SMS de notificacion de envio
+entershipment_scan_order_wreturn_qtylesser=La cantidad escaneada fue menor que la Regresada
+entershipment_scan_order_customer_unknown=Cliente de Orden No Encontrado
+entershipment_scan_order_customer_suspended=El Cliente esta suspendido. Necesita el código de autorización (<i>Authorization Code</i>)
+entershipment_scan_order_customer_conditional=El cliente esta Condicionado. Necesita el código de autorización (<i>Authorization Code</i>)
+entershipment_scan_order_customer_inactive=El cliente esta Inactivo. Necesita el código de autorización (<i>Authorization Code</i>)
+entershipment_scan_order_wreturn_noidreturn=El Return no fue creado
+entershipment_scan_cm_invalid_status=Estatus de CreditMemo Inválido
+entershipment_scan_cm_customer_unknown=Cliente no encontrado
+entershipment_scan_cm_onlyone=Sólo un Credit memo por Escaneo
+entershipment_scan_cm_wreturn_qty=Cantidad Invalida
+entershipment_scan_cm_unknown=ID del Credit Memo Desconocido
+entershipment_scan_cm_processed=Credit Memo Procesado
+
+
+## Exportacion
+scan_order_notws=Invalid, Not in Status Processed OR COD Order
+
+
+## Devoluciones
+scan_cod_receipt_count_notmatch=The skus returned don't match the ones sent:
+scan_cod_receipt_notsent=Order COD Not Sent
+
+
+## Batches
+warehouses_batches_htab1=Order ID,Pay,Date,Zip,City,State
+warehouses_batches_htab2=Date/Time/User,Type,Notes
+warehouses_batches_htab3=Date,Time,Info,User,IP
+
+
+### Orders Tabs Headers
+opr_orders_htab1=Item ID,Model/Name,Serial Number,Ship Date,Qty,Shipping,Sale Price
+opr_orders_htab3=Date/Time,Transaction
+opr_orders_htab5=Dest. Phone,IO,Called By,Calif,Dur,Date,Time
+opr_orders_htab7=ID Return,Type,Action,Status,Date
+opr_orders_htab8=Date/Time,Order Number, Product Number,Product Name/Model,Status
+opr_orders_htab9=ID Replacement Memo,ID orders,Id products,Reson,Product Category,Status
+opr_orders_htab10=Claim ID,Claim To,Category,Status
+opr_orders_htab11=Charge Back ID,Charge Back To,Category,Status
+opr_orders_htab11=Charge Back ID,Charge Back To,Category,Status
+opr_orders_htab13=ID,Customer,Status,Date
+opr_orders_htab15=ID,Type,Time/Date,Status
+
+### Return Notices Tabs Headers
+opr_return_notices_htab1=#,ID Product,UPC,Name,Qty,SalePrice,Qty Rec,Total,Total Rec
+opr_return_notices_added=Return Notices Added
+opr_return_notices_updated=Return Notices Updated
+opr_return_notices_chgstatus_new=Status changed to New
+opr_return_notices_chgstatus_pending=Status changed to Pending
+opr_return_notices_chgstatus_scheduled=Status changed to Scheduled
+opr_return_notices_chgstatus_received ok=Status changed to Received OK
+opr_return_notices_chgstatus_received error=Status changed to Received Error
+opr_return_notices_sku_removed=SKU Removed
+opr_return_notices_sku_added=SKU Added
+
+## opr_warehouse Tabs Headers
+opr_warehouse_htab1=Item ID,Model / Name,Location,Qty
+opr_warehouse_htab2=In/Out,Date,Time,Type / ID,Location,Qty
+
+## Supplies Tabs Headers
+opr_supplies_htab1=&nbsp;,Vendor ID / Name,Last Purchase,Total Purchase,Status
+opr_supplies_htab2=PO ID,Quantity,Received,Price,Date
+
+## SKUS transfers Tabs Headers
+opr_skustransfers_htab1= &nbsp ,From SKU,&nbsp,&nbsp,To SKU,&nbsp
+
+### Campaigns Tabs Headers
+eccampaign_htab1=Date/Time/User,Type,Notes
+eccampaign_htab2=Period,Sent,Opened,Open rate,Clicked, Click rate, Sales total, Orders, Orders/Opentrack,Sales ratio,Orders/emails,Ticket
+
+### Numbers Tabs Headers
+numbers_htab1=Product ID, Product Name,From,To,DMA,Status
+numbers_htab2=Date/Time/User,Type,Notes
+
+###	Products
+
+mer_products_uncategorized=Product Without Category
+mer_products_unpriced=Product Without Price
+mer_products_price_added=New Price Added
+mer_products_price_dropped=Price Deleted
+mer_products_promo_upd=Promo Updated
+mer_products_error_price=Product Status Error
+deleted_percent_price_promo=
+mer_products_fail_to_save=Failed to save the data
+
+#mer_products_htab17=Preorder ID,Order ID,Customer,Date,Status
+mer_products_htab4=Price Name,Date/Time/User,Old Price,New Price
+mer_products_htab6=Order ID,Customer,Order Date,ShipDate,Status
+mer_products_htab7=ID Part,Name,Qty
+mer_products_htab10=ID Order,Type,Condition,Action,Date
+
+products_images_deleted=Images Deleted
+
+### Services
+noninventory_htab1=Order ID,Customer,Date,ShipDate,Status
+noninventory_htab2=Preorder ID,Order ID,Customer,Date,Status
+noninventory_htab3=ID,Reason,Status,Date,Time
+noninventory_htab4=Date,Time,Info,User,IP
+
+## Product Shipping Table
+products_shipping_table_htab1=Quantity,$100,$200,$300,$400,$500,$1000
+products_shipping_table_htab2=Quantity,$100,$200,$300,$400,$500,$1000
+products_shipping_table_htab3=Quantity,$100,$200,$300,$400,$500,$1000
+products_shipping_table_htab4=Quantity,$100,$200,$300,$400,$500,$1000
+
+## Contracts Header Tabs
+contracts_htab1=Calls Quantity,Total Orders,Orders Net,Orders Tax,Orders Shipping
+contracts_htab2=Date/Time/User,Type,Notes
+contracts_htab3=Date,Time,Info,User,IP
+
+## Categories Header Tabs
+mer_categories_htab1=Prod ID,Model,Name,Price
+mer_categories_htab2=Prod ID,Model,Name,Price
+
+### DIDS Header Tabs
+mm_dids_htab2=ID,Date,ESTime,Station,DMA,Status
+mm_dids_htab3=Date,Time,Change,User
+mm_dids_htab5=ID orders,Date,Status
+
+### Stations Header Tabs
+mm_stations_htab2=ID,Name,Phone,Contact,Pay Type,TimeZone
+mm_stations_htab3=ID,800,Product,Promotion,ISCI,DMA
+mm_stations_htab4=ID,Name,Phone,Contact,Pay Type,TimeZone
+mm_stations_htab5=ID,Format,Date (EST),Time (EST),Destination,Offer,Cost,Status
+
+### Contracts Headers Tabs
+mm_contracts_htab1=,
+mm_contracts_htab2=Type,ESTDay,ESTTime,Cost,Calls,$/Call
+mm_contracts_htab3=ID,Customer,Date,ShpDate,Status
+mm_contracts_htab4=RANK,DMA,Calls
+mm_contracts_htab5=Rank,DMA,% TDC,Orders,Qty
+
+## Coupons Headers Tabs
+mkt_coupons_htab3=Coupon,Customer,State,Zip
+
+## Usrman Headers Tabs
+usrman_htab1=Perm,Module,Type
+usrman_htab2=Member Group Name
+usrman_htab3=Date,Time,Action,User,IP Address
+usrman_htab4=Date,Time,Action,User,IP Address
+usrman_htab7=Debit Account,Credit Account,Debit Account PettyCash
+
+## Manifest Headers Tabs
+opr_manifests_htab1=&nbsp;,Item ID,Model / Name,Serial Num,Location,Qty,Status
+
+## SKUs Manifest Headers Tabs
+opr_skusmanifests_htab1=&nbsp;,From Item ID, From Name, To Item ID, To Name, From Warehouse / Location, To Warehouse / Location, Quantity
+
+## leads_flash_htab1
+leads_flash_htab1=Phone,ID Leads,User, Calif,Duration,Date,Time
+
+## Returns Exportation Headers Tabs
+wholesale_htab2=&nbsp;,Part ID,Model / Name,Qty Sent,Qty Returned,Warehouse
+
+##Zones
+zones_htab5=&nbsp;,ID Warehouse,Name
+zones_id_warehouse_deleted=Driver Dropped from Zone
+zones_warehouse_added=Driver Added to Zone 
+
+## Mer Vendors
+mer_vendors_no_po=No PO founded
+
+## Mer Non Inventory
+mer_noninventory_added=Non Inventory Added
+mer_noninventory_updated=Non Inventory Updated
+mer_noninventory_addvend=Vendor Added
+
+
+warehouses_batches_assigned=Orders Assigned to Batch
+warehouses_batches_process=Batch to Processed
+warehouses_batches_send=Batch File Sent
+warehouses_batches_certified=Batch Certified
+warehouses_batches_payment_added=Batch Payment Added
+order_batchadded=Order Added to Batch
+order_batchdropped=Order Released from Batch
+order_batchsent=Order Sent in Batch
+order_batchreshipped=Orden Re shipped in batch 
+prod_batchsent=in Batch
+prod_batchabsent=Not in Batch
+order_batchunpaid=Order without Minimum Amount Captured
+order_batchintransit=COD In Transit Already
+order_batchempty=Order without Available Products
+order_batchskulimit=Order with more than 6 skus
+wreceipt_vendors_no_match=selected Vendor is not the same as the PO
+batch_not_processed=Batch Asigned is not Processed
+
+# Same Coverages
+opr_coverages_htab1=ID Warehouses,Name,Type
+
+## Customers
+opr_customers_htab1=Date/Time/User,Type,Notes
+
+#Invoices
+opr_invoices_htab1=ID,ID Order,Customer,Status,Date
+invoices_shipping=ENVIO Y MANEJO 
+invoices_measuring_unit=PZA
+invoices_cust_data_not_found=No se encontro informacion fiscal del cliente
+invoices_error_generating=Error al generar la factura
+cuinvoices_updated=El estatus de la factura se ha modificado
+pterms_fullpayment=CONTADO
+pterms_credit=CREDITO
+exchangerate_not_found=No se tiene registrado el tipo de cambio para la moneda solicitada para el d? de hoy
+
+#AR Manager
+fin_arman_htab1=&nbsp;,ID Order,Due Since,Payments,Due Amount,Paid,Status
+
+# Media Agency
+mm_agencies_htab2=ID,Station,Affiliation,Phone,Pay Type,TimeZone,DMA
+
+## Finance
+fin_xcharges_added=Extra Charge Added
+fin_xcharges_updated=Extra Charge Updated
+fin_enter_cod_order_no_cod_or_no_in_transit=Looks like is not a COD Order or the Order is not In Transit
+fin_enter_cod_order_no_in_transit=The Order is not In Transit
+fin_enter_cod_order_order_processed_successfully=Order processed successfully
+
+## Finance / Journal Entries
+fin_journalentries_process_scheduled=Process Scheduled
+fin_journalentries_blocked=Journal Entry Blocked by Status
+fin_journalentries_error_diference=Error existe Diferencia de: 
+fin_journalentries_accperiodsnotmatch=Existen movimientos con diferente periodo Contable.
+fin_journalentries_accperiodsnull=Existen movimientos con periodo nulo: 
+
+pos_added= PO Added
+po_added=PO Added
+po_delete=PO Delete
+
+deposit_type=Deposit Type or Expenses Registred
+
+# Customers SKUs
+cus_skus_updated=Customers SKUs Updated
+cus_skus_added=Customers SKUs Added
+
+#Customers Addresses
+cus_addresscust_added=Customers Addresses Added
+cus_addresscust_updated=Customers Addresses Updated
+cus_addresscust_deleted=Customers Addresses Deleted
+
+### CRM Tickets
+## Warehouse Receipts
+opr_crmtickets_added=Record Added
+opr_crmtickets_updated=Record Updated
+opr_crmtickets_noteadded=Note Added
+opr_crmtickets_deleted=Customers Addresses Deleted
+case_closed=This Case is Closed
+crmNew=Ticket Nuevo
+crmIn Process=Ticket en Proceso
+crmClosed successful=Ticket Cerrado Satisfactoriamente
+crmClosed unsuccessful=Ticket Cerrado sin resolucion
+crmstatus_change_toIn Process=Ticket Cambiado a en Proceso
+crmstatus_change_toClosed successful=Ticket Cerrado Satisfactoriamente
+crmstatus_change_toClosed unsuccessful=Ticket Cerrado Sin solucion
+
+###Tipos de CRM Tickets
+opr_crmtickets_Cobro no registrado=Cobro no registrado
+opr_crmtickets_Drop Shiping=Drop Shiping
+opr_crmtickets_Env? Parcial con Reembolso=Env? Parcial con Reembolso
+opr_crmtickets_Env? de Piezas Body Crunch=Env? de Piezas Body Crunch
+opr_crmtickets_Env? de Piezas=Env? de Piezas
+opr_crmtickets_Env? Urgente=Env? Urgente
+opr_crmtickets_Reenv?s COD=Reenv?s COD
+opr_crmtickets_Reenv?s Cambio f?ico=Reenv?s Cambio f?ico
+opr_crmtickets_Reenv?s Prepago=Reenv?s Prepago
+opr_crmtickets_Cliente no reconoce Firma=Cliente no reconoce Firma
+opr_crmtickets_Entrega con Faltante=Entrega con Faltante
+opr_crmtickets_Gu? sin Movimiento/Siniestro=Gu? sin Movimiento/Siniestro
+opr_crmtickets_Reposici?=Reposici?
+opr_crmtickets_Devoluci? del Cliente=Reembolso Devoluci? del Cliente
+opr_crmtickets_No surtido=Reembolso No surtido
+opr_crmtickets_DIE vencido=Reembolso DIE vencido
+opr_crmtickets_Cancelaci? de llamada=Cancelaci? de llamada
+opr_crmtickets_Cancelaci? COD=Cancelaci? COD
+opr_crmtickets_Cancelaci? TDC=Cancelaci? TDC
+opr_crmtickets_Cancelaci? Inova Club=Cancelaci? Inova Club
+opr_crmtickets_Pedido en Devoluci?=CF a Pedido en Devoluci?
+opr_crmtickets_Distribuidor=CF a Distribuidor
+opr_crmtickets_A Domicilio=CF a Domicilio
+opr_crmtickets_PROMESAS FALSAS=PROMESAS FALSAS
+opr_crmtickets_Factura=Factura
+opr_crmtickets_Pedimento=Pedimento
+opr_crmtickets_REDES SOCIALES=REDES SOCIALES
+opr_crmtickets_Agilizar Ticket=Agilizar Ticket
+opr_crmtickets_Cambio en Forma de Pago=Cambio en Forma de Pago
+opr_crmtickets_Reintento de Cobro=Reintento de Cobro
+opr_crmtickets_Registrar Devoluci?=Registrar Devoluci?
+opr_crmtickets_Registrar Entrega=Registrar Entrega
+opr_crmtickets_Agilizar Entrega=Agilizar Entrega
+opr_crmtickets_Formato de Cambio F?ico / Reembolso=Formato de Cambio F?ico / Reembolso
+opr_crmtickets_Cancelaci? Inova Club=Cancelaci? Inova Club
+opr_crmtickets_Seguimiento de ECF y CNRF=Seguimiento de ECF y CNRF
+
+opr_reception_of_merchandise=Recepcion de Mercancia
+opr_manifests_completed=Transferencia Completada
+
+## rep_orders_files
+rep_orders_files_invalid_character=Contiene valores no v&aacute;lidos.
+rep_orders_empty_result=No se encontraron resultados coincidentes.
+
+## Banks
+fin_banks_added=Bank Added
+fin_banks_updated=Bank Updated
+
+fin_banks_movements_deleted=Banks Movements Deleted
+
+
+repmans_viewed=Custom Report Viewed :
+
+# SMS Verification
+sms_verification=Tu codigo de verificacion es
+
+opr_duplicate_record=Duplicate Record
+service_order_scanned=Service Order Scanned
+
+#Delivery
+not_valid_express_delivery=NOT VALID for Express Delivery.
+
+## Transaction validate
+transaction_duplicate=Este ID ya esta siendo procesado, por favor verifique el estatus de su ID y vuelva a intentarlo si es necesario...
+
+
+##Express Search
+order_not_exist=The order does not exist
+order_out_scope=The order is not in the scope of the user
+
+
+### opr_warehouses
+opr_warehouses_inventory_in_stock=Inventory in stock
+
+## Accounting
+acc_general=Accounting Failed
+acc_general_keypoints=Accounting Keypoints Failed
+acc_winlose=Accounting Win/Lose Failed
+acc_accounting_sale_payment_exception=Problem Finding Payment Exception Account
+acc_accountig_record_count_failed=One or Some Movements Failed to Record
+acc_accountig_fn_failed=Accounting Function Validation Failed
+acc_amount_difference=Diferencia de Montos
+acc_keypoints_inventoryout=Fallo en movimientos de salida inventario
+acc_keypoints_sale=Fallo en movimientos de venta
+acc_keypoints_sale_separate_tax=Fallo en registro de IVA
+acc_keypoints_sale_cdtosale=Fallo al transformar anticipo a venta
+acc_keypoints_sale_deposits=Fallo al aplicar depositos a la venta
+
+
+fin_accounts_updated=Account Updated
+fin_accounts_added=Account Added
+
+## Customers Advances
+opr_customers_advances_updbtn=Update Records
+
+## Error Msg
+error_user_have_register=El usuario ya tiene Registro
+error_user_doest_exist=El usuario no existe
+
+## CreditMemos
+returns_creditmemo_without_price=Without price
+returns_creditmemo_without_tax=Without tax
+returns_creditmemo_approved=Credit Memo Approved
+returns_creditmemo_sku_notfound=SKU not found
+returns_creditmemo_invalid_amount=Invalid amount
+
+##Phone Blacklist Manager
+phone_blacklist_added=Phone Blacklist Added
+phone_blacklist_updated=Phone Blacklist Updated
+
+
+## Validate date on open period
+invalid_date_on_open_period=The accounting date does not correspond to an open period
+opr_orders_6_printed=Impresion de Packing Slip
+
+##### Transitions Orders ####
+no_cost=There is no set cost for Part
+
+
+## Validate date on open period
+invalid_date_on_open_period=The accounting date does not correspond to an open period
+
+#Asterisk Overflow
+asterisk_overflow_error_exceed=La suma de % debe ser 100
+asterisk_overflow_error_multiples=% deben ser multiplos de 10
+
+zipcodes_border_zones_successfull=The zones were updated successfull
+zipcodes_border_zones_updated=Zipcode updated
+zipcode_format_invalid=Zipcode invalid
+zipcode_border_zone_added=Zipcode added to border zone
+opr_zipcodes_updated=ZipCode Updated
+opr_orders_transfer_invoice_added=Transfer Invoice Added
+opr_orders_generate_transfer_invoice=Transfer Invoice
+
+invoicing=Factura:
+
+report_in_background_existing=El reporte esta listo. Para su descarga consulte la pagina de Background Reports.
+report_in_background_processing=La creaci&oacute;n del reporte se encuentra en proceso, se le notificara via correo cuando este listo.
+
+
+##########Locked Users##############
+admin_users_unlocked=User Unbanned
+admin_users_locked=User banned
+
+login_failed_subject=Inicio de sesión fallido

@@ -1,0 +1,143 @@
+<STYLE TYPE="text/css">
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+</STYLE>
+
+<center>
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td><font class=info>
+
+<table cellpadding=0 cellspacing=0 border=0>
+	<td align=left>
+		<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px>
+	</td>
+	[fc_show_companyinfo]
+</table>
+
+<center>
+<hr style="color: #000;background-color: #000;height: 1px;">
+&nbsp;
+ <fieldset><legend>Items/Order</legend>
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	<tr class="menu_bar_title">
+		<td><font class=info>ID Order</td><td><font class=info>Date</td><td><font class=info>ID Product/Desc</td><td><font class=info>ShpDate</td><td><font class=info>Status</td>
+	</tr>	
+  [fc_showitemsordered]
+</table>
+</fieldset>
+&nbsp;
+ <fieldset><legend>Merchandise Reception</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		  <td width="30%" valign="top"><font class=infot>Return Type  :</td>
+		  <td><font class=info>[in_type]</td>		
+  	<tr>
+		  <td width="30%" valign="top"><font class=infot>General Pckg Condition  : </td>
+		  <td><font class=info>[in_generalpckgcondition]</td>
+		</tr>
+		<tr>
+		  <td width="30%" valign="top"><font class=infot>Product(s) Condition  : </td>
+		  <td><font class=info>[in_prodcondition]</td>
+		</tr>
+		<tr>
+			<td width="30%"><font class=infot>Serial Number : </td>
+			<td><font class=info>[in_serial_number]</td>
+		</tr>
+		<tr>
+		  <td width="30%" valign="top"><font class=infot>Reception Notes  : </td>
+		  <td><font class=info>[in_receptionnotes]</td>
+		</tr>
+				<tr>
+		  <td width="30%" valign="top"><font class=infot>Product(s) Notes  : </td>
+		  <td><font class=info>[in_prodnotes]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Merchandise Action</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="30%" valign="top"><font class=infot>Action  :</td>
+		  <td><font class=info>[in_meraction]</td>		
+  	<tr>
+  	<tr>
+		  <td width="30%" valign="top"><font class=infot>Notes  :</td>
+		  <td><font class=info>[in_actnotes]</td>		
+  	<tr>	
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Return Fees</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="30%" valign="top"><font class=infot>QC Return Fees  :</td>
+		  <td><font class=info>[in_qcreturnfees]</td>		
+  	</tr>
+		<tr>
+		  <td width="30%" valign="top"><font class=infot>QC Restock Fees  :</td>
+		  <td><font class=info>[in_qcrestockfees]</td>		
+  	</tr>
+  	<tr>
+		  <td width="30%" valign="top"><font class=infot>QC Processed  :</td>
+		  <td><font class=info>[in_qcprocessed]</td>		
+  	</tr>
+  	<tr>
+		  <td width="30%" valign="top"><font class=infot>ATC Return Fees :</td>
+		  <td><font class=info>[in_atcreturnfees]</td>		
+  	</tr>
+  	<tr>
+		  <td width="30%" valign="top"><font class=infot>ATC Restock Fees  :</td>
+		  <td><font class=info>[in_atcrestockfees]</td>		
+  	</tr>
+  	<tr>
+		  <td width="30%" valign="top"><font class=infot>ATC Processed  :</td>
+		  <td><font class=info>[in_atcprocessed]</td>		
+  	</tr>			
+  </table>
+</fieldset>	
+&nbsp;
+	<fieldset><legend>Return Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+	    <td width="30%"><font class=infot>Auth By :</td>
+	    <td><font class=info>
+	    	<a href="[in_script_url]?cmd=man_users&view=[in_authby]">([in_authby])</a>
+	    </td>
+		</tr>
+  	<tr>
+	    <td width="30%"><font class=infot>Status :</td>
+	    <td><font class=info>[in_status]</td>
+		</tr>
+  </table>
+	</fieldset>

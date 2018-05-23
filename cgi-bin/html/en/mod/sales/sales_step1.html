@@ -1,0 +1,246 @@
+[ip_header_newsales]
+
+ 	<table cellpadding="0" cellspacing="1" border="0" width="100%" bgcolor="#cccccc">
+		<tr bgcolor="#ffffff">
+			[ip_sales_shop_cart]
+			
+			<td valign="top" align="left">
+				<div class="content">
+					
+					[ip_sales_header_info]
+					
+					[ip_sales_header_steps]
+
+					<div id="step1" class="div_step">	
+						<h1>Nueva Llamada </h1>
+
+						<form action="/cgi-bin/mod/sales/admin" method="post" name="frm_sales" id="frm_sales_step1" autocomplete="off">
+							<input type="hidden" name="cmd" id="cmd" value="console_sales">
+							<input type="hidden" name="step" id="step" value="2">
+							<input type="hidden" name="action" id="action" value="customer">
+							<input type="hidden" name="id_salesorigins" id="id_salesorigins" value="[va_id_salesorigins]">
+							<input type="hidden" name="pay_type_available" id="pay_type_available" value="[va_pay_type_available]">
+							<input type="hidden" name="format_number" id="format_number" value="[va_format_number]">
+							<input type="hidden" name="promos_mow" id="promos_mow" value="[va_promos_mow]">
+
+							<table width="100%" cellpadding="0" cellspacing="0" border="0">
+								<tr>
+									<td class="" width="40%" style="text-align: right;">
+
+										<div style="margin-top: 5px; margin-bottom: 5px; display: block; float: right; width: 370px;" id="div_new_order_start">
+											<div class="line" style="position: relative;">
+												<div class="inptxtv3">
+													<label for="phone_cid"><b>Teléfono * :</b></label>	
+												</div>
+												<div class="inpboxv3">
+													<input id="phone_cid" name="phone_cid" value="[va_phone_cid]" maxlength="10" size="20" class="input" type="text" tabindex="1" data-required="[va_phone_required]" style="width: 170px;" title="N&uacute;mero del que llama" />
+													<div id="div_loading_phone" style="display: inline-block;"></div> 
+													<span id="spn_phone_cid_error" class="smallfieldterr"></span>
+												</div>
+											</div>											
+
+											<div class="line" id="id_customers_line" style="display: block;">
+												<div class="inptxtv3">
+													<label for="id_customers">ID Cliente : </label>
+												</div>
+												<div class="inpboxv3">
+													<input id="id_customers" name="id_customers" value="[va_id_customers]" size="40" maxlength="8" class="input" type="text" tabindex="2" style="width: 100px;" />										 
+													<a href="#" id="id_customers_reset" class="lnk_clear_client" title="Es otro cliente" style="display: none;">
+														<img src="/sitimages/sales/refresh32.png" class="ico" style="width: 20px; height: 20px;" alt="clear" />
+													</a>
+												</div>
+											</div>										
+											<div class="line" id="id_orders_line" style="display: block;">
+												<div class="inptxtv3">
+													<label for="id_orders">ID Pedido : </label>
+												</div>
+												<div class="inpboxv3">
+													<input id="id_orders" name="id_orders" value="[va_id_orders]" size="40" maxlength="8" class="input" type="text" tabindex="3" style="width: 100px;" />
+												</div>
+											</div>
+
+											<div class="line">
+												<div class="inptxtv3">
+													Nombre(s) * :
+												</div>
+												<div class="inpboxv3">
+													<input id="firstname" name="firstname" value="[va_firstname]" size="40" class="input" type="text" tabindex="4" data-required="[va_firstname_required]" style="width: 170px;" />
+												</div>
+											</div>
+											<div class="line">
+												<div class="inptxtv3">
+													Apellido Paterno:
+												</div>
+												<div class="inpboxv3">
+													<input id="lastname1" name="lastname1" value="[va_lastname1]" size="40" class="input" type="text" tabindex="5" style="width: 170px;" />
+												</div>
+											</div>
+											<div class="line">
+												<div class="inptxtv3">
+													Apellido Materno:<span class="smallfieldterr"></span>
+												</div>
+												<div class="inpboxv3">
+													<input id="lastname2" name="lastname2" value="[va_lastname2]" size="40" class="input" type="text" tabindex="6" style="width: 170px;" />
+												</div>
+											</div>
+
+											<div class="line">
+												<div class="inptxtv3">
+													C&oacute;digo Postal <x>*</x> :
+												</div>
+												<div class="inpboxv3">
+													<input type="text" name="zipcode" value="[va_zipcode]" id="zipcode" size="5" maxlength="5" class="input" tabindex="7" style="width: 100px;" />
+													<div id="div_loading_zipcode" style="display: inline-block;"></div>
+													<a href="#" class="lnk_search_zipcode" rel="address" title="¿El cliente no conoce su CP?">
+														<img src="/sitimages/default/icsearchsmall.gif" class="ico" alt="search" />
+													</a>
+													<span id="spn_zipcode_error" class="smallfieldterr"></span>
+												</div>
+											</div>
+											<br />
+											<div class="line" style="[va_view_promo_div]">
+												<div class="inptxtv3">
+													Folio de Promoci&oacute;n: <x>*</x> :
+												</div>
+												<div class="inpboxv3">
+													<input type="text" name="folio_promo" value="[va_folio_promo]" id="folio_promo" size="5" maxlength="20" class="input" tabindex="8" style="width: 135px;" />
+													<div id="div_loading_folio_promo" style="display: inline-block;"></div>	
+													<a href="#" id="btn_validate_folio" class="lnk_button_mini" rel="folio" title="Validar el folio...">
+														<img src="/sitimages/default/b_view.gif" class="ico" alt="search" style="width: 20px;" />
+													</a>												
+													<span id="spn_folio_promo_error" class="smallfieldterr"></span>
+													<input type="hidden" id="id_customers_promo" name="id_customers_promo" value="[va_id_customers_promo]" />
+													<input type="hidden" id="folio_valid" name="folio_valid" value="[va_folio_valid]" />
+													<div id="div_promo_info" title="Direksys :: Promotion Info."></div>
+												</div>											
+											</div>
+
+										</div>
+
+										<div id="div_customers_result" title="Clientes">
+											<table class="table_customers_result">
+												
+											</table>
+										</div>
+				 					</td>
+									<td style="vertical-align: middle;">
+										<div class="div_btn_search_client" style="position: relative;">
+											<a href="#" id="lnk_search_client" title="Buscar clientes por Nombre, Apellidos, ID de cliente o ID de pedido">
+												<img src="/sitimages/sales/user_search32.png" style="width: 32px;" alt="search">
+											</a>
+										</div>
+									</td>
+									<td  class="div"></td>
+
+									<td class="cont" >
+										<div id="div_info_address" style="margin-top: 5px; margin-bottom: 5px; display: none; margin: auto auto;">
+											<div class="line">
+												<div>
+													<div class="inptxtv3">Calle y N&uacute;mero :</div>
+													<div class="inpboxv3">
+														<input type="text" name="address1" id="address1" value="[va_address1]" readonly="true" class="txt_only_info">		
+													</div>
+												</div>
+											</div>
+											<div class="line">
+												<div class="inptxtv3">Colonia / Barrio :</div>
+												<div class="inpboxv3">
+													<input type="text" name="urbanization" id="urbanization" value="[va_urbanization]" readonly="true" class="txt_only_info">
+												</div>
+											</div>
+											<div class="line" >
+												<div class="inptxtv3">Mun. / Del. :</div>
+												<div class="inpboxv3">
+													<input type="text" name="city" id="city" value="[va_city]" readonly="true" class="txt_only_info">
+												</div>
+											</div>
+											<div class="line">
+												<div class="inptxtv3">Estado :</div>
+												<div class="inpboxv3">
+													<input type="text" name="state" id="state" value="[va_state]" readonly="true" class="txt_only_info">
+												</div>
+											</div>
+											<br>
+											<div class="line">
+												<fieldset style="max-width: 370px; text-align: center;">
+													<legend style="font-size: 10pt; padding: 5px 8px 5px 8px;">Última compra</legend>
+													<br />
+													<input type="text" name="last_id_order" id="last_id_order" value="[va_last_id_order]" readonly="true" class="txt_only_info" style="color: #21610B; width: 80px;">
+													<input type="text" name="last_date_order" id="last_date_order" value="[va_last_date_order]" readonly="true" class="txt_only_info" style="color: #21610B; width: 95px;">
+													<input type="text" name="last_status_order" id="last_status_order" value="[va_last_status_order]" readonly="true" class="txt_only_info" style="color: #21610B; width: 130px;">
+												</fieldset>
+											</div>
+										</div>
+									</td>
+									
+								</tr>
+								<tr>
+									<td colspan="3" class="cont" style="padding-top: 40px;">
+										<table border="0" style="width: 100%;">
+											<tr>
+												<td>
+													<input type="button" value="Productos" class="buttonv2" id="prod_search" tabindex="10" title="B&uacute;squeda rápida de productos..." />
+													<div id="div_search_products" title="B&uacute;squeda de Productos" style="overflow-x: hidden; overflow-y: hidden;">
+														<label for="txt_search">Buscar: </label> 
+														<input type="text" name="txt_search" id="txt_search" value="" size="70" class="input" placeholder="Modelo, Nombre, ID, etc...">
+														<!-- Resultados de la busqueda -->
+														<div id="div_pagination_top" class="div_pagination" style="margin-top: 5px;">
+															<div id="div_pages_info_top" style="float: left; padding: 4px 1px 2px 3px;"></div>
+															<div id="div_pages_top" style="float: right;"></div>
+														</div>
+														<div id="div_search_result" style="display: block; height: 390px; overflow-y: auto;">
+
+														</div>
+														<div id="div_pagination_bottom" class="div_pagination">
+															<div id="div_pages_info_bottom" style="float: left; padding: 4px 1px 2px 3px;"></div>
+															<div id="div_pages_bottom" style="float: right;"></div>
+														</div>
+													</div>
+												</td>
+												<td style="text-align: right; padding-right: 45px;"> 
+													<input type="button" value="Iniciar >>" class="buttonv2" id="submit_start" tabindex="9" style="width: 150px;" />
+												</td>
+											</tr>
+										</table>
+									</td>
+									<td class="cont">&nbsp;</td>
+								</tr>
+							</table>
+						</form>	
+					</div>
+
+					[ip_sales_zipcode]
+
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	<div id="speech_main" class="speech_main">
+		<div id="div_hide" class="speech_title">
+			<a href="#" id="lnk_hide_speech" style="position: relative;" title="Ocultar">
+				<img src="/sitimages/sales/minimize.png" alt="minimize">
+			</a>
+		</div>
+		<div class="speech_content">
+			<img src="/sitimages/default/console-head.png" style="margin: 5px 10px 5px 0px; width: 50px; float: left; display: block;">
+			<div class="speech_content_text">
+				[va_speech_content]
+			</div>
+			<div style="text-align: right; width: 100%; display: block;">
+				<span style="text-align: left; font-size: 8pt; margin-right: 20px;">[va_speech_code]</span>
+				<label style="font-size: 8pt; width: auto; position: relative;"><input type="checkbox" name="chk_speech_nevershow" id="chk_speech_nevershow" value="1">No volver a mostrar</label>
+			</div>
+		</div>
+	</div>
+
+	<div id="div_speech_icon" class="div_speech_icon" style="display: none;">
+		<a href="#">
+			<img src="/sitimages/default/console-head.png" style="width: 45px; height: 45px;">
+		</a>
+	</div>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyB_S9k5r5L3Au8oQmyP8Vj2BFheG4NTfts"></script>
+
+[ip_footer_console]
+	

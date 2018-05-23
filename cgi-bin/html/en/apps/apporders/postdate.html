@@ -1,0 +1,73 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"   "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://opengraphprotocol.org/schema/"
+      xmlns:fb="http://www.facebook.com/2008/fbml"
+      xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="es-mx">
+<title>Post-Date Order</title>
+<link rel="stylesheet" type="text/css" href="/sitimages/orders/orders.css">
+<META NAME="Author" CONTENT="ArielAleXCo." />
+	<script type="text/javascript">
+	function cerrar(){
+		var ap = document.getElementById("hdnApplication").value;
+		var pd_ok = document.getElementById("hdnPostdatedOk").value;
+		
+		if( pd_ok == 1 )
+			parent.location.href = '/cgi-bin/mod/'+ap+'/dbman?cmd=opr_orders&view=[in_id_orders]&second_conn=0';
+		else
+			parent.jQuery.fancybox.close();
+	}	
+
+	function confirma(){
+		if( !confirm("Seguro que desea post-fechar esta orden?") ){
+			return false;
+		}
+	}
+	</script>
+</head>
+<body>
+
+
+<center>
+<form action="/cgi-bin/common/apps/e_orders" method="post" name="sitform" onsubmit="return confirma();">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="cmd" value="postdate">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="id_orders_payments" value="[in_id_orders_payments]">	
+	<input type="hidden" name="ap" id="hdnApplication" value="[in_ap]">	
+	<input type="hidden" name="postdated_ok" id="hdnPostdatedOk" value="[va_postdated_ok]">
+
+<table cellpadding=0 cellspacing=5 width=60% border=0>
+	<tr>
+		<td valign=bottom align=left><font class=modaltit>Post-Date Order : [in_id_orders]</font><br><br></td>
+	</tr>	
+	<tr>
+		<td colspan=2 align=left>
+		<table cellpadding=4 cellspacing=0 width=100% style="border:1px solid;">
+			<tr bgcolor=#4d6ce4 background="/sitimages/orders/tabla.jpg">
+				<td colspan="2"><font class=mthead>Post-Date Order</font></td>
+			</tr>
+			<tr>
+				<td class="stdtxterr" colspan="2">[va_message]</td>
+			</tr>			
+			<tr>
+				<td class="num">Payment Date : <span class="fieldterr">[er_paymentdate]</span></td>
+				<td><span style="font-size: 10pt;">[in_paymentdate]</span></td>
+			</tr>
+			<tr>
+				<td class="num">Days Post-Dated: <span class="fieldterr">[er_days]</span></td>
+				<td><input type="text" size="3" name="days" id="txtDays" class="inputsm" value="[in_days]" maxlength="3" ></td>
+			</tr>
+
+			<tr><td colspan="2"><strong>NOTA:</strong> El post-fechado ser&aacute; a partir de la fecha actual del sistema([va_curdate]).</td></tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><input type="submit" name="postdated" value="Post-Dated" class="button"> &nbsp;
+					<input type="button" name="close" value="Close" class="button" onclick="cerrar();">
+				</td>
+			</tr>
+		</table>	
+</form>
+</body>

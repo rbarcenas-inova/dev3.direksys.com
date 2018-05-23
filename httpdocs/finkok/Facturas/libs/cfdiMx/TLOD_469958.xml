@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd " version="3.2" serie="TLOD" folio="469958" fecha="2015-08-25T06:10:21" sello="DvXL1W04dMdNyDfJv6kfqT5M7BPBgqlzcJwtAPcC68iMNDcr9o9PG6DoBIKyqIUD6VA8FF/6iAHcKbNFZTRkXY3UeyYDYQVnMiVWe8GYRJLq6pYYYoUCGlV42Sq+rIwpdaNNaN10fos+v6IKDDz3+MCiZvm+mbqWKMENd5+x4/w=" formaDePago="PAGO EN UNA SOLA EXHIBICION" noCertificado="00001000000300591000" certificado="MIIEgjCCA2qgAwIBAgIUMDAwMDEwMDAwMDAzMDA1OTEwMDAwDQYJKoZIhvcNAQEFBQAwggGKMTgwNgYDVQQDDC9BLkMuIGRlbCBTZXJ2aWNpbyBkZSBBZG1pbmlzdHJhY2nDs24gVHJpYnV0YXJpYTEvMC0GA1UECgwmU2VydmljaW8gZGUgQWRtaW5pc3RyYWNpw7NuIFRyaWJ1dGFyaWExODA2BgNVBAsML0FkbWluaXN0cmFjacOzbiBkZSBTZWd1cmlkYWQgZGUgbGEgSW5mb3JtYWNpw7NuMR8wHQYJKoZIhvcNAQkBFhBhY29kc0BzYXQuZ29iLm14MSYwJAYDVQQJDB1Bdi4gSGlkYWxnbyA3NywgQ29sLiBHdWVycmVybzEOMAwGA1UEEQwFMDYzMDAxCzAJBgNVBAYTAk1YMRkwFwYDVQQIDBBEaXN0cml0byBGZWRlcmFsMRQwEgYDVQQHDAtDdWF1aHTDqW1vYzEVMBMGA1UELRMMU0FUOTcwNzAxTk4zMTUwMwYJKoZIhvcNAQkCDCZSZXNwb25zYWJsZTogQ2xhdWRpYSBDb3ZhcnJ1YmlhcyBPY2hvYTAeFw0xMzA3MzExNzA5MzFaFw0xNzA3MzExNzA5MzFaMIHOMR8wHQYDVQQDExZUTUsgTE9HSVNUSUNTIFNBIERFIENWMR8wHQYDVQQpExZUTUsgTE9HSVNUSUNTIFNBIERFIENWMR8wHQYDVQQKExZUTUsgTE9HSVNUSUNTIFNBIERFIENWMSUwIwYDVQQtExxUTE8xMTA4MzE0RzIgLyBBRVNKNjQwMTA3NDY2MR4wHAYDVQQFExUgLyBBRVNKNjQwMTA3SERGTFJWMDMxIjAgBgNVBAsTGVRNSyBMT0dJU1RJQ1MgUy5BLiBERSBDLlYwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAK3TMMi1OmXoJhfmDWmj9nTqjD04x+qwUy6JU3/GYRr7UaMdpVUEiHzgEWEpRw+CEhGbx/gGHKhzRR+8GFJ2F5k0K8vuEM8ngYUSmDtvYMrF8PcWfm97M1d367BxckUYbJLZl41oZiIJAFJDNHkEw/Wt6v4a9UpwToJvYmfrbD8NAgMBAAGjHTAbMAwGA1UdEwEB/wQCMAAwCwYDVR0PBAQDAgbAMA0GCSqGSIb3DQEBBQUAA4IBAQB0FVJ9xmnULG570nJaKwiWveFHTaTcR+GQC9KUpJYSmnkTNME+biHBaGZo4myILyr+1ce8uQEdlqaB5bC1L/pQkEBtHZa4JeKq0It2WgfGUKksVnkc2Bn9q1buVz9SjitDHdB469Kz4Cgy5GIJ62ooOcwkDUy3sxeppR5vr6Z7z/lHhwvzaVG85cXaBLAhOHKrg4Hmi8Vd3giXMqZUUpCSMybYQhRfwkwv3sT9IkNFaK+3U+TSSTqLi44nYdy6CIhz3l5pvwxe40hmxMletyGgwtuKMkVaS6WKaTwhwogcO2ZZqfy8QPyApQgakrqKUi3EiY/OgoUNS3JDjyoKzdfH" condicionesDePago="CONTADO" subTotal="4568.10" descuento="0.00" TipoCambio="1" Moneda="MXP" total="5299.00" tipoDeComprobante="ingreso" metodoDePago="NO IDENTIFICADO" LugarExpedicion="Estados Unidos Mexicanos, Distrito Federal" NumCtaPago="NO IDENTIFICADO">
+  <cfdi:Emisor rfc="TLO1108314G2" nombre="TMK LOGISTICS, S.A DE C.V.">
+    <cfdi:DomicilioFiscal calle="Adolfo Lopez Mateos" noExterior="163" colonia="Mixcoac" municipio="Benito Juarez" estado="Distrito Federal" pais="Estados Unidos Mexicanos" codigoPostal="03910" />
+    <cfdi:ExpedidoEn calle="Adolfo Lopez Mateos" noExterior="163" colonia="Mixcoac" municipio="Benito Juarez" estado="Distrito Federal" pais="Estados Unidos Mexicanos" codigoPostal="03910" />
+    <cfdi:RegimenFiscal Regimen="REGIMEN GENERAL DE LEY PERSONAS MORALES" />
+  </cfdi:Emisor>
+  <cfdi:Receptor rfc="XAXX010101000" nombre="PUBLICO EN GENERAL">
+    <cfdi:Domicilio calle="CALLE 2" noExterior="No 246" colonia="GRANJAS SAN ANTONIO MEXICO" localidad="D.F." municipio="IZTAPALAPA" estado="Distrito Federal" pais="MEXICO" codigoPostal="09070" />
+  </cfdi:Receptor>
+  <cfdi:Conceptos>
+    <cfdi:Concepto cantidad="1.00" unidad="PZA" noIdentificacion="0" descripcion="100925629-BODY CRUNCH EVOL" valorUnitario="4568.09" importe="4568.09" />
+    <cfdi:Concepto cantidad="1.00" unidad="PZA" noIdentificacion="0" descripcion="100320026-MP3 S OBSEQUIO MENCIONES" valorUnitario="0.01" importe="0.01" />
+  </cfdi:Conceptos>
+  <cfdi:Impuestos totalImpuestosTrasladados="730.90">
+    <cfdi:Traslados>
+      <cfdi:Traslado impuesto="IVA" tasa="16.00" importe="730.90" />
+      <cfdi:Traslado impuesto="IVA" tasa="0.00" importe="0.00" />
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+  <cfdi:Complemento><tfd:TimbreFiscalDigital version="1.0" UUID="3579b45f-6d7a-4270-aa6f-bf9d22d63ee0" FechaTimbrado="2015-08-25T06:15:09" selloCFD="DvXL1W04dMdNyDfJv6kfqT5M7BPBgqlzcJwtAPcC68iMNDcr9o9PG6DoBIKyqIUD6VA8FF/6iAHcKbNFZTRkXY3UeyYDYQVnMiVWe8GYRJLq6pYYYoUCGlV42Sq+rIwpdaNNaN10fos+v6IKDDz3+MCiZvm+mbqWKMENd5+x4/w=" noCertificadoSAT="00001000000300171326" selloSAT="ypMTVES/HdN2xDhrm5YAAgG1jveII2LS+gJ9XKcMnvCN+r7exh7WG5DmlpOFe8iHyunQHuBt1mEk+o6GbAC2i09AgX5KU7rIupHVxUKHleFMrb77wIIlRgfjAdgsO79O9E41Qbc6/CHRhvUqBHPmYgmmOrvx7gsE8/9Zhe3DlA0=" xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/TimbreFiscalDigital/TimbreFiscalDigital.xsd" /></cfdi:Complemento><cfdi:Addenda xmlns:ecfd="http://www.southconsulting.com/schemas/strict" xsi:schemaLocation="http://www.southconsulting.com/schemas/strict http://www.southconsulting.com/schemas/strict/ecfd.xsd">
+    <ecfd:ECFD version="1.0">
+      <ecfd:Documento ID="T33TLOD469958">
+        <ecfd:Encabezado>
+          <ecfd:IdDoc>
+            <ecfd:NroAprob>12345</ecfd:NroAprob>
+            <ecfd:AnoAprob>2014</ecfd:AnoAprob>
+            <ecfd:Tipo>33</ecfd:Tipo>
+            <ecfd:Serie>TLOD</ecfd:Serie>
+            <ecfd:Folio>469958</ecfd:Folio>
+            <ecfd:Estado>ORIGINAL</ecfd:Estado>
+            <ecfd:NumeroInterno>493550</ecfd:NumeroInterno>
+            <ecfd:FechaEmis>2015-08-25T06:10:21</ecfd:FechaEmis>
+            <ecfd:FormaPago>PAGO EN UNA SOLA EXHIBICION</ecfd:FormaPago>
+            <ecfd:MedioPago>NO IDENTIFICADO</ecfd:MedioPago>
+            <ecfd:LugarExpedicion>Estados Unidos Mexicanos, Distrito Federal</ecfd:LugarExpedicion>
+            <ecfd:NumCtaPago>NO IDENTIFICADO</ecfd:NumCtaPago>
+            <ecfd:CondPago>CONTADO</ecfd:CondPago>
+            <ecfd:TermPagoCdg>1</ecfd:TermPagoCdg>
+          </ecfd:IdDoc>
+          <ecfd:ExEmisor>
+            <ecfd:RFCEmisor>TLO1108314G2</ecfd:RFCEmisor>
+            <ecfd:NmbEmisor>TMK LOGISTICS, S.A DE C.V.</ecfd:NmbEmisor>
+            <ecfd:DomFiscal>
+              <ecfd:Calle>Adolfo Lopez Mateos</ecfd:Calle>
+              <ecfd:NroExterior>163</ecfd:NroExterior>
+              <ecfd:Colonia>Mixcoac</ecfd:Colonia>
+              <ecfd:Municipio>Benito Juarez</ecfd:Municipio>
+              <ecfd:Estado>Distrito Federal</ecfd:Estado>
+              <ecfd:Pais>Estados Unidos Mexicanos</ecfd:Pais>
+              <ecfd:CodigoPostal>03910</ecfd:CodigoPostal>
+            </ecfd:DomFiscal>
+            <ecfd:LugarExped>
+              <ecfd:Calle>Adolfo Lopez Mateos</ecfd:Calle>
+              <ecfd:NroExterior>163</ecfd:NroExterior>
+              <ecfd:Colonia>Mixcoac</ecfd:Colonia>
+              <ecfd:Municipio>Benito Juarez</ecfd:Municipio>
+              <ecfd:Estado>Distrito Federal</ecfd:Estado>
+              <ecfd:Pais>Estados Unidos Mexicanos</ecfd:Pais>
+              <ecfd:CodigoPostal>03910</ecfd:CodigoPostal>
+            </ecfd:LugarExped>
+          </ecfd:ExEmisor>
+          <ecfd:ExReceptor>
+            <ecfd:RFCRecep>XAXX010101000</ecfd:RFCRecep>
+            <ecfd:NmbRecep>PUBLICO EN GENERAL</ecfd:NmbRecep>
+            <ecfd:CdgGLNRecep>9000000000009</ecfd:CdgGLNRecep>
+            <ecfd:DomFiscalRcp>
+              <ecfd:Calle>CALLE 2</ecfd:Calle>
+              <ecfd:NroExterior>No 246</ecfd:NroExterior>
+              <ecfd:Colonia>GRANJAS SAN ANTONIO MEXICO</ecfd:Colonia>
+              <ecfd:Localidad>D.F.</ecfd:Localidad>
+              <ecfd:Municipio>IZTAPALAPA</ecfd:Municipio>
+              <ecfd:Estado>Distrito Federal</ecfd:Estado>
+              <ecfd:Pais>MEXICO</ecfd:Pais>
+              <ecfd:CodigoPostal>09070</ecfd:CodigoPostal>
+              <ecfd:GLN>9000000000009</ecfd:GLN>
+            </ecfd:DomFiscalRcp>
+            <ecfd:LugarRecep>
+              <ecfd:Calle>CARRETERA MEXICO A ACAPULCO KM 333</ecfd:Calle>
+              <ecfd:NroExterior>S/N</ecfd:NroExterior>
+              <ecfd:Colonia>SAN JOSe</ecfd:Colonia>
+              <ecfd:Municipio>JUAN R. ESCUDERO</ecfd:Municipio>
+              <ecfd:Estado>Guerrero</ecfd:Estado>
+              <ecfd:Pais>MX</ecfd:Pais>
+              <ecfd:CodigoPostal>39942</ecfd:CodigoPostal>
+              <ecfd:GLN>9000000000009</ecfd:GLN>
+            </ecfd:LugarRecep>
+          </ecfd:ExReceptor>
+          <ecfd:Totales>
+            <ecfd:Moneda>MXP</ecfd:Moneda>
+            <ecfd:FctConv>1</ecfd:FctConv>
+            <ecfd:SubTotal>4568.10</ecfd:SubTotal>
+            <ecfd:MntDcto>0.00</ecfd:MntDcto>
+            <ecfd:MntBase>4568.1</ecfd:MntBase>
+            <ecfd:MntImp>730.90</ecfd:MntImp>
+            <ecfd:VlrPagar>5299.00</ecfd:VlrPagar>
+            <ecfd:VlrPalabras>CINCO MIL DOSCIENTOS NOVENTA Y NUEVE PESOS 00/100 M.N.</ecfd:VlrPalabras>
+          </ecfd:Totales>
+          <ecfd:ExImpuestos>
+            <ecfd:TipoImp>IVA</ecfd:TipoImp>
+            <ecfd:TasaImp>16.00</ecfd:TasaImp>
+            <ecfd:MontoImp>730.90</ecfd:MontoImp>
+          </ecfd:ExImpuestos>
+          <ecfd:ExImpuestos>
+            <ecfd:TipoImp>IVA</ecfd:TipoImp>
+            <ecfd:TasaImp>0.00</ecfd:TasaImp>
+            <ecfd:MontoImp>0.00</ecfd:MontoImp>
+          </ecfd:ExImpuestos>
+        </ecfd:Encabezado>
+        <ecfd:Detalle>
+          <ecfd:NroLinDet>1</ecfd:NroLinDet>
+          <ecfd:CdgItem>
+            <ecfd:TpoCodigo>EAN</ecfd:TpoCodigo>
+            <ecfd:VlrCodigo>0</ecfd:VlrCodigo>
+          </ecfd:CdgItem>
+          <ecfd:CdgItem>
+            <ecfd:TpoCodigo>SKU</ecfd:TpoCodigo>
+            <ecfd:VlrCodigo>0</ecfd:VlrCodigo>
+          </ecfd:CdgItem>
+          <ecfd:DscLang>ES</ecfd:DscLang>
+          <ecfd:DscItem>100925629-BODY CRUNCH EVOL</ecfd:DscItem>
+          <ecfd:QtyItem>1.00</ecfd:QtyItem>
+          <ecfd:UnmdItem>PZA</ecfd:UnmdItem>
+          <ecfd:PrcBrutoItem>4568.09</ecfd:PrcBrutoItem>
+          <ecfd:PrcNetoItem>4568.09</ecfd:PrcNetoItem>
+          <ecfd:ImpuestosDet>
+            <ecfd:TipoImp>IVA</ecfd:TipoImp>
+            <ecfd:TasaImp>16.00</ecfd:TasaImp>
+            <ecfd:MontoImp>730.900</ecfd:MontoImp>
+          </ecfd:ImpuestosDet>
+          <ecfd:MontoBrutoItem>4568.09</ecfd:MontoBrutoItem>
+          <ecfd:MontoNetoItem>4568.09</ecfd:MontoNetoItem>
+          <ecfd:MontoTotalItem>5298.99</ecfd:MontoTotalItem>
+        </ecfd:Detalle>
+        <ecfd:Detalle>
+          <ecfd:NroLinDet>2</ecfd:NroLinDet>
+          <ecfd:CdgItem>
+            <ecfd:TpoCodigo>EAN</ecfd:TpoCodigo>
+            <ecfd:VlrCodigo>0</ecfd:VlrCodigo>
+          </ecfd:CdgItem>
+          <ecfd:CdgItem>
+            <ecfd:TpoCodigo>SKU</ecfd:TpoCodigo>
+            <ecfd:VlrCodigo>0</ecfd:VlrCodigo>
+          </ecfd:CdgItem>
+          <ecfd:DscLang>ES</ecfd:DscLang>
+          <ecfd:DscItem>100320026-MP3 S OBSEQUIO MENCIONES</ecfd:DscItem>
+          <ecfd:QtyItem>1.00</ecfd:QtyItem>
+          <ecfd:UnmdItem>PZA</ecfd:UnmdItem>
+          <ecfd:PrcBrutoItem>0.01</ecfd:PrcBrutoItem>
+          <ecfd:PrcNetoItem>0.01</ecfd:PrcNetoItem>
+          <ecfd:ImpuestosDet>
+            <ecfd:TipoImp>IVA</ecfd:TipoImp>
+            <ecfd:TasaImp>0.00</ecfd:TasaImp>
+            <ecfd:MontoImp>0.000</ecfd:MontoImp>
+          </ecfd:ImpuestosDet>
+          <ecfd:MontoBrutoItem>0.01</ecfd:MontoBrutoItem>
+          <ecfd:MontoNetoItem>0.01</ecfd:MontoNetoItem>
+          <ecfd:MontoTotalItem>0.01</ecfd:MontoTotalItem>
+        </ecfd:Detalle>
+        <ecfd:TimeStamp>2015-08-25T06:15:12</ecfd:TimeStamp>
+      </ecfd:Documento>
+      <ecfd:Personalizados>
+        <ecfd:campoString name="IdArea" />
+        <ecfd:campoString name="FolioPedido" />
+        <ecfd:campoString name="FechaPedido" />
+        <ecfd:campoString name="ElaboradoPor" />
+        <ecfd:campoString name="ViaEmbarque" />
+        <ecfd:campoString name="NumEmbarque" />
+        <ecfd:campoString name="NumEmbarqueInt" />
+        <ecfd:campoString name="EmRefBanBanca" />
+        <ecfd:campoString name="EmRefBanTitular" />
+        <ecfd:campoString name="EmRefBanCuenta" />
+        <ecfd:campoString name="EmRefBanCLABE" />
+        <ecfd:campoString name="EmRefBanConvenio" />
+        <ecfd:campoString name="EmRepLegNombre" />
+        <ecfd:campoString name="EmRepLegRFC" />
+        <ecfd:campoString name="RecRepLegNombre" />
+        <ecfd:campoString name="RecRepLegRFC" />
+        <ecfd:campoString name="RecRefBanRef" />
+        <ecfd:campoString name="RecEmailDist" />
+        <ecfd:campoString name="EmURL" />
+        <ecfd:campoString name="COD_CLP_BY">9</ecfd:campoString>
+        <ecfd:campoString name="COD_CLP_II">9</ecfd:campoString>
+        <ecfd:campoString name="COD_CLP_SU">9</ecfd:campoString>
+        <ecfd:campoString name="COD_CLP_ST">9</ecfd:campoString>
+        <ecfd:campoString name="CLP_SU" />
+        <ecfd:campoString name="CLP_BY" />
+        <ecfd:campoString name="CLP_II" />
+        <ecfd:campoString name="CLP_ST" />
+        <ecfd:campoString name="RLEGAL" />
+        <ecfd:campoString name="SenderIDGeneric" />
+        <ecfd:campoString name="SenderIDCorvi" />
+        <ecfd:campoString name="SI_ZZZ">CINCO MIL DOSCIENTOS NOVENTA Y NUEVE PESOS 00/100 M.N.</ecfd:campoString>
+        <ecfd:campoString name="pProveedor" />
+        <ecfd:campoString name="pCURP" />
+        <ecfd:campoString name="pCliente" />
+        <ecfd:campoString name="EmMarca" />
+        <ecfd:campoString name="Addendas1" />
+        <ecfd:campoString name="Addendas2" />
+        <ecfd:campoString name="Addendas3" />
+        <ecfd:campoString name="Addendas4" />
+        <ecfd:campoString name="Addendas5" />
+        <ecfd:campoString name="Addendas6" />
+        <ecfd:campoString name="TipoBulto">1</ecfd:campoString>
+        <ecfd:campoString name="CantidadBultos" />
+        <ecfd:campoString name="pNmbSucursal" />
+        <ecfd:campoString name="Folio">469958</ecfd:campoString>
+        <ecfd:campoString name="MontoImp1">730.90</ecfd:campoString>
+        <ecfd:campoString name="MontoImp2" />
+        <ecfd:campoString name="MontoImp3">0.00</ecfd:campoString>
+        <ecfd:campoString name="MontoImp4" />
+        <ecfd:campoString name="pPers03" />
+        <ecfd:campoString name="pPers04">9666366</ecfd:campoString>
+        <ecfd:campoString name="pPers05" />
+        <ecfd:campoString name="pPers06" />
+        <ecfd:campoString name="pPers07" />
+        <ecfd:campoString name="pPers08" />
+        <ecfd:campoString name="pPers09" />
+        <ecfd:campoString name="pPers10" />
+        <ecfd:campoString name="pPers11" />
+        <ecfd:campoString name="pPers12" />
+        <ecfd:campoString name="FolioRefON" />
+        <ecfd:campoString name="FolioRefDQ" />
+        <ecfd:campoString name="FechaRefON" />
+        <ecfd:campoString name="FechaRefDQ" />
+        <ecfd:campoString name="RegimenFiscal">REGIMEN GENERAL DE LEY PERSONAS MORALES</ecfd:campoString>
+        <ecfd:campoString name="CuentaDePago">NO IDENTIFICADO</ecfd:campoString>
+        <ecfd:campoString name="LugarDeExpedicion">Estados Unidos Mexicanos, Distrito Federal</ecfd:campoString>
+      </ecfd:Personalizados>
+    </ecfd:ECFD>
+  </cfdi:Addenda>
+</cfdi:Comprobante>

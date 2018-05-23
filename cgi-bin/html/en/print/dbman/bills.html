@@ -1,0 +1,135 @@
+<STYLE TYPE="text/css">
+.pagebreak { page-break-before: always; padding: 3px; width=870px}
+
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.amount
+{font-family:  arial;background: ;color:#000000;font-size: 14pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+</STYLE>
+<span class="pagebreak">
+<center>
+
+
+
+
+<table border=0 cellpadding=0 cellspacing=0 width=866px>
+	<td><font class=info>
+
+<table cellpadding=0 cellspacing=0>
+	<td align=left>
+	<img src="[va_imgurl]packing_list/new_invoice/inova.png" style="margin-right:15pt" border=0 width=180px>
+	</td>
+	[fc_show_companyinfo]
+</table>
+
+
+<hr style="color: #000;background-color: #000; border:0px; border-top: 3px solid #111111; width:100%;height:0px;">
+
+<font class=its>P Ó L I Z A S  &nbsp;&nbsp;</font>
+<br>
+
+<hr style="color: #000;background-color: #000; border:0px; border-top: 1px solid #111111; width:100%;height:0px;">
+</td>
+<td align=center rowspan=2 width=230px valign=top>
+
+
+	
+<table cellpadding=10 cellspacing=0  style="border:1px solid #333333;padding:0px;width:230px;-moz-border-radius: 5px;border-radius: 5px; height:150px;" >
+	<td align=center>
+
+		<font class=id>
+		No. : <font class=idno>[in_id_bills]</font> <br> 
+<font class=amount> [in_currency] [in_v_amount]</font><br>
+ [va_bill_amount_due] 
+
+ 
+
+	</td>
+</table>
+
+</td>
+
+
+</tr>
+
+<tr>
+	<td>
+
+
+<table width=100% cellpadding=0 cellspacing=7 border=0 style="margin:5px;">
+<tr><td colspan=2>Proveedor : <b><font size=3>[in_id_vendors]</td></tr>
+<tr><td width=50%>Fecha de Factura : [in_billdate]</td><td width=50%>Fecha de vencimiento : [in_duedate]</td></tr>
+<tr><td>Tipo : [in_type]</td><td>Factura : [in_invoice]</td></tr>
+<tr><td>Forma de pago : [in_paymentmethod]</td><td>Tipo de Cambio :  [in_currency_exchange]</td></tr>
+<tr><td>Estatus : [in_status] </td><td>Autoriz&oacute; : [va_authorization]</td></tr> 
+<tr><td colspan=2><br>Memorándum : [in_memo]</td></tr>
+</table>
+
+
+ 
+
+
+ 
+
+</td>
+</tr>
+</table>
+
+
+
+
+<table border=0 cellpadding=0 cellspacing=0 width=866px>
+	<td><font class=info>
+
+ 
+ 
+
+	[va_searchresults_dc_print]
+	[va_searchresults_dc2_print]
+	[va_searchresults_po_print]
+	[va_mov_searchresults]
+	
+     </td>
+  </table>
+
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td> 
+		<!--FIX Para lineas verticales en la imPresora 4600--> &nbsp; 
+	</td>
+  </table>
+
+
+</span>
+</body>

@@ -1,0 +1,280 @@
+[ip_header]
+
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+	var dates = $( "#from_date_cm, #to_date_cm" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date_cm" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+	var dates = $( "#from_date, #to_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+	var sales_dates = $( "#from_doc_date, #to_doc_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_doc_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			sales_dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:[fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="70%" align="center"></td>
+	    <td width="30%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]")'>Sales Journal</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+  <form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">Business Intelligence : Sales Journal</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Invoices</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			    <td width="20%">ID Invoices : <span class="smallfieldterr">[er_id_invoices]</span></td>
+			    <td class="smalltext">
+			    	<input type="number" id="id_invoices" name="id_invoices" value="[in_id_invoices]" size="10" class="input">
+			    	<!-- <a href="/cgi-bin/common/apps/schid?cmd=invoices&db=cu_invoices&fname=id_invoices&ajaxtype=id_invoices" title="Search Order" class="fancy_modal_iframe">
+						<img src="/sitimages//default/icsearchsmall.gif" border="0">
+					</a> -->
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">Folio / Series: </td>
+			    <td class="smalltext">
+			    	<input type="text" id="doc_serial" name="doc_serial" value="[in_doc_serial]" size="10" maxlength="20" class="input">
+			    	&nbsp;
+			    	<input type="number" id="doc_num" name="doc_num" value="[in_doc_num]" size="10" maxlength="20" class="input">
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">From Date : <span class="smallfieldterr">[er_from_doc_date]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="from_doc_date" name="from_doc_date" value="[in_from_doc_date]" size="10" class="input">
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">To Date : <span class="smallfieldterr">[er_to_doc_date]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="to_doc_date" name="to_doc_date" value="[in_to_doc_date]" size="10" class="input">
+			    </td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Credit Memos</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			    <td width="20%">ID Credit Memos : <span class="smallfieldterr">[er_id_creditmemos]</span></td>
+			    <td class="smalltext">
+			    	<input type="number" id="id_creditmemos" name="id_creditmemos" value="[in_id_creditmemos]" size="10" class="input">
+			    	<!-- <a href="/cgi-bin/common/apps/schid?cmd=orders&db=sl_orders&fname=id_orders&ajaxtype=id_orders" title="Search Order" class="fancy_modal_iframe">
+						<img src="/sitimages//default/icsearchsmall.gif" border="0">
+					</a> -->
+		    	</td>
+		    	<tr>
+			    <td width="20%">From Date : <span class="smallfieldterr">[er_from_date_cm]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="from_date_cm" name="from_date_cm" value="[in_from_date_cm]" size="10" class="input">
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">To Date : <span class="smallfieldterr">[er_to_date_cm]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="to_date_cm" name="to_date_cm" value="[in_to_date_cm]" size="10" class="input">
+			    </td>
+			</tr>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Orders</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			    <td width="20%">ID Orders : <span class="smallfieldterr">[er_id_orders]</span></td>
+			    <td class="smalltext">
+			    	<input type="number" id="id_orders" name="id_orders" value="[in_id_orders]" size="10" class="input">
+			    	<!-- <a href="/cgi-bin/common/apps/schid?cmd=orders&db=sl_orders&fname=id_orders&ajaxtype=id_orders" title="Search Order" class="fancy_modal_iframe">
+						<img src="/sitimages//default/icsearchsmall.gif" border="0">
+					</a> -->
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">From Date : <span class="smallfieldterr">[er_from_date]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" class="input">
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">To Date : <span class="smallfieldterr">[er_to_date]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" class="input">
+			    </td>
+			</tr>
+			<tr>
+	   			<td width="20%" valign="top">Payment Type :</td>
+				<td class="smalltext"> 
+					[bc_ptype@sl_orders]
+				</td>
+			</tr>
+			<tr>
+	   			<td width="20%" valign="top">Sale Channel :</td>
+				<td class="smalltext"> 
+					[fc_build_checkbox_saleorigins]
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Customers</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			    <td width="20%">ID Custumer : <span class="smallfieldterr">[er_id_customers]</span></td>
+			    <td class="smalltext">
+			    	<input type="number" id="id_customers" name="id_customers" value="[in_id_customers]" size="10" class="input">
+			    	<a href="/cgi-bin/common/apps/schid?cmd=customers&db=sl_customers&fname=id_customers&ajaxtype=id_customers" title="Search Customer" class="fancy_modal_iframe">
+						<img src="/sitimages//default/icsearchsmall.gif" border="0">
+					</a>
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">First Name : <span class="smallfieldterr">[er_firstname]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="firstname" name="firstname" value="[in_firstname]" size="40" class="input">
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">Last Name (Father) : <span class="smallfieldterr">[er_lastname1]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="lastname1" name="lastname1" value="[in_lastname1]" size="40" class="input">
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">Last Name (Mother)  : <span class="smallfieldterr">[er_lastname2]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="lastname2" name="lastname2" value="[in_lastname2]" size="40" class="input">
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">RFC  : <span class="smallfieldterr">[er_customer_fcode]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="customer_fcode" name="customer_fcode" value="[in_customer_fcode]" size="20" maxlength="18" class="input">
+		    	</td>
+			</tr>
+			<tr>
+	   			<td width="20%" valign="top">Type :</td>
+				<td class="smalltext"> 
+					[bc_type@sl_customers]
+				</td>
+			</tr>
+			<tr>
+	   			<td width="20%" valign="top">Currency :</td>
+				<td class="smalltext"> 
+					[bc_currency@sl_customers]
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+
+	<p align="center"><input type="submit" value="Export" class="button" loading="0"></p>
+  </form>
+
+<script type="text/javascript">
+<!--
+	chg_radio('ptype','[in_ptype]');
+	chg_radio('invoice_type','[in_invoice_type]');
+	chg_radio('id_salesorigins','[in_id_salesorigins]');
+	chg_radio('type','[in_type]');
+	chg_radio('currency','[in_currency]');
+-->
+</script>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

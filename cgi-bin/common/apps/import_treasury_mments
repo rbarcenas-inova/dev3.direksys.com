@@ -1,0 +1,973 @@
+#!/usr/bin/perl
+#######################################################################
+#######################################################################
+#######################################################################
+use DBI;
+use DBIx::Connector;
+use DBD::mysql;
+
+# Load the form information and set the config file and userid.
+local(%in) = &parse_form;
+local(%config, %cfg, %usr);
+
+# Required Libraries
+# --------------------------------------------------------
+eval {
+	require ("../subs/auth.cgi");
+	require ("../subs/sub.base.html.cgi");
+};
+
+if ($@) { &cgierr ("Error loading required Libraries",300,$@); }
+
+eval { &main; };
+if ($@) { &cgierr("Fatal error, 301, $@"); }
+
+
+
+sub main {
+	$|++;
+	print "Content-type: text/html\n\n";
+
+	# aplico la 3 porque este proceso fue diseñado para MUFAR
+	# $in{'e'} = 7 if (!$in{'e'});
+	&load_settings;
+
+	$sys{'fmt_curr_decimal_digits'} = 2 if(!$sys{'fmt_curr_decimal_digits'});
+
+	my $email_text = 'CARGA DE MOVS. PARA TESORERIA -- '.localtime.'<br />';
+	print "DIREKSYS($in{'e'}) - CARGA DE MOVIMIENTOS PARA TESORERIA<br>";
+	if($in{'psw'} eq 'devMX') {
+		&connect_db;
+		# paso 1 - revisar si en el folder configurado existen los 2 archivos y podrian ser del tipo csv | xls | xlsx
+		$dir = $cfg{'path_treasury_layouts'};
+		my $sub_acc_of = $cfg{'sub_acc'};
+		my $email_text;
+		my $first_movement_id;
+		my $last_movement_id;
+		
+		my %files_subacc = ('stdr9267' => '65502929267', #0 -> 10
+							'stdr8060' => '65502258060', 
+							'stdr8060inv' => '65502258060',
+							'stdr3690dlrs' => '82500533690',
+							'bmer4314' => '0183274314', #0 -> 5
+							'bmer4144' => '0183274144',
+							'banorte2279' => '0681342279', #0 -> 11
+							'banorte2279inv' => '0681342279',
+							'bmx0091' => '',
+							'bmx4505' => '8674505', #0 -> 5
+							'hsbc0631' => '4052040631', #0 -> 13
+							'inb1668' => '50012791668', #0 -> 11
+							'ixe4387'=>'558426501570',
+							'monex'=>'29705');
+							
+		my %files_ach = ('stdr9267' => '014180655029292671',
+							'stdr8060' => '014180655022580607',
+							'stdr8060inv' => '014180655022580607I',
+							'stdr3690dlrs' => '014180825005336909',
+							'bmer4314' => '012180001832743141',
+							'bmer4144' => '012180001832741444',
+							'banorte2279' => '072180006813422798',
+							'banorte2279inv' => '072180006813422798I',
+							'bmx0091' => '',
+							'bmx4505' => '002180700086745057',
+							'hsbc0631' => '021180040520406315',
+							'hsbc0631' => '021180040520406315',
+							'inb1668' => '036180500127916681',
+							'ixe4387'=>'5584265015700091',
+							'monex'=>'MONEX CEDES'); 
+		
+		my %filter_noaccount = ('monex' => '1');
+
+		if(-e $dir) {
+			
+			# cambiar a nombre archivo dinamico
+			$file_name2 = ($in{'file_name'})?$in{'file_name'}.'.csv':'treasury_movements.csv';
+			$dir2 = $dir.$file_name2;
+			print "abriendo: ".$dir2." <br>";
+			
+			# lee archivo 2
+			my ($registers2) = 0; # lo limitaremos al no de productos que obtuvimos arriba
+			my ($total_regs) = 0;
+			my (@office_desc);
+			if(-r $dir2 and open (FILE, $dir2)) {
+				
+				my ($sth_banks);
+				my ($sth_accounts);
+				my $rec_banks;
+				my $rec_accounts;
+				#my $accounting_ids = '71001002, 71501001, 11401004, 71001001, 11601004, 71001001, 10701002, 71001001, 11401002';
+				
+				my %accounting_ids = ('COM GENERAL' => '71001002', 'INTERESES GANADOS POR INVERSION' => '71501001', 'IDE RETENIDO POR BANCOS' => '11401004',
+									  'IVA ACREDITABLE' => '11601004', 'CONTRACARGO' => '10701002', 'ISR RETENIDO POR BANCOS' => '11401002',
+									  'COMISION POR VENTA TARJETA DE CREDITO' => '71001001',
+									  'COM EXPORTACIONES' => '71001002'
+									 );
+				
+				my %clasifications_segments = ('COM GENERAL' => '39',#100
+												'INTERESES GANADOS POR INVERSION' => '39',#100
+												'IDE RETENIDO POR BANCOS' => 'NULL',#100
+												'IVA ACREDITABLE' => 'NULL',#100
+												'CONTRACARGO' => 'NULL',#20
+												'ISR RETENIDO POR BANCOS' => 'NULL',#100
+												'COM INTERNET' => '26',#80
+												'COM CALL CENTER MONTERREY' => '8',#20
+												'COM CALL CENTER MEXICO' => '8',#20
+												'COM EXPORTACIONES' => '39');#100
+				
+				my %repeated_clasifications = ('COM INTERNET' => 'COMISION POR VENTA TARJETA DE CREDITO',
+											   'COM CALL CENTER MONTERREY' => 'COMISION POR VENTA TARJETA DE CREDITO',
+											   'COM CALL CENTER MEXICO' => 'COMISION POR VENTA TARJETA DE CREDITO');
+				
+				
+				my @file_clasifications = ('COM CALL CENTER MONTERREY','IVA ACREDITABLE','COM INTERNET',
+									  'CONTRACARGO','TRASPASO ENTRE CUENTAS','INTERESES GANADOS POR INVERSION',
+									  'ISR RETENIDO POR BANCOS','COM GENERAL','IDE RETENIDO POR BANCOS',
+									  'COM CALL CENTER MEXICO');
+				
+				
+				my %db_clasificatios = ('10701002' => 'CLIENTES CONTRACARGOS', '11401002' => 'ISR RETENIDO POR BANCOS', '11401004' => 'IDE RETENIDO POR BANCOS',
+										'11601004' => 'IVA 16% ACREDITABLE PAGADO', '71001001' => 'COMISION POR VENTA TARJETA DE CREDITO', '71001002' => 'COMISION POR MANEJO DE CUENTA',
+										'71501001' => 'INTERESES GANADO POR INVERSIONES');
+													
+				my ($sth_last_bm) = &Do_SQL("SELECT CONCAT_WS(' | ',`ID_banks_movements`,`ID_banks`,`BankDate`,`Amount`,`RefNum`,`RefNumCustom`,`Date`,`Time`,`ID_admin_users`) as last_movement, ID_banks_movements as id_last FROM sl_banks_movements ORDER BY ID_banks_movements DESC LIMIT 1;");
+				$rec_last_bm = $sth_last_bm->fetchrow_hashref;
+				$email_text .= 'Ultimo registro en sl_banks_movements antes de la insercion: '.$rec_last_bm->{'last_movement'}."\r\n";
+				$first_movement_id = ($rec_last_bm->{'id_last'} + 1);								
+				while (my $record = <FILE>) {
+					chomp $record;
+					#$registers2++;
+					$total_regs++;
+					#$record =~ s/,//g;
+					#print $record, '<br/>';
+					
+					while ($record =~ m/\"(.+?)\"/) {
+						if ($record =~ m/\"(.+?)\"/) {
+							$record =~ s/\"(.+?)\"/\|$1\|/u;
+							while ($record =~ m/\|(.*),(.*)\|/) {
+									$record =~ s/\|(.*?),(.*?)\|/\|$1$2\|/;
+							}
+							$record =~ s/\|//g;
+						}
+					}
+
+
+						
+					my @fields2 = split "," , $record;
+						
+			#print "$fields2[0] 0| $fields2[1] 1| $fields2[2] 2| $fields2[3] 3| $fields2[4] 4| $fields2[5] 5| $fields2[6] 6| $fields2[7] 7| $fields2[8] 8| $fields2[9] 9| $fields2[10] 10| $fields2[11] 11| $fields2[12] 12| $fields2[13] 13|",'<br/>';
+					
+					next if (!($fields2[0] =~ m/\d{2}\/\d{2}\/\d{4}/));
+					
+					my $col_clasification = '';
+					#***************************************************************************************************************
+					
+					my $movement_type = '';
+					my $bank_date;
+					my $movement_amount = 0;
+					my $ref_num_custom = 'NULL';
+					my $movement_memo = 'NULL';
+					my $id_banks_movrel_new = '';
+					my $id_banks_movements_new = '';
+					my $table_used = 'sl_banks_movements';
+					my $cat_mment_type = '';
+					my $mment_type = '';
+					my $ach_trans;
+					my $ach_trans_cnies;
+					my $currency_exchange;
+
+					$file_name2=lc($file_name2);
+
+					##NEW
+					if($file_name2 ne ''){
+						#$fields2[13] = &trim($fields2[12]); # currency_exchange
+						$fields2[12] = &trim($fields2[12]); # revenue (IN's)
+						$fields2[11] = &trim($fields2[11]); # expense (OUT's)
+						$fields2[10] =~ s/\s+$//g; #clasificacion
+						$fields2[10] =~ s/^\s+//g; 
+						$fields2[5] =~ s/\240//g; #nonbreakingspace
+						$fields2[5] =~ s/\s//g; 
+						$fields2[4] =~ s/\240//g; #nonbreakingspace
+						$fields2[4] =~ s/\s//g; 
+						$fields2[0] =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$2-$1/; 
+						$col_clasification = $fields2[10];
+			#print "$fields2[0] 0| $fields2[1] 1| $fields2[2] 2| $fields2[3] 3| $fields2[4] 4| $fields2[5] 5| $fields2[6] 6| $fields2[7] 7| $fields2[8] 8| $fields2[9] 9| $fields2[10] 10| $fields2[11] 11| $fields2[12] 12| $fields2[13] 13|",'<br/>';					
+			#print $col_clasification;
+						if ($fields2['5'] ne '' and $fields2['4'] eq '' ) {
+							$movement_type = 'Credits';
+							$cat_mment_type = 'Tesoreria';
+							$mment_type = 'Credit';
+							$fields2['5'] =~ s/\$|\,//;
+							$movement_amount = $fields2['5'];
+							$ach_trans = $fields2[11];
+							$ach_trans_cnies = $fields2[14];
+						} elsif ( $fields2['5'] eq '' and $fields2['4'] ne '' ) {
+							$movement_type = 'Debits';
+							$cat_mment_type = 'Tesoreria';
+							$mment_type = 'Debit';
+							$fields2['4'] =~ s/\$|\,//;
+							$movement_amount = $fields2['4'];
+							$ach_trans = $fields2[12];
+							$ach_trans_cnies = $fields2[15];
+						}			
+						#$currency_exchange = $fields2[13] if($fields2[13] ne '');
+						if($fields2[13] ne ''){$currency_exchange = $fields2[13];}else{$currency_exchange = 1;}
+						$bank_date = $fields2[0];
+						$ref_num_custom = $fields2['7'] if($fields2['7'] ne '');
+						$movement_memo = $fields2['3'] if($fields2['3'] ne '');						
+					}
+					##END NEW 
+
+					##ORIGINAL
+					#if ($file_name2 eq 'stdr9267.csv' or $file_name2 eq 'stdr8060.csv' or $file_name2 eq 'stdr8060inv.csv') {
+					# 	$fields2[12] = &trim($fields2[12]); # revenue
+					# 	$fields2[11] = &trim($fields2[11]); # expense
+					# 	#$fields2[11] =~ s/\s+$//g; 
+					# 	#$fields2[11] =~ s/^\s+//g;
+					# 	$fields2[10] =~ s/\s+$//g; #clasificacion
+					# 	$fields2[10] =~ s/^\s+//g; 
+					# 	$fields2[5] =~ s/\240//g; #nonbreakingspace
+					# 	$fields2[5] =~ s/\s//g; 
+					# 	$fields2[4] =~ s/\240//g; #nonbreakingspace
+					# 	$fields2[4] =~ s/\s//g; 
+					# 	$fields2[0] =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$2-$1/;
+					# 	#$ach_trans = $fields2[11];
+					# 	#$ach_trans2 = $fields2[12]; 
+
+					# 	$col_clasification = $fields2[10];
+						
+					# 	if ($fields2['5'] ne '' and $fields2['4'] eq '' ) {
+					# 		$movement_type = 'Credits';
+					# 		$cat_mment_type = 'Tesoreria';
+					# 		$mment_type = 'Credit';
+					# 		$fields2['5'] =~ s/\$|\,//;
+					# 		$movement_amount = $fields2['5'];
+					# 		$ach_trans = $fields2[12];
+					# 		$ach_trans_cnies = $fields2[14];
+					# 	} elsif ( $fields2['5'] eq '' and $fields2['4'] ne '' ) {
+					# 		$movement_type = 'Debits';
+					# 		$cat_mment_type = 'Tesoreria';
+					# 		$mment_type = 'Debit';
+					# 		$fields2['4'] =~ s/\$|\,//;
+					# 		$movement_amount = $fields2['4'];
+					# 		$ach_trans = $fields2[11];
+					# 		$ach_trans_cnies = $fields2[13];
+					# 	}
+						
+					# 	$bank_date = $fields2[0];
+					# 	$ref_num_custom = $fields2['7'] if($fields2['7'] ne '');
+					# 	$movement_memo = $fields2['3'] if($fields2['3'] ne '');
+						
+					# }elsif ($file_name2 eq 'bmer4314.csv' or $file_name2 eq 'bmer4144.csv') {
+					# 	$fields2[7] = &trim($fields2[7]); # revenue
+					# 	$fields2[6] = &trim($fields2[6]); # expense
+					# 	$fields2[5] =~ s/\s+$//g; #Clasification
+					# 	$fields2[5] =~ s/^\s+//g;
+					# 	#$fields2[6] =~ s/\s+$//g; 
+					# 	#$fields2[6] =~ s/^\s+//g;
+					# 	#$ach_trans = $fields2[6];
+					# 	#$ach_trans2 = $fields2[7];
+						
+					# 				#Fecha
+					# 	$ref_num_custom = $fields2[1];			#Concepto / referencia
+						
+					# 	$fields2[3] =~ s/\240//g;#nonbreakingspace
+					# 	$fields2[3] =~ s/\s//g;
+					# 	$fields2[2] =~ s/\240//g;#nonbreakingspace
+					# 	$fields2[2] =~ s/\s//g;
+					# 	$fields2[0] =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$2-$1/; #Fecha
+					# 	$bank_date = $fields2[0];
+						
+					# 	if ($fields2['3'] ne '' and $fields2['2'] eq '' ) {
+					# 		$movement_type = 'Credits';
+					# 		$cat_mment_type = 'Tesoreria';
+					# 		$mment_type = 'Credit';
+					# 		$fields2['3'] =~ s/\$|\,//;
+					# 		$movement_amount = $fields2['3'];
+					# 		$ach_trans = $fields2[7];
+					# 		$ach_trans_cnies = $fields2[9];
+					# 	} elsif ( $fields2['3'] eq '' and $fields2['2'] ne '' ) {
+					# 		$movement_type = 'Debits';
+					# 		$cat_mment_type = 'Tesoreria';
+					# 		$mment_type = 'Debit';
+					# 		$fields2['2'] =~ s/\$|\,//;
+					# 		$movement_amount = $fields2['2'];
+					# 		$ach_trans = $fields2[6];
+					# 		$ach_trans_cnies = $fields2[8];
+					# 	}
+					# 	$col_clasification = $fields2[5];
+					# 	$col_clasification =~ s/\s+$//g;
+					# 	$col_clasification =~ s/^\s+//g;
+
+					# } elsif ($file_name2 eq 'banorte2279.csv' or $file_name2 eq 'banorte2279inv.csv') {
+					# 	$fields2[13] = &trim($fields2[13]); # revenue
+					# 	$fields2[12] = &trim($fields2[12]); # expense
+					# 	#$fields2[12] =~ s/\s+$//g; 
+					# 	#$fields2[12] =~ s/^\s+//g;
+					# 	$fields2[11] =~ s/\s+$//g; #clasificacion
+					# 	$fields2[11] =~ s/^\s+//g;
+					# 	$fields2[7] =~ s/\240//g;#nonbreakingspace
+					# 	$fields2[7] =~ s/\s//g;
+					# 	$fields2[6] =~ s/\240//g;#nonbreakingspace
+					# 	$fields2[6] =~ s/\s//g;
+					# 	$fields2[0] =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$2-$1/;
+					# 	#$ach_trans = $fields2[12];
+					# 	#$ach_trans2 = $fields2[13];
+						
+					# 	$col_clasification = $fields2[11];
+						
+					# 	if ($fields2['6'] ne '' and $fields2['7'] eq '' ) {
+					# 		$movement_type = 'Credits';
+					# 		$cat_mment_type = 'Tesoreria';
+					# 		$mment_type = 'Credit';
+					# 		$fields2['6'] =~ s/\$|\,//;
+					# 		$movement_amount = $fields2['6'];
+					# 		$ach_trans = $fields2[13];
+					# 		$ach_trans_cnies = $fields2[15];
+					# 	} elsif ( $fields2['6'] eq '' and $fields2['7'] ne '' ) {
+					# 		$movement_type = 'Debits';
+					# 		$cat_mment_type = 'Tesoreria';
+					# 		$mment_type = 'Debit';
+					# 		$fields2['7'] =~ s/\$|\,//;
+					# 		$movement_amount = $fields2['7'];
+					# 		$ach_trans = $fields2[12];
+					# 		$ach_trans_cnies = $fields2[14];
+					# 	}
+						
+					# 	$bank_date = $fields2[0];
+					# 	$ref_num_custom = $fields2['2'] if($fields2['2'] ne '');
+					# 	$movement_memo = $fields2['3'] if($fields2['3'] ne '');
+						
+						
+					# } elsif ($file_name2 eq 'bmx091.csv' or $file_name2 eq 'bmx4505.csv') {
+					# 	$fields2[7] = &trim($fields2[7]); # revenue
+					# 	$fields2[6] = &trim($fields2[6]); # expense
+					# 	#$fields2[6] =~ s/\s+$//g; 
+					# 	#$fields2[6] =~ s/^\s+//g;
+					# 	$fields2[5] =~ s/\s+$//g; #clasificacion
+					# 	$fields2[5] =~ s/^\s+//g;
+					# 	$fields2[3] =~ s/\240//g;#nonbreakingspace
+					# 	$fields2[3] =~ s/\s//g;
+					# 	$fields2[2] =~ s/\240//g;#nonbreakingspace
+					# 	$fields2[2] =~ s/\s//g;
+					# 	$fields2[0] =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$2-$1/;
+					# 	#$ach_trans = $fields2[6];
+					# 	#$ach_trans2 = $fields2[7];
+						
+					# 	$col_clasification = $fields2[5];
+						
+					# 	if ($fields2['2'] ne '' and $fields2['3'] eq '' ) {
+					# 		$movement_type = 'Credits';
+					# 		$cat_mment_type = 'Tesoreria';
+					# 		$mment_type = 'Credit';
+					# 		$fields2['2'] =~ s/\$|\,//;
+					# 		$movement_amount = $fields2['2'];
+					# 		$ach_trans = $fields2[7];
+					# 		$ach_trans_cnies = $fields2[9];
+					# 	} elsif ( $fields2['2'] eq '' and $fields2['3'] ne '' ) {
+					# 		$movement_type = 'Debits';
+					# 		$cat_mment_type = 'Tesoreria';
+					# 		$mment_type = 'Debit';
+					# 		$fields2['3'] =~ s/\$|\,//;
+					# 		$movement_amount = $fields2['3'];
+					# 		$ach_trans = $fields2[6];
+					# 		$ach_trans_cnies = $fields2[8];
+					# 	}
+						
+					# 	$bank_date = $fields2[0];																	
+					# 	$ref_num_custom = $fields2['1'] if($fields2['1'] ne '');	
+					# 	$movement_memo = $fields2['1'] if($fields2['1'] ne '');		#Descripcion
+					
+					# } elsif ($file_name2 eq 'hsbc.csv' or $file_name2 eq 'hsbc0631.csv') {
+					# 	$fields2[15] = &trim($fields2[15]); # revenue
+					# 	$fields2[14] = &trim($fields2[14]); # expense
+					# 	#$fields2[14] =~ s/\s+$//g; 
+					# 	#$fields2[14] =~ s/^\s+//g;
+					# 	$fields2[13] =~ s/\s+$//g; #clasificacion
+					# 	$fields2[13] =~ s/^\s+//g; 
+					# 	$fields2[4] =~ s/\240//g; #nonbreakingspace
+					# 	$fields2[4] =~ s/\s//g; 
+					# 	$fields2[3] =~ s/\240//g; #nonbreakingspace
+					# 	$fields2[3] =~ s/\s//g; 
+					# 	$fields2[0] =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$2-$1/;
+					# 	#$ach_trans = $fields2[14];
+					# 	#$ach_trans2 = $fields2[15];
+						
+					# 	$col_clasification = $fields2[13];
+						
+					# 	if ($fields2['4'] ne '' and $fields2['3'] eq '' ) {
+					# 		$movement_type = 'Credits';
+					# 		$cat_mment_type = 'Tesoreria';
+					# 		$mment_type = 'Credit';
+					# 		$fields2['4'] =~ s/\$|\,//;
+					# 		$movement_amount = $fields2['4'];
+					# 		$ach_trans = $fields2[15];
+					# 		$ach_trans_cnies = $fields2[17];
+					# 	} elsif ( $fields2['4'] eq '' and $fields2['3'] ne '' ) {
+					# 		$movement_type = 'Debits';
+					# 		$cat_mment_type = 'Tesoreria';
+					# 		$mment_type = 'Debit';
+					# 		$fields2['3'] =~ s/\$|\,//;
+					# 		$movement_amount = $fields2['3'];
+					# 		$ach_trans = $fields2[14];
+					# 		$ach_trans_cnies = $fields2[16];
+					# 	}
+						
+					# 	$bank_date = $fields2[0];
+					# 	$ref_num_custom = $fields2['8'] if($fields2['8'] ne '');
+					# 	$movement_memo = $fields2['2'] if($fields2['2'] ne '');
+					
+					# } elsif ($file_name2 eq 'inb1668.csv') {
+					# 	$fields2[13] = &trim($fields2[13]); # revenue
+					# 	$fields2[12] = &trim($fields2[12]); # expense
+					# 	#$fields2[12] =~ s/\s+$//g; 
+					# 	#$fields2[12] =~ s/^\s+//g;
+					# 	$fields2[11] =~ s/\s+$//g; #clasificacion
+					# 	$fields2[11] =~ s/^\s+//g; 
+					# 	$fields2[8] =~ s/\240//g; #nonbreakingspace
+					# 	$fields2[8] =~ s/\s//g; 
+					# 	$fields2[7] =~ s/\240//g; #nonbreakingspace
+					# 	$fields2[7] =~ s/\s//g; 
+					# 	$fields2[0] =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$2-$1/;
+					# 	#$ach_trans = $fields2[12];
+					# 	#$ach_trans2 = $fields2[13];
+						
+					# 	$col_clasification = $fields2[11];
+						
+					# 	if ($fields2['8'] ne '' and $fields2['7'] eq '' ) {
+					# 		$movement_type = 'Credits';
+					# 		$cat_mment_type = 'Tesoreria';
+					# 		$mment_type = 'Credit';
+					# 		$fields2['8'] =~ s/\$|\,//;
+					# 		$movement_amount = $fields2['8'];
+					# 		$ach_trans = $fields2[13];
+					# 		$ach_trans_cnies = $fields2[15];
+					# 	} elsif ( $fields2['8'] eq '' and $fields2['7'] ne '' ) {
+					# 		$movement_type = 'Debits';
+					# 		$cat_mment_type = 'Tesoreria';
+					# 		$mment_type = 'Debit';
+					# 		$fields2['7'] =~ s/\$|\,//;
+					# 		$movement_amount = $fields2['7'];
+					# 		$ach_trans = $fields2[12];
+					# 		$ach_trans_cnies = $fields2[13];
+					# 	}
+						
+					# 	$bank_date = $fields2[0];
+					# 	$ref_num_custom = $fields2['1'] if($fields2['1'] ne '');
+					# 	$movement_memo = $fields2['5'] if($fields2['5'] ne '');
+					# }
+					##END ORIGINAL
+					
+					#next if ($col_clasification eq 'TRASPASO' or $col_clasification eq 'TRANSFERENCIA INTERCIA');
+					
+					$registers2++;
+					#$fields2[10] =~ s/\s+$//g;
+					#$fields2[10] =~ s/^\s+//g;
+					#$fields2[5] =~ s/\240//g;#nonbreakingspace
+					#$fields2[5] =~ s/\s//g;
+					#$fields2[4] =~ s/\240//g;#nonbreakingspace
+					#$fields2[4] =~ s/\s//g;
+					#$fields2[0] =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$2-$1/;
+					#my $movement_type = '';
+					#
+					#
+					#my $bank_date = $fields2[0];
+					#my $movement_amount = 0;
+					#my $ref_num_custom = 'NULL';
+					#$ref_num_custom = $fields2['7'] if($fields2['7'] ne '');
+					#my $movement_memo = 'NULL';
+					#$movement_memo = $fields2['3'] if($fields2['3'] ne '');
+					#my $id_banks_movrel_new = '';
+					#my $id_banks_movements_new = '';
+					#my $table_used = 'sl_banks_movements';
+					#my $cat_mment_type = '';
+					#my $mment_type = '';
+					#
+					#if ($fields2['5'] ne '' and $fields2['4'] eq '' ) {
+					#	$movement_type = 'Credits';
+					#	$cat_mment_type = 'Tesoreria';
+					#	$mment_type = 'Credit';
+					#	$fields2['5'] =~ s/\$|\,//;
+					#	$movement_amount = $fields2['5'];
+					#} elsif ( $fields2['5'] eq '' and $fields2['4'] ne '' ) {
+					#	$movement_type = 'Debits';
+					#	$cat_mment_type = 'Tesoreria';
+					#	$mment_type = 'Debit';
+					#	$fields2['4'] =~ s/\$|\,//;
+					#	$movement_amount = $fields2['4'];
+					#}
+					
+			#print "$ach_trans <br/>";
+					if ($col_clasification eq 'TRASPASO' or $col_clasification eq 'TRANSFERENCIA INTERCIA' or $col_clasification eq 'TRASPASO ENTRE CUENTAS') {
+						$ach_trans_cnies = &trim($ach_trans_cnies);
+						$ach = ($col_clasification eq 'TRANSFERENCIA INTERCIA')?$ach_trans_cnies:$ach_trans;
+						if (length($ach) < 18 and $filter_noaccount{lc($in{'file_name'})} eq '') {
+							my $diff_length = 18 - length($ach);
+							$ach = ( '0' x $diff_length ) . $ach;
+						}
+			#print "$ach <br/>";
+			#print "SELECT * FROM sl_banks WHERE `ABA-ACH` = '$ach';<br/>";
+			#print "SELECT * FROM sl_banks WHERE ShortName = '$in{'file_name'}';";
+						($sth_banks) = &Do_SQL("SELECT * FROM sl_banks WHERE `ABA-ACH` = '$ach';");
+						($sth_banks) = &Do_SQL("SELECT * FROM sl_banks WHERE ShortName = '$in{'file_name'}';");
+						$rec_banks = $sth_banks->fetchrow_hashref;
+						($sth_accounts) = &Do_SQL("SELECT
+												  sl_accounts.ID_accounts, sl_accounts.ID_accounting, sl_accounts.Name, sl_accounts.`Description` 
+												FROM sl_accounts 
+												INNER JOIN sl_banks ON sl_accounts.`Description` = sl_banks.`ABA-ACH`
+												WHERE 1 AND ID_banks = $rec_banks->{'ID_banks'} AND ID_accategories = '1';");
+
+						$rec_accounts = $sth_accounts->fetchrow_hashref;
+					} else {
+						#($sth_banks) = &Do_SQL("_SELECT * FROM sl_banks WHERE SubAccountOf = '$files_subacc{$in{'file_name'}}' AND `ABA-ACH` = '$files_ach{$in{'file_name'}}';");
+						#$rec_banks = $sth_banks->fetchrow_hashref;
+						($sth_banks) = &Do_SQL("SELECT * FROM sl_banks WHERE ShortName = '$in{'file_name'}';");
+						$rec_banks = $sth_banks->fetchrow_hashref;
+						($sth_accounts) = &Do_SQL("SELECT * FROM sl_accounts WHERE ID_accounting = '$accounting_ids{$col_clasification}';");
+						$rec_accounts = $sth_accounts->fetchrow_hashref;
+					} 
+					 
+					if ($rec_accounts->{'ID_accounts'}) {
+						####################################################################################
+						$sth_bmovements = &Do_SQL("INSERT INTO sl_banks_movements SET
+										ID_banks_movements = NULL
+										, ID_banks=".$rec_banks->{'ID_banks'}."
+										, Type='".$movement_type."'
+										, BankDate='$bank_date'
+										, ConsDate = '$bank_date'
+										, Amount='".$movement_amount."'
+										, AmountCurrency = NULL
+										, currency_exchange = '".$currency_exchange."'
+										, RefNum = NULL
+										, RefNumCustom='$ref_num_custom'
+										, doc_type = 'NA'
+										, Memo = '$movement_memo'
+										, Date = CURDATE()
+										, Time=NOW()
+										, ID_admin_users=1");
+						$id_banks_movements_new = $sth_bmovements->{'mysql_insertid'};
+						if (!$id_banks_movements_new){
+							$email_text .= 'No se insertó en sl_banks_movements'."\r\n";
+							$email_text .= "INSERT INTO sl_banks_movements SET ID_banks_movements = NULL, ID_banks=".$rec_banks->{'ID_banks'}.", Type='".$movement_type."', BankDate='$bank_date', ConsDate = '$bank_date', Amount=".$movement_amount.", AmountCurrency = NULL, currency_exchange = NULL, RefNum = NULL, RefNumCustom=$ref_num_custom, doc_type = 'NA', Memo = $movement_memo, Date = CURDATE(), Time=NOW(), ID_admin_users=1";
+							
+							print "No se insertó el movimiento \r\n";
+							#exit;
+						} else {
+							$email_text .= "Se insertó el registro con id=$id_banks_movements_new en sl_banks_movements \r\n";
+						}
+						#----------------------------------------------------------------------------------------------
+						$sth_bmovrel = &Do_SQL("INSERT INTO sl_banks_movrel SET
+										ID_banks_movrel = NULL
+										, ID_banks_movements=".$id_banks_movements_new."
+										, tablename= 'accounts'
+										, tableid = '$rec_accounts->{'ID_accounts'}'
+										, AmountPaid = '$movement_amount'
+										, Date = CURDATE()
+										, Time=NOW()
+										, ID_admin_users=1");
+						$id_banks_movrel_new = $sth_bmovrel->{'mysql_insertid'};
+						if (!$id_banks_movrel_new){
+							$email_text .= 'No se insertó en sl_banks_movrel'."\r\n";
+							$email_text .= "INSERT INTO sl_banks_movrel SET ID_banks_movrel = NULL, ID_banks_movements=".$id_banks_movements_new.", tablename= 'accounts', tableid = '$rec_accounts->{'ID_accounts'}', AmountPaid = $movement_amount, Date = CURDATE(), Time=NOW(), ID_admin_users=1";
+							
+							print "No se insertó registro en movrel\r\n";
+							#exit;
+						} else {
+							$email_text .= "Se insertó el registro con id=$id_banks_movrel_new en sl_banks_movrel \r\n";
+						}
+						#----------------------------------------------------------------------------------------------
+						$sth_movements = &Do_SQL("INSERT INTO sl_movements SET
+										ID_movements = NULL
+										, ID_accounts = '$rec_accounts->{'ID_accounts'}'
+										, Amount = '$movement_amount'
+										, Reference = NULL
+										, EffDate = '$bank_date'
+										, tableused = '$table_used'
+										, ID_tableused = '$id_banks_movements_new'
+										, Category = '$cat_mment_type'
+										, Credebit = '$mment_type'
+										, ID_segments = '$clasifications_segments{$col_clasification}'
+										, ID_journalentries = 0
+										, Status = 'Active'
+										, Date = CURDATE()
+										, Time = NOW()
+										, ID_admin_users =1
+										");
+						$id_movements_new = $sth_movements->{'mysql_insertid'};
+						if (!$id_movements_new){
+							$email_text .= 'No se insertó en sl_banks_movrel'."\r\n";
+							$email_text .= "INSERT INTO sl_movements SET ID_movements = NULL, ID_accounts = '$rec_accounts->{'ID_accounts'}', Amount = $movement_amount, Reference = NULL, EffDate = '$bank_date', tableused = '$table_used', ID_tableused = '$id_banks_movements_new', Category = '$cat_mment_type', Credebit = '$mment_type', ID_segments = '$clasifications_segments{$col_clasification}', ID_journalentries = 0, Status = 'Active', Date = CURDATE(), Time = NOW(), ID_admin_users =1";
+							print "No se insertó registro en movements\r\n";
+							#exit;
+						} else {
+							$email_text .= "Se insertó el registro con id=$id_movements_new en sl_movements \r\n";
+						}
+						#----------------------------------------------------------------------------------------------
+						
+					} else {
+						###############################################################################################
+						my $aux_rep_clas = $repeated_clasifications{$col_clasification};
+			#print "SELECT * FROM sl_accounts WHERE ID_accounting = '$accounting_ids{$aux_rep_clas}';";
+						my ($sth_accounts) = &Do_SQL("SELECT * FROM sl_accounts WHERE ID_accounting = '$accounting_ids{$aux_rep_clas}';");
+						$rec_accounts = $sth_accounts->fetchrow_hashref;
+						if ($rec_accounts->{'ID_accounts'}) {
+							$sth_bmovements = &Do_SQL("INSERT INTO sl_banks_movements SET
+										ID_banks_movements = NULL
+										, ID_banks=".$rec_banks->{'ID_banks'}."
+										, Type='".$movement_type."'
+										, BankDate='$bank_date'
+										, ConsDate = '$bank_date'
+										, Amount='".$movement_amount."'
+										, AmountCurrency = NULL
+										, currency_exchange = '".$currency_exchange."'
+										, RefNum = NULL
+										, RefNumCustom='$ref_num_custom'
+										, doc_type = 'NA'
+										, Memo = '$movement_memo'
+										, Date = CURDATE()
+										, Time=NOW()
+										, ID_admin_users=1");
+							$id_banks_movements_new = $sth_bmovements->{'mysql_insertid'};
+							if (!$id_banks_movements_new){
+								$email_text .= 'No se insertó en sl_banks_movements'."\r\n";
+								$email_text .= "INSERT INTO sl_banks_movements SET ID_banks_movements = NULL, ID_banks=".$rec_banks->{'ID_banks'}.", Type='".$movement_type."', BankDate='$bank_date', ConsDate = '$bank_date', Amount=".$movement_amount.", AmountCurrency = NULL, currency_exchange = NULL, RefNum = NULL, RefNumCustom=$ref_num_custom, doc_type = 'NA', Memo = $movement_memo, Date = CURDATE(), Time=NOW(), ID_admin_users=1";
+								
+								print "No se insertó el movimiento\r\n";
+								#exit;
+							} else {
+								$email_text .= "Se insertó el registro con id=$id_banks_movements_new en sl_banks_movements \r\n";
+							}
+							#----------------------------------------------------------------------------------------------
+							$sth_bmovrel = &Do_SQL("INSERT INTO sl_banks_movrel SET
+											ID_banks_movrel = NULL
+											, ID_banks_movements=".$id_banks_movements_new."
+											, tablename= 'accounts'
+											, tableid = '$rec_accounts->{'ID_accounts'}'
+											, AmountPaid = '$movement_amount'
+											, Date = CURDATE()
+											, Time=NOW()
+											, ID_admin_users=1");
+							$id_banks_movrel_new = $sth_bmovrel->{'mysql_insertid'};
+							if (!$id_banks_movrel_new) {
+								$email_text .= 'No se insertó en sl_banks_movrel'."\r\n";
+								$email_text .= "INSERT INTO sl_banks_movrel SET ID_banks_movrel = NULL, ID_banks_movements=".$id_banks_movements_new.", tablename= 'accounts', tableid = '$rec_accounts->{'ID_accounts'}', AmountPaid = $movement_amount, Date = CURDATE(), Time=NOW(), ID_admin_users=1";
+								
+								print "No se insertó registro en movrel\r\n";
+								#exit;
+							} else {
+								$email_text .= "Se insertó el registro con id=$id_banks_movrel_new en sl_banks_movrel \r\n";
+							}
+							
+						} else {
+							#No se encontraron resultados
+							print "No se encontró alguna cuenta contable que corresponda a esa clasificación $accounting_ids{$aux_rep_clas} | $aux_rep_clas | $col_clasification\r\n";
+							$email_text .= "No se encontró alguna cuenta contable que corresponda a esa clasificación $accounting_ids{$aux_rep_clas} | $aux_rep_clas | $col_clasification \r\n";
+							next;
+							
+							#exit;
+						}
+						#----------------------------------------------------------------------------------------------
+						#ALTER TABLE `sl_movements` CHANGE `tableused` `tableused` ENUM( 'sl_orders', 'sl_vendors', 'sl_purchaseorders', 'sl_adjustments', 'sl_bills', 'sl_creditmemos', 'sl_banks_movements' ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
+						#ALTER TABLE `sl_movements` CHANGE `tableused` `tableused` ENUM( 'sl_orders', 'sl_vendors', 'sl_purchaseorders', 'sl_adjustments', 'sl_bills', 'sl_creditmemos', 'sl_banks_movements' ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL 
+						$sth_movements = &Do_SQL("INSERT INTO sl_movements SET
+										ID_movements = NULL
+										, ID_accounts = '$rec_accounts->{'ID_accounts'}'
+										, Amount = '$movement_amount'
+										, Reference = NULL
+										, EffDate = '$bank_date'
+										, tableused = '$table_used'
+										, ID_tableused = '$id_banks_movements_new'
+										, Category = '$cat_mment_type'
+										, Credebit = '$mment_type'
+										, ID_segments = '$clasifications_segments{$col_clasification}'
+										, ID_journalentries = 0
+										, Status = 'Active'
+										, Date = CURDATE()
+										, Time = NOW()
+										, ID_admin_users =1
+										");
+						$id_movements_new = $sth_movements->{'mysql_insertid'};
+						if (!$id_movements_new){
+							$email_text .= 'No se insertó en sl_banks_movrel'."\r\n";
+							$email_text .= "INSERT INTO sl_movements SET ID_movements = NULL, ID_accounts = '$rec_accounts->{'ID_accounts'}', Amount = $movement_amount, Reference = NULL, EffDate = '$bank_date', tableused = '$table_used', ID_tableused = '$id_banks_movements_new', Category = '$cat_mment_type', Credebit = '$movement_type', ID_segments = '$clasifications_segments{$col_clasification}', ID_journalentries = 0, Status = 'Active', Date = CURDATE(), Time = NOW(), ID_admin_users =1";
+							print "No se insertó registro en movements\r\n";
+							#exit;
+						} else {
+							$email_text .= "Se insertó el registro con id=$id_movements_new en sl_movements \r\n";
+						}
+						#----------------------------------------------------------------------------------------------
+					}
+					
+					&Do_SQL("INSERT INTO sl_banks_movements_notes SET
+											ID_banks_movements = '$id_banks_movements_new',
+											Notes='"
+											.'Carga automatica: '
+											.$record.' [|'.$col_clasification.'|] '
+											#.'Sucursal: '.$fields2[2].', '
+											#.'Descripcion: '.$fields2[3].', '
+											#.'Saldo: '.$fields2[6].', '
+											#.'Referencia: '.$fields2[7].', '
+											#.'Concepto: '.$fields2[8].', '
+											#.'Ref. Interbancaria: '.$fields2[9].', '
+											#.'Clasificacion: '.$col_clasification
+											."',Type = 'Low', Date = CURDATE(), Time = CURTIME(), ID_admin_users = '1' ;");
+					
+					#***************************************************************************************************************
+					
+					exit if($total_regs > 200000);
+				}
+				
+				my ($sth_last_am) = &Do_SQL("SELECT ID_banks_movements id_last FROM sl_banks_movements ORDER BY ID_banks_movements DESC LIMIT 1;");
+				$rec_last_am = $sth_last_am->fetchrow_hashref;
+				$email_text .= 'Ultimo registro en sl_banks_movements despues de la insercion: '.$sth_last_am->{'id_last'}."\r\n";
+				$last_movement_id = $rec_last_am->{'id_last'};	
+				$email_text .= "SELECT * FROM sl_banks_movements WHERE ID_banks_movements BETWEEN $first_movement_id AND $last_movement_id;"."\r\n";
+				$email_text .= "SELECT * 
+								FROM
+									sl_banks_movements
+								INNER JOIN
+									sl_banks_movrel ON (sl_banks_movements.ID_banks_movements = sl_banks_movrel.ID_banks_movements)
+								INNER JOIN
+									sl_movements ON (tableused = 'sl_banks_movements' AND sl_movements.ID_tableused = sl_banks_movements.ID_banks_movements)
+								WHERE sl_banks_movements.ID_banks_movements BETWEEN '$first_movement_id' AND '$last_movement_id';"."\r\n";
+				print "<br/> EMAIL TEXT: <br/>";
+				print $email_text;
+				print "<br>";
+
+				if($registers2 > 0) {
+					print "$registers2 records found in dir2\r\n";
+				}else {
+					print "no records found in dir2\r\n";
+				}
+				
+				close FILE;
+			}else{
+				print "<span style='color:red;'>$dir2 no encontrado </span><br>";
+			}
+		 
+		}else{
+			print "<span style='color:red;'>dir '$dir' not found </span><br>";
+			$email_text .= "El archivo '$dir' no fue encontrado.<br>";
+
+		}
+
+		&disconnect_db;
+
+	  	#&send_text_mail($cfg{'from_email'},'omaldonado@inovaus.com',"Resumen de carga para tesoreria [movements] - ".$in{'file_name'}." - ".localtime, $email_text);
+		
+	}else{
+		print "UNAUTH...";
+	}
+
+
+	# return;
+}
+sub trim {
+	my $string = $_[0];
+	$string =~ s/\s+$//g; 
+	$string =~ s/^\s+//g;
+	return $string;
+}
+
+#########################################################
+##			Query				##
+##########################################################
+sub parse_form {
+# --------------------------------------------------------
+	my (@pairs, %in);
+	my ($buffer, $pair, $name, $value);
+
+	if ($ENV{'REQUEST_METHOD'} eq 'GET') {
+		@pairs = split(/&/, $ENV{'QUERY_STRING'});
+	}elsif ($ENV{'REQUEST_METHOD'} eq 'POST') {
+		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
+ 		@pairs = split(/&/, $buffer);
+	}else {
+		&cgierr ("This script must be called from the Web\nusing either GET or POST requests\n\n");
+	}
+	PAIR: foreach $pair (@pairs) {
+		($name, $value) = split(/=/, $pair);
+
+		$name =~ tr/+/ /;
+		$name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		$name = lc($name);
+
+		$value =~ tr/+/ /;
+		$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+
+		$value =~ s/^\s+//g;
+		$value =~ s/\s+$//g;
+
+		#$value =~ s/\r//g;
+		$value =~ s/<!--(.|\n)*-->//g;			# Remove SSI.
+		if ($value eq "---") { next PAIR; }		# This is used as a default choice for select lists and is ignored.
+		(exists $in{$name}) ?
+			($in{$name} .= "|$value") :		# If we have multiple select, then we tack on
+			($in{$name}  = $value);			# using the ~~ as a seperator.
+	}
+	return %in;
+}
+
+##################################################################
+#     CGIERR   	#
+##################################################################
+sub cgierr {
+# --------------------------------------------------------
+# Last Modified on: 11/10/08 11:58:21
+# Last Modified by: MCC C. Gabriel Varela S: Se corrige la forma de mostrar la fecha
+	my (@sys_err) = @_;
+	print "Content-type: text/html\n\n";
+
+	my ($key,$env,$out_in,$out_env);
+	if (!$cfg{'cd'}){
+		print qq|
+						<head>
+										<title>CGI - ERROR</title>
+						</head>					
+						<body BGCOLOR="#FFFFFF" LINK="#FF0000" VLINK="#FF0000" ALINK="#FF0000">
+					
+							<table BORDER="0" WIDTH="500" CELLPADDING="10" CELLSPACING="10">
+							  <tr>
+							    <td BGCOLOR="#FF0000" colspan="2"><font size="5" color="#FFFFFF" face="Arial"><b>CGI-Error</b></font></td>
+							  </tr>
+							</table>
+							<table BORDER="0" WIDTH="550" CELLPADDING="2" CELLSPACING="0">|;
+								$sys_err[0]	and print "\n<tr>\n  <td valign='top' width='200'><font face='Arial' size='3'>Error Message</font></td>\n  <td><font face='Arial' size='3' color='#FF0000'><b>$sys_err[0]</b></font></td>\n</tr>\n";
+								$sys_err[1]	and print "<tr>\n  <td width='200'><font face='Arial' size='2'>Error Code</font></td>\n  <td><font face='Arial' size='2'>$sys_err[1]</font></td>\n";
+								$sys_err[2]	and print "<tr>\n  <td valign='top' width='200'><font face='Arial' size='2'>System Message</font></td>\n  <td><font face='Arial' size='2'>$sys_err[2]</font></td>\n";
+								print qq|
+							<tr>
+							  <td colspan="2"><p>&nbsp</p><font face='Arial' size='2'>If the problem percist, please contact us with the above Information.</font><br>
+									<font face='Arial' size='2'><a href="mailto:$systememail">$systememail</a></font></td>
+							</tr>
+							  </table>
+						</body>
+						</html>|;
+		######################################
+		### Save CGI ERR			
+		##############################
+		my ($ip);
+		my (@outmsg) = @sys_err;
+		my ($sec, $min, $hour, $day, $mon, $year, $dweek, $dyear, $daylight) = localtime(time());
+		$year+=1900;
+		$mon++;
+		my ($time,$date) = ("$hour:$min:$sec","$mon-$day-$year");
+		
+		foreach $key (sort keys %in) {
+			$outmsg[3] .= "$key=$in{$key},";
+		}
+		
+		foreach $env (sort keys %ENV) {
+			$outmsg[4] .= "$env=$ENV{$env},";
+		}
+		
+		for (0..4){
+			$outmsg[$_] =~ s/\n|\r/ /g;
+			$outmsg[$_] =~ s/\|/ /g;
+		}
+		
+		if ($ENV{'REMOTE_ADDR'}){
+			$ip = $ENV{'REMOTE_ADDR'};
+		}elsif ($ENV{'REMOTE_HOST'}){
+			$ip = $ENV{'REMOTE_HOST'};
+		}elsif ($ENV{'HTTP_CLIENT_IP'}){
+			$ip = $ENV{'HTTP_CLIENT_IP'};
+		}else{
+			$ip = "Unknow";
+		}
+	
+		(!$cfg{'cgierr_log_file'}) and ($cfg{'cgierr_log_file'} = './logs/cgierr.log');
+		if (open (LOG, ">>$cfg{'cgierr_log_file'}")){;
+			print LOG "$usr{'username'}|$outmsg[0]|$outmsg[1]|$outmsg[2]|$outmsg[3]|$outmsg[4]|$time|$date|$ip\n";
+			close AUTH;
+		}
+	
+
+	}else{
+		print "<PRE>\n\nCGI ERROR\n==========================================\n";
+					$sys_err[0]	and print "Error Message       : $sys_err[0]\n";
+					$sys_err[1]	and print "Error Code          : $sys_err[1]\n";
+					$sys_err[2]	and print "System Message      : $sys_err[2]\n";
+					$0			and print "Script Location     : $0\n";
+					$]			and print "Perl Version        : $]\n";
+					$sid		and print "Session ID          : $sid\n";
+
+
+		print "\nForm Variables IN\n-------------------------------------------\n";
+		
+		foreach $key (sort keys %in) {
+			my $space = " " x (20 - length($key));
+			$out_in .= "$key=$in{$key},";
+			print "$key$space: $in{$key}\n";
+		}
+		
+		print "\nForm Variables ERROR\n-------------------------------------------\n";
+		foreach $key (sort keys %error) {
+			my $space = " " x (20 - length($key));
+			print "$key$space: $error{$key}\n";
+		}
+		
+		print "\nEnvironment Variables\n-------------------------------------------\n";
+		foreach $env (sort keys %ENV) {
+			my $space = " " x (20 - length($env));
+			$out_env .= "$env=$ENV{$env},";
+			print "$env$space: $ENV{$env}\n";
+		}
+		
+		print "\n</PRE>";
+
+	}
+
+	exit -1;
+}
+
+sub load_settings {
+	my ($fname);
+	print `pwd`;
+	if ($in{'e'}) {
+		$fname = "../general.e".$in{'e'}.".cfg";
+	}else {
+		$fname = "../general.ex.cfg";
+	}
+
+	## general
+	open (CFG, "<$fname") or &cgierr ("Unable to open: $fname,160,$!");
+	LINE: while (<CFG>) {
+		(/^#/)      and next LINE;
+		(/^\s*$/)   and next LINE;
+		$line = $_;
+		$line =~ s/\n|\r//g;
+		my ($td,$name,$value) = split (/\||\=/, $line,3);
+		if ($td eq "conf") {
+			$cfg{$name} = $value;
+			next LINE;
+		}elsif ($td eq "sys"){
+			$sys{$name} = $value;
+			next LINE;
+		}
+	}
+	close CFG;
+
+}
+
+sub check_ip {
+# --------------------------------------------------------
+	my ($ip, $ipfilter) = @_;
+	
+	my (@ip) = split(/\./,$ip,4);
+	my (@allowip) = split(/\,/,$ipfilter,4);
+	
+	for my $i(0..$#allowip){
+		$allowip[$i] =~ s/\n|\r//g;
+		$ok = 1;
+		my (@ipfilter) = split(/\./,$allowip[$i],4);
+		for my $x(0..3){
+			if ($ip[$x] ne $ipfilter[$x] and $ipfilter[$x] ne 'x'){
+				$ok = 0;
+			}
+		}
+	}
+	return $ok;
+}
+
+
+1;

@@ -1,0 +1,157 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+				var ids = ['tab1', 'tab2', 'tab3', 'tab4', 'tab5', 'tab6', 'tab7', 'tab8', 'tab9', 'tab10']
+				
+				[fc_show_wait_dialog]
+				
+				YAHOO.util.Event.on(ids, "click", function(){ YAHOO.example.container.wait.show(); });
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+		<td width="14%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=opr_customers_home")'>Customers</td>
+		<td width="14%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_customers&add=1")'>Add</td>
+		<td width="14%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_customers&search=form")'>Search</td>
+		<td width="14%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_customers&search=advform")'>Advance Search</td>
+	    <td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_customers&search=listall")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+<form method="post" action="[va_script_url]" name="sitform">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="cmd" value="[in_cmd]">
+
+			
+	&nbsp;
+	<fieldset><legend>Search for Customer</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Customer ID : <span class="smallfieldterr">[er_id_customers]</span></td>
+			<td class="titletext"><a href="[va_script_url]?cmd=opr_customers&view=[in_id_customers]" name="id_customers">[in_id_customers]</a> &nbsp;
+			<input type="text" name="id_customers" value="[in_id_customers]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )' onClick="popup_show('search_cust', 'item_drag', 'popup_exiti', 'element-right', -1, -1,'id_customers');">
+			<a href="#id_customers" id="id_customers" onClick="popup_show('search_cust', 'item_drag', 'popup_exiti', 'element-right', -1, -1,'id_customers');"><img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" value="Next" class="button"></td>
+		</tr>
+	</table>
+	</fieldset>	
+</form>
+	&nbsp;
+<div style="[va_info_style]">
+	<fieldset><legend>Customer Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Customer : </td>
+			<td class="titletext"><a href="[va_script_url]?cmd=opr_customers&view=[in_id_customers]" name="id_customers">[in_id_customers]</a> &nbsp;[va_custname]</td>
+		</tr>
+	</table>
+	</fieldset>		
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+			<td class="tbltextttl">
+				<a href='javascript:trjump("/cgi-bin/mod/admin/admin?cmd=opr_ar_statements&id_customers=[in_id_customers]&action=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+				Records : [va_matches]				
+			</td>
+			<td align="right">Pages : [va_pageslist]</td>	
+		</tr>
+		<tr>
+			<td colspan="2">
+			 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				 <tr>
+				 	<td class="menu_bar_title">ID</td>
+				 	<td class="menu_bar_title">Order Date</td>
+				 	<td class="menu_bar_title">Ship Date</td>
+				 	<td class="menu_bar_title">Payment Date</td>
+				 	<td class="menu_bar_title">Days</td>
+				 	<td class="menu_bar_title">Balance</td>
+				 	<td class="menu_bar_title">Invoices</td>
+				 </tr>
+				 [va_searchresults]
+				 <tr>
+				 	<td align="right" colspan="5">Total : </td>
+				 	<td align="right" style="border-top:thick double #808080;">[va_total_balance]</td>
+				 	<td></td>
+				 </tr>				 
+				</table>
+				&nbsp;
+			 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				 <tr>
+				 	<td class="menu_bar_title" colspan="4" align="center">Past Due</td>
+				 	<td class="menu_bar_title"></td>
+				 	<td class="menu_bar_title" colspan="4" align="center">Not Due</td>
+				 </tr>
+				 <tr>
+				 	<td class="menu_bar_title" align="center" width="11%">90 > days</td>
+				 	<td class="menu_bar_title" align="center" width="11%">61-90 days</td>
+				 	<td class="menu_bar_title" align="center" width="11%">31-60 days</td>
+				 	<td class="menu_bar_title" align="center" width="11%">1-30 days</td>
+				 	<td class="menu_bar_title" align="center" width="11%">Today</td>
+				 	<td class="menu_bar_title" align="center" width="11%">1-30 days</td>
+				 	<td class="menu_bar_title" align="center" width="11%">31-60 days</td>
+				 	<td class="menu_bar_title" align="center" width="11%">61-90 days</td>
+				 	<td class="menu_bar_title" align="center" width="11%">90 > days</td>
+				 </tr>
+				 <tr>
+				 	<td class='smalltext' align="right">[va_due90]</td>
+				 	<td class='smalltext' align="right">[va_due60]</td>
+				 	<td class='smalltext' align="right">[va_due30]</td>
+				 	<td class='smalltext' align="right">[va_due1]</td>
+				 	<td class="menu_bar_title" align="right">[va_due0]</td>
+				 	<td class='smalltext' align="right">[va_ndue1]</td>
+				 	<td class='smalltext' align="right">[va_ndue30]</td>
+				 	<td class='smalltext' align="right">[va_ndue60]</td>
+				 	<td class='smalltext' align="right">[va_ndue90]</td>
+				 </tr>			 
+				</table>				
+			</td>
+		</tr>
+	</table>
+
+
+</div>	
+	&nbsp;
+
+
+<!--  Search Customer  -->
+<div id="search_cust" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+<div class="menu_bar_title" id="item_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Search for a Customer</td>
+			<td align=right width=20px><img id="popup_exiti" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+</div>
+<div >
+<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=customers&db=sl_customers&listall=1&fname=id_customers&ajaxtype=1" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+<H2>Unable to do the script</H2>
+<H3>Please update your Browser</H3>
+</IFRAME>	
+</div></div>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

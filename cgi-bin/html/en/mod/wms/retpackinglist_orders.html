@@ -1,0 +1,139 @@
+[ip_header]
+<script>
+function chk_ord(order){
+	if(document.getElementById("chkor_"+order).checked == true){
+		document.getElementById("ordersselected").value += order+",";
+	}else{
+		var tmp_ord = document.getElementById("ordersselected").value;
+		var old_order = order+",";
+		document.getElementById("ordersselected").value = tmp_ord.replace(old_order,"");
+	}
+}
+</script>
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=retpackinglist&dropship=[in_dropship]")'>To [va_fftype]</td>
+	    <td width="18%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=retpackinglist_orders&dropship=[in_dropship]")'>Orders</td>
+	    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=retpackinglist_items&dropship=[in_dropship]")'>Items</td>
+	    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=retpackinglist_zones&dropship=[in_dropship]")'>Zones</td>
+	  </tr>
+	</table>
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">To [va_fftype] Returned Orders: <span class="stdtext">Orders List</span></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Orders : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class="menu_bar_title" nowrap OnClick="chk_all()">&nbsp;</td>
+		    <td class="menu_bar_title" align="center">Order ID</td>
+		    <td class="menu_bar_title">Date</td>
+		    <td class="menu_bar_title">First /Last Name</td>
+		    <td class="menu_bar_title"># Payments</td>
+		 </tr>
+		[va_searchresults]
+  </table>
+	&nbsp;	
+<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="retpackinglist_orders">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="print" value="1">
+	<input type="hidden" name="page" value="warehouses_batches">
+	<input type="hidden" name="dropship" value="[in_dropship]">
+	<input type="hidden" name="ordersselected" id="ordersselected" value="">
+<center>
+	<table align="center" border="0" cellspacing="0" cellpadding="4" width="70%" class="formtable">
+		<tr>
+			<td  valign="top">
+			<fieldset><legend>Print Options:</legend>
+				<table  border="0" width="100%">
+					[fc_template_prnbutton_wh]
+				</table>
+			</fieldset>
+			</td>
+			<td>
+				<fieldset><legend>Orders Options:</legend>
+				<table   border="0" width="100%" height="100%">
+
+					<tr>
+						<td> 
+							Assign To Driver Batch
+							<input name="id_warehouses" value="" size="20" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+							<a href="#warehouses" onclick="add_warehouses(); return false;"><img src="/sitimages//default/icsearchsmall.gif" border="0"></a>
+							<span id="warehouses">&nbsp;</span>
+							<span class="smallfieldterr"></span>
+							<div id="popup_warehouses" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+							<div class="menu_bar_title" id="item_drag1">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Warehouses</td>
+			<td align=right width=20px><img id="popup_exit1" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+							</div>
+							<div >
+							<iframe src="/cgi-bin/common/apps/schid?cmd=warehouses&amp;db=sl_warehouses&amp;fname=id_warehouses&amp;ajaxtype=1" name="rcmd" title="Recieve Commands" marginwidth="0" marginheight="0" frameborder="0" height="250" scrolling="auto" width="546">
+							<H2>Unable to do the script</H2>
+							<H3>Please update your Browser</H3>
+							</iframe>	
+							</div></div>
+							<br><hr><br>
+						</td>
+					</tr>
+					<tr><td><input type="radio" name="remove" value="1s" class="radio"> Remove selected from Queue</td></tr>
+					<tr><td><input type="radio" name="remove" value="alls" class="radio"> Remove all from Queue</td></tr>				
+					<tr><td align="center" colspan=3>
+						<input type="hidden" name="orders" value="1">
+						<input type="submit"  value="Submit" class="button">
+					</td></tr>
+				</table>
+				</fieldset>
+			</td>
+		</tr>   
+	</table>
+</center>
+</form>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+<script language="javascript">
+<!--
+function add_warehouses(){
+	popup_show('popup_warehouses', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'warehouses');
+}
+//-->
+</script>
+

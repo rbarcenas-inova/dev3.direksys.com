@@ -1,0 +1,80 @@
+&nbsp;
+<fieldset><legend>AR Manager Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+ 		<tr>
+			<td width="30%" valign="top">Agency ID	 : <span class="smallfieldterr">[er_id_aragencies]</span></td>
+			  <td class="smalltext">
+					<input type="text" name="id_aragencies" id='id_aragencies' value="[in_id_aragencies]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<a href="#aragencies" id="aragencies" onClick="add_vendor()"><img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+					<div id="popup_aragencies" style="visibility: hidden; display: none; background-color: #ffffff;">
+					<div class="menu_bar_title" id="item_drag1">
+					<img id="popup_exit1" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+					&nbsp;&nbsp;&nbsp;Vendors
+					</div>
+					<div class="formtable">
+					<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=aragencies&db=sl_aragencies&fname=id_aragencies&ajaxtype=1" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+					<H2>Unable to do the script</H2>
+					<H3>Please update your Browser</H3>
+					</IFRAME>	
+					</div></div>					
+			   </td>
+			</tr>
+  		<tr>
+		    <td width="30%">Contract ID : <span class="smallfieldterr">[er_contractid]</span></td>
+		    <td class="smalltext"><input type="text" name="contractid" value="[in_contractid]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Reference : <span class="smallfieldterr">[er_contractref]</span></td>
+		    <td class="smalltext"><input type="text" name="contractref" value="[in_contractref]" size="80" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		<tr>
+		  <td width="30%">Contract Date : <span class="smallfieldterr">[er_contractdate]</span></td>
+			<td class="smalltext"><input type="text" id="contractdate" name="contractdate" value="[in_contractdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>		 
+		<tr>
+		  	<td valign="top" width="30%">Type : <span class="smallfieldterr">[er_type]</span></td>
+		   	<td class="smalltext">[br_type@sl_arman]</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+<input type="hidden" name="status" value="[in_status]">
+
+<script language="javascript">
+<!--
+	chg_radio('type','[in_type]');
+
+	function add_vendor(){
+		popup_show('popup_aragencies', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'aragencies');
+	}
+
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+	var dates = $( "#contractdate" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-3m",
+		minDate: new Date(2009,1-1,1),
+		maxDate: "+3m",
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+});
+
+
+</script>

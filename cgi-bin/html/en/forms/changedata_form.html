@@ -1,0 +1,81 @@
+	&nbsp;
+	<fieldset><legend>macro Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">product ID: <span class="smallfieldterr">[er_id_products]</span></td>
+		  <td class="smalltext"><input type="text" name="id_products" value="[in_id_products]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Field: <span class="smallfieldterr">[er_field]</span></td>
+		  <td class="smalltext">
+			  <select name="field" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+						[fc_build_select_field_ec]
+        </select>
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">Value : <span class="smallfieldterr">[er_valueset]</span></td>
+		  <td class="smalltext"><input type="text" name="valueset" value="[in_valueset]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">From Date: <span class="smallfieldterr">[er_date_from]</span></td>
+		  <td class="smalltext">
+				<input type="text" id="date_from" name="date_from" value="[in_date_from]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%">From hour (1-24): <span class="smallfieldterr">[er_time_from]</span></td>
+		  <td class="smalltext"><input type="text" name="time_from" value="[in_time_from]" size="2" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">To Date: <span class="smallfieldterr">[er_date_to]</span></td>
+		  <td class="smalltext">
+				<input type="text" id="date_to" name="date_to" value="[in_date_to]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		  <td class="smalltext">
+		  	<input type="radio" name="status" value="Active" class="radio">Active
+		  	<input type="radio" name="status" value="Inactive" class="radio">Inactive</td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+
+<script language="javascript">
+<!--
+
+	chg_select('field','[in_field]');
+	chg_radio('status','[in_status]');
+   
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#date_from, #date_to" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			minDate: new Date(2009,1-1,1),
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+			onSelect: function( selectedDate ) {
+				var option = this.id == "date_from" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+
+	});
+
+//-->
+</script>

@@ -1,0 +1,89 @@
+&nbsp;	
+<fieldset><legend>Promotions</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Name :  <span class="smallfieldterr"></span></td>
+			<td>
+				<input type="text" name="name" value="[in_name]" size="45" onFocus="focusOn( this )" onBlur="focusOff( this )">
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Description :  <span class="smallfieldterr"></span></td>
+			<td>
+				<input type="text" name="description" value="[in_description]" size="45" onFocus="focusOn( this )" onBlur="focusOff( this )">
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Valid from date :  <span class="smallfieldterr"></span></td>
+			<td>
+				<input id="valid_from_date" size="20" name="valid_from_date" value="[in_valid_from_date]" onFocus="focusOn( this )" onBlur="focusOff( this )">&nbsp;								    
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Valid from hour :  <span class="smallfieldterr"></span></td>
+			<td>
+				<input type="text" name="valid_from_hour" value="[in_valid_from_hour]" placeholder="hh:mm:ss" size="" onFocus="focusOn( this )" onBlur="focusOff( this )">
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Valid to date :  <span class="smallfieldterr"></span></td>
+			<td>
+				<input id="valid_to_date" size="20" name="valid_to_date" value="[in_valid_to_date]" onFocus="focusOn( this )" onBlur="focusOff( this )">
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Valid to hour :  <span class="smallfieldterr"></span></td>
+			<td>
+				<input type="text" name="valid_to_hour" value="[in_valid_to_hour]" placeholder="hh:mm:ss" size="" onFocus="focusOn( this )" onBlur="focusOff( this )">
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Prefix :  <span class="smallfieldterr"></span></td>
+			<td>
+				<input type="text" name="prefix" value="[in_prefix]" size="" onFocus="focusOn( this )" onBlur="focusOff( this )">
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Start :  <span class="smallfieldterr"></span></td>
+			<td>
+				<input type="text" name="start" value="[in_start]" size="" onFocus="focusOn( this )" onBlur="focusOff( this )">
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Status :  <span class="smallfieldterr"></span></td>
+			<td>
+				<span class="checa"><input type="radio" id="status_New" name="status" value="New" class="radio"> <label for="status_New">New</label></span>
+				<span class="checa"><input type="radio" id="status_Active" name="status" value="Active" class="radio"> <label for="status_Active">Active</label></span>
+				<span class="checa"><input type="radio" id="status_Inactive" name="status" value="Inactive" class="radio"> <label for="status_Inactive">Inactive</label></span>
+			</td>
+		</tr>
+	</table>
+</fieldset>
+
+<script language='javascript'>
+	chg_radio('status','[in_status]');
+	<!--
+	$(document).ready(function() {
+
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			// alert('error in: ' + settings.url + ' '+'error:	' + xhr.responseText);
+		});
+
+		$('#valid_from_date').datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: '-2m',
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+		$('#valid_to_date').datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: '-2m',
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+	});
+	//-->
+</script>

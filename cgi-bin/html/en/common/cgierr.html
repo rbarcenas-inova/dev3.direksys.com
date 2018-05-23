@@ -1,0 +1,206 @@
+<html>
+<head>
+	<title>Direksys : [va_page_title]</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+    <meta http-equiv="Expires" content="0" /> 
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+	<meta charset="utf-8">
+    <link rel="icon" href="/favicon.ico" type="image/x-ico">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script type="text/javascript" src="/sitimages/[ur_pref_style]/main.js"></script>
+    <script type="text/javascript" src="/libs/jquery-2.2.1.min.js"></script>
+	<style type="text/css">
+		body{
+			border:0px;
+			margin:0px;
+			background: #fff;
+			font-family: sans-serif;
+			font-size: 9pt;
+		}
+
+		.container{
+			background: #fff;
+			width:100%;
+			min-width: 900px;
+			height:100%;
+			margin: 0 auto;
+			padding:0;
+			
+		}
+
+		.contenido{
+			background: #fff;
+			width:100%;
+			height:100%;	
+			display: block;		
+			top:20em;
+		}
+		
+		.btn{
+			text-align: right;
+			color: red;
+		}
+
+		.btn a{
+			color: #fff;
+			background: #335566;
+			font-size: 12px;
+			padding: 10px;
+			border-radius: 5px;
+			text-decoration: none;
+			float: right;
+			display: block;
+		}
+
+		.btn a:hover{
+			color: #fff;
+			background: #333;
+			padding: 10px;
+			border-radius: 5px;
+			
+
+		}
+
+		.cont_btn{
+			width:640px;
+			height:600px;
+			margin:-150px auto 20px auto;
+			position:relative;
+			display: block;
+			top:-10%;
+		}
+
+		.texto_info{
+			font-family: 'Roboto', sans-serif;
+			background:#FFFFFF;
+			width:600px;
+			min-width: 600px;
+			height:400px;
+			padding:20px;
+			margin: auto auto;
+			margin-bottom: 50px;
+			position:relative;
+			overflow-y:scroll;
+			border:#999 1px solid;
+			-webkit-box-shadow: inset 0px 0px 13px 5px rgba(0,0,0,0.38);
+			-moz-box-shadow: inset 0px 0px 13px 5px rgba(0,0,0,0.38);
+			box-shadow: inset 0px 0px 13px 5px rgba(0,0,0,0.38);
+
+		}
+
+		@media only screen and (max-width:1100px){
+			.cont_btn{
+				width:640px;
+				height:500px;
+				margin:-100px auto;
+				position:relative;
+				display: block;
+			}
+		}
+
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function($) {
+			$('.btn_copy').click(function(event) {
+
+				SelectText('cgierr_txt');
+				try {
+		           // Copiando el texto seleccionado
+		           var successful = document.execCommand('copy');
+		     
+		           if(successful) console.log('Copiado!');
+		           else console.log('Incapaz de copiar!');
+		       } catch (err) {
+		           console.log('Browser no soportado!');
+		       }
+				return false;
+
+			});
+		});
+
+		function SelectText(element) {
+		    var doc = document
+		        , text = doc.getElementById(element)
+		        , range, selection
+		    ;    
+		    if (doc.body.createTextRange) {
+		        range = document.body.createTextRange();
+		        range.moveToElementText(text);
+		        range.select();
+		    } else if (window.getSelection) {
+		        selection = window.getSelection();
+		        range = document.createRange();
+		        range.selectNodeContents(text);
+		        selection.removeAllRanges();
+		        selection.addRange(range);
+		    }
+		}		
+	</script>
+</head>
+
+<body>
+	
+	<div id="fly">
+      <table border="0" cellspacing="0" cellpadding="0" style="background-color:#ffffff;  -moz-border-radius: 0px 0px 10px 10px;border-radius: 0px 0px 10px 10px; position:fixed;top:0px;z-index:90;-moz-box-shadow: 0 0px 10px #bbbbbb;   -webkit-box-shadow: 0 0px 10px #bbbbbb;  box-shadow: 0 0px 10px #bbbbbb; height:35px; min-width:930px;">
+      <tr>
+        <td width=100% >
+          <table border="0" cellspacing="0" cellpadding="0" style="font-size: 11pt;">
+            <td valign=middle align=left nowrap>&nbsp; <a href='/cgi-bin/mod/[ur_application]/admin?cmd=home'><img src="/sitimages/app_bar/mod/direksysRN.png" border=0 height=25px></a></td>
+            <td><img src="/sitimages/banderamexico.jpg" border=0></td>
+            <td valign=middle align=left nowrap>
+              <font class="compania">[va_app_title] </font>
+            </td>
+            <td valign=middle align=left>
+                    <img src="/sitimages/app_bar/mod/menubgdiv.png">
+            </td>
+            <td valign=middle align=left nowrap>
+              <font class="modulo1">[ur_appname] </font>
+            </td>
+            <td valign=middle align=left>
+              <img src="/sitimages/app_bar/mod/menubgdiv.png">
+            </td>
+          </table>
+
+
+        </td>
+        <td>
+
+          <table border="0" cellspacing="0" cellpadding="0" align=right style="margin-right:15px; font-size: 9pt;">
+            <td valign=bottom nowrap>
+            </td>
+            <td nowrap>
+              Hi <b> [ur_FirstName] [ur_LastName] [ur_middlename]! [fc_repmans_replication]
+              </b><br>
+              <font color=#777777> ID: [ur_ID_admin_users] | Ext: [ur_extension]
+
+
+            </td>
+            <td width=15px nowrap>&nbsp;&nbsp;<td>
+            <td valign=bottom nowrap>
+              <a href='/cgi-bin/mod/[ur_application]/admin?cmd=home'><img src='/sitimages/app_bar/mod/ico-home.jpg' title='Home' alt='Home' border='0'></a>
+              <a href='/cgi-bin//mod/[ur_application]/admin?cmd=ayuda'><img src='/sitimages/app_bar/mod/ico-manuals.jpg' title='Manuals' alt='Manuals' border='0'></a>              
+              <a href='javascript:logoff()'><img src='/sitimages/app_bar/mod/ico-exit.jpg' title='Logoff' alt='Logoff' border='0'> </a>
+            </td>
+          </table>
+
+	
+        </td>
+      	</tr>
+    	</table>
+  	</div>
+
+	<div class="container">
+		<div class="contenido">
+		 <img src="/sitimages/cgierr/500.jpg" width="100%"/>
+	    	<div class="cont_btn">
+				<div class="btn"><a href="#" class="btn_copy" title="Copiar el mensaje del error">Copiar</a></div>
+				<div class="texto_info" id="cgierr_txt">
+	        		[va_cgierr_msg]
+	        	</div>
+	         </div>
+	    </div>
+	</div>
+</body>
+</html>

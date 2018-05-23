@@ -1,0 +1,44 @@
+&nbsp;
+<fieldset><legend>Credit Memo</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">ID Customers : <span class="smallfieldterr">[er_id_customers]</span></td>
+		    <td class="smalltext"><input type="text" name="id_customers" value="[in_id_customers]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	<a href="/cgi-bin/common/apps/schid?db=sl_customers&cmd=customers&fname=id_customers&returnid=id_customers&value=" class="fancy_modal_iframe" title="ID Customers">
+					<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+				</a>
+			
+		    </td>
+		</tr>
+		<tr>
+		    <td width="30%">ID Parts : <span class="smallfieldterr">[er_id_parts]</span></td>
+		    <td class="smalltext"><input type="text" name="id_parts" value="[in_id_parts]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	<a href="/cgi-bin/common/apps/schid?db=sl_parts&cmd=parts&fname=id_parts&returnid=id_parts&value=" class="fancy_modal_iframe" title="ID Parts">
+		    		<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+		    	</a>
+		    </td>
+		</tr>
+		<tr>
+			<td width="30%">Alias :  <span class="smallfieldterr">[er_sku_customers]</span></td>
+			<td class="smalltext"><input type="text" name="sku_customers" value="[in_sku_customers]" size="50" onfocus="focusOn( this )" onblur="focusOff( this )"></td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Size :  <span class="smallfieldterr">[er_size]</span></td>
+			<td class="smalltext"><input type="text" name="size" value="[in_size]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Packing Type :  <span class="smallfieldterr">[er_packing_type]</span></td>
+			<td class="smalltext">[br_packing_type@sl_customers_parts]</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Packing Unit :  <span class="smallfieldterr">[er_packing_unit]</span></td>
+			<td class="smalltext"><input type="text" name="packing_unit" value="[in_packing_unit]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width="30%">Price $ :  <span class="smallfieldterr">[er_sprice]</span></td>
+			<td class="smalltext"><input type="text" name="sprice" value="[in_sprice]" size="11" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+<input type='hidden' name='status' value='[in_status]'>

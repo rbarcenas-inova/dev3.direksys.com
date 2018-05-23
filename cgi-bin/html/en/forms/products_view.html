@@ -1,0 +1,729 @@
+[ip_template_overlay]
+
+
+	&nbsp;
+	<fieldset><legend>Product Main Info</legend>
+		<a href='#wumsg' id='wumsg'></a>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			  	<td width="30%" class="titletext">&nbsp;Product:</td>
+			    <td class="titletext" width="100px">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+					    	[in_id_products_code]
+					    	[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]&nbsp;
+					    	[fc_func_list_manager]
+						</div>
+					</div>
+
+		    	</td>
+			    <td  width="20%" align="right"><font size=3><b>Status : </td>
+			    <td width="7%" class="help_on" nowrap rowspan=2 valign=top align=center> &nbsp; [va_status_image]</td>  
+			    <td width="5%" class="help_on" rowspan=2 valign=top align=center> &nbsp; [va_testing_image]</td>  
+		 	</tr> 
+		 			<td></td><td class="stdtxterr_blue" colspan=2>[fc_warning_message_product]</td>
+		</table>
+
+
+	</fieldset>
+		&nbsp;
+	<div align="center">
+			<input type="hidden" name="id_products_speech" value="[in_id_products_speech]">
+			<input type="button" value="Show script" class="button" onclick="popup_show('popup_script', 'script_drag', 'script_exit', 'element-right', -1, -1,'wumsg')">
+	</div>
+		<div id="popup_script" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+			<div class="menu_bar_title" id="script_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;<img id="ajax_new" src="/sitimages/default/tearoff_icon.gif" onclick="popup_exit('popup_script');prnwin('/cgi-bin/common/apps/schid?cmd=show_script&id_products=[in_id_products]')"/> Product Script</td>
+			<td align=right width=20px><img id="script_exit" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+			</div>
+			<div >
+				<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=show_script&id_products=[in_id_products]" name="rcmd" TITLE="Recieve Commands" width="560" height="420" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto";>
+					<H2>Unable to do the script</H2>
+					<H3>Please update your Browser</H3>
+				</IFRAME>	
+			</div>
+		</div>
+	&nbsp;
+	<fieldset><legend>Product Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			  <td width="30%"><font class=go30>Model :</td>
+			  <td class="smalltext">[in_model]</td>
+			</tr>	
+			<tr>
+			  <td width="30%"><font class=go30>Item Title :</td>
+			  <td class="smalltext">[in_name]</td>
+			</tr>
+			[va_searchresults]	
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset>
+		<legend>Shipping Price Specifications</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+		    <td width="30%"><font class=go30>Method : </td>
+		    <td class="smalltext">[in_shipping_table]</td>
+			</tr>
+			<tr>
+		    <td width="30%"><font class=go30>Discount Volume/Price : </td>
+		    <td class="smalltext">[in_shipping_discount]</td>
+			</tr>
+			<tr>
+				<td class="smalltext" colspan="2">
+						<span class="help_on">
+							Only apply if Table Method is active.
+						</span>			
+				</td>
+			</tr>
+		<tr><td class="smalltext" colspan="2">&nbsp;</td></tr>
+		<tr>
+		  [va_shipping_options]
+		</tr>
+		<tr>
+			<td class="smalltext" colspan="2">
+				<span class="smallfieldterr">
+				*<strong>Fixed</strong> - The shipping amount is equal to Packing/Shipping Options amount. Note: This option has 50% off over CC payments.<br>
+				<strong>Variable</strong> - The shipping amount is calculated considering weight and dimensions (Packing/Shipping Options must be none). Note: If packing/shipping options is set the shipping amount will be the Packing/Shipping options amount without considering any discount.<br>
+				<strong>Table</strong> - The table must be set considering items and prices (must be done in view mode).
+				</span>
+			</td>
+		</tr>
+		</table>
+	</fieldset>
+	&nbsp;	 	
+	<fieldset><legend>SAT info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td width="30%" >ID Product / Service : </td>
+				<td class="smalltext">[in_id_product_service]</td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+
+
+
+<div class="accordion-products">
+	<ul id="productsaccordion">
+		<li><h3>More Info</h3>
+			<div class="element">
+			<table cellpadding=5 cellspacing=1 bgcolor=silver width=100%><td bgcolor=#ffffff>
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+					<tr>
+					  <td colspan="2" class="menu_bar_title">Description : [in_smalldescription_link]</td>
+					</tr>
+					<tr>
+						<td colspan="2" class="help_on">[in_smalldescription_text]</td>
+					</tr>
+					[va_edit_smalldescription]
+					<tr>
+					  <td valign="top" colspan="2" class="menu_bar_title">Full Description : [in_description_link]</td>
+					</tr>
+					<tr>
+					  <td colspan="2" class="help_on">[in_description_text]</td>
+					</tr>
+					[va_edit_description]		
+					<tr>
+					  <td colspan="2" class="menu_bar_title">Description(EN) : [in_smalldescription_en_link]</td>
+					</tr>
+					<tr>
+					  <td colspan="2" class="help_on">[in_smalldescription_en_text]</td>
+					</tr>
+					[va_edit_smalldescription_en]			
+					<tr>
+					  <td colspan="2" class="menu_bar_title">Full Description(EN) : [in_description_en_link]</td>
+					</tr>
+					<tr>
+					  <td colspan="2" class="help_on">[in_description_en_text]</td>
+					</tr>
+					[va_edit_description_en]
+					<tr>
+					  <td colspan="2" class="menu_bar_title">Disclaimer : [in_disclaimer_link]</td>
+					</tr>
+					<tr>
+					  <td colspan="2" class="help_on">[in_disclaimer_text]</td>
+					</tr>
+					[va_edit_disclaimer]				
+					<tr>
+					  <td width="30%"><font class=go30><font class=go30>Keywords:</td>
+					  <td class="smalltext"><font class=go30>[in_keyword]</td>
+					</tr>
+				</table>
+			</td></table>
+			</div>
+		</li>
+	
+	<li><h3>Shipping Specs</h3>
+		<div>
+			<table cellpadding=5 cellspacing=1 bgcolor=silver width=100%><td bgcolor=#ffffff>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				  <td width="30%"><font class=go30>Weight : </td>
+				  <td class="smalltext">[in_weight] <span class="help_on">Lb</span></td>
+				</tr>
+				<tr>
+				  <td width="30%"><font class=go30>Dimensions (w x h x l) : </td>
+				  <td class="smalltext">[in_sizew] <span class="help_on">x</span> [in_sizeh] <span class="help_on">x</span> [in_sizel] <span class="help_on">in</span></td>
+				</tr>
+				<tr>
+				  <td width="30%"><font class=go30>Packing : </td>
+				  <td class="smalltext">[in_packing]</td>
+				 </tr>
+				<tr>
+				  <td width="30%"><font class=go30>Handling Specs : </td>
+				  <td class="smalltext">[in_handling]</td>
+				 </tr>
+				<tr>
+				  <td width="30%"><font class=go30>Warehouse Handling : </td>
+				  <td class="smalltext">[in_warehousehandling]</td>
+				 </tr>
+				<tr>
+				  <td width="30%"><font class=go30>Product Type : </td>
+				  <td class="smalltext">[in_producttype]</td>
+				</tr>
+				<tr>
+				  <td width="30%"><font class=go30>Product Documentation : </td>
+				  <td class="smalltext">[in_productdocs]</td>
+				</tr>
+		    	<tr>
+				  <td width="30%"><font class=go30>Drop Shipment (Yes/No)  : </td>
+				  <td class="smalltext">[in_dropshipment]</td>
+				</tr>		
+				<tr>
+				  <td width="30%" valign="top"><font class=go30><font class=go30>Free Shipping Opt.: </td>
+				  <td class="smalltext">[in_free_shp_opt]</td>
+				</tr>
+				<tr>
+				  <td width="30%" valign="top"><font class=go30><font class=go30>Express Shipping: </td>
+				  <td class="smalltext">[in_expressshipping]</td>
+				</tr>
+
+			</table>
+			</td></table>
+		</div>
+	</li>	
+	
+	<li><h3>Cost</h3>
+		<div>
+			<table cellpadding=5 cellspacing=1 bgcolor=silver width=100%><td bgcolor=#ffffff>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+				<tr>
+				  <td width="30%"><font class=go30>FOB Point : </td>
+				  <td class="smalltext">[in_wholesaleorigin] </td>
+				</tr>
+				<tr>
+				   <td width="30%"><font class=go30>Net Cost  : </td>
+				   <td class="smalltext">[in_sltv_netcost] <span class="help_on"> in US$</td>
+				</tr>
+				<tr>
+				  <td width="30%"><font class=go30>Freight/pc  : </td>
+				  <td class="smalltext">[in_wholesalepriceorigin] <span class="help_on">in US$ </span></td>
+				</tr>			
+				<tr>
+		      <td width="30%"><font class=go30>Tariff : <span class="smallfieldterr">[er_tariff]</span></td>
+		      <td class="smalltext">[in_tariff]</td>
+			  </tr>							
+				<tr>
+		    	<td width="30%"><font class=go30>Duty : <span class="smallfieldterr">[er_wholesaleprice]</span></td>
+		    	<td class="smalltext"> [in_wholesaleprice] <span class="help_on"> %</td>
+				</tr>		
+				<tr>
+			   <td width="30%"><font class=go30>Landed Cost :  </td>
+			   <td class="smalltext">[in_landedcost]<span class="help_on"> in US$</td>
+				</tr>		
+				<tr>
+				  <td width="30%"><font class=go30>Discount  : </td>
+				  <td class="smalltext">[in_discount]</td>
+				 </tr>			
+			</table>
+			</td></table>
+		</div>
+	</li>	
+<!--	
+	<li><h3>Duties and Origin</h3>
+		<div>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+				<tr>
+				   <td width="30%"><font class=go30>Duties  : </td>
+				   <td class="smalltext">[in_duties] <span class="help_on"> in US$ (Mexican Duties)</span></td>
+				</tr>
+				<tr>
+				  <td width="30%"><font class=go30>Charges  : </td>
+				  <td class="smalltext">[in_insurance] <span class="help_on">in US$ (Mexican Duties)</span></td>
+				</tr>
+				<tr>
+				  <td valign="top" width="30%">Country Of Origin :</td>
+				  <td class="smalltext">[in_countryorigin_text]</td>
+				</tr>
+			</table>
+		<br>
+		</div>
+	</li>	
+-->
+	<li><h3>Pricing</h3>
+		<div class="element">	
+			<table cellpadding=5 cellspacing=1 bgcolor=silver width=100%><td bgcolor=#ffffff>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+				<!--tr>
+			    <td width="30%"><font class=go30>Break Even Volume : </td>
+			    <td class="smalltext">[in_breakevenvolume]</td>
+				</tr-->
+				<tr>
+			    <td width="30%"><font class=go30>Margin : </td>
+			    <td class="smalltext">[in_margin]<span class="help_on"> %</td>
+				</tr>
+				<!--tr>
+				    <td width="30%"><font class=go30>Air Time Minutes : </td>
+				    <td class="smalltext">[in_airtimeminutes]</td>
+				</tr-->	
+				<tr>
+			    <td width="30%"><font class=go30>Minimum Accepted Price (MAP) : </td>
+			    <td class="smalltext">[in_map] <span class="help_on">in US$</span></td>
+				</tr>
+				<tr>
+				  <td width="30%"><font class=go30>Retail Price(MSRP)  : </td>
+				  <td class="smalltext">[in_msrp] <span class="help_on">in US$</span></td>
+				</tr>
+				<tr>
+				  <td colspan="2"><hr color="#C0C0C0"></td>
+				</tr>
+				<!--
+				<tr>
+				  <td width="30%" class="titletext">Sale Price (Precio 1) : </td>
+				  <td class="titletext">[in_sprice]</td>
+				</tr>
+				<tr>
+				  <td width="30%"><font class=go30>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ([in_sprice1name]) : </td>
+				  <td class="smalltext">[in_sprice1]</td>
+				</tr>
+				<tr>
+				  <td width="30%"><font class=go30>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ([in_sprice2name]) : </td>
+				  <td class="smalltext">[in_sprice2]</td>
+				</tr>
+				<tr>
+				  <td width="30%"><font class=go30>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ([in_sprice3name]) : </td>
+				  <td class="smalltext">[in_sprice3]</td>
+				</tr>
+				<tr>
+				  <td width="30%"><font class=go30>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ([in_sprice4name]) : </td>
+				  <td class="smalltext">[in_sprice4]</td>
+				</tr>
+				<tr>
+				  <td colspan="2"><hr color="#C0C0C0"></td>
+				</tr>
+				<tr>
+				  <td width="30%" valign="top"><font class=go30>Price for Flexipago  : </td>
+				  <td class="smalltext">[in_fpprice]</td>
+				</tr>				
+				<tr>
+				  <td width="30%" valign="top"><font class=go30>Membershipe Price : </td>
+				  <td class="smalltext">[in_memberprice]</td>
+				</tr>
+				<tr>
+				    <td width="30%"><font class=go30>Downpayment : </td>
+				    <td class="smalltext">[in_downpayment]</td>
+				</tr>
+				<tr>
+				    <td width="30%"><font class=go30>Price Method : </td>
+				    <td class="smalltext">[in_pricetype]</td>
+				</tr>
+
+				<tr>
+				  <td colspan="2"><hr color="#C0C0C0"></td>
+				</tr>
+				<tr>
+				  <td width="30%" valign="top"><font class=go30>Payments  : </td>
+				  <td>[fc_product_payments_view]</td>
+				</tr>
+	-->
+				<tr>
+				  <td colspan="2"><hr color="#C0C0C0"></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<table border="0" cellspacing="0" cellpadding="2" width="100%">
+							<tr>
+								<td width="48%" colspan="2"><font class=go30>United States (UPS)</td>
+								<td width="4%">&nbsp;</td>
+								<td width="48%" colspan="2"><font class=go30>Puerto Rico (USPS)</td>
+						  </tr>   
+							<tr>
+								<td class="smalltext" nowrap valign="top">[va_shp_text1] : </td>
+								<td class="smalltext" align="right" nowrap>[va_shptotal1]</td>
+								<td width="4%">&nbsp;</td>
+								<td class="smalltext" nowrap valign="top">[va_shp_textpr1] : </td>
+								<td class="smalltext" align="right" nowrap>[va_shptotal1pr]</td>
+						    </tr>    
+							<tr>
+								<td class="smalltext" nowrap valign="top">[va_shp_text2] : </td>
+								<td class="smalltext" align="right" nowrap>[va_shptotal2]</td>
+								<td width="4%">&nbsp;</td>
+								<td class="smalltext" nowrap valign="top">[va_shp_textpr2] : </td>
+								<td class="smalltext" align="right" nowrap>[va_shptotal2pr]</td>
+						  </tr>  				
+						</table>
+						</td>
+			    </tr>
+				<tr>
+				  <td colspan="2"><hr color="#C0C0C0"></td>
+				</tr>
+			<!--			    
+		    <tr>			
+			    <td width="30%"><font class=go30>Pay Type: <span class="smallfieldterr">[er_paytype]</span></td>
+			    <td class="smalltext">
+			    	[in_paytype]
+			    	&nbsp;
+			    </td> 	    
+				</tr>
+			-->			
+			</table>
+		</td></table>
+		</div>
+	</li>		
+
+	<li><h3>DIDS</h3>
+		<div>
+			<table cellpadding=5 cellspacing=1 bgcolor=silver width=100%><td bgcolor=#ffffff>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+				<tr>
+					<td width="30%"><font class=go30>DIDS : </td>
+					<td class="smalltext">
+						<form name='tmp' action='#'>
+							[fc_build_checkbox_dids]
+						</form>
+					</td>
+				</tr>
+			</table>
+		</td></table>
+		</div>	
+	</li>
+
+
+	<li><h3>Brand Info</h3>
+		<div>
+			<table cellpadding=5 cellspacing=1 bgcolor=silver width=100%><td bgcolor=#ffffff>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+				<tr>
+					<td width="30%"><font class=go30>Brand  : </td>
+					<td class="smalltext"><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_manufacturers&view=[in_id_manufacters]">([in_id_brands]) [in_brands_name]</a></td>
+				</tr>
+				<tr>
+				  <td width="30%"><font class=go30>Brand SKU  : </td>
+				  <td class="smalltext">[in_manufactersku]</td>
+				</tr>
+			</table>
+		</td></table>
+		</div>	
+	</li>
+
+	<li><h3>Stock Management</h3>
+		<div class="element">
+			<table cellpadding=5 cellspacing=1 bgcolor=silver width=100%><td bgcolor=#ffffff>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+				<tr>
+				 	<td width="30%"><font class=go30>Minimum Stock : </td>
+				 	<td class="smalltext">[in_minimumstock] <span class="help_on">Units</span></td>
+				</tr>
+				<tr>
+				 	<td width="30%"><font class=go30>Maximum Stock : </td>
+					<td class="smalltext">[in_maximumstock] <span class="help_on">Units</span></td>
+				</tr>
+				<tr>
+				 	<td width="30%"><font class=go30>Validate Stock : </td>
+					<td class="smalltext">[in_validatestock] <span class="help_on"></span></td>
+				</tr>
+
+				<tr>
+				  <td width="30%"><font class=go30>Lead Time : </td>
+				  <td class="smalltext">[in_edt] <span class="help_on">Days</span></td>
+				</tr>
+				<tr>
+				  <td width="30%" class="titletext">Actual Inventory : </td>
+				  <td class="titletext" onmouseover='m_over(this)' onmouseout='m_out(this)' >
+				  	[in_inventory] <span class="help_on">Units</span>
+			  		<a class="scroll" href="#ajax_inv" onClick="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'ajax_inv');loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=inventory&id_products=[in_id_products]&cols=ID,Choices,Vendor SKU,Warehouse,Qty');">
+			  			<img id='ajax_inv' src='[va_imgurl]/[ur_pref_style]/b_view.png' title='More Info' alt='More Info' border='0'></a>
+				  	</td>
+				</tr>		 
+			</table>
+		</td></table>
+		</div>
+	</li>		
+
+	<li><h3>Product Refill</h3>
+		<div class="element">
+			<table cellpadding=5 cellspacing=1 bgcolor=silver width=100%><td bgcolor=#ffffff>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		  	<tr>
+					<td width="30%"><font class=go30>Refill Service  : </td>
+				 	<td class="smalltext">[fc_text_refill]</td>
+				</tr>
+		 	</table>
+		</td></table>
+		</div>
+	</li>
+	
+	<li><h3>Product Status</h3>
+		<div class="element">
+			<table cellpadding=5 cellspacing=1 bgcolor=silver width=100%><td bgcolor=#ffffff>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+			   	<td width="30%"><font class=go30>Is Final : </td>
+			   	<td><font class=go30><span class="smalltext">[in_isfinal]</td>
+			 	</tr>
+			 	<tr>
+			   	<td width="30%"><font class=go30>Web Available : </td>
+			   	<td><font class=go30><span class="smalltext">[in_web_available]</td>
+			 	</tr>
+			 	<tr>
+			   	<td width="30%"><font class=go30>User Type Visibility : </td>
+			   	<td><font class=go30><span class="smalltext">[in_user_type]</td>
+			 	</tr>
+				<tr>
+			   	<td width="30%"><font class=go30>Status : </td>
+			   	<td><font class=go30><span class="smalltext">[in_status] &nbsp;&nbsp;&nbsp; </span>Change Status to : <span class='smalltext'> &nbsp; [va_changestatus]</span></td>
+			 	</tr>
+				<tr>
+			  	<td width="30%"><font class=go30>Authorized By :</td>
+			   	<td><font class=go30><span class="smalltext">[va_authby]</span> &nbsp; &nbsp; &nbsp; Final Decision : <span class='smalltext'>[in_testing]</span></td>
+			 </tr>	 
+		  </table>
+		</td></table>
+		</div>
+	</li>
+
+	<li><h3>Product Images</h3>
+		<div class="element">
+			<table cellpadding=5 cellspacing=1 bgcolor=silver width=100%><td bgcolor=#ffffff>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  		<tr>
+			 		<!--td width="30%"><font class=go30>[fc_load_images] </td-->
+					
+			 </tr>
+			 <tr>
+				<td>
+					<object type="text/html" data="/apps/imageupload/uploadimage.php?e=[in_e]&id_products=[in_id_products]" width="400" height="200"> </object>
+				</td>
+			 </tr>
+	  	</table>
+		</td></table>
+		</div>
+	<li>
+</ul>
+</div>
+<br>
+
+&nbsp;
+<a name='tabsl' id='tabsl'>&nbsp;</a>
+&nbsp;
+
+
+	<!-- AJAX Elements -->
+	<!-- Tab 3 - Setup -->
+	<script language="JavaScript">
+	<!--
+
+		chg_chkbox('dids','[in_dids]');
+
+		function add_item(num){
+			popup_show('popup_additem', 'item_drag', 'popup_exit2', 'element-right', -1, -1,'tabsl');
+			self.document.sitform.choicenum.value=num;
+		}
+	
+		function add_ritem(){
+			popup_show('popup_ritem', 'item_dragr', 'popup_exitr', 'element-right', -1, -1,'tabsl');
+		}
+		
+		function add_rnitem(){
+			popup_show('popup_rnitem', 'item_dragrn', 'popup_exitrn', 'element-right', -1, -1,'tabsl');
+		}
+		
+		function add_shipping_price(zone,tmethod){
+			document.getElementById('frame_add_shipping').src = '/cgi-bin/common/apps/ajaxbuild?ajaxbuild=products_add_shipping_price_rule&id_products=[in_id_products]&zone='+zone+'&smethod='+tmethod+'&cmd=[in_cmd]';
+			popup_show('popup_add_shipping', 'item_dragp', 'popup_exitp', 'element-right', -1, -1,'tabs_shipping_table');
+		}
+	
+	
+		function chg_shptable(id){
+			
+			var old_data;
+			var flag;
+			var type_data = id.substring(0,1);
+			var is_done = document.getElementById('chg_is_done');
+			
+			if(type_data == 'z'){
+				old_data = parseInt(id.substring(2));
+				flag=0;
+			}else{
+				var idold = document.getElementById('h'+id);
+				old_data = parseFloat(idold.value);
+				flag=1;
+			}
+			
+			
+			var new_data = document.getElementById(id).value;
+			
+			is_done.innerHTML = '&nbsp;';
+
+			if(new_data.substring(0,1) == '$'){
+				new_data = new_data.substring(1); 
+			}
+			new_data = new_data.replace(/,/g,"");
+			
+			if(new_data != ""){
+				new_data = parseFloat(new_data);
+			}else{
+				new_data = 'delete';
+			}
+			
+			if(old_data != new_data){
+
+				var ajaxcmd =  "type="+type_data+"&old_value="+old_data+"&new_value="+new_data+"&id_products=[in_id_products]&zone=[va_tab_zone]&method=[va_tab_method]";
+				var docname = "/cgi-bin/common/apps/ajaxbuild?ajaxbuild=updfield_shptable&"+ajaxcmd;
+				
+	      xmlhttp.open("GET", docname,true); 
+	      xmlhttp.onreadystatechange=function() {
+	          if (xmlhttp.readyState==4) {
+	              alert(xmlhttp.responseText);
+	              
+	              if(xmlhttp.responseText == 'ok'){
+	              	if(flag==1){
+	              		idold.value = new_data;
+	              	}
+									is_done.innerHTML = 'Done';
+								}else if(xmlhttp.responseText == 'deleted'){
+									self.location = "/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_products]&tab=[in_tab]";
+								}else{
+									is_done.innerHTML = 'AJAX Error';
+								}
+	          }
+	      }
+	      xmlhttp.send(null)	
+				
+			}
+		}
+
+		
+		function add_shptable(formname){
+
+			var formvalue = parseFloat(formname.add_value.value);
+			
+			if(formvalue > 0){
+				formname.submit();
+			}else{
+				alert('el campo para agregar estaba vacio');
+			}
+			
+		}
+
+		[va_autorun_js]
+
+	-->	
+	</script>
+
+
+<!-- Related Item  -->
+<div id="popup_ritem" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999; -moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="item_dragr">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Related Item ([in_id_products])</td>
+			<td align=right width=20px><img id="popup_exitr" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div><b>
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=products_addrelated&id_products=[in_id_products]" name="rcmd" TITLE="Recieve Commands" width="546" height="350" FRAMEBORDER="0" MARGINWIDTH="5" MARGINHEIGHT="5" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+		</IFRAME></div>
+</div>
+
+
+<!-- Related Non Inventory Item  -->
+<div id="popup_rnitem" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="item_dragrn">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Related Service</td>
+			<td align=right width=20px><img id="popup_exitrn" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div>
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=products_addrelatedservices&id_products=[in_id_products]" name="rcmd" TITLE="Recieve Commands" width="546" height="350" FRAMEBORDER="0" MARGINWIDTH="5" MARGINHEIGHT="5" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+		</IFRAME></div>
+</div>
+
+
+<!-- Item Choice  -->
+<div id="popup_additem" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="item_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Choice Info</td>
+			<td align=right width=20px><img id="popup_exit2" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div>
+		<form method="post" action="[va_script_url]" name="sitform">
+			<input type="hidden" name="view" value="[in_id_products]">
+			<input type="hidden" name="add_choices" value="1">
+			<input type="hidden" name="tab" value="3">
+			<input type="hidden" name="choicenum" value="0">
+			<input type="hidden" name="cmd" value="[in_cmd]">
+	
+			<table border="0" cellspacing="0" cellpadding="7px" width="350" bgcolor="#FFFFFF">
+				<tr>
+					<td>Name: <span class="smallfieldterr">[er_choicename]</span></td>
+					<td><input name="choicename" type="text" size="30" value="[in_choicename]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+				<tr>
+					<td>SKU: <span class="smallfieldterr">[er_vendorsku]</span></td>
+					<td><input name="choicesku" type="text" size="30" value="[in_choicesku]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input class="button" type="submit" value="Add Choice" name="add_item"><br><br></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+
+<!-- Shipping Price  -->
+<div id="popup_add_shipping" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="item_dragp">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Shipping Price Rule</td>
+			<td align=right width=20px><img id="popup_exitp" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div>
+		<IFRAME SRC="" name="frame_add_shipping" id="frame_add_shipping" TITLE="Recieve Commands" width="546" height="350" FRAMEBORDER="0" MARGINWIDTH="5" MARGINHEIGHT="5" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+		</IFRAME></div>
+</div>
+
+
+<script type="text/javascript">
+	var productAcc = new YAHOO.widget.AccordionView('productsaccordion', {collapsible: true, animationSpeed: '0.4',  width: 'auto', animate: true, effect: YAHOO.util.Easing.easeNone});
+
+
+	$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('width','auto');
+	$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('background','url(/sitimages/app_bar/mod/tabh.png)');
+	$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('background-repeat','repeat-x');
+	$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('color','#222222');
+	$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('border-left','1px #ccc solid');
+	$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('border-right','1px #bbb solid');
+	$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('border-top','1px #ddd solid');
+	$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('border-bottom','1px #ccc solid');
+	$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('padding-top','10px');
+	$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('padding-left','10px');
+	$('#productsaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('font-weight','normal');
+
+
+</script>

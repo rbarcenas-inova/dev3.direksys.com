@@ -1,0 +1,41 @@
+  
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+	<tr>
+      <td class="tbltextttl" colspan="2"><span class='fieldterr'>[va_tabmessages]</span>&nbsp;</td>
+    </tr>	
+    <tr>
+			<td class="tbltextttl">
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[fc_template_idvalue]&tab=[in_tab]&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>
+				<a name='tabs' id='tabs'>&nbsp;</a>
+				<a href='[va_link_movements_auxiliary]' class='fancy_modal_iframe'>
+					<img src='[va_imgurl]/[ur_pref_style]/tearoff_icon.gif' title='view' alt='view' height='20' border='0' width='20'>
+				</a>
+			</td>
+			<td class="small_text" align="right" valign="top">
+			</td>
+		</tr>
+    <tr>
+    	<td colspan="2">      	
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+      			<tr>
+      				<td class="menu_bar_title" width="8%" align="center">Movement ID</td>         	
+					<td class="menu_bar_title" width="10%" align="center">Account ID</td>
+					<td class="menu_bar_title" width="35%" align="center">Account Name</td>
+					<td class="menu_bar_title" width="12%" align="center">Debit</td>
+					<td class="menu_bar_title" width="12%" align="center">Credit</td>
+					<td class="menu_bar_title" width="10%" align="center">Effective Date</td>
+					<td class="menu_bar_title" width="6%" align="center">Category</td>
+					<td class="menu_bar_title" width="6%" align="Right">Journal</td>
+			 	</tr>
+			 	[va_searchresults]
+      			<tr>         	
+					<td class="smalltext" colspan="3" align="right" style="border-top:2px solid red;">Totals&nbsp;:</td>
+					<td class="smalltext" align="right" style="border-top:2px solid red;">[va_tot_debs]</td>
+					<td class="smalltext" align="right" style="border-top:2px solid red;">[va_tot_cred]</td>
+					<td class="smalltext" colspan="3"style="border-top:2px solid red;">&nbsp;</td>
+			 	</tr>	
+      </table>       
+     </td>
+    </tr>
+  </table>  
+  &nbsp;

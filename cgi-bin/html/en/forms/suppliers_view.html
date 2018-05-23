@@ -1,0 +1,166 @@
+  &nbsp;
+	<fieldset><legend>Suppliers ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Suppliers :</td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_suppliers] 
+							<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_suppliers&modify=[in_id_suppliers]"><img src='[va_imgurl]/[ur_pref_style]/b_edit.gif' title='Edit' alt='' border='0'></a>
+							<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=mer_suppliers&search=Print&toprint=[in_id_suppliers]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.gif' title='Print' alt='' border='0'></a>
+						</div>
+					</div>
+				
+
+		</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>  
+	&nbsp;
+	<fieldset><legend>Supplier Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Company Name :</span></td>
+			<td class="smalltext">[in_companyname]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Address :</td>
+			<td class="smalltext">[in_address]</td>
+		</tr>
+		<tr>
+			<td width="30%">City/State/Zip :</td>
+			<td class="smalltext">[in_city] [in_state] [in_zip]</td>
+		</tr>
+		<tr>
+			<td width="30%">Country :</td>
+			<td class="smalltext">[in_country]</td>
+		</tr>
+		<tr>
+			<td width="30%">Phone :</td>
+			<td class="smalltext">[in_phone]</td>
+		</tr>
+		<tr>
+			<td width="30%">Fax :</td>
+			<td class="smalltext">[in_fax]</td>
+		</tr>
+		<tr>
+			<td width="30%">WebSite : </td>
+			<td class="smalltext"><a href="[in_website]" target="_blank">[in_website]</a></td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Supplier Extra Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Type : </td>
+			<td class="smalltext">[in_type]</td>
+		</tr>
+		<tr>
+			<td width="30%">Payment Terms :</td>
+			<td class="smalltext">[in_paymentterms]</td>
+		</tr>
+		<tr>
+			<td width="30%">Shipping Option :</td>
+			<td class="smalltext">[in_shippingoptions]</td>
+		</tr>
+		<tr>
+			<td width="30%">Discounts : </td>
+			<td class="smalltext">[in_discounts]</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr>
+	    <td class="menu_bar_title" colspan="7" align="center"><a href="#add_contact" name='add_contact' id='add_contact' onClick="add_contact()"><img src="[va_imgurl]/[ur_pref_style]/arr.plus.gif" border="0"></a> Contacts</td>
+	 </tr>
+	<tr>
+	    <td class="menu_bar_title">Name</td>
+	    <td class="menu_bar_title">Title</td>
+	    <td class="menu_bar_title">Phone</td>
+	    <td class="menu_bar_title">Mobile</td>
+	    <td class="menu_bar_title">Fax</td>
+	    <td class="menu_bar_title">Email</td>
+	    <td class="menu_bar_title">IM</td>
+	 </tr>
+	[va_contacts]
+ </table>
+ &nbsp;	
+  <fieldset><legend>Comments</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Comments : </td>
+			<td class="smalltext">[in_comments] &nbsp;</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Supplier Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td width="30%">Status : </td>
+				<td class="smalltext">[in_status]</td>
+			</tr>
+		</table>
+	</fieldset>
+
+	
+<!-- Add contact -->
+<script language="JavaScript">
+	function add_contact(){
+		popup_show('popup_contact', 'contact_drag', 'popup_exit1', 'element-right', -1, -1,'add_contact');
+	}	
+</script>
+
+<div id="popup_contact" style="visibility: hidden; display: none; background-color: #ffffff;">
+<div class="menu_bar_title" id="contact_drag">
+<img id="popup_exit1" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+&nbsp;&nbsp;&nbsp;Add Contact Info
+</div>
+<div class="formtable">
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+	<input type="hidden" name="id_suppliers" value="[in_id_suppliers]">
+	<input type="hidden" name="view" value="[in_id_suppliers]">
+	<input type="hidden" name="action" value="add_contact">
+	<input type="hidden" name="cmd" value="mer_suppliers">
+<table border="0" cellspacing="0" cellpadding="4" width="350" class="formtable" bgcolor="#FFFFFF">
+<tr>
+  <td>Name:</td>
+  <td><input name="contact_name" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td>Title:</td>
+  <td><input name="contact_title" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td>Phone:</td>
+  <td><input name="contact_phone" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td>Mobile:</td>
+  <td><input name="contact_mobile" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td>Fax:</td>
+  <td><input name="contact_fax" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td>E-mail:</td>
+  <td><input name="contact_email" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td>IM:</td>
+  <td><input name="contact_im" type="text" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td colspan="2" align="center"><input class="button" type="submit" value="Add Contact" /></td>
+</tr>
+</table>
+</form></div></div>

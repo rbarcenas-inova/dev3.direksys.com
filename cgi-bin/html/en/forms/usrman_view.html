@@ -1,0 +1,291 @@
+<fieldset><legend>User Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">User ID : </td>
+			<td class="titletext" width="50%">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_admin_users] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton] &nbsp;
+							[fc_vendorsite_user_button]
+							<a href="/cgi-bin/common/apps/ajaxbuild?ajaxbuild=petty_cash&amp;id_admin_users=[in_id_admin_users]" class="fancy_modal_iframe" title="Petty Cash">
+								<img src="/sitimages/default/pago_deudor.png" title="Petty Cash" alt="" border="0"  height="24px" width="24px">
+							</a>
+
+
+						</div>
+					</div>
+				
+			</td>
+			<td width="20%" align="right" valign="top" class="smalltext" nowrap>
+				<span style="padding:5px;background-color:red;color:#FFF;display:[va_display_expirated];font-size:14px;">Password Expired</span>
+				[ <a href="/cgi-bin/mod/[ur_application]/admin?cmd=usrman_admin&id_admin_users=[in_id_admin_users]">Change Password</a> ]<br>
+				Temp Passwd : [in_temppasswd]</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Created Date / Time  : </td>
+			<td class="smalltext" colspan="2">[in_date] [in_time] &nbsp; &nbsp; Created by : ([in_createdby]) [in_createdby.firstname] [in_createdby.lastname]</td>
+		</tr>		
+	</table>
+</fieldset>			
+&nbsp;	  
+<fieldset><legend>User Basic Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="smalltext" width="20%">Username : </td>
+			<td class="smalltext" width="30%">[in_username]</td>
+			<td class="smalltext">Account Status : </td>
+			<td class="smalltext" width="30%">[in_status] [va_chgstatus]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">First Name : </td>
+			<td class="smalltext">[in_firstname]</td>
+			<td class="smalltext">Job Title:</td>
+			<td class="smalltext">[in_jobtitle]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Last Name :</td>
+			<td class="smalltext">[in_lastname]</td>
+			<td class="smalltext">E-Mail :</td>
+			<td class="smalltext"><a href="mailto:[in_email]">[in_email]</a></td>
+		</tr>
+		<tr>
+			<td class="smalltext">Last Name 2 :</td>
+			<td class="smalltext">[in_middlename]</td>
+			<td class="smalltext">E-Mail 2 :</td>
+			<td class="smalltext"><a href="mailto:[in_opcemail2]">[in_opcemail2]</a></td>
+		</tr>
+		<tr>
+			<td class="smalltext">Application :</td>
+			<td class="smalltext">[in_application]</td>
+			<td class="smalltext">Expiration :</td>
+			<td class="smalltext">[in_expiration]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">User Type:</td>
+			<td class="smalltext">[in_user_type]</td>
+			<td class="smalltext" valign="top">Access Filter (IP) :</td>
+			<td class="smalltext">[in_ipfilter]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Mutiple Access:</td>
+			<td class="smalltext"colspan="3">[in_multiapp]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Sale Channels Restriction:</td>
+			<td class="smalltext"colspan="3">[va_sale_channel_restriction]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Sale Channels:</td>
+			<td class="smalltext"colspan="3">[va_sale_channel]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Sale Channels View:</td>
+			<td class="smalltext"colspan="3">[va_sale_channel_view]</td>
+		</tr>
+		<tr><td colspan="2">&nbsp;</td></tr>
+		<tr>
+			<td class="smalltext">Account Segments:</td>
+			<td class="smalltext"colspan="3">[va_accounts_segments]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Authorizer:</td>
+			<td class="smalltext"colspan="3">
+				<span id="span_authorizer">[va_authorizer]</span>
+				<a id="lnk_authorizer_edit" href="#authorizer_form" data-id="[va_id_authorizer]"><img src="/sitimages/default/b_edit.png" title="Edit Autorizer" border="0" width="16px"></a>
+				<div style="display: none;">
+					<div id="authorizer_form" style="text-align: center; height: 150px; width: 600px;">
+						<br />
+						<p style="margin: auto auto; padding-top: 15px;">
+							<label for="id_authorizer">Seleccione el Autorizador: </label>
+							<select name="id_authorizer" id="id_authorizer" class="input" style="max-width: 400px;">
+								<option value="0">---</option>
+		   						[fc_build_select_users_auth]
+							</select>
+						</p>						
+						<br />
+						<br />
+						<p>
+							<a href="#" id="btn_save_authorizer" class="button">Aceptar</a>
+						<p>
+					</div>
+				</div>
+			</td>
+		</tr>
+		
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Referenced Username</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="smalltext" width="20%">Username : </td>
+			<td class="smalltext"><span style="font-size:12px;color:#0099FF;">[in_username_ref]</span></td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Optional Basic Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="smalltext" width="20%">Birthday : </td>
+			<td class="smalltext" width="30%">[in_opcbirthday]</td>
+			<td class="smalltext" width="20%">Employee Number :</td>
+			<td class="smalltext" width="30%">[in_opclegalid]</td>
+		</tr>
+	 	<tr>
+			<td class="smalltext">Married Status : </td>
+			<td class="smalltext">[in_opcmarriedstatus]</td>
+			<td class="smalltext">Childrens :</td>
+			<td class="smalltext">[in_opcchildrens]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Optional Home Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%" id="table290">
+		<tr>
+			<td class="smalltext" width="20%" valign="top">Street :</td>
+			<td class="smalltext" width="30%">[in_homestreet]</td>
+			<td class="smalltext" width="20%" valign="top">Phone :</td>
+			<td valign="top"  width="30%"class="smalltext">[in_homephone]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">City :</td>
+			<td class="smalltext">[in_homecity]</td>
+			<td class="smalltext" valign="top">Phone :</td>
+			<td valign="top" class="smalltext">[in_homephone2]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">State/Province :</td>
+			<td class="smalltext">[in_homestate]</td>
+			<td class="smalltext" valign="top">Fax :</td>
+			<td valign="top" class="smalltext">[in_homefax]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Postal Code :</td>
+			<td class="smalltext">[in_homepostalcode]</td>
+			<td class="smalltext" valign="top">Mobile :</td>
+			<td valign="top" class="smalltext">[in_homemobile]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Country/Region :</td>
+			<td class="smalltext">[in_homecountry]</td>
+			<td class="smalltext" valign="top">Mobile2 :</td>
+			<td valign="top" class="smalltext">[in_homemobile2]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Web Page :</td>
+			<td class="smalltext">[in_homeweb]</td>
+			<td class="smalltext" valign="top">SMS :</td>
+			<td valign="top" class="smalltext">[in_homesms]</td>
+		</tr>
+		<tr>
+			<td colspan="2" width="50%"></td>
+			<td colspan="2" width="50%"></td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>User Preferences</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="smalltext" width="20%">Language : </td>
+			<td class="smalltext" width="30%">[tt_in_pref_language] &nbsp;</td>
+			<td class="smalltext" width="20%">Style : </td>
+			<td class="smalltext" width="30%">[in_pref_style]&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Display New Msgs: </td>
+			<td class="smalltext">[in_pref_newmsg]</td>
+			<td class="smalltext">Max Hits</td>
+			<td class="smalltext">[in_pref_maxh]&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="4" class="smalltext">Applications in ToolBar<br>
+		  [in_pref_applications]</td>
+		</tr>
+		<tr>
+			<td colspan="4" class="smalltext">Applications in Welcome Page<br>
+		    [in_pref_wpage]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Optional Notes</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="smalltext">[in_opcnotes]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Vendor Site User</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="smalltext">[va_vendorsite_user]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>User Activity</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="smalltext" width="20%">Last Login : </td>
+			<td class="smalltext" width="30%">[in_lastlogin]</td>
+			<td class="smalltext" width="20%">From IP : </td>
+			<td class="smalltext" width="30%">[in_lastip]</td>
+		</tr>
+ 	</table>
+</fieldset>
+&nbsp;
+
+<script type="text/javascript">
+	$(document).ready(function() {		
+	
+		$('#lnk_authorizer_edit').click(function(event) {
+
+			$.fancybox({
+				'autoSize': true,				
+				'href': '#authorizer_form',
+				'type': 'inline',
+			});
+
+			return false;
+		});	
+
+		$('#btn_save_authorizer').click(function(event) {
+			
+			var id_auth = $('#id_authorizer').val();
+			if( id_auth != '0' ){
+
+				$.ajax({
+					url: '/cgi-bin/common/apps/schid',
+					type: 'POST',
+					dataType: 'json',
+					async: false,
+					cache: false,
+					data: {
+						'cmd': 'users_authorizer_setup',
+						'id_user': '[in_id_admin_users]',
+						'id_auth': id_auth,
+					},
+					success: function(response){
+						if( response.result == 200 ){
+							$('#span_authorizer').html( id_auth+' - '+$('#id_authorizer option:selected').text() );
+							$.fancybox.close();
+							return false;
+						} else{
+							console.log(response.result+' :: '+response.message);
+						}
+					}
+				});
+				
+			}
+
+		});
+
+	});
+</script>

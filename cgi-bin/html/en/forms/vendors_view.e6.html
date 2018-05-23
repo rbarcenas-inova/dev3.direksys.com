@@ -1,0 +1,238 @@
+  &nbsp;
+	<fieldset><legend>Vendors ID</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		  	<td width="30%" class="titletext">Vendors :</td>
+		    <td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_vendors] 
+					    	[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton] &nbsp;
+					    	[fc_func_list_manager]
+						</div>
+					</div>
+				
+		    	</td>
+		 </tr>
+		 <tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+		</table>
+	</fieldset>  
+	&nbsp;
+	
+	<fieldset><legend>Vendor Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Company Name :</span></td>
+		    <td class="smalltext">[in_companyname]</td>
+		 </tr>
+		<tr>
+		    <td valign="top" width="30%">Address :</td>
+		    <td class="smalltext">[in_address]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">City/State/Zip :</td>
+		    <td class="smalltext">[in_city] [in_state] [in_zip]</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Country :</td>
+		    <td class="smalltext">[in_country]</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Phone :</td>
+		    <td class="smalltext">[in_phone]</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Phone2  :</td>
+		    <td class="smalltext">[in_phone2]</td>
+		 </tr>
+ 		<tr>
+		    <td width="30%">Fax :</td>
+		    <td class="smalltext">[in_fax]</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">WebSite  : </td>
+		    <td class="smalltext"><a href="[in_website]" target="_blank">[in_website]</a></td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+
+	<fieldset><legend>Vendor Payment Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">PO Terms :</td>
+		  <td class="smalltext">[in_poterms]</td>
+		</tr>	
+	</table>
+	</fieldset>
+
+	&nbsp;
+	<fieldset><legend>Vendor Extra Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Type : </td>
+		    <td class="smalltext">[in_type]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">Payment Terms :</td>
+		    <td class="smalltext">[in_paymentterms]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">Shipping Option :</td>
+		    <td class="smalltext">[in_shippingoptions]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">Return Policy : </td>
+		    <td class="smalltext">[in_returnpolicy]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">Discounts : </td>
+		    <td class="smalltext">[in_discounts]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">Dedicated Airtime Program : </td>
+		    <td class="smalltext">[in_airprogram]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">Special Program : </td>
+		    <td class="smalltext">[in_specialprogram]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">Merchandise Type : </td>
+		    <td class="smalltext">[in_merchandiseformat]</td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr>
+	    <td class="menu_bar_title" colspan="7" align="center"><a href="#add_contact" name='add_contact' id='add_contact' onClick="add_contact()"><img src="[va_imgurl]/default/b_add.png" border="0" style="vertical-align:middle;"><font color=#ffffff> Contacts</a></td>
+	 </tr>
+	<tr>
+	    <td class="menu_bar_title">Name</td>
+	    <td class="menu_bar_title">Title</td>
+	    <td class="menu_bar_title">Phone</td>
+	    <td class="menu_bar_title">Mobile</td>
+	    <td class="menu_bar_title">Fax</td>
+	    <td class="menu_bar_title">Email</td>
+	    <td class="menu_bar_title">IM</td>
+	 </tr>
+	[va_contacts]
+ </table>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr>
+	    <td class="menu_bar_title" align="center"><a href="#add_category" name='add_category' id='add_category' onClick="add_category()"><img src="[va_imgurl]/[ur_pref_style]/arr.plus.gif" border="0"></a> Products Categories</td>
+	 </tr>
+	<tr>
+	    <td class="menu_bar_title">Category Name</td>
+	 </tr>
+	[va_categories]
+ </table>
+	&nbsp;
+     <fieldset><legend>Comments</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Comments : </td>
+		  <td class="smalltext">[in_comments] &nbsp;</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+   <fieldset><legend>Vendor Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Status : </td>
+		    <td class="smalltext">[in_status]</td>
+		 </tr>
+  	</table>
+	</fieldset>
+
+<script language="JavaScript">
+	function add_contact(){
+		popup_show('popup_contact', 'contact_drag', 'popup_exit1', 'element-right', -1, -1,'add_contact');
+	}
+	function add_category(){
+		popup_show('popup_category', 'category_drag', 'popup_exit2', 'element-right', -1, -1,'add_category');
+	}	
+</script>
+
+<div id="popup_contact" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+<div class="menu_bar_title" id="contact_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Contact Info</td>
+			<td align=right width=20px><img id="popup_exit1" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+</div>
+<div>
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+	<input type="hidden" name="id_vendors" value="[in_id_vendors]">
+	<input type="hidden" name="view" value="[in_id_vendors]">
+	<input type="hidden" name="action" value="add_contact">
+	<input type="hidden" name="cmd" value="mer_vendors">
+<table border="0" cellspacing="0" cellpadding="10" width="450" bgcolor="#FFFFFF">
+<tr>
+  <td>Name:</td>
+  <td><input name="contact_name" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td>Title:</td>
+  <td><input name="contact_title" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td>Phone:</td>
+  <td><input name="contact_phone" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td>Mobile:</td>
+  <td><input name="contact_mobile" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td>Fax:</td>
+  <td><input name="contact_fax" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td>E-mail:</td>
+  <td><input name="contact_email" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td>IM:</td>
+  <td><input name="contact_im" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td colspan="2" align="center"><input class="button" type="submit" value="Add Contact" /></td>
+</tr>
+</table>
+</form></div></div>
+
+
+<div id="popup_category" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+<div class="menu_bar_title" id="category_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Product Category</td>
+			<td align=right width=20px><img id="popup_exit2" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+</div>
+<div class="formtable">
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+	<input type="hidden" name="id_vendors" value="[in_id_vendors]">
+	<input type="hidden" name="view" value="[in_id_vendors]">
+	<input type="hidden" name="action" value="add_category">
+	<input type="hidden" name="cmd" value="mer_vendors">
+<table border="0" cellspacing="0" cellpadding="4" width="450" class="formtable" bgcolor="#FFFFFF">
+<tr>
+  <td>Name:</td>
+  <td><select name="id_categories" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	               [fc_build_select_prdcategories]
+               </select></td>
+</tr>
+<tr>
+  <td colspan="2" align="center"><input class="button" type="submit" value="Add Category" /></td>
+</tr>
+</table>
+</form></div></div>

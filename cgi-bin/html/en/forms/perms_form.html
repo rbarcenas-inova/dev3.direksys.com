@@ -1,0 +1,39 @@
+	&nbsp;
+	<fieldset><legend>Permission Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Name  : <span class="smallfieldterr">[er_name]</span></td>
+		    <td class="smalltext"><input type="text" name="name" value="[in_name]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Perm Code  : <span class="smallfieldterr">[er_perm]</span></td>
+		    <td class="smalltext"><input type="text" name="perm" value="[in_perm]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Is a Node  : <span class="smallfieldterr">[er_node]</span></td>
+		    <td class="smalltext"><input type="radio" name="node" value="Yes" class="radio">Yes
+		    	<input type="radio" name="node" value="No" class="radio">No</td>
+		 </tr>
+		<tr>
+			<td>Application : <span class="smallfieldterr">[er_application]</span></td>
+			<td>[fc_build_select_apps]</td>
+		</tr>		 
+		<tr>
+			<td>Parent Perm : <span class="smallfieldterr">[er_id_parent]</span></td>
+			<td><select name="id_parent" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value=''>---</option>
+					[fc_build_select_perms]
+      		</select></td>
+		</tr>
+	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+chg_radio('node','[in_node]');
+chg_select('id_parent','[in_id_parent]');
+chg_select('application','[in_application]');
+//-->
+</script>
+

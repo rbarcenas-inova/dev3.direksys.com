@@ -1,0 +1,36 @@
+&nbsp;
+<form method="post" action="[va_script_url]">
+	<input type="hidden" name="id_skustransfers" value="[in_id_skustransfers]">
+	<input type="hidden" name="view" value="[in_id_skustransfers]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="1">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+	    <td class="tbltextttl" >
+	    	<a href='javascript:trjump("[va_script_url]?cmd=[in_cmd]&view=[in_id_skustransfers]&tab=[va_activetab]&tabs=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+	    	<a href="javascript:prnwin('[va_script_url]?cmd=[in_cmd]&search=Print&tab=1&tabcmd=skustransfers&toprint=[in_id_skustransfers]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+	    	Items : [va_matches]
+	    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    	<a name='tabsw' id='tabsw'>&nbsp;</a>
+	    	</td>
+	    <td class="small_text" align="right"><a href="#tabs" class="scroll" onClick="add_item()">Add Item</a></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			 	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+					<td class="menu_bar_title">From Warehouse / Location</td>
+				    <td class="menu_bar_title">&nbsp;</td>
+				    <td class="menu_bar_title" colspan="2" align="center">From SKU</td>
+					<td class="menu_bar_title">To Warehouse / Location</td>
+				    <td class="menu_bar_title">&nbsp;</td>
+					<td class="menu_bar_title" colspan="2" align="center">To SKU</td>
+					<td class="menu_bar_title" colspan="2" align="center">Quantity</td>
+				 	</tr>
+				 	[va_searchresults]
+				</table>
+			</td>
+		</tr>
+	</table>
+</form>

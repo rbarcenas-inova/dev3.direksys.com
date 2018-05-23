@@ -1,0 +1,473 @@
+<script type="text/javascript">
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+	$.ajaxSetup({
+		timeout: 60000
+	});
+
+	//Cost Editable
+	$('#span_cost').editable({
+		submit:'Update',
+		editBy:'dblclick',
+		cancel:'Cancel',
+		onSubmit:function(content){
+			var id = [in_id_mediacontracts]
+			var prev_value = parseFloat(content.previous.replace('$',''));
+			var new_value = parseFloat(content.current.replace('$',''));
+
+			if(prev_value != new_value){
+				$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'update_mediacontracts', 'id_mediacontracts':id, 'field':'cost', 'old':prev_value, 'val':new_value},function(response,status,xhr){
+
+					if (status == "error") {
+						alert(msg);
+						$('#span_chg_cost').html('<img id="done_chg_cost" src="/sitimages/default/checkmark_off.gif" title="Done">');
+					}else{
+						if(response.match(/error/gi)){
+							alert("Error:\r\n"+response);
+							$('#span_chg_cost').html('<img id="done_chg_cost" src="/sitimages/default/checkmark_off.gif" title="Done">');
+						}else{
+							$('#span_cost').html('\$'+parseFloat(new_value));
+							$('#span_chg_cost').html('<img id="done_chg_cost" src="/sitimages/default/checkmark.gif" title="Done">');
+						}
+					}
+					$('#span_chg_cost').fadeIn(2000);
+				});
+
+				setTimeout(function(){
+						$('#span_chg_cost').fadeOut(2000);
+				},3000);
+				
+				setTimeout(function(){
+					$('#span_chg_cost').fadeIn(2000);
+					$('#span_chg_cost').html('<img id="btn_chg_cost" src="/sitimages/default/b_edit.png" title="Click to edit Cost" style="cursor:pointer;">');
+				},5000);
+	
+			}else{
+				$('#span_chg_cost').fadeIn(2000);
+			}
+		},
+		onCancel:function(){
+			$('#span_chg_cost').fadeIn(2000);
+		}
+	});
+
+
+	//ESTDay Editable
+	$('#span_estday').editable({
+		submit:'Update',
+		editBy:'dblclick',
+		cancel:'Cancel',
+		onSubmit:function(content){
+			var id = [in_id_mediacontracts];
+			var did = $('#span_destinationdid').html();
+			var esttime = $('#span_esttime').html();
+			var prev_value = content.previous;
+			var new_value = content.current;
+
+			/* Current */
+			var data = content.current.split(' ');
+			var date = data[0];
+			var time = data[1];
+
+			/* Previous */
+			var data_p = content.previous.split(' ');
+			var date_p = data_p[0];
+			var time_p = data_p[1];
+
+			if(prev_value != new_value){
+				$('#message').html('Destination DID and Data for this Contract will be reassigned. It might take some time..');
+				$('#click4wait').click();
+				window.location.href = "/cgi-bin/mod/[ur_application]/dbman?cmd=mm_contracts&view="+id+"&edit_estday="+new_value;
+			}else{
+				$('#span_estday').html(date_p);
+				$('#span_esttime').html(time_p);
+				$('#span_chg_estday').fadeIn(2000);
+			}
+		},
+		onCancel:function(content){
+			var data = content.previous.split(' ');
+			var date = data[0];
+			var time = data[1];
+
+			$('#span_estday').html(date);
+			$('#span_esttime').html(time);
+
+			$('#span_chg_estday').fadeIn(2000);
+		}
+	});
+
+
+	//Destination Editable
+	$('#span_destination').editable({
+		type:'select',
+		[va_destination_options],
+		submit:'Update',
+		editBy:'dblclick',
+		cancel:'Cancel',
+		onSubmit:function(content){
+			var id = [in_id_mediacontracts]
+			var prev_value = content.previous;
+			var new_value = content.current;
+
+			if(prev_value != new_value){
+				$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'update_mediacontracts', 'id_mediacontracts':id, 'field':'destination', 'old':prev_value, 'val':new_value},function(response,status,xhr){
+
+					if (status == "error") {
+						alert(msg);
+						$('#span_chg_destination').html('<img id="done_chg_destination" src="/sitimages/default/checkmark_off.gif" title="Done">');
+					}else{
+						if(response.match(/error/gi)){
+							alert("Error:\r\n"+response);
+							$('#span_chg_destination').html('<img id="done_chg_destination" src="/sitimages/default/checkmark_off.gif" title="Done">');
+						}else{
+							$('#span_chg_destination').html('<img id="done_chg_destination" src="/sitimages/default/checkmark.gif" title="Done">');
+						}
+					}
+					$('#span_chg_destination').fadeIn(2000);
+				});
+
+			}
+
+
+			setTimeout(function(){
+					$('#span_chg_destination').fadeOut(2000);
+			},3000);
+
+			setTimeout(function(){
+				$('#span_chg_destination').fadeIn(2000);
+				$('#span_chg_destination').html('<img id="btn_chg_cost" src="/sitimages/default/b_edit.png" title="Click to edit Offer" style="cursor:pointer;">');
+			},5000);
+			
+		},
+		onCancel:function(){
+			$('#span_chg_destination').fadeIn(2000);
+		}
+	});
+
+
+	$('#span_destinationdid').editable({
+		type:'select',
+		[va_destinationdid_options],
+		editBy:'dblclick',
+		submit:'Update',
+		cancel:'Cancel',
+		onSubmit:function(content){
+			var id = [in_id_mediacontracts]
+			var prev_value = parseInt(content.previous);
+			var new_value = parseInt(content.current);
+
+			if(prev_value != new_value){
+				$('#message').html('Destination DID and Data for this Contract will be reassigned. It might take some time..');
+				$('#click4wait').click();
+				window.location.href = "/cgi-bin/mod/[ur_application]/dbman?cmd=mm_contracts&view="+id+"&edit_did="+new_value;
+			}else{
+				//alert(prev_value+'=='+new_value);
+				$('#span_chg_destinationdid').fadeIn(2000);
+			}
+		},
+		onCancel:function(){
+			$('#span_chg_destinationdid').fadeIn(2000);
+		}
+	});
+
+
+	//Offer Editable
+	$('#span_offer').editable({
+		submit:'Update',
+		editBy:'dblclick',
+		cancel:'Cancel',
+		onSubmit:function(content){
+			var id = [in_id_mediacontracts]
+			var prev_value = content.previous;
+			var new_value = content.current.replace(/^\s+/, '').replace(/\s+$/, '');
+
+			if(prev_value != new_value){
+				$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'update_mediacontracts', 'id_mediacontracts':id, 'field':'offer', 'old':prev_value, 'val':new_value},function(response,status,xhr){
+
+					if (status == "error") {
+						alert(msg);
+						$('#span_chg_offer').html('<img id="done_chg_offer" src="/sitimages/default/checkmark_off.gif" title="Done">');
+					}else{
+						if(response.match(/error/gi)){
+							alert("Error:\r\n"+response);
+							$('#span_chg_offer').html('<img id="done_chg_offer" src="/sitimages/default/checkmark_off.gif" title="Done">');
+						}else{
+							$('#span_chg_offer').html('<img id="done_chg_offer" src="/sitimages/default/checkmark.gif" title="Done">');
+						}
+					}
+					$('#span_chg_offer').fadeIn(2000);
+				});
+
+				setTimeout(function(){
+						$('#span_chg_offer').fadeOut(2000);
+				},3000);
+
+				setTimeout(function(){
+					$('#span_chg_offer').fadeIn(2000);
+					$('#span_chg_offer').html('<img id="btn_chg_cost" src="/sitimages/default/b_edit.png" title="Click to edit Offer" style="cursor:pointer;">');
+				},5000);
+
+			}else{
+				$('#span_chg_offer').fadeIn(2000);
+			}
+		},
+		onCancel:function(){
+			$('#span_chg_offer').fadeIn(2000);
+		}
+	});
+
+
+	/*Edit Buttons*/
+	$('#btn_chg_cost').live('click',function(){
+		$('#span_chg_cost').fadeOut();
+		$('#span_cost').dblclick();
+	});
+
+	$('#btn_chg_estday').live('click',function(){
+		var datetime = $('#span_estday').html() + ' ' + $('#span_esttime').html();
+		$('#span_estday').html(datetime);
+		$('#span_chg_estday').fadeOut();
+		$('#span_estday').dblclick();
+	});
+
+	$('#btn_chg_destination').live('click',function(){
+		$('#span_chg_destination').fadeOut();
+		$('#span_destination').dblclick();
+	});
+
+	$('#btn_chg_destinationdid').live('click',function(){
+		$('#span_chg_destinationdid').fadeOut();
+		$('#span_destinationdid').dblclick();
+	});
+
+	$('#btn_chg_offer').live('click',function(){
+		$('#span_chg_offer').fadeOut();
+		$('#span_offer').dblclick();
+	});
+
+});
+
+
+// Overlay
+$(function() {
+
+  $("a[rel]").live('click', function(e) {
+
+    // if the function argument is given to overlay,
+    // it is assumed to be the onBeforeLoad event listener
+    $(this).overlay({
+      effect: 'apple'
+    });
+    e.preventDefault();
+  });
+
+});
+
+-->
+</script>
+
+
+<style>
+/* use a semi-transparent image for the overlay */
+#overlay {
+	background-image:url(/jquerytools/overlay/transparent.png);
+	color:#fff;
+	height:540px;
+}
+
+/* container for external content. uses vertical scrollbar, if needed */
+div.contentWrap {
+	height:541px;
+	overflow-y:auto;
+}
+/* the overlayed element */
+.apple_overlay {
+
+	/* initially overlay is hidden */
+	display:none;
+
+	/* growing background image */
+	background-image:url(/jquerytools/overlay/white.png);
+
+	/*
+		width after the growing animation finishes
+		height is automatically calculated
+	*/
+	width:540px;
+
+	/* some padding to layout nested elements nicely  */
+	padding:35px;
+
+	/* a little styling */
+	font-size:11px;
+}
+
+/* default close button positioned on upper right corner */
+.apple_overlay .close {
+	background-image:url(/jquerytools/overlay/close.png);
+	position:absolute; right:5px; top:5px;
+	cursor:pointer;
+	height:35px;
+	width:35px;
+}
+</style>
+
+    <fieldset>
+        <legend>Contracts</legend>
+        <table border="0" cellspacing="0" cellpadding="2" width="100%">
+            <tbody>
+                <tr>
+                    <td width="30%" class="titletext">Contracts ID :</td>
+                    <td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_mediacontracts] &nbsp;	<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mm_contracts&amp;modify=[in_id_mediacontracts]"><img src="[va_imgurl]/[ur_pref_style]/b_edit.gif" title="Edit" alt="" border="0"></a>
+	                        <a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=mm_contracts&search=Print&toprint=[in_id_mediacontracts]')">
+	                            <img src="[va_imgurl]/[ur_pref_style]/b_print.gif" title="Print" alt="" border="0">
+	                            </a>
+						</div>
+					</div>
+				
+                    </td>
+                </tr>
+				<tr>
+					<td width="30%" class="smalltext">Date / Time /user  : </td>
+					<td class="smalltext">[in_date] [in_time] &nbsp; Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+				</tr>
+            </tbody>
+        </table>
+    </fieldset>&nbsp;
+    <fieldset>
+        <legend>Contracts</legend>
+        <table border="0" cellspacing="0" cellpadding="2" width="100%">
+            <tbody>
+                <tr>
+                    <td width="30%">Station</td>
+                    <td class="smalltext" id="td_station"><span id="span_station">[in_station]</span> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">Dma</td>
+                    <td class="smalltext" id="td_dma"><span id="span_dma">[in_dma]</span> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">Agency</td>
+                    <td class="smalltext" id="td_agency"><span id="span_agency">[in_agency]</span> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">Format</td>
+                    <td class="smalltext" id="td_format"><span id="span_format">[in_format]</span> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">Cost</td>
+                    <td class="smalltext" id="td_cost">
+						<span id="span_cost">[in_cost]</span>
+						<span id="span_chg_cost">
+							<img id="btn_chg_cost" src="[va_imgurl]/[ur_pref_style]/b_edit.png" title="Click to edit" style="cursor:pointer;">
+						</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">Stationdate</td>
+                    <td class="smalltext" id="td_stationdate"><span id="span_stationdate">[in_stationdate]</span> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">Stationtime</td>
+                    <td class="smalltext" id="td_stationtime"><span id="span_stationtime">[in_stationtime]</span> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">Estday</td>
+                    <td class="smalltext" id="td_estday">
+						<span id="span_estday">[in_estday]</span>
+						<span id="span_chg_estday">
+							<img id="btn_chg_estday" src="[va_imgurl]/[ur_pref_style]/b_edit.png" title="Click to edit" style="cursor:pointer;">
+						</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">Esttime</td>
+                    <td class="smalltext" id="td_esttime"><span id="span_esttime">[in_esttime]</span> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">Destination</td>
+                    <td class="smalltext" id="td_destination">
+						<span id="span_destination">[in_destination]</span>
+						<span id="span_chg_destination">
+							<img id="btn_chg_destination" src="[va_imgurl]/[ur_pref_style]/b_edit.png" title="Click to edit" style="cursor:pointer;">
+						</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">Destinationdid</td>
+                    <td class="smalltext" id="td_destinationdid">
+						<span id="span_destinationdid">[in_destinationdid]</span>
+						<span id="span_chg_destinationdid">
+							<img id="btn_chg_destinationdid" src="[va_imgurl]/[ur_pref_style]/b_edit.png" title="Click to edit" style="cursor:pointer;">
+						</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">Offer</td>
+                    <td class="smalltext" id="td_offer">
+						<span id="span_offer">[in_offer]</span>
+						<span id="span_chg_offer">
+							<img id="btn_chg_offer" src="[va_imgurl]/[ur_pref_style]/b_edit.png" title="Click to edit" style="cursor:pointer;">
+						</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">Family</td>
+                    <td class="smalltext" id="td_family"><span id="span_family">[in_family]</span> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">Comments</td>
+                    <td class="smalltext" id="td_comments"><span id="span_comments">[in_comments]</span> 
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">Week</td>
+                    <td class="smalltext" id="td_week"><span id="span_week">[in_week]</span> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>&nbsp; &nbsp;
+    <fieldset>
+        <legend>Contracts Status</legend>
+        <table border="0" cellspacing="0" cellpadding="2"
+        width="100%">
+            <tbody>
+                <tr>
+                    <td width="30%">Status :</td>
+                    <td class="smalltext" id="td_status"><span id="span_status">[in_status]</span> &nbsp;&nbsp;-&nbsp;&nbsp;Change
+                        To <a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mm_contracts&amp;view=[in_id_mediacontracts]&amp;chgstatus=Programado">Programado</a>&nbsp;&nbsp;
+                        <a
+                        href="/cgi-bin/mod/[ur_application]/dbman?cmd=mm_contracts&amp;view=[in_id_mediacontracts]&amp;chgstatus=Auto Transmitido">Auto Transmitido</a>&nbsp;&nbsp;
+<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mm_contracts&amp;view=[in_id_mediacontracts]&amp;chgstatus=NoTX: Pendiente">NoTX: Pendiente</a>&nbsp;&nbsp;
+                            <a
+                            href="/cgi-bin/mod/[ur_application]/dbman?cmd=mm_contracts&amp;view=[in_id_mediacontracts]&amp;chgstatus=NoTX: Credito">NoTX: Credito</a>&nbsp;&nbsp;
+<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mm_contracts&amp;view=[in_id_mediacontracts]&amp;chgstatus=NoTX: No Facturado">NoTX: No Facturado</a>&nbsp;&nbsp;
+                                <a
+                                href="/cgi-bin/mod/[ur_application]/dbman?cmd=mm_contracts&amp;view=[in_id_mediacontracts]&amp;chgstatus=Aircheck">Aircheck</a>&nbsp;&nbsp;
+<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mm_contracts&amp;view=[in_id_mediacontracts]&amp;chgstatus=Pending Aircheck">Pending Aircheck</a>&nbsp;&nbsp;
+                                    <a
+                                    href="/cgi-bin/mod/[ur_application]/dbman?cmd=mm_contracts&amp;view=[in_id_mediacontracts]&amp;chgstatus=System Error">System Error</a>&nbsp;&nbsp;
+<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mm_contracts&amp;view=[in_id_mediacontracts]&amp;chgstatus=Station Error">Station Error</a>&nbsp;&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>

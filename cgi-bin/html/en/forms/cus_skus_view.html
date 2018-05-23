@@ -1,0 +1,87 @@
+	<fieldset><legend>SKU ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">SKU ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[va_id_customers_parts] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]
+							[fc_func_list_manager]
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	<a name='tabs' id='tabs'>&nbsp;</a>
+	<fieldset><legend>SKU Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Customer : </td>
+		    <td class="smalltext">([in_id_customers]) [va_customer_name]</td>
+		</tr>
+		<tr>
+		    <td width="30%">UPC :</td>
+		    <td class="smalltext">[va_upc]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Model : </td>
+		    <td class="smalltext">[va_model]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Item Title : </td>
+		    <td class="smalltext">[va_name]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Size : </td>
+		    <td class="smalltext">[va_size]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Packing Type : </td>
+		    <td class="smalltext">[va_packing_type]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Packing Unit : </td>
+		    <td class="smalltext">[va_packing_unit]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Alias SKU :</td>
+		    <td class="smalltext">[va_sku_customers]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Price :</td>
+		    <td class="smalltext">[in_sprice]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Purchase Tax :</td>
+		    <td class="smalltext">[va_purchase_tax]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Sale Tax :</td>
+		    <td class="smalltext">[va_sale_tax]</td>
+		</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Stock Management</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			  <td width="30%" class="titletext">Actual Inventory : </td>
+			  <td class="titletext" onmouseover='m_over(this)' onmouseout='m_out(this)' >
+			  	[in_inventory] <span class="help_on">Units</span>
+		  		<a href="#ajax_inv" class="scroll" onClick="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'ajax_inv');loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=inventory&id_products=[in_id_parts]&cols=ID,Choices,Vendor SKU,Warehouse,Qty');">
+		  			<img id='ajax_inv' src='[va_imgurl]/[ur_pref_style]/b_view.png' title='More Info' alt='More Info' border='0'></a>
+
+			  	</td>
+			</tr>		 
+		</table>
+	</fieldset>
+	&nbsp;

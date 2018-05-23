@@ -1,0 +1,142 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es-mx" lang="es-mx">
+<head>
+	<meta http-equiv="Content-Language" content="es-mx">
+	<title>Editing Rules</title>
+	<link rel="STYLESHEET" href="/sitimages//default/main.css" type="text/css">
+
+	<link rel="stylesheet" href="/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src=" /libs/jqueryui/1.8.16/jquery-ui.min.js"></script>	
+
+	<style>
+		.title_table
+		{
+			text-align: left;
+			padding: 6px;
+			background-color:#444; 
+			color:#FFF;
+		}
+
+		.title_column
+		{
+			font-weight: bolder;
+			background-color: #EEE;
+		}
+
+		td
+		{
+			padding:4px;
+			text-align: center;
+		}
+
+		input[type="text"], select
+		{
+			width: 95%;
+			font-size: 12px;
+		}
+
+		.logo_bank
+		{
+			vertical-align: middle;
+		}
+
+		.ui-corner-all
+		{
+			padding: 0px;
+			font-size: 10px;
+			border: 1px #EEE;
+		}
+
+		ul
+		{
+			background-color: #FFF;
+		}
+
+		li
+		{
+			list-style: none;
+		}
+
+
+	</style>
+</head>
+<body>
+
+	<form action="/cgi-bin/common/apps/ajaxbuild" method="post" name="sitform">
+		<input type="hidden" name="ajaxbuild" value="edit_relation_treasury_layout">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="bank" value="[va_bank]">
+		
+
+		<img class="logo_bank" src="/sitimages/banks/[va_bank].png">
+		<span style="font-size: 20px;">[va_bank]</span>
+		<br><br>
+		<table border="0" style="border-collapse: collapse; min-width: 99%;">
+			<tr>
+				<td colspan="4" class="title_table"> Current Record </td>
+
+			</tr>
+			<tr class="title_column">
+				<td>Description 1</td>
+				<td>Description 2</td>
+				<td>Description 3</td>
+				<td>Transaction Code</td>
+
+			</tr>
+			<tr>
+				<td>[va_description_1]</td>
+				<td>[va_description_2]</td>
+				<td>[va_description_3]</td>
+				<td>[va_transaction_code]</td>
+			</tr>
+		</table>
+		<br><br>
+		<table border="0" style="border-collapse: collapse; min-width: 99%;">
+			<tr style="background-color:#444; color:#FFF; ">
+				<td colspan="2" class="title_table"> Rule Relation </td>
+			</tr>
+			<tr >
+				<td class="title_column">Field</td>
+				<td>
+					<select name="field">
+						<option value="description_1">Description 1</option>
+						<option value="description_2">Description 2</option>
+						<option value="description_3">Description 3</option>
+						<option value="transaction_code">Transaction Code</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="title_column">Text Filter</td>
+				<td>
+					<input name="text_filter" type="text">
+				</td>
+			</tr>
+			<tr>				
+				<td class="title_column">Categorie</td>
+				<td>
+					[va_select_categories]
+				</td>
+			</tr>
+			<tr>				
+				<td class="title_column">Account</td>
+				<td>
+					<!--input name="accout" type="text"-->
+					<input type="text" id="account" name="account">
+				</td>
+			</tr>			
+		</table>
+		<br><br>
+		<center>
+			<input id="submit_edit_order" type="submit" value="Update Rule" class="button">
+		</center>
+	</form>
+
+
+	<script>
+
+		$("input#account").autocomplete({
+			source: [[va_select_accounts]]
+		});
+	</script>
+</body>

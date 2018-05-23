@@ -1,0 +1,123 @@
+[ip_header]
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+	var dates = $( "#fromdate, #todate" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2011,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "fromdate" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 6, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+  <form action="/cgi-bin/mod/admin/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="mm_datax">
+	<input type="hidden" name="action" value="1">
+	
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+					<td align="center" class="menu_bar_title">Dataexchange Date Range</td>
+			  </tr>
+				<tr>
+				    <td class="stdtxterr" align="center">[va_message]</td>
+				</tr>
+
+				<tr>
+					  <td align="center">From Date : <span class="smallfieldterr">[er_fromdate]</span>
+							<input type="text" id="fromdate" name="fromdate" value="[in_fromdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+				</tr>
+				<tr>
+					  <td align="center">To Date : <span class="smallfieldterr">[er_todate]</span>
+							<input type="text" id="todate" name="todate" value="[in_todate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+				</tr>
+				<tr>
+					  <td align="center">File Type : <span class="smallfieldterr">[er_ftype]</span>
+							<input type="radio" class="radio" name="ftype" value="std" checked> Standard
+							<input type="radio" class="radio" name="ftype" value="spots"> Spots Detailled
+						</td>
+				</tr>
+				<tr>
+					<td align="center"><br><input type="submit" value="Export Data" loading="0" class="button"></td>
+			  </tr>
+			</table>	
+			&nbsp;
+
+
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+					<td align="center" class="menu_bar_title" colspan=4>Reports <a href='/cgi-bin/mod/admin/admin?cmd=mm_datax'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif'></a></td>
+			  </tr>
+			[va_reports]
+			</table>	
+			&nbsp;
+			<table border="0" cellspacing="0" cellpadding="4" width="200" class="formtable" align="center">
+				<tr>
+					<td align="center" class="menu_bar_title">Symbols</td>
+			  </tr>
+				<tr>
+					<td align="center" class="smalltxt">
+						<img src='[va_imgurl]/[ur_pref_style]/b_drop.png'> Delete in-process or finished file<br>
+						<img src='[va_imgurl]/[ur_pref_style]/b_xls.gif'> Download the dataexchange file<br>
+						<img src='[va_imgurl]/[ur_pref_style]/loading.gif'> Report in process wait until is finish<br>
+						<img src='[va_imgurl]/[ur_pref_style]/waiting.png'> Report in Queue
+						
+						</td>
+			  </tr>
+			</table>
+			&nbsp;
+	&nbsp;
+  </form>			
+			
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+

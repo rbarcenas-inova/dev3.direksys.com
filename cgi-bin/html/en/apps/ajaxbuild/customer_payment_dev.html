@@ -1,0 +1,308 @@
+[ip_header_small]
+
+<table border="0" cellspacing="0" cellpadding="10" width="100%" height="100%" bgcolor=white>
+	<tr>
+		<td valign=top>
+			
+			<form action="/cgi-bin/common/apps/ajaxbuild" method="post" name="sitform" onsubmit="return confirm_apply();">
+				<input type="hidden" name="action" value="1">
+				<input type="hidden" name="id_customers" value="[in_id_customers]">
+				<input type="hidden" name="ajaxbuild" value="customer_addpmt_dev">
+				<input type="hidden" name="extra_services" value="[in_extra_services]">
+				
+					<table width="100%" border="0" cellspacing="0" cellpadding="0"  align="center">
+						<tbody>
+							<tr>
+								<td class="tbltextttl">
+									<a href='/cgi-bin/common/apps/ajaxbuild?ajaxbuild=customer_addpmt&id_customers=[in_id_customers]&[va_rndnumber]")'><img src="/sitimages//default/b_reload.gif" title="Refresh" alt="" border="0"></a>&nbsp;<span class="stdtxterr">[va_messages]</span>
+										<fieldset>
+											<legend>Banks Info</legend>
+											<table border="0" cellspacing="0" cellpadding="2" width="100%">
+												<tbody><tr>
+													<td width="30%">Bank :  <span class="smallfieldterr">[er_id_banks]</span></td>
+													<td>
+														<select name="id_banks" onfocus="focusOn( this )" onblur="focusOff( this )">
+															<option value="">---</option>
+															[fc_build_select_custom_bank]
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td width="30%">Bank Date :  <span class="smallfieldterr">[er_bankdate]</span></td>
+													<td><input id="bankdate" size="20" name="bankdate" value="[in_bankdate]" onfocus="focusOn( this )" onblur="focusOff( this )" [va_restrict_bankdate]>&nbsp;</td>
+												</tr>
+												<tr>
+													<td width="30%">Amount :  <span class="smallfieldterr">[er_amount]</span></td>
+													<td><input type="text" name="amount" id="amount" value="[in_amount]" size="" onfocus="focusOn( this )" onblur="focusOff( this )" [va_restrict_amount]>
+														<img src="[va_imgurl]newstyle/b_adjtotals.gif" id="amount_same_total" title="Same as Total" style="cursor:pointer;">
+														&nbsp;&nbsp;
+														<span class="help_on">Amount of the bank movement</span></td>
+												</tr>
+												<tr>
+													<td width="30%">Doc Type :  <span class="smallfieldterr">[er_doc_type]</span></td>
+													<td>
+														[br_doc_type@sl_banks_movements]
+													</td>
+												</tr>
+												<tr>
+													<td width="30%">Reference Number :  <span class="smallfieldterr">[er_refnum]</span></td>
+													<td><input type="text" id="refnum" name="refnum" value="[in_refnum]" size="40" onfocus="focusOn( this )" onblur="focusOff( this )"></td>
+												</tr>
+												<tr>
+													<td width="30%">Memo :  <span class="smallfieldterr">[er_memo]</span></td>
+													<td><input type="text" id="memo" name="memo" value="[in_memo]" size="60" onfocus="focusOn( this )" onblur="focusOff( this )"></td>
+												</tr>
+											</tbody></table>
+										</fieldset>
+										
+										&nbsp;
+										<div id="pmt-in" [va_this_style]>
+											<fieldset>
+												<legend>Search Payments </legend>
+												<br>
+												<label for="invoice" class='smalltext'>Order: </label> 
+												<div id="div-id-in" [va_this_style]>
+													<input type="text" id="id-in" name="id-in" value="" size="80">&nbsp; X &nbsp;
+													<input type="text" id="amt-in" name="amt-in" value="" size="10">&nbsp;&nbsp;
+													<input type="button" id="btn-in" name="btn-in" value="Add This" style="display:none;">
+													<span id="loadingimg" ></span>
+												</div>
+												&nbsp;
+												<div id="div-ids-in" style="width:98%;height:[va_div_height]px;overflow-y:auto;">
+													[va_ids_in]
+												</div>
+												<div>
+													[va_message]
+												</div>
+											</fieldset>
+										</div>
+
+										<!-- <p align="center" style="height:25px;font-size:2em;color:red">
+											<span id="amt_balance"></span>
+											<div id="amt_balance_greater" style="text-align:center;display:none;"> 
+												<input type="checkbox" id="accept_greather_amount" name="accept_greather_amount" value="1"> Accept higher payment amount. 
+											</div>
+										</p> -->
+										<p align="center">
+											<input type="button" id="cfm_button" name="cmfbutton" value="[va_btncfm]" class="button" style="visibility:visible;">
+											&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="submit" id="act_button" name="actbutton" value="[va_btnname]" class="button" style="visibility:hidden;">
+											&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="button" id="res_button" name="resbutton" value="[va_btnres]" class="button" style="visibility:hidden;">
+										</p>
+									
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</form>
+
+<script type="text/javascript">
+
+	chg_select('id_banks','[in_id_banks]');
+	chg_select('add_type','[in_add_type]');
+	chg_select('add_id_orders','[in_add_id_orders]');
+	chg_select('add_id_services','[in_add_id_services]');
+	chg_radio('doc_type','[in_doc_type]');
+	var flag_update="[va_flag_updated]";
+
+
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		if(flag_update==1){
+			$('#id_banks').val();
+			$('#bankdate').val();
+			$('#amount').val();
+			$('#refnum').val();
+			$('#memo').val();
+		}
+
+		$.ajaxSetup({
+	    	timeout: 60000
+	    });
+
+		var dates = $( "#bankdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			maxDate: new Date(),
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 2,
+		});
+
+		if ('[in_pterms]'.length == 0) {
+			$(":radio[name='pterms']").prop('checked', false);
+		}
+
+
+		/* Amount Total Same as Apllied */
+		$( "#amount_same_total" ).click(function(){
+
+			var amt_applied = parseFloat($( "#total_amt" ).val()) || 0;
+			$( "#amount" ).val(amt_applied) || 0;
+
+		});
+
+
+		/* Confirm | Apply | Reset Buttons */
+		$( "#cfm_button" ).click(function(){
+
+			var amt_to_apply = parseFloat($( "#amount" ).val()) || 0;
+			var amt_applied = parseFloat($( "#total_amt" ).val()) || 0;
+			var balance = parseFloat(amt_to_apply - amt_applied).toFixed(2);
+			
+			$( "#amt_balance" ).text('');
+			$( "#amt_balance_greater" ).hide();
+		  	$( "#cfm_button" ).fadeOut(1000).hide();
+		  	$( "#act_button" ).css('visibility','visible').fadeIn(2500);
+		  	$( "#res_button" ).css('visibility','visible').fadeIn(2500);			
+		});
+
+		$( "#act_button, #res_button" ).click(function(){
+		  	$( "#act_button" ).fadeOut(1000).hide();
+		  	$( "#res_button" ).fadeOut(1000).hide();
+		  	$( "#cfm_button" ).css('visibility','visible').fadeIn(2500);
+		});
+
+		$( "#amount" ).focus(function(){
+			$( "#res_button" ).click();
+		});
+		
+
+		/*Autocomplete/Qty Disabled/Enabled*/
+		var this_id = $( '#id-in' ).val();
+		(this_id  == '') ? $( "#amt-in" ).attr('disabled','disabled') : $( "#amt-in" ).removeAttr('disabled');
+		
+		/* Reset textbox & fadeOut button onFocus */
+		$( "#id-in" ).focus(function(){
+		  	$( "#id-in" ).val('');
+		  	$( "#amt-in" ).attr('disabled','disabled');
+		  	$( "#amt-in" ).val('');
+		  	$( "#btn-in" ).fadeOut(1000);
+		});
+
+
+		/* Autocomplete Search */
+		$( "#id-in" ).autocomplete({
+			minLength: 2,
+			source: function( request, response ) {
+				$( "#loadingimg" ).html("<img src='../../../sitimages/load16.gif' /> Loading");
+				$.ajax({
+					url: '/cgi-bin/common/apps/ajaxbuild',
+					datatype: 'jsonp',
+					data: {
+						ajaxbuild: "customers_addpmt_edit_dev",
+						id: [in_id_customers],
+						type: 'load',
+						keyword: request.term,
+						idmi: 0,
+						data_in : 0
+					},
+					success: function( data ) {
+						$( "#loadingimg" ).html("");
+						 if(data != null){
+							response( $.map( data.inv, function( inv ) {
+								return {
+									label: inv.ido + ' @@ ' + inv.iad + ' @@ ' + inv.idc + ' @@ ' + inv.amnt+' @@ ' + inv.dbt,
+									value: inv.ido + ' @@ ' + inv.iad + ' @@ ' + inv.idc + ' @@ ' + inv.amnt+' @@ ' + inv.dbt
+								}
+							}));
+						}else if(request.term.length > 3) {
+							alert('No data found with this keyword');
+						}	
+					}
+				});
+			},
+		  	select: function( event, ui ) {
+		  		$( "#amt-in" ).removeAttr('disabled');
+		  		$( '#amt-in' ).focus();
+		  		$( '#btn-in' ).fadeIn(1000);
+		  	}
+		});	
+
+
+		/* Adding Items */
+		$( "#btn-in" ).click(function(e){
+		  	var t = $( '#id-in' ).val().split(' @@ ',5);
+		  	var id_orders = parseInt(t[0]) || 0;
+		  	var ID_accounts_debit = parseInt(t[1]) || 0;
+		  	var id_customers = parseFloat(t[2]) || 0;
+		  	var debit = parseFloat(t[3]) || 0;
+		  	var credit = parseFloat(t[4]) || 0;
+		  	var this_amt = parseFloat($( '#amt-in' ).val());
+			var data_in=id_customers+':'+id_orders+':'+ID_accounts_debit+':'+this_amt;	  		  	
+
+		  	if(this_amt>debit){
+
+		  		alert('Amount Greater than Allowed: (' + this_amt + ' > ' + debit + ')');
+		  		$( "#amt-in" ).focus();
+		  		return false;
+
+		  	}else{
+		  		if((credit)>debit){		  			
+					alert('Total Amount Greater than Allowed: (' + (credit) + ' > ' + debit + ')');
+			  		$( "#amt-in" ).focus();
+			  		return false;		  			
+		  		}else{
+		  			$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'customers_addpmt_edit_dev', 'id':[in_id_customers], 'type': 'add', 'data_in':data_in},function(response,status,xhr){
+						if (status == "error") {
+							alert(msg);
+							$( '#id-in' ).focus();
+						}else{
+							if(response.match(/error/gi)){
+								alert(response + "\r\nPlease Try again");
+								$( '#id-in' ).focus();
+							}else{
+								$( '#div-ids-in' ).html(response).animate({height: '+=22'},1000);
+							}
+						}
+					});
+		  		}
+			}
+		});
+
+
+		/* Drop Row*/
+		$( ".rdrop" ).live('click',function(){
+			var p = $(this).attr('id').split('-',2);
+		  	var idmi = parseInt(p[1]);
+
+		  	$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'customers_addpmt_edit_dev', 'id':[in_id_customers], 'type': 'drop', 'idmi':idmi, 'data_in':0 },function(response,status,xhr){
+
+				if (status == "error") {
+					alert(msg);
+					$( '#id-in' ).focus();
+				}else{
+					if(response.match(/error/gi)){
+						alert(response + "\r\nPlease Try again");
+						$( '#id-in' ).focus();
+					}else{
+						$( '#div-ids-in' ).html(response).animate({height: '-=22'},1000);
+					}
+				}
+			});
+		  	
+		  	
+		});	
+
+
+	});
+	
+	function confirm_apply() {
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+
+	$(function(){
+		$( "#cfm_button" ).click();
+		$( "#res_button" ).click();
+	});
+
+</script>
+

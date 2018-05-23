@@ -1,0 +1,210 @@
+[ip_header]
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+	var dates = $( "#from_date, #to_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2012,7,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+});
+-->
+</script>
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: [fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="12%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_cdr_home")'>CDR</td>
+	    <td width="12%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_cdr_leads_flash")'>Lead Flash</td>
+	    <td width="12%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_cdr_didord")'>DID/ORD</td>
+	    <td width="12%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_cdr_ord")'>Orders</td>
+	    <td width="12%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_cdr_cod")'>Orders COD</td>
+	    <td width="12%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_cdr_tot")'>Total</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+  <form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="rep_cdr_leads_flash">
+	<input type="hidden" name="action" value="1">
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Leads Flash</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Advanced Search</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">ID: <span class="smallfieldterr">[er_id_leads_flash]</span></td>
+		    <td class="smalltext">
+		    	<input type="text" name="id_leads_flash" value="[in_id_leads_flash]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	</td>
+		 </tr>
+		 <tr>
+		  <td width="20%">From Date : <span class="smallfieldterr">[er_from_date]</span></td>
+		    <td class="smalltext" colspan="2"><input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	 </td>
+			</tr>
+			<tr>
+		    <td width="20%">To Date : <span class="smallfieldterr">[er_to_date]</span></td>
+		    <td class="smalltext" colspan="2"><input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	 </td>
+			</tr>
+	</table>
+	</fieldset>			
+	 
+	 	&nbsp;
+	<fieldset><legend>Leads Flash Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Lead : <span class="smallfieldterr">[er_id_leads]</span></td>
+		    <td class="smalltext"><input type="text" name="id_leads" id="id_leads" value="[in_id_leads]" size="30" maxlength="20" onFocus='focusOn( this )' onBlur='focusOff( this )'><span class="smallfieldterr">[er_message]</span></td>
+			
+		</tr>
+		<tr>
+		    <td width="30%">Name : <span class="smallfieldterr">[er_name]</span></td>
+		    <td class="smalltext"><input type="text" name="name" value="[in_name]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			    <td width="30%">Contact Hours: <span class="smallfieldterr">[er_contact_time]</span></td>
+			    <td class="smalltext">
+			    <input name="contact_time" value="00:00-04:00" type="checkbox" class="checkbox">00:01 - 04:00 AM&nbsp;&nbsp;
+			    <input name="contact_time" value="04:01-08:00" type="checkbox" class="checkbox">04:01 - 08:00 AM<br>	
+			    <input name="contact_time" value="08:01-12:00" type="checkbox" class="checkbox">08:01 - 12:00 AM&nbsp;&nbsp;
+			    <input name="contact_time" value="12:01-16:00" type="checkbox" class="checkbox">12:01 - 16:00 PM<br>
+			    <input name="contact_time" value="16:01-20:00" type="checkbox" class="checkbox">16:01 - 20:00 PM&nbsp;&nbsp;
+			    <input name="contact_time" value="20:01-00:00" type="checkbox" class="checkbox">20:01 - 00:00 PM<br>	
+			    </td>
+			</tr>
+		<tr>
+			<td width="30%">Call Hours: <span class="smallfieldterr">[er_call_time]</span></td>
+			<td class="smalltext"><br />
+				<label><input type="checkbox" name="call_time" value="00:07-08:00" class="checkbox"> 07:00 - 08:00 AM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="checkbox" name="call_time" value="08:01-09:00" class="checkbox"> 08:01 - 09:00 AM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="checkbox" name="call_time" value="09:01-10:00" class="checkbox"> 09:01 - 10:00 AM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="checkbox" name="call_time" value="10:01-11:00" class="checkbox"> 10:01 - 11:00 AM</label><br />
+				<label><input type="checkbox" name="call_time" value="11:01-12:00" class="checkbox"> 11:01 - 12:00 AM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="checkbox" name="call_time" value="12:01-13:00" class="checkbox"> 12:01 - 13:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="checkbox" name="call_time" value="13:01-14:00" class="checkbox"> 13:01 - 14:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="checkbox" name="call_time" value="14:01-15:00" class="checkbox"> 14:01 - 15:00 PM</label><br />
+				<label><input type="checkbox" name="call_time" value="15:01-16:00" class="checkbox"> 15:01 - 16:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="checkbox" name="call_time" value="16:01-17:00" class="checkbox"> 16:01 - 17:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="checkbox" name="call_time" value="17:01-18:00" class="checkbox"> 17:01 - 18:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="checkbox" name="call_time" value="18:01-19:00" class="checkbox"> 18:01 - 19:00 PM</label><br />
+				<label><input type="checkbox" name="call_time" value="19:01-20:00" class="checkbox"> 19:01 - 20:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="checkbox" name="call_time" value="20:01-21:00" class="checkbox"> 20:01 - 21:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="checkbox" name="call_time" value="21:01-21:00" class="checkbox"> 21:01 - 21:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="checkbox" name="call_time" value="22:01-23:00" class="checkbox"> 22:01 - 23:00 PM</label>
+			</td>
+		</tr>
+		<tr>
+		    <td width="30%">Products : <span class="smallfieldterr">[er_products]</span></td>
+		    <td class="smalltext"><br>
+		    
+		    [fc_build_checkbox_famprod]	
+		    <br>
+		    </td>
+		</tr>	
+			
+		<tr>
+		  	<td valign="top" width="30%">Suffering: <span class="smallfieldterr">[er_comments]</span></td>
+		    <td class="smalltext">
+				<textarea name="comments" cols="50" style="width:90%" rows="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					[in_comments]
+				</textarea>	
+			</td>
+		</tr>
+		</table>
+	</fieldset>
+ 	&nbsp;
+  	 
+ <script language="javascript" type="text/javascript">
+<!--
+
+function validatePhone(){
+
+  var areaCodes = new Array('011','200','201','202','203','204','205','206','207','208','209','210','211','212','213','214','215','216','217','218','219','224','225','227','228','229','231','234','239','240','242','246','248','250','251','252','253','254','256','260','262','264','267','268','269','270','276','278','281','283','284','289','300','301','302','303','304','305','306','307','308','309','310','311','312','313','314','315','316','317','318','319','320','321','323','325','330','331','334','336','337','339','340','341','345','347','351','352','360','361','369','380','385','386','400','401','402','403','404','405','406','407','408','409','410','411','412','413','414','415','416','417','418','419','423','424','425','430','432','434','435','438','440','441','442','443','445','450','456','464','469','470','473','475','478','479','480','484','500','501','502','503','504','505','506','507','508','509','510','512','513','514','515','516','517','518','519','520','530','540','541','551','555','557','559','561','562','563','564','567','570','571','573','574','575','580','585','586','600','601','602','603','604','605','606','607','608','609','610','611','612','613','614','615','616','617','618','619','620','623','626','627','628','630','631','636','641','646','647','649','650','651','659','657','660','661','662','664','667','669','670','671','678','679','682','689','700','701','702','703','704','705','706','707','708','709','710','711','712','713','714','715','716','717','718','719','720','724','727','731','732','734','737','740','747','752','754','757','758','760','762','763','764','765','767','769','770','772','773','774','775','778','779','780','781','784','785','786','787','800','801','802','803','804','805','806','807','808','809','810','811','812','813','814','815','816','817','818','819','822','828','830','831','832','833','835','843','844','845','847','848','850','855','856','857','858','859','860','862','863','864','865','866','867','868','869','870','872','876','877','878','880','881','882','888','900','901','902','903','904','905','906','907','908','909','910','911','912','913','914','915','916','917','918','919','920','925','928','931','935','936','937','939','940','941','947','949','951','952','954','956','959','970','971','972','973','975','978','979','980','984','985','989');
+
+  var error=0;
+  var msg_error='';
+  var thisPhone = document.getElementById('id_leads').value.replace(/-|\(|\)|\+|\.|\s/g,'');
+  var validPhone = $.inArray(thisPhone.substring(0,3),areaCodes);
+
+  if(thisPhone.length < 10){
+    msg_error += 'Longitud: Menor a 10 digitos\n';
+    error++;
+  }
+
+  if(validPhone < 0 ){
+  	msg_error +=  'Area no conocida: ' + thisPhone.substring(0,3);
+    error++;	
+  }
+
+  if(error > 0){
+  	alert('El telefono '+ thisPhone +' no es valido\n' + msg_error);
+    return false;
+  }
+
+
+}
+	chg_chkbox('products','[in_products]');
+	chg_chkbox('contact_time','[in_contact_time]');
+	chg_chkbox('products','[in_products]');
+ 
+//-->
+</script>
+	 
+	 
+	  
+	<p align="center"><input type="submit" value="Search" class="button"></p>
+  </form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+[ip_footer]

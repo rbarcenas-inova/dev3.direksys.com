@@ -1,0 +1,119 @@
+[ip_header_console]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td valign="top" align="left" bgcolor="#ffffff">
+			
+		<table width="100%" height=41px border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+				<td>&nbsp;</td>
+				<td class="cell_on" width="14%" align="center">Consola [va_salesorigins.channel]</td>
+		 </tr>
+		</table>
+		
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+				
+		[fc_customer_header]
+			<br>
+			
+			
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="5">
+	<input type="hidden" name="country_tab" value="ot">
+	<input type="hidden" name="action" value="1">
+	
+<fieldset><legend>Creando Nueva Orden : Información de Envio</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td class="stdtxterr" colspan="2">[va_message]<td>
+		</tr>
+		<tr>
+	      <td colspan="2">
+	      	
+	      		      	  		
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+			
+			</td>
+	   </tr>	
+		<tr>
+		  <td width="30%">Nombre Cliente  : </td>
+		  <td class="smalltext">[in_firstname] [in_lastname1] [in_lastname2]</td>
+		</tr>
+		<tr>
+		  <td colspan="2">[fc_products_inorder]</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+				  <tr>
+					<td width="20%" align="center"></td>
+					<td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&step=5&country_tab=us")'>USA/Canada</td>
+					<td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&step=5&country_tab=mx")'>M&eacute;xico</td>
+					<td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&step=5&country_tab=pr")'>Puerto Rico</td>
+					<td width="20%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&step=5&country_tab=ot")'>Otros</td>				  	
+				  </tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%">Nombre Persona Recibe  : <span class="smallfieldterr">[er_shp_name]</span></td>
+		  <td class="smalltext"><input type="text" name="shp_name" value="[in_shp_name]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>			
+		<tr>
+		  <td valign="top" width="30%">Dirección :<br> <span class="smallfieldterr">(Incluye # Apt. , Trailer, Ste, etc)</span></td>
+		   <td class="smalltext">
+		   		<input type="text" name="shp_address1" value="[in_shp_address1]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_shp_address1]</span><br>
+		   		<input type="text" name="shp_address2" value="[in_shp_address2]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_shp_address2]</span><br>
+		   		<input type="text" name="shp_address3" value="[in_shp_address3]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_shp_address3]</span>
+		   	</td>
+		</tr>
+		<tr>
+		 	<td width="30%">Ciudad  : <span class="smallfieldterr">[er_city]</span></td>
+		 	<td class="smalltext"><input type="text" name="city" value="[in_city]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">State  : <span class="smallfieldterr">[er_state]</span></td>
+		  <td class="smalltext"><input type="text" name="state" value="[in_state]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Pais  : <span class="smallfieldterr">[er_country]</span></td>
+		  <td class="smalltext"><input type="text" name="country" value="[in_country]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		 	<td width="30%">Zip Code: </td>
+		  <td class="smalltext">
+		  			<input type="hidden" name="state" value="[in_state]" size="30">
+						 <span class="smallfieldterr">[er_state]</span>
+					<input type="text" name="zip" value="[in_zip]" size="8" onocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_zip]</span>
+			</td>
+		</tr>
+		<tr>
+		 	<td width="30%" valign="top">Notas del Envío  : <span class="smallfieldterr">[er_shp_notes]</span></td>
+		    <td class="smalltext"><textarea name="shp_notes" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_shp_notes]</textarea> </td>
+		</tr>		
+		<tr>
+		  <td colspan="2" align="center"><input type="submit"  value="Continuar (a Tipo de Envio)>>" class="button"></td>
+		</tr>		
+	</table>
+</fieldset>
+
+
+
+    </td>
+    </tr>
+</table>	
+			
+[ip_footer_console]
+
+

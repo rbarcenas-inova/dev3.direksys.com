@@ -1,0 +1,49 @@
+&nbsp;
+<a name='tabs' id='tabs'>&nbsp;</a>
+	&nbsp;
+		<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+		<input type="hidden" name="id_products" value="[in_id_products]">
+		<input type="hidden" name="view" value="[in_id_products]">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="tab" value="7">
+		<input type="hidden" name="tabsl" value="1">
+		<input type="hidden" name="cmd" value="[in_cmd]">
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr><td>
+			<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_products]&tab=[va_activetab]&tabs=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+	   	<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=7&tabcmd=products&toprint=[in_id_products]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a></td>
+      </td>  	
+  	</tr>
+		<tr>
+			<td>
+			 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+				    <td class="menu_bar_title">&nbsp;</td>
+				    <td class="menu_bar_title">Source</td>
+				    <td class="menu_bar_title" colspan="2">Price</td>
+				 </tr>
+				 [va_searchresults]
+				</table>
+			</td>
+		</tr>
+		<tr>
+		 	<td colspan="3"><span class='fieldterr'>[va_tabmessages]</span>&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="menu_bar_title">Add New Sale Price Analisis</td>
+		</tr>	
+		<tr>
+			<td class="smalltext">
+				Sale Price Source
+				<input type="text" name="source" size="35" value="[in_source]" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_source]</span>
+				$ 
+				<input type="text" name="price" size="8" value="[in_price]" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<span class="smallfieldterr">[er_price]</span>
+				<input type="submit" value="Add Price" class="button">
+				</td>
+		</tr>
+	</table>
+	&nbsp;
+</form>

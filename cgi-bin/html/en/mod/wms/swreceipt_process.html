@@ -1,0 +1,135 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.5', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform" onsubmit="return disableSubmits()">
+	<input type="hidden" name="cmd" value="swreceipt_process">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="id_wreceipts" value="[in_id_wreceipts]">
+	<input type="hidden" name="currency_vendor" value="[ln_id_vendors@sl_vendors:Currency]">
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Processing Warehouse Receipt : [in_id_wreceipts]</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Warehouse Receipt Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%" valign="top">Vendor ID : </td>
+		    <td class="smalltext"><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_vendors&view=[in_id_vendors]">([in_id_vendors]) [in_vendor_name]</a></td>
+		 </tr>				
+  		<tr>
+		    <td width="30%" valign="top">PO ID : </td>
+		    <td class="smalltext"><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_po&view=[in_id_purchaseorders]">[in_id_purchaseorders]</a> [in_po_currency]</td>
+		 </tr>	
+  		<tr>
+		    <td width="30%">Invoice # : </td>
+		    <td class="smalltext">[in_invoice]</td>
+		 </tr>	
+		<tr>
+		  <td width="30%">Invoice Date : </td>
+			<td class="smalltext">[in_invoicedate]</td>
+		</tr>
+		<tr>
+		    <td valign="top" width="30%">Description : </td>
+		    <td class="smalltext">[in_description]</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Type of  : </td>
+		    <td class="smalltext">[in_type]</td>
+         </tr>
+		<tr [va_curstyle]>
+		  <td width="30%">Currency:</td>
+		  <td class="smalltext">[ln_id_vendors@sl_vendors:Currency]</td>
+		</tr>
+		<tr [va_curstyle]>
+		  <td width="30%">Currency Exchange Rate :  <span class="smallfieldterr">[er_id_exchangerates]</span></td>
+		  <td class="smallfieldterr">[va_currency]</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Delivery Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		   <td valign="top" width="30%">Received From : </td>
+		   <td class="smalltext">[in_receivedfrom]</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Driver Name : </td>
+		    <td class="smalltext">[in_invoice]</td>
+		 </tr>	
+  		<tr>
+		    <td width="30%">Driver ID : </td>
+		    <td class="smalltext">[in_driverid]</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title"></td>
+		    <td class="menu_bar_title" align='center'>PO #</td>
+		    <td class="menu_bar_title" align='center'>PO Date</td>
+		    <td class="menu_bar_title" align='center'>PO Qty</td>
+		    <td class="menu_bar_title" align='center'>PO Received</td>
+		    <td class="menu_bar_title" align='center'>WR Received</td>
+		    <td class="menu_bar_title">Price</td>
+		 </tr>
+		[va_searchresults]
+		<tr>
+		    <td class="menu_bar_title" colspan="7">Warehouse Manifest</td>
+		 </tr>
+		[va_tomanifest]
+		
+		
+	</table>
+	<p align="center"><input type="submit" value="Process W. Receipt" class="button"></p>
+</form>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+	function loadLocations(id_warehouses,id_select,name_select) {
+		var url = '/cgi-bin/common/apps/ajaxbuild?ajaxbuild=locations_from_warehouse';
+		var param = 'id_warehouses='+id_warehouses+'&id_select='+id_select+'&name_select='+name_select;
+		var divUpd = $('#'+id_select);
+
+		$(divUpd).load(url, param, function(){});
+
+	}
+
+</script>
+
+[ip_footer]

@@ -1,0 +1,103 @@
+<script type="text/javascript">
+	
+	function add_order(){
+		popup_show('popup_addorder', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'tabs');
+	}
+
+	function click_edit(){
+		$("#span_status_lot").html("[va_menu_edit]");
+
+		$("#span_chg_lot").html("<button onclick='update_status();'>Update</button> <button onclick='cancel_edit();'>Cancel</button>");
+	}
+
+	function cancel_edit(){
+
+		$("#span_status_lot").html("[in_status]");
+		$("#span_chg_lot").html('<img id="btn_chg_email" onclick="click_edit();" src="[va_imgurl]/[ur_pref_style]/b_edit.png" title="Click to edit Email Info" style="cursor:pointer;">');
+	}
+
+	function update_status(){
+
+		$("#form2").submit();
+	}
+	
+</script>
+<fieldset><legend>Lot ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Lot ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_lots] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton] &nbsp;
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time / User  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Lots &amp; Expiration Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Lot Number :  </td>
+			<td class="smalltext">[in_lotname]</td>
+		</tr>
+		<tr>
+			<td width="30%">Expiration Date :  </td>
+			<td class="smalltext">[in_expirationdate]</td>
+		</tr>
+		<tr>
+			<td width="30%">Type :  </td>
+			<td class="smalltext">[in_type]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+
+<form action="/cgi-bin/mod/[ur_application]/dbman" method="POST" id="form2">
+	<input name="cmd" value="opr_lots" type="hidden">
+	<input name="edit" value="1" type="hidden">
+	<input name="action" value="1" type="hidden">
+	<input name="view" value="[in_id_lots]" type="hidden">
+	<input name="id_lots" value="[in_id_lots]" type="hidden">
+	<input name="lotname" value="[in_lotname]" type="hidden">
+	<input name="expirationdate" value="[in_expirationdate]" type="hidden">
+	<input name="type" value="[in_type]" type="hidden">
+<fieldset><legend>Lot Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Status :  </td>
+			<td class="smalltext"><span id='span_status_lot'>[in_status]</span>
+			&nbsp;&nbsp;<span id="span_chg_lot"><img id="btn_chg_email" onclick="click_edit();" src="[va_imgurl]/[ur_pref_style]/b_edit.png" title="Click to edit Email Info" style="cursor:pointer;"></span></td>
+		</tr>
+	</table>
+</fieldset>
+</form>
+<div id="popup_addorder" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="item_drag1">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Order</td>
+			<td align=right width=20px><img id="popup_exit1" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div>
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=lots_additem&id_lots=[in_id_lots]&[va_rndnumber]" name="rcmd" TITLE="Recieve Commands" width="600" height="300" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+		</IFRAME>	
+	</div>
+</div>
+
+
+
+
+

@@ -1,0 +1,120 @@
+&nbsp;
+<fieldset><legend>General Bank Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Bank Name :  <span class="smallfieldterr">[er_bankname]</span></td>
+			<td><input name="bankname" value="[in_bankname]" size="40" maxlenght="50" type="text" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">RFC :  <span class="smallfieldterr">[er_bankfiscalcode]</span></td>
+			<td><input name="bankfiscalcode" value="[in_bankfiscalcode]" size="20" maxlenght="18" type="text" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">Contact Name :  <span class="smallfieldterr">[er_bankcontact]</span></td>
+			<td><input name="bankcontact" value="[in_bankcontact]" size="50" maxlenght="50" type="text" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">Contact Phone :  <span class="smallfieldterr">[er_bankcontactphone]</span></td>
+			<td><input name="bankcontactphone" value="[in_bankcontactphone]" size="20" maxlenght="18" type="text" class="input"></td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Bank Account Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Name :  <span class="smallfieldterr">[er_name]</span></td>
+			<td><input name="name" value="[in_name]" size="50" maxlenght="80" type="text" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">Shortname :  <span class="smallfieldterr">[er_shortname]</span></td>
+			<td><input name="shortname" value="[in_shortname]" size="20" maxlenght="15" type="text" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">Description :  <span class="smallfieldterr">[er_description]</span></td>
+			<td><input name="description" value="[in_description]" size="60" maxlenght="80" type="text" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">Currency :  <span class="smallfieldterr">[er_currency]</span></td>
+			<td>[fc_banks_currency]</td>
+		</tr>
+		<tr>
+			<td width="30%">ABA Routing Number :  <span class="smallfieldterr">[er_aba-routing]</span></td>
+			<td><input name="aba-routing" value="[in_aba-routing]" size="25" maxlenght="20" type="text" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">ABA ACH :  <span class="smallfieldterr">[er_aba-ach]</span></td>
+			<td><input name="aba-ach" value="[in_aba-ach]" size="25" maxlenght="20" type="text" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">ABA Wire :  <span class="smallfieldterr">[er_aba-wire]</span></td>
+			<td><input name="aba-wire" value="[in_aba-wire]" size="30"  type="number" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">Swift Code :  <span class="smallfieldterr">[er_swift]</span></td>
+			<td><input name="swift" value="[in_swift]" size="30" maxlenght="20" type="number" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">Sub Account of :  <span class="smallfieldterr">[er_subaccountof]</span></td>
+			<td><input name="subaccountof" value="[in_subaccountof]" size="20" maxlenght="12" type="text" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">Opening Balance :  <span class="smallfieldterr">[er_openingbalance]</span></td>
+			<td><input name="openingbalance" value="[in_openingbalance]" size="20" maxlenght="30" type="text" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">Opening Date :  <span class="smallfieldterr">[er_openingdate]</span></td>
+			<td><input name="openingdate" id="openingdate" value="[in_openingdate]" size="20" maxlenght="10" type="text" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">Check Reminder :  <span class="smallfieldterr">[er_checkreminder]</span></td>
+			<td><input name="checkreminder" value="[in_checkreminder]" size="20" maxlenght="20" type="number" class="input"></td>
+		</tr>
+		
+		
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Accounting Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Account Number :  <span class="smallfieldterr">[er_id_accounts]</span></td>
+			<td>
+				<input name="id_accounts" id="id_accounts" value="[in_id_accounts]" size="10" maxlenght="10" type="text" class="input">
+				<a href="admin?cmd=accountsTree&element_id=id_accounts&element_descrip=account_name" title="Chart of Accounts" class="fancy_modal_iframe">
+					<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+				</a>
+				<br><span id="account_name"></span>
+			</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Bank Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Status :  <span class="smallfieldterr">[er_status]</span></td>
+			<td>[fc_banks_status]</td>
+		</tr>
+	</table>
+</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_radio('status','[in_status]');
+	chg_radio('currency','[in_currency]');
+
+    $(document).ready(function() {
+
+		var dates = $( "#openingdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 3,
+		});
+	});
+
+
+//-->
+</script>

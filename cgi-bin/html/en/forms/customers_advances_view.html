@@ -1,0 +1,124 @@
+<script src="/sitimages/jquery.switches/switches.js"></script>
+<link rel="stylesheet" href="/sitimages/jquery.switches/switches.css">
+
+
+	<fieldset>
+		<legend>Customer Advances ID</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td width="30%" class="titletext">Customers Advances ID : </td>
+				<td class="titletext">
+					<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_creditmemos] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]
+							<a href="javascript:add_order()">
+								<img src="[va_imgurl]/[ur_pref_style]/b_additem.gif" title="Add Item" alt="" border="0">
+							</a>
+							<a href="/cgi-bin/common/apps/ajaxfinance?cmd=movements_editor&id_customers_advances=[in_view]&tablename=customers_advances&edit_type=customers_advances" class="fancy_modal_iframe" title="Movements Editor">
+								<img border="0" alt="Edit" title="Edit Movements" src="[va_imgurl]/[ur_pref_style]/icon-edit-movements.png" height="24" width="24">
+							</a>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="30%" class="smalltext">Date / Time /user  : </td>
+				<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+			</tr>		
+		</table>
+	</fieldset>
+
+	&nbsp;
+	<fieldset>
+		<legend>Customer Advances</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			    <td width="25%">ID Customers : </td>
+			    <td class="smalltext">(<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=opr_customers&view=[in_id_customers]"><span  class="smalltext">[in_id_customers]</span></a>) [va_customer_name]</td>
+			</tr>
+			<tr>
+				<td width="30%">Bank : </td>
+				<td>(<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=fin_banks&view=[va_id_bank]">[va_id_bank]</a>) [va_bank_name]</td>
+			</tr>
+			<tr>
+				<td width="30%">Bank Movements : </td>
+				<td><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=fin_banks_movements&view=[in_id_banks_movements]">[in_id_banks_movements]</a></td>
+			</tr>			
+			<tr>
+				<td width="30%">Total Amount :  </td>
+				<td>$ [in_amount] ([va_bank_currency]) &nbsp; to apply: <span class="smalltext">$ [va_amount_to_apply]</span></td>
+			</tr>
+			<tr>
+				<td width="30%">Exchange Rate : </td>
+				<td> [in_exchangerates]</td>
+			</tr>
+			<tr>
+				<td width="30%">Reference :  </td>
+				<td>[in_reference]</td>
+			</tr>
+			<tr>
+				<td width="30%" valign="top">Description :  </td>
+				<td>[in_description]</td>
+			</tr>
+			<tr>
+				<td width="30%">Status :  </td>
+				<td>[in_status]</td>
+			</tr>
+		</table>
+	</fieldset>	
+	&nbsp;
+
+<!-- Add Products-->
+
+<div id="popup_addorder" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333; -webkit-box-shadow: 0 0px 10px #333; box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="item_drag1">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Order</td>
+			<td align=right width=20px><img id="popup_exit1" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div>
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=customers_advances_addorder&id_customers=[in_id_customers]&id_customers_advances=[in_id_customers_advances]&[va_rndnumber]" name="rcmd" TITLE="Recieve Commands" width="600" height="300" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+		</IFRAME>	
+	</div>
+</div>
+
+<script language="JavaScript">
+
+	function add_order(){
+		popup_show('popup_addorder', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'tabs');
+	}
+
+
+	function Confirm_to_continue(){
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+
+	function ok(val){
+		var txtSpan = $("#ok").html();
+		
+		if(val==1){
+			var vFirst = txtSpan.split('<img');
+			var vSecond = vFirst[0].split('">');
+			var vThird = vSecond[0].split("&amp;transition=1");
+			var txtFinal = vThird[0]+"&transition=1"+'">'+'<img'+vFirst[1];	
+			$("#ok").html(txtFinal);	
+		}
+		else{		
+			var vFirst = txtSpan.split("&amp;transition=1");
+			var txtFinal = vFirst[0]+vFirst[1];
+			$("#ok").html(txtFinal);
+		}
+	}
+
+</script>
+
+	

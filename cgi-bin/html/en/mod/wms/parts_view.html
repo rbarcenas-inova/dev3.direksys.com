@@ -1,0 +1,70 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 0, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Part Info</td>
+		 </tr>
+     </table>
+
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	 <tr>
+	  <td align="center" colspan="2" class="menu_bar_title">Part Description</td>
+	 </tr>
+	 <tr>
+	 	<td nowrap> ID Part : </td>
+		<td class="title">[va_id_parts]</td>
+	 </tr>
+	 <tr>
+		<td nowrap>Model : </td>
+		<td class="smalltext">[in_model]</td>
+	 </tr>
+	 <tr>
+	 	<td nowrap>Name : </td>
+		<td class="smalltext">[in_name]</td>
+	 </tr>
+</table> 
+
+ <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr>
+	    <td class="menu_bar_title">Warehouse</td>
+	    <td class="menu_bar_title">ID</td>
+	    <td class="menu_bar_title">Choices</td>
+	    <td class="menu_bar_title">Qty</td>
+	 </tr>
+	 [fc_load_inventory_list]
+	</table>  	
+
+<p>&nbsp;</p>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+

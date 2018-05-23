@@ -1,0 +1,249 @@
+#!/usr/bin/perl
+#######################################################################
+#######################################################################
+#######################################################################
+
+use DBI;
+use DBD::mysql;
+
+# Load the form information and set the config file and userid.
+local(%config, %cfg, %usr);
+
+# Required Libraries
+# --------------------------------------------------------
+eval {
+	require "../subs/auth.cgi";
+	require "../subs/sub.base.html.cgi";
+};
+
+if ($@) { &cgierr ("Error loading required Libraries",300,$@); }
+
+eval { &main; };
+if ($@) { &cgierr("Fatal error, 301, $@"); }
+
+
+
+sub main {
+	print "Content-type: text/html\n\n";
+	$sys{'fmt_curr_decimal_digits'} = 2 if(!$sys{'fmt_curr_decimal_digits'});
+	&load_settings;
+	&connect_db;
+	&cgierr("PROHIBIDO");
+	print "<h1>Reconstruccion de cobranza</h1>";
+#Quitar todos los movimientos generados para las ordenes que entran en el reproceso
+	$Query = "select 
+			'Servicios' tipo, cre.ID_creditmemos, cre.Reference, cre.Description, cre.Date, cre.Status,
+			cmp.ID_orders, cmp.ID_orders_payments, cmp.ID_orders_payments_added, cmp.ID_orders_products_added, cmp.Amount,
+			ser.tax, ser.saleprice,ser.shipping
+		from direksys2_e3.sl_creditmemos cre
+		inner join direksys2_e3.sl_creditmemos_payments cmp using (ID_creditmemos)
+		inner join (
+			select distinct id_creditmemos, sum(tax) tax, sum(SalePrice) saleprice, sum(Shipping) shipping
+			from direksys2_e3.sl_creditmemos_products
+			where id_products > 600000000 and status='Active'
+			group by ID_creditmemos
+		)ser using (id_creditmemos)
+		where cre.status in ('Approved','Applied') and cre.date between '2014-01-01' and '2014-01-31' and cre.id_customers in (100141,100037)
+		union all
+		select 
+			'Devoluciones' tipo, cre.ID_creditmemos, cre.Reference, cre.Description, cre.Date, cre.Status,
+			cmp.ID_orders, cmp.ID_orders_payments, cmp.ID_orders_payments_added, cmp.ID_orders_products_added, cmp.Amount,
+			ser.tax, ser.saleprice,ser.shipping
+		from direksys2_e3.sl_creditmemos cre
+		inner join direksys2_e3.sl_creditmemos_payments cmp using (ID_creditmemos)
+		inner join (
+			select id_creditmemos, shpdate, sum(tax) tax, sum(SalePrice) saleprice, sum(Shipping) shipping
+			from direksys2_e3.sl_creditmemos_products
+			where id_products < 600000000 and status='Active'
+			group by ID_creditmemos, shpdate
+		)ser using (id_creditmemos)
+		where cre.status in ('Approved','Applied') and ser.shpdate between '2014-01-01' and '2014-01-31' and cre.id_customers in (100141,100037)
+		order by id_orders,ID_creditmemos;";
+	print "<table border='1'><tr><td colspan='4'><h4>Ordenes por reconstruir</h4></td></tr>\n";
+	print "<tr><td>Orden</td><td>Factura</td><td>Impuestos</td><td>Total</td></tr>\n";
+	my $sth_credits = &Do_SQL($Query);
+	 while ($rec_credits = $sth_credits->fetchrow_hashref){
+	 #Obtener el monto inicial del pedido (facturado)
+	 	$Query = "select id_invoices,doc_serial,doc_num,doc_date,invoice_net,invoice_total,total_taxes_transfered,currency
+			from direksys2_e3.cu_invoices inv
+			inner join 
+				(select distinct id_invoices, id_orders from direksys2_e3.cu_invoices_lines) lin
+			using (id_invoices)
+			where inv.invoice_type = 'ingreso'
+				and id_orders = ".$rec_credits->{'ID_orders'}.";";
+		my $sth_factura = &Do_SQL($Query);
+		$rec_factura = $sth_factura->fetchrow_hashref;
+		print "<tr><td>".$rec_credits->{'ID_orders'}."</td>\n";
+		print "<td>".$rec_factura->{'doc_serial'}.$rec_factura->{'doc_num'}." :: ".$rec_factura->{'doc_date'}."</td>\n";
+		print "<td>".$rec_factura->{'total_taxes_transfered'}."</td>\n";
+		print "<td>".$rec_factura->{'invoice_total'}."</td></tr>\n";
+    }
+    print "</table>\n";
+	&disconnect_db;		
+	return 1;
+}
+
+##################################################################
+#     CGIERR   	#
+##################################################################
+sub cgierr {
+# --------------------------------------------------------
+# Last Modified on: 11/10/08 11:58:21
+# Last Modified by: MCC C. Gabriel Varela S: Se corrige la forma de mostrar la fecha
+	my (@sys_err) = @_;
+	print "Content-type: text/html\n\n";
+
+	my ($key,$env,$out_in,$out_env);
+	if (!$cfg{'cd'}){
+		print qq|
+						<head>
+										<title>CGI - ERROR</title>
+						</head>					
+						<body BGCOLOR="#FFFFFF" LINK="#FF0000" VLINK="#FF0000" ALINK="#FF0000">
+					
+							<table BORDER="0" WIDTH="500" CELLPADDING="10" CELLSPACING="10">
+							  <tr>
+							    <td BGCOLOR="#FF0000" colspan="2"><font size="5" color="#FFFFFF" face="Arial"><b>CGI-Error</b></font></td>
+							  </tr>
+							</table>
+							<table BORDER="0" WIDTH="550" CELLPADDING="2" CELLSPACING="0">|;
+								$sys_err[0]	and print "\n<tr>\n  <td valign='top' width='200'><font face='Arial' size='3'>Error Message</font></td>\n  <td><font face='Arial' size='3' color='#FF0000'><b>$sys_err[0]</b></font></td>\n</tr>\n";
+								$sys_err[1]	and print "<tr>\n  <td width='200'><font face='Arial' size='2'>Error Code</font></td>\n  <td><font face='Arial' size='2'>$sys_err[1]</font></td>\n";
+								$sys_err[2]	and print "<tr>\n  <td valign='top' width='200'><font face='Arial' size='2'>System Message</font></td>\n  <td><font face='Arial' size='2'>$sys_err[2]</font></td>\n";
+								print qq|
+							<tr>
+							  <td colspan="2"><p>&nbsp</p><font face='Arial' size='2'>If the problem percist, please contact us with the above Information.</font><br>
+									<font face='Arial' size='2'><a href="mailto:$systememail">$systememail</a></font></td>
+							</tr>
+							  </table>
+						</body>
+						</html>|;
+		######################################
+		### Save CGI ERR			
+		##############################
+		my ($ip);
+		my (@outmsg) = @sys_err;
+		my ($sec, $min, $hour, $day, $mon, $year, $dweek, $dyear, $daylight) = localtime(time());
+		$year+=1900;
+		$mon++;
+		my ($time,$date) = ("$hour:$min:$sec","$mon-$day-$year");
+		
+		foreach $key (sort keys %in) {
+			$outmsg[3] .= "$key=$in{$key},";
+		}
+		
+		foreach $env (sort keys %ENV) {
+			$outmsg[4] .= "$env=$ENV{$env},";
+		}
+		
+		for (0..4){
+			$outmsg[$_] =~ s/\n|\r/ /g;
+			$outmsg[$_] =~ s/\|/ /g;
+		}
+		
+		if ($ENV{'REMOTE_ADDR'}){
+			$ip = $ENV{'REMOTE_ADDR'};
+		}elsif ($ENV{'REMOTE_HOST'}){
+			$ip = $ENV{'REMOTE_HOST'};
+		}elsif ($ENV{'HTTP_CLIENT_IP'}){
+			$ip = $ENV{'HTTP_CLIENT_IP'};
+		}else{
+			$ip = "Unknow";
+		}
+	
+		(!$cfg{'cgierr_log_file'}) and ($cfg{'cgierr_log_file'} = './logs/cgierr.log');
+		if (open (LOG, ">>$cfg{'cgierr_log_file'}")){;
+			print LOG "$usr{'username'}|$outmsg[0]|$outmsg[1]|$outmsg[2]|$outmsg[3]|$outmsg[4]|$time|$date|$ip\n";
+			close AUTH;
+		}
+	
+
+	}else{
+		print "<PRE>\n\nCGI ERROR\n==========================================\n";
+					$sys_err[0]	and print "Error Message       : $sys_err[0]\n";
+					$sys_err[1]	and print "Error Code          : $sys_err[1]\n";
+					$sys_err[2]	and print "System Message      : $sys_err[2]\n";
+					$0			and print "Script Location     : $0\n";
+					$]			and print "Perl Version        : $]\n";
+					$sid		and print "Session ID          : $sid\n";
+
+
+		print "\nForm Variables IN\n-------------------------------------------\n";
+		
+		foreach $key (sort keys %in) {
+			my $space = " " x (20 - length($key));
+			$out_in .= "$key=$in{$key},";
+			print "$key$space: $in{$key}\n";
+		}
+		
+		print "\nForm Variables ERROR\n-------------------------------------------\n";
+		foreach $key (sort keys %error) {
+			my $space = " " x (20 - length($key));
+			print "$key$space: $error{$key}\n";
+		}
+		
+		print "\nEnvironment Variables\n-------------------------------------------\n";
+		foreach $env (sort keys %ENV) {
+			my $space = " " x (20 - length($env));
+			$out_env .= "$env=$ENV{$env},";
+			print "$env$space: $ENV{$env}\n";
+		}
+		
+		print "\n</PRE>";
+
+	}
+
+	exit -1;
+}
+
+sub load_settings {
+	my ($fname);
+	print `pwd`;
+	if ($in{'e'}) {
+		$fname = "../general.e".$in{'e'}.".cfg";
+	}else {
+		$fname = "../general.ex.cfg";
+	}
+
+	## general
+	open (CFG, "<$fname") or &cgierr ("Unable to open: $fname,160,$!");
+	LINE: while (<CFG>) {
+		(/^#/)      and next LINE;
+		(/^\s*$/)   and next LINE;
+		$line = $_;
+		$line =~ s/\n|\r//g;
+		my ($td,$name,$value) = split (/\||\=/, $line,3);
+		if ($td eq "conf") {
+			$cfg{$name} = $value;
+			next LINE;
+		}elsif ($td eq "sys"){
+			$sys{$name} = $value;
+			next LINE;
+		}
+	}
+	close CFG;
+
+}
+
+sub check_ip {
+# --------------------------------------------------------
+	my ($ip, $ipfilter) = @_;
+	
+	my (@ip) = split(/\./,$ip,4);
+	my (@allowip) = split(/\,/,$ipfilter,4);
+	
+	for my $i(0..$#allowip){
+		$allowip[$i] =~ s/\n|\r//g;
+		$ok = 1;
+		my (@ipfilter) = split(/\./,$allowip[$i],4);
+		for my $x(0..3){
+			if ($ip[$x] ne $ipfilter[$x] and $ipfilter[$x] ne 'x'){
+				$ok = 0;
+			}
+		}
+	}
+	return $ok;
+}
+
+
+1;

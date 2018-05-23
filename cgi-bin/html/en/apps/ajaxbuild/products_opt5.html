@@ -1,0 +1,151 @@
+[ip_header_small]
+
+	<span class="smallfieldterr">[va_message]</span>
+
+  <form action="/cgi-bin/common/apps/ajaxbuild" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="ajaxbuild" value="mer_products">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="opt" value="[in_opt]">
+	<input type="hidden" name="id_products" value="[in_id_products]">
+
+<table border="0" cellspacing="0" cellpadding="4" width="[ur_table_width]" class="container_white">
+	<tr>
+		<td>
+&nbsp;
+<fieldset><legend>Other</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+						<tr>
+				  	<td width="30%">Brand  : <span class="smallfieldterr">[er_id_brands]</span></td>
+				    <td class="smalltext">
+					  	<select name="id_brands" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				      	<option value="">---</option>
+				        	[fc_build_select_brands]
+			        </select>
+			      </td>
+					</tr>
+					<tr>
+					  <td width="30%">Brand SKU  : <span class="smallfieldterr">[er_manufactersku]</span></td>
+					  <td class="smalltext"><input type="text" name="manufactersku" value="[in_manufactersku]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					</tr>
+
+					<tr>			
+					    <td width="30%">Duties: <span class="smallfieldterr">[er_duties]</span></td>
+					    <td class="smalltext"><input type="text" name="duties" value="[in_duties]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">in US$</span></td> 	    
+					</tr>		
+					<tr>
+					    <td width="30%">Insurance: <span class="smallfieldterr">[er_insurance]</span></td>
+					    <td class="smalltext"><input type="text" name="insurance" value="[in_insurance]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">in US$</span></td>
+					</tr>	 		 
+
+					<tr>
+					    <td width="30%">Minimum Stock : <span class="smallfieldterr">[er_minimumstock]</span></td>
+					    <td class="smalltext"><input type="text" name="minimumstock" value="[in_minimumstock]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">Quantity in Units</span></td>
+					</tr>
+					<tr>
+					    <td width="30%">Maximum Stock : <span class="smallfieldterr">[er_maximumstock]</span></td>
+					    <td class="smalltext"><input type="text" name="maximumstock" value="[in_maximumstock]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">Quantity in Units</span></td>
+					</tr>
+					<tr>
+						<td width="30%">Validate Stock: <span class="smallfieldterr">[er_validatestock]</span></td>
+						<td class="smalltext">
+							<input type="radio" name="validatestock" class="radio" value="Yes">Yes
+					  		<input type="radio" name="validatestock" class="radio" value="No" >No
+					  	</td>
+					</tr>
+					<tr>
+					    <td width="30%">Lead Time : <span class="smallfieldterr">[er_edt]</span></td>
+					    <td class="smalltext"><input type="text" name="edt" value="[in_edt]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">in Days</span></td>
+					</tr>
+			  		<tr>
+						<td width="30%">Drop Shipment : <span class="smallfieldterr">[er_dropshipment]</span></td>
+						<td class="smalltext">
+							<input type="radio" name="dropshipment" class="radio" value="Yes">Yes
+				  			<input type="radio" name="dropshipment" class="radio" value="No" >No
+				  		</td>
+					</tr>
+					<tr>
+					 	<td width="30%">Refill Service : <span class="smallfieldterr">[er_id_noninventory_related]</span></td>
+						<td class="smalltext">
+							<select name="id_services_related" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				      	<option value="">---</option>
+								[fc_build_select_refill_options]	
+							</select>
+						</td>
+					</tr>
+					<tr>
+					 	<td width="30%">Script :</td>
+						<td class="smalltext">
+							<select name='id_products_speech' id='id_products_speech' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+								<option value="">---</option>
+							  	[fc_build_select_products_speech]	
+							</select>
+							&nbsp;[fc_build_button_show_products_speech]
+						</td>
+					</tr>
+					<tr>
+						<td width="30%">Is Final Sale: <span class="smallfieldterr">[er_isfinal]</span></td>
+						<td class="smalltext">
+							<input type="radio" name="isfinal" class="radio" value="Yes">Yes
+					  		<input type="radio" name="isfinal" class="radio" value="No" >No
+						</td>
+					</tr>
+					<tr>
+						<td width="30%">Web Available: <span class="smallfieldterr">[er_web_available]</span></td>
+						<td class="smalltext">
+							<input type="radio" name="web_available" class="radio" value="Yes">Yes
+					  		<input type="radio" name="web_available" class="radio" value="No" >No
+					  	</td>
+					</tr>
+					<tr>			
+	    				<td width="30%">User Type Visibility<span class="smallfieldterr">[er_user_type]</span></td>
+	    				<td class="smalltext">
+							[fc_build_checkbox_usertype]
+						</td> 	    
+					</tr>
+	</table>
+ </fieldset>
+&nbsp;
+	</td>
+</tr>
+</table>
+
+
+<script type="text/javascript">
+<!--
+
+
+	chg_select('id_manufacters','[in_id_manufacters]');
+	chg_select('packing','[in_packing]');
+	chg_select('productdocs','[in_productdocs]');
+	chg_select('handling','[in_handling]');
+	chg_select('producttype','[in_producttype]');
+	chg_select('warehousehandling','[in_warehousehandling]');
+	chg_select('supplierpacking','[in_supplierpacking]');
+	chg_select('id_packingopts','[in_id_packingopts]');
+	chg_select('sprice1name','[in_sprice1name]');
+	chg_select('sprice2name','[in_sprice2name]');
+	chg_select('sprice3name','[in_sprice3name]');
+	chg_select('sprice4name','[in_sprice4name]');
+	chg_select('flexipago','[in_flexipago]');
+	chg_select('id_brands','[in_id_brands]');
+	chg_select('id_products_speech','[in_id_products_speech]');
+	chg_select('id_services_related','[in_id_services_related]');
+	
+	chg_chkbox('paytype','[in_paytype]');
+	chg_chkbox('dids','[in_dids]');
+	chg_chkbox('web_available','[in_web_available]');
+	
+	chg_radio('shipping_table','[in_shipping_table]');
+	chg_radio('pricetype','[in_pricetype]');
+	chg_radio('dropshipment','[in_dropshipment]');
+	chg_radio('isfinal','[in_isfinal]');
+	chg_radio('pactive','[in_pactive]');
+	chg_radio('free_shp_opt','[in_free_shp_opt]');
+	chg_radio('validatestock','[in_validatestock]');	
+	
+
+//-->
+</script>
+
+<p align="center"><input type="submit" value="Update Record" class="button"></p>
+  </form>

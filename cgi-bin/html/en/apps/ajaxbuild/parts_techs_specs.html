@@ -1,0 +1,70 @@
+[ip_header_small]
+
+<span class="smallfieldterr">[va_message]</span>
+
+
+<link rel="stylesheet" type="text/css"href="/intranet/images/estilos.css" />
+<script src="/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/intranet/images/animatedcollapse.js"></script>
+
+<script type="text/javascript">
+
+animatedcollapse.addDiv('infos0', 'fade=0,group=infott,persist=0')
+animatedcollapse.addDiv('infos1', 'fade=0,group=infott,persist=0')
+animatedcollapse.addDiv('infos2', 'fade=0,group=infott,persist=0')
+animatedcollapse.addDiv('infos3', 'fade=0,group=infott,persist=0')
+animatedcollapse.addDiv('infos4', 'fade=0,group=infott,persist=0')
+animatedcollapse.addDiv('infos5', 'fade=0,group=infott,persist=0')
+
+
+animatedcollapse.ontoggle=function($, divobj, state){ //fires each time a DIV is expanded/contracted
+	//$: Access to jQuery
+	//divobj: DOM reference to DIV being expanded/ collapsed. Use "divobj.id" to get its ID
+	//state: "block" or "none", depending on state
+}
+
+animatedcollapse.init()
+
+</script>
+
+
+
+
+<div style="border:1px solid #aaaaaa;border-top:0px;">
+
+
+
+
+<font class=txt>
+<a class=lattitmovil href="javascript:animatedcollapse.toggle('infos0')">&nbsp; <img src=/intranet/images/ico1.png style="vertical-align:middle;" width=25px> Informaci&oacute;n</a>
+<div id="infos0" width=100% style="display:true;height:430px;overflow:auto;">
+<div width=100% style="padding:0px 25px 25px 25px;">
+[in_description1]
+</div>
+</div>
+
+<a class=lattitmovil href="javascript:animatedcollapse.toggle('infos1')">&nbsp; <img src=/intranet/images/ico2.png style="vertical-align:middle;" width=25px> Detalles</a>
+<div id="infos1" width=100% style="display:none;height:430px;overflow:auto;">
+<div width=100% style="padding:0px 25px 25px 25px;">
+[in_description2]
+</div>
+</div>
+
+<a class=lattitmovil href="javascript:animatedcollapse.toggle('infos2')">&nbsp; <img src=/intranet/images/ico3.png style="vertical-align:middle;" width=25px> Script</a>
+<div id="infos2"  width=100% style="display:none;height:430px;overflow:auto;">
+<div width=100% style="padding:0px 25px 25px 25px;">
+[in_description3]
+</div>
+</div>
+
+<a class=lattitmovil href="javascript:animatedcollapse.toggle('infos3')">&nbsp; <img src=/intranet/images/ico4.png style="vertical-align:middle;" width=25px> Objeciones</a>
+<div id="infos3" width=100% style="display:none;height:430px;overflow:auto;">
+<div width=100% style="padding:0px 25px 25px 25px;">
+ [in_description4]
+</div>
+</div>
+
+
+
+
+</div>

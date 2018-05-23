@@ -1,0 +1,34 @@
+[ip_header_console]
+
+
+<form action="https://orderpagetest.ic3.com/hop/ProcessOrder.do" method="post">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="7">
+	<input type="hidden" name="action" value="1">
+
+[in_hop]
+
+	<input type="hidden" name="orderNumber" value="[in_id_orders]">
+	<input type="hidden" name="billTo_customerID" value="[in_id_customers">
+	<input type="hidden" name="merchantID" value="v2694389">	
+	<input type="hidden" name="orderPage_transactionType" value="authorization">
+	<input type="hidden" name="billTo_firstName" value="[in_firstname]">
+	<input type="hidden" name="billTo_lastName" value="[in_lastname1]">
+	<input type="hidden" name="billTo_street1" value="[in_address1]">
+	<input type="hidden" name="billTo_city" value="[in_city]">
+	<input type="hidden" name="billTo_state" value="[in_cs_state]">
+	<input type="hidden" name="billTo_postalCode" value="[in_zip]">
+	<input type="hidden" name="card_cardType" value="[in_cspmtfield1]"> 
+	<input type="hidden" name="amount" value="[in_csamount]">
+	<input type="hidden" name="card_accountNumber" value="[in_pmtfield3]">
+	<input type="hidden" name="card_vsNumber" value="[in_pmtfield5]">
+	<input type="hidden" name="card_expirationMonth" value="[in_csexpmonth]">
+	<input type="hidden" name="card_expirationYear" value="[in_csexpyear]">	
+	<input type="hidden" name="orderPage_declineResponseURL" value="[in_csamount]">	
+	<input type="submit" value="Submit">
+</form>	
+	
+			
+[ip_footer_console]
+
+

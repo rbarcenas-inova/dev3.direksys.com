@@ -1,0 +1,350 @@
+body
+	{
+		padding:0px;
+		margin:0px;
+		background-color:#ffffff;
+		font-family: arial;
+		font-size:11px;
+		line-height:12px;
+		color:#222222;
+	}
+font.part
+	{
+		font-family:  arial;
+		color:#000000;
+		font-size: 15px;	
+		font-weight: bold;
+		text-decoration: none;
+		cursor: default;
+		line-height:8pt;
+	}
+font.modaltit
+	{
+		font-family:  century gothic, verdana;
+		color:#000000;
+		font-size: 15px;	
+		font-weight: normal;
+		text-decoration: none;
+		cursor: default;
+		line-height:18pt;
+	}
+font.onred
+	{font-family: 
+		 verdana;color:#fff;
+		font-size: 10px;	
+		font-weight: normal;
+		text-decoration: none;
+		cursor: default;
+		line-height:12pt;
+	}
+font.onred2
+	{font-family: 
+		 verdana;color:#fff;
+		font-size: 18px;	
+		font-weight: normal;
+		text-decoration: none;
+		cursor: default;
+		line-height:18pt;
+	}
+div.diff
+	{		
+		background-image: url(/sitimages/orders/red.jpg); 
+		width:160px; 	
+		background-color:red;	
+		text-align:center;			
+		padding:4px;			
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		-moz-box-shadow: 0 0px 2px #999;	
+		-webkit-box-shadow: 0 0px 2px #999;	
+		box-shadow: 0 0px 2px #999;
+	}
+div.diffok
+	{		
+		background-image: url(/sitimages/orders/green.jpg); 
+		width:160px; 	
+		background-color:green;	
+		text-align:center;			
+		padding:4px;			
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		-moz-box-shadow: 0 0px 2px #999;	
+		-webkit-box-shadow: 0 0px 2px #999;	
+		box-shadow: 0 0px 2px #999;
+	}
+font.modalsec
+	{
+		font-family:  verdana;
+		color:#000000;
+		font-size: 14px;	
+		font-weight: normal;
+		text-decoration: none;
+		cursor: default;
+		line-height:18pt;
+	}
+font.mthead
+	{
+		font-family:  verdana;
+		color:#ffffff;
+		font-size: 11px;	
+		font-weight: normal;
+		text-decoration: none;
+		cursor: default;
+		line-height:12pt;
+	}
+.inputsm 
+	{   
+		border: 1px solid #aaaaaa;		
+		font-family: verdana, arial;		
+		color:#727272;			
+		font-size: 11px; 
+		min-width:65px; 
+		height:20px;    
+		background: url() top left;    	
+		background-repeat: repeat-x;    
+		line-height:20px; 
+		padding-left:3px; 
+		background: transparent;
+	}
+.inputsm:hover 
+	{    
+		border: 1px solid #555555;		
+		font-family: verdana, arial;	
+		color:#555555;			
+		font-size: 11px;    
+		height:20px;    
+		background: url() top left;   	 
+		background-repeat: repeat-x;    
+		background-color: #fafafa;
+		line-height:20px;
+	}
+.inputsm5 
+	{    
+		border: 1px solid #aaaaaa;		
+		font-family: verdana, arial;		
+		color:#727272;			
+		font-size: 11px;    
+		width:45px;height:20px;    
+		background: url() top left;    	
+		background-repeat: repeat-x;    
+		background-color: #ffffff;
+		line-height:20px; 
+		padding-left:3px; 
+		background: transparent;
+	}
+.inputsm5:hover 
+	{    
+		border: 1px solid #555555;		
+		font-family: verdana, arial;	
+		color:#555555;			
+		font-size: 11px;    
+		width:45px; 
+		height:20px;    
+		background: url() top left;   	 
+		background-repeat: repeat-x;    
+		background-color: #fafafa;
+		line-height:20px;
+	}
+
+td.num 
+	{
+		white-space:nowrap;	
+		text-align:right; 
+		vertical-align:top;
+	}
+	
+input.selicon 
+	{
+		filter:alpha(opacity=100); 
+		-moz-opacity: 1.0; 
+		opacity: 1.0;
+	}
+input.selicon:hover 
+	{
+		filter:alpha(opacity=50);   
+		-moz-opacity: 0.50;   
+		opacity: 0.50;
+	}
+input.selupdate
+	{		
+    border: 1px solid #aaaaaa;
+    background-color: #3088ec;
+		font-family: verdana, arial;
+		color:#ffffff;
+		font-size: 12px;
+    height:52px;
+    padding:5px;
+    background: url(/sitimages/orders/blue.jpg) top left;
+    background-repeat: repeat-x;
+		line-height:17px;
+		-moz-border-radius: 7px;
+		border-radius: 7px;
+	}
+input.selupdate:hover
+	{		
+    border: 1px solid #aaaaaa;
+    background-color: #3088ec;
+		font-family: verdana, arial;
+		color:#ffffff;
+		font-size: 12px;
+    height:52px;
+    padding:5px;
+    background: url(/sitimages/orders/blueon.jpg) top center;
+    background-repeat: repeat-x;
+		line-height:17px;
+		-moz-border-radius: 7px;
+		border-radius: 7px;
+	}
+
+	
+	div.update
+	{		
+		background-image: url(/sitimages/orders/blue.jpg); 
+		width:160px; 	
+		background-color:#3088ec;	
+		text-align:center;			
+		padding:4px;			
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		-moz-box-shadow: 0 0px 2px #999;	
+		-webkit-box-shadow: 0 0px 2px #999;	
+		box-shadow: 0 0px 2px #999;
+	}
+	A.update:link		
+	{ 
+		color:#ffffff;		
+		font-size: 22px;	
+		font-weight: normal;	
+		font-family: Arial, Helvetica;	
+		text-decoration: none;
+		line-height:15px;
+	}
+A.update:visited	
+	{ 
+		color:#ffffff;
+	}
+A.update:hover		
+	{ 
+		color:#c6e3ff;
+	}
+	
+input.button {
+	background-color: #90ba2b;
+	background-image: url(/sitimages/app_bar/mod/button.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	border: none;
+	color:#ffffff;
+	cursor: pointer;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 13px;
+	height: 35px;
+	border-left: 1px solid #77ac07;
+	border-right: 1px solid #77ac07;
+	border-top: 1px solid #77ac07;
+	border-bottom: 1px solid #77ac07;
+	padding-left:10px;
+	padding-right:10px;
+	text-align:center;
+-moz-border-radius: 7px;
+border-radius: 7px;
+}
+input.sbutton {
+	background-color: #90ba2b;
+	background-image: url(/sitimages/app_bar/mod/button.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	border: none;
+	color:#ffffff;
+	cursor: pointer;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 8px;
+	height: 15px;
+	border-left: 1px solid #77ac07;
+	border-right: 1px solid #77ac07;
+	border-top: 1px solid #77ac07;
+	border-bottom: 1px solid #77ac07;
+	padding-left:5px;
+	padding-right:5px;
+	text-align:center;
+-moz-border-radius: 2px;
+border-radius: 2px;
+}
+
+	
+.stdtxterr {
+	font-size: 12px;
+	font-family:Arial;
+	font-weight:bold;
+	color: #FF0000;
+}
+
+
+.fieldterr {
+	font-size: 9px;
+	font-family:Arial;
+	font-weight:bold;
+	color: #FF0000;
+}
+
+
+
+/* ######### Alternate multi-column class for drop down menus ######### */
+
+
+.anylinkcsscols{
+	position: absolute;
+	left: -230;
+	top: 0;
+	visibility: hidden;
+	border-top: 1px solid #eeeeee;
+	border-left: 0px solid #eeeeee;
+	border-right: 0px solid #eeeeee;
+	border-bottom: 0px solid #eeeeee;
+	padding: 0px;
+	font: normal 12px Verdana;
+	z-index: 100; /*zIndex should be greater than that of shadow's below*/
+		background-image: url(/sitimages/orders/menushadow.png);
+		background-position: bottom center;
+		background-repeat: repeat;
+}
+
+.anylinkcsscols .column{
+	width: 230px;
+	float: left;
+}
+
+.anylinkcsscols .column ul{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.anylinkcsscols li{
+	padding-bottom: 3px;
+}
+
+
+
+
+.lineOn {
+	background-color: #0991e8;
+}
+
+
+.lineOn a:link			{ color:#eeeeee;	font-size: 13px;	font-weight: normal;	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none; display:block; padding:3px; text-align:center;}
+.lineOn a:visited		{ color:#eeeeee;	font-size: 13px;	font-weight: normal;	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none; display:block; }
+.lineOn a:hover			{ color:#ffffff;	font-size: 13px;	font-weight: normal;	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none; display:block;  }
+
+
+.lineGeneral, .lineGeneral a {
+	font-size: 13px;
+	font-weight: normal;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #666;
+}

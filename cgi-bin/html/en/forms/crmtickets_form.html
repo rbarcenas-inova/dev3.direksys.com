@@ -1,0 +1,95 @@
+
+<style> 
+option.ddoption {padding:3px 3px 3px 10px;}
+option.dddisabled {padding:3px 3px 3px 10px;color:#cccccc;}
+</style>
+
+	&nbsp;
+	<fieldset><legend>Ticket</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">		
+		<tr>
+		   <td class='smalltext' width="30%">Order ID  : <span class="smallfieldterr">[er_Id_ref]</span></td>
+		   <td class='smalltext'><input type="text" name="id_ref" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' value="[in_id_ref]">
+		   	<input type="hidden" name="ID_type" value="orders">
+		   	<a href="#" name="orderid" id="orderid"></a>
+			<a href="/cgi-bin/common/apps/schid?cmd=advorders&returnid=ID_ref&returnfield=ID_orders" title="Search for Orders" class="fancy_modal_iframe">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+			</a>
+		  </td>
+		</tr>
+		<tr>
+		   <td class='smalltext' width="30%">Type: <span class="smallfieldterr">[er_Type]</span></td>
+		   	<td class='smalltext'>
+		   		[fc_crmtickets_select_type]		   		
+		   </td>
+		</tr>
+		<tr>
+		   <td class='smalltext' width="30%">Caller ID: <span class="smallfieldterr">[er_caller_id]</span></td>
+		   	<td class='smalltext'><input type="text"  style="width: 20%;" name="caller_id" onfocus="focusOn( this )" onblur="focusOff( this )" value="[in_caller_id]"></td>
+		</tr>
+		<tr>
+		   <td class='smalltext' width="30%">Description: <span class="smallfieldterr">[er_description]</span></td>
+		   	<td class='smalltext'><textarea    rows="5" cols="10" style="width: 100%;" name="description" onfocus="focusOn( this )" onblur="focusOff( this )">[in_description]</textarea></td>
+		</tr>
+
+
+		<tr>
+		   <td class='smalltext' width="30%">User type: <span class="smallfieldterr">[er_users_type]</span></td>
+		   	<td class='smalltext'>
+		   		<select name='users_type'>
+		   			<option value=''>---</option>
+		   			[fc_build_select_usertype]
+				</select>
+		   </td>
+		</tr>
+
+		<tr>
+		   <td class='smalltext' width="30%">User: <span class="smallfieldterr">[er_id_admin_users_assigned]</span></td>
+		   	<td class='smalltext'>
+		   		<div id="users">
+					<select name='id_admin_users_assigned'>
+						<option value=''>---</option>
+					</select>
+				</div>
+		   </td>
+		</tr>
+
+
+		<tr>
+		    <td class='smalltext' width="30%">Status : <span class="smallfieldterr">[er_status]</span></td>
+		    <td class="smalltext">[fc_crmtickets_status]</tr>
+	</table>
+	
+</fieldset>	
+
+<script language="javascript">
+
+	$select_TypeUser = $("[name=users_type]");
+
+<!--
+	//chg_select('type','[in_type]');
+	chg_select('users_type','[in_users_type]');
+	loadUsers_by_Type($select_TypeUser.val(),"users","id_admin_users_assigned",'[in_id_admin_users_assigned]');
+//-->
+	
+	
+	$select_TypeUser.change( 
+			function(){ 
+				loadUsers_by_Type($select_TypeUser.val(),"users","id_admin_users_assigned",'');
+			}
+		);
+
+	function loadUsers_by_Type(user_type,id_select,name_select,id_user) {
+
+		var url = '/cgi-bin/common/apps/ajaxbuild?ajaxbuild=users_by_type';
+		var param = 'users_type='+user_type+'&id_select='+id_select+'&name_select='+name_select+'&id_user='+id_user;
+		var divUpd = $('#'+id_select);
+
+		divUpd.load(url, param, function(){});
+	}
+
+</script>
+
+
+
+

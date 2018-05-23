@@ -1,0 +1,65 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="35%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/crm/admin?cmd=dashboard&type=cod")'>COD</td>
+	    <td width="35%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/crm/admin?cmd=dashboard&type=orders_status_substatus")'>Orders</td>
+	  </tr>
+	</table>
+	
+	<div style="background-color:#ffffff;margin:15px;">
+		
+	<fieldset><legend>Orders</legend>
+		<br>
+	[va_tableresults]		
+			<br><br>
+	</fieldset>
+
+	<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var statusAcc 	= new YAHOO.widget.AccordionView('statusaccordion', {collapsible: true, animationSpeed: '0.4', expandItem: 3, width: 'auto', animate: true, effect: YAHOO.util.Easing.easeNone});
+				var ids = ['tab1', 'tab2', 'tab3', 'tab4',]
+				[fc_show_wait_dialog]
+
+				YAHOO.util.Event.on(ids, "click", function(){ YAHOO.example.container.wait.show(); });
+
+
+$('#statusaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('width','auto');
+$('#statusaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('background','url(/sitimages/app_bar/mod/tabh.png)');
+$('#statusaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('background-repeat','repeat-x');
+$('#statusaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('color','#222222');
+$('#statusaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('border-left','1px #ccc solid');
+$('#statusaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('border-right','1px #bbb solid');
+$('#statusaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('border-top','1px #ddd solid');
+$('#statusaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('border-bottom','1px #ccc solid');
+$('#statusaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('padding-top','10px');
+$('#statusaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('padding-left','10px');
+$('#statusaccordion>li.yui-accordion-panel>a.yui-accordion-toggle').css('font-weight','normal');
+
+			</script>
+[ip_footer]

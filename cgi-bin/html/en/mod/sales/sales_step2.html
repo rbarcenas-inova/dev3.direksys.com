@@ -1,0 +1,109 @@
+[ip_header_newsales]
+	
+	<table cellpadding="0" cellspacing="1" border="0" width="100%" bgcolor="#cccccc" style="height: 500px; min-width: 1050px;">
+		<tr bgcolor="#ffffff">
+			[ip_sales_shop_cart]
+			
+			<td valign="top" align="left">
+				<div class="content">
+					
+					[ip_sales_header_info]
+					
+					[ip_sales_header_steps]
+
+					<div id="step2" class="div_step" style="">
+						<h1>Buscar Productos</h1>
+
+						<form action="/cgi-bin/mod/sales/admin" method="post" name="frm_sales" id="frm_sales_step2" autocomplete="off">
+							<input type="hidden" name="cmd" id="cmd" value="console_sales">
+							<input type="hidden" name="step" id="step" value="3">
+							<input type="hidden" name="action" id="action" value="products">
+							<input type="hidden" name="taxes" id="taxes" value="[va_taxes]">
+							<input type="hidden" name="zipcode" id="zipcode" value="[va_zipcode]">
+							<input type="hidden" name="shp_zipcode" id="shp_zipcode" value="[va_shp_zipcode]">
+							<input type="hidden" name="shipping" id="shipping" value="[va_shipping]">
+							<input type="hidden" name="id_salesorigins" id="id_salesorigins" value="[va_id_salesorigins]">
+							<input type="hidden" name="cod_limit_amt" id="cod_limit_amt" value="[va_cod_limit_amt]">
+							<input type="hidden" name="pay_type_available" id="pay_type_available" value="[va_pay_type_available]">
+							<input type="hidden" name="pay_type" id="pay_type" value="[va_pay_type]">
+							<input type="hidden" name="format_number" id="format_number" value="[va_format_number]">
+							<input type="hidden" name="products" id="products" value="[va_products]">
+
+							<table width=100% cellpadding=0 cellspacing=0 border=0>
+								<tr>
+									<td style="padding-left: 10px; width: 290px; vertical-align: middle;">Producto : &nbsp;
+										<input type="text" name="txt_search" id="txt_search" value="" size="70" class="input" placeholder="Modelo, Nombre o palabras..." title="B&uacute;squeda din&aacute;mica a partir de 4 caracteres">
+										<!-- a href="#" id="lnk_config_search" class="lnk_clear_client" style="width: 24px; height: 24px;" title="Configuraci&oacute;n de b&uacute;squeda...">
+											<img src="/sitimages/sales/config32.png" style="display: inline-block; float: left; width: 22px;">											
+										</a -->
+				 					</td>
+				 					<td style="border-left: 1px dashed silver; min-width: 250px; padding: 0px 3px 0px 7px; text-align: left; vertical-align: middle;">
+										<a href="#" id="lnk_prod_topsales" class="lnk_clear_client" style="width: 24px; height: 24px;" title="Productos m&aacute;s vendidos">
+											<img src="/sitimages/sales/prod_topsales.png" style="display: inline-block; float: left; width: 22px;">
+										</a>
+										<!-- a href="#" id="lnk_prod_rel" class="lnk_clear_client" style="width: 24px; height: 24px;" title="Productos relacionados">
+											<img src="/sitimages/sales/prod_rel.png" style="display: inline-block; float: left; width: 22px;">
+										</a -->
+										<a href="#" id="lnk_prod_last_order" class="lnk_clear_client" style="width: 24px; height: 24px;" title="Productos de la &uacute;ltima orden">
+											<img src="/sitimages/sales/dup_order.png" style="display: inline-block; float: left; width: 22px;">
+										</a>
+				 					</td>							
+									<td style="border-left: 1px dashed silver; text-align: right; width: 250px;">
+										<span>Precios Especiales : &nbsp;</span>
+										<input type="text" id="authcode" name="authcode" size="6" class="miniinput" placeholder="C&oacute;d. de autoriza..." title="C&oacute;digo de autorizaci&oacute;n" style="width: 100px;"> 
+									</td>
+								</tr>
+							</table>
+
+							<!-- Resultados de la busqueda -->
+							<div id="div_pagination_top" class="div_pagination" style="margin-top: 5px;">
+								<div id="div_pages_info_top" style="float: left; padding: 4px 1px 2px 3px;"></div>
+								<div id="div_pages_top" style="float: right;"></div>
+							</div>
+							<div id="div_search_result" style="display: block; min-height: 300px;">
+
+							</div>
+							<div id="div_pagination_bottom" class="div_pagination">
+								<div id="div_pages_info_bottom" style="float: left; padding: 4px 1px 2px 3px;"></div>
+								<div id="div_pages_bottom" style="float: right;"></div>
+							</div>
+						</form>			
+					</div>
+
+					<div id="div_choices" title="Selecci&oacute;n de opciones"></div>
+
+					<div id="div_show_product_info" title="Direksys :: Product Info">
+						<div id="div_product_info_content"></div>
+					</div>
+
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	<div id="speech_main" class="speech_main">
+		<div id="div_hide" class="speech_title">
+			<a href="#" id="lnk_hide_speech" style="position: relative;" title="Ocultar">
+				<img src="/sitimages/sales/minimize.png" alt="minimize">
+			</a>
+		</div>
+		<div class="speech_content">
+			<img src="/sitimages/default/console-head.png" style="margin: 5px 10px 5px 0px; width: 50px; float: left; display:block;">
+			<div class="speech_content_text">
+				[va_speech_content]
+			</div>
+			<div style="clear: both;"></div>
+			<div style="text-align: right; width: 100%; display: block;">
+				<span style="text-align: left; font-size: 8pt; margin-right: 20px;">[va_speech_code]</span>
+				<label style="font-size: 8pt; width: auto; position: relative;"><input type="checkbox" name="chk_speech_nevershow" id="chk_speech_nevershow" value="1">No volver a mostrar</label>
+			</div>
+		</div>
+	</div>
+
+	<div id="div_speech_icon" class="div_speech_icon" style="display: none;">
+		<a href="#">
+			<img src="/sitimages/default/console-head.png" style="width: 45px; height: 45px;">
+		</a>
+	</div>
+
+[ip_footer_console]

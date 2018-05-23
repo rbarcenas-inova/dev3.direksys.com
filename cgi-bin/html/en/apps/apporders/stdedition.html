@@ -1,0 +1,219 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"   "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://opengraphprotocol.org/schema/"
+      xmlns:fb="http://www.facebook.com/2008/fbml"
+      xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="es-mx">
+<title>Editing Order</title>
+<META NAME="Author" CONTENT="ArielAleXCo." />
+<link rel="stylesheet" type="text/css" href="/sitimages/orders/orders.css">
+
+
+</head>
+<body>
+
+
+
+<center>
+<form action="/cgi-bin/common/apps/e_orders" method="post" name="sitform" [>
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="force_calc" value="1">
+	<input type="hidden" name="cmd" value="stdedition">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="path" value="[in_path]">
+	<input type="hidden" name="taxmode" value="[in_taxmode]">
+	[va_paymentsupdlist]
+
+<table cellpadding=0 cellspacing=5 width=98% border=0>
+	<tr>
+		<td valign=bottom align=left>
+		<font class=modaltit>Editing Order : [in_id_orders]</font>
+		&nbsp;&nbsp;&nbsp;
+		<!-- <font class=modaltit>Force recalculation: </font><input type="checkbox" value="1" name="force_calc"> -->
+		<br>
+		<span class="stdtxterr">[va_message]</span><br>
+		
+			<table cellpadding=5 cellspacing=0 style="[va_productlist_visible]">
+				<td>
+					<font class=modalsec>Item: <b>[va_prodlines]</b></font>			
+				</td>
+			</table>
+		</td>
+		<td align=right>
+			<div class="[va_btndiffclass]">
+				<table border=0 width=100% cellpadding=0 cellspacing=0>
+					<tr>
+						<td style="border-right:1px solid #a4d27e;">
+							<font class=onred>Difference:</font><br>
+							<font class=onred>[va_tdiff]</font>
+						</td>
+						<td width=65 align="center" class="calc">[va_btndiff]</td>
+					</tr>
+				</table>
+			</div>
+		</td>
+	</tr>	
+	<tr>
+		<td colspan=2 align=left>
+			<table cellpadding=4 cellspacing=0 width=100% style="border:1px solid; [va_productlist_visible]">
+				<tr bgcolor=#4d6ce4 background="/sitimages/orders/tabla.jpg">
+					<td><font class=mthead>#</font></td>
+					<td nowrap><font class=mthead>Item ID</font></td>
+					<td align="center"><font class=mthead>Model/Name</font></td>
+					<td nowrap><font class=mthead>Quantity</font></td>
+					<td nowrap><font class=mthead>Unit Price</font></td>
+					<td nowrap><font class=mthead>Sub Total</font></td>
+					<td nowrap><font class=mthead>Discount</font></td>
+					<td nowrap><font class=mthead>Shipping</font></td>
+					<td nowrap><font class=mthead>Tax</font></td>
+					<td nowrap><font class=mthead>Total</font></td>
+					<td nowrap><font class=mthead>Type</font></td>
+				</tr>
+				[va_productslist]
+				<tr bgcolor="#ffffff">
+					<td valign="top">&nbsp;</td>
+					<td valign="top">&nbsp;</td>
+					<td valign="top"><b>TOTAL</td>
+					<td class="num"><b>[va_total_quantity]</td>
+					<td class="num">&nbsp;</td>
+					<td class="num"><b>[va_total_subtotal]</td>
+					<td class="num"><b>[va_total_discount]</td>
+					<td class="num"><b>[va_total_shipping]</td>
+					<td class="num"><b>[va_total_tax]</td>
+					<td class="num"><b>[va_total]</td>
+					<td valign="top">&nbsp;</td>
+				</tr>
+			</table>
+<div >[va_total_debug]</div>
+
+			<table cellpadding=0 cellspacing=5 width=100% style="[va_productlist_visible]">
+				<td align="center" width="10%">
+					<input type="image" src="/sitimages/orders/checkmark.gif" border="0" class="selicon" name="to_enable" value="on" title="Enable Inactive Lines" alt="Enable Inactive Lines">
+					<input type="image" src="/sitimages/orders/ex.gif" border="0" class="selicon" name="to_disable" value="on" title="Disable Active Lines" alt="Disable Active Lines"> <br>
+					<input type="image" src="/sitimages/orders/duplicate.gif" border="0" class="selicon" name="to_duplicate" value="on" title="Duplicate Lines" alt="Duplicate Lines"> 
+					</td>
+				<td align="center" width="10%"><input type="image" src="/sitimages/orders/product.png" class="selicon" name="add_product" value="on" border="0"><br>Add product</td>
+				<td align="center" width="10%"><input type="image" src="/sitimages/orders/sku.png" class="selicon" name="add_sku" value="on" border="0"><br>Add SKU</td>
+				<td align="center" width="10%"><input type="image" src="/sitimages/orders/service.png" class="selicon" name="add_service" value="on" border="0"><br>Add Service</td>
+				<td align="center" width="10%"><input type="image" src="/sitimages/orders/promo.png" class="selicon" name="add_promo" value="on" border="0"><br>Add promo</td>
+				<td align="center" width="30%"></td>
+				<td align="center" width="10%" >
+					<img src="/sitimages/orders/shipping.png" data-val="on" border="0" onclick="changeShipping(this)" style="cursor:pointer;display:[va_display]">
+					<br style="cursor:pointer;display:[va_display]">
+					<span style="cursor:pointer;display:[va_display]">
+						Recalc Shipping
+					</span>
+				</td>
+				<td align="right" width="10%"><input type="image" src="/sitimages/orders/tax[in_taxmode].png" class="selicon" name="tax_onoff" value="on" border="0"></td>
+			</table>
+			
+			
+
+			<br>
+			<br>
+
+			<font class=modalsec style="[va_paymentlist_visible]">Payments: <b>[va_paylines]</b></font>
+			<table cellpadding=4 cellspacing=0 width=100% style="border:1px solid; [va_paymentlist_visible]">
+				<tr bgcolor=#4d6ce4 background="/sitimages/orders/tabla.jpg">
+					<td align="center"><font class=mthead>#</font></td>
+					<td align="center"><font class=mthead>Type</font></td>
+					<td align="center"><font class=mthead>Info</font></td>
+					<td align="center"><font class=mthead>Amount</font></td>
+					<td align="center"><font class=mthead>Payment Date <br><font color=#eeeeee><I>(YYYY-MM-DD)</I></font></td>
+					<td align="center"><font class=mthead>Action</font></td>
+				</tr>
+				[va_paymentslist]
+				<tr bgcolor="#ffffff">
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td align="right"><b>TOTAL</td>
+					<td class="num"><b>[va_ptotal]</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+			
+
+			<table cellpadding=0 cellspacing=5 width=100% style="[va_paymentlist_visible]">
+				<td align="center" width="10%">
+				
+					<input type="image" src="/sitimages/orders/checkmark.gif" border="0" class="selicon" name="to_enable" value="on" title="Enable Inactive Lines" alt="Enable Inactive Lines">
+					<input type="image" src="/sitimages/orders/ex.gif" border="0" class="selicon" name="to_disable" value="on" title="Disable Active Lines" alt="Disable Active Lines"> <br>
+					<input type="image" src="/sitimages/orders/duplicate.gif" border="0" class="selicon" name="to_duplicate" value="on" title="Duplicate Lines" alt="Duplicate Lines"> 
+					<input type="image" src="/sitimages/orders/edit.gif" border="0" class="selicon" name="to_edit" value="on" title="Edit payments" alt="Edit payments"> 
+					</td>
+				<td align="center" width="10%"><input type="image" src="/sitimages/orders/cod.png" class="selicon" name="add_cod" value="on" border="0"><br>Add COD</a></td>
+				<td align="center" width="10%"><input type="image" src="/sitimages/orders/card.png" class="selicon" name="add_card" value="on" border="0"><br>Add Credit Card</a></td>
+				<td align="center" width="10%"><input type="image" src="/sitimages/orders/deposit.png" class="selicon" name="add_deposit" value="on" border="0"><br>Add Deposit</a></td>
+				<td align="center" width="10%"><input type="image" src="/sitimages/orders/depositref.png" class="selicon" name="add_depositref" value="on" border="0"><br>Add Referenced Deposit</a></td>
+				<td align="center" width="50%"></td>
+			</table>
+			<br><br>
+
+		</td>
+	</tr>
+		<tr>
+		<td colspan=2 align=center><input type="submit" name="reset" value="Reset" class="button"></td>
+	</tr>
+</table>
+<style type="text/css">
+	[data-val="off"] {
+    	opacity: 0.5;
+	}
+</style>
+	<script language="JavaScript">
+		var changeShipping = function(elem){
+			getJSON('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=order_add_shipping&id_orders=[in_id_orders]',function(data){
+				if(data.code == 200){
+					var lista = document.querySelectorAll('[name^="newsaleprice"]');
+					var listaActivo = document.querySelectorAll('[name^="newstatus"]');
+					var ship = document.querySelectorAll('[name^="newshipping"');
+					var activos = [];
+					for (var i = 0; i < ship.length; i++) {
+						item = ship[i];
+						item.value='0.00';
+					}
+					for (var i = 0; i < listaActivo.length; i++) {
+						item = listaActivo[i];
+						if(listaActivo[i].value == 'Active' && item.parentNode.parentNode.children[1].innerHTML[0] != 6)
+							activos.push({salePrice:lista[i].value,shipName:ship[i].name});
+					}
+					activos.sort(function(a, b){return b.salePrice-a.salePrice});
+					if(activos.length > 0){
+						document.querySelector('[name="'+activos[0].shipName+'"]').value=data.total;
+						document.querySelector('input.calc').click();
+					}
+				}
+			});
+		};
+		var getJSON = function(url,callback){
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open('GET', url, true);
+			xmlhttp.onreadystatechange = function() {
+			    if (xmlhttp.readyState == 4) {
+			        if(xmlhttp.status == 200) {
+			            var obj = JSON.parse(xmlhttp.responseText);
+			            callback(obj)
+			         }
+			    }
+			};
+			xmlhttp.send(null);
+		};
+		function chg_chkbox(Name,Value) {
+			var aux=Value.split("|");
+			for (var x=0; x<=aux.length; x++){
+				for (var f=0; f<self.document.forms.length; f++){
+					for (var i=0; i<self.document.forms[f].length; i++){
+						if (self.document.forms[f].elements[i].name == Name && self.document.forms[f].elements[i].value == aux[x]){
+							self.document.forms[f].elements[i].click();
+						}
+					}
+				}
+		  }
+		}
+
+		chg_chkbox('force_calc','[in_force_calc]');	
+	</script>
+	</body>

@@ -1,0 +1,157 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="14%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=opr_orders_home")'>Orders</td>
+	    <td width="14%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_orders&add=1")'>Add</td>
+	    <td width="14%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_orders&search=form")'>Search</td>
+	    <td width="14%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_orders&search=advform")'>Adv Search</td>
+	    <td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_orders&search=listall&sb=id_orders&so=DESC")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+			
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="left" colspan="2">Orders Add Note </td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+     </table>
+
+<form action="/cgi-bin/mod/admin/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="opr_addnote">
+	<input type="hidden" name="action" value="1">
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr>
+		<td colspan="3" align="center" class="menu_bar_title">Orders</td>
+    </tr>
+	<tr>
+		<td colspan="3" valign="top">
+			<textarea name="id_orders_bulk" cols="50" rows="8"  style="width:99%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_id_orders_bulk]</textarea>
+			<span class="help_on">Comma or Enter Separated IDs, Invalid IDs will be descarted</td>
+    </tr>
+    <tr>
+		<td colspan="3" align="center" class="menu_bar_title">Note</td>
+    </tr>
+    <tr>
+<td class="smalltext" valign="top" width="30%">
+			<fieldset>
+				<legend>Relevance</legend>
+				<input type="radio" name="notestype" class="radio" value="High">High<br>
+				<input type="radio" name="notestype" class="radio" value="Medium">Medium<br>
+				<input type="radio" name="notestype" class="radio" value="Low">Low			
+			</fieldset>
+		</td>
+		<td class="smalltext" valign="top"  width="35%">
+
+				<fieldset>
+
+					<legend>Confirmations</legend>
+					<input type="radio" name="notestype" class="radio" value="Recordatorio" onClick="fillOrderNote(2);">Recordatorio
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="notestype" class="radio" value="Excepcion" onClick="fillOrderNote(3);">Excepci&oacute;n<br>
+
+					<input type="radio" name="notestype" class="radio" value="Recuperacion" onClick="fillOrderNote(5);">Recuperaci&oacute;n
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="notestype" class="radio" value="Validada">V&aacute;lida<br>
+
+					<input type="radio" name="notestype" class="radio" value="Validada">Entregada
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="notestype" class="radio" value="No Surtida">No Surtida<br>
+
+					<input type="radio" name="notestype" class="radio" value="Devolucion de Ruta">Devolucion de Ruta
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="notestype" class="radio" value="Siniestro">Siniestro<br>
+
+					<input type="radio" name="notestype" class="radio" value="Extravio Pagado por Mensajeria">Extravio Pagado por Mensajeria
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				
+
+				</fieldset>
+			</td>
+		<td class="smalltext" valign="top"  width="35%">
+			<fieldset>
+				<legend>Customer Service</legend>
+				<input type="radio" name="notestype" class="radio" value="ATC-Inf. Gral" onClick="fillOrderNote(6);">ATC-Inf. Gral&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="notestype" class="radio" value="ATC-Reship" onClick="fillOrderNote(7);">ATC-Reship<br>
+				<input type="radio" name="notestype" class="radio" value="ATC-Exchange" onClick="fillOrderNote(8);">ATC-Exchange&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="notestype" class="radio" value="ATC-Refund" onClick="fillOrderNote(9);">ATC-Refund<br>
+				<input type="radio" name="notestype" class="radio" value="ATC-Claim" onClick="fillOrderNote(10);">ATC-Claim		
+			</fieldset>
+		</td>
+	</tr>
+	<tr>
+		<td class="smalltext" valign="top"  width="35%" colspan="3">
+				<fieldset>
+					<legend>Tracking</legend>
+					<input type="radio" name="notestype" class="radio" value="Observaciones" onClick="">Observaciones<br>
+					<input type="radio" name="notestype" class="radio" value="FECHA EMBARQUE" onClick="">FECHA EMBARQUE<br>
+					<input type="radio" name="notestype" class="radio" value="Transporte" onClick="">Transporte<br>
+					<input type="radio" name="notestype" class="radio" value="FECHA ENTREGA" onClick="">FECHA ENTREGA<br>
+					<input type="radio" name="notestype" class="radio" value="Folio" onClick="">Folio<br>
+
+
+				</fieldset>
+			</td>
+	</tr>
+    <tr>
+		<td colspan="3" valign="top">
+			<textarea id="notes" name="notes" cols="50" rows="8"  style="width:99%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_id_orders_bulk]</textarea>
+			<span class="help_on">Required
+		</td>
+    </tr>	
+    <tr>
+    	<td colspan="3">
+			<table border="0" cellspacing="0" cellpadding="4" width="50%" align="center">
+				<tr>
+					<td align="center" colspan="2"><br><input type="submit" value="Add Note" class="button"></td>
+			    </tr>
+			</table>		
+    	</td>
+    </tr>
+</table>
+	
+&nbsp;
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr>
+		<td align="center" class="menu_bar_title">Orders Changes Report</td>
+    </tr>
+ 	<tr>
+		<td class="smalltext">[va_changeresult]</td>
+    </tr>   
+</table>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+

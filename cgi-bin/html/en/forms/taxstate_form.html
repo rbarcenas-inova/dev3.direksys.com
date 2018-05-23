@@ -1,0 +1,50 @@
+	&nbsp;
+	<fieldset><legend>State Tax Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		 <tr>
+		 	<td width="30%">State : <span class="smallfieldterr">[er_state]</span></td>
+		 	<td class="smalltext">
+				<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+						[fc_build_select_taxstatestate]
+				</select>
+			</td>
+		</tr>		 
+		<tr>
+		    <td valign="top" width="30%">Tax : <span class="smallfieldterr">[er_tax]</span></td>
+		    <td class="smalltext"><input type="text" name="tax" value="[in_tax]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+			<tr>
+		  	<td width="30%">To Date : <span class="smallfieldterr">[er_todate]</span></td>
+				<td class="smalltext"><input type="text" id="todate" name="todate" value="[in_todate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>		 
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>State Tax Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		    <td class="smalltext">
+				<input type="radio" name="status" value="Active" class="radio">Active
+				<input type="radio" name="status" value="Inactive" class="radio">Inactive
+			</td>
+		 </tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_select('state','[in_state]');
+	chg_radio('status','[in_status]');
+	var dates = $( "#todate" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		minDate: new Date(),
+		//maxDate: new Date()+3,
+		changeMonth: true,
+		numberOfMonths: 3
+	});
+//-->
+</script>
+

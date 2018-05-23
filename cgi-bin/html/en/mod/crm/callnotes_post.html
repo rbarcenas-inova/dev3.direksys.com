@@ -1,0 +1,57 @@
+[ip_header_blank]
+&nbsp;
+	[va_javascriptvar]
+	<form method="post" action="/cgi-bin/common/apps/ajaxbuild">
+		<input type="hidden" name="ajaxbuild" value="check_xcallnote_post">
+		<input type="hidden" name="original_path" value="[in_script_url]">
+		<input type="hidden" name="cmd" value="drop_calls">
+		<input type="hidden" name="id_cdr" value="[in_id_cdr]">
+		<input type="hidden" name="action" value="[in_action]">
+		<input type="hidden" name="from_date" value="[in_from_date]">
+		<input type="hidden" name="to_date" value="[in_to_date]">
+		<input type="hidden" name="from_time" value="[in_from_time]">
+		<input type="hidden" name="to_time" value="[in_to_time]">
+		<input type="hidden" name="duration" value="[in_duration]">
+		<input type="hidden" name="calldate" value="[in_calldate]">
+		<input type="hidden" name="exclude_notes" value="[in_exclude_notes]">
+		<input type="hidden" name="nh" value="[in_nh]">
+		
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td class="titletext" align="center">Nueva Nota CDR ([in_id_cdr])</td>
+			</tr>
+			<tr>
+				<td class="stdtxterr">[va_message]</td>
+			</tr>
+		</table>
+		&nbsp;
+		<fieldset style="background-color:fff;" width="100%"><legend>&nbsp;</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+				<tr>
+			    <td align="letf">Calificaci&oacute;n : <span class="smallfieldterr">[er_type]</span></td>
+				</tr>
+				<tr>
+			    <td>
+			    	<select name="type">
+			    		<option value="">- - -</option>
+			    		[fc_build_select_dids7_type]
+			    	</select>	
+			    </td>
+				</tr>
+				<tr>
+			    <td align="letf">Nota : <span class="smallfieldterr">[er_note]</span></td>
+				</tr>
+				<tr>
+			    <td>
+			    	<textarea name="note" rows="5" cols="80" onFocus='focusOn( this )' onBlur='focusOff( this )'>&nbsp;</textarea>	
+			    </td>
+				</tr>
+				<tr>
+			    <td align="center">
+			    	<input type="submit" name="btn_submit" value="Enviar">	
+			    </td>
+				</tr>
+			</table>
+		</fieldset>
+	</form>
+

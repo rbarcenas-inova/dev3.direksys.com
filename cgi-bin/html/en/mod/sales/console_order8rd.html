@@ -1,0 +1,192 @@
+[ip_header_console]
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td valign="top" align="left" bgcolor="#ffffff">
+			
+		<table width="100%" height=41px border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+				<td>&nbsp;</td>
+				<td class="cell_on" width="14%" align="center">Consola [va_salesorigins.channel]</td>
+		 </tr>
+		</table>
+		
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+				
+				
+		[fc_customer_header]
+			<br>
+			
+
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform" onsubmit="return confirm_order();">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="9">
+	<input type="hidden" name="action" value="1">
+	<input type='hidden' name='pay_type' value='[in_pay_type]'>
+	<input type="hidden" name="email" value="[in_email]" size="30">
+	<input type="hidden" name="cellphone" value="[in_cellphone]" size="30">
+	<input type="hidden" name="email_and_cellphone_use" value="[in_email_and_cellphone_use]" size="30">
+	<input type="hidden" name="contact_mode" value="[in_contact_mode]" size="30">
+	
+<fieldset><legend>Crear nueva Orden : Confirmar Orden</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	      <td>
+	      		      	  		
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+			
+			</td>
+	   </tr>
+		<tr>
+		  <td bgcolor="#C0C0C0" height="2"></td>
+		</tr>
+	</table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Nombre Completo : </td>
+		  <td class="smalltext">[in_firstname] [in_lastname1] [in_lastname2]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Teléfonos (Día / Tarde / Celular) : </td>
+		  <td class="smalltext">[in_phone1] - [in_phone2] - [in_cellphone]</td>
+		</tr>
+		<tr>
+		  <td width="30%" >Hora : <span class="help_on">Mejor Hora para Ubicarlo?</span></td>
+		  <td class="smalltext" valign="top">[in_atime]</td>
+		</tr>
+		<tr>
+		  <td colspan="2" bgcolor="#C0C0C0" height="2"></td>
+		</tr>		
+	</table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+			<td width="50%" class="smalltext">Información de Envío</td>
+		</tr>		
+		<tr>
+			<td valign="top">
+			  	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					<tr>
+						<td valign="top"nowrap>Dirección  : </td>
+					  	<td class="smalltext">[in_shp_address1]<br>[in_shp_address2]<br>[in_shp_address3]</td>
+					</tr>
+					<tr>
+					  	<td width="30%"nowrap>Colonia  : </td>
+					  	<td class="smalltext">[in_shp_urbanization]</td>
+					</tr>
+					<tr>
+					 	<td width="30%"nowrap>Municipio ó Delegación  : </td>
+					 	<td class="smalltext">[in_shp_city]</td>
+					</tr>
+					<tr>
+					 	<td width="30%"nowrap>Estado/Código Postal : </td>
+					    <td class="smalltext">[in_shp_state], [in_shp_zip]</td>
+					</tr>
+					<tr>
+					 	<td width="30%"nowrap>País : </td>
+					    <td class="smalltext">[in_shp_country]</td>
+					</tr>
+					<tr>
+					 	<td width="30%" valign="top"nowrap>Notas  : </td>
+					    <td class="smalltext">[in_shp_notes]</td>
+					</tr>		
+					<tr>
+					 	<td width="30%" valign="top" nowrap>Persona que Recibe  : </td>
+					    <td class="smalltext">[in_shp_name]</td>
+					</tr>		
+					
+				</table>
+			</td>
+		</tr>
+		<tr>
+		  <td bgcolor="#C0C0C0" height="2"></td>
+		</tr>		
+	</table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td colspan="2" bgcolor="#C0C0C0" height="2"></td>
+		</tr>		
+	</table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%" valign="top">Tipo de Pago  : </td>
+		  <td class="smalltext" valign="top">[va_paytype] <br>
+		  	[va_delivery_dates]
+		  </td>
+		</tr>
+	</table>
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="stdtxterr" colspan="2">[in_errmes]</td>
+		 </tr>
+	</table>
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td colspan="2">[fc_products_inorder]</td>
+		</tr>	
+		<tr>
+		  <td colspan="2" bgcolor="#C0C0C0" height="2"></td>
+		</tr>		
+	</table>
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td align="center">
+		  	<br><b>Tipo de Envío Actual: </b> [va_this_shp_type] <span class="smallfieldterr">[er_shp_type]<br>
+		  		<span class="help_on">Presiona la im&aacute;gen para cambiar el tipo</span>
+		  	<br>
+		  </td>
+		</tr>
+		<tr>
+			<td>
+				[ip_console_shipping_table]
+			</td>
+		</tr>
+	</table>
+	&nbsp;
+	[fc_paysummary]
+	&nbsp;
+	<p align="center">
+		<input type="submit" value="Confirmar Orden" class="button">
+	</p>
+</fieldset>
+
+<br>
+<!--GV Inicia-->
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr><td bgcolor=#ffffff>
+[fc_console_extraslinks]
+</td></tr></table>
+<!--GV Termina-->
+
+</form>		
+<script language="javascript">
+	function recharge(valor)
+	{
+		self.location = "/cgi-bin/mod/sales/admin?cmd=console_order&step=8&tab=1&"+valor.name+"="+valor.value+"#tabs";
+	}
+	function confirm_order(){
+		if(confirm('¿Esta seguro que desea continuar?, No podra modificar los datos de la Orden')){
+			return disableSubmits();
+		}else{
+			return false;
+		}
+
+	}
+
+</script>
+
+    </td>
+    </tr>
+</table>	
+[ip_footer_console]

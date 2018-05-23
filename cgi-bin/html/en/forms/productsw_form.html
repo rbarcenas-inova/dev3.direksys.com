@@ -1,0 +1,28 @@
+	<fieldset><legend>Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<input type="hidden" name="id_products_w" value="[in_id_products_w]" >
+		    <td width="30%">ID Product  : <span class="smallfieldterr">[er_id_products]</span></td>
+		    <td class="smalltext"><input type="text" name="id_products" value="[in_id_products]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Name  : <span class="smallfieldterr">[er_name]</span></td>
+		    <td class="smalltext"><input type="text" name="name" value="[in_name]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		<tr>
+		    <td width="30%">Category  : <span class="smallfieldterr">[er_title]</span></td>
+		    <td class="smalltext">
+			    <select name="title" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				    <option value="">---</option>
+				    [fc_build_select_productsw_category]
+			    </select>
+		    </td>
+		 </tr>
+		 <tr>
+		    <td width="30%">Max Qty: <span class="smallfieldterr">[er_maxqty]</span></td>
+		    <td class="smalltext"><input type="text" name="maxqty" value="[in_maxqty]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+

@@ -1,0 +1,102 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+			<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+				<font face=verdana>
+					<ul id="accordion">
+						[ip_menu]
+					</ul>
+					<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+					<script type="text/javascript">
+					var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:[va_expanditem], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+					</script>
+				</td>
+			</table>
+			<td valign="top" aling="left" bgcolor="#ffffff">
+				<!-- Start Main Area  -->
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+					<tr>
+						<td width="30%" align="center"></td>
+						<td width="35%" class='cell_off' align='center' onClick=''>Close Movements</td>
+					</tr>
+				</table>
+	[va_message_good]
+	[va_message_error]
+	[va_message_notes]
+				<div style="background-color:#ffffff;margin:15px;">
+
+
+					&nbsp;
+					<form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+						<input type="hidden" name="cmd" value="end_exercise">
+						<input type="hidden" name="action" value="[in_action]">
+
+						<table border="0" cellspacing="0" cellpadding="2" width="100%">
+							<tr>
+								<td class="titletext" align="center">Accounting : Cierre de Ejercicio</td>
+							</tr>
+							<tr>
+								<td class="stdtxterr">[va_message]</td>
+							</tr>
+						</table>
+						&nbsp;
+						<fieldset><legend>Cierre de Ejercicio</legend>
+							<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+								<tr>
+									<td width="25%">
+										ID accounts : <span class="smallfieldterr">[er_id_accounts]</span>
+									</td>
+									<td class="smalltext">
+										<input type="text" id="id_accounts" name="id_accounts" value="[in_id_accounts]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input" readonly required>
+										<a class="fancy_modal_iframe" title="Chart of Accounts" id="accounts_selector" href="/cgi-bin/mod/[ur_application]/admin?cmd=accountsTree&element_id=id_accounts&element_descrip=editing_name&parent=no"><img border="0" src="/sitimages/default/icsearchsmall.gif"></a>
+
+										<span id="editing_name" name="editing_name"></span>
+									</td>
+								</tr>
+								<tr>
+									<td width="20%">
+										<label for="id_accounting_periods">Per&iacute;odo 13: </label>
+										<span class="smallfieldterr">[er_id_accounting_periods]</span>
+									</td>
+									<td class="smalltext">
+										<select name="id_accounting_periods13" id="id_accounting_periods"  class="input" required>
+											<option value="">Selecciona un periodo</option>
+											[fc_build_select_accounting_periods]
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td width="20%">
+										<label for="id_accounting_periods">Per&iacute;odo 14: </label>
+										<span class="smallfieldterr">[er_id_accounting_periods]</span>
+									</td>
+									<td class="smalltext">
+										<select name="id_accounting_periods14" id="id_accounting_periods"  class="input" required>
+											<option value="">Selecciona un periodo</option>
+											[fc_build_select_closing_accounting_periods]
+										</select>
+									</td>
+								</tr>
+							</table>
+						</fieldset>
+
+
+						<p align="center"><input type="submit" value="Run" class="button" loading="0"></p>
+					</form>
+
+					<!-- End Main Area  -->
+				</td>
+			</tr>
+		</table>
+
+		<script type="text/javascript">
+			$('#id_accounts').on('click', function(){
+				$('#accounts_selector').click();
+			});
+
+		</script>
+		[ip_footer]

@@ -1,0 +1,81 @@
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+	<input type="hidden" name="id_purchaseorders" value="[in_id_purchaseorders]">
+	<input type="hidden" name="view" value="[in_id_purchaseorders]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="[in_tab]">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+	    <td class="tbltextttl">
+	    	<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_purchaseorders]&tab=[va_activetab]&tabs=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+	    	Auth : [va_matches]</td>
+	    <td class="smalltext">Filter By : <a href="/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_purchaseorders]&tab=5&tabs=1&filter=Approved">Approved</a> - 
+				<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_purchaseorders]&tab=5&tabs=1&filter=Declined">Declined</a></td>
+	    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+			 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+			    <td class="menu_bar_title">Date/Time/User</td>
+			    <td class="menu_bar_title">Type</td>
+			    <td class="menu_bar_title" colspan="2">Notes</td>
+				 </tr>
+				 [va_searchresults]
+				</table>
+			</td>
+		</tr>
+		<tr>
+		 	<td colspan="3"><span class='fieldterr'>[va_tabmessages]</span>&nbsp;</td>
+		</tr>
+		[va_strdel_start]
+		<tr>
+			<td class="menu_bar_title" colspan="3">Add Auth New Note</td>
+		</tr>	
+		<tr>
+			<td class="smalltext" colspan="3">
+				<input type="radio" name="notestype" class="radio" value="Approved">Approved
+				<input type="radio" name="notestype" class="radio" value="Declined">Declined
+				<input type="checkbox" name="finaldec" class="radio" value="on">Final Decision
+
+				<textarea name="notes" style="width: 100%" cols="50" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_notes]</textarea>
+				<br />
+				<div id="div_rvendor" [va_rvendor_style]>
+					<br><br><span class="help_on">Return To Vendor Type Requires P.O and Warehouse Selection (Items must be placed in pack location)</span><br>
+					<table width="100%" border="0" cellspacing="5" cellpadding="0" class="gborder" align="center">
+						<tr>
+							<td class="tbltextttl">ID Purchase Order</td>
+							<td class="smalltext">
+								<select name="id_purchaseorders_rvendor">
+									<option>---</option>
+									[fc_build_select_po_rvendor]
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="tbltextttl">From Warehouse</td>
+							<td class="smalltext">
+								<select name="id_warehouses_rvendor">
+									<option>---</option>
+									[fc_build_select_warehouses]
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="tbltextttl" colspan="2">
+								[va_rvendor_currency]
+							</td>
+						</tr>
+					</table>
+				</div>
+				<br />
+			</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="3"><input type="submit" value="Add Auth Notes" class="button"></td>
+		</tr>
+		[va_strdel_end]
+	</table>
+</form>
+

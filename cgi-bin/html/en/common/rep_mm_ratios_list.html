@@ -1,0 +1,128 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:[fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="10%" align="center"></td>
+	    <td class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_mm_ratios")'>Ratios</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_mm_ratios")'>Products</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	&nbsp;
+	[va_report_tbl]
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td class="tbltextttl">
+	    	<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]&print=1&[in_qs]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+	    	[va_extabtns]
+	    	Records : [va_matches]</td>
+	    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title" [va_link_col1]>[va_title_colx] [va_sort_col1]</td>
+		    <td class="menu_bar_title" [va_link_col2]>Media [va_sort_col2]</td>
+		    <td class="menu_bar_title" [va_link_col3]>Calls [va_sort_col3]</td>	
+		    <td class="menu_bar_title" [va_link_col4]>Orders $ [va_sort_col4]</td>	
+		    <td class="menu_bar_title" [va_link_col5]>Conv [va_sort_col5]</td>
+		    <td class="menu_bar_title" [va_link_col6]>%TDC [va_sort_col6]</td>
+		    <td class="menu_bar_title" [va_link_col7]>AOV [va_sort_col7]</td>
+		    <td class="menu_bar_title" [va_link_col8]>CPC [va_sort_col8]</td>
+		    <td class="menu_bar_title" [va_link_col9]>Ratio [va_sort_col9]</td>
+		</tr>
+		[va_searchresults]
+  </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">
+				Records : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>  
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="40%" align="center" class="formtable">
+		<tr>
+			<td class="menu_bar_title" colspan="3" align="center">Totals</td>
+		</tr>
+		<tr>
+			<td>Ratio:</td>
+			<td align="right">[va_tot_ratio]</td>
+		</tr>
+		<tr>
+			<td>% TDC:</td>
+			<td align="right">[va_tot_ptdc]</td>
+		</tr>
+		<tr>
+			<td>Calls:</td>
+			<td align="right">[va_tot_calls]</td>
+		</tr>
+		<tr>
+			<td>Media:</td>
+			<td align="right">[va_tot_cost]</td>
+		</tr>		
+		<tr>
+			<td>Orders:</td>
+			<td align="right">[va_tot_orders]</td>
+		</tr>
+
+	</table>
+	&nbsp;
+	<!-- 3. Add the container -->
+	<div id="container1" style="width: 800px; margin: 0 auto"></div>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+	    <tr>
+	        <td>
+		  <div id="container2" margin: 0 auto"></div>
+	        </td>
+	        <td>
+		  <div id="container3" margin: 0 auto"></div>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+		  <div id="container4" margin: 0 auto"></div>
+	        </td>
+	        <td>
+		  <div id="container5" margin: 0 auto"></div>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+		  <div id="container6" margin: 0 auto"></div>
+	        </td>
+	        <td>
+		  <div id="container7" margin: 0 auto"></div>
+	        </td>
+	    </tr>
+	</table>
+	
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

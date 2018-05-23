@@ -1,0 +1,58 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	<tr>
+	    <td class="titletext" align="center" colspan="2">Autenticaci&oacute;n de Extensi&oacute;n </td>
+	 </tr>
+	<tr>
+	    <td class="stdtxterr" colspan="2">[va_message]</td>
+	 </tr>
+</table>
+  <form action="/cgi-bin/mod/crm/console" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="chgexten">
+	<input type="hidden" name="action" value="1">	
+<fieldset>
+<legend>Autenticaci&oacute;n</legend>
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	<tr>
+	    <td valign="top">Marque : *50  y luego marque: <b>[va_passnum]</b> para su contrase&ntilde;a </td>
+	 </tr>
+</table>
+</fieldset>
+
+<p align="center"><input type="submit" value="Applicar" class="button"><br>
+	<span class="help_on">Haga click en Aplicar una vez haya ingresado satisfactoriamente a su extensi&oacute;n</span></p>
+
+  </form>
+
+<p>&nbsp;</p>	
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+

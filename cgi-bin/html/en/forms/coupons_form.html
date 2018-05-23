@@ -1,0 +1,92 @@
+	&nbsp;
+	<fieldset><legend>Coupon Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Public ID : <span class="smallfieldterr">[er_publicid]</span></td>
+		  <td class="smalltext"><input type="text" name="publicid" value="[in_publicid]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Name : <span class="smallfieldterr">[er_name]</span></td>
+		  <td class="smalltext"><input type="text" name="name" value="[in_name]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Valid From : <span class="smallfieldterr">[er_validfrom]</span></td>
+		  <td class="smalltext">
+				<input type="text" id="validfrom" name="validfrom" value="[in_validfrom]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%">Valid To : <span class="smallfieldterr">[er_validto]</span></td>
+		  <td class="smalltext">
+				<input type="text" id="validto" name="validto" value="[in_validto]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%">Discount Percentage : <span class="smallfieldterr">[er_discperc]</span></td>
+		  <td class="smalltext"><input type="text" name="discperc" value="[in_discperc]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Discount Value : <span class="smallfieldterr">[er_discvalue]</span></td>
+		  <td class="smalltext"><input type="text" name="discvalue" value="[in_discvalue]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Max Per Customer : <span class="smallfieldterr">[er_maxpercust]</span></td>
+		  <td class="smalltext"><input type="text" name="maxpercust" value="[in_maxpercust]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Max Per Zip : <span class="smallfieldterr">[er_maxperzip]</span></td>
+		  <td class="smalltext"><input type="text" name="maxperzip" value="[in_maxperzip]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Max Per State : <span class="smallfieldterr">[er_maxperstate]</span></td>
+		  <td class="smalltext"><input type="text" name="maxperstate" value="[in_maxperstate]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+ <fieldset><legend>Coupon Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		  <td class="smalltext">
+		  	<input type="radio" name="status" value="Active" class="radio">Active
+				<input type="radio" name="status" value="Inactive" class="radio">Inactive</td>
+		 </tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_radio('status','[in_status]');
+
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#validfrom, #validto" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			minDate: new Date(2009,1-1,1),
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+			onSelect: function( selectedDate ) {
+				var option = this.id == "validfrom" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+
+	});
+	
+//-->
+</script>
+

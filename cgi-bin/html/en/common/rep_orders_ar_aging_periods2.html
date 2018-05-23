@@ -1,0 +1,146 @@
+[ip_header]
+
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+	var dates = $( "#from_date, #to_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+	var ship_dates = $( "#from_ship_date, #to_ship_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_ship_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			ship_dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:[fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="76%" align="center"></td>	    
+	    <td width="24%" class='cell_on' align='center'>&nbsp;Orders AR Aging Periods Customers</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+  <form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="rep_orders_ar_aging_periods2">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">Orders AR Aging Periods Customers</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Filters</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<!--
+			<tr>
+			    <td width="25%">Due Date : <span class="smallfieldterr">[er_from_date]</span></td>
+			    <td class="smalltext"><input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" placeholder="From" class="input">
+			    	 <font size=4 color=#aaaaaa>&nbsp; &#10140; &nbsp;</font>
+			    	<input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" placeholder="To" class="input"></td>
+			</tr>
+
+			<tr>
+			    <td width="25%">Ship Date : <span class="smallfieldterr">[er_from_ship_date]</span></td>
+			    <td class="smalltext"><input type="text" id="from_ship_date" name="from_ship_date" value="[in_from_ship_date]" size="10"placeholder="From" class="input">
+
+			    	 <font size=4 color=#aaaaaa>&nbsp; &#10140;   &nbsp;</font>
+<input type="text" id="to_ship_date" name="to_ship_date" value="[in_to_ship_date]" size="10"  placeholder="To" class="input">
+			    	</td>
+			</tr>
+ 
+			<tr>
+			    <td width="25%">Invoice Type : <span class="smallfieldterr">[er_invoice_type]</span></td>
+			    <td class="smalltext"><!--input type="text" id="invoice_type" name="invoice_type" value="[in_invoice_type]" size="10" class="input" //->
+			    	[bc_invoice_type@cu_invoices]
+			    </td>
+			</tr>
+			-->
+			<tr>
+			    <td width="25%">Customer ID : <span class="smallfieldterr">[er_id_customers]</span></td>
+			    <td class="smalltext"><input type="text" id="id_customers" name="id_customers" value="[in_id_customers]" size="10" class="input">
+					<a href="/cgi-bin/common/apps/schid?db=sl_customers&cmd=customers&fname=id_customers&returnid=id_customers&value=" class="fancy_modal_iframe" title="ID Customers">
+						<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+					</a>
+			    </td>
+			</tr>
+
+			<!--
+			<tr>
+			    <td width="25%">Consolidating results by customer: <span class="smallfieldterr">[er_cons_customer]</span></td>
+			    <td class="smalltext">
+					<input type="checkbox" id="cons_customer" name="cons_customer" value="yes" class="checkbox" size="10" class="input" /></td>
+			</tr>
+			-->
+		</table>
+	</fieldset>
+
+	<p align="center"><input type="submit" value="Run" loading="0" class="button" loading="0"></p>
+  </form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+<script type="text/javascript">
+	chg_chkbox('never_expires','[in_cons_customer]');
+</script>
+[ip_footer]

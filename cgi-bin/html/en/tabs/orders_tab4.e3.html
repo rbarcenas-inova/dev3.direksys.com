@@ -1,0 +1,163 @@
+
+
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="view" value="[in_id_orders]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="4">
+	<input type="hidden" name="tabsl" value="1">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="ID_orders_notes_types" value="1">
+	<input type="hidden" name="typeN" value=".">
+	<input type="hidden" name="true_notes" value=".">
+	<input type="hidden" name="tmpflag" value="1">
+
+
+	<table width="100%" border="0" cellspacing="5" cellpadding="0" class="gborder" align="center">
+		<tr>
+      <td class="tbltextttl"><span class='fieldterr'>[va_tabmessages]</span>&nbsp;</td>
+    </tr>
+		<tr>
+			<td class="tbltextttl" colspan="2">
+				Notes : [va_matches]
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_orders]&tab=[va_activetab]&tabs=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+				<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=4&tabcmd=orders&toprint=[in_id_orders]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a name='tabs' id='tabs'>&nbsp;</a>
+			</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+	 	</tr>
+	 	<tr>
+	 		<td class="smalltext" colspan="3">Filter By : 
+	   		[va_filter_links]	
+	   	</td>
+	  </tr>
+		<tr>
+			<td colspan="3">
+		 		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+					  <td class="menu_bar_title">Date/Time/User</td>
+					  <td class="menu_bar_title">Type</td>
+					  <td class="menu_bar_title" colspan="2">Notes</td>
+					 </tr>
+				 [va_searchresults]
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" class="smallfieldterr">&nbsp;[va_tabmessages]</td>
+		</tr>
+<tr>
+	<td colspan=4>
+
+
+
+
+	<table border="0" cellspacing="0" cellpadding="7" width="100%" class="formtable">
+		<tr>
+			<td class="menu_bar_title" colspan="3">Add New Notes</td>
+		</tr>	 
+		<!--tr>
+			<td class="smalltext" valign="top" width="20%">
+				<fieldset>
+					<legend>Relevance</legend>
+					<label><input type="radio" name="notestype" class="radio" value="High">High</label><br>
+					<label><input type="radio" name="notestype" class="radio" value="Medium">Medium</label><br>
+					<label><input type="radio" name="notestype" class="radio" value="Low">Low</label><br>
+				</fieldset>
+			</td>
+			<td class="smalltext" valign="top"  width="20%">
+				<fieldset>
+					<legend>Tracking</legend>
+					<label><input type="radio" name="notestype" class="radio" value="Observaciones" onClick="">Observaciones</label><br>
+					<label><input type="radio" name="notestype" class="radio" value="FECHA EMBARQUE" onClick="">FECHA EMBARQUE</label><br>
+					<label><input type="radio" name="notestype" class="radio" value="Transporte" onClick="">Transporte</label><br>
+					<label><input type="radio" name="notestype" class="radio" value="FECHA ENTREGA" onClick="">FECHA ENTREGA</label><br>
+					<label><input type="radio" name="notestype" class="radio" value="Folio" onClick="">Folio</label><br>
+				</fieldset>
+			</td>
+			<td class="smalltext" valign="top"  width="55%">
+				<fieldset>
+					<legend>Shipping Info</legend>
+
+
+					<table width=100% cellpadding=0 cellspacing=0>
+						<tr>
+							<td width=50%><b>
+								<label><input type="radio" name="notestype" class="radio" value="CUSTODIA" onClick="">CUSTODIA</label><br>
+							</td>
+							<td width=50%><b>
+								<label><input type="radio" name="notestype" class="radio" value="COSTO VIAJE" onClick="">COSTO VIAJE</label><br>
+							</td>
+						</tr>
+						<tr>
+							<td><b>
+								<label><input type="radio" name="notestype" class="radio" value="FACTURA TRANSPORTISTA" onClick="">FACTURA TRANSPORTISTA</label><br>
+							</td>
+							<td><b>
+								<label><input type="radio" name="notestype" class="radio" value="ZONA" onClick="">ZONA</label><br>
+							</td>
+						</tr>
+						<tr>
+							<td><b>
+								 <label><input type="radio" name="notestype" class="radio" value="COSTO SEGURO CUSTODIA / RECUP. IMR" onClick="">COSTO SEGURO CUSTODIA / RECUP. IMR</label><br>
+							</td>
+							<td><b>
+								 <label><input type="radio" name="notestype" class="radio" value="FACTURA TRANSPORTISTA CUSTODIA" onClick="">FACTURA TRANSPORTISTA CUSTODIA</label><br>
+							</td>
+						</tr>
+						<tr>
+							<td><b>
+								 <label><input type="radio" name="notestype" class="radio" value="FECHA PEDIDO VS FECHA EMBARQUE" onClick="">FECHA PEDIDO VS FECHA EMBARQUE</label><br>
+							</td>
+							<td><b>
+								 <label><input type="radio" name="notestype" class="radio" value="FECHA EMBARQUE  VS FECHA ENTREGA" onClick="">FECHA EMBARQUE  VS FECHA ENTREGA</label><br>
+							</td>
+						</tr>
+						<tr>
+							<td><b>
+								 <label><input type="radio" name="notestype" class="radio" value="Dev. Parcial o Total / OBSERVACIONES" onClick="">Dev. Parcial o Total / OBSERVACIONES</label><br>
+							</td>
+							<td><b>
+								 
+							</td>
+						</tr>
+					</table>
+
+
+
+					
+					
+					
+					
+					
+					
+					
+					
+					
+
+				</fieldset>
+			</td>
+		</tr-->
+		<tr>
+			<td class="smalltext" valign="top" width="100%">
+				[fc_build_select_orders_notes_db]
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				Note:
+				<textarea name="notes" id="notetxt" class="input" style="width: 100%;height:120px;" >[in_notes]</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="3"><input type="submit" value="Add Notes" class="button"></td>
+		</tr>
+	</table>
+
+
+
+ </td>
+</table>
+
+</form>

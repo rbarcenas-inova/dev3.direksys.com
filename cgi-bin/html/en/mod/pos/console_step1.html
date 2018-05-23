@@ -1,0 +1,576 @@
+[ip_header_console]
+
+<!--era header console-->
+
+<script>
+
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	//$(document).ajaxError(function(e, xhr, settings, exception) {
+		//alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	//});
+	localStorage.clear();
+
+});
+
+$(function() {
+
+	// if the function argument is given to overlay,
+	// it is assumed to be the onBeforeLoad event listener
+	$("a[rel]").overlay({
+		effect: 'apple',
+	});
+});
+
+</script>
+
+<style>
+
+/* use a semi-transparent image for the overlay */
+#overlay {
+	background-image:url(/jquerytools/overlay/transparent.png);
+	color:#fff;
+	height:540px;
+}
+
+/* container for external content. uses vertical scrollbar, if needed */
+div.contentWrap {
+	height:541px;
+	overflow-y:auto;
+}
+/* the overlayed element */
+.apple_overlay {
+
+	/* initially overlay is hidden */
+	display:none;
+
+	/* growing background image */
+	background-image:url(/jquerytools/overlay/white.png);
+
+	/*
+		width after the growing animation finishes
+		height is automatically calculated
+	*/
+	width:540px;
+
+	/* some padding to layout nested elements nicely  */
+	padding:35px;
+
+	/* a little styling */
+	font-size:11px;
+}
+
+/* default close button positioned on upper right corner */
+.apple_overlay .close {
+	background-image:url(/jquerytools/overlay/close.png);
+	position:absolute; right:5px; top:5px;
+	cursor:pointer;
+	height:35px;
+	width:35px;
+}
+
+div.stdtxterr {
+    background: #fff none repeat scroll 0 0;
+    /*border: 3px solid #ff0000;*/
+    color: #ff0000;
+    padding: 10px;
+    text-align: center;
+}
+
+</style>
+<div class="stdtxterr" colspan="2">[va_message]</div>
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" valign=top align=left>	
+			
+
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+
+
+
+			<font face="century gothic, sanserif" size=3>N&uacute;mero de Pedido: <b>[in_id_orders]</b></font>
+					<br> 
+					<br>
+
+
+
+			<center>
+				<div style="background-color:#eaeaea;border:#aaaaaa solid 1px; width: 500px; padding: 15px 25px 15px 25px; ">
+					<font size=3>Tipo de Pago</font><br>
+					Selecione tipo de pago<br><br>
+					<table width=80%>
+						<td align="center"><img src="/sitimages/pos/cod.png" id="type_cash" style="cursor:pointer;" /><br>Efectivo</td>
+						<td align="center" style="display:none"><img src="/sitimages/pos/card.png" id="type_referenced_deposit" style="cursor:pointer;display:none" /><br>Referenced Deposit</td>
+						<td align="center"><img src="/sitimages/pos/tpv.png" id="type_tpv" style="cursor:pointer;" /><br>TPV</td>
+						<!--<td align="center"><img src="/sitimages/pos/card.png" id="type_creditCard" style="cursor:pointer;" /><br>PayU</td>-->
+					</table>
+					
+					
+					
+				</div>
+		
+
+	<br />
+
+
+	<fieldset style="display:none; border:#ffffff solid 1px;" id="tpv">
+		<div style="background-color:#ffffff;border:#aaaaaa solid 1px; width: 500px; padding: 25px; ">
+			<form method="post" action="/cgi-bin/mod/pos/admin" id="add_cart" onsubmit="return confirm('\u00BFSe realizo el cobro?');">
+				<table   style="margin:auto;width:550px;">
+					<tr>
+						<td >Banco: </td>
+						<td>[fc_build_select_bank_pos]</td>
+					</tr>
+					<tr>
+						<td >N&uacute;mero de Autorizaci&oacute;n: </td>
+						<td><input type="text" name="authnumber" class="input" required/> </td>
+					</tr>
+					<tr>
+						<td >&Uacute;ltimos 4 d&iacute;gitos de la tarjeta: </td>
+						<td><input type="text" maxlength="4" name="last4cc" class="input" required/> </td>
+					</tr>
+				
+				</table>
+				<br>
+				Datos de Facturacion
+				<br><br>
+				<table border="0" cellspacing="0" cellpadding="0" width="100%" id="data_invoice" style=""  >	
+					<tr>
+						<td>
+							RFC : <span class="smallfieldterr">[er_invoice_rfc]</span>
+						</td>
+						<td >
+							<input type="text" name="invoice_rfc" id="invoice_rfc" value="[in_invoice_rfc]" onfocus="focusOn( this )" onblur="focusOff( this )" size="25" max="13" class="input" />
+							<input type="hidden" name="localdelivery" value=1 />
+						</td>											
+					</tr>
+					<tr>
+						<td>
+							Nombre : <span class="smallfieldterr">[er_invoice_name]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_name" id="invoice_name" value="[in_invoice_name]" onfocus="focusOn( this )" onblur="focusOff( this )" size="50" class="input" required/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Calle y N&uacute;mero ext/N&uacute;mero int : <span class="smallfieldterr">[er_invoice_street]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_street" id="invoice_street" value="[in_invoice_street]" onfocus="focusOn( this )" onblur="focusOff( this )" size="50" class="input" />
+							<input type="text" name="invoice_noext" id="invoice_noext" value="[in_invoice_noext]" onfocus="focusOn( this )" onblur="focusOff( this )" size="10" class="input"/>
+							<input type="text" name="invoice_noint" id="invoice_noint" value="[in_invoice_noint]" onfocus="focusOn( this )" onblur="focusOff( this )" size="10" class="input"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Colonia : <span class="smallfieldterr">[er_invoice_urbanization]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_urbanization" id="invoice_urbanization" value="[in_invoice_urbanization]" onfocus="focusOn( this )" onblur="focusOff( this )" size="50" class="input" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Ciudad o Municipio: <span class="smallfieldterr">[er_invoice_city]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_city" id="invoice_city" value="[in_invoice_city]" onfocus="focusOn( this )" onblur="focusOff( this )" size="50" class="input" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Estado : <span class="smallfieldterr">[er_invoice_state]</span>
+						</td>
+						<td>
+							<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input" />
+								<option value="">---</option>
+									[fc_build_select_opr_customersstate]
+							</select>
+						</td>
+					</tr>												
+				</table>	
+				<input type="hidden" name="cmd" value="console">
+				<input type="hidden" name="step" value="2">
+				<input type="hidden" name="action" value="tpv">
+				<input type="hidden" name="e" value="[in_e]">
+				<input type="hidden" name="id_orders" value="[in_id_orders]">
+				<br>			
+				<br>			
+				<input type="submit" name="search" value="Cobro Realizado" class="button">
+			</form>
+		</div>
+	</fieldset>
+
+	<fieldset style="display:none; border:#ffffff solid 1px;" id="referenced_deposit">
+		<div style="background-color:#ffffff;border:#aaaaaa solid 1px; width: 500px; padding: 25px; ">
+			<form method="post" action="/cgi-bin/mod/pos/admin" id="add_cart" >
+				Datos de Facturacion
+				<br><br>
+				<table border="0" cellspacing="0" cellpadding="0" width="100%" id="data_invoice" style=""  >	
+					<tr>
+						<td>
+							RFC : <span class="smallfieldterr">[er_invoice_rfc]</span>
+						</td>
+						<td >
+							<input type="text" name="invoice_rfc" id="invoice_rfc" value="[in_invoice_rfc]" onfocus="focusOn( this )" onblur="focusOff( this )" size="25" max="13" class="input" required/>
+							<input type="hidden" name="localdelivery" value=1 />
+						</td>											
+					</tr>
+					<tr>
+						<td>
+							Nombre : <span class="smallfieldterr">[er_invoice_name]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_name" id="invoice_name" value="[in_invoice_name]" onfocus="focusOn( this )" onblur="focusOff( this )" size="50" class="input" required/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Calle y N&uacute;mero ext/N&uacute;mero int : <span class="smallfieldterr">[er_invoice_street]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_street" id="invoice_street" value="[in_invoice_street]" onfocus="focusOn( this )" onblur="focusOff( this )" size="50" class="input" required />
+							<input type="text" name="invoice_noext" id="invoice_noext" value="[in_invoice_noext]" onfocus="focusOn( this )" onblur="focusOff( this )" size="10" class="input"/>
+							<input type="text" name="invoice_noint" id="invoice_noint" value="[in_invoice_noint]" onfocus="focusOn( this )" onblur="focusOff( this )" size="10" class="input"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Colonia : <span class="smallfieldterr">[er_invoice_urbanization]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_urbanization" id="invoice_urbanization" value="[in_invoice_urbanization]" onfocus="focusOn( this )" onblur="focusOff( this )" size="50" required class="input" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Ciudad o Municipio: <span class="smallfieldterr">[er_invoice_city]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_city" id="invoice_city" value="[in_invoice_city]" onfocus="focusOn( this )" required onblur="focusOff( this )" size="50" class="input" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Estado : <span class="smallfieldterr">[er_invoice_state]</span>
+						</td>
+						<td>
+							<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input"  required/>
+								<option value="">---</option>
+									[fc_build_select_opr_customersstate]
+							</select>
+						</td>
+					</tr>												
+				</table>	
+				<input type="hidden" name="cmd" value="console">
+				<input type="hidden" name="step" value="2">
+				<input type="hidden" name="action" value="referenced_deposit">
+				<input type="hidden" name="e" value="[in_e]">
+				<input type="hidden" name="id_orders" value="[in_id_orders]">
+				<br>			
+				<br>			
+				<input type="submit" name="search" value="Cobro Realizado" class="button">
+			</form>
+		</div>
+	</fieldset>
+
+	<fieldset style="display:none; border:#ffffff solid 1px;" id="cash">
+		<div style="background-color:#ffffff;border:#aaaaaa solid 1px; width: 500px; padding: 25px; ">
+			Datos de Facturacion
+			<br><br>
+			<form method="post" action="/cgi-bin/mod/pos/admin" id="add_cart" onsubmit="return confirm('\u00BFSe realizo el cobro?');">
+				<input type="hidden" name="cmd" value="console">
+				<input type="hidden" name="step" value="2">
+				<input type="hidden" name="action" value="cash">
+				<input type="hidden" name="e" value="[in_e]">
+				<input type="hidden" name="id_orders" value="[in_id_orders]">			
+				<table border="0" cellspacing="0" cellpadding="0" width="100%"   >							
+						  
+				</table>
+				<table border="0" cellspacing="0" cellpadding="0" width="100%" id="data_invoice" style=""  >	
+					<tr>
+						<td>
+							RFC : <span class="smallfieldterr">[er_invoice_rfc]</span>
+						</td>
+						<td >
+							<input type="text" name="invoice_rfc" id="invoice_rfc" value="[in_invoice_rfc]" onfocus="focusOn( this )" onblur="focusOff( this )" size="25" max="13" class="input" />
+							<input type="hidden" name="localdelivery" value=1 />
+						</td>											
+					</tr>
+					<tr>
+						<td>
+							Nombre : <span class="smallfieldterr">[er_invoice_name]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_name" id="invoice_name" value="[in_invoice_name]" onfocus="focusOn( this )" onblur="focusOff( this )" size="50" class="input" required/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Calle y N&uacute;mero ext/N&uacute;mero int : <span class="smallfieldterr">[er_invoice_street]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_street" id="invoice_street" value="[in_invoice_street]" onfocus="focusOn( this )" onblur="focusOff( this )" size="50" class="input" />
+							<input type="text" name="invoice_noext" id="invoice_noext" value="[in_invoice_noext]" onfocus="focusOn( this )" onblur="focusOff( this )" size="10" class="input"/>
+							<input type="text" name="invoice_noint" id="invoice_noint" value="[in_invoice_noint]" onfocus="focusOn( this )" onblur="focusOff( this )" size="10" class="input"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Colonia : <span class="smallfieldterr">[er_invoice_urbanization]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_urbanization" id="invoice_urbanization" value="[in_invoice_urbanization]" onfocus="focusOn( this )" onblur="focusOff( this )" size="50" class="input" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Ciudad o Municipio: <span class="smallfieldterr">[er_invoice_city]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_city" id="invoice_city" value="[in_invoice_city]" onfocus="focusOn( this )" onblur="focusOff( this )" size="50" class="input" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Estado : <span class="smallfieldterr">[er_invoice_state]</span>
+						</td>
+						<td>
+							<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input" />
+								<option value="">---</option>
+									[fc_build_select_opr_customersstate]
+							</select>
+						</td>
+					</tr>												
+				</table>	
+				<br>
+				<br>
+				<input type="submit" name="search" value="Cobro Realizado" class="button">
+			</form>
+
+		</div>
+	</fieldset>
+
+	<fieldset style="display:none; border:#ffffff solid 1px;" id="creditCard">
+		<div style="background-color:#ffffff;border:#aaaaaa solid 1px; width: 500px; padding: 25px; ">
+			<form method="post" action="/cgi-bin/mod/pos/admin" id="add_cart" class="form_creditCard">
+				<input type="hidden" name="localdelivery" value=1 />
+				<table   style="margin:auto;width:550px;">
+					<tr>
+						<td class='smalltext' colspan="2">
+				     		<input type='radio' name='pmtfield1' id="pmtfield1_Visa" value='Visa' required> 
+				     		<img src="/sitimages/visa.png" alt="visa" style="vertical-align: top;">
+				     		<input type='radio' name='pmtfield1' id="pmtfield1_Mastercard" value='Mastercard'> 
+				     		<img src="/sitimages/mastercard.png" alt="mastercard" style="vertical-align: top;">
+				     		<input type='radio' name='pmtfield1' id="pmtfield1_AmericanE" value='American Express'> 
+				     		<img src="/sitimages/americanexpress.png" alt="amex" style="vertical-align: top;">
+				     		<input type='radio' name='pmtfield1' id="pmtfield1_Diners" value='Diners'> 
+				     		<img src="/sitimages/diners.png" alt="diners" style="vertical-align: top;">
+					    </td>
+					</tr>
+					<tr>
+					    <td class='smalltext' nowrap>
+					     	<label for="pmtfield2">Titular de la Tarjeta :</span>
+					    </td>
+					    <td><input type='text' name='pmtfield2' id="pmtfield2" value='' size='35' class="input" required></td>
+					</tr>
+					<tr>
+						<td class="smalltext">N&uacute;mero de Tarjeta: </td>
+						<td><input type='text' name='pmtfield3' id="pmtfield3" value='' size='20' MAXLENGTH='16' class="input" required></td>
+					</tr>
+					<tr>
+				    <td class='smalltext' nowrap valign="top">
+				     	Vigencia : <span class='smallfieldterr'>[er_pmtfield4]</span></td>
+				    <td class='smalltext'>
+				     	<label for="Month">Mes : </label>
+				     	<select size="1" name="Month" id="Month"  class="input" required>
+								<option value=""></option>
+						        <option value="01">01</option>
+								<option value="02">02</option>
+								<option value="03">03</option>
+								<option value="04">04</option>
+								<option value="05">05</option>
+								<option value="06">06</option>
+								<option value="07">07</option>
+								<option value="08">08</option>
+								<option value="09">09</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+					        </select>
+					        <label for="Month"> A&ntilde;o : </label>
+				     		<select size="1" name="Year" id="Year" class="input" required>
+								<option value=""></option>
+								[fc_build_exp_date_opts]
+					        </select>
+					        <span class="help_on">La Vigencia debe ser al menos 3 meses despues de la ultima cuota</span></td>
+				  	</tr>
+
+					<tr>
+				     	<td class='smalltext'>Cuotas : <span class='smallfieldterr'>[er_pmtfield8]</span></td>
+				     	<td class='smalltext'>
+				     		<select size="1" name="pmtfield8" class="input" required>
+								[fc_availableinstallments]
+				         	</select> <span class="help_on">0 = Pago Directo, De [va_min_installments] a [va_max_installments] Para n&uacute;mero de Cuotas
+					 	 	<input type='hidden' name='pmtfield5' value=''>
+						</td>
+				  	</tr>
+
+
+					<!-- <tr>
+						<td >Cobrar: </td>
+						<td><input type="text" name="vencimiento"></td>
+					</tr> -->	
+				</table>
+				<br>
+				<hr>
+				Datos de Facturaci&oacute;n
+				<br><br>
+				<table border="0" cellspacing="0" cellpadding="0" width="100%" id="data_invoice" style=""  >	
+					<tr>
+						<td>
+							RFC : <span class="smallfieldterr">[er_invoice_rfc]</span>
+						</td>
+						<td >
+							<input type="text" name="invoice_rfc" id="invoice_rfc" value="[in_invoice_rfc]" onfocus="focusOn( this )" onblur="focusOff( this )" size="25" max="13" class="input" required/>
+							<input type="hidden" name="localdelivery" value=1 />
+						</td>											
+					</tr>
+					<tr>
+						<td>
+							Nombre : <span class="smallfieldterr">[er_invoice_name]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_name" id="invoice_name" value="[in_invoice_name]" onfocus="focusOn( this )" onblur="focusOff( this )" size="50" class="input" required/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Calle y N&uacute;mero ext/N&uacute;mero int : <span class="smallfieldterr">[er_invoice_street]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_street" id="invoice_street" value="[in_invoice_street]" onfocus="focusOn( this )" onblur="focusOff( this )" size="50" class="input" required />
+							<input type="text" name="invoice_noext" id="invoice_noext" value="[in_invoice_noext]" onfocus="focusOn( this )" onblur="focusOff( this )" size="10" class="input"/>
+							<input type="text" name="invoice_noint" id="invoice_noint" value="[in_invoice_noint]" onfocus="focusOn( this )" onblur="focusOff( this )" size="10" class="input"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Colonia : <span class="smallfieldterr">[er_invoice_urbanization]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_urbanization" id="invoice_urbanization" value="[in_invoice_urbanization]" onfocus="focusOn( this )" onblur="focusOff( this )" size="50" required class="input" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Ciudad o Municipio: <span class="smallfieldterr">[er_invoice_city]</span>
+						</td>
+						<td>
+							<input type="text" name="invoice_city" id="invoice_city" value="[in_invoice_city]" onfocus="focusOn( this )" required onblur="focusOff( this )" size="50" class="input" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Estado : <span class="smallfieldterr">[er_invoice_state]</span>
+						</td>
+						<td>
+							<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input"  required/>
+								<option value="">---</option>
+									[fc_build_select_opr_customersstate]
+							</select>
+						</td>
+					</tr>												
+				</table>	
+				<input type="hidden" name="cmd" value="console">
+				<input type="hidden" name="step" value="2">
+				<input type="hidden" name="action" value="creditCard">
+				<input type="hidden" name="e" value="[in_e]">
+				<input type="hidden" name="id_orders" value="[in_id_orders]">
+				<br>			
+				<br>			
+				<input type="submit" name="search" value="Cobro Realizado" class="button">
+			</form>
+		</div>
+	</fieldset>
+
+
+<script type="text/javascript">
+
+	$("#type_creditCard").click(function (){
+		$("#referenced_deposit").hide();
+		$("#tpv").hide();
+		$("#cash").hide();
+		$("#creditCard").show();
+		$("#require_invoice").show();
+		$("#req_invoice").prop("checked", ""); 
+		$("#req_invoice_creditcard").prop("checked", ""); 
+		$("#req_invoice_tpv").prop("checked", ""); 
+		$('#data_creditcard').slideUp('fast');
+		$('#data_tpv').slideUp('fast');
+	});
+
+	$("#type_cash").click(function (){
+		$("#referenced_deposit").hide();
+		$("#tpv").hide();
+		$("#creditCard").hide();
+		$("#cash").show();
+		$("#require_invoice").show();
+		$("#req_invoice").prop("checked", ""); 
+		$("#req_invoice_creditcard").prop("checked", ""); 
+		$("#req_invoice_tpv").prop("checked", ""); 
+		$('#data_creditcard').slideUp('fast');
+		$('#data_tpv').slideUp('fast');
+	});
+	$("#type_referenced_deposit").click(function (){
+		$("#referenced_deposit").show();
+		$("#tpv").hide();
+		$("#creditCard").hide();
+		$("#cash").hide();
+		$("#require_invoice").show();
+		$("#req_invoice").prop("checked", ""); 
+		$("#req_invoice_creditcard").prop("checked", ""); 
+		$("#req_invoice_tpv").prop("checked", ""); 
+		$('#data_creditcard').slideUp('fast');
+		$('#data_tpv').slideUp('fast');
+	});
+	$("#type_tpv").click(function (){
+		$("#referenced_deposit").hide();
+		$("#cash").hide();
+		$("#tpv").show();
+		$("#require_invoice").show();
+		$("#req_invoice").prop("checked", ""); 
+		$("#req_invoice_creditcard").prop("checked", ""); 
+		$("#req_invoice_tpv").prop("checked", ""); 
+		$('#data_creditcard').slideUp('fast');
+		$('#data_tpv').slideUp('fast');
+	});
+	if( '[va_open]' != '' ){
+		$('[va_open]').show();
+	}
+	// $('.form_creditCard').on('submit', function(evt){
+	// 	evt.preventDefault();
+	// 	that = $(this);
+	// 	if(confirm('Se realizara el cobro ¿Esta seguro que la informac&oacute;n es correcta?')){
+	// 		$.ajax({
+	// 			url: that.attr('action'),
+	// 			type: 'POST',
+	// 			data: that.serialize(),
+	// 		})
+	// 		.done(function(data) {
+	// 			console.log(data);
+	// 		});
+			
+	// 	};
+	//     return false;
+	// });
+</script>
+
+[ip_footer]
+
+

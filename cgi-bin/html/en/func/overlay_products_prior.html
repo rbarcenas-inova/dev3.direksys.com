@@ -1,0 +1,148 @@
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+});
+
+
+
+-->
+</script>
+
+
+	<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="mer_products">
+	<input type="hidden" name="view" value="[in_id_products]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="[in_tab]">
+	<input type="hidden" name="belongsto" value="[in_belongsto]">
+	<input type="hidden" name="upd_item" value="[in_id_products_prior]">
+
+	<div class="container_white">
+		<center class="titletext">
+			Ecommerce Data: [in_belongsto] ([in_id_products])
+		</center>
+		<span class="stdtxterr">[va_message]</span>
+		&nbsp;
+		<fieldset><legend>Product Main Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td width="35%">Model: <span class="smallfieldterr">[er_model]</span></td>
+				<td class="smalltext"><input type="text" name="prior_model" value="[in_model]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+				<td width="35%">Name : <span class="smallfieldterr">[er_name]</span></td>
+				<td class="smalltext"><input type="text" name="prior_name" value="[in_name]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+
+			<tr>
+				<td width="35%">Pay Type: <span class="smallfieldterr">[er_paytype]</span></td>
+				<td class="smalltext">
+
+				<input name="prior_paytype" value="COD" type="checkbox" class="checkbox">COD&nbsp;&nbsp;
+				<input name="prior_paytype" value="Check" type="checkbox" class="checkbox">Check&nbsp;&nbsp;
+				<input name="prior_paytype" value="Credit-Card-30" type="checkbox" class="checkbox">Credit Card<br>
+				<input name="prior_paytype" value="PayPal" type="checkbox" class="checkbox">PayPal&nbsp;&nbsp;
+				<input name="prior_paytype" value="Google" type="checkbox" class="checkbox">Google Checkout
+
+				</td>
+			</tr>
+
+			<tr>
+				<td width="35%" valign="top">Refill Service: <span class="smallfieldterr">[er_prior_id_noninventory_related]</span></td>
+				<td class="smalltext">
+					<select name="prior_id_noninventory_related" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			      		<option value="">---</option>
+						[fc_build_select_refill_options]	
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td width="35%" valign="top">FP Price  : <span class="smallfieldterr">[er_fpprice]</span></td>
+				<td class="smalltext"><input type="text" name="prior_fpprice" value="[in_fpprice]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'><span class="help_on"> in US$</span></td>
+			</tr>
+			<tr>
+				<td width="35%">Downpayment: </td>
+				<td class="smalltext">
+					<input type="text" name="prior_downpayment" value="[in_downpayment]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<span class="smallfieldterr">[er_downpayment]</span>
+				</td>
+			</tr>
+			<tr>
+				<td width="35%" valign="top">Flexipago<span class="help_on"> (Monthly)</span>  : <span class="smallfieldterr">[er_flexipago]</span></td>
+				<td class="smalltext">
+					<select name="prior_flexipago" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option>
+						<option value="1">None</option>
+						<option value="2">2 Payments</option>
+						<option value="3">3 Payments</option>
+						<option value="4">4 Payments</option>
+						<option value="5">5 Payments</option>
+						<option value="6">6 Payments</option>
+						<option value="7">7 Payments</option>
+						<option value="8">8 Payments</option>
+						<option value="9">9 Payments</option>
+						<option value="10">10 Payments</option>
+						<option value="11">11 Payments</option>
+						<option value="12">12 Payments</option>
+						<option value="13">13 Payments</option>
+						<option value="14">14 Payments</option>
+						<option value="15">15 Payments</option>
+						<option value="16">16 Payments</option>
+						<option value="17">17 Payments</option>
+						<option value="18">18 Payments</option>
+						<option value="19">19 Payments</option>
+						<option value="20">20 Payments</option>
+						<option value="21">21 Payments</option>
+						<option value="22">22 Payments</option>
+						<option value="23">23 Payments</option>
+						<option value="24">24 Payments</option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>	 
+            		<td width="35%">Asin : <span class="smallfieldterr">[er_asin]</span></td>
+            		<td class="smalltext">
+                    		<input type="text"  [va_disableasin] id="asin" name="asin" value="[in_asin]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+               		 </td>
+            	</tr>
+			<tr>	 
+            		<td width="35%">Amazon SKU : <span class="smallfieldterr">[er_amazonsku]</span></td>
+            		<td class="smalltext">
+                    		<input type="text"  [va_disablesku] id="amazonsku" name="amazonsku" value="[in_amazonsku]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+               		 </td>
+            	</tr>
+			<tr>	 
+            		<td width="35%">Adwords File : <span class="smallfieldterr">[er_adwordsfile]</span></td>
+            		<td class="smalltext">
+                    		<input type="text"  [va_disableshop] id="adwordsfile" name="adwordsfile" value="[in_adwords_file]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+               		 </td>
+            	</tr>
+       
+			
+		</table>
+		</fieldset>
+		&nbsp;
+		<center>
+			<input type="submit" id="btn_submit" value="Send" class="button">
+		</center>
+		<br>
+	</div>
+
+	</form>
+
+	<script language="javascript">
+	<!--
+		chg_select('prior_flexipago','[in_flexipago]');
+		chg_select('prior_id_noninventory_related','[in_id_noninventory_related]');
+		chg_chkbox('prior_paytype','[in_paytype]');
+	//-->
+	</script>
+

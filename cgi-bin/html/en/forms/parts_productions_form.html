@@ -1,0 +1,35 @@
+&nbsp;
+<fieldset><legend>SKUs Production</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width='30%'>Warehouse :  <span class='smallfieldterr'>[er_id_warehouses]</span></td>
+			<td>
+				<select name="id_warehouses" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option>
+						[fc_build_select_regular_warehouses]
+					</select>
+			</td>
+		</tr>
+		<tr>
+			<td width='30%'>Name :  <span class='smallfieldterr'>[er_name]</span></td>
+			<td><input type='text' name='name' value='[in_name]' size='60' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width='30%'>Type :  <span class='smallfieldterr'>[er_type]</span></td>
+			<td>[br_type@sl_parts_productions]
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Status :  <span class="smallfieldterr">[er_status]</span></td>
+			<td>[fc_parts_productions_status]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<script language="JavaScript">
+<!--	
+	chg_select('id_warehouses','[in_id_warehouses]');
+	chg_radio('type','[in_type]');
+
+//-->
+</script>

@@ -1,0 +1,57 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top">
+		<!-- Start Main Area  -->
+	<table class="tab" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+	  <tbody><tr>
+	    <td align="center" width="30%"></td>
+			<td class="cell_on" onclick="trjump(&quot;/cgi-bin/mod/setup/admin?cmd=usrgroup_home&quot;)" align="center" width="17%">User Groups</td>
+			<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/setup/dbman?cmd=usrgroup&amp;add=1&quot;)" align="center" width="17%">Add</td>
+			<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/setup/dbman?cmd=usrgroup&amp;search=form&quot;)" align="center" width="17%">Search</td>
+			<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/setup/dbman?cmd=usrgroup&amp;search=listall&amp;so=DESC&amp;sb=ID_admin_groups&quot;)" align="center" width="17%">View / Edit / Delete</td>
+	  </tr>
+	</tbody></table>
+
+			&nbsp;
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+				<tr>
+					<td>
+						<fieldset><legend>User Groups Advance Options</legend>
+						<table border="0" cellspacing="0" cellpadding="4" >
+							<tr>
+								<td align="center" valign="center" onclick="trjump(&quot;/cgi-bin/mod/setup/admin?cmd=usrgroup_all&quot;)" onmouseover="m_over(this)" onmouseout="m_out(this)" width="200" height="50">
+									Permission<br>for Every<br>Group</td>
+								<td align="center" valign="top"  width="200" height="50">
+									
+									</td>
+							</tr>
+					  </table>
+						</fieldset>	
+						</td>
+				</tr>
+			</table>
+
+<p>&nbsp;</p>
+
+			<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

@@ -1,0 +1,83 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0>
+				<tr>
+					<td align=left>
+						<font face=verdana>
+						<ul id="accordion">
+							[ip_menu]
+						</ul>
+						<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+						<script type="text/javascript">
+							var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 3, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+						</script>
+					</td>
+				</tr>
+			</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+		<!-- Start Main Area  -->
+
+			<div style="background-color:#ffffff;margin:15px;">
+	
+			<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform">
+				<input type="hidden" name="cmd" value="[in_cmd]">
+				<input type="hidden" name="action" value="1">
+
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					<tr>
+							<td class="titletext" align="center" colspan="2">Border Zones</td>
+					</tr>
+					<tr>
+							<td colspan="2"><span class="help_on">Zip codes that are within the border area</span>
+					  	</td>
+					</tr>
+					<tr>
+					    <td class="stdtxterr" colspan="2">[va_message]</td>
+					 </tr>
+				</table>
+				&nbsp;
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					<tr>
+					  <td width="100%">
+					  	<p>Zones List : <span class="smallfieldterr">[er_setup_zones]</span><br><span class="help_on">[Ctrl + Click] to add or remove a Zone</span></p>
+					  	<select name="setup_zones" id="setup_zones" multiple style="height: 250px; width: auto;">
+					  		[fc_build_select_zones]
+					  	</select>
+					  </td>
+					</tr>
+				</table>
+				&nbsp;
+				<p align="center"><input type="submit" value="Setup" class="button"></p>
+			</form>
+			<div style="border: dashed 1px #666; padding: 10px;">[va_summary]</div>
+			<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+<script language="javascript">
+<!--
+    
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		// Selecciona las zonas agregadas
+		var this_zones = ('[in_setup_zones]').split(',');
+		console.log(this_zones.length);
+		for(i=0; i<this_zones.length; i++){
+			$('#setup_zones option[value=' + this_zones[i] + ']').attr('selected', true);
+		}
+
+	});
+
+//-->
+</script>

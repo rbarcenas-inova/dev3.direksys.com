@@ -1,0 +1,111 @@
+	&nbsp;
+	<fieldset><legend>Destination Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" valign="top">DNIS : <span class="smallfieldterr">[er_didusa]</span></td>
+			<td class="smalltext">
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					<tr>
+						<td class="smalltext" valign=top>
+							<textarea name="didusa" style="width: 100%;" cols="50" rows="3" onfocus="focusOn( this )" onblur="focusOff( this )">[in_dnis]</textarea><br>
+							<span class="help_on">ONLY US/7 Digits DNIs. Sepparated by Commas or Enter. <br>Or select one or more of the next:</span>
+						</td>
+						<td class="smalltext">
+							[fc_build_select_dnis]
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+	    <td width="30%">From Date : <span class="smallfieldterr">[er_fromdate]</span></td>
+	    <td class="smalltext"><input type="text" id="fromdate" name="fromdate" value="[in_fromdate]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		    <td width="30%">From Hour :</td>
+		    <td class="smalltext">
+					<select name="fromtime" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="---">---</option>
+		        [fc_build_select_daytime]
+					</select>	
+		    </td>
+		</tr>
+		<tr>
+	    <td width="30%">To Date : <span class="smallfieldterr">[er_todate]</span></td>
+	    <td class="smalltext"><input type="text" id="todate" name="todate" value="[in_todate]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		    <td width="30%">To Hour :</td>
+		    <td class="smalltext">
+					<select name="totime" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="---">---</option>
+		        [fc_build_select_daytime]
+					</select>	
+		    </td>
+		</tr>
+		<tr>
+			<td width="30%">Destination :</td>
+			<td class="smalltext">
+				<select name="destination" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="---">---</option>
+					[fc_build_select_destination]
+				</select>
+			</td>
+		</tr>
+		
+		
+		
+		
+		
+	</table>
+	</fieldset>
+	&nbsp;
+     <fieldset><legend>Destination Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		  <td class="smalltext">
+				<input type="radio" name="status" value="Active" class="radio">Active
+				<input type="radio" name="status" value="Inactive" class="radio">Inactive
+			</td>
+		 </tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_radio('status','[in_status]');
+	chg_select('fromtime','[in_fromtime]');
+	chg_select('totime','[in_totime]');
+	chg_select('destination','[in_destination]');
+
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#fromdate, #todate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			minDate: new Date(2009,1-1,1),
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+			onSelect: function( selectedDate ) {
+				var option = this.id == "fromdate" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+
+	});
+
+//-->
+</script>

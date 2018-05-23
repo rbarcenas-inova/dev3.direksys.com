@@ -1,0 +1,111 @@
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+});
+
+
+
+-->
+</script>
+
+
+	<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="mer_products">
+	<input type="hidden" name="view" value="[in_id_products]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="[in_tab]">
+	<input type="hidden" name="belongsto" value="[in_belongsto]">
+	<input type="hidden" name="upd_sprice" value="[in_id_products_prior]">
+
+	<div class="container_white">
+		<center class="titletext">
+			Ecommerce Prices: [in_belongsto] ([in_id_products])
+		</center>
+		<span class="stdtxterr">[va_message]</span>
+		&nbsp;
+		<fieldset><legend>Prices</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			
+			<tr>
+                <td class="smalltext" width="35%" align="center">Offer</td>
+                <td class="smalltext" align="center">Price</td>
+                <td class="smalltext" align="center">Shipping</td>
+            </tr>
+			
+			<tr>
+				<td width="35%"><input type="text" name="pspricename" value="[in_spricename]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'><span class="smallfieldterr">[er_spricename]</span></td>
+				<td class="smalltext"><input type="text" name="psprice" value="[in_sprice]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				<td class="smalltext">
+                    <select name="prior_id_packingopts" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option> 
+						[fc_build_select_prd_pckopts]
+					</select>
+                </td>
+			</tr>
+			<tr>
+				<td width="35%"><input type="text" name="psprice1name" value="[in_sprice1name]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'><span class="smallfieldterr">[er_spricename]</span></td>
+				<td class="smalltext"><input type="text" name="psprice1" value="[in_sprice1]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				<td class="smalltext">
+                    <select name="prior_id_packingopts1" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option> 
+						[fc_build_select_prd_pckopts]
+					</select>
+                </td>
+			</tr>
+			<tr>
+				<td width="35%"><input type="text" name="psprice2name" value="[in_sprice2name]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'><span class="smallfieldterr">[er_spricename]</span></td>
+				<td class="smalltext"><input type="text" name="psprice2" value="[in_sprice2]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				<td class="smalltext">
+                    <select name="prior_id_packingopts2" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option> 
+						[fc_build_select_prd_pckopts]
+					</select>
+                </td>
+			</tr>
+			<tr>
+				<td width="35%"><input type="text" name="psprice3name" value="[in_sprice3name]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'><span class="smallfieldterr">[er_spricename]</span></td>
+				<td class="smalltext"><input type="text" name="psprice3" value="[in_sprice3]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				<td class="smalltext">
+                    <select name="prior_id_packingopts3" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option> 
+						[fc_build_select_prd_pckopts]
+					</select>
+                </td>
+			</tr>
+			<tr>
+				<td width="35%"><input type="text" name="psprice4name" value="[in_sprice4name]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'><span class="smallfieldterr">[er_spricename]</span></td>
+				<td class="smalltext"><input type="text" name="psprice4" value="[in_sprice4]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				<td class="smalltext">
+                    <select name="prior_id_packingopts4" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option> 
+						[fc_build_select_prd_pckopts]
+					</select>
+                </td>
+			</tr>
+		</table>
+		</fieldset>
+		&nbsp;
+		<center>
+			<input type="submit" id="btn_submit" value="Send" class="button">
+		</center>
+		<br>
+	</div>
+
+	</form>
+
+	<script language="javascript">
+	<!--
+		chg_select('prior_id_packingopts','[in_id_packingopts]');
+		chg_select('prior_id_packingopts1','[in_id_packingopts1]');
+		chg_select('prior_id_packingopts2','[in_id_packingopts2]');
+		chg_select('prior_id_packingopts3','[in_id_packingopts3]');
+		chg_select('prior_id_packingopts4','[in_id_packingopts4]');
+	//-->
+	</script>
+

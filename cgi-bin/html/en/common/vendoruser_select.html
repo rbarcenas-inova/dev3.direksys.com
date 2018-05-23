@@ -1,0 +1,156 @@
+[ip_header_blank]
+
+
+[va_javascriptvar]
+
+<style type="text/css">
+	.content{
+		margin: auto auto;
+		text-align: center;;
+	}
+	.vendors_cont{
+		border: 1px double #ddd;
+		max-height: 300px;
+		margin: auto auto;
+		overflow: auto;
+		width: 90%;
+	}
+
+	#tbvendors{
+		border-top: 1px solid gray;
+		border-bottom: 1px solid gray;
+		width: 100%;		
+		border-collapse: collapse;
+	}
+	#tbvendors thead th{
+		border-bottom: 1px solid gray;
+	}
+	#tbvendors tbody tr:hover{
+		background-color: #ddd;
+	}
+	#tbvendors tbody td{
+		padding: 4px 5px;
+	}
+	#tbvendors tbody tr:nth-child(odd) {
+	   border-top: 1px solid #ccc;
+	   border-bottom: 1px solid #ccc;
+	}
+	.text-left{
+		text-align: left;
+	}
+
+	.msg_info{
+		color: green;
+		font-size: 11pt;
+		font-weight: bold;
+	}
+	.msg_error{
+		color: red;
+		font-size: 11pt;
+		font-weight: bold;
+	}
+</style>
+
+<form method="post" action="/cgi-bin/common/apps/ajaxbuild">
+	<input type="hidden" name="view" value="[in_view]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="ajaxbuild" value="[in_ajaxbuild]">
+	
+	<div class="content" style="display: [va_display_step1];">
+		<br />
+		<p style="text-align: left; margin-left: 5%;">
+			<label for="id_vendors">Seleccione el proveedor: </label>	
+			<input type="text" name="search_vendor" id="search_vendor" class="input" style="width: 250px;">		
+		</p>
+		<div class="vendors_cont">
+			<table id="tbvendors">
+				<thead>
+					<tr>
+						<th style="width: 5%;">&nbsp;</th>
+						<th style="width: 10%;">ID</th>
+						<th style="width: 15%;">RFC</th>
+						<th style="width: 50%;">Nombre</th>
+						<th style="width: 20%;">Moneda</th>
+					</tr>
+				</thead>
+				<tbody>
+					[va_vendors_list]
+				</tbody>
+			</table>
+		</div>
+		<br />
+		<div style="display: table; text-align: left; margin-left: 5%; margin-right: 5%; width: 90%;">
+			<div style="display: table-cell; width: 50%;">
+				<label>Contrase&ntilde;a (opcional): </label>
+				<input type="text" name="pswd" id="pswd" value="" class="input" style="width: 200px;">
+			</div>
+			<div style="display: table-cell; text-align: right; width: 50%;">
+				<label><input type="checkbox" name="sendmail" id="sendmail" value="1" checked="true"> Enviar notificaci&oacute;n por email </label>
+			</div>
+		</div>
+		<br />
+		<input type="submit" name="btnAceptar" id="btnAceptar" value="Aceptar" class="button" />	
+	</div>
+
+	<div class="content" style="display: [va_display_step2];">
+		<br />
+		<br />
+		<p style="width: 80%; margin: auto auto;">
+			<span class="[va_style_msg]">[va_messages]</span>
+		</p>
+		<br />
+		<br />
+		<br />
+		<a href="#" class="button" id="btnCerrar">Cerrar</a>
+	</div>
+</form>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$('#tbvendors tbody tr').click(function(event) {			
+			var id_row = $(this).data('id');
+			$('#id_vendors_'+id_row).attr('checked', 'checked');
+		});
+
+
+		$("#search_vendor").keyup(function(){
+			// When value of the input is not blank
+			if( $(this).val() != ""){
+				// Show only matching TR, hide rest of them
+				$("#tbvendors tbody>tr").hide();
+				$("#tbvendors td:contains-ci('" + $(this).val() + "')").parent("tr").show();
+			}
+			else{
+				// When there is no input or clean again, show everything back
+				$("#tbvendors tbody>tr").show();
+			}
+		});
+
+		$('#btnAceptar').click(function(event) {
+			var id_selected = $('input[name=id_vendors]:checked').val();
+			if( id_selected != '' ){
+				var resp = confirm('Esta seguro de continuar?');
+				return resp;
+			} else {
+				alert('Debe seleccionar un proveedor para poder continuar');
+				return false;
+			}
+		});
+
+		$('#btnCerrar').click(function(event){
+			parent.$.fancybox.close(); 
+			parent.location.href = "/cgi-bin/mod/[ur_application]/dbman?cmd=usrman&view=[in_view]";
+		});
+
+	});
+
+	// jQuery expression for case-insensitive filter
+	$.extend($.expr[":"], 
+	{
+	    "contains-ci": function(elem, i, match, array) 
+		{
+			return (elem.textContent || elem.innerText || $(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+		}
+	});
+</script>

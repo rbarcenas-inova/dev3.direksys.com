@@ -1,0 +1,136 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_toff&dropship=[in_dropship]&partialshipment=[in_partialshipment]&partialshipped=[in_partialshipped]")'>To [va_fftype]</td>
+	    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_toff_orders&dropship=[in_dropship]&partialshipment=[in_partialshipment]&partialshipped=[in_partialshipped]")'>Orders</td>
+	    <td width="18%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_toff_items&dropship=[in_dropship]&partialshipment=[in_partialshipment]&partialshipped=[in_partialshipped]")'>Items</td>
+	    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_toff_zones&dropship=[in_dropship]&partialshipment=[in_partialshipment]&partialshipped=[in_partialshipped]")'>Zones</td>
+	  </tr>
+	</table>
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+
+	<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform" target="upwin" onsubmit="upwin()">
+	<input type="hidden" name="cmd" value="packing_toff_items">
+	<input type="hidden" name="dropship" value="[in_dropship]">
+	<input type="hidden" name="partialshipment" value="[in_partialshipment]">
+	<input type="hidden" name="action" value="remsel">
+	<input type="hidden" name="ordersselected" id="ordersselected" value="">
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">To [va_fftype] Orders: <span class="stdtext">Items Ready to Process</span></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Items : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class="menu_bar_title" nowrap OnClick="chk_all()">&nbsp;</td>
+		    <td class="menu_bar_title" nowrap>Qty</td>
+		    <td class="menu_bar_title">ID</td>
+		    <td class="menu_bar_title">Name/Model</td>
+		    <td class="menu_bar_title">Inventory</td>
+		 </tr>
+		[va_searchresults]
+     </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="tbltextttl">Items : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+     &nbsp;
+     <!--
+     <table align="center" border="0" cellspacing="0" cellpadding="4" width="70%" class="formtable">
+		<tr>
+			<td  valign="top">
+			<fieldset><legend>Print Options:</legend>
+				<table  border="0" width="100%">
+					[fc_template_prnbutton_wh]
+				</table>
+			</fieldset>
+			</td>
+			<td>
+				<fieldset><legend>Orders Options:</legend>
+				<table border="0" width="100%" height="100%">
+
+					<tr>
+						<td> 
+							
+							<input type="radio" name="remove" value="0" class="radio" checked> Assign to Batches
+							<input type="text" name="id_warehouses" value="[in_id_warehouses]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							<a href="#warehouses"  onClick="add_warehouses(); return false;"><img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+							<span id="warehouses">&nbsp;</span>
+							<span class="smallfieldterr">[er_id_warehouses]</span>
+							<div id="popup_warehouses" style="visibility: hidden; display: none; background-color: #ffffff;">
+							<div class="menu_bar_title" id="item_drag1">
+							<img id="popup_exit1" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+							&nbsp;&nbsp;&nbsp;Warehouses
+							</div>
+							<div class="formtable">
+							<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=warehouses&db=sl_warehouses&fname=id_warehouses&ajaxtype=1" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+							<H2>Unable to do the script</H2>
+							<H3>Please update your Browser</H3>
+							</IFRAME>	
+							</div></div>
+						</td>
+					</tr>
+					<tr><td><input type="radio" name="remove" value="1s" class="radio"> Remove selected from Manifest</td></tr>
+					<tr><td><input type="radio" name="remove" value="alls" class="radio"> Remove all from Manifest</td></tr>				
+					<tr><td align="center" colspan=3>
+							<input type="hidden" name="orders" value="1">
+							<input type="submit"  value="Submit" class="button">
+						</td>
+					</tr>
+				</table>
+				</fieldset>
+			</td>
+		</tr>   
+	</table>
+-->
+	&nbsp;
+     <p align="center"><input type="submit" class="button" value="Remove Selected">
+     <center>
+	<table align="center" border="0" cellspacing="0" cellpadding="4" width="70%" class="formtable">
+		<tr>
+			<td align="center" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="prnwin('/cgi-bin/mod/wms/admin?cmd=packing_toff_items&remove=all&dropship=[in_dropship]&partialshipment=[in_partialshipment]&partialshipped=[in_partialshipped]')">Remove All<br>From Queue</td>
+	  </tr>
+	</table>
+ </center>
+	</form>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

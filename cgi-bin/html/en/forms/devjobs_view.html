@@ -1,0 +1,65 @@
+	&nbsp;
+	<fieldset><legend>Developer Job Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Job ID  : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons"> 
+							[in_id_devjobs] &nbsp;
+							<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=dev_jobs&modify=[in_id_devjobs]"><img src='[va_imgurl]/[ur_pref_style]/b_edit.gif' title='Edit' alt='' border='0'></a>
+		  					<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=dev_jobs&search=Print&toprint=[in_id_devjobs]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.gif' title='Print' alt='' border='0'></a>
+						</div>
+					</div>
+
+
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Developer Jobs Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>			
+			<td>Title : <span class="smallfieldterr">[er_title]</span></td>
+			<td>[in_title]</td>
+		</tr>		
+		<tr>			
+			<td>Applications : <span class="smallfieldterr">[er_applications]</span></td>
+			<td>[in_applications]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Responsible : <span class="smallfieldterr">[er_responsible]</span></td>
+		  <td class="smalltext">([in_responsible]) [in_responsible_name]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Collaborators : <span class="smallfieldterr">[er_collaborators]</span></td>
+		  <td class="smalltext">[in_collaborators]</td>
+		</tr>			
+		<tr>
+		 <td valign="top" width="30%">Description : <span class="smallfieldterr">[er_description]</span></td>
+		 <td class="smalltext">[in_description]</td>
+		</tr>
+		<tr>
+	    <td width="30%">Due Date : <span class="smallfieldterr">[er_duedate]</span></td>
+	    <td class="smalltext">[in_duedate]</td>
+		</tr>		 
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Job Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		  	<td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		    <td class="smalltext">[in_status]</td>
+			</tr>
+  	</table>
+	</fieldset>
+	<br>
+
+[tb_devjobs]

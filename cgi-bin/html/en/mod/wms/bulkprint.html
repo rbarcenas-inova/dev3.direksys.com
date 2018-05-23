@@ -1,0 +1,72 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Bulk Printing</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+     </table>
+
+<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform" target="upwin" onsubmit="upwin()">
+	<input type="hidden" name="cmd" value="bulkprint">
+	<input type="hidden" name="action" value="1">
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr>
+		<td align="center" class="menu_bar_title" colspan="2">Orders</td>
+    </tr>
+	<tr>
+		<td valign="top" colspan="2">
+			<textarea name="id_orders_bulk" cols="50" rows="8"  style="width:100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_id_orders_bulk]</textarea>
+			<span class="help_on">Comma or Enter Separated IDs, Invalid IDs will be descarted</td>
+    </tr>
+	<tr>
+		<td align="center">Print Type  :</td>
+		<td>
+				<input type="radio" name="page" value="invoicesltv" class="radio"> Invoice in Preprinted Page<br>
+				<input type="radio" name="page" value="invoiceblank" class="radio"> Invoice in Blank Page<br>
+				<!--input type="radio" name="page" value="exports_inova" class="radio"> Export to DS Innova<br>
+				<input type="radio" name="page" value="exports_general" class="radio"> Export to DS general<br>
+				<input type="radio" name="page" value="exports_fedex" class="radio" checked> Export to DS Fedex<br-->
+				<!--
+				<input type="radio" name="page" value="opr_packinglist" class="radio"> Packing List 
+				<input type="radio" name="page" value="opr_ppackinglist" class="radio"> Packing List <span class="help_on">Will Print All Active Items w/o Tracking Number</span><br>
+				<input type="radio" name="page" value="batch" class="radio"> Finance Report 
+				-->
+			</td>
+    </tr>
+    [fc_export_file_format]
+	<tr>
+		<td align="center" colspan="2"><br><input type="submit" value="Print" class="button"></td>
+    </tr>
+</table>	
+&nbsp;
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+

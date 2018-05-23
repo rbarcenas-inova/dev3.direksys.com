@@ -1,0 +1,588 @@
+[ip_header]
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="60%" align="center"></td>
+		<td width="20%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=fin_payment_bills")'>Payment Bills</td>
+		<td width="20%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=fin_payment_bills_layouts")'>Payment Layouts</td>
+
+	  </tr>
+	</table>
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Payment Bills</td>
+		 </tr>
+		<tr>
+	</table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">[va_message]</td>
+		</tr>
+	</table>
+
+<br>
+
+	<div id="searchBill" style="[va_display]">
+		<form name="sitform" method="post" action="/cgi-bin/mod/admin/admin" id="form1" >
+			<input type="hidden" value="fin_payment_bills" name="cmd">
+			<input type="hidden" value="Search" name="search">
+			<input type="hidden" value="1" name="action">
+			<fieldset><legend>Payment Info</legend>
+				<table width="100%" cellspacing="0" cellpadding="2" border="0">
+					<tbody>						
+					<tr>
+					  <td width="30%">Due Date (From/To) : <span class="smallfieldterr">[er_duedate]</span></td>
+						<td class="smalltext">
+							<input type="text" id="duedate" name="duedate" value="[in_duedate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'> - <input type="text" id="toduedate" name="toduedate" value="[in_toduedate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+					</tr>
+					<tr>
+					  <td width="30%">Amount Rate (From/To) : <span class="smallfieldterr">[er_duedate]</span></td>
+						<td class="smalltext">
+							$ <input type="text" name="from_amount" id="from_amount" value="[in_from_amount]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'> - $ <input type="text" name="to_amount" id="to_amount" value="[in_to_amount]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+					</tr>
+					 <tr>
+					  <td width="30%">Currency : </td>
+						<td class="smalltext">
+							<div id="currencygroup">
+							[br_currency@sl_bills]
+							<span id="currencyerror" style="color:#ff0f0f;"></span>
+							</div>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				 <script type="text/javascript">
+					chg_radio('currency','[in_currency]');
+				</script>
+			</fieldset>	
+			<p align="center"><input type="submit" class="button" value="Search"></p>
+		</form>
+	</div>
+	<div id="results" style="[va_display2]">
+		<form method="post" action="/cgi-bin/mod/admin/admin" novalidate id="form2">
+			<input type="hidden" value="fin_payment_bills" name="cmd">
+			<input type="hidden" value="Search" name="search">
+			<input type="hidden" value="1" name="process">
+			<input type="hidden" value="[in_id_bills]" name="id_bills">
+			<input type="hidden" value="[in_id_vendors]" name="id_vendors">
+			<input type="hidden" value="[in_duedate]" name="duedate">
+			<input type="hidden" value="[in_toduedate]" name="toduedate">
+			<input type="hidden" value="[in_from_amount]" name="from_amount">
+			<input type="hidden" value="[in_to_amount]" name="to_amount">
+			<input type="hidden" value="[in_currency]" name="currency">
+			<input type="hidden" value="0" id="id_hd_layout_extraction" name="hd_layout_extraction">
+			<input type="hidden" value="0" id="id_hd_layout_extraction_type" name="hd_layout_extraction_type">
+			
+			<table width="100%" border="0" cellspacing="0" cellpadding="4" class="gborder" align="center">
+				<tr>
+					<td class="tbltextttl" colspan="2" align="left">Payment Info</td>
+				</tr>
+				<tr>
+					<td width="30%">Bank Account : <span class="smallfieldterr">[er_id_banks]</span></td>
+					<td class="smalltext">
+						<select name="id_banks" id="id_banks" onfocus="focusOn( this )" onblur="focusOff( this )">
+							<option value="">---</option>
+							[fc_build_select_custom_bank]
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Payment Method : <span class="smallfieldterr">[er_PaymentMethod]</span></td>
+					<td class="smalltext">[br_doc_type@sl_banks_movements]</td>
+					<script>chg_radio('doc_type_check','[in_doc_type]');</script>
+				</tr>
+				<tr>
+					<td>Date : <span class="smallfieldterr">[er_bankdate]</span></td>
+					<td class="smalltext"><input type="text" id="bankdate" name="bankdate" value="[in_bankdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>		
+				<tr>
+					<td>Memo : <span class="smallfieldterr">[er_memo]</span></td>
+					<td class="smalltext">
+						<input type="text" name="memo" id="memo" value="[in_memo]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<a href="#" onclick="return print_amount('memo','[va_vinfo_vendor]');">[va_vinfo_vendor]</a>
+					</td>
+				</tr>
+				<tr style="display:none;" id="exchange">
+					<td>Exchange Rate : <span class="smallfieldterr">[er_currency_exchange]</span></td>
+					<td class="smalltext">
+						<input type="text" name="currency_exchange" value="[in_currency_exchange]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' id="get_exchange_rate" >
+						<input type="button" value="Get Current (DOF)" onclick="loadExchangeRate('get_exchange_rate')"> 
+					</td>
+				</tr>
+			</table><br/>
+			<table width="100%" border="0" cellspacing="0" cellpadding="2" class="gborder listresultsform" align="center"  style="display:none;">
+				<tr>
+					<td width="50%" align="left" class="tbltextttl">Select Bills to be Paid [va_forvendor]</td>
+					<td colspan="2" align="right" class="tbltextttl"></td>
+				</tr>
+				<tr>
+					<td colspan="3">
+					 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+						 <tr>
+							<td class="menu_bar_title">Vendor</td>
+							<td class="menu_bar_title">Ref Num</td>
+							<td class="menu_bar_title">Amount</td>
+							<td class="menu_bar_title">Amount Due</td>
+							<td class="menu_bar_title">&nbsp;</td>
+						 </tr>
+						 [va_searchresults]
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="50%" align="left" class="tbltextttl">Records: [va_matches]</td>
+					<td width="40%" align="right" class="tbltextttl">Total : </td>
+					<td width="10%" align="right" class="tbltextttl"><span id="totals">[va_totals]</span></td>
+				</tr>
+				<tr>
+					<td width="50%" align="left" class="tbltextttl"><input type="hidden" id="totals_paid_unf" value="[va_totals_paid_unformatted]"><input type="hidden" id="totals_unformatted" value="[va_totals_unformatted]"></td>
+					<td width="40%" align="right" class="tbltextttl">Total to be Paid : </td>
+					<td width="10%" align="right" class="tbltextttl"><span id="totals_paid">[va_totals_paid]</span></td>
+				</tr>
+			</table>
+			<span class="listresultsform" style="display:none;">
+				<p align="center">
+					[va_button_e]
+					&nbsp;
+					[va_button_p]
+				</p>
+			</span>
+		</form>
+	</div>
+	<div id="resultApply" style="[va_display3]">
+		<fieldset><legend>Summary Result</legend>
+			<table width="100%" border="0" cellspacing="0" cellpadding="4" class="gborder" align="center">
+			[va_searchresultapply]
+			</table><br>
+			<div id="div_print_button" style="text-align: center;">
+				[va_btn_print_check]
+			</div>
+			<br>
+		</fieldset>
+	</div>
+	[va_error]
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script>
+	$("#bankdate, #id_banks, #doc_type_check, [id='doc_type_wire transfer']").change(function (){
+		validateInfo();
+	});
+	function validateInfo(){
+		if($("#id_banks").val() != '' && $("#bankdate").val() != '' && ($("#doc_type_check").is(":checked") || $("[id='doc_type_wire transfer']").is(":checked"))){
+			$(".listresultsform").show();
+		}else{
+			$(".listresultsform").hide();
+		}
+		
+	}
+	
+	$( "[id^=btn_export]" ).click(function(){
+		
+		var this_type = this.id;
+		var ary_option = this_type.split('_');
+		var id_option  = ary_option[2];
+		$("#id_hd_layout_extraction").val('1');
+		$("#id_hd_layout_extraction_type").val(id_option);
+		$("#form2").submit();
+
+	});
+
+	$("[id^=btn_export]").dblclick(function(){
+		return false;
+	});
+
+	$("#btn_pay").dblclick(function(){
+		return false;
+	});
+	$("#form2").submit(function (event) {
+		//$("#btn_pay").attr('disabled', true);
+
+		//Si solamente se exporta el archivo, no debe validar referencia
+		var export_skip_reference = $("#id_hd_layout_extraction").val();
+
+		$("#btn_pay").css('display','none');
+		if (confirm('Are you sure you want to continue?')){
+
+			if($("#id_banks").val() == '' || $("#bankdate").val() == ''){
+
+				alert("The Bank and date field are required.");
+				$("#btn_pay").css('display','block');
+				return false;
+
+			}else{
+
+				var i = 0;
+				$(".amountVendorTotal").each(function (){
+
+					var idItem = $(this).attr('id');
+					var partes = idItem.split("_");
+					
+					if($(this).val() != '' && $("#refVendor_"+partes[1]).val() == '' && $("[id='doc_type_wire transfer']").is(":checked")){
+						i++;
+					}
+					
+					
+				});
+
+				var y = 0;
+				$(".amountVendorTotal").each(function (){
+					if($(this).val() != ''){
+						y++;
+					}
+				});
+				
+				if(y == 0){
+
+					alert("Empty selected vendor")
+					$("#btn_pay").css('display','block');
+					return false;
+
+				}
+
+				if(i > 0 && export_skip_reference == 0){
+					alert("Empty Reference");
+					$("#btn_pay").css('display','block');
+					return false;
+				}
+				
+			}
+
+		}else{
+			$("#btn_pay").css('display','block');
+			return false;
+		}
+	});
+	$(".refnum").bind("blur",function(){
+		 if(findDuplicate(this.value) > 0 && $(this).val() != ''){
+			$(this).val('');
+			alert("This reference number is duplicated. ");
+		 }
+	})
+
+	$(".refnum").blur(function (){
+		if($(this).val() != ''){
+			var idItem = $(this).attr('id');
+			var partes = idItem.split('_');
+			$("#refauto_"+partes[1]).attr('checked', false);
+		}
+		if($("#doc_type_check").is(":checked")){
+			var doc_type = 'Check';
+		}else if($("[id='doc_type_wire transfer']").is(":checked")){
+			var doc_type = 'Wire Transfer';
+		}else{
+			var doc_type = 'NA';
+		}
+		var idfield = $(this).attr("id");
+		var idVendor = idfield.split("_");
+		$.post('/cgi-bin/common/apps/ajaxbuild',{
+                'ajaxbuild':'validaterefnum',
+				'id_banks': $("#id_banks").val() ,
+				'bankdate': $("#bankdate").val(),
+				'doc_type': doc_type,
+                'ref' : $(this).val()},
+				 function(response,status,xhr){
+					if(response == 'fail'){
+						$("#refVendor_"+idVendor[1]).val('');
+						alert("This reference number is duplicated. ");
+					}
+				 });
+	});
+	$("#doc_type_check").click(function (){
+		if($(this).val() == 'Check'){
+			$(".refnum").each(function (){
+			var idItem = $(this).attr('id');
+			var partes = idItem.split("_");
+				if($("#valueVendorAmount_"+partes[1]).val() != ''){
+					$("#refauto_"+partes[1]).attr('checked', true);
+					$("#refVendor_"+partes[1]).val('');
+				}
+			});
+			$(".refnum").attr('disabled', 'disabled');
+			$(".refauto").attr('disabled', false);
+		}
+	});
+	$("[id='doc_type_wire transfer']").click(function () {
+		$(".refnum").prop('disabled', false);
+		$(".refauto").attr('checked', false);
+		$(".refauto").attr('disabled', true);
+	});
+	
+	$("#form1").submit(function (event) {
+		
+		var radio = $('input[name=currency]:checked', '#form1').val();
+		if(radio){
+			if (confirm('Are you sure you want to continue?'))
+				return true;
+			else
+				return false;
+		}else{
+			$("#currencyerror").html('Required');
+			return false;
+		}
+		
+		
+	});
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#duedate, #toduedate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			numberOfMonths: 3,
+			minDate: new Date(2009,1-1,1),
+			onSelect: function( selectedDate ) {
+				var option = this.id == "duedate" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+		
+		var dates2 = $( "#bankdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			numberOfMonths: 3
+		});
+		
+		
+	});
+	
+	$(".collapse").click(function (){
+		var currentId = $(this).attr('id');
+		var partes = currentId.split("_");
+		$("#list_"+partes[1]).toggle();
+		if($("#collapse_"+partes[1]).val() == 'close'){
+			$("#collapse_"+partes[1]).val('open');
+			$("#link_"+partes[1]).attr('src', '/sitimages/icon-collapse-minus.gif');
+		}else{
+			$("#collapse_"+partes[1]).val('close');
+			$("#link_"+partes[1]).attr('src', '/sitimages/icon-collapse-plus.gif');
+		}
+	});
+	$(".checkbill").click(function (){
+		var currentIdBill = $(this).attr('id');
+		var partesBill = currentIdBill.split("_");
+		if($("#check_"+partesBill[1]).is(":checked")){
+			$("#value_"+partesBill[1]).removeAttr('disabled');
+		}else{
+			$("#value_"+partesBill[1]).attr('disabled', 'disabled');
+			$("#value_"+partesBill[1]).val('');
+		}
+		var clases = $(this).attr('class');
+		partClass = clases.split(' ');
+		var IdVendor = getVendorId(partClass[1]);
+		updateTotal(IdVendor);
+		
+	});
+	$(document).ready(function() {
+		var jsonData = jQuery.parseJSON( '[va_json]' );
+		var totalAmount = 0;
+		for(var obj in jsonData){
+			if(jsonData.hasOwnProperty(obj)){
+				for(var prop in jsonData[obj]){
+					if(jsonData[obj].hasOwnProperty(prop)){
+						var number = Number(jsonData[obj]['AmountDue'].replace(/[^0-9\.]+/g,""));
+						number = number.toFixed(3);
+						var idToValue = 'valueVendorAmount_'+obj;
+						$("#amountTotal_"+obj).html(jsonData[obj]['Amount']);
+						$("#amountDueTotal_"+obj).html('<input type="hidden" id="reset_'+obj+'" /><div style="cursor:pointer;color:#ff0f0f;" onclick="loadValuesfor('+obj+'); print_amount(\'valueVendorAmount_'+obj+'\', \''+number+'\')" >'+jsonData[obj]['AmountDue']+'</div>');
+						
+					}
+				}
+			}
+		}
+		var totalsvalue = formatMoney([va_totalsinput], 2, '.', ',');
+		$("#totals").html('[va_currency] '+totalsvalue);
+	});
+	function findDuplicate(value) {
+        var result = 0;
+        $(".refnum").each(function(){
+            if (this.value == value) {
+                result++;
+            }
+        });
+        return result - 1;
+    }
+	function loadValuesfor(id){
+		if($("#reset_"+id).val() == 'all'){
+			$(".check_"+id).attr('checked', false);
+			$(".valueIdVendor_"+id).attr('disabled', 'disabled');
+			$("#reset_"+id).val('');
+			$(".classAmountDue_"+id).each(function() {
+				var currentId = $(this).attr('id');
+				var partes = currentId.split("_");
+				$("#value_"+partes[1]).val('');
+			});
+		}else{
+			$(".check_"+id).attr('checked', true);
+			$(".valueIdVendor_"+id).removeAttr('disabled');
+			$("#reset_"+id).val('all');
+			$(".classAmountDue_"+id).each(function() {
+				var currentId = $(this).attr('id');
+				var partes = currentId.split("_");
+				$("#value_"+partes[1]).val($(this).val());
+			});
+		}
+		//alert($("#valueVendorAmount_"+id).val() );
+		if($("#doc_type_check").is(":checked") && $("#valueVendorAmount_"+id).val() == ''){
+			$("#refauto_"+id).prop('checked', true);
+		}else{
+			$("#refauto_"+id).prop('checked', false);
+		}
+	}
+	$(".inputBill").blur( function (){
+		var idItem = $(this).attr('id');
+		var partes = idItem.split('_');
+		var inputBlur = parseFloat($(this).val());
+		var valueAmountDue = parseFloat($("#valueAmountDue_"+partes[1]).val());
+		var clases = $(this).attr('class');
+		partClass = clases.split(' ');
+		var IdVendor = getVendorId(partClass[0]);
+		if(inputBlur > valueAmountDue || inputBlur < 1){
+			$("#error_"+partes[1]).html('[va_bills_amount_invalid]');
+			$(this).val('');
+			$(this).focus();
+			updateTotal(IdVendor);
+		}else{
+			$("#error_"+partes[1]).html('');
+			
+			updateTotal(IdVendor);
+		}
+	});
+	
+	function getVendorId(clase){
+		var partVendor = clase.split('_');
+		var IdVendor = partVendor[1];
+		return IdVendor;
+	}
+	
+	function updateTotal(IdVendor){
+		var totalVendor = 0;
+		var valueAmount = 0;
+		var totalPaid = 0;
+		
+		$(".valueIdVendor_"+IdVendor).each(function() {
+			valueAmount = parseFloat($(this).val());
+			if(isNaN(valueAmount)){
+				valueAmount = 0;
+			}
+			totalVendor = totalVendor + valueAmount;
+		});
+		
+		$("#reset_"+IdVendor).val('all');
+		totalVendor = totalVendor.toFixed(3);
+		$("#valueVendorAmount_"+IdVendor).val(totalVendor);
+		$(".amountVendorTotal").each(function (){
+			valueVendor = $(this).val();
+			valueVendor = parseFloat(valueVendor);
+			if(isNaN(valueVendor)){
+				valueVendor = 0;
+			}
+			totalPaid = valueVendor + totalPaid;
+		});
+		totalPaid = formatMoney(totalPaid, 2, '.', ',');
+		$("#totals_paid").html('[va_currency] '+totalPaid);
+		//alert($('input[name=doc_type]').val());
+		
+	}
+	function print_amount(id,amount) {
+		
+		var partes = id.split("_");
+		if(partes[0] == 'valueVendorAmount' && $('#'+id).val() != ''){
+			$('#'+id).val('');
+		}else{
+			$('#'+id).val(amount);
+		}
+		
+		$('#'+id).removeAttr('disabled');
+		$('#check_'+partes[1]).attr('checked', 'checked');
+		var clases = $('#'+id).attr('class');
+		partClass = clases.split(' ');
+		var IdVendor = getVendorId(partClass[0]);
+		updateTotal(IdVendor);
+		if($("#doc_type_check").is(":checked")){
+			//alert($("#refauto_313").val());
+			$("#refauto_"+IdVendor).prop('checked', true);
+		}
+		return false;
+	}
+
+	
+function formatMoney (n, c, d, t){
+	
+    c = isNaN(c = Math.abs(c)) ? 2 : c, 
+    d = d == undefined ? "." : d, 
+    t = t == undefined ? "," : t, 
+    s = n < 0 ? "-" : "", 
+    i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
+    j = (j = i.length) > 3 ? j % 3 : 0;
+   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+};
+function confirm_pay() {
+	if (confirm('Are you sure you want to continue?'))
+		return true;
+	else
+		return false;
+}
+	$("#id_banks").change(function (){
+		var bankValue = $('#id_banks option:selected').text();
+		var regExp = /\(([^)]+)\)/;
+		var matches = regExp.exec(bankValue);
+		if(matches[1] != '[va_currency]'){
+			$("#exchange").show();
+		}else{
+			$("#exchange").hide();
+		}
+	});
+	$(".refauto").click(function (){
+		if($(this).is(':checked')){
+			var idItem = $(this).attr('id');
+			var partes = idItem.split('_');
+			$("#refVendor_"+partes[1]).val('');
+		}
+		
+	});
+	$(".refnum").blur(function (){
+		
+	});
+	function loadExchangeRate(obj) {
+		var url = '/cgi-bin/common/apps/ajaxbuild';
+		var param = 'ajaxbuild=exchange_rate';
+		$.post(url, param, function(data){
+		   $('#'+obj).val(data)
+		});
+	}
+</script>
+[ip_footer]

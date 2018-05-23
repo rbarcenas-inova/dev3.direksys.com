@@ -1,0 +1,86 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>		
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->				
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="20%" align="center"></td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_cybcaptreport")'>Upload File</td>
+	    <td class='cell_[va_tab1]' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_report_conciliation&base=cyb&date=[in_date]")'>Cyb vs Direksys</td>
+	    <td class='cell_[va_tab2]' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_report_conciliation&base=sosl_pre&date=[in_date]")'>Direksys vs Cyb / Pre</td>
+	    <td class='cell_[va_tab3]' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_report_conciliation&base=sosl_ord&date=[in_date]")'>Direksys vs Cyb / Ords</td>
+	    <td class='cell_[va_tab4]' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_report_conciliation&base=cash&date=[in_date]")'>Direksys vs Bank</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+	&nbsp;
+	<form action="/cgi-bin/mod/admin/admin" method="post" name="sitform">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="cmd" value="fin_report_conciliation_list">		
+		<input type="hidden" name="date" value="[in_date]">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="left" colspan="2">Conciliation Report : [in_date] <a href="/cgi-bin/mod/admin/admin?cmd=fin_report_conciliation">Change Date</a></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Records : [va_matches]
+		    	<a href="javascript:reutrn false;" onClick="trjump('/cgi-bin/mod/admin/admin?cmd=fin_report_conciliation&base=cyb&date=[in_date]&export=1')"><img src='[va_imgurl]/[ur_pref_style]/b_xls.gif' title='Export' alt='' border='0'></a>
+		    	</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title" colspan="2"></td>
+		    <td bgcolor="#C0C0C0" width="1"></td>
+		    <td class="menu_bar_title" colspan="3" align="center">CyberSource</td>
+		    <td bgcolor="#C0C0C0" width="1"></td>
+		    <td class="menu_bar_title" colspan="7" align="center">Direksys</td>
+		 </tr>		
+		<tr>
+		    <td class="menu_bar_title" align="center" colspan="2" >ID_orders</td>
+		    <td bgcolor="#C0C0C0" width="1"></td>
+		    <td class="menu_bar_title" align="center">Amount</td>
+		    <td class="menu_bar_title" align="center">Card</td>
+		    <td class="menu_bar_title">&nbsp;</td>
+		    <td bgcolor="#C0C0C0" width="1"></td>
+		    <td class="menu_bar_title" align="center" colspan="2">Amount</td>
+		    <td class="menu_bar_title" align="center" colspan="2">Card</td>
+		    <td class="menu_bar_title" align="center" colspan="2">Date</td>
+		    <td class="menu_bar_title">&nbsp;</td>
+		 </tr>
+		[va_searchresults]
+     </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="tbltextttl">Records : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table> 
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

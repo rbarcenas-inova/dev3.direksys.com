@@ -1,0 +1,100 @@
+	&nbsp;
+	<fieldset><legend>Llamadas Flash Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Teléfono : <span class="smallfieldterr">[er_id_leads]</span></td>
+		    <td class="smalltext"><input type="text" name="id_leads" id="id_leads" value="[in_id_leads]" size="30" maxlength="20" onFocus='focusOn( this )' onBlur='focusOff( this )'><span class="smallfieldterr">[er_message]</span></td>
+			
+		</tr>
+		<tr>
+		    <td width="30%">Nombre : <span class="smallfieldterr">[er_name]</span></td>
+		    <td class="smalltext"><input type="text" name="name" value="[in_name]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width="30%">Horario de contacto: <span class="smallfieldterr">[er_contact_time]</span></td>
+			<td class="smalltext">
+			    <input name="contact_time" value="00:00-04:00" id="contact_time_00:00-04:00" type="checkbox" class="checkbox"><label for="contact_time_00:00-04:00">00:01 - 04:00 AM</label>&nbsp;&nbsp;
+			    <input name="contact_time" value="04:01-08:00" id="contact_time_04:01-08:00" type="checkbox" class="checkbox"><label for="contact_time_04:01-08:00">04:01 - 08:00 AM</label><br>	
+			    <input name="contact_time" value="08:01-12:00" id="contact_time_08:01-12:00" type="checkbox" class="checkbox"><label for="contact_time_08:01-12:00">08:01 - 12:00 AM</label>&nbsp;&nbsp;
+			    <input name="contact_time" value="12:01-16:00" id="contact_time_12:01-16:00" type="checkbox" class="checkbox"><label for="contact_time_12:01-16:00">12:01 - 16:00 PM</label><br>
+			    <input name="contact_time" value="16:01-20:00" id="contact_time_16:01-20:00" type="checkbox" class="checkbox"><label for="contact_time_16:01-20:00">16:01 - 20:00 PM</label>&nbsp;&nbsp;
+			    <input name="contact_time" value="20:01-00:00" id="contact_time_20:01-00:00" type="checkbox" class="checkbox"><label for="contact_time_20:01-00:00">20:01 - 00:00 PM</label><br>	
+		    </td>
+		</tr>
+		<tr>
+			<td width="30%">Horario de llamada: <span class="smallfieldterr">[er_call_time]</span></td>
+			<td class="smalltext"><br />
+				<label><input type="radio" name="call_time" value="00:07-08:00" class="radio"> 07:00 - 08:00 AM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="radio" name="call_time" value="08:01-09:00" class="radio"> 08:01 - 09:00 AM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="radio" name="call_time" value="09:01-10:00" class="radio"> 09:01 - 10:00 AM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="radio" name="call_time" value="10:01-11:00" class="radio"> 10:01 - 11:00 AM</label><br />
+				<label><input type="radio" name="call_time" value="11:01-12:00" class="radio"> 11:01 - 12:00 AM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="radio" name="call_time" value="12:01-13:00" class="radio"> 12:01 - 13:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="radio" name="call_time" value="13:01-14:00" class="radio"> 13:01 - 14:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="radio" name="call_time" value="14:01-15:00" class="radio"> 14:01 - 15:00 PM</label><br />
+				<label><input type="radio" name="call_time" value="15:01-16:00" class="radio"> 15:01 - 16:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="radio" name="call_time" value="16:01-17:00" class="radio"> 16:01 - 17:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="radio" name="call_time" value="17:01-18:00" class="radio"> 17:01 - 18:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="radio" name="call_time" value="18:01-19:00" class="radio"> 18:01 - 19:00 PM</label><br />
+				<label><input type="radio" name="call_time" value="19:01-20:00" class="radio"> 19:01 - 20:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="radio" name="call_time" value="20:01-21:00" class="radio"> 20:01 - 21:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="radio" name="call_time" value="21:01-21:00" class="radio"> 21:01 - 21:00 PM</label>&nbsp;&nbsp;&nbsp;
+				<label><input type="radio" name="call_time" value="22:01-23:00" class="radio"> 22:01 - 23:00 PM</label>
+			</td>
+		</tr>
+		<tr>
+		    <td width="30%">Productos : <span class="smallfieldterr">[er_products]</span></td>
+		    <td class="smalltext"><br>
+		    [fc_build_radio_famprod]	
+		    <br>
+		    </td>
+		</tr>	
+			
+		<tr>
+		  	<td valign="top" width="30%">Padecimiento: <span class="smallfieldterr">[er_comments]</span></td>
+		    <td class="smalltext">
+				<textarea name="comments" cols="50" style="width:100%" rows="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_comments]</textarea>
+			</td>
+		</tr>
+		</table>
+	</fieldset>
+ 	&nbsp;
+  	 
+<script language="javascript" type="text/javascript">
+<!--
+
+	function validatePhone(){
+
+	  var areaCodes = new Array([fc_load_areacodes]);
+	  var max_length = [fc_tel_lenght];
+	  var prefix_length = [fc_tel_prefix_lenght];
+
+	  var error=0;
+	  var msg_error='';
+	  var thisPhone = document.getElementById('id_leads')
+	  thisPhone.value = thisPhone.value.replace(/[^0-9.]/g, "");
+	  var validPhone = $.inArray(thisPhone.substring(0, prefix_length), areaCodes);
+
+	  if(thisPhone.length < max_length){
+	    msg_error += 'Longitud: Menor a '+max_length+' digitos\n';
+	    error++;
+	  }
+
+	  if(validPhone < 0 ){
+	  	msg_error +=  'Area no conocida: ' + thisPhone.substring(0, prefix_length);
+	    error++;	
+	  }
+
+	  if(error > 0){
+	  	alert('El telefono '+ thisPhone +' no es valido\n' + msg_error);
+	    return false;
+	  }
+
+	} 
+	
+	chg_chkbox('contact_time','[in_contact_time]');
+	chg_chkbox('call_time','[in_call_time]');
+	chg_chkbox('products','[in_products]');
+
+//-->
+</script>

@@ -1,0 +1,82 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 7, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<table class="tab" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+	  <tbody><tr>
+	    <td align="center" width="30%"></td>
+		<td class="cell_on" width="35%" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=usrman_home&quot;)" align="center" width="14%">Sessions</td>
+		<td class="cell_off" width="35%" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=usrman&amp;add=1&quot;)" align="center" width="14%">Logs</td>
+
+	  </tr>
+	</tbody></table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+
+<form action="/cgi-bin/mod/admin/admin" method="post" name="sitform" onsubmit="return warningmsg('Are you sure you wnat to drop this session?')">
+	<input type="hidden" name="cmd" value="usr_sessions">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  <tr>
+			<td class="titletext" align="center">View Active Sessions</td>
+	  </tr>
+	  <tr>
+			<td class="stdtxterr">[va_message]</td>
+	  </tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+		  <td class="tbltextttl">Active Sessions : [va_matches]</td>
+		  <td class="tbltextttl" align="right">Pages: [va_pageslist]</td>
+		</tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class="menu_bar_title">Drop</td>
+			<td class="menu_bar_title">ID</td>
+			<td class="menu_bar_title">First Name</td>
+			<td class="menu_bar_title">Last Name</td>
+			<td class="menu_bar_title">Date</td>
+			<td class="menu_bar_title">Time: Login/Last Action</td>
+			<td class="menu_bar_title">IP</td>
+		</tr>
+		 [va_searchresults]
+	</table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">Active Sessions : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table> 
+</form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+
+<!-- comment: none  -->

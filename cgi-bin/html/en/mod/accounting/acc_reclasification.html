@@ -1,0 +1,132 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="80%" align="center"></td>
+	    <td width="20%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/accounting/admin?cmd=acc_reclasification")'>Reclasification Tool</td> 
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+			
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="left" colspan="2">Reclasification Tool </td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+     </table>
+
+&nbsp;
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr>
+		<td align="center" class="menu_bar_title">Reclasification Report</td>
+    </tr>
+ 	<tr>
+		<td class="smalltext">[va_thisresult]</td>
+    </tr>   
+</table>
+&nbsp;
+
+<form action="/cgi-bin/mod/accounting/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="acc_reclasification">
+	<input type="hidden" name="action" value="1">
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	
+	<tr>
+		<td colspan="3" align="center" class="menu_bar_title">Movements List</td>
+    </tr>
+	
+	<tr>
+		<td colspan="3" valign="top"> <span class="smallfieldterr">[er_id_movements_bulk]</span>
+			<textarea name="id_movements_bulk" cols="50" rows="20"  style="width:99%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_id_movements_bulk]</textarea>
+			<span class="help_on">Comma or Enter Separated Movements IDs, Invalid IDs will be descarted</td>
+    </tr>
+    
+    <tr>
+		<td colspan="3" valign="top"><br></td>
+	</tr>
+
+</table>
+
+<fieldset><legend> Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="20%">Account Number: <span class="smallfieldterr">[er_id_accounts]</span></td>
+		    <td class="smalltext">
+		    	<input type="text" id="id_accounts" name="id_accounts" value="[in_id_accounts]" size="10" class="input">
+		    	<a href="admin?cmd=accountsTree&element_id=id_accounts&element_descrip=account_name" title="Chart of Accounts" class="fancy_modal_iframe">
+					<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+				</a>
+				<br><span id="account_name"></span>
+	    	</td>
+		</tr>	
+		<tr>
+		    <td width="20%">Reclasification Date : <span class="smallfieldterr">[er_effdate_to]</span></td>
+		    <td class="smalltext">
+		    	<input type="text" id="effdate_to" name="effdate_to" value="[in_effdate_to]" size="10" class="input" placeholder="EffDate">
+	    	</td>
+		</tr>
+		<tr>
+   			<td width="20%" valign="top">Category : <span class="smallfieldterr">[er_category]</span></td>
+			<td class="smalltext"> 
+				[br_category@sl_movements]
+			</td>
+		</tr>
+
+		<tr>
+			<td align="center" colspan="2"><br>
+				<input type="submit" value="Start" class="button">
+			</td>
+		</tr>
+	</table>	
+&nbsp;	
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+<script>
+<!--
+$(document).ready(function() {
+
+	var dates = $( "#effdate_to" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			maxDate: new Date(),
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 2,
+		});
+});
+
+chg_radio('category','[in_category]')
+-->
+</script>
+
+[ip_footer]
+
+

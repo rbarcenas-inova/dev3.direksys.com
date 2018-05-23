@@ -1,0 +1,513 @@
+
+<script src="/libs/awesomplete.min.js"></script>
+<link rel="stylesheet" href="/libs/awesomplete.base.css">
+<link rel="stylesheet" href="/libs/awesomplete.css">
+
+
+<style>
+	.els {
+	    background: #fff none repeat scroll 0 0;
+	    border: 1px solid #ccc;
+	    border-collapse: collapse;
+	    width: 100%;
+	}
+
+
+	.els tbody td {
+	    border-bottom: 1px solid #ccc;
+	    padding: 5px;
+	}
+
+	#setupAccordion .yui-accordion-content{
+		background: #fff;
+		padding: 30px
+
+	}
+
+	.choiceElements li {
+	    border-bottom: 1px solid #ccc;
+	}
+
+	.choicesBlock {
+	    border: 1px solid #000;
+	    float: left;
+	    height: 200px;
+	    margin: 5px;
+	    padding: 10px;
+	    width: 210px;
+	    background: #fff;
+	}
+	.choiceName {
+	    background: #000 none repeat scroll 0 0;
+	    font-size: 10px;
+	    margin-left: -10px;
+	    margin-right: -10px;
+	    margin-top: -10px;
+	    padding: 5px;
+	}
+	.choiceName span{
+		color: #fff;
+	}
+	.awesomplete > ul > li {
+    	list-style: outside none none;
+	}
+	.removeElement {
+	    float: right;
+	    margin-top: 3px;
+	}
+
+	.choiceElements {
+	    margin-top: 5px;
+	    max-height: 155px;
+	    overflow: auto;
+	}
+	.choiceElements button {
+ 	   float: right;
+	}
+	.element{
+		overflow: auto;
+	}
+	.choiceValues {
+    	padding-top: 5px;
+	}
+	.choiceValues input {
+	    width: 100px;
+	}
+
+	div[data-id_skus_products^="1"] .borrarSku {
+	    float: right;
+	}
+	div[data-id_skus_products^="1"] input[name="qty"] {
+	    float: left;
+	    margin-right: 50px;
+	    width: 30px;
+	}
+	div[data-id_skus_products^="1"] {
+	    float: left;
+	    margin: 3px 0;
+	    width: 100%;
+	}
+	.pull-right.button {
+	    margin: 10px;
+	}
+
+	#setupAccordion > li {
+	    list-style: outside none none;
+	}
+	.pull-right{
+		float: right !important;
+	}
+	.pull-left{
+		float: left !important;
+	}
+</style>
+<div class="container">
+	<button class="button pull-right" id="convertToPromo">Convert to Promo</button>
+	<a href="javascript:trjump('/cgi-bin/mod/admin/dbman?cmd=mer_products&view=[in_id_products]&tab=3&tabs=3')"><img border="0" alt="" title="Refresh" src="/sitimages//default/b_reload.gif"></a>
+	<div class="accordion-products">
+		<ul id="setupAccordion">
+			<li>
+				<h3>Choices</h3>
+				<div class="element">
+					<br>
+					<div class="choicesBlock" name="list1">
+						<div class="choiceName">
+							<span>Choice Name:</span> <input value="[in_choice1]" data-list="[va_choices1]" class="awesomplete upperCase" name="choiceName1" />
+						</div>
+						<div class="choiceValues">
+							<input name="choiceValue" class="upperCase"/> <button>Add Choice</button>
+						</div>
+						<div class="choiceElements">
+							<ul></ul>
+						</div>
+					</div>
+					<div class="choicesBlock" name="list2">
+						<div class="choiceName">
+							<span>Choice Name:</span> <input data-list="[va_choices2]" class="awesomplete upperCase" value="[in_choice2]" name="choiceName2" />
+						</div>
+						<div class="choiceValues">
+							<input name="choiceValue" class="upperCase" /> <button>Add Choice</button>
+						</div>
+						<div class="choiceElements">
+							<ul></ul>
+						</div>
+					</div>
+					<div class="choicesBlock" name="list3">
+						<div class="choiceName">
+							<span>Choice Name:</span> <input value="[in_choice3]" data-list="[va_choices3]" class="awesomplete upperCase" name="choiceName3" />
+						</div>
+						<div class="choiceValues">
+							<input name="choiceValue" class="upperCase"/> <button>Add Choice</button>
+						</div>
+						<div class="choiceElements">
+							<ul></ul>
+						</div>
+					</div>
+					<div class="choicesBlock" name="list4">
+						<div class="choiceName">
+							<span>Choice Name:</span> <input value="[in_choice4]" data-list="[va_choices4]" class="awesomplete upperCase" name="choiceName4" />
+						</div>
+						<div class="choiceValues">
+							<input name="choiceValue" class="upperCase"/> <button>Add Choice</button>
+						</div>
+						<div class="choiceElements">
+							<ul></ul>
+						</div>
+					</div><br>
+					<button id="saveChoices" class="button">SAVE CHOICES</button>
+				</div>
+			</li>
+			<li>
+				<h3>Vendor / Part </h3>
+				<div class="element">
+					<table class="els">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>[in_choice1]</th>
+								<th>[in_choice2]</th>
+								<th>[in_choice3]</th>
+								<th>[in_choice4]</th>
+								<th>SKUS</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							[va_skus]
+						</tbody>
+					</table><br>
+					<button id="saveSkusParts" class="button">SAVE PARTS</button>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+
+<script>
+window.count = 0;
+
+var saveSkusParts = function(){
+	rowsSku = $('tr[data-id_skus_products]').get();
+	requestObj = {};
+	for (var i = 0; i < rowsSku.length; i++) {
+		el = rowsSku[i];
+		requestObj[el.dataset.id_skus_products] = {};
+		requestObj[el.dataset.id_skus_products].upc = $(el).find('[name="upc"]').val();
+		parts = $(el).find('div[data-id_skus_products]').get();
+		requestObj[el.dataset.id_skus_products].parts = [];
+		for (var j = 0; j < parts.length; j++) {
+			part = parts[j];
+			requestObj[el.dataset.id_skus_products].parts.push({
+				qty : $(part).find('[name="qty"]').val(),
+				id_sku : part.dataset.id_part
+			})
+		};
+		
+	};
+
+	$.ajax({
+		url: '/cgi-bin/common/apps/ajaxbuild',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			ajaxbuild : 'editproduct',
+			id_products: '[in_id_products]',
+			edit : 1,
+			skus_parts: JSON.stringify(requestObj)
+		},
+
+	})
+	.done(function(data) {
+		if(data.code == 200){
+			alert(data.msg);
+		}
+		console.log(data);
+		// buildListSkus(data);
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+
+
+}
+String.prototype.splix = function(n, str){
+	cadena = this.toString();
+	limit = cadena.length;
+	trozos = Math.floor(limit / n);
+	res = [];
+	for(var i = 0; i < trozos; i++){
+		ini = i * n;
+		res.push(cadena.substr(ini, n));
+	}
+
+	return res.join(str);
+}
+
+
+var buildSkusProducts = function(id_skus_products, id_parts, partName, callback){
+	// return;
+	div = $('<div></div>');
+	div.className = 'rowSkusProducts';
+	div.attr('data-id_skus_products', id_skus_products);
+	div.attr('data-id_part', id_parts);
+	div.append(`
+		<input name="qty" />
+		( <a href="/cgi-bin/mod/admin/dbman?cmd=mer_parts&view=${id_parts}" target="_blank">${id_parts}</a> ) ${partName} <img class="borrarSku" src="/sitimages/aqua/b_drop.png">
+	`);
+	div.find('img').on('click', function(){
+		if(confirm('¿Esta seguro de eliminar el Part seleccionado?')){
+			$(this).parent().hide('slow', function(){$(this).remove()});
+		}
+	});
+
+	// $va{'searchresults'} = 
+
+	tr = $('<tr></tr>');
+	tr.attr('bgcolor', '#ffffff');
+	tr.attr('data-id_products', id_parts);
+	td = $('<td></td>');
+	td.attr('class', 'smalltext');
+	a = $('<a></a>');
+	a.attr('href', `/cgi-bin/mod/admin/dbman?cmd=mer_products&view=${id_parts}`);
+	a.html('');
+
+
+	$('#promoTable').append();
+
+	$('tr[data-id_skus_products="'+id_skus_products+'"] td:nth-child(6)').append(div);
+	if(typeof callback == 'function'){
+		callback();
+	}
+}
+
+var buildProducts = function(id_skus_products, id_parts, partName, callback){
+	div = $('<div></div>');
+	div.className = 'rowSkusProducts';
+	div.attr('data-id_skus_products', id_skus_products);
+	div.attr('data-id_part', id_parts);
+	div.append(`
+		<input name="qty" />
+		( <a href="/cgi-bin/mod/admin/dbman?cmd=mer_parts&view=${id_parts}" target="_blank">${id_parts}</a> ) ${partName} <img class="borrarSku" src="/sitimages/aqua/b_drop.png">
+	`);
+	div.find('img').on('click', function(){
+		if(confirm('¿Esta seguro de eliminar el Part seleccionado?')){
+			$(this).parent().hide('slow', function(){$(this).remove()});
+		}
+	});
+	$('tr[data-id_skus_products="'+id_skus_products+'"] td:nth-child(6)').append(div);
+	if(typeof callback == 'function'){
+		callback();
+	}
+}
+
+var buildListSkus = function(data){
+	let rows = ``;
+	$('.els').hide();
+	$('.els').parent().append('<img src="/sitimages/ui-anim_basic_16x16.gif">');
+	for (let i = 0; i < data.choices.length; i++) {
+		let el = data.choices[i];
+		rows += `
+		<tr data-id_skus_products="${el.ID_sku_products}">
+			<td>${el.ID_sku_products}</td>
+			<td>${el.choice1}</td>
+			<td>${el.choice2}</td>
+			<td>${el.choice3}</td>
+			<td>${el.choice4}</td>
+			<td></td>
+			<td>
+				<a href="/cgi-bin/common/apps/ajaxbuild?ajaxbuild=editproduct&id_skus_products=${el.ID_sku_products}&type=parts" class="fancy">
+					<img border="0" id="tabs" src="/sitimages/default/b_add.png" title="Add Parts"  alt="Add Parts">
+				</a>
+			</td>
+		</tr>`;
+	};
+	rows = rows.replace(/null/gi, '');
+	$template = `
+	
+	<table class="els">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>${data.choicesName[0]}</th>
+							<th>${data.choicesName[1]}</th>
+							<th>${data.choicesName[2]}</th>
+							<th>${data.choicesName[3]}</th>
+							<th>SKUS</th>
+							<th>UPC</th>
+						</tr>
+					</thead>
+					<tbody>
+						${rows}
+					</tbody>
+				</table>
+	<button id="saveSkusParts" class="button">Save parts</button>`;
+	$('.els').parent().hide();
+	$('.els').parent().html($template);
+	$('.els').parent().show('slow');
+	loadFancy();
+	$('#saveSkusParts').on('click', function(e){
+		saveSkusParts();
+	});
+}
+
+var loadFancy = function(){
+	$('.fancy').off();
+	$('.fancy').on('click', function(e){
+		e.preventDefault();
+		$.fancybox({
+	        width: 600,
+	        height: 600,
+	        autoSize: false,
+	        href: $(this).attr('href'),
+	        type: 'ajax'
+	    });
+	})
+}
+var buildListChoices = function(listNumber){
+	list = $('[name="list'+listNumber+'"] ul');
+	data = eval('list'+listNumber);
+	if(list.get()){
+		for (let i = 0; i < data.length; i++) {
+			el = data[i];
+			img = $('<img src="/sitimages/aqua/b_drop.png" class="removeElement">');
+			img.on('click', function(){
+				$(this).parent().remove();
+			});
+			li = $('<li></li>');
+			li.html('<span>'+el+'</span>');
+			li.append(img);
+			list.append(li);
+		};
+	}
+}
+
+$(function() {
+	list1 = [in_list_choice1];
+	list2 = [in_list_choice2];
+	list3 = [in_list_choice3];
+	list4 = [in_list_choice4];
+	buildListChoices(1);
+	buildListChoices(2);
+	buildListChoices(3);
+	buildListChoices(4);
+	loadFancy();
+
+	$('#convertToPromo').on('click', function(){
+		if(!confirm('Esta seguro de convetir producto a Promo?'))
+			return;
+		$.ajax({
+			url: '/cgi-bin/common/apps/ajaxbuild',
+			type: 'POST',
+			dataType: 'html',
+			data: {
+				ajaxbuild : 'editproduct',
+				id_products: '[in_id_products]',
+				edit: 1,
+				convert_to_promo: 1,
+			},
+
+		})
+		.done(function(data) {
+			$('.container').hide();
+			$('.container').parent().html(data);
+			
+			
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	});
+
+	$('.borrarSku').on('click', function(){
+		if(confirm('¿Esta seguro de eliminar el Part seleccionado?')){
+			$(this).parent().hide('slow', function(){$(this).remove()});
+		}
+	});
+	$('#saveSkusParts').on('click', function(e){
+		saveSkusParts();
+	});
+	$('[name="choiceValue"]').on('keypress', function(e){
+		if(e.which == 13) {
+        	$(this).parent().find('button').click();
+    	}
+	})
+	$('.choiceValues button').on('click', function(){
+
+		$(this).parent().find('[name="choiceValue"]').val($(this).parent().find('[name="choiceValue"]').val().trim());
+		if($(this).parent().find('[name="choiceValue"]').val() == ''){
+			return;
+		}
+		img = $('<img src="/sitimages/aqua/b_drop.png" class="removeElement">');
+		img.on('click', function(){
+			$(this).parent().remove();
+		});
+		li = $('<li></li>');
+		li.html('<span>'+$(this).parent().find('[name="choiceValue"]').val()+'</span>');
+    	$(this).parent().find('[name="choiceValue"]').val('');
+		li.append(img);
+		$(this).parent().parent().find('ul').append(li);
+		var elem = $(this).parent().parent().find('ul').parent()[0];
+  		elem.scrollTop = elem.scrollHeight;
+  		
+	});
+
+	$('#saveChoices').on('click', function(){
+		listas = $('.choiceElements ul').get();
+		request = {};
+		for (var i = 0; i < listas.length; i++) {
+			el = listas[i];
+			elss = $(el).find('li').get();
+			request['lista'+(i+1)] = [];
+			for (var j = 0; j < elss.length; j++) {
+				li = elss[j];
+				request['lista'+(i+1)][j] = $(li).find('span').html();
+			};
+		};
+		$.ajax({
+			url: '/cgi-bin/common/apps/ajaxbuild',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				ajaxbuild : 'savechoices',
+				id_products: '[in_id_products]',
+				tab : 3,
+				tabs: 3,
+				savechoices : 1,
+				choices: JSON.stringify(request),
+				choicename1 : $('[name="choiceName1"]').val(),
+				choicename2 : $('[name="choiceName2"]').val(),
+				choicename3 : $('[name="choiceName3"]').val(),
+				choicename4 : $('[name="choiceName4"]').val()
+			},
+
+		})
+		.done(function(data) {
+			buildListSkus(data);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+	});
+
+	$('.upperCase').on('keyup', function(){
+		$(this).val($(this).val().toUpperCase());
+	})
+
+
+
+});
+
+
+</script>

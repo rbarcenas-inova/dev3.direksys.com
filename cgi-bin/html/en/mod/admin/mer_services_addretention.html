@@ -1,0 +1,138 @@
+[ip_header_small]
+
+<table border="0" cellspacing="0" cellpadding="10" width="100%" height="100%" bgcolor=white>
+	<tr>
+		<td valign="top" style="text-align: left;">
+			
+			<form action="" method="post" name="sitform" id="frmRetention">
+				<input type="hidden" name="id_services" value="[in_view]">
+				<input type="hidden" name="view" value="[in_view]">
+				<input type="hidden" name="action" value="1">
+				<input type="hidden" name="act_type" value="add">
+				<input type="hidden" name="tab" value="7">
+				<input type="hidden" name="tabs" value="1">
+				<input type="hidden" name="cmd" value="[in_cmd]">
+				
+				<fieldset style="width: 60%; margin: auto auto;">
+					<legend>Cuenta de Retenci&oacute;n</legend>
+					<br />
+					<table width="100%" border="0" cellspacing="0" cellpadding="0"  align="center">
+						<tbody>
+							<tr>
+								<td class="fieldterr" colspan="2" id="err_message"></td>
+							</tr>
+							<tr>
+								<td class="tbltextttl"><label for="id_accounts">Cuenta contable:</label> <span class="smallfieldterr" id="err_id_accounts"></span></td>
+								<td class="tbltextttl">
+									<select name="id_accounts" id="id_accounts" class="input" style="max-width: 400px;">
+										<option value="0"></option>
+										[fc_build_select_accounting]
+									</select>									
+								</td>
+							</tr>
+							<tr>
+								<td class="tbltextttl"><label for="percent">Porcentage %:</label> <span class="smallfieldterr" id="err_percent"></span></td>
+								<td class="tbltextttl">
+									<input type="text" name="percent" id="percent" class="input" maxlength="5" style="width: 80px;" />
+
+								</td>
+							</tr>
+							<tr>
+								<td class="tbltextttl">Credebit : <span class="smallfieldterr" id="err_credebit"></span></td>
+								<td class="tbltextttl">
+									<label><input type="radio" name="credebit" value="debit" > Debit</label>
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<label><input type="radio" name="credebit" value="credit" > Credit</label>
+								</td>
+							</tr>
+							<tr><td colspan="2">&nbsp;</td></tr>
+							<tr>
+								<td class="tbltextttl">Cuenta extra : <span class="smallfieldterr" id="err_credebit"></span></td>
+								<td class="tbltextttl">
+									<label><input type="radio" name="extra" value="no" checked="true" > No</label>
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<label><input type="radio" name="extra" value="yes" > Yes</label>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<p align="center"><input value="Aceptar" class="button" type="submit"></p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</fieldset>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+
+		$('#frmRetention').submit(function(event) {
+			var process = false;
+			if( validaForm() ){
+				
+				$.ajax({
+					url: '/cgi-bin/common/apps/schid',
+					type: 'POST',
+					dataType: 'json',
+					data: $('#frmRetention').serialize(),
+					async: false,
+					cache: false,
+					success: function(response){
+						if( response.result == '200' ){
+							window.parent.$('#tbody_accounts_ret').html(response.html_result);
+							parent.$.fancybox.close();							
+						}else{
+							$('#err_message').html(response.error);
+						}
+					}
+				});
+				
+			}
+
+			return process;
+		});
+
+		function validaForm(){
+			var valid = true;
+			var id_accounts = $('#id_accounts').val();
+			var percent = $('#percent').val();
+			var credebit = $('input:radio[name=credebit]:checked').val();
+			
+			$('#err_id_accounts').html('');
+			$('#err_percent').html('');
+			$('#err_credebit').html('');
+
+			if( id_accounts <= 0 ){
+				$('#err_id_accounts').html('Required');
+				valid = false;
+			}
+
+			if( percent != '' ){
+				if( !/^[0-9]+([.][0-9]+)?$/.test(percent) ){
+					$('#err_percent').html('Invalid');
+					valid = false;
+				}else if( parseFloat(percent) > 100 ){
+					$('#err_percent').html('Invalid');
+					valid = false;
+				}				
+			}else{
+				$('#err_percent').html('Required');
+				valid = false;
+			}
+
+			if( credebit == '' || credebit == undefined ){
+				$('#err_credebit').html('Required');
+				valid = false;
+			}
+
+			return valid;
+		}
+
+	});
+
+</script>

@@ -1,0 +1,81 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<div id="submenu3" class="anylinkcsscols" style="left: 0px; top: 0px; opacity: 1; ">
+		<div class="column">
+			[va_cod_print_list]
+			<img src="/sitimages/app_bar/mod/menushadowfin.png">
+	    </div>
+	</div>
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="35%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=manifest_cod&search=form&history=[in_history]")'> Search</td>
+	    <td width="35%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=manifest_cod&history=[in_history]")'> List </td>
+	  </tr>
+	</table>
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">COD Manifests [va_history] by [in_basedate] [va_info]</td>
+		 </tr>
+		<tr>
+		   <td colspan="2"><span class="help_on">These are the Orders in the database, To view the date information click on the row</span></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Matches : [va_matches]&nbsp;&nbsp;&nbsp;
+		    	<a href="/" class="printlist_trigger" rel="submenu3[click]" style="display:inline;">
+		    		<img src="[va_imgurl]/default/b_print.gif" title="Print" alt="" border="0" width="16" height="16">
+		    	</a>
+		    </td>
+		    <td align="right" class="tbltextttl">
+		    	Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		   [va_header]
+		</tr>
+		[va_searchresults]
+  </table>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+<!-- lists -->
+[va_lists_iframes]
+<!-- lists -->
+[ip_footer]
+
+
+<script type="text/javascript">
+  ////Pass in the CSS class of anchor links (that contain a sub menu)
+  anylinkcssmenu.init("printlist_trigger");
+</script>

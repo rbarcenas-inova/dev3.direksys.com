@@ -1,0 +1,130 @@
+
+	&nbsp;
+	<fieldset><legend>Email Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Email Date</td>
+			<td class="smalltext">[in_emaildate]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Subject</td>
+			<td class="smalltext">[in_subject]</td>
+		</tr>
+		<tr>
+		  <td width="30%">From</td>
+			<td class="smalltext">[in_from]</td>
+		</tr>
+		<tr>
+		  <td width="30%">To</td>
+			<td class="smalltext">[in_to]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Return-Path</td>
+			<td class="smalltext">[in_returnpath]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Received</td>
+			<td class="smalltext">[in_received]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Order ID</td>
+			<td class="smalltext">[va_id_orders]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Site</td>
+			<td class="smalltext">[in_site]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Status</td>
+			<td class="smalltext">[in_status]</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	
+	<fieldset><legend>Message</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Body</td>
+			<td class="smalltext">[in_body]</td>
+		</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform" id="sitform">
+	<input type="hidden" name="cmd" value="tracking_email_reply">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="subject" value="Re:[in_subject] (case: [in_uid])">
+	<input type="hidden" name="from" value="[in_to]">
+	<input type="hidden" name="to" value="[in_from]">
+	<input type="hidden" name="uid" value="[in_uid]">
+	<input type="hidden" name="site" value="[in_site]">
+	<input type="hidden" name="view" value="[in_id_tracking_email]">
+	<input type="hidden" name="id_tracking_email" value="[in_id_tracking_email]">
+	
+	
+	<fieldset><legend>Templates List</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td colspan="2" width="90%" align="left">
+		  	&nbsp;
+		  	<span class="smallfieldterr">[er_to_email]</span>
+		  	<br>
+		  	<input name="template" value="none" checked="checked" type="radio" >None
+		  	<table>
+		  	<tr>
+		  	[fc_build_tracking_templates_list]	
+		  	</tr>
+		  	</table>
+		  </td>
+		 </tr>
+  	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Action</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td colspan="2" width="90%" align="left">
+		  	&nbsp;
+		  	<span class="smallfieldterr">[er_email_action]</span>
+		  	<br>
+		  	<input id="email_action" name="email_action" value="reply" type="radio" onclick="change_cmd('tracking_email_reply');" checked=checked>Reply
+		  	<input id="email_action" name="email_action" value="to_archived" type="radio" onclick="change_cmd('tracking_email');">Send to Archived
+		  	<input id="email_action" name="email_action" value="to_trash" type="radio"  onclick="change_cmd('tracking_email');">Delete
+		  </td>
+		 </tr>
+  	</table>
+	</fieldset>
+	&nbsp;
+	<p align="center"><input onclick="eval_action();" value=" Accept " class="button"></p>
+	</form>
+	&nbsp;
+	
+<script language="JavaScript">
+	function change_cmd(cmd)
+	{
+		chg_select('cmd',cmd);
+		if(cmd=="tracking_email_reply")
+		{
+			self.document.forms.sitform.action='/cgi-bin/mod/[ur_application]/admin';
+		}
+		else
+		{
+			self.document.forms.sitform.action='/cgi-bin/mod/[ur_application]/dbman';
+		}
+	}
+	
+	function eval_action()
+	{
+		if(document.sitform.email_action[0].checked==false)
+		{
+			var r=confirm("Are you sure you want to move the email from the inbox?");
+			if (r==true)
+			  {
+			  self.document.forms["sitform"].submit();
+			  }
+		}
+		else
+		 self.document.forms["sitform"].submit();
+	}
+</script>

@@ -1,0 +1,115 @@
+<STYLE TYPE="text/css">
+body 
+{	font-family: arial;	font-size: 10pt;	color: #000000;}
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+fieldset 
+{	margin-bottom: 5px;	border:solid 1px #000000;}
+fieldset legend 
+{	margin: 0;	padding: 0 7px;	border: 0;	float: none;	font-size: 14px;	line-height: 18px;	color:#000000;	background-color:#ffffff;}
+div.text_detalle 
+{	margin-top: 10px;	font-size: 14px;	line-height: 18px;	color:#000000;	text-align: left;	font-weight: bold;}
+</STYLE>
+
+<center>
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td><font class=info>
+
+<table cellpadding=0 cellspacing=0 border=0>
+	<td align=left>
+		<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px>
+
+	</td>
+	[fc_show_companyinfo]
+</table>
+
+<center>
+<hr style="color: #333333;background-color: #333333;height: 1px;">
+<font class="its">RECEPCI&Oacute;N DE ALMAC&Eacute;N</font>
+<hr style="color: #333333;background-color: #333333;height: 1px;">
+
+	
+	<fieldset><legend>Recepci&oacute;n de Almac&eacute;n</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		  	<td width="30%" ><font class=infot>ID :</td>
+		    <td><font class=infot>[in_id_wreceipts]</td>
+		 </tr>
+		 <tr>
+			<td width="30%"><font class=infot><font class=info>Date / Time /user  : </td>
+			<td><font class=info>[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+		</table>
+	</fieldset>
+	<fieldset><legend>Informaci&oacute;n de la Recepci&oacute;n</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%" valign="top"><font class=infot>Proveedor : </td>
+		    <td><font class=info>([in_id_vendors]) [va_vendor_name]</td>
+		</tr>				
+  		<tr>
+		    <td width="30%" valign="top"><font class=infot>Orden de Compra : </td>
+		    <td><font class=info>[in_id_purchaseorders]</td>
+		</tr>	
+  		<tr>
+		    <td width="30%"><font class=infot>Factura # : </td>
+		    <td><font class=info>[in_invoice]</td>
+		</tr>	
+		<tr>
+		  <td width="30%"><font class=infot>Fecha de facturaci&oacute;n : </td>
+			<td><font class=info>[in_invoicedate]</td>
+		</tr>
+		<tr>
+		    <td valign="top" width="30%"><font class=infot>Descripci&oacute;n : </td>
+		    <td><font class=info>[in_description]</td>
+		</tr>
+  		<tr>
+		    <td width="30%"><font class=infot>Tipo : </td>
+		    <td><font class=info>[in_type]</td>
+        </tr>
+        <tr>
+		    <td width="30%"><font class=infot>Estatus : </td>
+		    <td><font class=info>[in_status]</td>
+		</tr>
+	</table>
+	</fieldset>
+	<div class="text_detalle">Detalle de la Recepci&oacute;n</div>
+	<table cellpadding=5 cellspacing=0 border=0 style="border:1px solid #333333;" width=100%>
+		<tr bgcolor=#ffffff>
+			<th width=30px style="border-bottom:1px solid #333333;"><font class=infot>#</th>
+			<th style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>No. Producto</th>
+			<th style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>Art/Descripci&oacute;n</th>
+			<th width=100px style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>No. Serie</th>
+			<th width=60px style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>Cantidad</th>
+		</tr>	
+		[fc_load_wreceipts_items]
+	</table>

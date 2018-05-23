@@ -1,0 +1,91 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="cod_process">
+	<input type="hidden" name="zip" value="[in_zip]">
+	<input type="hidden" name="state" value="[in_state]">
+	<input type="hidden" name="city" value="[in_city]">
+	<input type="hidden" name="id_products" value="[va_id_products]">
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Items Ready to Process</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td align="center" colspan="2" class="menu_bar_title">Product Description</td>
+	  </tr>
+		<tr>
+			<td nowrap>ID: </td>
+			<td>[va_format_id_products]</td>
+	  </tr>
+		<tr>
+			<td nowrap>Model/Name : </td>
+			<td>[va_model]<br>[in_name]<br>[va_choices]</td>
+	  </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Orders To</legend>
+	<table class='smalltext' cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td valign="top">Orders Ready to Process [va_orders] : </td>
+			<td valign="top">
+				<input type="text" name="orders" value="[va_orders]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'> 				
+			</td>
+			<td>
+		</tr>
+		<tr>
+			<td valign="top">Assing to : </td>
+			<td valign="top">
+				<select name="virtual_warehouse" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	   			<option value="---">---</option>
+					[fc_build_select_virtual_warehouse]
+				</select><span class="smallfieldterr">[er_virtual_warehouse]</span>	
+			</td>
+		</tr>		
+		<tr>
+			<td align="center" colspan="3" class="smalltext"><input type="radio" name="so" value="desc" class="radio">New First
+				<input type="radio" name="so" value="asc" class="radio" checked> Old First
+				</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="3" class="smalltext">
+				<input type="submit" name="export" value="Asignar" class="button">
+			</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+</form>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+<script language="javascript">
+<!--
+	chg_select('virtual_warehouse','[in_virtual_warehouse]');
+</script>
+
+[ip_footer]
+

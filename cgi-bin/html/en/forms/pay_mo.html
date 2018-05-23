@@ -1,0 +1,74 @@
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title" colspan="6" align="center">Items in Order</td>
+	    </tr>
+		<tr>
+			<td class="menu_bar_title">ID</td>
+			<td class="menu_bar_title">Model/Name</td>
+			<td class="menu_bar_title">Serial Number</td>
+			<td class="menu_bar_title">Ship Date</td>
+			<td class="menu_bar_title">Qty</td>
+			<td class="menu_bar_title">Sale Price</td>
+		</tr>
+		[fc_load_preorder_products]
+	</table>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center">Money Order</td>
+	  </tr>
+		<tr>
+		    <td class="tbltextttl" align="center">Shipment Address the Money Order  :<br>
+					4095 State Road 7 STE L-216<br>
+					Wellington, FL 33449<br>
+		    	 <span class="stdtxterr">Include Number Order in MO: [in_id_preorders]</span>
+		    </td>
+	  </tr>
+  </table>
+  <a name="tabs" id="tabs">&nbsp</a>
+  <form action="[va_script_url]" method="post" name="sitform">
+				<input type="hidden" name="cmd" value="[in_cmd]">
+				<input type="hidden" name="view" value="[in_id_preorders]">
+				<input type="hidden" name="action" value="1">
+				
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="formtable" align="center">
+			<tr>
+				<td class="tbltextttl">Notes : [va_matches]</td>
+		   		<td class="smalltext">Filter to : 
+		   		<a href="[va_script_url]?cmd=[in_cmd]&view=[in_id_preorders]&tab=4&filter=High">High</a> - 
+					<a href="[va_script_url]?cmd=[in_cmd]&view=[in_id_preorders]&tab=4&filter=Medium">Medium</a> - 
+					<a href="[va_script_url]?cmd=[in_cmd]&view=[in_id_preorders]&tab=4&filter=Low">Low</a></td>
+				<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 	</tr>
+			<tr>
+				<td colspan="3">
+			 		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+						<tr>
+						  <td class="menu_bar_title">Date/Hour/User</td>
+						  <td class="menu_bar_title">Type</td>
+						  <td class="menu_bar_title" colspan="2">Notes</td>
+						 </tr>
+					 [va_searchresults]
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" class="smallfieldterr">&nbsp;[va_tabmessages]</td>
+			</tr>
+			<tr>
+				<td class="menu_bar_title" colspan="3">Add New Note</td>
+			</tr>	
+			<tr>
+				<td class="smalltext" colspan="3">
+					<input type="radio" name="notestype" class="radio" value="High">High
+					<input type="radio" name="notestype" class="radio" value="Medium">Medium
+					<input type="radio" name="notestype" class="radio" value="Low">Low			
+				<textarea name="notes" style="width: 100%" cols="50" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_notes]</textarea></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="3"><input type="submit" value="Add Notes" class="button"></td>
+			</tr>
+		</table>
+	</form>
+

@@ -1,0 +1,86 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:[fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="12%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_cdr_home")'>CDR</td>
+	    <td width="12%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_cdr_leads_flash")'>Lead Flash</td>
+	    <td width="12%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_cdr_didord")'>DID/ORD</td>
+	    <td width="12%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_cdr_ord")'>Orders</td>
+	    <td width="12%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_cdr_cod")'>Orders COD</td>
+	    <td width="12%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_cdr_tot")'>Total</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+
+	[va_report_tbl]
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td class="tbltextttl">
+	    	<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/admin?[va_params]&print=1')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+	    	[va_extabtns]
+	    	Records : [va_matches]</td>
+	    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title" width="30%">Description</td>
+		    <td class="menu_bar_title" align="center">[va_col1]</td>
+		    <td class="menu_bar_title" align="center">[va_col2]</td>
+		    <td class="menu_bar_title" align="center">[va_col3]</td>
+		    <td class="menu_bar_title" align="center">[va_col4]</td>
+		    <td class="menu_bar_title" align="center">[va_col5]</td>
+		</tr>
+		[va_searchresults]
+  </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">
+				Records : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>  
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="40%" align="center" class="formtable">
+		<tr>
+			<td class="menu_bar_title" colspan="3" align="center">Totals</td>
+		</tr>
+		<tr>
+			<td>Totals [va_col1]:</td>
+			<td align="right">[va_tot_calls]</td>
+			<td>&nbsp</td>
+		</tr>
+		[va_totinfo]
+	</table>
+	&nbsp;
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

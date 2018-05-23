@@ -1,0 +1,269 @@
+	<fieldset><legend>Invoices ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Invoices ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_invoices] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton] &nbsp;
+							[fc_func_list_manager] &nbsp;
+							[fc_custom_id_link]
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+&nbsp;
+<fieldset><legend>Invoices Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+ 		<tr>
+			<td width="30%" valign="top">Customer ID :</span></td>
+			  <td class="smalltext">[in_id_customers]</td>
+			</tr>
+		<tr>
+		  	<td valign="top" width="30%">Doc Serial : </td>
+		   	<td class="smalltext">[in_doc_serial]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Doc Num : </td>
+			<td class="smalltext">[in_doc_num]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Doc Date : </td>
+			<td class="smalltext">[in_doc_date]</td>
+		</tr>
+  		<tr>
+		    <td width="30%">Payment Type : </td>
+		    <td class="smalltext">[in_payment_type]</td>
+		 </tr>
+		<tr>
+		  	<td valign="top" width="30%">Payment Method : </td>
+		   	<td class="smalltext">[in_payment_method]</td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="30%">Invoice Net : </td>
+		   	<td class="smalltext">[in_invoice_net]</td>
+		</tr>
+		<tr style="">
+		  	<td valign="top" width="30%">Invoice Total : </td>
+		   	<td class="smalltext">[in_invoice_total]</td>
+		</tr>
+		
+ 		<tr>
+			<td width="30%" valign="top">Discount :</span></td>
+			  <td class="smalltext"> [in_discount]</td>
+		</tr>		 
+ 		<tr>
+			<td width="30%" valign="top">Total Taxes Transfered :</span></td>
+			  <td class="smalltext">[in_total_taxes_transfered]</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Currency :</span></td>
+			  <td class="smalltext">[in_currency]</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Invoice Type :</span></td>
+			  <td class="smalltext">[in_invoice_type]</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Status :</span></td>
+			  <td class="smalltext">
+				<span id='span_phone'>
+					[in_status]
+				</span>&nbsp;&nbsp;
+					<span id="span_chg_phone">
+						<img id="btn_chg_phone" src="[va_imgurl]/[ur_pref_style]/b_edit.png" title="Click to edit Phone Info" style="cursor:pointer;" />
+					</span>
+			  </td>
+		</tr>
+		[va_paid_info]
+	</table>
+</fieldset>
+&nbsp;
+<div id="forLines"></div>
+<label id="tabs"</label>
+
+<script language="JavaScript">
+	$(document).ready(function() {
+		
+		$('#btn_chg_phone').live('click',function(){
+			var data = $('#span_phone').html();
+			var ary_data=data.split(' &nbsp;',2);
+			if(typeof ary_data[1]!='undefined'){phone_p=" &nbsp;"+ary_data[1];}
+			$('#span_phone').html(ary_data[0]);
+			$('#span_chg_phone').fadeOut();
+			$('#span_phone').dblclick();
+		});
+
+		$('#span_phone').editable({
+			type:'select',
+			submit:'Update',
+			options:{'New':'New','Confirmed':'Confirmed','InProcess':'InProcess','Certified':'Certified','Failed':'Failed','ToCancel':'ToCancel','CancelProcess':'CancelProcess','Cancelled':'Cancelled','Void':'Void','Retry':'Retry'},
+			editBy:'dblclick',
+			cancel:'Cancel',
+			onSubmit:function(content){
+				var id = [in_id_invoices];
+				var prev_value = content.previous;
+				var new_value = content.current;
+				if(prev_value != new_value && new_value !=''){
+					$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'update_invoicedata', 'id_invoices':id, 'field':'status', 'val':new_value},function(response,status,xhr){
+	
+						if (status == "error") {
+							alert(msg);
+							$('#span_chg_phone').html('<img id="done_chg_phone" src="/sitimages/default/checkmark_off.gif" title="Done">');
+						}else{
+							if(response.match(/error/gi)){
+								alert("Error:\r\n"+response);
+								$('#span_chg_phone').html('<img id="done_chg_phone" src="/sitimages/default/checkmark_off.gif" title="Done">');
+							}else{
+								$('#span_chg_phone').html('<img id="done_chg_phone" src="/sitimages/default/checkmark.gif" title="Done">');
+							}
+						}
+						$('#span_chg_phone').fadeIn(2000);
+					});
+	
+					setTimeout(function(){
+							$('#span_chg_phone').fadeOut(2000);
+					},3000);
+	
+					setTimeout(function(){
+						$('#span_chg_phone').fadeIn(2000);
+						$('#span_chg_phone').html('<img id="btn_chg_phone" src="/sitimages/default/b_edit.png" title="Click to edit Status" style="cursor:pointer;">');
+						$('#span_phone').append(phone_p);
+					},5000);
+	
+				}else{
+					$('#span_chg_phone').fadeIn(2000);
+					$('#span_phone').append(phone_p);
+				}
+			},
+			onCancel:function(){
+				$('#span_chg_phone').fadeIn(2000);
+				$('#span_phone').append(phone_p);
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		$.ajaxSetup({
+	    	timeout: 60000
+	    });
+
+		/* 
+			Todos los elementos <span> con clase editable se convierten a editable
+			Todos llevan el formato span_action_id
+			action = qty, price
+			id = id de la tabla id_purchaseorders_items
+			Para saber cual elemento se esta convirtiendo
+		*/
+		$('span.editable').editable( {
+			submit:'Update',
+			editBy:'dblclick',
+			cancel:'Cancel',
+			onSubmit:function(content) {
+				var data = $(this).attr('id').split('_');
+
+				var f = data[1];
+				var id = data[2];
+				alert(f);
+				if(f == 'qty') {
+					var prev_value = parseInt(content.previous.replace(',',''));
+					var new_value = parseInt(content.current.replace(',',''));
+				}else{
+					var prev_value = parseFloat(content.previous.replace('$',''));
+					var new_value = parseFloat(content.current.replace('$',''));
+				}
+				
+				if(prev_value != new_value){
+					$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'po_update', 'id_po_items':id, 'field': f, 'old':prev_value, 'new':new_value},function(response,status,xhr){
+						if (status == "error") {
+							alert(msg);
+							$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/checkmark_off.gif" title="Done">');
+						}else{
+							if(response.match(/error/gi)){
+								alert("Error:\r\n"+response);
+								$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl][ur_pref_style]/checkmark_off.gif" title="Done">');
+							}else{
+								if(f == 'price') {
+									$('#span_' + f + '_' + id).html('\$'+parseFloat(new_value));
+								}
+								$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/checkmark.gif" title="Done">');
+							}
+						}
+						$('#span_chg_' + f + '_' + id).fadeIn(2000);
+					});
+
+					setTimeout(function(){
+							$('#span_chg_' + f + '_' + id).fadeOut(2000);
+					},3000);
+					
+					setTimeout(function(){
+						$('#span_chg_' + f + '_' + id).fadeIn(2000);
+						$('#span_chg_' + f + '_' + id).html('<img id="#btn_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/b_edit.png" title="Click to edit Cost" style="cursor:pointer;">');
+					},5000);
+		
+				}else{
+					$('#span_chg_' + f + '_' + id).fadeIn(2000);
+				}
+			},
+			onCancel:function(){ 
+				var data = $(this).attr('id').split('_');
+				var f = data[1];
+				var id = data[2];
+				$('#span_chg_' + f + '_' + id).fadeIn(2000);
+			}
+		});
+
+
+		/* 
+			Evento de click de los lapices. Todos los lapices con clase triggers_editable
+			Todos llevan el formato btn_chg_action_if 
+			action = qty, price
+			id = id de la tabla id_purchaseorders_items
+			Para saber cual elemento poner a editable
+			Independitentemente del lapiz, se puede hacer doble click en el elemento para hacerlo funcionar
+		*/
+		$('img.triggers_editable').live('click',function(){
+			var data = $(this).attr('id').split('_');
+			var f = data[2];
+			var id_poi = data[3];
+			$('#span_chg_' + f + '_' + id_poi).fadeOut();
+			$('#span_' + f + '_' + id_poi).dblclick();
+		});		
+
+	
+	});
+	
+
+
+	function edit_movements() {
+		var objFrame=document.getElementById("rcmd_movements");
+		objFrame.src="/cgi-bin/common/apps/ajaxfinance?cmd=editing_movements&id_bills=[in_id_bills]&tablename=bills&edit_type=bills&path=[va_script_url]&cmdo=[in_cmd]&dototemp=YES";
+		popup_show('popup_edit_movements', 'item_dragiii', 'popup_exiteoi', 'element-right', -1, -1,'tabs');
+	}
+
+	function Confirm_to_continue() {
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+</script>

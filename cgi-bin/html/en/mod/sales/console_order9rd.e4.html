@@ -1,0 +1,118 @@
+[ip_header_console]
+
+<link type="text/css" media="screen" rel="stylesheet" href="/colorbox/colorbox.css" />
+<script type="text/javascript" src="/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="/colorbox/jquery.colorbox.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".email").colorbox({transition:'elastic',width:542,height:270,open:true,opacity:.0});
+	});
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td valign="top" align="left" bgcolor="#ffffff">
+			
+		<table width="100%" height=41px border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+				<td>&nbsp;</td>
+				<td class="cell_on" width="14%" align="center">Consola [va_salesorigins.channel]</td>
+		 </tr>
+		</table>
+		
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+				
+				
+	[fc_customer_header]
+&nbsp;
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="10">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="id_customers" value="[in_id_customers]">
+	
+	<fieldset><legend>Crear Nueva Order : Confirmar Orden</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		      <td>
+	      		      	  		
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+			
+			</td>
+		   </tr>
+			<tr>
+			  <td bgcolor="#C0C0C0" height="2"></td>
+			</tr>
+		</table>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td>
+					<div style="font-size:12px;">
+						<font size=4>La orden se ha creado exitosamente:</font><br>
+						<font size=3>
+						<table width="90%" align="center" cellpading="3" cellspacing="1">
+							<tr>
+								<th>ID Orden</th>
+								<th>ID Cliente</th>
+								<th>Total a pagar</th>
+							</tr>
+							<tr>
+								<td align="center"><font size=3><b>[in_id_orders]</b></td>
+								<td align="center"><font size=3><b>[in_id_customers]</b></td>
+								<td align="center"><font size=3><b>[va_payment]</b></td>
+							</tr>
+						</table>
+						<br>
+						Necesitamos que realize su pronto pago en alguna de las siguientes instituciones bancarias:<br>
+						<br>
+							
+							<center>
+								<table cellpadding=0 cellspacing=10 width=70%>
+									<td align=center>
+										<div  style="font-size:16px;">
+										<img src=/sitimages/banorte.png><br>
+										<br>BANORTE - Banco Mercantil del Norte, S. A. <br>
+										NOMBRE DE LA EMPRESA : <strong>INTERNET INOVA</strong><br>
+										N&Uacute;MERO DE EMPRESA : <strong>104039</strong><br>
+										REFERENCIA : <strong>[in_id_orders]</strong><br>
+										</div>
+									</td>
+									<td align=center>
+									<img src=/sitimages/divixin.jpg>
+									</td>
+									<td align=center>
+										<div  style="font-size:16px;">
+										<img src=/sitimages/bancoazteca.png><br>
+										<br>BANCO AZTECA<br>
+										EMISORA : <strong>MAS OFERTAS WEB SA DE CV</strong><br>
+										REFERENCIA : <strong>[va_ref_banco_azteca]</strong><br>
+										</div>
+									
+									</td>
+								</table>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><font size=3>Notificar por Correo el&eacute;ctronico? : <input type="email" name="email" id="email" size="35" value="[in_email]"/>
+				</td>
+			</tr>
+		</table>
+		&nbsp;
+		<p align="center"><input type="submit"  value="Terminar" class="button"></p>
+	</fieldset>
+  	</td>
+	</tr>
+</table>	
+			
+[ip_footer_console]

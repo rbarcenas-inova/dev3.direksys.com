@@ -1,0 +1,55 @@
+&nbsp;
+<fieldset><legend>Lots &amp; Expiration Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Lot Number :  <span class="smallfieldterr">[er_lotname]</span></td>
+			<td><input name="lotname" value="[in_lotname]" size="50" maxlenght="50" type="text" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">Expiration Date :  <span class="smallfieldterr">[er_expirationdate]</span></td>
+			<td><input id="expirationdate" name="expirationdate" value="[in_expirationdate]" size="10" maxlenght="10" type="text" class="input"></td>
+		</tr>
+		<tr>
+			<td width="30%">Type :</td>
+			<td><span class="smalltext">[in_type]</span></td>
+			
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Lot Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Status :  <span class="smallfieldterr">[er_status]</span></td>
+			<input type="hidden" id="status_value" value="[in_status]">
+			<td>[fc_lots_status]</td>
+		</tr>
+	</table>
+</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_radio('status','[in_status]');
+	chg_radio('type','[in_type]');
+
+    $(document).ready(function() {
+
+		var dates = $( "#expirationdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 3,
+		});
+
+	var status=$("#status_value").val();
+
+	if (status == "Processed") {
+		$("#status_new").parent().remove();
+	}
+
+	});
+
+
+//-->
+</script>

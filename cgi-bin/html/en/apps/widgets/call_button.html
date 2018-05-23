@@ -1,0 +1,150 @@
+<a href="#" id="call">
+	<img src="/sitimages/sales/step1.png" title="Call" alt="Call" border="0" style="width:35px;">
+</a>
+<div class="phone_area">
+	<input type="text" name="call_phone" placeholder="Telefono" class="input" id="phone_box" maxlength="10">
+	<input type="button" value="Marcar" id="call_button" class="button">
+</div>
+
+<div class="tipificacionArea">
+	<form action="#" id="tipificarLlamada">
+		<h3>Tipificando</h3>
+		<h4>Telefono : <span id="phoneNumberLabel"></span></h4>
+		<input type="hidden" name="phonenumber" id="phoneNumber">
+		<input type="hidden" name="ajaxbuild" value="saveTipificacion">
+		<select name="tipo" id="tipificacion" required>
+			
+		</select>
+		<br>
+		<br>
+		<textarea name="descripcion" id="" cols="30" rows="5"></textarea>
+		<br>
+		<br>
+		
+		<input type="submit" class="button" value="Guardar" >
+		<!-- <input type="button" class="button" id="cancelTipificacion" value="Cancelar" > -->
+		<div class="loader_phone"><img src="/sitimages/ui-anim_basic_16x16.gif" alt=""></div>
+	</form>
+</div>
+<style>
+	.loader_phone{
+		display: none;
+	}
+	.loader_phone.active{
+		display:block;
+	}
+	.phone_area input{
+		float: left;
+		border-radius: 0px;
+	}
+	.phone_area .button{
+		height: 31px;
+	}
+	.phone_area .button:hover{
+	    border-radius: 0px;
+	    height: 31px;
+	}
+	.phone_area{
+		background: #fff none repeat scroll 0 0;
+	    border-radius: 0 0 9px;
+	    border-top: 1px solid;
+	    box-shadow: #000 3px 4px 9px;
+	    position: fixed;
+	    top: -100px;
+	    opacity: 0;
+	    right: 0;
+	    transition: all ease 0.5s;
+	    z-index:-999999;
+	    padding: 30px
+	}
+	.phone_area.active {
+	    top: 40px;
+	    opacity: 1;
+	}
+	.tipificacionArea {
+	    background: #fff none repeat scroll 0 0;
+	    border: 1px solid;
+	    border-radius: 30px;
+	    height: 300px;
+	    left: 0;
+	    margin: 10% auto;
+	    padding: 50px;
+	    position: fixed;
+	    right: 0;
+	    width: 300px;
+	    z-index: 999999;
+	    opacity: 0;
+	    transition: all ease 0.5s;
+	    top: -530px;
+	}
+	.tipificacionArea.active{
+	    top: 30px;
+	    opacity: 1;
+
+	}
+
+</style>
+<script>
+	$('#cancelTipificacion').on('click', function(){
+		$('.tipificacionArea').toggleClass('active');
+	})
+	$('#call').on('click', function(){
+		$('.phone_area').toggleClass('active');
+		$('.phone_area #phone_box').focus();
+	})
+	$('#phone_box').on('keyup', function(e){
+		if(e.keyCode == 13){
+			$('#call_button').click();
+		}
+	})
+	var currentPhone = '';
+	$('#tipificarLlamada').on('submit', function(e){
+		e.preventDefault();
+		$('.loader_phone').toggleClass('active');
+		that = $(this);
+		$.ajax({
+			url: '/cgi-bin/common/apps/ajaxbuild',
+			type: 'POST',
+			data: $(this).serialize(),
+		})
+		.done(function(data) {
+			// alert('Exito');
+			$('.tipificacionArea').toggleClass('active');
+			$('.loader_phone').toggleClass('active');
+
+			that[0].reset();
+			$('#phone_box').val('');
+			console.log(data)
+		});
+	})
+	$('#call_button').on('click', function(){
+		if($('#phone_box').val().length < 10){
+			alert('El telefono debe ser a 10 posiciones.');
+			return
+		}
+		currentPhone = $('#phone_box').val();
+		$('.phone_area').toggleClass('active');
+		$.ajax({
+			url: '/cgi-bin/common/apps/ajaxbuild',
+			type: 'POST',
+			data: {
+				ajaxbuild: 'click_tocall',
+				type: 'generate',
+				phone: $('#phone_box').val(),
+				extension: '[ur_username_ref]',
+				sid: '12-7910714630731763566321765',
+				agenda: '1'
+			},
+		})
+		.done(function(data) {
+			// alert('Marcando a '+currentPhone);
+			$('.tipificacionArea').toggleClass('active');
+			$('#phoneNumberLabel').html(currentPhone);
+			$('#phoneNumber').val(currentPhone);
+
+			$('#phone_box').val('');
+			console.log(data)
+		});
+		
+	})
+</script>

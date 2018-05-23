@@ -1,0 +1,123 @@
+[ip_header_small]
+
+
+
+<span class="smallfieldterr">[va_message]</span>
+
+  <form action="/cgi-bin/common/apps/ajaxbuild" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="ajaxbuild" value="mer_products">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="opt" value="[in_opt]">
+	<input type="hidden" name="id_products" value="[in_id_products]">
+
+<table border="0" cellspacing="0" cellpadding="4" width="[ur_table_width]" class="container_white">
+	<tr>
+		<td>
+&nbsp;
+<fieldset><legend>Shipping & Packing Options</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			    <td width="30%">
+			    	<label for="[in_cmd]_packing">Packing</label> : <span class="smallfieldterr">[er_packing]</span></td>
+			    <td class="smalltext">
+			    	<select id="packing" name="packing" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			    		<option value="">---</option>
+		           		[fc_build_select_prd_packing]
+		         	</select>
+		     </td>
+			</tr>
+			<tr>
+			    <td width="30%"
+			    	<label for="handling">Handling Specs</label> : 
+			    	<span class="smallfieldterr">[er_handling]</span>
+			    </td>
+			    <td class="smalltext">
+			    	<select name="handling" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		         		<option value="">---</option>
+		         		[fc_build_select_prd_handlingspecs]
+		       		</select>
+		       	</td>
+			</tr>
+			<tr>
+		    <td width="30%">Warehouse Handling  : <span class="smallfieldterr">[er_warehousehandling]</span></td>
+		    <td class="smalltext"><select name="warehousehandling" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	         <option value="">---</option>
+	         [fc_build_select_prd_handlingwarehouse]
+	       </select></td>
+			</tr>
+			<tr>
+		    <td width="30%">Product Type : <span class="smallfieldterr">[er_producttype]</span></td>
+		    <td class="smalltext">
+		    	<select name="producttype" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	        	<option value="">---</option>
+	         		[fc_build_select_prd_type]
+	     		</select>
+	    	</td>
+			<tr>
+		    <td width="30%">Product Documentation : <span class="smallfieldterr">[er_productdocs]</span></td>
+		    <td class="smalltext"><select name="productdocs" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	         <option value="">---</option>
+	         [fc_build_select_prd_docs]
+	       </select></td>
+			</tr>
+			<tr>
+			  <td width="30%" valign="top">Free Shipping Opt.: </td>
+			  <td class="smalltext">
+					<input type="radio" name="free_shp_opt" class="radio" value="Yes">Yes
+			  	<input type="radio" name="free_shp_opt" class="radio" value="No" >No
+			  </td>
+			</tr>
+			<tr>
+			  <td width="30%" valign="top">Allow Express Shipping: </td>
+			  <td class="smalltext">
+					<input type="radio" name="expressshipping" class="radio" value="Yes">Yes
+			  	<input type="radio" name="expressshipping" class="radio" value="No" >No
+			  </td>
+			</tr>	
+	</table>
+ </fieldset>
+&nbsp;
+	</td>
+</tr>
+</table>
+
+
+<script type="text/javascript">
+<!--
+
+
+	chg_select('id_manufacters','[in_id_manufacters]');
+	chg_select('packing','[in_packing]');
+	chg_select('productdocs','[in_productdocs]');
+	chg_select('handling','[in_handling]');
+	chg_select('producttype','[in_producttype]');
+	chg_select('warehousehandling','[in_warehousehandling]');
+	chg_select('supplierpacking','[in_supplierpacking]');
+	chg_select('id_packingopts','[in_id_packingopts]');
+	chg_select('sprice1name','[in_sprice1name]');
+	chg_select('sprice2name','[in_sprice2name]');
+	chg_select('sprice3name','[in_sprice3name]');
+	chg_select('sprice4name','[in_sprice4name]');
+	chg_select('flexipago','[in_flexipago]');
+	chg_select('id_brands','[in_id_brands]');
+	chg_select('id_products_speech','[in_id_products_speech]');
+	chg_select('id_services_related','[in_id_services_related]');
+	
+	chg_chkbox('paytype','[in_paytype]');
+	chg_chkbox('dids','[in_dids]');
+	chg_chkbox('web_available','[in_web_available]');
+	
+	chg_radio('shipping_table','[in_shipping_table]');
+	chg_radio('pricetype','[in_pricetype]');
+	chg_radio('dropshipment','[in_dropshipment]');
+	chg_radio('isfinal','[in_isfinal]');
+	chg_radio('pactive','[in_pactive]');
+	chg_radio('free_shp_opt','[in_free_shp_opt]');
+	chg_radio('expressshipping','[in_expressshipping]');
+	
+
+//-->
+</script>
+
+<p align="center"><input type="submit" value="Update Record" class="button"></p>
+  </form>

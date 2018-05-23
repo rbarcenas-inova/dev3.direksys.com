@@ -1,0 +1,286 @@
+#!/usr/bin/perl
+#######################################################################
+#######################################################################
+#######################################################################
+
+use DBI;
+use DBIx::Connector;
+use DBD::mysql;
+use Cwd;
+use File::Copy;
+use Encode;
+use Date::Calc qw();
+
+local(%in) = &parse_form;
+
+# Required Libraries
+# --------------------------------------------------------
+eval {
+	require ('../subs/auth.cgi');
+	require ('../subs/sub.base.html.cgi');
+	require ('../subs/sub.func.html.cgi');
+	require ('../subs/libs/lib.to_sort1.pl');
+};
+if ($@) { &cgierr ("Error loading required Libraries",300,$@); }
+
+eval { &main; };
+if ($@) { &cgierr("Fatal error,301,$@"); }
+
+exit;
+
+#################################################################
+#################################################################
+#	Function: main
+#
+#   		Main function: Calls execution scripts. Script called from cron task
+#
+#	Created by: Ing. Gilberto Quirino
+#
+#
+#
+#
+#   	Parameters:
+#
+#
+#   	Returns:
+#
+#
+#
+#   	See Also:
+#
+sub main {
+#################################################################
+#################################################################
+
+	$|++;
+	&connect_db;
+	&execute_po_auth;
+	&disconnect_db;
+}
+
+
+#################################################################
+#################################################################
+#	Function: execute_po_auth
+#
+#
+#	Created by: Gilberto Quirino
+#
+#
+#
+#   	Parameters:
+#
+#
+#   	Returns:
+#
+#
+#
+#   	See Also:
+#
+sub execute_po_auth{
+	
+
+
+	&load_settings;
+	print "Content-type: text/html\n\n";
+	print qq|<meta http-equiv="content-type" content="text/html; charset=utf-8" />\n\n|;
+	
+	### Validación de parámetros
+	if( !$in{'e'} or !$in{'p'} ){
+		$va{'message'} = '<span class="msg_error">Invalid Request</span>';
+	}
+
+	if( !$va{'message'} or $va{'message'} eq '' ){
+		
+		### Autorización de PO
+		if( int($in{'b'}) == 0 or !$in{'b'} ){
+			### Se valida la existencia y vigencia del hash
+			my $sth = &Do_SQL("SELECT ID_vars, Subcode, Definition_En 
+								FROM sl_vars 
+								WHERE VName = 'po_services_auth' 
+									AND lower(VValue) = lower('".&filter_values($in{'p'})."') 
+									AND Expiration >= NOW();");
+			my ($id_vars, $po_data, $definition) = $sth->fetchrow_array();
+			if( $po_data ){
+				### Se recuperan los datos correspondientes a la autorización del PO
+				($in{'id_purchaseorders'}, $in{'id_admin_users'}, $in{'id_admin_auth'}) = split(/\|/, $po_data);
+				$usr{'id_admin_users'} = $in{'id_admin_users'};
+
+				### Se procesa la autorización del PO
+				my $sth_po = &Do_SQL("SELECT sl_purchaseorders.*, sl_vendors.Category 
+										FROM sl_purchaseorders 
+											INNER JOIN sl_vendors ON sl_purchaseorders.ID_vendors = sl_vendors.ID_vendors
+										WHERE ID_purchaseorders = ".$in{'id_purchaseorders'}.";");
+				my $po = $sth_po->fetchrow_hashref();
+
+				if( $po->{'Status'} eq 'Auth Request' and $po->{'Type'} eq 'PO Services' and ($po->{'Auth'} eq 'In Process' or ($po->{'Auth'} eq 'Approved' and int($po->{'AuthReceipt'}) == 0)) ){
+
+					&Do_SQL("START TRANSACTION;");
+					$in{'db'} = 'sl_purchaseorders';
+
+					### Se registra la autorización
+					$in{'authtype'} = 'Approved';
+					my $auth_receipt = '';
+					if( $definition eq 'FinalAuth' ){
+						$in{'authnotes'} = 'AUTORIZADO';
+						$auth_receipt = "AuthReceipt = 1,";
+					} else {
+						$in{'authnotes'} = 'PRIMERA REVISION';
+					}
+					&Do_SQL("INSERT INTO sl_purchaseorders_auth SET ID_purchaseorders=".$in{'id_purchaseorders'}.", Notes='".&filter_values($in{'authnotes'})."', Type='".$in{'authtype'}."', Date=CURDATE(), Time=CURTIME(), ID_admin_users=".$in{'id_admin_auth'}.";");
+					&auth_logging('mer_purchaseorder_auth_noteadded',$in{'id_purchaseorders'});
+
+					### Se genera la contabilidad de provisiones
+					if( !$definition ){
+						my $vendor_category = $po->{'Category'};
+						my @params = ($in{'id_purchaseorders'});
+						&accounting_keypoints('po_services_auth_'.$vendor_category, \@params);
+					}
+
+					### Se modifican los status del PO
+					$in{'authby'} = $in{'id_admin_auth'};
+					&Do_SQL("UPDATE sl_purchaseorders SET Auth='".$in{'authtype'}."', AuthBy=".$in{'id_admin_auth'}.", $auth_receipt Status='In Process' WHERE ID_purchaseorders=".$in{'id_purchaseorders'}.";");
+					&auth_logging('mer_purchaseorder_auth_final',$in{'id_purchaseorders'});
+
+					&Do_SQL("INSERT INTO sl_purchaseorders_notes SET ID_purchaseorders = ".$in{'id_purchaseorders'}.", Notes='".&trans_txt('mer_po_auth_processed')."', `Type`='High', Date=CURDATE(), Time=CURTIME(), ID_admin_users=".$in{'id_admin_auth'}.";");
+
+					### Se elimina el hash
+					&Do_SQL("DELETE FROM sl_vars WHERE ID_vars = ".$id_vars.";");
+
+					&Do_SQL("COMMIT");
+
+					$va{'message'} = '<span class="msg_success">'.&trans_txt('mer_po_auth_processed').'</span>';
+
+				} else {
+					$va{'message'} = '<span class="msg_error">Invalid Status for Purchase Orders</span>';
+				}
+			} else {
+				$va{'message'} = '<span class="msg_error">Invalid Request</span>';
+			}
+			$va{'id_value'} = $in{'id_purchaseorders'};
+			$va{'title_id'} = 'Purchase Orders ID';
+
+		### Autorización del Bill para pago
+		} elsif( int($in{'b'}) == 1 ){
+
+			### Se valida la existencia y vigencia del hash
+			my $sth = &Do_SQL("SELECT ID_vars, Subcode 
+								FROM sl_vars 
+								WHERE VName = 'po_bills_auth' 
+									AND lower(VValue) = lower('".&filter_values($in{'p'})."') 
+									AND Expiration >= NOW();");
+			my ($id_vars, $bill_data) = $sth->fetchrow_array();
+			if( $bill_data ){
+				### Se recuperan los datos correspondientes a la autorización del PO
+				($in{'id_bills'}, $in{'id_admin_users'}, $in{'id_admin_auth'}) = split(/\|/, $bill_data);
+				$usr{'id_admin_users'} = $in{'id_admin_auth'};
+
+				### Se procesa la autorización del PO
+				my $sth_bills = &Do_SQL("SELECT sl_bills.AuthBy, sl_bills.AuthToPay
+										FROM sl_bills 											
+										WHERE sl_bills.ID_bills = ".$in{'id_bills'}.";");
+				my $bills = $sth_bills->fetchrow_hashref();
+
+				if( int($bills->{'AuthBy'}) == 0 and int($bills->{'AuthToPay'}) == 0 ){
+
+					&Do_SQL("START TRANSACTION;");
+
+					&Do_SQL("UPDATE sl_bills SET AuthToPay = 1, AuthBy = ".int($usr{'id_admin_users'})." WHERE ID_bills = ".int($in{'id_bills'}).";");
+
+					&Do_SQL("INSERT INTO sl_bills_notes SET ID_bills = ".$in{'id_bills'}.", Notes='".&trans_txt('mer_bills_auth_to_pay')."', `Type`='High', Date=CURDATE(), Time=CURTIME(), ID_admin_users=".$usr{'id_admin_users'}.";");
+
+					$in{'cmd'} = 'mer_bills';
+					$in{'db'} = 'sl_bills';
+					&auth_logging('mer_bills_auth_to_pay',$in{'id_bills'});
+					$in{'db'} = 'sl_purchaseorders';
+					$in{'cmd'} = 'mer_po';
+					&auth_logging('mer_bills_auth_to_pay',$in{'id_purchaseorders'});
+
+					### Se elimina el hash
+					&Do_SQL("DELETE FROM sl_vars WHERE ID_vars = ".$id_vars.";");
+
+					&Do_SQL("COMMIT");
+
+					$va{'message'} = '<span class="msg_success">'.&trans_txt('mer_bills_auth_to_pay')." - ".$in{'id_bills'}.'</span>';
+
+				} else {
+					$va{'message'} = '<span class="msg_error">Invalid Status for Bills</span>';
+				}
+			} else {
+				$va{'message'} = '<span class="msg_error">Invalid Request</span>';
+			}
+			$va{'id_value'} = $in{'id_bills'};
+			$va{'title_id'} = 'ID Bills';
+
+		}
+	}
+	print &build_page('customapps:po_auth.html');
+
+	return;
+	
+}
+
+sub load_settings {
+	my ($fname);
+	
+	if ($in{'e'}) {
+		$fname = "../general.e".$in{'e'}.".cfg";
+	}else {
+		$fname = "../general.ex.cfg";
+	}
+
+	## general
+	open (CFG, "<$fname") or &cgierr ("Unable to open: $fname,160,$!");
+	LINE: while (<CFG>) {
+		(/^#/)      and next LINE;
+		(/^\s*$/)   and next LINE;
+		$line = $_;
+		$line =~ s/\n|\r//g;
+		my ($td,$name,$value) = split (/\||\=/, $line,3);
+		if ($td eq "conf") {
+			$cfg{$name} = $value;
+			next LINE;
+		}elsif ($td eq "sys"){
+			$sys{$name} = $value;
+			next LINE;
+		}
+	}
+	close CFG;
+
+}
+
+sub parse_form {
+# --------------------------------------------------------
+	my (@pairs, %in);
+	my ($buffer, $pair, $name, $value);
+
+	if ($ENV{'REQUEST_METHOD'} eq 'GET') {
+		@pairs = split(/&/, $ENV{'QUERY_STRING'});
+	}elsif ($ENV{'REQUEST_METHOD'} eq 'POST') {
+		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
+ 		@pairs = split(/&/, $buffer);
+	}else {
+		&cgierr ("This script must be called from the Web\nusing either GET or POST requests\n\n");
+	}
+	PAIR: foreach $pair (@pairs) {
+		($name, $value) = split(/=/, $pair);
+
+		$name =~ tr/+/ /;
+		$name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		$name = lc($name);
+
+		$value =~ tr/+/ /;
+		$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+
+		$value =~ s/^\s+//g;
+		$value =~ s/\s+$//g;
+
+		#$value =~ s/\r//g;
+		$value =~ s/<!--(.|\n)*-->//g;			# Remove SSI.
+		if ($value eq "---") { next PAIR; }		# This is used as a default choice for select lists and is ignored.
+		(exists $in{$name}) ?
+			($in{$name} .= "|$value") :		# If we have multiple select, then we tack on
+			($in{$name}  = $value);			# using the ~~ as a seperator.
+	}
+	return %in;
+}

@@ -1,0 +1,75 @@
+&nbsp;
+<a name='tabs' id='tabs'>&nbsp;</a>
+	&nbsp;
+	
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+	    <td class="tbltextttl">
+	    	<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_products]&tab=[va_activetab]&tabs=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+	    	<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=2&tabcmd=products&toprint=[in_id_products]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+	    	Categories : [va_matches]
+	      <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+			   			<td class="menu_bar_title" width="10%">&nbsp;</td>
+			   			<td class="menu_bar_title">Category Name</td>
+			 		</tr>
+			 		[va_searchresults]
+				</table>
+				<span class='fieldterr'>[va_tabmessages_cat]</span>
+			<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+				<input type="hidden" name="id_products" value="[in_id_products]">
+				<input type="hidden" name="view" value="[in_id_products]">
+				<input type="hidden" name="action" value="add_category">
+				<input type="hidden" name="tab" value="2">
+				<input type="hidden" name="cmd" value="[in_cmd]">		    	
+			 	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+				    <td class="menu_bar_title">Add New Category</td>
+				 	</tr>
+					<tr>
+						<td class="smalltext">
+							Category Name : <span class="smallfieldterr">[er_id_categories]</span>
+							<select name="id_categories" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			     			[fc_build_select_prdcategories]
+		       		</select><input type="submit" value="Add" class="button">
+		       	</td>
+					</tr>
+				</table>			    	
+			</form>				
+		  </td>
+		</tr>
+		<tr>
+		  <td class="tbltextttl">Properties : [va_matches]
+		   <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+				<td class="menu_bar_title">Property Name</td>
+				</tr>
+				[va_searchresults_prop]
+			</table>
+			<span class='fieldterr'>[va_tabmessages_pro]</span>
+			<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+				<input type="hidden" name="id_products" value="[in_id_products]">
+				<input type="hidden" name="view" value="[in_id_products]">
+				<input type="hidden" name="action" value="add_property">
+				<input type="hidden" name="tab" value="2">
+				<input type="hidden" name="cmd" value="[in_cmd]">		    	
+			 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+					<td class="menu_bar_title">Add New Property</td>
+				</tr>
+				<tr>
+					<td class="smalltext">
+						Property Name : <span class="smallfieldterr">[er_id_properties]</span>
+						<select name="id_properties" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+               [fc_build_select_prdproperties]
+             </select><input type="submit" value="Add" class="button"></td>
+				</tr>
+			</table>				    	
+			</form>
+			</td>
+		 </tr>
+		<tr>
+	</table>
+	&nbsp;
+
+	

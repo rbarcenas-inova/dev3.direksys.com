@@ -1,0 +1,79 @@
+
+<table border="0" cellspacing="0" cellpadding="4" width="[ur_table_width]" class="container_white">
+	<tr>
+		<td width="140" align="center" valign="top">
+			&nbsp;
+		</td>
+		<td valign="top">
+<!-- Start Main Area  -->				
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+			    <td class="titletext" align="center" colspan="2">Report Orders Products to Disk</td>
+				</tr>
+				<tr>
+			    <td class="stdtxterr" colspan="2">[va_message]</td>
+		  	</tr>
+	    </table>
+			<form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform" target="upwin" onsubmit="upwin()">
+				<input type="hidden" name="cmd" value="report_order_prod">
+        <input type="hidden" name="action" value="1">
+				<input type="hidden" name="reportdatefrom" value="[in_reportdatefrom]">				
+				<input type="hidden" name="reportdateto" value="[in_reportdateto]">				
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+					<td  align="center" class="menu_bar_title"> Report  Orders  Products
+				  </td>
+			  </tr>				
+				<tr>			  	
+					<td align="center">
+						<input type="text" id="reportdatef" name="reportdatef" value="[in_reportdatef]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					</td>
+				</tr>													
+				<tr>			  	
+					<td align="center">
+						<input type="text" id="reportdatet" name="reportdatet" value="[in_reportdatet]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					</td>
+				</tr>													
+				<tr>
+					<td align="center"><br>	
+						<input type="submit" name="export2" value="Order All Orders" class="button"></td>
+				  </td>
+			  </tr>				
+			</table>
+	   </form>
+	   <script language="javascript">
+	   <!--
+
+	        $(document).ready(function() {
+
+				/*AJAX Error handler*/
+				$(document).ajaxError(function(e, xhr, settings, exception) {
+					alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+				});
+
+				var dates = $( "#reportdatef,#reportdatet" ).datepicker({
+					dateFormat: 'yy-mm-dd',
+					defaultDate: "-2m",
+					minDate: new Date(2009,1-1,1),
+					maxDate: new Date(),
+					changeMonth: true,
+					numberOfMonths: 3,
+					onSelect: function( selectedDate ) {
+						var option = this.id == "reportdatef" ? "minDate" : "maxDate",
+						instance = $( this ).data( "datepicker" ),
+						date = $.datepicker.parseDate(
+							instance.settings.dateFormat ||
+							$.datepicker._defaults.dateFormat,
+							selectedDate, instance.settings );
+						dates.not( this ).datepicker( "option", option, date );
+					}
+				});
+
+	        });
+		//-->
+		</script>		
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+

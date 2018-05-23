@@ -1,0 +1,135 @@
+	&nbsp;
+	<fieldset><legend>Product Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<input type="hidden" name="id_products_prior" value="[in_id_products_prior]">
+		  <td width="30%">Product ID: <span class="smallfieldterr">[er_id_products]</span></td>
+		  <td class="smalltext"><input type="text" name="id_products" value="[in_id_products]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Model: <span class="smallfieldterr">[er_model]</span></td>
+		  <td class="smalltext"><input type="text" name="model" value="[in_model]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Name : <span class="smallfieldterr">[er_name]</span></td>
+		  <td class="smalltext"><input type="text" name="name" value="[in_name]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		
+		<tr>			
+	    <td width="30%">Pay Type: <span class="smallfieldterr">[er_paytype]</span></td>
+	    <td class="smalltext">
+	    <input name="paytype" value="COD" type="checkbox" class="checkbox">COD&nbsp;&nbsp;
+	    <input name="paytype" value="Layaway" type="checkbox" class="checkbox">Layaway<br>
+	    <input name="paytype" value="Money-Order" type="checkbox" class="checkbox">Money Order&nbsp;&nbsp;
+	    <input name="paytype" value="Western-Union" type="checkbox" class="checkbox">Western Union<br>
+	    <input name="paytype" value="Check" type="checkbox" class="checkbox">Check&nbsp;&nbsp;
+	    <input name="paytype" value="Credit-Card-7" type="checkbox" class="checkbox">Credit Card Weekly<br>
+	    <input name="paytype" value="Credit-Card-15" type="checkbox" class="checkbox">Credit Card Biweekly&nbsp;&nbsp;
+	    <input name="paytype" value="Credit-Card-30" type="checkbox" class="checkbox">Credit Card Monthly&nbsp;&nbsp;
+	    </td> 	    
+		</tr>		
+		<tr>
+		  <td width="30%" valign="top">Packing/Shipping Options : </td>
+		  <td class="smalltext"><select name="id_packingopts" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+         <option value="">---</option>
+         [fc_build_select_prd_pckopts]
+       </select><br>
+				 <span class="help_on">The shipping Charges will be calculated based on the box,<br>NOT by the weight</span></td>
+		</tr>
+		<tr>
+		  <td width="30%">Sales Price (Precio 1)  : </td>
+		  <td class="smalltext">
+					<input type="text" name="sprice" value="[in_sprice]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'><!--onFocus='blur( this )'>-->
+					<span class="smallfieldterr">[er_sprice]</span></td>
+		</tr>
+		<tr>
+		  <td width="30%" valign="top">FP Price  : <span class="smallfieldterr">[er_fpprice]</span></td>
+			<td class="smalltext"><input type="text" name="fpprice" value="[in_fpprice]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'><span class="help_on"> in US$</span></td>
+		</tr>
+		<tr>
+		  <td width="30%" valign="top">Flexipago<span class="help_on"> (Monthly)</span>  : <span class="smallfieldterr">[er_flexipago]</span></td>
+		  <td class="smalltext">
+				<select name="flexipago" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					<option value="1">None</option>
+					<option value="2">2 Payments</option>
+					<option value="3">3 Payments</option>
+					<option value="4">4 Payments</option>
+					<option value="5">5 Payments</option>
+					<option value="6">6 Payments</option>
+					<option value="7">7 Payments</option>
+					<option value="8">8 Payments</option>
+					<option value="9">9 Payments</option>
+					<option value="10">10 Payments</option>
+					<option value="11">11 Payments</option>
+					<option value="12">12 Payments</option>
+					<option value="13">13 Payments</option>
+					<option value="14">14 Payments</option>
+					<option value="15">15 Payments</option>
+					<option value="16">16 Payments</option>
+					<option value="17">17 Payments</option>
+					<option value="18">18 Payments</option>
+					<option value="19">19 Payments</option>
+					<option value="20">20 Payments</option>
+					<option value="21">21 Payments</option>
+					<option value="22">22 Payments</option>
+					<option value="23">23 Payments</option>
+					<option value="24">24 Payments</option>
+        </select>
+      </td>
+		</tr>
+		
+		<tr>
+		  <td width="30%">Valid From : <span class="smallfieldterr">[er_valid_from]</span></td>
+		  <td class="smalltext">
+				<input type="text" id="valid_from" name="valid_from" value="[in_valid_from]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%">Valid To : <span class="smallfieldterr">[er_valid_to]</span></td>
+		  <td class="smalltext">
+				<input type="text" id="valid_to" name="valid_to" value="[in_valid_to]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+
+<script language="javascript">
+<!--
+
+	chg_radio('status','[in_status]');
+	
+	chg_chkbox('paytype','[in_paytype]');
+	chg_select('id_packingopts','[in_id_packingopts]');
+	chg_select('flexipago','[in_flexipago]');
+
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#valid_from, #valid_to" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			minDate: new Date(2009,1-1,1),
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+			onSelect: function( selectedDate ) {
+				var option = this.id == "valid_from" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+
+	});
+
+//-->
+</script>

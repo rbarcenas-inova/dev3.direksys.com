@@ -1,0 +1,72 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+			<!-- Start Main Area  -->
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+			<form action="/cgi-bin/mod/wms/admin" method="POST" name="sitform">
+				<input type="hidden" name="action" value="1">
+				<input type="hidden" name="cmd" value="upc">
+				
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					<tr>
+					  <td class="titletext" align="center" colspan="2">Add/Update UPC</td>
+					</tr>
+					<tr>
+					  <td class="stdtxterr" colspan="2">[va_message]</td>
+					</tr>				
+				</table>
+				&nbsp;			
+				<fieldset><legend>Add / Update UPC Code</legend>
+					<table border="0" cellspacing="0" cellpadding="4" width="100%">
+						<tr>
+							<td valign="top"> Product ID (9-Digits) : <span class="smallfieldterr">[er_id_products]</span></td>
+							<td>
+								<input type="text" id="shpdate" name="id_products" value="[in_id_products]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'> &nbsp;
+								<input type="checkbox" value="on" name="sltv_id" class="checkbox">Based on Product ID
+							</td>
+						</tr>		
+						<tr>
+							<td valign="top">UPC :<span class="smallfieldterr">[er_upc]</span></td>
+							<td><textarea name="upc" cols="50" style="width:90%" rows="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_upc]</textarea></td>
+						</tr>
+						<tr>
+							<td align="center" colspan="2">[va_confirm]<input type="submit" value="Add / Update UPC" class="button"></td>
+						</tr>
+					</table>
+				</fieldset>	
+			</form>
+			<!-- End Main Area  -->
+			
+			<script language="javascript">
+				<!--
+
+					chg_chkbox('sltv_id','[in_sltv_id]');
+				
+				//-->
+			</script>
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

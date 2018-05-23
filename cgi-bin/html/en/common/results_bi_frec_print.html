@@ -1,0 +1,76 @@
+[ip_header_blank]
+
+<table border="0" cellspacing="0" cellpadding="4" width="[ur_table_width]" class="container_white">
+	<tr>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+		[va_report_tbl]
+		&nbsp;
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		    <td class="tbltextttl">
+		    	Records : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: 1</td>
+			</tr>
+	  </table>
+		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+			<tr>
+			    <td class="menu_bar_title" width="20%">Description</td>
+			    <td class="menu_bar_title" align="center">Orders</td>
+			    <td class="menu_bar_title" colspan="2 align="center">1st. Time Cust.</td>
+			    <td class="menu_bar_title" colspan="2 align="center">2-5 Times Cust.</td>
+			    <td class="menu_bar_title" colspan="2 align="center">6-10 Times Cust</td>
+			    <td class="menu_bar_title" colspan="2 align="center">> 10 Times Cust.</td>
+			    <td class="menu_bar_title" align="center">Amount</td>
+			</tr>
+			[va_searchresults]
+		</table>
+		&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="40%" align="center" class="formtable">
+		<tr>
+			<td class="menu_bar_title" colspan="3" align="center">Totals</td>
+		</tr>
+		<tr>
+			<td>Total Orders</td>
+			<td align="right">[va_tot_cant]</td>
+			<td align="right"></td>
+		</tr>
+		<tr>
+			<td>Total Amount</td>
+			<td align="right">[va_tot_amount]</td>
+			<td>&nbsp</td>
+		</tr>
+		<!--
+		<tr><td colspan="2">&nbsp;</td></tr>
+		<tr>
+			<td>1st. Time Cust.</td>
+			<td align="right">[va_tot_1time]</td>
+			<td align="right">([va_pct1]%)</td>
+		</tr>
+		<tr>
+			<td>2-5 Times Cust.</td>
+			<td align="right">[va_tot_2times]</td>
+			<td align="right">([va_pct2]%)</td>
+		</tr>
+		<tr>
+			<td>6-10 Times Cust.</td>
+			<td align="right">[va_tot_ttimes]</td>
+			<td align="right">([va_pct3]%)</td>
+		</tr>
+		<tr>
+			<td>>10 Times Cust.t</td>
+			<td align="right">[va_tot_mtimes]</td>
+			<td align="right">([va_pct4]%)</td>
+		</tr>
+		-->
+	</table>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

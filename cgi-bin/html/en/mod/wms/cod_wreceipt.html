@@ -1,0 +1,249 @@
+[ip_header_blank]
+ <link rel="STYLESHEET" href="[va_imgurl]/[ur_pref_style]/main.css" type="text/css">
+  <!-- Direksys v2 -->  
+  <link rel="stylesheet" type="text/css" href="[va_imgurl]app_bar/mod/Xtyle[in_e].css" />
+  <!-- Direksys v2 -->  
+
+<!-- anylinkcssmenu -->
+<script type="text/javascript" language="JavaScript" src="[va_imgurl]anylinkcssmenu.js"></script>
+<script type="text/javascript">
+  //anylinkcssmenu.init("menu_anchors_class") ////Pass in the CSS class of anchor links (that contain a sub menu)
+  anylinkcssmenu.init("anchorclass");
+</script>
+<!-- anylinkcssmenu -->
+<script>
+    /**
+    * The onload function creates the graph
+    */
+    window.onload = function ()
+    {      
+        showTheTime();
+        hidehelp();
+    }
+</script>
+
+
+
+<table border="0" cellspacing="0" cellpadding="0" style="background-color:#ffffff;  -moz-border-radius: 0px 0px 10px 10px;border-radius:  0px 0px 10px 10px ; ">
+  <tr>
+    <td width=10px>
+       &nbsp;
+    </td>
+    <td width=100% >
+      <div style="position:relative;left:0px;">
+            
+        <div class="scroller_anchor"></div> 
+          <div class="scroller">
+              <table border="0" cellspacing="0" cellpadding="0">
+                <td valign=middle align=left nowrap>&nbsp;  <img src=[va_imgurl]app_bar/mod/direksysRN.png border=0 height=25px> </td>
+                <td valign=middle align=left><img src=[va_imgurl]app_bar/mod/menubgdiv.png></td>
+                    <td valign=middle align=left nowrap>
+                                  
+                  <font class="compania">[va_app_title] </font> 
+                    </a>
+                </td>
+
+
+
+                <td valign=middle align=left>
+                  <img src=[va_imgurl]app_bar/mod/menubgdiv.png>
+                </td>
+              </table>
+
+          </div>
+      </div>
+
+    </td>
+  </tr>
+</table>
+
+
+	<div style="background-color:#ffffff; margin:15px;border:1px solid #666666;">
+		
+
+
+<form action="/cgi-bin/mod/wms/admin" method="POST" name="sitform" onsubmit="return disableSubmits();">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="cmd" value="cod_wreceipt">
+		
+	<!-- Start Main Area  -->
+
+
+	<div style="margin:15px;">
+
+
+
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+			<td class="titletext" colspan="2" align="center">
+				Devolución COD
+			</td>
+		</tr>
+		<tr>
+			<td><span class="bigerrtext">[va_error]</span>
+				<span class="stdtxterr">[va_message]</span></td>
+		</tr>
+		<tr>
+	    	<td valign="top">Recepción <span class="help_on">(Pedido / UPC [:Lot number])</span><br>
+		    				
+		    				<textarea name="tracking" cols="50" style="width:98%;height:80px;" rows="5" class="input">[in_tracking]</textarea>
+		    				<br>
+		    				<br>
+		    				Fecha<!--Date--> <input type="text" id="shpdate" name="shpdate" value="[in_shpdate]" size="20" class="input"><br><br>
+		    				Origen<!--From Driver -->
+		    				<select name="from_wh"  class="input">
+			    				<option>---</option>
+			    				[fc_build_select_virtual_warehouses]
+			    			</select>
+		    				<br><br>
+		    				Almacen de destino<!--Back to Warehouse -->
+		    				<select name="id_warehouses"  class="input">
+			    				<option>---</option>
+			    				[fc_build_select_regular_warehouses]
+			    			</select>
+			    			<br><br>
+							Gaveta de destino<!--Back to Location -->
+							<select name="to_location"  class="input">
+								<option>---</option>
+							</select>
+							<br><br>	
+
+		    </td>
+ 		 </tr>
+		<tr>
+	    	<td valign="top">Nota (opcional)<br>
+		    				<textarea name="note" cols="50" style="width:98%;height:80px;" rows="5"  class="input">[in_note]</textarea>
+		    </td>
+ 		 </tr>
+ 		 <tr>
+ 		 	<td align="center"><input type="submit" value="Recibir" class="button"></td>
+ 		</tr>
+    </table>
+	
+</form>	
+
+
+		<script language="javascript">
+		<!--
+
+		    $(document).ready(function() {
+
+		    	var id_warehouse = $('select[name="id_warehouses"]').val();
+					
+				$.ajax({
+						contentType: 'application/x-www-form-urlencoded;charset=ISO-8859-1',
+						url: '/cgi-bin/common/apps/ajaxbuild',
+						data: {
+							ajaxbuild: "get_locations",
+							back_to_wh: id_warehouse
+						},
+						success: function( data ) {
+							if (data == 'Error') {
+								$('select[name="to_location"]').html('<option>---</option>');
+								alert('No se encontraron datos');
+							} else {
+								$('select[name="to_location"]').html('<option selected="selected">---</option>');
+								$('select[name="to_location"]').append(data);
+							}
+							chg_select('to_location','[in_to_location]');
+						}
+				});
+
+				$('select[name="id_warehouses"]').change(function(){
+					
+					var id_warehouse = $(this).val();
+					
+					$.ajax({
+							contentType: 'application/x-www-form-urlencoded;charset=ISO-8859-1',
+							url: '/cgi-bin/common/apps/ajaxbuild',
+							data: {
+								ajaxbuild: "get_locations",
+								back_to_wh: id_warehouse
+							},
+							success: function( data ) {
+								if (data == 'Error') {
+									$('select[name="to_location"]').html('<option>---</option>');
+									alert('No se encontraron datos');
+								} else {
+									$('select[name="to_location"]').html('<option selected="selected">---</option>');
+									$('select[name="to_location"]').append(data);
+									//response(eval(data));
+								}
+							}
+					});
+				});
+			
+				/*AJAX Error handler*/
+				$(document).ajaxError(function(e, xhr, settings, exception) {
+				alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+				});
+
+				var dates = $( "#shpdate" ).datepicker({
+					dateFormat: 'yy-mm-dd',
+					defaultDate: "-2m",
+					maxDate: new Date(),
+					changeMonth: true,
+					numberOfMonths: 3,
+				});
+
+		    });
+
+			chg_select('id_warehouses','[in_id_warehouses]');
+			chg_select('from_wh','[in_from_wh]');
+			
+
+			var formObjs = document.forms;
+			function disableSubmits(formObj) {
+			for(i=0;i<formObjs.length;i++) {
+				for(j=0;j<formObjs[i].elements.length;j++) {
+					if(formObjs[i].elements[j].type == null) { j++; } else {}
+					var fieldName = formObjs[i].elements[j].name.toLowerCase();
+					if((formObjs[i].elements[j].type == "submit") || ((formObjs[i].elements[j].type == "button") && (fieldName.indexOf("submit") != -1))) {
+						formObjs[i].elements[j].disabled = true;
+					}
+				}
+			}
+			return true;
+			}
+
+		//-->
+		</script>
+  
+
+  </div>
+</div>
+
+
+
+      <!--table border="0" cellspacing="0" cellpadding="0"   width=100%>
+    <tr>
+      <td width=7px>
+        <img src=[va_imgurl]app_bar/mod/menubg1.png width="7px" height="100%">
+      </td>
+      <td width=100% background=[va_imgurl]app_bar/mod/menubg2.png>
+        <table border="0" cellspacing="0" cellpadding="0">
+          <td valign=middle align=left nowrap>
+            <font class=menu2>Warehouses: 
+            <font class="compania">[va_namew] </font>&nbsp;
+          </td>
+           <td>
+              <a href="/"  class="anchorclass " rel="submenu1[click]">&nbsp;
+			  <img src=[va_imgurl]app_bar/mod/v.jpg border=0></a>
+          </td>
+        </table>
+      </td>
+      <td width=7px>
+        <img src=[va_imgurl]app_bar/mod/menubg3.png>
+      </td>
+    </tr>
+  </table-->
+<!--
+ <div id="submenu1" class="anylinkcsscols">
+    <div class="column">
+      [va_warehouses_list]
+      <img src=[va_imgurl]app_bar/mod/menushadowfin.png>
+    </div>
+  </div>	
+
+-->
+

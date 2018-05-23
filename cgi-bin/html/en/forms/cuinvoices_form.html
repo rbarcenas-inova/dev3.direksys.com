@@ -1,0 +1,135 @@
+	<fieldset><legend>Invoices</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td width='30%'>Serie :  <span class='smallfieldterr'></span></td>
+				<td><input type='text' name='doc_serial' value='[in_doc_serial]' size='20' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+				<td width='30%'>Número :  <span class='smallfieldterr'></span></td>
+				<td><input type='text' name='doc_num' value='[in_doc_num]' size='' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+				<td width='30%'>UUID :  <span class='smallfieldterr'></span></td>
+				<td><input type='text' name='xml_uuid' value='[in_xml_uuid]' size='50' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>		
+			<tr>
+				<td width='30%'>Fecha de Certificación :  <span class='smallfieldterr'></span></td>
+				<td><input id='xml_fecha_certificacion' size='20' name='xml_fecha_certificacion' value='[in_fecha_certificacion]' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				</td>
+			</tr>
+			<tr>
+				<td width='30%'>Status :  <span class='smallfieldterr'></span></td>
+				<td>
+					[br_status@cu_invoices]
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+
+	<input type='hidden' name='id_customers' value='[in_id_customers]'>
+	<input type='hidden' name='doc_date' value='[in_doc_date]'>
+	<input type='hidden' name='use_cfdi' value='[in_use_cfdi]'>
+	<input type='hidden' name='payment_type' value='[in_payment_type]'>
+	<input type='hidden' name='payment_method' value='[in_payment_method]'>
+	<input type='hidden' name='payment_digits' value='[in_payment_digits]'>
+	<input type='hidden' name='invoice_net' value='[in_invoice_net]'>
+	<input type='hidden' name='invoice_total' value='[in_invoice_total]'>
+	<input type='hidden' name='discount' value='[in_discount]'>
+	<input type='hidden' name='total_taxes_detained' value='[in_total_taxes_detained]'>
+	<input type='hidden' name='total_taxes_transfered' value='[in_total_taxes_transfered]'>
+	<input type='hidden' name='cost' value='[in_cost]'>
+	<input type='hidden' name='currency' value='[in_currency]'>
+	<input type='hidden' name='currency_exchange' value='[in_currency_exchange]'>
+	<input type='hidden' name='invoice_type' value='[in_invoice_type]'>
+	<input type='hidden' name='place_consignment' value='[in_place_consignment]'>
+	<input type='hidden' name='expediter_fcode' value='[in_expediter_fcode]'>
+	<input type='hidden' name='expediter_fname' value='[in_expediter_fname]'>
+	<input type='hidden' name='expediter_fregimen' value='[in_expediter_fregimen]'>
+	<input type='hidden' name='expediter_faddress_street' value='[in_expediter_faddress_street]'>
+	<input type='hidden' name='expediter_faddress_num' value='[in_expediter_faddress_num]'>
+	<input type='hidden' name='expediter_faddress_num2' value='[in_expediter_faddress_num2]'>
+	<input type='hidden' name='expediter_faddress_urbanization' value='[in_expediter_faddress_urbanization]'>
+	<input type='hidden' name='expediter_faddress_district' value='[in_expediter_faddress_district]'>
+	<input type='hidden' name='expediter_faddress_city' value='[in_expediter_faddress_city]'>
+	<input type='hidden' name='expediter_faddress_state' value='[in_expediter_faddress_state]'>
+	<input type='hidden' name='expediter_faddress_country' value='[in_expediter_faddress_country]'>
+	<input type='hidden' name='expediter_faddress_zipcode' value='[in_expediter_faddress_zipcode]'>
+	<input type='hidden' name='expediter_address_street' value='[in_expediter_address_street]'>
+	<input type='hidden' name='expediter_address_num' value='[in_expediter_address_num]'>
+	<input type='hidden' name='expediter_address_num2' value='[in_expediter_address_num2]'>
+	<input type='hidden' name='expediter_address_urbanization' value='[in_expediter_address_urbanization]'>
+	<input type='hidden' name='expediter_address_district' value='[in_expediter_address_district]'>
+	<input type='hidden' name='expediter_address_city' value='[in_expediter_address_city]'>
+	<input type='hidden' name='expediter_address_state' value='[in_expediter_address_state]'>
+	<input type='hidden' name='expediter_address_country' value='[in_expediter_address_country]'>
+	<input type='hidden' name='expediter_address_zipcode' value='[in_expediter_address_zipcode]'>
+	<input type='hidden' name='customer_fcode' value='[in_customer_fcode]'>
+	<input type='hidden' name='customer_fname' value='[in_customer_fname]'>
+	<input type='hidden' name='customer_address_street' value='[in_customer_address_street]'>
+	<input type='hidden' name='customer_address_num' value='[in_customer_address_num]'>
+	<input type='hidden' name='customer_address_num2' value='[in_customer_address_num2]'>
+	<input type='hidden' name='customer_address_urbanization' value='[in_customer_address_urbanization]'>
+	<input type='hidden' name='customer_address_district' value='[in_customer_address_district]'>
+	<input type='hidden' name='customer_address_city' value='[in_customer_address_city]'>
+	<input type='hidden' name='customer_address_state' value='[in_customer_address_state]'>
+	<input type='hidden' name='customer_address_country' value='[in_customer_address_country]'>
+	<input type='hidden' name='customer_address_zipcode' value='[in_customer_address_zipcode]'>
+	<input type='hidden' name='customer_shpaddress_code' value='[in_customer_shpaddress_code]'>
+	<input type='hidden' name='customer_shpaddress_alias' value='[in_customer_shpaddress_alias]'>
+	<input type='hidden' name='customer_shpaddress_contact' value='[in_customer_shpaddress_contact]'>
+	<input type='hidden' name='customer_shpaddress_street' value='[in_customer_shpaddress_street]'>
+	<input type='hidden' name='customer_shpaddress_num' value='[in_customer_shpaddress_num]'>
+	<input type='hidden' name='customer_shpaddress_num2' value='[in_customer_shpaddress_num2]'>
+	<input type='hidden' name='customer_shpaddress_urbanization' value='[in_customer_shpaddress_urbanization]'>
+	<input type='hidden' name='customer_shpaddress_district' value='[in_customer_shpaddress_district]'>
+	<input type='hidden' name='customer_shpaddress_city' value='[in_customer_shpaddress_city]'>
+	<input type='hidden' name='customer_shpaddress_state' value='[in_customer_shpaddress_state]'>
+	<input type='hidden' name='customer_shpaddress_country' value='[in_customer_shpaddress_country]'>
+	<input type='hidden' name='customer_shpaddress_zipcode' value='[in_customer_shpaddress_zipcode]'>
+	<input type='hidden' name='payment_date' value='[in_payment_date]'>
+	<input type='hidden' name='operation_num' value='[in_operation_num]'>
+	<input type='hidden' name='expediter_fcode_bank' value='[in_expediter_fcode_bank]'>
+	<input type='hidden' name='expediter_bank' value='[in_expediter_bank]'>
+	<input type='hidden' name='expediter_account_number' value='[in_expediter_account_number]'>
+	<input type='hidden' name='customer_fcode_bank' value='[in_customer_fcode_bank]'>
+	<input type='hidden' name='customer_bank' value='[in_customer_bank]'>
+	<input type='hidden' name='customer_account_number' value='[in_customer_account_number]'>
+	<input type='hidden' name='type_description' value='[in_type_description]'>
+	<input type='hidden' name='payment_description' value='[in_payment_description]'>
+	<input type='hidden' name='cert_payment' value='[in_cert_payment]'>
+	<input type='hidden' name='xml_cfd' value='[in_xml_cfd]'>
+	<input type='hidden' name='xml_cfdi' value='[in_xml_cfdi]'>
+	<input type='hidden' name='xml_addenda' value='[in_xml_addenda]'>
+	<input type='hidden' name='uuid' value='[in_uuid]'>
+	<input type='hidden' name='xml_fecha_emision' value='[in_xml_fecha_emision]'>
+	<input type='hidden' name='xml_version' value='[in_xml_version]'>
+	<input type='hidden' name='original_string' value='[in_original_string]'>
+	<input type='hidden' name='related_id_invoices' value='[in_related_id_invoices]'>
+	<input type='hidden' name='id_orders_alias' value='[in_id_orders_alias]'>
+	<input type='hidden' name='id_orders_alias_date' value='[in_id_orders_alias_date]'>
+	<input type='hidden' name='exchange_receipt' value='[in_exchange_receipt]'>
+	<input type='hidden' name='exchange_receipt_date' value='[in_exchange_receipt_date]'>
+	<input type='hidden' name='credit_days' value='[in_credit_days]'>
+	<input type='hidden' name='conditions' value='[in_conditions]'>
+	<input type='hidden' name='batch_num' value='[in_batch_num]'>
+	<input type='hidden' name='imr_code' value='[in_imr_code]'>
+	<input type='hidden' name='vendorid' value='[in_vendorid]'>
+	<input type='hidden' name='customer_address_gln' value='[in_customer_address_gln]'>
+	<input type='hidden' name='customer_shpaddress_gln' value='[in_customer_shpaddress_gln]'>
+	<input type='hidden' name='purchasedate' value='[in_purchasedate]'>
+	<input type='hidden' name='viewed' value='[in_viewed]'>
+
+<script type="text/javascript">
+	chg_radio('status','[in_status]');
+	$(document).ready(function() {
+
+		var dates = $('#xml_fecha_certificacion' ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: '-2m',
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+	});
+</script>

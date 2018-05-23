@@ -1,0 +1,73 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.5', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	
+	
+<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform" onsubmit="return warningmsg()">
+	<input type="hidden" name="cmd" value="sreceipt">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Sorting : Warehouse Receipts</td>
+		 </tr>
+		<tr>
+		   <td colspan="2"><span class="help_on">Warehouse Ready to be processed</span></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">[fc_template_lprnbutton]
+		    						[fc_template_expbutton]
+		    						Records : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title">ID</td>
+		    <td class="menu_bar_title">Date</td>
+		    <td class="menu_bar_title">Vendor</td>
+		    <td class="menu_bar_title">Description</td>
+		    <td class="menu_bar_title">SKUs</td>
+		    <td class="menu_bar_title">Pieces</td>
+		 </tr>
+		[va_searchresults]
+     </table>
+  	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="tbltextttl">[fc_template_lprnbutton]
+		    						[fc_template_expbutton]
+		    						Records : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>   
+     
+</form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

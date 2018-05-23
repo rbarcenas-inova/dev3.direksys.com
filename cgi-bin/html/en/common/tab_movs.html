@@ -1,0 +1,65 @@
+  
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+	<tr>
+      <td class="tbltextttl" colspan="2"><span class='fieldterr'>[va_tabmessages]</span>&nbsp;</td>
+    </tr>	
+    <tr>
+			<td class="tbltextttl">
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[fc_template_idvalue]&tab=[in_tab]&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>
+				<a name='tabs' id='tabs'>&nbsp;</a>
+			</td>
+			<td class="small_text" align="right" valign="top">&nbsp;</td>
+		</tr>
+    <tr>
+    	<td colspan="2">      	
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+      			<tr>         	
+					<td class="menu_bar_title" width="100" align="center">Account ID</td>
+					<td class="menu_bar_title" align="center">Account Name</td>
+					<td class="menu_bar_title" width="100" align="center">Segment</td>
+					<td class="menu_bar_title" width="100" align="center">Category</td>
+					<td class="menu_bar_title" width="100" align="center">Debit</td>
+					<td class="menu_bar_title" width="100" align="center">Effective Date</td>
+					<td class="menu_bar_title" width="100" align="center">Category</td>
+					<td class="menu_bar_title" width="100" align="center">Journal Entry</td>
+			 	</tr>
+			 	[va_searchresultsdebs]
+      			<tr>         	
+					<td class="smalltext" colspan="4" align="right" style="border-top:2px solid red;">Total Debits&nbsp;:</td>
+					<td class="smalltext" align="right" style="border-top:2px solid red;">[va_tot_debs]</td>
+					<td class="smalltext" colspan="3"style="border-top:2px solid red;">&nbsp;</td>
+			 	</tr>	
+      </table>       
+     </td>
+    </tr>
+  </table>  
+  &nbsp;
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">   
+    <tr>
+			<td class="tbltextttl">
+				Credits : [va_matchescredits]
+			</td>
+    </tr>
+    <tr>
+    	<td colspan="2">      	
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+      			<tr>         	
+					<td class="menu_bar_title" width="100" align="center">Account ID</td>
+					<td class="menu_bar_title" align="center">Account Name</td>
+					<td class="menu_bar_title" width="100" align="center">Segment</td>
+					<td class="menu_bar_title" width="100" align="center">Category</td>
+					<td class="menu_bar_title" width="100" align="center">Credit</td>
+					<td class="menu_bar_title" width="100" align="center">Effective Date</td>
+					<td class="menu_bar_title" width="100" align="center">Journal Entry</td>
+			 	</tr>
+			 	[va_searchresultscred]
+      			<tr>         	
+					<td class="smalltext" colspan="4" align="right" style="border-top:2px solid blue;">Total Credits&nbsp;:</td>
+					<td class="smalltext" align="right" style="border-top:2px solid blue;">[va_tot_cred]</td>
+					<td class="smalltext" colspan="2" style="border-top:2px solid blue;"></td>
+			 	</tr>			 	
+      </table>       
+     </td>
+    </tr>
+  </table>
+  &nbsp;

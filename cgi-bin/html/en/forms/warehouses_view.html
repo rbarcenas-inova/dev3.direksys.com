@@ -1,0 +1,99 @@
+	&nbsp;
+	<fieldset><legend>Warehouse Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Warehouse ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_warehouses] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton] &nbsp;
+							<a href="/cgi-bin/mod/[ur_application]/admin?cmd=opr_warehouses_inventory_locations&id_warehouses=[in_id_warehouses]&export=1" title="Export Full Inventory" alt="Export Full Inventory">
+								<img border="0" src="[va_imgurl]/[ur_pref_style]/b_xls.gif" width="24" height="24" title="Export Full Inventory" alt="Export Full Inventory">
+							</a> &nbsp;
+							<a href="/cgi-bin/mod/[ur_application]/admin?cmd=opr_warehouses_inventory_available&id_warehouses=[in_id_warehouses]&export=1" title="Export Full Inventory" alt="Export Full Inventory">
+								<img border="0" src="[va_imgurl]/[ur_pref_style]/b_xls.gif" width="24" height="24" title="Export Full Inventory whitout locations" alt="Export Full Inventory whitout locations">
+							</a>
+							<a href="/cgi-bin/common/apps/full_kardex.pl?id_warehouses=[in_view]"  class='fancy_modal_iframe'>
+								<img src='[va_imgurl]/[ur_pref_style]/kardex.png' title='Kardex' alt='Kardex' border='0' width='24' height='24'>
+							</a>
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Warehouse Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="20%">Name  : </td>
+		  <td class="smalltext" width="40%">[in_name]</td>
+		  <td width="10%" rowspan="12">Picture  : </td>
+		  <td class="smalltext" rowspan="12"><img src="data:image/jpeg;base64,[in_picture]"></td>
+		</tr>
+		<tr>
+		  <td width="30%">Type  : </td>
+		  <td class="smalltext">[in_type]</td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Warehouse Manager : </td>
+		  <td class="smalltext">([in_wmanager]) [in_wmanager_name]</td>
+		</tr>
+		
+		<tr>
+		  <td valign="top" width="30%">Calle y N&uacute;mero :</td>
+		  <td class="smalltext">[in_address1]<br></td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Colonia :</td>
+			<td class="smalltext">[in_address2]</td>
+		</tr>							
+		<tr>
+		 	<td width="30%">Delegaci&oacute;n o Municipio : </td>
+			<td class="smalltext">[in_city]</td>
+		</tr>
+		<tr>
+		 	<td width="30%">Estado / CP : </td>
+			<td class="smalltext">[in_state], CP.[in_zip] </td>
+		</tr>
+		<tr>
+		 	<td width="30%" style="display: [va_sty_deliveryzones];">Zonas de Cobertura : </td>
+			<td class="smalltext" style="display: [va_sty_deliveryzones];">[in_deliveryzones_descrip] </td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Notes : </td>
+		  <td class="smalltext">[in_notes]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Is a DropShipper ? : </td>
+		  <td class="smalltext">[in_DropShipper]</td>
+		</tr>
+		<tr>
+		  <td width="30%">ID Users for COD Confirmations: </td>
+		  <td class="smalltext">[in_codlist]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Accounts: </td>
+		  <td class="smalltext">[va_waccounts]</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+     <fieldset><legend>Warehouse Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Status  : </td>
+		    <td class="smalltext">[in_status]</td>
+		 </tr>
+  	</table>
+	</fieldset>
+	&nbsp;
+	

@@ -1,0 +1,46 @@
+
+<script type="text/javascript" src="/jquery.editable-1.3.3.min.js"></script>
+<!-- Jquery Editable -->
+<div class="stdtxterr">[va_tab_messages]</div>
+<div id="tab_maincontent" [va_tabvisible]>
+	<form method="post" action="/cgi-bin/mod/[ur_application]/dbman" name="sitform">
+		<input type="hidden" name="id_bills" value="[in_id_bills]">
+		<input type="hidden" name="view" value="[in_id_bills]">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="tab" value="[in_tab]">
+		<input type="hidden" name="cmd" value="[in_cmd]">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+			<tr>
+				<td class="tbltextttl" colspan="4">
+
+					<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_bills]&tab=[in_tab]&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+					Records : [va_matches]</td>
+				<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>	
+			</tr>
+			<tr>
+				<td colspan="5"><span class="stdtxterr">[va_tabmessages]</span>
+				 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+						<td class="menu_bar_title">PO ID</td>
+						<td class="menu_bar_title">PO Date</td>
+						<td class="menu_bar_title">PO Terms</td>
+						<td class="menu_bar_title" align="right">Amount PO</td>						
+						<td class="menu_bar_title" align="right">Total in Bills</td>
+						<td class="menu_bar_title" align="right">Total Paid</td>
+						<td class="menu_bar_title" align="right">Amount Due</td>
+						<td class="menu_bar_title" align="right">Billed Amount</td>
+					</tr>
+					[va_searchresults]
+					</table>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">
+<!--
+$(document).ready(function() {
+
+});
+//-->
+</script>

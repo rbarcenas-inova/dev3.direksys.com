@@ -1,0 +1,134 @@
+	&nbsp;
+	<fieldset><legend>Item Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Item ID  : <span class="smallfieldterr">[er_id_products]</span></td>
+			<td class="smalltext">
+				<input type="text" name="id_products" value="[in_id_products]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<a href="javascript:search_id('id_products','db=sl_products&cmd=products')">
+						<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+			</td>
+		</tr>				
+		<tr>
+		  <td width="30%">Director : <span class="smallfieldterr">[er_director]</span></td>
+		  <td class="smalltext">
+		  	<select name="director" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	      	<option value="---">---</option>
+	      		[fc_build_userlist]
+				</select>
+			</td>
+		</tr>		
+		<tr>
+		  <td width="30%">Category : <span class="smallfieldterr">[er_category]</span></td>
+		  <td class="smalltext">
+		  	<select name="category" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	      	<option value="---">---</option>
+	      		[fc_build_select_categories]
+				</select>
+			</td>
+		</tr>				
+		<tr>
+		  <td valign="top" width="30%">Description : <span class="smallfieldterr">[er_description]</span></td>
+		  <td class="smalltext"><textarea name="description" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description]</textarea> </td>
+		</tr>
+		<tr>
+		  <td width="30%">Transfer Date : <span class="smallfieldterr">[er_transferdate]</span></td>
+			<td class="smalltext">
+				<input type="text" id="transferdate" name="transferdate" value="[in_transferdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>			
+		<tr>
+		  <td width="30%">Transfer Time  : <span class="smallfieldterr">[er_transfertime]</span></td>
+			<td class="smalltext">
+				<input type="text" name="transfertime" value="[in_transfertime]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>	
+		<tr>
+		  <td valign="top" width="30%">Special Instructions : <span class="smallfieldterr">[er_instructions]</span></td>
+		  <td class="smalltext"><textarea name="instructions" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_instructions]</textarea> </td>
+		</tr>	
+		<tr>
+		  <td width="30%">Expected Return Date : <span class="smallfieldterr">[er_returndate]</span></td>
+			<td class="smalltext">
+				<input type="text" id="returndate" name="returndate" value="[in_returndate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%">Q/C Return Date : <span class="smallfieldterr">[er_qcreturndate]</span></td>
+			<td class="smalltext">
+				<input type="text" id="qcreturndate" name="qcreturndate" value="[in_qcreturndate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Special Notes : <span class="smallfieldterr">[er_specialnotes]</span></td>
+		  <td class="smalltext"><textarea name="specialnotes" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_specialnotes]</textarea> </td>
+		</tr>		
+		<tr>
+		  <td width="30%">Transfer by : <span class="smallfieldterr">[er_transferby]</span></td>
+		  <td class="smalltext">
+		  	<select name="transferby" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	      	<option value="---">---</option>
+	      		[fc_build_userlist]
+				</select>
+			</td>
+		</tr>				
+		<tr>
+		  <td width="30%">Units Transfered  : <span class="smallfieldterr">[er_units]</span></td>
+			<td class="smalltext">
+				<input type="text" name="units" value="[in_units]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%">Q/C Item received by : <span class="smallfieldterr">[er_qcreceivedby]</span></td>
+		  <td class="smalltext">
+		  	<select name="qcreceivedby" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	      	<option value="---">---</option>
+	      		[fc_build_userlist]
+				</select>
+			</td>
+		</tr>											
+	</table>
+	</fieldset>
+	&nbsp;
+ <fieldset>
+ 	<legend>Item Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		  <td class="smalltext">
+		  	<input type="radio" name="status" value="Normal" class="radio">Normal
+				<input type="radio" name="status" value="Rush" class="radio">Rush
+				<input type="radio" name="status" value="Urgent" class="radio">Urgent
+				<input type="radio" name="status" value="Other" class="radio">Other</td>
+		 </tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_radio('status','[in_status]');
+	chg_select('director','[in_director]');
+	chg_select('category','[in_category]');
+	chg_select('transferby','[in_transferby]');
+	chg_select('qcreceivedby','[in_qcreceivedby]');
+
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		$( "#transferdate, #returndate, #qcreturndate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+
+//-->
+</script>

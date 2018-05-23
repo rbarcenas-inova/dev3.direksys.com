@@ -1,0 +1,44 @@
+[ip_header_blank]
+
+ <form action="/cgi-bin/common/apps/schid" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="[in_id_name]" value="[in_id_value]">
+	<input type="hidden" name="path" value="[in_path]">
+	<input type="hidden" name="cmdret" value="[in_cmdret]">
+	<input type="hidden" name="id_returns" value="[in_id_returns]">
+	<input type="hidden" name="action" value="1">	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td align="center"><input type="text" name="keyword" value="[in_keyword]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'> 
+		    	<input type="submit" value="Search" class="button"></td>
+		 </tr>
+     </table>
+</form>
+<div id="ajax_windows" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="ajax_drag" align="left">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Direksys</td>
+			<td align=right width=20px><img id="ajax_exit" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div id="ajaxcontent">&nbsp;</div>
+</div>
+<a name='tabs' id='tabs'>&nbsp;</a>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="tbltextttl">Records : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		[va_header]
+		[va_searchresults]
+  </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">Records : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>  
+	[in_id_orders_products]
+<!-- End Main Area  -->

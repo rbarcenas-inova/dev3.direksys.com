@@ -1,0 +1,72 @@
+&nbsp;
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+			<td class="tbltextttl">
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[fc_template_idvalue]&tab=[in_tab]&tabaction=addlotinfo&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+							
+			</td>
+			<td align="right">
+				<a href='javascript:trjump("/cgi-bin/mod/admin/dbman?cmd=[in_cmd]&view=[in_view]&tab=10&[va_rndnumber]#initab")'>Lot Information</a> &nbsp; - &nbsp; 
+				<a href='javascript:trjump("/cgi-bin/mod/admin/dbman?cmd=[in_cmd]&view=[in_view]&tab=10&tabaction=lotlogs&[va_rndnumber]#initab")'>Lots Logs</a>
+				</td>	
+		</tr>
+		<tr>
+			<td colspan="2">
+				
+<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform">
+	<input name="cmd" value="mer_parts" type="hidden">
+	<input name="tabaction" value="addlotinfo" type="hidden">
+	<input name="view" value="[in_id_parts]" type="hidden">
+	<input name="tab" value="10" type="hidden">
+	<input name="tabact" value="1" type="hidden">
+	
+	
+	<table align="center" border="0" cellpadding="4" cellspacing="0" width="60%" class="formtable">
+		<tr>
+			<td class="menu_bar_title" colspan="2" align="center">Add New Identification Information to a Lot</td>
+		</tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_tabmessage]</td>
+		 </tr>
+		<tr>
+			<td>Location (Code) : <span class="smallfieldterr">[er_location]</span></td>
+			<td><input name="location" value="[in_location]" size="20" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td>Quantity : <span class="smallfieldterr">[er_quantity]</span></td>
+			<td><input name="quantity" value="[in_quantity]" size="20" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td>Field 1 : <span class="smallfieldterr">[er_customfield1]</span></td>
+			<td><input name="customfield1" value="[in_customfield1]" size="60" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td>Field 2 : <span class="smallfieldterr">[er_customfield2]</span></td>
+			<td><input name="customfield2" value="[in_customfield2]" size="60" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td>Field 3 : <span class="smallfieldterr">[er_customfield3]</span></td>
+			<td><input name="customfield3" value="[in_customfield3]" size="60" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td>Field 4 : <span class="smallfieldterr">[er_customfield41]</span></td>
+			<td><input name="customfield4" value="[in_customfield4]" size="60" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td>Field 5 : <span class="smallfieldterr">[er_customfield5]</span></td>
+			<td><input name="customfield5" value="[in_customfield5]" size="60" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td>Field 6 : <span class="smallfieldterr">[er_customfield6]</span></td>
+			<td><input name="customfield6" value="[in_customfield6]" size="60" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+	</table>
+<p align="center"><input value="Add Record" class="button" type="submit"></p>
+<p>&nbsp;</p>
+
+</form>
+				
+
+			</td>
+		</tr>
+	</table>

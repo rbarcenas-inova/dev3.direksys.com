@@ -1,0 +1,32 @@
+	&nbsp;
+	<fieldset><legend>Brand Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td width="30%">Name  : <span class="smallfieldterr">[er_name]</span></td>
+	    <td class="smalltext"><input type="text" name="name" value="[in_name]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+	    <td valign="top" width="30%">Comments : <span class="smallfieldterr">[er_comments]</span></td>
+	    <td class="smalltext"><textarea name="Comments" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_comments]</textarea> </td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Brand Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		  <td class="smalltext"><input type="radio" name="status" value="Active" class="radio">Active
+		   <input type="radio" name="status" value="Inactive" class="radio">Inactive</td>
+		 </tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_radio('status','[in_status]');
+
+//-->
+</script>
+

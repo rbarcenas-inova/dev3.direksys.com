@@ -1,0 +1,166 @@
+[ip_header]
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: [fc_template_myprefsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+	<table class="tab" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+	  <tbody><tr>
+	    <td align="center" width="30%"></td>
+		<td width="14%" class="cell_on" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=myprefs&quot;)" align="center" width="23%">Preferences</td>
+		<td width="14%" class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=myprefs_mypass&quot;)" align="center" width="23%">Password</td>
+		<td width="14%" class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=myprefs_wpage&quot;)" align="center" width="23%">Homepage</td>
+		<td width="14%" class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=myprefs_mlogs&quot;)" align="center" width="23%">Logs</td>
+		<td width="14%" class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=help&quot;)" align="center" width="23%">Help</td>
+	  </tr>
+	</tbody></table>
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+	<form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform" onsubmit="return disableSubmits();">
+		<input type="hidden" name="cmd" value="myprefs">
+		<input type="hidden" name="action" value="1">
+
+		<table border="0" cellspacing="7" cellpadding="2" width="100%">
+			<tr>
+		    <td class="titletext" align="left">My Preferences</td>
+		 	</tr>
+			<tr>
+		    <td class="stdtxterr">[va_message]</td>
+			</tr>
+  	</table>
+  	
+<!--
+	<fieldset><legend>Direksys Language</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td width="30%">Preferred Language <span class="stdtxterr">*[er_languages]</span></td>
+	    <td>[fc_select_language]
+	    	
+	    	
+	    	
+
+	
+	
+	    	 </td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<span id="help" class="help_on">
+					
+					The selected language will be used in all pages and messages in this software. 
+				</span>
+			</td>
+		</tr>
+   </table>
+	</fieldset>
+		&nbsp;
+		-->
+		
+	<fieldset><legend>Multilogin</legend>
+	<table border="0" cellspacing="7" cellpadding="2" width="100%">
+		<tr>
+	    <td width="30%">Default Access <span class="stdtxterr">*[er_defapp]</span></td>
+	    <td>[fc_build_radio_mapps]</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<span id="help" class="help_on">
+					Select the default application when you login.
+				</span>
+			</td>
+		</tr>
+   </table>
+	</fieldset>
+		&nbsp;
+	<fieldset><legend>Web Site look</legend>
+	<table border="0" cellspacing="7" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Screen Width <span class="stdtxterr">*</span></td>
+		    <td>[fc_build_select_table_width]</td>
+		</tr>
+		<!--tr>
+		    <td width="30%">General Style <span class="stdtxterr">*</span></td>
+		    <td>[fc_build_select_style]</td>
+		</tr>
+		<tr>
+			<td colspan="2"><span id="help" class="help_on">The Style is how the software will looks, different colors, Fonts, background, etc.</span>
+			</td>
+		</tr-->
+		<tr>
+		    <td width="30%">Number of Hits per Page<span class="stdtxterr">*</span></td>
+		    <td class="smalltext"><input type="text" name="pref_maxh" value="[in_pref_maxh]" size="8" onFocus='focusOn( this )' onBlur='focusOff( this )'> (5 to 30)</td>
+		</tr>
+		<tr>
+			<td colspan="2"><span id="help" class="help_on">Everytime you list someting the result list could have as many records as you selected here. The valid numbers are integer betewen 5 and 30.</span></td>
+		</tr>
+		<tr>
+		    <td width="30%">New Messages</td>
+		    <td class="smalltext"><input type="checkbox" name="pref_newmsg" value="yes" class="checkbox"> Display New Messages in Every Page</td>
+		</tr>
+		<tr>
+			<td colspan="2"><span id="help" class="help_on">Is you select this option this software will display a "You have xxx messages"  in almost every page when you have an unread message</span></td>
+		</tr>
+      </table>
+    </fieldset>
+    &nbsp;
+	<fieldset><legend>Referenced Username</legend>
+		<table border="0" cellspacing="7" cellpadding="2" width="100%">
+			<tr>
+				<td width="30%">Username :<span class="stdtxterr">[er_username_ref]</span></td>
+				<td>
+					<input type="text" size="20" name="username_ref" value="[in_username_ref]" onfocus="focusOn( this )" onblur="focusOff( this )" style="font-size: 12px; border: 2px solid rgb(0, 153, 255); cursor: pointer; background-color: rgb(255, 255, 255);"><br />
+					<span id="help" class="help_on">Enter your external telephony user.</span>
+				</td>
+			</tr>
+			<tr>
+				<td width="30%">Extension :<span class="stdtxterr">[er_extension]</span></td>
+				<td>
+					<input type="text" size="4" maxlength="5" name="extension" value="[in_extension]" onfocus="focusOn( this )" onblur="focusOff( this )"><br />
+					<span id="help" class="help_on">Enter your phone extension.</span>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+
+      <p align="center">
+     <input type="submit" value="Submit Changes" class="button"></p>
+	</form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+<script language="javascript">
+<!--
+	
+	chg_select('pref_language','[in_pref_language]');
+	chg_select('table_width','[ur_table_width]');
+	chg_select('pref_style','[in_pref_style]');
+	chg_chkbox('pref_applications','[in_pref_applications]');
+	chg_radio('pref_newmsg','[in_pref_newmsg]');
+	[va_reload]
+
+//-->
+</script>

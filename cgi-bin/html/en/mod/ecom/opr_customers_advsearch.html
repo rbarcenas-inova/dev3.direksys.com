@@ -1,0 +1,127 @@
+[ip_header]
+
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+	var dates = $( "#from_date, #to_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+		    <td width="30%" align="center"></td>
+			<td width="14%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=opr_customers_home")'>Customers</td>
+			<td width="14%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=opr_customers&add=1")'>Add</td>
+			<td width="14%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=opr_customers&search=form")'>Search</td>
+			<td width="14%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=opr_customers&search=advform")'>Advance Search</td>
+		    <td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=opr_customers&search=listall")'>View / Edit / Delete</td>
+		  </tr>
+		</table>
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+			
+
+  <form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="opr_customers">
+	<input type="hidden" name="search" value="advSearch">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center" colspan="2">Search Customer : [in_id_customers]</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Advanced Search : Customer ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">Customer ID : <span class="smallfieldterr">[er_id_customers]</span></td>
+		    <td class="smalltext"><input type="text" name="id_customers" value="[in_id_customers]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Advanced Search : Customer Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td width="30%">First Name  : <span class="smallfieldterr">[er_firstname]</span></td>
+		  <td class="smalltext"><input type="text" name="firstname" value="[in_firstname]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Last Name (Father) : <span class="smallfieldterr">[er_lastname1]</span></td>
+		  <td class="smalltext"><input type="text" name="lastname1" value="[in_lastname1]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>	
+		<tr>
+		  <td width="30%">Last Name (Mother) : <span class="smallfieldterr">[er_lastname2]</span></td>
+		  <td class="smalltext"><input type="text" name="lastname2" value="[in_lastname2]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Email : <span class="smallfieldterr">[er_email]</span></td>
+		  <td class="smalltext"><input type="text" name="email" value="[in_email]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Phone : <span class="smallfieldterr">[er_phone]</span></td>
+		  <td class="smalltext"><input type="text" name="phone" value="[in_phone]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+
+	[ip_forms:search_form]
+	<p align="center"><input type="submit" value="Search" class="button"></p>
+  </form>
+  
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

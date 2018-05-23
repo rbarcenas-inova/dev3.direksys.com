@@ -1,0 +1,56 @@
+	&nbsp;
+	<fieldset><legend>Coverages Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			
+		<tr>
+		  <td width="30%">ID Warehouses : <span class="smallfieldterr">[er_id_warehouses]</span></td>
+		  <td class="smalltext">
+		  	<select name="id_warehouses" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					[fc_build_select_all_virtual_warehouse]
+				</select>
+		  </td>
+		</tr>
+				<tr>
+		  <td width="30%">Country : <span class="smallfieldterr">[er_country]</span></td>
+		  <td class="smalltext">
+		  	<select name="country" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					[fc_build_select_coverage_country]
+				</select
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">State  : <span class="smallfieldterr">[er_state]</span></td>
+		  <td class="smalltext">
+		  	<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					[fc_build_select_opr_coveragesstate]
+					</select> 		  	
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">City  : <span class="smallfieldterr">[er_city]</span></td>
+		  <td class="smalltext">
+		  	<input type="text" name="city" value="[in_city]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'>		  	
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">Covered  : <span class="smallfieldterr">[er_covered]</span></td>
+		  <td class="smalltext">
+				<input type="radio" name="covered" value="Covered" class="radio">Covered
+				<input type="radio" name="covered" value="Not Covered" class="radio">Not Covered
+		  </td>
+		</tr>
+		
+	</table>
+	</fieldset>
+	&nbsp;
+
+<script language="JavaScript">
+chg_select('id_warehouses','[in_id_warehouses]');
+chg_select('country','[in_country]');
+chg_select('state','[in_state]');
+chg_radio('covered','[in_covered]');
+
+</script>

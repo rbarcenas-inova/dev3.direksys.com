@@ -1,0 +1,65 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">General Setup</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>General Setup</legend>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+		    <td valign="top">
+		    	<ul class='nslist'>
+		    		<li class='nslist'>Vendor Setup</li>
+		    		<ul class='nslist'>
+		    			<li class='nslist'><a href="/cgi-bin/mod/[ur_application]/admin?cmd=mer_setup_ventype">Vendor Type</a></li>
+		    			<li class='nslist'><a href="/cgi-bin/mod/[ur_application]/admin?cmd=mer_setup_venpopt">Payment Options</a></li>
+		    			<li class='nslist'><a href="/cgi-bin/mod/[ur_application]/admin?cmd=mer_setup_venshp">Shipping Option</a></li>
+		    			<li class='nslist'><a href="/cgi-bin/mod/[ur_application]/admin?cmd=mer_setup_venret">Return Policy</a></li>
+		    			<li class='nslist'><a href="/cgi-bin/mod/[ur_application]/admin?cmd=mer_setup_vendisc">Discounts</a></li>
+		    			<li class='nslist'><a href="/cgi-bin/mod/[ur_application]/admin?cmd=mer_setup_vended">Dedicated Airtime Program</a></li>
+		    			<li class='nslist'><a href="/cgi-bin/mod/[ur_application]/admin?cmd=mer_setup_venspp">Special Programs</a></li>
+		    			<li class='nslist'><a href="/cgi-bin/mod/[ur_application]/admin?cmd=mer_setup_venmform">Merchandise Format</a></li>
+		    		</ul>
+		    		<li class='nslist'>Products Setup</li>
+		    		<ul class='nslist'>
+		    			<li class='nslist'><a href="/cgi-bin/mod/[ur_application]/admin?cmd=mer_setup_prdpacking">Product Packing</a></li>
+		    			<li class='nslist'><a href="/cgi-bin/mod/[ur_application]/admin?cmd=mer_setup_prdwhand">Warehouse Handling</a></li>
+		    			<li class='nslist'><a href="/cgi-bin/mod/[ur_application]/admin?cmd=mer_setup_prdtype">Type</a></li>
+		    			<li class='nslist'><a href="/cgi-bin/mod/[ur_application]/admin?cmd=mer_setup_prddocs">Documentation</a></li>
+		    		</ul>
+		    		<li class='nslist'>Products Setup / Vendor Info</li>
+		    		<ul class='nslist'>
+		    			<li class='nslist'><a href="/cgi-bin/mod/[ur_application]/admin?cmd=mer_setup_prdpayments">Payment terms</a></li>
+		    		</ul>
+		    		<li class='nslist'>Purchase Orders</li>
+		    		<ul class='nslist'>
+		    			<li class='nslist'><a href="/cgi-bin/mod/[ur_application]/admin?cmd=mer_setup_poship">Ship via</a></li>
+		    		</ul>
+		    	</ul></td>
+ 		 </tr>
+    </table>
+	</fieldset>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

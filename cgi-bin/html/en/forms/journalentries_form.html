@@ -1,0 +1,72 @@
+&nbsp;
+<fieldset><legend>Journal Entries</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Journal Date : <span class="smallfieldterr">[er_journaldate]</span></td>
+			<td class="smalltext">
+				<input type="text" id="journaldate" name="journaldate" value="[in_journaldate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Categories :  <span class="smallfieldterr">[er_category]</span></td>
+			<td class="smalltext">
+				[va_journalentries_category]
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Comments :  <span class="smallfieldterr">[er_comments]</span></td>
+			<td class="smalltext"><textarea name="comments" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_comments]</textarea> </td>
+		</tr>
+		<tr>
+			<td width="30%">Status :  <span class="smallfieldterr">[er_status]</span></td>
+			<td>[fc_journalentries_status] [va_action_status]</td>
+		</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+<!--
+<input type="hidden" name="status" value="[in_status]">
+-->
+
+<script language="javascript">
+<!--
+	$(document).ready(function() {
+
+		chg_chkbox('categories','[in_categories]');
+
+		var dates = $( "#journaldate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: new Date(),
+			maxDate: '+2d',
+			changeMonth: true,
+			numberOfMonths: 3,
+            onSelect: function(dateText, inst) {
+                that = this;
+                $.ajax({
+                    url: '/cgi-bin/common/apps/ajaxfinance',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: false,
+                    data: {
+                        cmd: 'movement_actions',
+                        action: 'validateDate',
+                        date: that.value
+                    },
+                })
+                .done(function(data) {
+                    if(data.code == 200){
+                        that.value = dateText;
+                    }else{
+                        alert(data.msg);
+                        that.value = inst.lastVal;
+                    }
+                });
+            }
+		});
+
+	});
+
+
+
+</script>

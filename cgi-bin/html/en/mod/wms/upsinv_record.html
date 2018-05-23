@@ -1,0 +1,88 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 0, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td class="titletext" align="center" colspan="2">Record View : [va_record_num]</td>
+				</tr>
+				<tr>
+					<td class="stdtxterr" colspan="2">[va_message]&nbsp;</td>
+				</tr>
+			</table>
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+			    <td class="menu_bar_title" nowrap width="35%">Tracking Number</td>
+			    <td class="menu_bar_title">Package Reference No.</td>
+				</tr>
+				[va_general]
+		  </table>
+		  &nbsp;
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+					<td bgcolor="#A9A999" colspan="4" align="center">SHIP-TO</td>
+				</tr>				
+				<tr>
+					<td class="menu_bar_title">Name</td>
+					<td class="menu_bar_title">Attention</td>
+					<td class="menu_bar_title" colspan="3">Phone</td>
+				</tr>
+				[va_shipto_contact]				
+				<tr>
+					<td class="menu_bar_title">Address Line</td>
+					<td class="menu_bar_title">City</td>
+					<td class="menu_bar_title">Province/State</td>
+					<td class="menu_bar_title">Post Code</td>
+				</tr>
+				[va_shipto_address]
+		  </table>
+		  &nbsp;
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+					<td class="menu_bar_title" width="16%">Manifest Date</td>
+			    <td class="menu_bar_title">Scheduled Delivery Date</td>
+			    <td class="menu_bar_title">Date Delivered</td>
+			    <td class="menu_bar_title" colspan="2">Delivery Time</td>
+				</tr>
+				[va_ship_date]
+				<tr>
+					<td class="menu_bar_title">Signed By</td>
+			    <td class="menu_bar_title">Package Weight</td>
+			    <td class="menu_bar_title">Status</td>
+			    <td class="menu_bar_title">UPS Service</td>
+			    <td class="menu_bar_title">Return Services</td>
+				</tr>
+				[va_ship_info]
+				<tr>
+			    <td class="menu_bar_title" colspan="2">Exception Description</td>
+			    <td class="menu_bar_title">Exception Resolution</td>
+			    <td class="menu_bar_title">Return To Sender Indicator</td>
+			    <td class="menu_bar_title">Invoice Image</td>
+				</tr>
+				[va_ship_other]				
+		  </table>		  		    
+		<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

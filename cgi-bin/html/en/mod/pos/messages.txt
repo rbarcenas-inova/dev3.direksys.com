@@ -1,0 +1,87 @@
+#### Messages
+msgd_sent=Mensaje enviado
+msgd_nomsgs=No hay mensajes
+
+
+### Products Search
+searchempty=Su busqueda No encontro productos
+
+
+#### Callers DB
+cupon_used=Cupon Usado
+
+
+#### Callers DB
+pageproducts=Productos
+prods_onairnow=On Air ahora
+prods_onairtoday=On Air hoy
+total=Total = 
+
+
+no_speech_available=No hay un Script disponible<br>Presione siguiente para continuar
+no_stepspeech_available=Lo sentimos, No hay un script disponible
+
+
+search_noitem=No se encontró el registro 
+empty_cart=El carro esta vacio
+samebillshp=La direccion de facturación es la misma que de despacho.
+difbillshp=La dirección de facturación NO es la misma que de despacho.
+shp_type_=COD
+pay_type_cod=COD
+shp_type_1=Despacho Standard
+shp_type_2=Despacho Express
+#shp_type_3=Despacho Programado
+shp_type_3=COD
+pay_type_cc=Tarjeta de Credito
+pay_type_check=Cheque
+pay_type_wu=Western Union
+pay_type_mo=Money Order
+pay_type_lay=Apartado
+pay_type_ppc=Tarjeta de Prepago
+pay_type_rd=Deposito Referenciado
+cc_problem=Hay un problema al procesar la tarjeta de Crédito
+ck_problem=Hay un problema al procesar el Cheque
+riskorder_pending=Su orden ha quedado en estado Pendiente de Aprobación
+
+msg_edt=Tiempo estimado para la entrega
+msg_days=días
+msg_items=Cantidad de articulos en la orden
+msg_servis=Cantidad de servicios en la orden
+msg_stotal=Total Orden
+msg_shp=Cargos de Envío
+msg_total=Total a Pagar
+msg_tax=Impuestos
+
+
+opr_orders_added=Order Added 
+
+
+### Advanced Bar Items
+advbar_0=Cliente
+advbar_1=Selec. Productos
+advbar_2=Info de Cliente
+advbar_3=Direc Pagos
+advbar_4=Direc Envíos
+advbar_5=Tipo de Envíos
+advbar_6=Info de Pago
+advbar_7=Confirmar Orden
+advbar_8=No. de Orden
+advbar_9=Info Extra
+
+form_clear=Limpiar
+invoice_info_saved=Invoice information saved
+invoice_info_error_when_saving=An error occurred when saving data
+
+
+### Step2
+step2_multiprice_1=Price reduction Forbidden
+step2_multiprice_2=Price Chosen requieres a valid Auth. Code
+step2_multiprice_3=Invalid Option
+step_2_price_enabled=Price Active
+step_2_price_disabled=Price Disabled due to other products in cart conflict
+
+### Step3
+step3_noavpaytypes=Payment Conflict Detected. <br>You need to change the Payment Type.<br>
+
+attempts_to_collect=attempts to collect
+product_not_available_in_console=This product is not available for sale in this console

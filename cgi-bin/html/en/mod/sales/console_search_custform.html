@@ -1,0 +1,71 @@
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+			
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="2">
+	<input type="hidden" name="customers" value="1">
+	<input type="hidden" name="action" value="1">
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr>
+		<td align="center" colspan="2" class="menu_bar_title">Forma para buscar cliente </td>
+    </tr>
+	<tr>
+		<td align="right">Caller ID: <span class="smallfieldterr">[er_cid] </span></td>
+		<td><input type="text" name="cid" value="[in_cid]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+    </tr>
+	<tr>
+		<td align="right">Nombre  : <span class="smallfieldterr">[er_name] </span></td>
+		<td><input type="text" name="name" value="[in_name]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+    </tr>
+	<tr>
+		<td align="right">Codigo Postal : <span class="smallfieldterr">[er_zipcodee] </span></td>
+		<td><input type="text" name="zipcode" value="[in_zipcode]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+    </tr>
+	<tr>
+		<td align="right">Orden # : <span class="smallfieldterr">[er_id_orders]</span></td>
+		<td><input type="text" name="id_orders" value="[in_id_ordersl]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+    </tr>
+	<tr>
+		<td align="center" colspan="2"><br><input type="submit" value="Buscar" class="button"></td>
+    </tr>
+	<tr>
+		<td align="center" colspan="2">
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		        <tr>
+	        	  <td align="center" class="smalltext"> Busqueda por Palabras : <input name="keyword" size="40" maxlength="255" type="text" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		        </tr>
+		        <tr>
+		        	<td align="center" class="smalltext">Organizar por:
+		           
+		              <select name="sb" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option>---</option>
+						<option value="CID">CID</option>
+						<option value="FirstName">Primer Nombre</option>
+						<option value="LastName">Apedillo</option>
+						<option value="Zip">Codico Postal</option>
+		        	</select>
+		              Ordenar :
+                    <input name="so" value="ascend" checked="checked" type="radio" class="radio" />
+                    
+Ascendente &oacute;
+<input name="so" class="radio" value="descend" type="radio" />
+Descendiente </span><br>
+		    	  </td>
+			  </tr>
+			</table>
+	  </td>
+    </tr>    
+    
+</table>	
+			
+</form>
+

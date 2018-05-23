@@ -1,0 +1,107 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+	<fieldset><legend>OutBound Console</legend>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+	    <td valign="top"><span class="stdtxterr">[va_message]</span>
+	    	<ul>
+	    		<form enctype="multipart/form-data" name="upload" action="/cgi-bin/mod/wms/upfile" method="POST" onsubmit="trjump('/cgi-bin/mod/wms/admin?cmd=outbound_uploaded')" name="sitform">
+						<input type="hidden" name="action" value="1">
+						<!--input type="hidden" name="cmd" value="tracking"-->
+						<input type="hidden" name="app" value="wms">
+		    		
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+<td class="titletext" align="center" colspan="2">Upload Multiples Packing Lists :</td>
+</table>
+		    		 
+		    				<input type="file" size="30" name="file" class="input">
+								<span class="smallfieldterr">[er_upload]</span>
+								<input type="submit" value="Upload" class="button">
+			 
+							<!--li class='smalltxt'>
+								<input type='radio' name='track' value='UPS' checked class="radio">UPS / WorldShip
+								<input type='radio' name='track' value='USPS' class="radio">USPS / Endicia
+								<input type='radio' name='track' value='Fedex' class="radio">Fedex
+							</li-->
+
+		    	</form>
+
+<br><br>
+List of Uploaded Files<br>
+&nbsp;&nbsp;&nbsp; <a href="/cgi-bin/mod/wms/admin?cmd=updtracking_list">Files in the System ready to be imported</a><br><br>
+ 
+
+
+		    </td>
+ 		 </tr>
+ 		 <!--GV Inicia 02jun2008 -->
+ 		 <tr>
+			<td class="stdtxterr">[va_message1]
+
+</font>
+<br><br><br>
+
+
+<font color=#000000>Example:</font><br>
+<table> 
+<td>Date 1</td>
+<td width=50px align=center><font color=silver><span style="position:relative;top:4px;">&rarr;</span><br><span style="position:relative;bottom:4px;">&larr;</span></font></td>
+<td>Number of order 1</td>
+<td width=50px align=center><font color=silver><span style="position:relative;top:4px;">&rarr;</span><br><span style="position:relative;bottom:4px;">&larr;</span></font></td>
+<td>Customer Name 1</td>
+<td width=50px align=center><font color=silver><span style="position:relative;top:4px;">&rarr;</span><br><span style="position:relative;bottom:4px;">&larr;</span></font></td>
+<td>Shipping way (DHL, UPS, etc.) 1</td>
+<td width=50px align=center><font color=silver><span style="position:relative;top:4px;">&rarr;</span><br><span style="position:relative;bottom:4px;">&larr;</span></font></td>
+<td>Tracking 1</td>
+<td width=50px align=center><font color=silver><span style="position:relative;top:4px;">&rarr;</span><br><span style="position:relative;bottom:4px;">&larr;</span></font></td>
+<td>Product Id (9 digits) 1</td>
+
+</table>
+
+<br> <br> 
+
+<table style="border:1px solid silver" padding=5px> 
+ <td width=20px align=center><font color=silver><span style="position:relative;top:4px;">&rarr;</span><br><span style="position:relative;bottom:4px;">&larr;</span></font></td>
+<td><font color=#111111>= Tabulation</td>
+</table>
+
+<br> 
+
+			</td>
+		</tr>
+		<!--GV Termina 02jun2008 -->
+    </table>
+	</fieldset>
+	
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

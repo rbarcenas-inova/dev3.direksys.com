@@ -1,0 +1,74 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  	<tr>
+	  		<td width="30%" align="center"></td>
+    		<td nowrap class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_repoper_day_list&action=1&reportdate=[in_reportdate]&reportdateto=[in_reportdateto]")'>General</td>
+    		<td nowrap class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_repoper_day_list&action=1&reportdate=[in_reportdate]&reportdateto=[in_reportdateto]&type=1")'>By Type</td>
+    		<td nowrap class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_repoper_day_list&action=1&reportdate=[in_reportdate]&reportdateto=[in_reportdateto]&detail=1&report=sales")'>By Operation</td>
+    	</tr>
+    </table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+    &nbsp;
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				    <td class="titletext" align="left" colspan="2"> Sales Report <br>From: [in_reportdate]<br>To: [in_reportdateto]<br>
+				    	<a href="javascript:prnwin('/cgi-bin/mod/admin/admin?cmd=fin_repoper_day_list&reportdate=[in_reportdate]&reportdateto=[in_reportdateto]&action=1&detail=1&print=1')"><img src='[va_imgurl]/[ur_pref_style]/b_print.gif' title='Print' alt='' border='0'></a>&nbsp;&nbsp;
+				    	<a href="javascript:prnwin('/cgi-bin/mod/admin/admin?cmd=fin_repoper_day_list&reportdate=[in_reportdate]&reportdateto=[in_reportdateto]&action=1&detail=1&export=1')"><img src='[va_imgurl]/[ur_pref_style]/inactive2.gif' title='Print' alt='' border='0'></a></td>
+				</tr>
+				<tr>
+				    <td class="stdtxterr" colspan="2">[va_message]</td>
+				</tr>
+				<tr>
+				    <td class="tbltextttl">No. Items: [va_matches]</td>
+				    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+				</tr>
+		  </table>
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr align="center">
+			    <td class="menu_bar_title">Order/inv</td>
+			    <td class="menu_bar_title">Product</td>
+			     <td class="menu_bar_title">Price</td>
+			    <td class="menu_bar_title">Tax</td>
+			    <td class="menu_bar_title">Shipping</td>
+			     <td class="menu_bar_title">Discount</td>
+			    <td class="menu_bar_title">Item</td>
+			    <td class="menu_bar_title">COGS</td>
+			 </tr>
+				[va_searchresults]
+		  </table>
+		  <table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				    <td class="tbltextttl">No. Items : [va_matches]</td>
+				    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+				</tr>
+		  </table>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+
+

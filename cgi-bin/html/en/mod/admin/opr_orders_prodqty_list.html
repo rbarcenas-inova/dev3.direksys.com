@@ -1,0 +1,81 @@
+[ip_header]
+
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+			  <tr>
+			    <td width="28%" align="center"></td>
+			    <td width="18%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=opr_orders_home")'>Orders</td>
+			    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_orders&search=form")'>Search</td>
+			    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_orders&search=advform")'>Adv Search</td>
+			    <td width="18%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_orders&search=listall&sb=id_orders&so=DESC")'>View / Edit / Delete</td>
+			  </tr>
+			</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+	
+	
+		<div style="background-color:#ffffff;margin:15px;">
+			
+			
+<form action="/cgi-bin/mod/admin/dbman" method="post" name="sitform" onsubmit="return warningmsg()">
+	<input type="hidden" name="cmd" value="opr_orders">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="left" colspan="2">Orders List : Items Summary</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Orders : [va_matches]
+					<a href="javascript:prnwin('[va_script_url]?printlist=1&cmd=opr_orders_rep_prodqty')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print List' alt='' border='0'></a>
+		    	</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title">Product ID</td>
+		    <td class="menu_bar_title">Name/Model</td>	    
+		    <td class="menu_bar_title">Quantity</td>
+		    <td class="menu_bar_title">Full Paid Orders</td>
+		    <td class="menu_bar_title">FP Orders</td>
+		    <td class="menu_bar_title">Inventory</td>
+		    <td class="menu_bar_title">Difference</td>
+		    <td class="menu_bar_title">&nbsp;</td>
+		    
+		 </tr>
+		[va_searchresults]
+  </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">Orders : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>  
+</form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

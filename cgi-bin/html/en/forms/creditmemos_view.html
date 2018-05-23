@@ -1,0 +1,177 @@
+<!--
+<script src="/sitimages/jquery.switches/jquery.js"></script>-->
+<script src="/sitimages/jquery.switches/switches.js"></script>
+<link rel="stylesheet" href="/sitimages/jquery.switches/switches.css">
+
+
+	<fieldset><legend>Credit Memo ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Credit Memo ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_creditmemos] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]
+							[fc_func_list_manager]
+							<!--a href="/cgi-bin/common/apps/schid?cmd=parts&db=sl_parts&returnurl=/cgi-bin/mod/admin/dbman``cmd^^opr_creditmemos~~view^^[in_id_creditmemos]~~tab^^4~~addsku^^&[va_rndnumber]" class="fancy_modal_iframe"><img src="[va_imgurl]/[ur_pref_style]/b_additem.gif" title="Add Item" alt="" border="0"></a>&nbsp; -->
+							[va_add_service]
+							<a href="/cgi-bin/common/apps/schid?cmd=services&db=sl_services&returnurl=/cgi-bin/mod/admin/dbman``cmd^^opr_creditmemos~~view^^[in_id_creditmemos]~~tab^^4~~addserv^^&[va_rndnumber]" class="fancy_modal_iframe"><img src="[va_imgurl]/[ur_pref_style]/b_addservice.gif" title="Add Service" alt="" border="0"></a>
+							<a href="/cgi-bin/common/apps/full_kardex.pl?tbl_name=sl_creditmemos&id_trs=[in_view]"  class='fancy_modal_iframe'>
+							<img src='[va_imgurl]/[ur_pref_style]/kardex.png' title='Kardex' alt='Kardex' border='0' width='24' height='24'>
+							</a>
+							<a href="/cgi-bin/common/apps/schid?cmd=add_notes_attached&tbl=sl_creditmemos&view=[in_id_creditmemos]&tab=1&tabs=1&cmdmain=opr_creditmemos" class='fancy_modal_iframe' id="lnk_addnotes" title="Add attachment">
+								<img src='[va_imgurl]/[ur_pref_style]/add_file.png' title="Add attachment" alt='notes' border='0' width='24' height='24'>
+							</a>
+							<a href="/cgi-bin/common/apps/ajaxfinance?cmd=movements_editor&id_creditmemos=[in_view]&tablename=creditmemos&edit_type=creditmemos" class="fancy_modal_iframe" title="Movements Editor">
+								<img border="0" alt="Edit" title="Edit Movements" src="[va_imgurl]/[ur_pref_style]/icon-edit-movements.png" height="24" width="24">
+							</a>
+						</div>
+					</div>
+
+
+
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+
+&nbsp;
+<fieldset><legend>Credit Memo</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<!-- <tr>
+			<td width="30%">Transition :  </td>
+			<td>
+				<span class="field switch">
+					<label class="cb-enable"><span onclick="ok(1)">On</span></label>
+					<label class="cb-disable selected"><span onclick="ok(0)">Off</span></label>
+					<input type="checkbox" id="transition" class="checkbox" name="transition" style="display:none;"/><span id="txtTransition"></span>
+				</span>
+			</td>
+		</tr>
+		[va_view_transition]-->
+		<tr>
+		    <td width="25%">ID Customers : </td>
+		    <td class="smalltext">(<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=opr_customers&view=[in_id_customers]"><span  class="smalltext">[in_id_customers]</span></a>) [va_customer_name]</td>
+		</tr>
+		<tr>
+			<td width="30%">Reference :  </td>
+			<td>[in_reference]</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Description :  </td>
+			<td class="smalltext">[in_description]</td>
+		</tr>
+		<tr>
+			<td width="30%">Currency :  </td>
+			<td>[va_currency]</td>
+		</tr>
+		<tr>
+			<td width="30%">Amount :  </td>
+			<td>[in_amount]</td>
+		</tr>
+		<tr>
+			<td width="30%">Status :  </td>
+			<td>[in_status] [va_action_status]</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+
+<!-- Add Products-->
+
+<div id="popup_addorder" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="item_drag1">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Order</td>
+			<td align=right width=20px><img id="popup_exit1" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div>
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=creditmemo_addorder&id_customers=[in_id_customers]&id_creditmemos=[in_id_creditmemos]&[va_rndnumber]" name="rcmd" TITLE="Recieve Commands" width="600" height="300" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+		</IFRAME>	
+	</div>
+</div>
+
+<div id="popup_additem" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="item_drag2">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Item</td>
+			<td align=right width=20px><img id="popup_exit2" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div>
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=parts&db=sl_parts&returnurl=/cgi-bin/mod/admin/dbman``cmd^^opr_creditmemos~~view^^[in_id_creditmemos]~~tab^^4~~addsku^^&[va_rndnumber]" name="rcmd" TITLE="Recieve Commands" width="400" height="300" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+		</IFRAME>	
+
+	</div>
+</div>
+
+<div id="popup_addserv" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="item_drag3">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Service</td>
+			<td align=right width=20px><img id="popup_exit3" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div>
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=services&db=sl_services&returnurl=/cgi-bin/mod/admin/dbman``cmd^^opr_creditmemos~~view^^[in_id_creditmemos]~~tab^^4~~addserv^^&[va_rndnumber]" name="rcmd" TITLE="Recieve Commands" width="400" height="300" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+		</IFRAME>	
+
+	</div>
+</div>
+
+<script language="JavaScript">
+
+	function add_order(){
+		popup_show('popup_addorder', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'tabs');
+	}
+
+	function add_item(){
+		popup_show('popup_additem', 'item_drag2', 'popup_exit2', 'element-right', -1, -1,'tabs');
+	}
+
+	function add_serv(){
+		popup_show('popup_addserv', 'item_drag3', 'popup_exit3', 'element-right', -1, -1,'tabs');
+	}
+
+	function Confirm_to_continue(){
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+
+	function ok(val){
+		var txtSpan = $("#ok").html();
+		
+		if(val==1){
+			var vFirst = txtSpan.split('<img');
+			var vSecond = vFirst[0].split('">');
+			var vThird = vSecond[0].split("&amp;transition=1");
+			var txtFinal = vThird[0]+"&transition=1"+'">'+'<img'+vFirst[1];	
+			$("#ok").html(txtFinal);	
+		}
+		else{		
+			var vFirst = txtSpan.split("&amp;transition=1");
+			var txtFinal = vFirst[0]+vFirst[1];
+			$("#ok").html(txtFinal);
+		}
+	}
+
+</script>
+
+	

@@ -1,0 +1,192 @@
+[ip_header]
+
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+	var dates = $( "#from_date, #to_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+	var sales_dates = $( "#from_sales_date, #to_sales_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_sales_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			sales_dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:[fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="17%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_prodbyagent")'>Sales By Agent</td>
+	    <td width="17%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_allorders")'>Sales By Day/Agent</td>
+	    <td width="17%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_capture")'>Capture/Agent</td>
+	    <td width="18%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_salesday")'>Sales by Day</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+  <form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="rep_bi_allorders_by_capdate_v2">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">Business Intelligence : Cumulative Collection</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Query</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			    <td width="25%">From Order Date : <span class="smallfieldterr">[er_from_date]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="25%">To Order Date : <span class="smallfieldterr">[er_to_date]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			    </td>
+			</tr>
+
+			<tr>
+			    <td width="25%">From Sales Date : <span class="smallfieldterr">[er_from_sales_date]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="from_sales_date" name="from_sales_date" value="[in_from_sales_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="25%">
+			    	To Sales Date : <span class="smallfieldterr">[er_to_sales_date]</span>
+			    	<br><br><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'>
+			    </td>
+			    <td class="smalltext">
+			    	<input type="text" id="to_sales_date" name="to_sales_date" value="[in_to_sales_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			    </td>
+			</tr>
+
+			<tr>
+			    <td width="30%">From Hour :</td>
+			    <td class="smalltext">
+			    	<select name="from_time" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			      	<option value="">---</option>
+			        [fc_build_select_daytime]
+						</select>	
+			    </td>
+			</tr>
+			<tr>
+			    <td width="30%">
+			    	To Hour :
+			    	<br><br><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'>
+			    </td>
+			    <td class="smalltext">
+			    	<select name="to_time" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			      	<option value="">---</option>
+			        [fc_build_select_daytime]
+						</select>
+			    </td>
+			</tr>
+
+			<tr>
+			 	<td width="30%">ID Users : <span class="smallfieldterr"></span></td>
+				<td class="smalltext">
+					<input name="id_admin_users" value="" size="10" onfocus="focusOn( this )" onblur="focusOff( this ); $('#search_id_users').attr('href','/cgi-bin/common/apps/schid?db=admin_users&cmd=users&fname=id_admin_users&value='+this.value.trim());" type="text">
+					<a name="tabs" id="tabs">&nbsp;</a>
+					<a href="/cgi-bin/common/apps/schid?db=admin_users&cmd=users&fname=id_admin_users&value=" title="Advance Search by ID User" class="fancy_modal_iframe" id="search_id_users">
+					<img src="/sitimages//default/icsearchsmall.gif" border="0"></a>
+				</td>
+			</tr>
+			<tr>
+				<td width="30%">ID Product : <span class="smallfieldterr">[er_id_products]</span></td>
+				<td class="smalltext"><input type="text" name="id_products" value="[in_id_products]" size="10" onFocus='focusOn( this )' onBlur="focusOff( this ); $('#search_id_products').attr('href','/cgi-bin/common/apps/schid?db=sl_products&cmd=products&fname=id_products&value='+this.value.trim());">
+					<a name="tabs" id="tabs">&nbsp;</a>
+					<a href="/cgi-bin/common/apps/schid?db=sl_products&cmd=products&fname=id_products&value=" title="Advance Search by ID Products" class="fancy_modal_iframe" id="search_id_products">	
+					<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+				</td>
+			</tr>
+			<tr>
+	   			<td width="30%">Line By :</td>
+				<td class="smalltext">
+		   			<input type="radio" class="radio" name="type" value="order" checked> Order
+					<input type="radio" class="radio" name="type" value="product">Product
+				</td>
+			</tr>
+			<tr>
+	   			<td width="30%">Only Shipped :</td>
+				<td class="smalltext">
+		   			<input type="checkbox" class="radio" name="status" value="1" checked> Yes
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+
+	<p align="center"><input type="submit" value="Run" class="button" loading="0"></p>
+  </form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

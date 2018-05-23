@@ -1,0 +1,118 @@
+<fieldset><legend>Zones ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Zone ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_zones] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton] &nbsp;
+							[fc_func_list_manager] &nbsp;
+							[fc_custom_id_link]
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Zones</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width='30%'>Name</td>
+			<td class='smalltext' id='td_name'>
+				<span id='span_name'>[in_name]</span> 
+			</td>
+		</tr>
+		<tr>
+			<td width='30%'>Express Shipping</td>
+			<td class='smalltext' id='td_name'>
+				<span id='span_name'>[in_expressshipping]</span> 
+			</td>
+		</tr>
+		<tr>
+			<td width='30%'>Max Days Arrival: </td>
+			<td class='smalltext'>
+				<span>[in_maxdaysarrival]</span> 
+			</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Payments Taken</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="smalltext" id="td_pm" colspan ="2">
+				<ol id="pm_selectable">
+				[in_payment_type]
+				</ol>
+			</td>
+		</tr>
+	</table>
+</fieldset>		
+&nbsp;
+<fieldset><legend>Add Zip Code</legend>	
+	<form method="post" action="[va_script_url]" name="sitform">
+
+		<input type="hidden" name="id_zone" value="[in_id_zones]">
+		<input type="hidden" name="view" value="[in_id_zones]">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="tab" value="1">
+		<input type="hidden" name="cmd" value="[in_cmd]">
+		<input type="hidden" name="add_new" value="1">
+		
+		<table>		
+			<td align="right" class="tbltext">			
+				Zip Code: <a href="#" name="add_zone" id="add_zone"> </a>
+				<input type="text" name="newzip" value="" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					
+					<a href="#add_zone" onClick="choose_newzone()" id="newzone">
+					   <img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+					</a>
+				&nbsp;
+				<input type="submit" value="Add" class="button">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			
+		</table>
+	</form>
+</fieldset>	
+&nbsp;
+<fieldset><legend>Zones Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Status  :</td>
+			<td class="smalltext" id='td_status'>
+				<span id='span_status'>[in_status]</span> 
+			</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<script language="javascript">
+
+	function choose_newzone(){
+		popup_show('popup_newzone', 'item_drag_newzone', 'popup_exit_newzone', 'element-right', -1, -1,'add_zone');
+	}
+</script>
+
+<div id="popup_newzone" style="visibility: hidden; display: none; background-color: #ffffff;">
+	<div class="menu_bar_title" id="item_drag_newzone">
+	<img id="popup_exit_newzone" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+	&nbsp;&nbsp;&nbsp;Adding Zip to the Zone
+	</div>
+	<div class="formtable">
+		<IFRAME SRC="/cgi-bin/common/apps/schid?db=sl_zipcodes&cmd=zipcodes&returnfield=ZipCode&returnid=newzip&value=" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+		<H2>Unable to do the script</H2>
+		<H3>Please update your Browser</H3>
+		</IFRAME>	
+	</div>
+</div>	

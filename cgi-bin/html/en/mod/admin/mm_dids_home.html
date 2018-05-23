@@ -1,0 +1,88 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 6, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+			<table class="tab" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+			  <tbody><tr>
+			    <td align="center" width="30%"></td>
+				<td class="cell_on" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=mm_dids_home&quot;)" align="center" width="17%">DIDs/DNIS</td>
+				<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mm_dids&amp;add=1&quot;)" align="center" width="17%">Add</td>
+				<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mm_dids&amp;search=form&quot;)" align="center" width="17%">Search</td>
+				<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mm_dids&amp;search=listall&quot;)" align="center" width="17%">View / Edit / Delete</td>
+			  </tr>
+			</tbody></table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+			
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td class="titletext" align="left" colspan="2">DID's</td>
+				</tr>
+			</table>
+			&nbsp;
+			<fieldset><legend>Sales / Orders Links</legend>
+			    <table border="0" cellspacing="0" cellpadding="4" width="100%">
+				  <td valign="top" width="50%" class="stdtxterr" id="message">[va_message]
+						&nbsp;
+				  </td>
+				  <tr>
+					<td valign="top" width="50%">
+						<ul class='nslist'>
+							<li class='nslist'>Special Links to DID's
+								<ul class='nslist'>
+									<li><a href="/cgi-bin/mod/admin/admin?cmd=mm_dids_bulk">Bulk Redirect</a></li>
+									<li><a href="/cgi-bin/mod/admin/admin?cmd=mm_dids_cronlist">Redirection To Apply</a></li><br>
+									
+									<li><a href="/cgi-bin/mod/admin/admin?cmd=mm_dids_home&chgto=Mixcoac">Redirect all to Mixcoac</a></li>
+									<li><a href="/cgi-bin/mod/admin/admin?cmd=mm_dids_home&chgto=Vixicom">Redirect all to Vixicom</a></li>
+									<li><a href="/cgi-bin/mod/admin/admin?cmd=mm_dids_home&chgto=Mixicom">Redirect all to Mixicom</a></li>
+									[va_did_mixicom]
+									<li><a href="/cgi-bin/mod/admin/admin?cmd=mm_dids_home&chgto=VixiS8">Redirect all to VixiS8</a></li>
+									<li><a href="/cgi-bin/mod/admin/admin?cmd=mm_dids_home&chgto=S8">Redirect all to S8</a></li>
+								</ul>
+							</li>
+						</ul>
+					</td>
+					<td valign="top" width="50%">
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td valign="top" width="50%">
+				  	&nbsp;
+					</td>
+				  <td valign="top" width="50%">
+						&nbsp;
+				  </td>
+				</tr>
+			 </table>
+			</fieldset>
+
+			&nbsp;
+	
+	
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

@@ -1,0 +1,227 @@
+ &nbsp;
+	<fieldset><legend>Warehouse Receipt ID</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		  	<td width="30%" class="titletext">ID :</td>
+		    <td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_wreceipts] 
+					    	[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]
+							<a href="/cgi-bin/common/apps/schid?cmd=wr_addparts&id_vendors=[in_id_vendors]&id_wreceipts=[in_id_wreceipts]&po=[in_id_purchaseorders]&rndnumber=[va_rndnumber]" title="Add Parts to the Warehouse Receipt" class="fancy_modal_iframe">
+								<img src='/sitimages/default/b_addsku.gif' title='Add SKUs' alt='Add SKUs' border='0' width='24' height='24'>
+							</a>
+							<a href="/cgi-bin/common/apps/full_kardex.pl?tbl_name=sl_wreceipts&id_trs=[in_view]"  class='fancy_modal_iframe'>
+							<img src='[va_imgurl]/[ur_pref_style]/kardex.png' title='Kardex' alt='Kardex' border='0' width='24' height='24'>
+							</a>
+							<a href="/cgi-bin/common/apps/schid?cmd=add_notes_attached&tbl=sl_wreceipts&view=[in_id_wreceipts]&cmdmain=mer_wreceipts" class='fancy_modal_iframe' id="lnk_addnotes" title="Add attachment">
+								<img src='[va_imgurl]/[ur_pref_style]/add_file.png' title="Add attachment" alt='notes' border='0' width='24' height='24'>
+							</a>
+						</div>
+					</div>
+				
+		    	</td>
+		 </tr> 
+		 <tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+		</table>
+	</fieldset> 
+	&nbsp;
+	<fieldset><legend>Warehouse Receipt Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%" valign="top">Vendor ID : </td>
+		    <td class="smalltext"><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_vendors&view=[in_id_vendors]">([in_id_vendors])</a> [va_vendor_name]</td>
+		 </tr>				
+  		<tr>
+		    <td width="30%" valign="top">Purchase Orders ID : </td>
+		    <td class="smalltext"><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_po&view=[in_id_purchaseorders]">[in_id_purchaseorders]</a></td>
+		 </tr>	
+  		<tr>
+		    <td width="30%">Invoice # : </td>
+		    <td class="smalltext">[in_invoice]</td>
+		 </tr>	
+		<tr>
+		  <td width="30%">Invoice Date : </td>
+			<td class="smalltext">[in_invoicedate]</td>
+		</tr>
+		<tr>
+		    <td valign="top" width="30%">Description : </td>
+		    <td class="smalltext">[in_description]</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Type of  : </td>
+		    <td class="smalltext">[in_type]</td>
+        </tr>
+        <tr>
+		    <td width="30%">Tracking #  : </td>
+		    <td class="smalltext">[in_tracking]</td>
+        </tr>
+		<tr>
+		  <td width="30%">Currency:</td>
+		  <td class="smalltext">[ln_id_vendors@sl_vendors:Currency] ([va_currency])</td>
+		</tr>      
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Purchase Order</legend>
+  <!-- <p class="txtlegend">Purchase Order--><a name='tabs' id='tabs'>&nbsp;</a>
+	<form name="extrainfo" action="/cgi-bin/mod/[ur_application]/dbman" method="post">
+		<input type="hidden" name="id_wreceipts" value="[in_id_wreceipts]">
+		<input type="hidden" name="view" value="[in_id_wreceipts]">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="cmd" value="[in_cmd]">
+		<input type="hidden" name="update" value="1">
+
+	<table id="[tbl_po_list]" border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class="menu_bar_title" nowrap align="center">ID</td>
+			<td class="menu_bar_title" align="center">Model / Name</td>
+			<td class="menu_bar_title" align="center">Serial Num</td>
+			<td class="menu_bar_title" align="center">Qty</td>
+		 </tr>
+		 [va_polist]
+	</table> <!--</p>	-->
+	<div style="text-align:center"><input type="submit" class="button" value="Update Records" [va_btncustoms_style]></div>
+
+	</form>
+
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Delivery Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		   <td valign="top" width="30%">Received From : </td>
+		   <td class="smalltext">[in_receivedfrom]</td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Driver Name : </td>
+		    <td class="smalltext">[in_driver]</td>
+		 </tr>	
+  		<tr>
+		    <td width="30%">Driver ID : </td>
+		    <td class="smalltext">[in_driverid]</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Warehouse Receipt Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Status  : </td>
+		    <td class="smalltext">[in_status]&nbsp;&nbsp;[va_cancel][va_new] <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[va_amazon_process]--> </td>
+		 </tr>
+  	</table>
+	</fieldset>
+
+<script language="JavaScript">
+	function confirm_chg_in_process(){
+		if(confirm("Change Status to In Process?")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	function add_part(){
+		popup_show('popup_addparts', 'parts_drag', 'popup_exit3', 'element-right', -1, -1,'tabs');
+	}
+
+</script>
+
+
+<script language="JavaScript">
+
+	$(document).ready(function() {
+		
+		/* 
+			Todos los elementos <span> con clase editable se convierten a editable
+			Todos llevan el formato span_action_id
+			action = qty, price
+			id = id de la tabla id_purchaseorders_items
+			Para saber cual elemento se esta convirtiendo
+		*/
+		$('span.editable').editable( {
+			submit:'Update',
+			editBy:'dblclick',
+			cancel:'Cancel',
+			onSubmit:function(content) {
+				var data = $(this).attr('id').split('_');
+				var f = data[1];
+				var id = data[2];
+
+				if(f == 'qty') {
+					var prev_value = parseInt(content.previous.replace(',',''));
+					var new_value = parseInt(content.current.replace(',',''));
+				}else{
+					var prev_value = parseFloat(content.previous.replace('$',''));
+					var new_value = parseFloat(content.current.replace('$',''));
+				}
+
+				if(prev_value != new_value){
+					$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'wreceipts_update', 'id_wreceipts_items':id, 'field': f, 'old':prev_value, 'new':new_value},function(response,status,xhr){
+						if (status == "error") {
+							alert(msg);
+							$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/checkmark_off.gif" title="Done">');
+						}else{
+							if(response.match(/error/gi)){
+								alert("Error:\r\n"+response);
+								$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl][ur_pref_style]/checkmark_off.gif" title="Done">');
+							}else{
+								if(f == 'price') {
+									$('#span_' + f + '_' + id).html('\$'+parseFloat(new_value));
+								}
+								$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/checkmark.gif" title="Done">');
+							}
+						}
+						$('#span_chg_' + f + '_' + id).fadeIn(2000);
+					});
+
+					setTimeout(function(){
+							$('#span_chg_' + f + '_' + id).fadeOut(2000);
+					},3000);
+					
+					setTimeout(function(){
+						$('#span_chg_' + f + '_' + id).fadeIn(2000);
+						$('#span_chg_' + f + '_' + id).html('<img id="#btn_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/b_edit.png" title="Click to edit Cost" style="cursor:pointer;">');
+					},5000);
+		
+				}else{
+					$('#span_chg_' + f + '_' + id).fadeIn(2000);
+				}
+			},
+			onCancel:function(){ 
+				var data = $(this).attr('id').split('_');
+				var f = data[1];
+				var id = data[2];
+				$('#span_chg_' + f + '_' + id).fadeIn(2000);
+			}
+		});
+
+
+		/* 
+			Evento de click de los lapices. Todos los lapices con clase triggers_editable
+			Todos llevan el formato btn_chg_action_if 
+			action = qty, price
+			id = id de la tabla id_purchaseorders_items
+			Para saber cual elemento poner a editable
+			Independitentemente del lapiz, se puede hacer doble click en el elemento para hacerlo funcionar
+		*/
+		$('img.triggers_editable').live('click',function(){
+			var data = $(this).attr('id').split('_');
+			var f = data[2];
+			var id_poi = data[3];
+			$('#span_chg_' + f + '_' + id_poi).fadeOut();
+			$('#span_' + f + '_' + id_poi).dblclick();
+		});
+
+		[va_js_date_ui]
+
+	});
+
+ 	[va_js_chg_select]
+</script>	

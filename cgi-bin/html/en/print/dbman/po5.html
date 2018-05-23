@@ -1,0 +1,194 @@
+<STYLE TYPE="text/css">
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+
+
+fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+</STYLE>
+
+<center>
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td><font class=info>
+<table cellpadding=0 cellspacing=0 border=0>
+	<td align=left>
+		<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px>
+	</td>
+	[fc_show_companyinfo]
+</table>
+<center>
+<hr style="color: #000;background-color: #000;height: 1px;">
+
+<font class=its>O R D E N &nbsp;  D E &nbsp;  C O M P R A </font>
+<div style="[va_display_noauth]"><font class=its>N O &nbsp;  A U T O R I Z A D A</font></div>
+<br>
+<hr style="color: #000;background-color: #000;height: 1px;">
+
+
+
+<br>
+
+	
+
+<table border=0 cellpadding=0 cellspacing=0 width=100%>
+
+ 
+<tr>
+	<td colspan=2 valign=top align=left>
+
+
+<table cellpadding=5 cellspacing=0  style="border:1px solid #333333;border-bottom:0px;" width=100%>
+	<tr bgcolor=#ffffff>
+		<td style="border-bottom:1px solid #333333;">
+			<table cellpadding=0 cellspacing=3 width=100% border=0>
+				<tr>
+				<td width="50%"><font class=infot>No. de orden de compra</td>
+				<td width="30%"><font class=infot>Fecha</td>
+				<td width="20%"><font class=infot>Fecha de Entrega</td>
+				</tr>
+				<tr>
+				<td><font class=info>[in_id_purchaseorders]</td>
+				<td><font class=info>[in_date]</td>
+				<td><font class=info>[in_canceldate]</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+	<tr bgcolor=#ffffff>
+		<td style="border-bottom:1px solid #333333;">
+			<table cellpadding=0 cellspacing=3 width=100% border=0>
+				<tr>
+				<td width="50%"><font class=infot>Comprador</td> 
+				<td width="50%"><font class=infot>Autorizado por</td>
+				</tr>
+				<tr>
+				<td><font class=info>[in_admin_users.firstname] [in_admin_users.lastname]</td> 
+				<td><font class=info>([in_authby]) [in_authby_name]</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+	<tr bgcolor=#ffffff>
+		<td style="border-bottom:1px solid #333333;">
+			<table cellpadding=0 cellspacing=3 width=100%>
+				<tr>
+				<td width="50%"><font class=infot>Condiciones de Pago</td>
+				<td><font class=infot>Moneda</td>
+				</tr>
+				<tr>
+				<td width="50%"><font class=info>[in_poterms]</td>
+				<td><font class=info>[va_vendor_currency]</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+</table>
+
+</td>
+</table>
+
+
+<br>
+
+<table cellpadding=0px cellspacing=0 border=0 width=100% align=center>
+	<td width=50% valign=top align=left><font class=info>
+		<font class=infot>Proveedor:</font><br> 
+			<div style="margin-left:15px;">[va_vendor_name]</div>
+			<br> 
+			<font class=infot>	Contacto:</font><br>
+			<div style="margin-left:15px;">[va_vendor_contact]</div>
+	</td>
+	<td width=50% valign=top align=left>
+		<font class=info>
+		
+		<font class=infot>Enviar a:</font><br> 
+		<div style="margin-left:15px;">[va_shiptoaddress]</div>
+<br> 
+		<font class=infot>Facturar a:</font><br> 
+
+<div style="margin-left:15px;">
+<b>[va_company_name]</b><br>
+[va_company_street] [va_company_num] [va_company_num2], Col. [va_company_urbanization]<br>
+Del. [va_company_city], M&eacute;xico [va_company_state], C.P.[va_company_zip]<br>
+R.F.C: [va_company_rfc]<br>
+</div>
+
+
+	</td>
+</table>
+
+
+<br>
+
+<!--table cellpadding=5 cellspacing=0 width=100%>
+	<tr bgcolor=#ffffff>
+		<td><font class=info>¿Exnc Fisc?</td>
+		<td width=70><font class=info>N</td>
+		<td><font class=info>ID Exnc Fisc:</td>
+		<td><font class=info>Opción Reaprov:</td>
+		<td width=50%><font class=info>Estándar</td>
+	</tr>
+</table-->
+
+<table cellpadding=5 cellspacing=0 border=0 style="border:1px solid #333333;" width=100%>
+	<tr bgcolor=#ffffff>
+		<th width=30px style="border-bottom:1px solid #333333;"><font class=infot>Lín</th>
+		<th style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>Descripción</th>
+		<th width=80px style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>SKU</th>
+		<th style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>AREA</th>
+		<th width=45px style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>Cantidad</th>
+		<!-- <th width=45px style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>Recibido</th> -->
+		<th width=80px style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>P/U</th>
+		<th width=80px style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>Subtotal</th>
+		<th width=65px style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>IVA</th>		
+		<th width=65px style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>IVA Ret.</th>		
+		<th width=65px style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>ISR</th>		
+		<th width=80px style="border-bottom:1px solid #333333;border-left:1px solid #333333;"><font class=infot>Total</th>
+	</tr>	
+	[fc_load_po_items]
+</table>
+<br>
+
+	</td>
+</table>
+<br/>
+	[va_add_notes_high]	
+		
+	</td>
+</table>
+	
+	
+	
+	

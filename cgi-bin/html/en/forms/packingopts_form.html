@@ -1,0 +1,45 @@
+	&nbsp;
+	<fieldset><legend>Packing/Shipping Options Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Name  : <span class="smallfieldterr">[er_name]</span></td>
+		  <td class="smalltext"><input type="text" name="name" value="[in_name]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width="30%">Cost : <span class="smallfieldterr">[er_cost]</span></td>
+		  <td class="smalltext"><input type="text" name="cost" value="[in_cost]" size="6" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width="30%">Shipping  : <span class="smallfieldterr">[er_shipping]</span></td>
+		  <td class="smalltext"><input type="text" name="shipping" value="[in_shipping]" size="6" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">This Value will be used to calculate the Shipping</span></td>
+		</tr>
+		<tr>
+			<td width="30%">Supplier : <span class="smallfieldterr">[er_vendor]</span></td>
+		  <td class="smalltext"><input type="text" name="vendor" value="[in_vendor]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width="30%">Supplier SKU : <span class="smallfieldterr">[er_vendorsku]</span></td>
+		  <td class="smalltext"><input type="text" name="vendorsku" value="[in_vendorsku]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+ <fieldset><legend>Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		  <td class="smalltext">
+				<input type="radio" name="status" value="Active" class="radio">Active
+				<input type="radio" name="status" value="Inactive" class="radio">Inactive</td>
+		 </tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_radio('status','[in_status]');
+
+//-->
+</script>
+

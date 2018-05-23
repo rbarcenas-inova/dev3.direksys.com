@@ -1,0 +1,88 @@
+[ip_header_small]
+<body bgcolor="#EEEEEE" topmargin="0">
+	<table width=100% cellpadding=0 cellspacing=0 height=100% style="border:1px solid silver;">
+<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+<form action="/cgi-bin/common/apps/custom" name="sitform" method="POST">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="id" value="[in_id]">
+	<input type="hidden" name="tab" value="1">
+	<input type="hidden" name="action" value="1">
+
+<center>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+  <tr>
+    <td width="30%" align="center"></td>
+    <td width="17%" class="cell_on" align="center" onclick="window.location='/cgi-bin/common/apps/custom?cmd=opr_orders&tab=1&id=[in_id]'">Pre Shipped</a></td>
+    <td width="17%" class="cell_off" align="center" onclick="window.location='/cgi-bin/common/apps/custom?cmd=opr_orders&tab=2&id=[in_id]'">Pre Payment</a></td>
+    <td width="17%" class="cell_off" align="center" onclick="window.location='/cgi-bin/common/apps/custom?cmd=opr_orders&tab=3&id=[in_id]'">To Shipped</a></td>
+    <td width="17%" class="cell_off"  align="center" onclick="window.location='/cgi-bin/common/apps/custom?cmd=opr_orders&tab=4&id=[in_id]'">Full Return</a></td>
+  </tr>
+</table>
+ 
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td bgcolor="#3E76DD" class="tbltextttlwte">&nbsp; Sale Order (Transition Operations)</td>
+  </tr>
+  <tr>
+    <td class="stdtxterr">[va_message]</td>
+  </tr>
+  <tr>
+    <td class="tbltextttl">Items : [va_matches]</td>
+  </tr>  
+  <tr>
+    <td><table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+			<tr>
+			    <td class="menu_bar_title">#</td>
+			    <td class="menu_bar_title" align="center">ID</td>
+			    <td class="menu_bar_title" align="center">Model/name</td>
+			    <td class="menu_bar_title" align="center">Qty</td>
+			    <td class="menu_bar_title" align="center">Unit Price</td>
+			    <td class="menu_bar_title" align="center">Shipping</td>
+			    <td class="menu_bar_title" align="center">Cost</td>
+			    <td class="menu_bar_title" align="center">Ship Date/Tracking/Provider</td>
+			 </tr>
+			[va_searchresults]
+	  </table></td>
+  </tr>  
+</table>
+<p align="center"><input value="Update Record" class="button" type="submit"></p>
+</center>
+
+<script language="javascript">
+
+
+	
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+	var t = new Date();
+	var today = t.getFullYear() + '-' + (t.getMonth()+1) + '-' + t.getDate();
+	//alert(today);
+	//$("#podate").val(today);
+	var dates = $( "[va_date_list]" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		setDate: new Date(),
+		defaultDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 2
+	});
+	
+
+});
+
+</script>
+</div>
+</td></table>
+</body>
+</html>

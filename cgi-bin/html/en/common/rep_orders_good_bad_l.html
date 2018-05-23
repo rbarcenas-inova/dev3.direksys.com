@@ -1,0 +1,245 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:[fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_prod")'>Products</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_mm")'>Media</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_pay")'>Payments</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_usr")'>Users</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_cust")'>Customers</td>
+	    <td width="10%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_good_bad_l")'>Good/Bad</td>
+	    <td width="10%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_araging")'>AR Aging</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+
+  <form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="rep_orders_good_bad_l">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center" colspan="2">Orders COD Good Bad Report</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Query</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			    <td width="25%">Date (From/To): </td>
+			    <td class="smalltext"><input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				&nbsp; - &nbsp;
+				<input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			 </tr>
+			 <tr>
+			    <td width="25%">Hour (From/To):</td>
+			    <td class="smalltext">
+			    	<select name="from_time" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			      	<option value="---">---</option>
+			        [fc_build_select_daytime]
+						</select>	
+			    &nbsp; - &nbsp;
+			    	<select name="to_time" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			      	<option value="---">---</option>
+			        [fc_build_select_daytime]
+						</select>	
+			    </td>
+			</tr> 
+			<tr>
+			 	<td width="25%">State : </td>
+			  <td class="smalltext">
+					<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option>
+							[fc_build_select_opr_customersstate]
+					</select>
+				</td>
+			</tr>
+			<tr>
+			 	<td width="25%">Price Levels : </td>
+			  <td class="smalltext">
+					<input type="checkbox" name="id_pricelevels" value="-1" class="checkbox" checked onclick="showDiv_checkbox('b_id_pricelevels',this.name);">All&nbsp;
+				<div id="b_id_pricelevels" style="display:none;">
+					[fc_build_checkbox_pricelevels]
+				</div>
+				<br><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'>
+			</td>
+			</tr>
+			<tr>
+	   		<td width="25%" valign="top">Status : <span class="smallfieldterr">[er_status]</span></td>
+			<td class="smalltext">
+				<input type="checkbox" name="status" value="-1" class="checkbox" checked onclick="showDiv_checkbox('b_id_status',this.name);">All Status&nbsp;
+				<div id="b_id_status" style="display:none;">
+					[fc_build_checkbox_order_status]
+				</div>
+				<br><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'>
+			</td>
+		</tr>
+		<tr>
+	   		<td width="25%" valign="top">DID : <span class="smallfieldterr">[er_did]</span></td>
+				<td class="smalltext">
+					<input type="checkbox" name="dids" value="-1" class="checkbox" checked onclick="showDiv_checkbox('b_id_dids',this.name);">All DIDs&nbsp;
+					<div id="b_id_dids" style="display:none;">
+						[fc_build_checkbox_dids]
+					</div>
+					<br><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'>
+				</td>
+		</tr>
+		<tr>
+	   		<td width="25%" valign="top">Pay Exeption : <span class="smallfieldterr">[er_statuspay]</span></td>
+			<td class="smalltext">
+				<input type="checkbox" name="statuspay" value="-1" class="checkbox" checked onclick="showDiv_checkbox('b_id_statuspay',this.name);">All Payment Exceptions&nbsp;
+					<div id="b_id_statuspay" style="display:none;">
+					[fc_build_checkbox_order_paystatus]
+					</div>
+				<br><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'>
+				</td>
+		</tr>
+		<tr>
+			<tr>
+		   	<td width="25%">Payment Type : <span class="smallfieldterr">[er_status]</span></td>
+				<td class="smalltext">
+					<input type="radio" class="radio" name="paytype" value="all" checked> All
+					<input type="radio" class="radio" name="paytype" value="LayawayMO"> Layaway with Money Order
+					<input type="radio" class="radio" name="paytype" value="LayawayCC"> Layaway with Credit Card
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	<fieldset>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+		   		<td class="smalltext" valign="top" width="25%">Group By:<td>
+		   		<td class="smalltext">
+		   			<input type="radio" class="radio" name="groupby" value="id_orders" checked="checked"> Order ID
+		   			<input type="radio" class="radio" name="groupby" value="day"> Day
+		   			<input type="radio" class="radio" name="groupby" value="month"> Month
+			   		<input type="radio" class="radio" name="groupby" value="state"> State
+			   		<input type="radio" class="radio" name="groupby" value="status"> Status<br>
+			   		<input type="radio" class="radio" name="groupby" value="paytype"> Payment Type / Payment
+			   		<!--input type="radio" class="radio" name="groupby" value="TotalPayments"> Qty Payments<br-->
+	   		</td>
+			</tr>
+		</table>
+	</fieldset>
+<!--	<fieldset>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+		  		<td class="smalltext" width="25%">Pay Status:</td>
+		   		<td class="smalltext"><input type="radio" class="radio" name="pstatus" value="All" checked> All 
+		   			<input type="radio" class="radio" name="pstatus" value=""> Approved
+		   			<input type="radio" class="radio" name="pstatus" value=""> Not Approved
+		   			</td>
+			</tr>
+		</table>
+	</fieldset>-->
+	<fieldset>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+	   		<td class="smalltext" valign="top" width="25%">Sales By:</td>
+	   		<td class="smalltext">
+		   		[fc_build_checkbox_usertype]
+		   		<br>
+		   		<input type="checkbox" class="checkbox" name="excludevoid" value="on" checked> Exclude Void and System Error
+	   		</td>
+			</tr>
+		</table>
+	</fieldset>	
+	<fieldset>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+	   		<td class="smalltext" valign="top" width="25%">Sort By:</td>
+	   		<td class="smalltext">
+		   		<input type="radio" class="radio" name="sortby" value="sl_orders_payments.ID_orders" checked> No Order
+		   		<input type="radio" class="radio" name="sortby" value="TotalPayments"> Nums or Payments
+		   		<input type="radio" class="radio" name="sortby" value="STotalPayments"> Sum of Payments<br>
+		   		<input type="radio" class="radio" name="sortorder" value="ASC"> Ascending
+		   		<input type="radio" class="radio" name="sortorder" value="DESC" checked> Descending
+	   		</td>
+			</tr>
+		</table>
+	</fieldset>
+	<fieldset>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+		  		<td class="smalltext" width="25%">Date:</td>
+		   		<td class="smalltext"><input type="radio" class="radio" name="dtype" value="sl_orders.Date" checked> Order Date
+		   			<input type="radio" class="radio" name="dtype" value="sl_orders_payments.Paymentdate"> Paymentdate Date (FP)
+		   			<input type="radio" class="radio" name="dtype" value="sl_orders_payments.CapDate"> Captured Date
+		   			</td>
+			</tr>
+		</table>
+	</fieldset>
+	<p align="center"><input type="submit" value="Run" class="button"></p>
+  </form>
+<script language="javascript">
+<!--      
+
+	chg_chkbox('status','[in_status]');
+	chg_radio('dropship','[in_dropship]');
+	chg_chkbox('user_type','[in_user_type]');
+    
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#from_date, #to_date" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			minDate: new Date(2009,1-1,1),
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+			onSelect: function( selectedDate ) {
+				var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+
+	});
+
+//-->
+</script>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+
+
+[ip_footer]

@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="es-mx" lang="es-mx">
+<head>
+
+  <title>Direksys : [va_page_title]</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+  <meta http-equiv="Expires" content="0" /> 
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="STYLESHEET" href="[va_imgurl]/[ur_pref_style]/main.css" type="text/css">
+  <link rel="icon" href="/favicon.ico" type="image/x-ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <script language="JavaScript1.2" src="[va_imgurl]/[ur_pref_style]/main.js" type="text/javascript"></script>
+    
+  <!-- Direksys v2 -->  
+  <link rel="stylesheet" type="text/css" href="[va_imgurl]app_bar/mod/Xtyle[in_e].css" />
+  <!-- Direksys v2 -->    
+
+  
+  <!------------------------------------------------------------>  
+  <link rel="stylesheet" type="text/css" href="/libs/sales/css/sales.css?v1.6" />
+  <link rel="stylesheet" href="/libs/jqueryui/1.11.4/jquery-ui.css">
+  <script src="/libs/jquery-2.2.1.min.js"></script>  
+  <script src="/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+  <script src="/libs/jqvalidation1.15.0/jquery.validate.min.js"></script>  
+  <script type="text/javascript" src="/libs/sales/js/sales.js?v3.0.0"></script>
+  <!------------------------------------------------------------>
+
+  <script type="text/javascript">    
+    function logoff(){
+      if (confirm("Are you sure want to Exit ?")){
+        this.location.href = '/cgi-bin/mod/[ur_application]/admin?logoff=1';
+      }  // End if
+    }  // End function
+
+    if(history.forward(1)){
+      location.replace( history.forward(1) );
+    }  
+    $(function() {
+      $( document ).tooltip({
+        position: { my: "left+10 center", at: "right bottom" }
+      });
+
+      //-------------------------------
+      // Note pad
+      //-------------------------------
+      if( $('#div_notepad').length ){
+        $('#div_notepad').dialog({
+          width: 750,
+          height: 550,
+          modal: true,
+          autoOpen: false,
+          resisable: false,
+          draggable: true,
+          open: function(){
+            $('#div_notepad_content').html('<iframe src="/cgi-bin/common/apps/ajaxbuild?ajaxbuild=user_notes&type=note" style="width: 700px; height: 500px; overflow: hidden; border: none; margin: auto auto; position: relative;"></iframe>');            
+          },
+          buttons: {            
+            'Cerrar': function(){
+              $(this).dialog('close');
+            }
+          }
+        });
+      }
+      if( $('#btn_notepad').length ){
+          $('#btn_notepad').click(function(event) {
+            $('#div_notepad').dialog('open');
+            return false;
+          });
+      } 
+
+    });
+  </script>
+  <style>
+    label {
+      display: inline-block; 
+      width: 5em;
+    }
+  </style>
+
+</head>
+<!--onload="showTheTime();hidehelp()"-->
+<body class="yui-skin-sam">
+
+
+  <div id="fly" >
+    <table border="0" cellspacing="0" cellpadding="0" style="background-color:#ffffff;  -moz-border-radius: 0px 0px 10px 10px;border-radius: 0px 0px 10px 10px; position:fixed;top:0px;z-index:90;-moz-box-shadow: 0 0px 10px #bbbbbb;   -webkit-box-shadow: 0 0px 10px #bbbbbb;  box-shadow: 0 0px 10px #bbbbbb; height:40px; min-width:930px;">
+      <tr>
+        <td width=100% >
+          <table border="0" cellspacing="0" cellpadding="0">
+            <td valign=middle align=left nowrap>&nbsp; <a href='/cgi-bin/mod/[ur_application]/admin?cmd=home'><img src=[va_imgurl]app_bar/mod/direksysRN.png border=0 height=25px></a></td>
+            <td><img src="/sitimages/banderamexico.jpg" border=0></td>
+            <td valign=middle align=left nowrap>
+              <font class="compania">[va_app_title] </font>
+            </td>
+            <td valign=middle align=left>
+                    <img src=[va_imgurl]app_bar/mod/menubgdiv.png>
+            </td>
+            <td valign=middle align=left nowrap>
+              <font class="modulo1">[ur_appname] </font>
+            </td>
+            <td valign=middle align=left>
+              <img src=[va_imgurl]app_bar/mod/menubgdiv.png>
+            </td>
+            <td valign=middle align=left nowrap>
+              <b>Consola [va_salesorigins.channel]</b>
+            </td>
+            <td valign=middle align=left>
+              <img src=[va_imgurl]app_bar/mod/menubgdiv.png>
+            </td>
+          </table>
+
+
+        </td>
+        <td>
+
+          <table border="0" cellspacing="0" cellpadding="0" align=right style="margin-right:15px;">
+            <td valign=bottom nowrap>
+            </td>
+            <td nowrap>
+              Hi <b> [ur_FirstName] [ur_LastName] [ur_middlename]! [fc_repmans_replication]
+              </b><br>
+              <font color=#777777> ID: [ur_ID_admin_users] | Ext: [ur_extension] |  InConcert: [ur_username_ref]
+
+
+            </td>
+            <td width=15px nowrap>&nbsp;&nbsp;<td>
+            <td valign=bottom nowrap>
+              <a href='/cgi-bin/mod/[ur_application]/admin?cmd=home'><img src='[va_imgurl]app_bar/mod/ico-home.jpg' title='Home' alt='Home' border='0'></a>
+              <a href='/cgi-bin//mod/[ur_application]/admin?cmd=ayuda'><img src='[va_imgurl]app_bar/mod/ico-manuals.jpg' title='Manuals' alt='Manuals' border='0'></a>
+              [fc_build_button_notepad]
+              [fc_phone_button]
+              <a href='javascript:logoff()'><img src='[va_imgurl]app_bar/mod/ico-exit.jpg' title='Logoff' alt='Logoff' border='0'> </a>
+            </td>
+          </table>
+
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="div_notepad" title="Direksys :: Notepad" style="text-align: center;">
+    <div id="div_notepad_content" style="margin: auto auto; width: 100%;"></div>
+  </div>
+
+
+
+    <table width=100% height=100% background=/sitimages/over.png style="position:fixed;top:0px;left:0px;z-index:200;display:none;cursor: wait;" id="blockscreen">
+    <td align=center>
+      <img src="/sitimages/loading.gif">
+    </td>
+  </table>
+
+<div style="margin: 0px 10px 0px 10px;">
+    <table border="0" cellspacing="0" cellpadding="0"   width=100% align=center>
+      <tr>
+        <td>
+
+    
+  <div style="height:50px;">Time : <span id="showtime"></span></div>
+
+
+
+  <!--
+     <table border="0" cellspacing="0" cellpadding="0"  width=100% id="top1">
+      <tr>
+        <td width=230px><img src=[va_imgurl]app_bar/mod/direksys-logo.png border=0></td>
+        <td align=left><font class=userinfo>  
+        <font class=username>[ur_FirstName] [ur_LastName]</font><br>
+        ID: [ur_ID_admin_users]&nbsp;&nbsp;|&nbsp;&nbsp;
+        Exten: [ur_extension]&nbsp;&nbsp;|&nbsp;&nbsp;
+        InConcert: [ur_username_ref]&nbsp;&nbsp;|&nbsp;&nbsp;
+        Time : <span id="showtime"></span>&nbsp;&nbsp;|&nbsp;&nbsp;
+        Company : [va_app_title]&nbsp;<img src="[va_imgurl]app_bar/mod/ico-e[in_e].png" border="0" width="18" height="11" />
+        </td>
+        
+        <td align=right valign=top>
+          <table cellpadding=0 cellspacing=0>
+            <td align="center" valign=top onclick="helponoff()" background=[va_imgurl]app_bar/mod/icobg1.png width="74px"><span id="helpleg_img"><img id="img_voxhelp" src=[va_imgurl]app_bar/mod/help[ck_voxhelp].png width="74px" height="30px" style="cursor:pointer;"></span></td>
+            <td nowrap background=[va_imgurl]app_bar/mod/icobg2.png>
+              <a href='/cgi-bin/mod/[ur_application]/admin?cmd=home'><img src='[va_imgurl]app_bar/mod/ico-home.jpg' title='Home' alt='Home' border='0'></a> 
+              <a href='/manuals/administrations/'><img src='[va_imgurl]app_bar/mod/ico-manuals.jpg' title='Manuals' alt='Manuals' border='0'></a> 
+              [fc_button_notepad]
+              <a href='javascript:logoff()'><img src='[va_imgurl]app_bar/mod/ico-exit.jpg' title='Logoff' alt='Logoff' border='0'></a>
+            </td>
+            <td>
+              <img src=[va_imgurl]app_bar/mod/icobg3.png>
+            </td>
+          </table>
+      
+        </td>
+      </tr>
+    </table>
+    
+  -->
+
+<!--
+[fc_load_advbar]
+-->
+

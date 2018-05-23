@@ -1,0 +1,48 @@
+	<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+	<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="opr_customers">
+	<input type="hidden" name="view" value="[in_id_customers]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="[in_tab]">
+	<input type="hidden" name="belongsto" value="[in_belongsto]">
+	<input type="hidden" name="upd_item" value="[in_id_customers_parts]">
+
+	<div class="container_white" style="padding:5px">
+		<center class="titletext">
+			Edit SKU Alias: [in_tags_parts]([in_id_customers])
+		</center>
+		<span class="stdtxterr">[va_message]</span>
+		&nbsp;
+		<fieldset><legend>SKU Alias Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+
+			<input type="hidden" name="new_id_parts" id="new_id_parts" value="[in_new_id_parts]" size="60" >
+			<tr>
+				<td>Alias : </td>
+				<td class="smalltext">
+					<input type="text" name="new_sku_customers" value="[in_new_sku_customers]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_new_sku_customers]</span>
+			   	</td>
+			</tr>
+			<tr>
+				<td>Precio : </td>
+				<td class="smalltext">
+					<input type="text" name="new_sprice" value="[in_new_sprice]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_new_sprice]</span>
+			   	</td>
+			</tr>
+		</table>
+		</fieldset>
+		&nbsp;
+		<center>
+			<input type="submit" id="btn_submit" value="Send" class="button">
+		</center>
+		<br>
+	</div>
+
+	</form>
+
+	<script language="javascript">
+	<!--
+		chg_select('new_state','[in_new_state]');
+  
+	//-->
+	</script>

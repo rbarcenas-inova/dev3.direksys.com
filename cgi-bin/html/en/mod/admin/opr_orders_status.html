@@ -1,0 +1,36 @@
+[ip_header_autorefresh]
+
+
+<!-- Start Main Area  -->
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+		    <td class="menu_bar_title" align="center" width="33%">Today Sales</td>
+		    <td class="menu_bar_title" align="center" width="33%">Inc. Orders</td>
+		    <td class="menu_bar_title" align="center" width="33%">Calls</td>
+ 		 </tr>
+ 		<tr>
+		    <td align="center" valign="top" width="33%" onmouseover='m_over(this)' onmouseout='m_out(this)'>
+		    	# Sales<br><span class="titletext">[va_numsales]</span><br>
+		    	Total Amount<br><span class="titletext">[va_totalsales]</span><br> </td>
+		    <td align="center" valign="top" width="33%" onmouseover='m_over(this)' onmouseout='m_out(this)'>
+		    	# Records<br><span class="titletext">[va_numinorders]</span></td>
+		    <td align="center" valign="top" width="33%"  onmouseover='m_over(this)' onmouseout='m_out(this)'>
+		    	# Calls<br><span class="titletext">0</span></td>
+ 		 </tr>
+    </table>
+    &nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+		    <td class="menu_bar_title" align="center" colspan="6">Today's Last 10 Sales</td>
+ 		 </tr>
+		<tr>
+		    <td class="menu_bar_title">Order ID</td>
+		    <td class="menu_bar_title">Date</td>
+		    <td class="menu_bar_title">First Name</td>
+		    <td class="menu_bar_title">Last Name</td>
+		    <td class="menu_bar_title">Country</td>		    
+		    <td class="menu_bar_title">Status</td>
+		 </tr>
+		[va_searchresults]
+  </table>
+<!-- End Main Area  -->

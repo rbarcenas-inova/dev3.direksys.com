@@ -1,0 +1,45 @@
+	&nbsp;
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+			<td class="tbltextttl">
+				<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=1&tabcmd=coupons&toprint=[in_id_coupons]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+				Included Categories : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>			
+	 	</tr>
+		<tr>
+			<td colspan="3">
+		 		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+						<td class="menu_bar_title">&nbsp;</td>
+					  <td class="menu_bar_title">Date/Time/User</td>
+					  <td class="menu_bar_title" colspan="2">Category</td>
+					</tr>
+				 [va_searchresults]			 
+			</table>
+			<span class='fieldterr'>[va_tabmessages]</span>&nbsp;
+			<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+				<input type="hidden" name="id_coupons" value="[in_id_coupons]">
+				<input type="hidden" name="view" value="[in_id_coupons]">
+				<input type="hidden" name="action" value="1">
+				<input type="hidden" name="tab" value="1">
+				<input type="hidden" name="cmd" value="mkt_coupons">		    	
+			 	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+				    <td class="menu_bar_title">Add New Category</td>
+				 	</tr>
+					<tr>
+						<td class="smalltext">
+							Category Name : <span class="smallfieldterr">[er_id_categories]</span>
+							<select name="id_categories" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			     			[fc_build_select_parentcategories]
+		       		</select><input type="submit" value="Add" class="button">
+		       	</td>
+					</tr>
+				</table>
+			</form>		
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">&nbsp;</td>
+		</tr>
+	</table>

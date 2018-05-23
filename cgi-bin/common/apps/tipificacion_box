@@ -1,0 +1,453 @@
+#!/usr/bin/perl 
+#######################################################################
+#######################################################################
+#######################################################################
+
+use DBI;
+use DBIx::Connector;
+use DBD::mysql;
+
+# Load the form information and set the config file and userid.
+local(%in) = &parse_form;
+local(%config, %cfg, %usr);
+
+# Required Libraries
+# --------------------------------------------------------
+eval {
+	require ("../subs/auth.cgi");
+	require ("../subs/sub.base.html.cgi");
+};
+
+if ($@) { &cgierr ("Error loading required Libraries",300,$@); }
+
+eval { &main; };
+if ($@) { &cgierr("Fatal error, 301, $@"); }
+
+exit;
+
+sub main {	
+	print "Content-type: text/html\n\n";
+
+	if($in{'e'}) {
+		&load_settings;
+		&connect_db;
+		$sys{'fmt_curr_decimal_digits'} = 2 if(!$sys{'fmt_curr_decimal_digits'});
+		print "<center><h3>TIPIFICACION DE LLAMADAS CRM</h3>";
+		print "<h4>Llamada de $in{'number'}</h4></center>";
+		$Query = "
+			SELECT cus.ID_customers, cus.FirstName, cus.LastName1, cus.LastName2, cus.Phone1, cus.Phone2, cus.Cellphone, ord.ID_orders, date_format(ord.Date,'%d/%m%Y') Date, ord.Status
+      FROM sl_customers cus
+      INNER JOIN sl_orders ord using(ID_customers)
+      WHERE cus.CID='$in{'id'}' AND cus.Status='Active' OR cus.Phone1='$in{'id'}' OR cus.Phone2='$in{'id'}' OR cus.Cellphone='$in{'id'}'
+      ORDER BY ord.Date DESC LIMIT 3;";
+		$sth_llamadas = &Do_SQL($Query);
+		print "<hr>\n";
+		print "<center><h4>Ordenes desde ese numero</h4>";
+		print "<table>\n<tr><td>Nombre</td><td>Apellido</td><td>Orden</td><td>Estatus</td><td>Fecha</td><tr>\n";
+		while ($llamada = $sth_llamadas->fetchrow_hashref()) {
+			if($llamada->{'Status'} == 'Cancelled') {
+        $color = "<span style=\"color:red;\">$llamada->{'Status'}</span>";
+      }
+      if($llamada->{'Status'} == 'Processed') {
+        $color = "<span style=\"color:blue;\">$llamada->{'Status'}</span>";
+      }
+      if($llamada->{'Status'} == 'Shipped') {
+        $color = "<span style=\"color:green;\"><strong>$llamada->{'Status'}</strong></span>";
+      }
+			print "<tr><td href=\"dbman?cmd=opr_crmtickets&amp;add=1&amp;caller_id=$in{'number'}&amp;id_ref=$llamada->{'ID_orders'}\" onclick=\";window.location.href=this.getAttribute('href');return false;\">
+				$llamada->{'FirstName'}</td><td>$llamada->{'LastName1'} $llamada->{'LastName2'}</td>
+				<td>$llamada->{'ID_orders'}</td><td>$color</td><td>$llamada->{'Date'}</td></tr>\n";
+		}
+		print "</table></center>\n";
+		print "<hr>\n";
+		$Query = "SELECT ID_crmtickets,ID_ref,Type,Description,Status FROM sl_crmtickets where caller_id='$in{'id'}' ORDER BY Date DESC Limit 3;";
+		$sth_tickets = &Do_SQL($Query);
+		print "<center><h4>Tickets de ese numero</h4>";
+		print "<table>\n<tr><td>Ticket</td><td>Referencia</td><td>Tipo</td><td>Estatus</td><tr>\n";
+		while ($ticket = $sth_tickets->fetchrow_hashref()) {
+			if($ticket->{'Status'} == 'Closed unsuccessful') {
+        $color = "<span style=\"color:red;\">$ticket->{'Status'}</span>";
+      }
+      if($ticket->{'Status'} == 'In Process') {
+        $color = "<span style=\"color:blue;\">$ticket->{'Status'}</span>";
+      }
+      if($ticket->{'Status'} == 'New') {
+        $color = "<span style=\"color:blue;\">$ticket->{'Status'}</span>";
+      }
+      if($ticket->{'Status'} == 'Closed successful') {
+        $color = "<span style=\"color:green;\"><strong>$ticket->{'Status'}</strong></span>";
+      }
+			print "<tr><td href=\"dbman?cmd=opr_crmtickets&amp;add=1&amp;caller_id=$in{'number'}&amp;id_ref=$ticket->{'ID_orders'}\" onclick=\";window.location.href=this.getAttribute('href');return false;\">
+				$ticket->{'ID_crmtickets'}</td><td>$ticket->{'ID_ref'}</td>
+				<td>$ticket->{'Type'}</td><td>$color</td></tr>\n";
+		}
+		print "</table></center>\n";
+		print "<hr>\n";
+		print "<h4>Tipificar llamada</h4>";
+		print '<center><h3>Tipificar la llamada</h3>
+			<form id="tipificacion" name="tipificacion" >
+				<label>Area&nbsp;</label>
+				<select name="area" id="area">
+				<option value="Telemarketing" >Telemarketing</option>
+				<option value="Fidelizacion" >Fidelizacion</option>
+				<option value="Internet" >Internet</option>
+				</select>
+				<br/><br/>
+				<label>Tipo&nbsp;</label>
+				<select name="tipo" id="tipo" onchange="clicTipo(this.value)">
+				<option value="" >-- seleccionar --</option>
+				<option value="Informativo" >Informativo</option>
+				<option value="Tramites" >Tramites</option>
+				<option value="Tickets" >Tickets</option>
+				<option value="Supervision" >Supervision</option>
+				<option value="Transferencia" >Transferencia</option>
+				<option value="Confirmado con error" >Confirmado con error</option>
+				<option value="Cancelado" >Cancelado</option>
+				<option value="No confirmado" >No confirmado</option>
+				<option value="Confirmado" >Confirmado</option>
+				</select><br/>
+				<br/><label>Sub Tipo&nbsp;</label><select name="subtipo" id="subtipo"></select>
+				<br/><br/><label>Pedido</label><input type="text" name="id_order" id="id_order" value="" />
+				<input type="hidden" name="caller_id" id="caller_id" value="' . $in{'number'} . '" />
+				<input type="hidden" name="id" id="id" value="' . $in{'id'} . '" />
+			</form><br>
+			<input type="button" class="button" name="tipificar" id="tipificar" value="Tipificar" onclick="guardar()">';
+
+		print '<script>
+			function clicTipo(seleccion) {
+				if(seleccion == "Informativo"){  
+					var subtipos = $("#subtipo"); subtipos.empty();
+					subtipos.append("<option value=\"\">--seleccionar--</option>");
+					subtipos.append("<option value=\"Llamada cortada\"         >Llamada cortada         </option>");
+					subtipos.append("<option value=\"Contingencia\"            >Contingencia            </option>");
+					subtipos.append("<option value=\"Pura Oferta\"             >Pura Oferta             </option>");
+					subtipos.append("<option value=\"Mercado Libre\"           >Mercado Libre           </option>");
+					subtipos.append("<option value=\"Call Center MTY\"         >Call Center MTY         </option>");
+					subtipos.append("<option value=\"Broma\"                   >Broma                   </option>");
+					subtipos.append("<option value=\"Incidencia en sistema\"   >Incidencia en sistema   </option>");
+					subtipos.append("<option value=\"Producto de otra empresa\">Producto de otra empresa</option>");
+					subtipos.append("<option value=\"Informacion de Garantias\">Informacion de Garantias</option>");
+					subtipos.append("<option value=\"Orden VIP\"               >Orden VIP               </option>");
+					subtipos.append("<option value=\"Informacion de Productos\">Informacion de Productos</option>");
+					subtipos.append("<option value=\"Citas\"  >Citas  </option>");
+					subtipos.append("<option value=\"Fedex\"  >Fedex  </option>");
+					subtipos.append("<option value=\"Carssa\"  >Carssa  </option>");
+					subtipos.append("<option value=\"Estafeta\"  >Estafeta  </option>");
+					subtipos.append("<option value=\"UPS\"  >UPS  </option>");
+					subtipos.append("<option value=\"Verkko\"  >Verkko  </option>");
+					subtipos.append("<option value=\"TDL\"  >TDL  </option>");
+					subtipos.append("<option value=\"Promos\"  >Promos  </option>");
+					subtipos.append("<option value=\"Atc Entregas Directas\"  >Atc Entregas Directas  </option>");
+					subtipos.append("<option value=\"Informacion de entrega dentro de tiempo\" >Informacion de entrega dentro de tiempo</option>");
+					subtipos.append("<option value=\"Informacion de entrega sin inventario\" >Informacion de entrega sin inventario</option>");
+					subtipos.append("<option value=\"Informacion de entrega en transito\" >Informacion de entrega en transito</option>");
+					} 
+				if(seleccion == "Tramites"){  
+					var subtipos = $("#subtipo"); subtipos.empty();
+					subtipos.append("<option value=\"\">--seleccionar--</option>");
+					subtipos.append("<option value=\"Garantias\"              >Garantias              </option>");
+					subtipos.append("<option value=\"Cancelacion de llamada\" >Cancelacion de llamada </option>");
+					subtipos.append("<option value=\"Cambio Mayor\"           >Cambio Mayor           </option>");
+					subtipos.append("<option value=\"Manuales e instructivos\">Manuales e instructivos</option>");
+				}
+				if(seleccion == "Tickets"){  
+					var subtipos = $("#subtipo"); subtipos.empty();
+					subtipos.append("<option value=\"\">--seleccionar--</option>");
+					subtipos.append("<option value=\"Envio urgente\"                 >Envio urgente                 </option>");
+					subtipos.append("<option value=\"Envio Drop Shipping\"           >Envio Drop Shipping           </option>");
+					subtipos.append("<option value=\"Envio de piezas Body Crunch\"   >Envio de piezas Body Crunch   </option>");
+					subtipos.append("<option value=\"Cancelacion de Inova Club\"     >Cancelacion de Inova Club     </option>");
+					subtipos.append("<option value=\"Envio por cobro no registrado\" >Envio por cobro no registrado </option>");
+					subtipos.append("<option value=\"Envio parcial con reembolso\"   >Envio parcial con reembolso   </option>");
+					subtipos.append("<option value=\"Reenvio\"                       >Reenvio                       </option>");
+					subtipos.append("<option value=\"Cambio fisico\"                 >Cambio fisico                 </option>");
+					subtipos.append("<option value=\"Reposiciones\"                  >Reposiciones                  </option>");
+					subtipos.append("<option value=\"Pedimentos\"                    >Pedimentos                    </option>");
+					subtipos.append("<option value=\"Guia sin movimiento\"           >Guia sin movimiento           </option>");
+					subtipos.append("<option value=\"Grabacion de promesa falsa RVT\">Grabacion de promesa falsa RVT</option>");
+					subtipos.append("<option value=\"Siniestro\"                     >Siniestro                     </option>");
+					subtipos.append("<option value=\"Entrega con faltante\"          >Entrega con faltante          </option>");
+					subtipos.append("<option value=\"Cliente no reconoce firma\"     >Cliente no reconoce firma     </option>");
+					subtipos.append("<option value=\"Factura\"                       >Factura                       </option>");
+				}
+				if(seleccion == "Supervision"){  
+					var subtipos = $("#subtipo"); subtipos.empty();
+					subtipos.append("<option value=\"\">--seleccionar--</option>");
+					subtipos.append("<option value=\"Matutino\"  >Matutino  </option>");
+					subtipos.append("<option value=\"Vespertino\">Vespertino</option>");
+				}
+				if(seleccion == "Transferencia"){  
+					var subtipos = $("#subtipo"); subtipos.empty();
+					subtipos.append("<option value=\"\">--seleccionar--</option>");
+					subtipos.append("<option value=\"Ventas\"                                   >Ventas                                   </option>");
+					subtipos.append("<option value=\"Fidelizacion\"                             >Fidelizacion                             </option>");
+					subtipos.append("<option value=\"Internet\"                                 >Internet                                 </option>");
+					subtipos.append("<option value=\"Validaciones\"                             >Validaciones                             </option>");
+					subtipos.append("<option value=\"Garantias\"                                >Garantias                                </option>");
+					subtipos.append("<option value=\"Area de Atencion y Solucion Especializada\">Area de Atencion y Solucion Especializada</option>");
+					subtipos.append("<option value=\"Confirmaciones\"                           >Confirmaciones                           </option>");
+					subtipos.append("<option value=\"Atencion a Clientes\"                      >Atencion a Clientes                      </option>");
+				}
+				if(seleccion == "Confirmado con error"){  
+					var subtipos = $("#subtipo"); subtipos.empty();
+					subtipos.append("<option value=\"\">--seleccionar--</option>");
+					subtipos.append("<option value=\"Nombre\">Nombre</option>");
+					subtipos.append("<option value=\"Ortografia\">Ortografia</option>");
+					subtipos.append("<option value=\"Falta de Apellidos\">Falta de Apellidos</option>");
+					subtipos.append("<option value=\"Apellidos Invertidos\">Apellidos Invertidos</option>");
+					subtipos.append("<option value=\"Telefono\">Telefono</option>");
+					subtipos.append("<option value=\"Sin Lada\">Sin Lada</option>");
+					subtipos.append("<option value=\"Error en Lada\">Error en Lada</option>");
+					subtipos.append("<option value=\"Error de Captura\">Error de Captura</option>");
+					subtipos.append("<option value=\"Calle\">Calle</option>");
+					subtipos.append("<option value=\"Numero\">Numero</option>");
+					subtipos.append("<option value=\"Colonia\">Colonia</option>");
+					subtipos.append("<option value=\"Entre Calles\">Entre Calles</option>");
+					subtipos.append("<option value=\"Referencias\">Referencias</option>");
+					subtipos.append("<option value=\"Codigo Postal\">Codigo Postal</option>");
+					subtipos.append("<option value=\"Estado\">Estado</option>");
+					subtipos.append("<option value=\"Ortografia\">Ortografia</option>");
+					subtipos.append("<option value=\"Posfecha mayor a 15 dias\">Posfecha mayor a 15 dias</option>");
+					subtipos.append("<option value=\"Error en dias Solicitados\">Error en dias Solicitados</option>");
+					subtipos.append("<option value=\"No se indica posfecha\">No se indica posfecha</option>");
+					subtipos.append("<option value=\"Dia exacto de entrega\">Dia exacto de entrega</option>");
+					subtipos.append("<option value=\"Tiempo menor a sistema\">Tiempo menor a sistema</option>");
+					subtipos.append("<option value=\"Promete Regalos\">Promete Regalos</option>");
+					subtipos.append("<option value=\"Talla\">Talla</option>");
+					subtipos.append("<option value=\"Color\">Color</option>");
+					subtipos.append("<option value=\"Cantidad\">Cantidad</option>");
+					subtipos.append("<option value=\"Producto Diferente\">Producto Diferente</option>");
+					subtipos.append("<option value=\"Sin gastos de envio\">Sin gastos de envio</option>");
+					subtipos.append("<option value=\"Precio Diferente\">Precio Diferente</option>");
+					subtipos.append("<option value=\"Tipo de pago (COD y PP)\">Tipo de pago (COD y PP)</option>");
+				}
+				if(seleccion == "Cancelado"){  
+					var subtipos = $("#subtipo"); subtipos.empty();
+					subtipos.append("<option value=\"\">--seleccionar--</option>");
+					subtipos.append("<option value=\"Tiempos de envio\">Tiempos de envío</option>");
+					subtipos.append("<option value=\"Forma de pago\">Forma de pago</option>");
+					subtipos.append("<option value=\"Precio Diferente\">Precio Diferente</option>");
+					subtipos.append("<option value=\"Datos insuficientes\">Datos insuficientes</option>");
+					subtipos.append("<option value=\"Solo pidio informes\">Solo pidio informes</option>");
+					subtipos.append("<option value=\"Pedido Duplicado\">Pedido Duplicado</option>");
+				}
+				if(seleccion == "No confirmado"){  
+					var subtipos = $("#subtipo"); subtipos.empty();
+					subtipos.append("<option value=\"\">--seleccionar--</option>");
+					subtipos.append("<option value=\"Error en transferencia\">Error en transferencia</option>");
+					subtipos.append("<option value=\"Cliente cuelga\">Cliente cuelga</option>");
+					subtipos.append("<option value=\"Cliente tiene prisa\">Cliente tiene prisa</option>");
+					subtipos.append("<option value=\"Error de sistema\">Error de sistema</option>");
+				}
+				if(seleccion == "Confirmado"){  
+					var subtipos = $("#subtipo"); subtipos.empty();
+					subtipos.append("<option value=\"Confirmado\">N/A</option>");
+				}
+				if(seleccion == "-- seleccionar --"){  
+					var subtipos = $("#subtipo"); subtipos.empty();
+				}
+			}
+
+			function guardar() {
+				var tipo = $("#tipo option:selected").text() 
+				var subtipo = $("#subtipo option:selected").text()
+				var error = 0
+				if(tipo == ""){error = 1}
+				if(subtipo == ""){error = 1}
+				if(error == 1) {
+					alert("Primero selecciona un tipo y subtipo para clasificar la llamada")
+				} else {
+					$.ajax({
+					url: "http://mx.direksys.com/cgi-bin/common/apps/tipificacion_crm?user=" + $("#admin_users").html() + "&" + $("#tipificacion").serialize() ,
+					context: document.body
+					}).done(function( data ) {
+						//console.log(data) //para debug
+						//quitarLlamada("'.$in{'id'}.'","'.$in{'number'}.'")
+						if(Number(data) > 0) {
+							quitarLlamada("'.$in{'id'}.'","'.$in{'number'}.'")
+							$("#tipificar" ).css("visibility", "hidden")
+							$.fancybox.close()
+						} else {
+							alert("No fue posible guardar el registro de tipificacion, comunicate con el área de soporte")
+						}
+					})
+					
+				}
+			}
+			</script>';
+    #print '<script>console.log($("#phones").html())</script>';
+		#$id_crm_new = $sth_crm->{'mysql_insertid'};
+		#print "$id_crm_new";
+	}
+}
+	
+sub parse_form {
+# --------------------------------------------------------
+	my (@pairs, %in);
+	my ($buffer, $pair, $name, $value);	
+
+	if ($ENV{'REQUEST_METHOD'} eq 'GET') {
+		@pairs = split(/&/, $ENV{'QUERY_STRING'});
+	}elsif ($ENV{'REQUEST_METHOD'} eq 'POST') {
+		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
+ 		@pairs = split(/&/, $buffer);
+	}else {
+		&cgierr ("This script must be called from the Web\nusing either GET or POST requests\n\n");
+	}
+	PAIR: foreach my $pair (@pairs) {
+		($name, $value) = split(/=/, $pair);
+		 
+		$name =~ tr/+/ /;
+		$name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+
+		$value =~ tr/+/ /;
+		$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		
+		$value =~ s/\r//;
+		$value =~ s/<!--(.|\n)*-->//g;			# Remove SSI.
+		if ($value eq "---") { next PAIR; }		# This is used as a default choice for select lists and is ignored.
+		(exists $in{$name}) ?
+			($in{$name} .= "|$value") :		# If we have multiple select, then we tack on
+			($in{$name}  = $value);			# using the ~~ as a seperator.
+	}
+	return %in;
+}
+
+##################################################################
+#     CGIERR   	#
+##################################################################
+sub cgierr {
+# --------------------------------------------------------
+# Last Modified on: 11/10/08 12:30:09
+# Last Modified by: MCC C. Gabriel Varela S: Se corrige el formato de la fecha
+	my (@sys_err) = @_;
+	print "Content-type: text/html\n\n";
+
+	my ($key,$env,$out_in,$out_env);
+	if (!$cfg{'cd'}){
+		print qq|
+			<head>
+				<title>CGI - ERROR</title>
+			</head>					
+			<body BGCOLOR="#FFFFFF" LINK="#FF0000" VLINK="#FF0000" ALINK="#FF0000">
+				<table BORDER="0" WIDTH="500" CELLPADDING="10" CELLSPACING="10">
+					<tr>
+						<td BGCOLOR="#FF0000" colspan="2"><font size="5" color="#FFFFFF" face="Arial"><b>CGI-Error</b></font></td>
+					</tr>
+				</table>
+				<table BORDER="0" WIDTH="550" CELLPADDING="2" CELLSPACING="0">|;
+					$sys_err[0]	and print "\n<tr>\n  <td valign='top' width='200'><font face='Arial' size='3'>Error Message</font></td>\n  <td><font face='Arial' size='3' color='#FF0000'><b>$sys_err[0]</b></font></td>\n</tr>\n";
+					$sys_err[1]	and print "<tr>\n  <td width='200'><font face='Arial' size='2'>Error Code</font></td>\n  <td><font face='Arial' size='2'>$sys_err[1]</font></td>\n";
+					$sys_err[2]	and print "<tr>\n  <td valign='top' width='200'><font face='Arial' size='2'>System Message</font></td>\n  <td><font face='Arial' size='2'>$sys_err[2]</font></td>\n";
+					print qq|
+					<tr>
+						<td colspan="2"><p>&nbsp</p><font face='Arial' size='2'>If the problem persists, please contact us with the above information.</font><br>
+							<font face='Arial' size='2'><a href="mailto:$systememail">$systememail</a></font>
+						</td>
+					</tr>
+				</table>
+			</body>
+		</html>|;
+		
+		###################################
+		###  Save CGI ERR			
+		###################################
+		my ($ip);
+		my (@outmsg) = @sys_err;
+		my ($sec, $min, $hour, $day, $mon, $year, $dweek, $dyear, $daylight) = localtime(time());
+		$year+=1900;
+		$mon++;
+		my ($time,$date) = ("$hour:$min:$sec","$mon-$day-$year");
+		
+		foreach my $key (sort keys %in) {
+			$outmsg[3] .= "$key=$in{$key},";
+		}
+		
+		foreach my $env (sort keys %ENV) {
+			$outmsg[4] .= "$env=$ENV{$env},";
+		}
+		
+		for (0..4){
+			$outmsg[$_] =~ s/\n|\r/ /g;
+			$outmsg[$_] =~ s/\|/ /g;
+		}
+		
+		if ($ENV{'REMOTE_ADDR'}){
+			$ip = $ENV{'REMOTE_ADDR'};
+		}elsif ($ENV{'REMOTE_HOST'}){
+			$ip = $ENV{'REMOTE_HOST'};
+		}elsif ($ENV{'HTTP_CLIENT_IP'}){
+			$ip = $ENV{'HTTP_CLIENT_IP'};
+		}else{
+			$ip = "Unknow";
+		}
+	
+		(!$cfg{'cgierr_log_file'}) and ($cfg{'cgierr_log_file'} = './logs/cgierr.log');
+		if (open (LOG, ">>$cfg{'cgierr_log_file'}")){;
+			print LOG "$usr{'username'}|$outmsg[0]|$outmsg[1]|$outmsg[2]|$outmsg[3]|$outmsg[4]|$time|$date|$ip\n";
+			close AUTH;
+		}
+	}else{
+		print "<PRE>\n\nCGI ERROR\n==========================================\n";
+					$sys_err[0]	and print "Error Message       : $sys_err[0]\n";
+					$sys_err[1]	and print "Error Code          : $sys_err[1]\n";
+					$sys_err[2]	and print "System Message      : $sys_err[2]\n";
+					$0			and print "Script Location     : $0\n";
+					$]			and print "Perl Version        : $]\n";
+					$sid		and print "Session ID          : $sid\n";
+
+
+		print "\nForm Variables IN\n-------------------------------------------\n";
+		
+		foreach my $key (sort keys %in) {
+			my $space = " " x (20 - length($key));
+			$out_in .= "$key=$in{$key},";
+			print "$key$space: $in{$key}\n";
+		}
+		
+		print "\nForm Variables ERROR\n-------------------------------------------\n";
+		foreach my $key (sort keys %error) {
+			my $space = " " x (20 - length($key));
+			print "$key$space: $error{$key}\n";
+		}
+		
+		print "\nEnvironment Variables\n-------------------------------------------\n";
+		foreach my $env (sort keys %ENV) {
+			my $space = " " x (20 - length($env));
+			$out_env .= "$env=$ENV{$env},";
+			print "$env$space: $ENV{$env}\n";
+		}		
+		print "\n</PRE>";
+	}
+
+	exit -1;
+}
+
+
+sub load_settings {
+	my ($fname);
+	
+	if ($in{'e'}) {
+		$fname = "../general.e".$in{'e'}.".cfg";
+	}else {
+		$fname = "../general.ex.cfg";
+	}
+
+	## general
+	open (CFG, "<$fname") or &cgierr ("Unable to open: $fname,160,$!");
+	LINE: while (<CFG>) {
+		(/^#/)      and next LINE;
+		(/^\s*$/)   and next LINE;
+		$line = $_;
+		$line =~ s/\n|\r//g;
+		my ($td,$name,$value) = split (/\||\=/, $line,3);
+		if ($td eq "conf") {
+			$cfg{$name} = $value;
+			next LINE;
+		}elsif ($td eq "sys"){
+			$sys{$name} = $value;
+			next LINE;
+		}
+	}
+	close CFG;
+}

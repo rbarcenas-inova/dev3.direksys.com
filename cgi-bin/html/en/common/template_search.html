@@ -1,0 +1,64 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: [va_expanditem], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+[fc_template_toptabs]
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+
+  <form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="search" value="Search">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Searching [va_formtitle] </td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	[va_message_good]
+	[va_message_error]
+	[va_message_notes]
+	&nbsp;
+	<fieldset><legend>ID Search</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">[va_formtitle]  : <span class="smallfieldterr">[er_formid]</span></td>
+		    <td class="smalltext"><input type="text" name="[fc_template_idname]" value="[in_formid]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+	</table>
+	</fieldset>		
+	[ip_forms:template_form]
+	<p align="center"><input type="submit" value="Search" class="button"></p>
+	[ip_search_form]
+  </form>
+<p>&nbsp;</p>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

@@ -1,0 +1,547 @@
+ <fieldset><legend>Original Order</legend>
+ <span class="smallfieldterr">[er_orderdata]</span>
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr class="menu_bar_title">
+		<td colspan="5" align="center">Items In Order </td>
+	</tr>
+		<tr>
+			<td class="menu_bar_title" nowrap>ID Orden</td>
+			<td class="menu_bar_title">Date</td>
+			<td class="menu_bar_title">Product info</td>
+			<td class="menu_bar_title">Ship Info</td>
+			<td class="menu_bar_title">Status</td>
+	 </tr>
+		[fc_returns_itemsordered] 
+	</table>
+	&nbsp;
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr class="menu_bar_title">
+		<td colspan="9" align="center">SKUs in this Return </td>
+	</tr>
+	<tr>
+		<td class="menu_bar_title">ID products</td>
+		<td class="menu_bar_title">Model / Name</td>
+		<td class="menu_bar_title">UPC</td>
+		<td class="menu_bar_title">Cost</td>
+		<td class="menu_bar_title">Quantity</td>
+		<td class="menu_bar_title">In order</td>
+		<td class="menu_bar_title">Status</td>
+		<td class="menu_bar_title">Warehouse</td>
+		<td class="menu_bar_title">Location</td>
+	</tr>
+	[fc_return_upcs]
+	</table>
+	<div align="center">
+		<br>
+		<input id="btn_fastbacktoinventory" style="display:[va_btn_fastbacktoinventory]" type="submit" class="button" name="sbmt_fastbacktoinventory" value="Return Products">
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input id="btn_transitioninventory" style="display:[va_btn_transitioninventory]" type="button" class="button_warning" id="sbmt_fastbacktoinventory_done" name="sbmt_fastbacktoinventory_done" value="Alredy Returned" onClick="fn_fastbacktoinventory_done();">
+		<input type="hidden" name="fastbacktoinventory_done" id="fastbacktoinventory_done" value="0">
+		<br>
+	</div>
+</fieldset>
+&nbsp;
+<div id="div_return" style="display:[va_div_return]">
+<fieldset><legend>Return Section</legend>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr class="menu_bar_title">
+		<td colspan="8" align="center"> Total Amount Returning </td>
+	</tr>
+	<tr>
+		<td class="menu_bar_title" width="5%">SP</td>
+		<td class="menu_bar_title" width="5%">S&H</td>
+		<td class="menu_bar_title" width="10%">ID products</td>	
+		<td class="menu_bar_title" width="45%">Name</td>
+		<td class="menu_bar_title" width="5%">Quantity</td>
+		<td class="menu_bar_title" width="9%" align="center">Price</td>
+		<td class="menu_bar_title" width="7%" align="center">Discount</td>
+		<td class="menu_bar_title" width="7%" align="center">Tax</td>
+		<td class="menu_bar_title" width="7%" align="right">S & H</td>
+	</tr>
+	[va_fc_return_products]
+	</table>
+</fieldset>
+</div>	
+&nbsp;
+<div id="div_exchange" style="display:[va_div_exchange]">
+<fieldset><legend>Exchange Section</legend>
+	<div class="menu_bar_title" align="center"><br>New Products In Order<br></div>
+	<br>
+	<div id="div-id-in" [va_this_style]>
+		<div><span class="smallfieldterr">[er_id_products_exchange]</span></div><br>
+		<label for="id-in" class='smalltext'>Product</label><br>
+		<input type="text" id="id-in" name="id-in" value="" size="150"><br>
+		<label for="price-in" class='smalltext'>Price</label><br> 
+		<select id="price-in" name="price-in" onFocus='focusOn( this )' onBlur='focusOff( this )'></select>&nbsp;
+		<input type="text" id="sprice-in" name="sprice-in" value="" size="10">
+
+		<br>
+		<label for="qty-in" class='smalltext'>Quantity</label> 
+		&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		<label for="shp-in" class='smalltext'>Shipping</label>
+		&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+		<label for="tax-mode" class='smalltext'>Tax On</label><br>
+		<input type="text" id="qty-in" name="qty-in" value="" size="6">&nbsp;&nbsp;
+		<input type="text" id="shp-in" name="shp-in" value="" size="10">&nbsp;&nbsp;
+		<input type="checkbox" id="tax-mode" name="tax-mode" value="on" checked="checked" class="cehckbox">&nbsp;&nbsp;
+		<input type="button" id="btn-in" name="btn-in" value="Add This" style="display:none;">
+	</div>
+	&nbsp;
+	<div id="div-ids-in" style="width:98%;height:[va_div_height]px;overflow-y:auto;">
+		[va_ids_in]
+	</div>
+</fieldset>
+</div>	
+&nbsp;
+<div id="div_reship" style="display:[va_div_reship]">
+<fieldset><legend>Reship Section</legend>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr class="menu_bar_title">
+		<td colspan="5" align="center">Products Available for Reship </td>
+	</tr>
+	<tr>
+		<td class="menu_bar_title" width="5%"></td>
+		<td class="menu_bar_title" width="15%">ID products</td>	
+		<td class="menu_bar_title" width="50%">Name</td>
+		<td class="menu_bar_title" width="10%">Quantity</td>
+		<td class="menu_bar_title" width="10%">Price</td>
+	</tr>
+	[va_fc_reship]
+	</table>
+</fieldset>
+</div>	
+&nbsp;
+<div id="div-info">
+
+	<fieldset><legend>Return Info</legend>
+			 <table border="0" cellspacing="0" cellpadding="2" width="100%">
+		  		<tr>
+				  <td width="20%" valign="top">Return Type  : <span class="smallfieldterr">[er_type]</span></td>
+				  <td class="smalltext">[fc_build_radio_return_type]</td>
+				</tr>
+			 	<tr>
+				  <td width="20%" valign="top">General Package Condition: <span class="smallfieldterr">[er_generalpckgcondition]</span></td>
+				  <td class="smalltext">[fc_build_radio_return_generalpckgcondition]</td>
+				</tr>
+		  		<tr>
+				  <td width="20%" valign="top">Action  : <span class="smallfieldterr">[er_merAction]</span></td>
+				  <td class="smalltext">[fc_build_radio_return_meraction]</td>
+				</tr>
+			  </tr>
+			</table>
+	</fieldset>
+	&nbsp;
+
+	<fieldset><legend>Return Fees</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  	<tr>
+			  <td width="20%" valign="top">Shipping Charges (1st Ship) : <span class="smallfieldterr">[er_oldshpreturn]</span></td>
+			  <td class="smalltext">[br_oldshpreturn@sl_returns]</td>		
+	  	</tr>		
+	  	<tr>
+			  <td width="20%" valign="top">Shipping Charges (Reship) : <span class="smallfieldterr">[er_newshp]</span></td>
+			  <td class="smalltext">[br_newshp@sl_returns]</td>		
+	  	</tr>
+	  	<tr>
+			  <td width="20%" valign="top">Return Fees : <span class="smallfieldterr">[er_returnfee]</span></td>
+			  <td class="smalltext">[br_returnfee@sl_returns]</td>		
+	  	</tr>
+	  	<tr>
+			  <td width="20%" valign="top">Restock Fees  : <span class="smallfieldterr">[er_restockfee]</span></td>
+			  <td class="smalltext">[br_restockfee@sl_returns]</td>		
+	  	</tr>
+	  	<tr>
+			  <td width="20%" valign="top">Processing Fee  : <span class="smallfieldterr">[er_processingfee]</td>
+			  <td class="smalltext">[br_processingfee@sl_returns]</td>		
+	  	</tr>			
+	  </table>
+	</fieldset>	
+	&nbsp;
+	<div id="chargeback_date" style="display:none;">
+	<fieldset><legend>Chargeback Bank Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>			
+				<td width="20%">Bank Date : <span style="smallfieldterr">[er_bankdate]</span></td>
+				<td class="smalltext">
+					<input type="text" id="bankdate" name="bankdate" value="[in_bankdate]" size="15" oocus='focusOn( this )' onBlur='focusOff( this )'>
+				</td>
+			</tr>
+		</table>
+	</div> 
+	&nbsp;
+	<fieldset><legend>Return Status</legend>
+		 <table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  		<tr>
+			  <td width="20%" valign="top">Status  : <span class="smallfieldterr">[er_status]</span></td>
+			  <td class="smalltext">[fc_build_radio_return_status]</td>
+			</tr>
+		  </tr>
+		</table>
+	</fieldset>
+
+	<input type="hidden" name="id_creditmemos" value="[va_id_creditmemos]">
+	<input type="hidden" name="already_creditmemos" value="[va_already_creditmemos]">
+	<input type="hidden" name="modify" value="[in_modify]">
+
+</div>
+
+<script language="javascript">
+<!--
+
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		$.ajaxSetup({
+	    	timeout: 60000
+	    });
+
+		
+		var dates = $( "#bankdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			maxDate: new Date(),
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 2,
+		});
+
+
+		if('[va_already_creditmemos]' != '1'){
+
+			/* Solo se permite modificar a ReShip o Void o [despues de devuelta la mercancia y creada la Nota de Credito] */
+
+
+			$('#div-info :radio').click(function(){ //,:checkbox
+
+				if( $(this).val() != 'ReShip' && $(this).val() != 'Resolved' && $(this).val() != 'Void' && $(this).val() != 'To Be Determined by CR' && $(this).val() != 'Back to inventory' ){
+
+					return false;
+
+				}
+
+    			
+			});
+
+		}else{
+
+			/* Validacion de Devoluciones con Nota de Credito (Solo pueden ser Chargeback|Exchange|Refund) */
+			//if('[va_already_creditmemos]' == '1'){
+
+			
+				if($("input[name=merAction]:checked").val() == 'Chargeback'){
+					$( '#chargeback_date' ).css('display', 'block');
+				}
+
+				$('#div-info :radio').click(function(){ //,:checkbox
+
+					if( $(this).prop('name') == 'merAction' ){
+
+						if( $(this).val() != 'Chargeback' && $(this).val() != 'Refund' && $(this).val() != 'Exchange' ){
+
+							return false;
+
+						}
+
+						if($(this).val() == 'Chargeback'){
+							$( '#chargeback_date' ).css('display', 'block');
+						}else{
+							$( '#chargeback_date' ).css('display', 'none');
+						}
+
+					}
+
+					if( $(this).prop('name') == 'Status' && $(this).val() == 'Void' ){
+
+						return false;
+
+					}
+	    			
+				});
+
+		}
+
+
+		/* Mostrar o no el boton de transicion para devolver la mercancia*/
+		$('#sbmt_fastbacktoinventory_done').css({
+			display: '[va_style_fastbacktoinventory_done]',
+		});
+
+
+		/* Para SUMAR Los valores de la DEVOLUCION*/
+		$(":checkbox[id^='id_return_']").click(function(e){
+
+			var this_amount_net = 0;
+			var this_amount_dis = 0;
+			var this_amount_tax = 0;
+			var this_amount_shp = 0;
+			var max_amount = $( "#return_amount_max" ).val() || 0;
+
+			$(":checkbox[id^='id_return_sprice']").each(function () {
+           
+           		if (this.checked) {
+
+           			var t =  $( this ).attr('id').split('_',4);
+           			var this_idop = parseInt(t[3]) || 0;
+		  			
+					this_amount_net += parseFloat($( this ).val()) || 0;
+					this_amount_dis += parseFloat($( "#id_return_dis_" + this_idop ).val()) || 0;
+					this_amount_tax += parseFloat($( "#id_return_tax_" + this_idop ).val()) || 0;
+
+				}
+
+			});
+
+			$(":checkbox[id^='id_return_shipping']").each(function () {
+           
+           		if (this.checked) {
+
+           			var t =  $( this ).attr('id').split('_',4);
+           			var this_idop = parseInt(t[3]) || 0;
+		  			
+					this_amount_shp += parseFloat($( this ).val()) || 0;
+					this_amount_tax += parseFloat($( "#id_return_shptax_" + this_idop ).val()) || 0;
+
+				}
+
+			});
+
+			var this_amount_total = parseFloat(this_amount_net - this_amount_dis + this_amount_tax + this_amount_shp) || 0;
+			$( "#id_return_amount_net" ).val(this_amount_net.toFixed(2)) || 0;
+			$( "#id_return_amount_dis" ).val(this_amount_dis.toFixed(2)) || 0;
+			$( "#id_return_amount_tax" ).val(this_amount_tax.toFixed(2)) || 0;
+			$( "#id_return_amount_shp" ).val(this_amount_shp.toFixed(2)) || 0;
+			$( "#id_return_amount_total" ).val(this_amount_total.toFixed(2)) || 0;
+
+
+			$( "#spn_id_return_amount_tax" ).empty().append(this_amount_tax.toFixed(2)+"!") || 0;
+			$( "#spn_id_return_amount_total" ).empty().append(this_amount_total.toFixed(2)+"!") || 0;
+
+			if( this_amount_total.toFixed(2) > max_amount.toFixed(2) ){
+				alert('Return greater than maximum allowed of $' + max_amount );
+			}else if(this_amount_total.toFixed(2) < 0){
+				alert('Return lesser than zero');
+			}
+
+		});
+
+ 		$('#id_return_amount_net,#id_return_amount_dis,#id_return_amount_shp').on('keyup',function(e){
+ 			if($(this).val().length>0){
+	 			var tax=[va_tax_default];
+
+	 			var id_return_amount_net= $( "#id_return_amount_net" ).val();
+				var id_return_amount_dis= $( "#id_return_amount_dis" ).val();
+				var id_return_amount_shp= $( "#id_return_amount_shp" ).val();
+
+				var tax_amount=(parseFloat(id_return_amount_net)-parseFloat(id_return_amount_dis)+parseFloat(id_return_amount_shp))*parseFloat(tax);
+				
+				
+				var id_return_amount_tax= tax_amount;
+				var id_return_amount_total= parseFloat(id_return_amount_net)-parseFloat(id_return_amount_dis)+parseFloat(id_return_amount_shp)+parseFloat(id_return_amount_tax);
+
+				$( "#spn_id_return_amount_tax" ).empty().append(id_return_amount_tax.toFixed(2)+"!");		
+				$( "#spn_id_return_amount_total" ).empty().append(id_return_amount_total.toFixed(2)+"!");
+			}else{
+				$( "#spn_id_return_amount_tax" ).empty();
+				$( "#spn_id_return_amount_total" ).empty();
+			}
+ 		});
+
+
+ 		$( "#id_return_amount_total" ).blur(function(){
+
+ 			var this_amount_total = parseFloat($( "#id_return_amount_total" ).val() )|| 0;
+ 			this_amount_total = this_amount_total.toFixed(2);
+ 			var max_amount = parseFloat($( "#return_amount_max" ).val() )|| 0;
+ 			max_amount = max_amount.toFixed(2);
+
+ 			if( this_amount_total > max_amount ){
+				alert('Warning!!\nReturn greater than maximum allowed of $' + max_amount );
+			}else if(this_amount_total < 0){
+				alert('Warning!!\nReturn lesser than zero');
+			}
+
+ 		});
+
+
+ 		var this_idin = $( '#id-in' ).val();
+		(this_idin  == '') ? $( "#qty-in" ).attr('disabled','disabled') : $( "#qty-in" ).removeAttr('disabled');
+		(this_idin  == '') ? $( "#price-in" ).attr('disabled','disabled') : $( "#price-in" ).removeAttr('disabled');
+		(this_idin  == '') ? $( "#sprice-in" ).attr('disabled','disabled') : $( "#sprice-in" ).removeAttr('disabled');
+		(this_idin  == '') ? $( "#shp-in" ).attr('disabled','disabled') : $( "#shp-in" ).removeAttr('disabled');
+		(this_idin  == '') ? $( "#tax-mode" ).attr('disabled','disabled') : $( "#tax-mode" ).removeAttr('disabled');
+
+		/* Reset textbox & fadeOut button onFocus */
+		$( "#id-in" ).focus(function(){
+		  	$( "#id-in" ).val('');
+		  	$( "#qty-in" ).val('');
+		  	$( "#price-in" ).find('option').remove();
+		  	$( "#sprice-in" ).val('');
+		  	$( "#shp-in" ).val('');
+		  	$( "#btn-in" ).fadeOut(1000);
+		});
+ 		
+
+		/* On Change Price List */
+		$( "#price-in" ).change(function() {
+			var p = parseFloat($( '#price-in' ).val()) || 0;
+			$( '#sprice-in' ).val( p );
+		});
+
+
+ 		/* Adding Items */
+		$( "#btn-in" ).click(function(e){
+		  	var t = $( '#id-in' ).val().split(' @@ ',2);
+		  	var id = parseInt(t[0]) || 0;
+		  	var qty = parseInt($( '#qty-in' ).val()) || 0;
+		  	var price = parseFloat($( '#price-in' ).val()) || 0;
+		  	var sprice = parseFloat($( '#sprice-in' ).val()) || 0;
+		  	var shp = parseFloat($( '#shp-in' ).val()) || 0;
+		  	var taxmode = $( '#tax-mode:checked' ).val() || 'off';
+		  	var idri = 0;
+		  	var nid = id + ':' + qty + ':' + sprice + ':' + shp + ':' + taxmode;
+
+		  	$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'returns_edit', 'id':[in_id_returns], 'type': 'add', 'idri':idri, 'data_in':nid },function(response,status,xhr){
+
+				if (status == "error") {
+					alert(msg);
+					$( '#id-in' ).focus();
+				}else{
+					if(response.match(/error/gi)){
+						alert(response + "\r\nPlease Try again");
+						$( '#id-in' ).focus();
+					}else{
+						$( '#div-ids-in' ).html(response).animate({height: '+=100'},1000);
+					}
+				}
+			});
+
+		});
+
+
+ 		/* Drop Row*/
+		$( ".rdrop" ).live('click',function(){
+			var p = $(this).attr('id').split('-',2);
+		  	var idri = parseInt(p[1]);
+
+		  	$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'returns_edit', 'id':[in_id_returns], 'type': 'drop', 'idri':idri, 'data_in':0 },function(response,status,xhr){
+
+				if (status == "error") {
+					alert(msg);
+					$( '#id-in' ).focus();
+				}else{
+					if(response.match(/error/gi)){
+						alert(response + "\r\nPlease Try again");
+						$( '#id-in' ).focus();
+					}else{
+						$( '#div-ids-in' ).html(response).animate({height: '-=50'},1500);
+					}
+				}
+			});	
+		  	
+		});
+
+
+
+		/* Submit Form Validation*/
+		$('#edit-common-sitform').on('submit', function(e){
+		    
+		    var valid = false;
+		    var this_meraction = $( "input:radio[name=merAction]:checked" ).val();
+		    var this_status = $( "input:radio[name=Status]:checked" ).val();
+		    var bankdate = $( "#bankdate" ).val();
+		    
+		    if(this_meraction == 'Chargeback' && this_status == 'Resolved' && bankdate == '') {
+
+		      e.preventDefault();
+		      alert('Please select Chargeback Bank Date');
+		      location.reload();
+
+		    }
+
+		    
+
+		});
+
+	});
+
+
+ 	/* Autocomplete Search */
+	$(function() {
+		var availableIDs = [
+		  [va_ids_autocomplete]
+		];
+
+		$( "#id-in" ).autocomplete({
+
+			source: availableIDs,
+		  	select: function( event, ui ) {
+		  		$( "#qty-in" ).removeAttr('disabled');
+		  		$( "#qty-in" ).val(1);
+		  		$( "#price-in" ).removeAttr('disabled');
+		  		$( "#sprice-in" ).removeAttr('disabled');
+		  		$( "#shp-in" ).removeAttr('disabled');
+		  		$( "#tax-mode" ).removeAttr('disabled');
+		  		$( '#qty-in' ).focus();
+		  		$( '#btn-in' ).fadeIn(1000);
+
+		  		/* Loading Price Options */
+		  		$.getJSON( '/cgi-bin/common/apps/ajaxbuild',
+				{
+					ajaxbuild: 'returns_edit', 
+					id: [in_id_returns], 
+					type: 'load_data', 
+					idri: 0, 
+					data_in: ui.item.value
+				}, function( data ) {
+
+					//alert(data);
+					var obj = $.parseJSON(data.resp);
+					var selop = '';
+
+
+					//alert(data.resp[0].idpp + ' = ' + data.resp[0].pname);
+					$('#price-in').append('<option value = "---">---</option>');
+					$.each( data.resp, function( i ) {
+						selop += '<option value = "'+data.resp[i].idpp+'">'+data.resp[i].pname+'</option>'; 
+					});
+					$('#price-in').append(selop);
+
+				});
+
+		  	}
+		});
+
+	});
+
+ 	function fn_fastbacktoinventory_done(){
+
+ 		var el = document.getElementById('fastbacktoinventory_done');
+ 		var res = confirm("Are you sure that you want to mark the inventory as already returned!");
+		
+		if (res == true) {
+		    el.value = 1;
+		    document.sitform.submit();
+		}	
+
+ 	}
+
+
+	chg_radio('Type','[in_type]');
+	chg_radio('merAction','[in_meraction]');	
+	chg_radio('Status','[in_status]');
+	chg_radio('oldshpreturn','[in_oldshpreturn]');
+	chg_radio('newshp','[in_newshp]');
+	chg_radio('returnfee','[in_returnfee]');
+	chg_radio('restockfee','[in_restockfee]');
+	chg_radio('processingfee','[in_processingfee]');
+	chg_radio('generalpckgcondition','[in_generalpckgcondition]');
+	chg_radio('order_prod','[va_order_prod]');
+
+	[va_jsreturns]
+
+//-->
+</script>
+

@@ -1,0 +1,76 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+			  <tr>
+			    <td width="40%" align="center"></td>
+			    <td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/crm/dbman?cmd=orders&search=form")'>Search</td>
+			    <td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/crm/dbman?cmd=orders&search=advform")'>Adv Search</td>
+			    <td width="20%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/crm/dbman?cmd=orders&search=listall&sb=id_orders&so=DESC")'>View / Edit / Delete</td>
+			  </tr>
+			</table>
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+		
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td class="titletext" align="center" colspan="2">View Order : [in_id_orders]</td>
+				</tr>
+				<tr>
+					<td class="stdtxterr" colspan="2">[va_message]</td>
+				</tr>
+			</table>
+			&nbsp;
+			<fieldset><legend>Invoice Info</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td width="30%" class="titletext">Invoice ID  : </td>
+					<td class="titletext">				
+						<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons"> 
+							[in_id_orders] &nbsp;
+							<a href="/cgi-bin/mod/crm/dbman?cmd=orders&modify=[in_id_orders]"><img src='[va_imgurl]/[ur_pref_style]/b_edit.gif' title='Edit' alt='Edit' border='0'></a>
+							<a href="/cgi-bin/mod/crm/dbman?cmd=orders&view=[in_id_orders]"><img src='[va_imgurl]/[ur_pref_style]/b_view.gif' title='View' alt='View' border='0'></a>
+				  			<a href="javascript:prnwin('/cgi-bin/mod/crm/dbman?cmd=invoices&search=Print&toprint=[in_id_orders]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.gif' title='Print' alt='' border='0'></a>
+				  			<a href="javascript:prnwin('/cgi-bin/mod/crm/dbman?cmd=invoices&search=Print&toprint=[in_id_orders]')"><img src='[va_imgurl]/[ur_pref_style]/b_pinvoice.gif' title='Print' alt='' border='0'></a>
+						</div>
+					</div>
+
+
+
+					</td>
+				</tr>
+				<tr>
+					<td width="30%" class="smalltext">Date / Time /user  : </td>
+					<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+				</tr>		
+			</table>
+			</fieldset>
+			&nbsp;
+			[ip_forms:invoice_view]
+		
+		<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

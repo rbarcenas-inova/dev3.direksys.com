@@ -1,0 +1,153 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="20%" align="center"></td>
+	    <td class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_cybcaptreport")'>Upload File</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_report_conciliation&base=cyb&date=[in_date]")'>Cyb vs Direksys</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_report_conciliation&base=sosl_pre&date=[in_date]")'>Direksys vs Cyb / Ords</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_report_conciliation&base=sosl_ord&date=[in_date]")'>Direksys vs Cyb / Pre</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_report_conciliation&base=cash&date=[in_date]")'>Direksys vs Bank</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+	&nbsp;
+<form method="post" action="[va_script_url]" name="sitform">
+  <input type="hidden" name="cmd" value="fin_cybcaptreport">
+  <input type="hidden" name="action" value="1">
+  <input type="hidden" name="base" value="[in_base]">
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center">Files to Upload with Captures Detaile Reports</td>
+		    <td class="titletext" align="right">
+		    	<a name="upd" id="upd">&nbsp;</a>
+				<a href="#upd" id="ajax_btn" onClick="popup_show('popup_uploadfile', 'item_drag', 'popup_exit2', 'element-right', -1, -1,'upd');">Upload</a>
+		    	</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title">Filename</td>
+		    <td class="menu_bar_title">Date</td>
+		    <td class="menu_bar_title">&nbsp;</td>
+		 </tr>
+		[va_searchresults]
+     </table>
+	&nbsp;
+</form>
+	
+<form enctype="multipart/form-data" name="upload" method="POST" action="/cgi-bin/common/apps/upfile.cgi" target="upwin">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="filetype" value="adjustment">
+	<input type="hidden" name="cmd" value="fin_cybcaptreport">
+        
+	<div id="popup_uploadfile" style="visibility: hidden; display: none; background-color: #ffffff;">
+		<div class="menu_bar_title" id="item_drag">
+	  	<img id="popup_exit2" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />&nbsp;&nbsp;&nbsp;A&ntilde;adir Art&iacute;culo
+		</div>
+		<div class="formtable">
+			<table border="0" cellspacing="0" cellpadding="4" width="350" class="formtable" bgcolor="#FFFFFF">
+				<tr>
+					<td width="30%" valign="bottom">No. Producto : <span class="smallfieldterr">[er_id_products]</span></td>
+					<td class="smalltext"<input type="file" size="30" name="file" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input">
+					<span class="smallfieldterr"></span>
+					<input type="submit" value="Upload" class="button" onclick="upwin();"></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"> File Direct from Cybersource in CSV Format.</td>
+				</tr>
+			</table>
+	   </div>
+	</div>
+</form>
+
+
+<!--
+
+<form action="https://ebc.cybersource.com/ebc/Query" method="POST">
+<input type="hidden" name="username" value="chaas">
+<input type="hidden" name="password" value="">
+<input type="hidden" name="format" value="csv">
+
+  <table>
+
+   <tr>
+
+<td>merchantID</td>
+
+<td><input type="text" name="merchantID" value="v2694389"></td>
+
+</tr>
+
+<tr>
+
+      <td>type</td>
+
+      <td><input type="text" name="type" value="transaction"></td>
+
+    </tr>
+
+    <tr>
+
+<td>subtype</td>
+
+<td><input type="text" name="subtype" value="transactionDetail"></td>
+
+    </tr>
+
+    <tr>
+
+<td>requestID</td>
+
+<td><input type="text" name="requestID" value="2319530186230014968693"></td>
+
+</tr>
+
+    <tr>
+
+<td></td>
+
+<td><input type="reset"> <input type="submit" value="Submit"></input></td>
+
+</tr>
+
+  </table>
+
+</form>
+
+-->
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+
+
+[ip_footer]

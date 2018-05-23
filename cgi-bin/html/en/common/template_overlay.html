@@ -1,0 +1,97 @@
+<script language="JavaScript">
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+});  // document readyState
+
+
+// Overlay
+$(function() {
+
+	$("a[rel]").live('click', function(e) {
+
+		//alert(1);
+		// if the function argument is given to overlay,
+		// it is assumed to be the onBeforeLoad event listener
+		$(this).overlay({
+
+			effect: 'apple',
+
+
+			onBeforeLoad: function() {
+
+				$(".apple_overlay .contentWrap").html('<div style="height:422px;width:537px;background-color:#fff;text-align:center;position:relative;"><img style="position:absolute;top:50%;left:50%;margin-top:-25px;margin-left:-25px;" alt="Loading..." src="[va_imgurl]/processing.gif" /><br>Loading...Please Wait</div>');
+
+				// grab wrapper element inside content
+				var wrap = this.getOverlay().find(".contentWrap");
+
+				// load the page specified in the trigger
+				wrap.load(this.getTrigger().attr("href"));
+			}
+
+		});
+		e.preventDefault();
+	});
+
+});
+
+</script>
+
+<style>
+
+/* use a semi-transparent image for the overlay */
+#overlay {
+	background-image:url(/jquerytools/overlay/transparent.png);
+	color:#fff;
+	height:580px;
+}
+
+/* container for external content. uses vertical scrollbar, if needed */
+div.contentWrap {
+	height:581px;
+	overflow-y:auto;
+}
+/* the overlayed element */
+.apple_overlay {
+
+	/* initially overlay is hidden */
+	display:none;
+
+	/* growing background image */
+	background-image:url(/jquerytools/overlay/white.png);
+
+	/*
+		width after the growing animation finishes
+		height is automatically calculated
+	*/
+	width:540px;
+
+	/* some padding to layout nested elements nicely  */
+	padding:35px;
+
+	/* a little styling */
+	font-size:11px;
+}
+
+/* default close button positioned on upper right corner */
+.apple_overlay .close {
+	background-image:url(/jquerytools/overlay/close.png);
+	position:absolute; right:5px; top:5px;
+	cursor:pointer;
+	height:35px;
+	width:35px;
+}
+
+</style>
+
+<!-- Overlay -->
+<div class="apple_overlay" id="overlay">
+	<!-- the external content is loaded inside this tag -->
+	<div class="contentWrap"></div>
+</div>
+<!-- Overlay -->

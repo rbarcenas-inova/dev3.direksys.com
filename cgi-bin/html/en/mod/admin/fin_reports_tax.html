@@ -1,0 +1,150 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_home")'>Financial Home</td>
+	    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reports")'>Sales Reports</td>
+	    <td width="18%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reports_tax")'>Tax  Collected</td>
+	    <td width="18%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reports_fp")'>Flex Pay</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+	&nbsp;
+
+  <form action="/cgi-bin/mod/admin/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="fin_reports_tax">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="left" colspan="2">Collected Tax Report</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Query</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+		    <td width="30%">From Date : <span class="smallfieldterr">[er_from_date]</span></td>
+		    <td class="smalltext"><input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	</td>
+			</tr>
+			<tr>
+		    <td width="30%">To Date : <span class="smallfieldterr">[er_to_date]</span></td>
+		    <td class="smalltext"><input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	</td>
+			</tr>	 
+			<tr>
+			 	<td width="30%">State : </td>
+			  <td class="smalltext">
+					<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option>
+							[fc_build_select_opr_customersstate]
+					</select>
+				</td>
+			</tr>
+			<tr>
+		   	<td width="30%" valign="top">Status : <span class="smallfieldterr">[er_status]</span></td>
+				<td class="smalltext">[fc_build_checkbox_order_status]</td>
+			</tr>		
+			<tr>
+		   	<td width="30%">Payment Type : <span class="smallfieldterr">[er_status]</span></td>
+				<td class="smalltext">
+					<input type="radio" class="radio" name="paytype" value="" checked> All
+					<input type="radio" class="radio" name="paytype" value="Credit-Card"> Credit-Card
+					<input type="radio" class="radio" name="paytype" value="Check"> Check
+					<input type="radio" class="radio" name="paytype" value="WesternUnion"> WesternUnion
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	<fieldset>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+	   		<td class="smalltext">Report Type:
+		   		<input type="radio" class="radio" name="groupby" value="day" checked> State Tax
+		   		<input type="radio" class="radio" name="groupby" value="hour"> County
+	   		</td>
+			</tr>
+		</table>
+	</fieldset>
+	<fieldset>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+	   		<td class="smalltext" valign="top">Sort By:</td>
+	   		<td class="smalltext">
+		   		<input type="radio" class="radio" name="sortby" value="" checked> No Order
+		   		<input type="radio" class="radio" name="sortby" value="nums"> Nums or Records
+		   		<input type="radio" class="radio" name="sortby" value="amounts"> Amount<br>
+		   		<input type="radio" class="radio" name="sortorder" value="ASC"> Ascending
+		   		<input type="radio" class="radio" name="sortorder" value="DESC" checked> Descending
+	   		</td>
+			</tr>
+		</table>
+	</fieldset>
+	<p align="center"><input type="submit" value="Run" class="button"></p>
+  </form>
+  		<script language="javascript">
+		<!--			
+
+	        $(document).ready(function() {
+
+				/*AJAX Error handler*/
+				$(document).ajaxError(function(e, xhr, settings, exception) {
+					alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+				});
+
+				var dates = $( "#from_date,#to_date" ).datepicker({
+					dateFormat: 'yy-mm-dd',
+					defaultDate: "-2m",
+					minDate: new Date(2009,1-1,1),
+					maxDate: new Date(),
+					changeMonth: true,
+					numberOfMonths: 3,
+					onSelect: function( selectedDate ) {
+						var option = this.id == "from_date" ? "minDate" : "maxDate",
+						instance = $( this ).data( "datepicker" ),
+						date = $.datepicker.parseDate(
+							instance.settings.dateFormat ||
+							$.datepicker._defaults.dateFormat,
+							selectedDate, instance.settings );
+						dates.not( this ).datepicker( "option", option, date );
+					}
+				});
+
+	        });
+
+		//-->
+		</script>	
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+
+
+[ip_footer]

@@ -1,0 +1,161 @@
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	 <tr>
+	  <td align="center" colspan="2" class="menu_bar_title">Supply Description</td>
+	 </tr>
+	 <tr>
+	 	<td nowrap> ID Supply: </td>
+		<td class="title">[va_id_supplies]</td>
+	 </tr>
+	 <tr>
+		<td nowrap>Model : </td>
+		<td class="smalltext">[in_model]</td>
+	 </tr>
+	 <tr>
+	 	<td nowrap>Name : </td>
+		<td class="smalltext">[in_name]</td>
+	 </tr>
+	 <tr>
+	  	<td nowrap valign="top">Description : </td>
+		<td class="smalltext">[in_smalldescription]</td>
+   </tr>
+	 <tr>
+		<td nowrap valign="top">Long Description : </td>
+		<td class="smalltext">[in_description]</td>
+	 </tr>
+	 <tr bgcolor="#DDFFFF">
+		<td nowrap valign="top">Description (English): </td>
+		<td class="smalltext"d>[in_smalldescription_en]</td>
+    </tr>
+	 <tr bgcolor="#DDFFFF">
+		<td nowrap valign="top">Long Description (English): </td>
+		<td class="smalltext">[in_description_en]</td>
+   </tr>
+	 <tr>
+		<td nowrap valign="top">Weight :</td>
+		<td class="smalltext">[in_weight]   lb.</td>
+	 </tr>
+	 <tr>
+		<td nowrap valign="top">Size : </td>
+		<td class="smalltext">[ [in_sizew] ] x [ [in_sizeh] ] x [ [in_sizel] ] in</td>
+	 </tr>	
+</table> 
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td width="30%">Margin : </td>
+		    <td class="smalltext">[in_margin]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Air Time Minutes : </td>
+		    <td class="smalltext">[in_airtimeminutes]</td>
+		</tr>	
+		<tr>
+		  <td width="30%">Retail Price(MSRP)  : </td>
+		  <td class="smalltext">[in_msrp] <span class="help_on">in US$</span></td>
+		</tr>
+		<tr>
+		  <td width="30%" class="titletext">Sale Price  : </td>
+		  <td class="titletext">[in_spricename] $ [in_sprice]</td>
+		</tr>
+			<tr>
+			  <td width="30%">Ref Sales Price1  : </td>
+			  <td class="smalltext">[in_sprice1name] [in_sprice1]</td>
+			</tr>
+			<tr>
+			  <td width="30%">Ref Sales Price2  : </td>
+			  <td class="smalltext">[in_sprice2name] [in_sprice2]</td>
+			</tr>
+			<tr>
+			  <td width="30%">Ref Sales Price3  : </td>
+			  <td class="smalltext">[in_sprice3name] [in_sprice3]</td>
+			</tr>
+			<tr>
+			  <td width="30%">Ref Sales Price4  : </td>
+			  <td class="smalltext">[in_sprice4name] [in_sprice4]</td>
+			</tr>
+			<tr>
+			  <td colspan="2"><hr color="#C0C0C0"></td>
+			</tr>
+			<tr>
+			  <td width="30%">Flexipago  : </td>
+			  <td class="smalltext">[in_flexipago] Payment(s)</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<table border="0" cellspacing="0" cellpadding="2" width="100%">
+						<tr>
+							<td width="48%" colspan="2">United States (UPS)</td>
+							<td width="4%">&nbsp;</td>
+							<td width="48%" colspan="2">Puerto Rico (USPS)</td>
+					  </tr>   
+						<tr>
+							<td class="smalltext" nowrap valign="top">[va_shp_text1] : </td>
+							<td class="smalltext" align="right" nowrap>[va_shptotal1]</td>
+							<td width="4%">&nbsp;</td>
+							<td class="smalltext" nowrap valign="top">[va_shp_textpr1] : </td>
+							<td class="smalltext" align="right" nowrap>[va_shptotal1pr]</td>
+					    </tr>    
+						<tr>
+							<td class="smalltext" nowrap valign="top">[va_shp_text2] : </td>
+							<td class="smalltext" align="right" nowrap>[va_shptotal2]</td>
+							<td width="4%">&nbsp;</td>
+							<td class="smalltext" nowrap valign="top">[va_shp_textpr2] : </td>
+							<td class="smalltext" align="right" nowrap>[va_shptotal2pr]</td>
+					  </tr>  				
+					</table>
+					</td>
+		    </tr> 
+</table>
+
+ <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	 <tr>
+		<td align="center" class="menu_bar_title" colspan="7">SKUs and Choices</td>
+   </tr>
+	<tr>
+	    <td class="menu_bar_title">SKU</td>
+	    <td class="menu_bar_title">[in_ChoiceName1]</td>
+	    <td class="menu_bar_title">[in_ChoiceName2]</td>
+	    <td class="menu_bar_title">[in_ChoiceName3]</td>
+	    <td class="menu_bar_title">[in_ChoiceName4]</td>
+	    <td class="menu_bar_title">Vendor SKU</td>
+	    <td class="menu_bar_title">Status</td>
+	 </tr>
+	 <tr>
+		<td align="center">
+		[fc_load_skuchoices]
+	  </td>
+    </tr>
+  </table>
+ <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	 <tr>
+		<td align="center" class="menu_bar_title">Images</td>
+   </tr>    
+	 <tr>
+		<td align="center">
+		[fc_load_images]
+	  </td>
+    </tr>
+  </table>	
+ <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr>
+	    <td class="menu_bar_title" colspan="5" align="center">Inventory</td>
+	 </tr> 	
+	<tr>
+	    <td class="menu_bar_title">Warehouse</td>
+	    <td class="menu_bar_title">ID</td>
+	    <td class="menu_bar_title">Choices</td>
+	    <td class="menu_bar_title">Qty</td>
+	 </tr>
+	 [fc_load_inventory_list]
+	</table>  	
+ <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr>
+	    <td class="menu_bar_title" colspan="4" align="center">Items Reserved</td>
+	 </tr> 	
+	<tr>
+	    <td class="menu_bar_title">Vendor</td>
+	    <td class="menu_bar_title">ID</td>
+	    <td class="menu_bar_title">Choices</td>
+	    <td class="menu_bar_title">Qty</td>
+	 </tr>
+	 [fc_load_vinventory_list]
+	</table> 

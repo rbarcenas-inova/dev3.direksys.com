@@ -1,0 +1,162 @@
+[ip_header_newsales]
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#btn_new_call').click(function(event) {
+			$('#frm_sales').submit();
+		});
+	});
+</script>
+
+ 	<table cellpadding="0" cellspacing="1" border="0" width="100%" bgcolor="#cccccc">
+		<tr bgcolor="#ffffff">
+			<td width="250px" valign="top" align="left">
+				<div class="lateral">
+
+					<table class="cart">
+						<tr>
+							<td colspan="4" class="uleft"> 
+								<div class="border_space">
+									&nbsp;<img src="/sitimages/default/conscart-icon.png" style="vertical-align:middle;"> <span id="cart_qty_title"></span> &nbsp;Art&iacute;culos en orden
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td height="40px">
+								<div id="div_shop_cart">
+									<div id="div_shop_cart_cont">
+										<div class="border_space">
+										El carro est&aacute; vac&iacute;o
+										</div>
+									</div>
+
+									<div id="div_shop_cart_totals">
+										<div id="div_shop_cart_totals_prod">
+
+										</div>
+										<div id="div_shop_cart_totals_amt">
+											Total: $ 0.00
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>						
+					</table>
+
+					<h1> 
+						<table style="font-size: 12px;" border="0" cellpadding="0px" cellspacing="0px" width="100%">
+							<tr>
+								<td class="uleft" >
+									&nbsp;<img src="/sitimages/default/conspay-icon.png" style="vertical-align:middle;"> &nbsp;Tipo de Pago
+								</td> 
+								<td >
+									<div id="div_order_pay_type"></div>
+								</td>
+							</tr>
+						</table>
+					</h1>
+
+
+				</div>
+			</td>
+			
+			<td valign="top" align="left">
+				<div class="content">
+					<table width="100%" cellpadding=0 cellspacing=0>
+						<tr>
+							<td width="14%" align="center">
+								<a href="#" class="step_on" id="step0" rel="0">
+									<img src="/sitimages/sales/step0.png" class="ico2"> Inicio
+								</a>
+							</td>
+							<td width="14%" align="center">
+								<a href="#" class="step_off" id="step1" rel="1">
+									<img src="/sitimages/sales/step1.png" class="ico2"> Llamada
+								</a>
+							</td>
+							<td width="14%" align="center">
+								<a href="#" class="step_off" id="step2" rel="2">
+									<img src="/sitimages/sales/step2.png" class="ico2"> Productos
+								</a>
+							</td>
+							<td width="14%" align="center">
+								<a href="#" class="step_off" id="step3" rel="3">
+									<img src="/sitimages/sales/step3.png" class="ico2"> Direcci&oacute;n
+								</a>
+							</td>
+							<td width="14%" align="center">
+								<a href="#" class="step_off" id="step4" rel="4">
+									<img src="/sitimages/sales/step4.png" class="ico2"> Pago
+								</a>
+							</td>
+							<td width="14%" align="center">
+								<a href="#" class="step_off" id="step5" rel="5">
+									<img src="/sitimages/sales/step5.png" class="ico2"> Confirmar
+								</a>
+							</td>
+							<td width="14%" class="bainfo">
+								<a href="#" class="step_off" id="step6" rel="6">
+									<img src="/sitimages/sales/step6.png" class="ico2"> Info Extra
+								</a>
+							</td>
+						</tr>
+					</table>
+
+
+
+ 					
+ 					<form action="/cgi-bin/mod/sales/admin" method="post" name="frm_sales" id="frm_sales">
+							<input type="hidden" name="cmd" id="cmd" value="console_sales">
+							<input type="hidden" name="step" id="step" value="1">							
+							<input type="hidden" name="id_salesorigins" id="id_salesorigins" value="[va_id_salesorigins]">
+					</form>
+					<!---------------------------------------------------------------------------------------------->
+					<!---------------------------------------------------------------------------------------------->
+					<!---------------------------------------------------------------------------------------------->
+
+					<div id="step0" class="div_step">
+						<h1>Mis ventas</h1> 
+
+						<table width="100%" cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td class="cont">
+									<table align="center" width="50%" style="border-spacing: 0; table-layout: fixed;">
+										[fc_load_rewards]
+
+										[fc_load_sales_ranking]
+									</table>
+									&nbsp;
+									<div class="apple_overlay" id="overlay_lastx2period">
+										<div class="contentWrap">[va_rewards_lastx2_period]</div>
+									</div>
+									&nbsp;
+									<div class="apple_overlay" id="overlay_lastperiod">
+										<div class="contentWrap">[va_rewards_last_period]</div>
+									</div>
+									&nbsp;
+									<div class="apple_overlay" id="overlay_thisperiod">
+										<div class="contentWrap">[va_rewards_this_period]</div>
+									</div>
+									&nbsp;
+
+									<div style="text-align:center;">
+										<input type="button" id="btn_new_call" value="Nueva Llamada" class="buttonv2">
+									</div>
+								</td>
+								<!--
+								<td  class="nodiv">
+									
+								</td>
+								<td class="cont">
+
+								</td>
+								-->
+							</tr>
+						</table>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	[ip_footer_console]

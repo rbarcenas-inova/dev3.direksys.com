@@ -1,0 +1,91 @@
+[ip_header_blank]
+&nbsp;
+[va_javascriptvar]
+&nbsp;
+<div class="container_white">
+<form method="post" action="/cgi-bin/common/apps/ajaxbuild" name="sitform">
+<input type="hidden" name="action" value="1">
+<input type="hidden" name="ajaxbuild" value="products_add_shipping_price_rule">	
+<input type="hidden" name="id_products" value="[in_id_products]">
+<input type="hidden" name="zone" value="[in_zone]">
+<input type="hidden" name="smethod" value="[in_smethod]">
+<input type="hidden" name="cmd" value="[in_cmd]">
+<fieldset>
+	<legend>Shipping Price Info</legend>
+		<table border="0" cellspacing="0" cellpadding="0" width="100%" class="">
+			<tr>
+			  <td colspan="2" align="center"><h2>Add Shipping Price Rule</h2></td>
+			</tr>
+			
+			<tr>
+			  <td colspan="2" align="left" class="stdtxterr">[va_message]</td>
+			</tr>
+			
+			<tr>
+			  <td colspan="2" align="center">&nbsp;</td>
+			</tr>
+			
+			<tr>
+			  <td width="30%" class="smalltext" >Zone: </td>
+			  <td class='smalltext' align='left'>[in_zone]</td>
+			</tr>
+			
+			<tr>
+			  <td colspan="2" align="center">&nbsp;</td>
+			</tr>
+			
+			<tr>
+			  <td width="30%" class="smalltext" >Method: </td>
+			  <td class='smalltext' align='left'>[in_smethod]</td>
+			</tr>
+			
+			<tr>
+			  <td colspan="2" align="center">&nbsp;</td>
+			</tr>
+			
+			<tr>
+			  <td width="30%" class="smalltext" >Quantity: </td>
+			 <td class='smalltext' align='left'>
+			 	<select name="quantity" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+			    [fc_build_select_prd_shpqty]
+			 	</select>	
+			 </td>
+			</tr>
+			
+			<tr>
+			  <td colspan="2" align="center">&nbsp;</td>
+			</tr>
+			
+			<tr>
+			  <td width="30%" class="smalltext" >Amount: </td>
+			 <td class='smalltext' align='left'>
+			 	<select name="amount" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+			    [fc_build_select_prd_shpamount]
+			 	</select>		
+			 </td>
+			</tr>
+			
+			<tr>
+			  <td colspan="2" align="center">&nbsp;</td>
+			</tr>
+			
+			<tr>
+			  <td width="30%" class="smalltext" >Price: <span class="smallfieldterr">[er_shipping_price]</span>	</td>
+			 	<td class='smalltext' align='left'>
+			 		<input name="shipping_price" type="text" size="10" value="[in_shipping_price]" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			 	</td>
+			</tr>
+		</table>
+		&nbsp;
+		<p align="center"><input type="submit" name="btn_submit" value="Enviar"></p>
+	</fieldset>
+</form>
+</div>
+	<script language="javascript">
+<!--
+	chg_select('quanqtity','[in_quantity]');
+	chg_select('amount','[in_amount]');
+//-->
+</script>

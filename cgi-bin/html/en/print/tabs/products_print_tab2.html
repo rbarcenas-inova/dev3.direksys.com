@@ -1,0 +1,82 @@
+<STYLE TYPE="text/css">
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+fieldset legend 
+{margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+td.smalltext
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+td.titletext
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+td.menu_bar_title
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+</STYLE>
+
+<center>
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td><font class=info>
+
+<table cellpadding=0 cellspacing=0 border=0>
+	<td align=left>
+		<img src="[va_imgurl]/packing_list/new_invoice/[va_logo].png" style="margin-right:15pt" border=0 height=75px>
+	</td>
+	<td align=left valign=bottom>
+		<font class=dir>
+		[va_address]<br>
+	</td>
+</table>
+
+
+<hr style="color: #000;background-color: #000;height: 1px;">
+
+
+
+
+	[ip_forms:sltv_header]
+
+	<fieldset><legend>Product Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td width="30%" class="titletext">Product ID  : </td>
+				<td class="titletext">[in_id_products] &nbsp;</td>
+			</tr>
+			<tr>
+				<td width="30%" class="smalltext">Date / Time /user  : </td>
+				<td class="smalltext">[in_date] [in_time] &nbsp; Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+			</tr>		
+		</table>
+	</fieldset>
+	&nbsp;
+  <table width="100%" border="0" cellspacing="0" cellpadding="0"  align="center">
+		<tr>
+			<font class=info><table border="0" cellpadding="7" cellspacing="0" width="100%" style="border:1px solid #333333;border-left:0px;border-bottom:0px;">
+					<tr>
+			   			<td style="border-left:1px solid #555555;border-bottom:1px solid #555555;" width="10%">&nbsp;</td>
+			   			<td  style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Category Name</td>
+			 		</tr>
+			 		[va_searchresults]
+			</table>
+
+<br>
+<table border="0" cellpadding="7" cellspacing="0" width="100%" style="border:1px solid #333333;border-left:0px;border-bottom:0px;">
+				<tr>
+				<td  style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Property Name</td>
+				</tr>
+				[va_searchresults_prop]
+			</table>
+			</td>
+		</tr>
+	</table>
+
+
+	

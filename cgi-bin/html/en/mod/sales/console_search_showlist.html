@@ -1,0 +1,39 @@
+
+
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+			
+<table border="0" cellspacing="0" cellpadding="0" width="100%" class="formtable">
+	<tr>
+		<td align="center" colspan="2" class="menu_bar_title">Resultados de B&uacute;squeda</td>
+    </tr>
+	<tr>
+		<td class="tbltextttl">Productos : [va_matches]</td>
+		<td class="tbltextttl" align="right">P&aacute;ginas :  [va_pageslist]</td>
+  </tr>
+	<tr>
+		<td align="center" colspan="2" class="smalltext">&nbsp;</td>
+    </tr>
+    <tr>
+    	<td colspan="2">		
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+		    <td class="menu_bar_title" onclick="trjump('/cgi-bin/mod/sales/admin?cmd=console_order&amp;step=2&amp;action=search&amp;orderby=ID_products&amp;[va_search]')" style="cursor: pointer;" title="Order by ID">ID</td>
+		    <td class="menu_bar_title" onclick="trjump('/cgi-bin/mod/sales/admin?cmd=console_order&amp;step=2&amp;action=search&amp;orderby=Model&amp;[va_search]')" style="cursor: pointer;" title="Order by Model">Modelo</td>
+		    <td class="menu_bar_title" onclick="trjump('/cgi-bin/mod/sales/admin?cmd=console_order&amp;step=2&amp;action=search&amp;orderby=Name&amp;[va_search]')" style="cursor: pointer;" title="Order by Name">Nombre</td>
+	      <td class="menu_bar_title" onclick="trjump('/cgi-bin/mod/sales/admin?cmd=console_order&amp;step=2&amp;action=search&amp;orderby=Price&amp;[va_search]')" style="cursor: pointer;" title="Order by Price">Precio</td>
+		 </tr>
+		[va_searchresults]
+     </table></td>
+    </tr>
+    
+</table>	
+
+
+

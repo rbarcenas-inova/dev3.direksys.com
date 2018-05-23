@@ -1,0 +1,73 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_toff&dropship=[in_dropship]&partialshipment=[in_partialshipment]&partialshipped=[in_partialshipped]")'>To [va_fftype]</td>
+	    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_toff_orders&dropship=[in_dropship]&partialshipment=[in_partialshipment]&partialshipped=[in_partialshipped]")'>Orders</td>
+	    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_toff_items&dropship=[in_dropship]&partialshipment=[in_partialshipment]&partialshipped=[in_partialshipped]")'>Items</td>
+	    <td width="18%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_toff_zones&dropship=[in_dropship]&partialshipment=[in_partialshipment]&partialshipped=[in_partialshipped]")'>Zones</td>
+	  </tr>
+	</table>
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Orders: <span class="stdtext">per Zone</span></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Items : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class="menu_bar_title" nowrap>&nbsp;</td>
+		    <td class="menu_bar_title" nowrap>Zone</td>
+		    <td class="menu_bar_title">Name</td>
+		    <td class="menu_bar_title">Qty Orders</td>
+		    <td class="menu_bar_title">Total OrderNet</td>
+		    <td class="menu_bar_title">Total Items</td>
+		 </tr>
+		[va_searchresults]
+     </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="tbltextttl">Items : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+     &nbsp;
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

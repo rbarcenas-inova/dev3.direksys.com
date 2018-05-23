@@ -1,0 +1,71 @@
+	&nbsp;
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+			<td class="tbltextttl">
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_view]&tab=1&[va_rndnumber]#tabs")'><img src="/sitimages//default/b_reload.gif" title="Refresh" alt="" border="0"></a>&nbsp;
+				<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=1&toprint=[in_id_coupons]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+				Fields : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>			
+	 	</tr>
+		<tr>
+			<td colspan="3">
+		 		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+					  <td class="menu_bar_title">Print Name</td>
+					  <td class="menu_bar_title">Field</td>
+					  <td class="menu_bar_title">Type</td>
+					  <td class="menu_bar_title">Filter</td>
+					  <td class="menu_bar_title">Format</td>
+					  <td class="menu_bar_title">Visibility</td>
+					  <td class="menu_bar_title">Order</td>
+					</tr>
+				 [va_searchresults]			 
+			</table>
+			<span class='fieldterr'>[va_tabmessages]</span>&nbsp;
+			<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+				<input type="hidden" name="id_admin_reports" value="[in_admin_reports]">
+				<input type="hidden" name="view" value="[in_id_admin_reports]">
+				<input type="hidden" name="action" value="1">
+				<input type="hidden" name="tab" value="1">
+				<input type="hidden" name="cmd" value="repman">		    	
+			 	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+				    	<td class="menu_bar_title" colspan="2">Add new Field : </td>
+				 	</tr>
+					<tr>
+						<td class="smalltext">PrintName : <span class="smallfieldterr">[er_printname]</span></td>
+						<td><input name="printname" value="[in_printname]" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+					</tr>
+					<tr>
+						<td class="smalltext">Field / Function : <span class="smallfieldterr">[er_field]</span></td>
+						<td><input name="field" value="[in_field]" size="40" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+					</tr>
+					<tr>
+						<td class="smalltext">Field Type : <span class="smallfieldterr">[er_fieldtype]</span></td>
+						<td>[br_fieldtype@admin_reports_fields]</td>
+					</tr>
+					<tr>
+						<td class="smalltext">Filter : <span class="smallfieldterr">[er_filter]</span></td>
+						<td>[br_filter@admin_reports_fields]</td>
+					</tr>
+					<tr>
+						<td class="smalltext">FormatType : <span class="smallfieldterr">[er_formattype]</span></td>
+						<td>[br_formattype@admin_reports_fields]</td>
+					</tr>
+					<tr>
+						<td class="smalltext">Visibility : <span class="smallfieldterr">[er_visibility]</span></td>
+						<td>[br_visibility@admin_reports_fields]</td>
+					</tr>
+					<tr>
+						<td class="smalltext">List Order : <span class="smallfieldterr">[er_listorder]</span></td>
+						<td><input name="listorder" value="[in_listorder]" size="5" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+					</tr>
+				</table>
+				<p align="center"><input type="submit" value="Add Record" class="button"></p>
+			</form>		
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">&nbsp;</td>
+		</tr>
+	</table>

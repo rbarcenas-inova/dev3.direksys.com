@@ -1,0 +1,614 @@
+#!/usr/bin/perl
+#######################################################################
+#######################################################################
+#######################################################################
+use DBI;
+use DBIx::Connector;
+use DBD::mysql;
+use File::Copy;
+use File::Basename;
+
+# Load the form information and set the config file and userid.
+local(%in) = &parse_form;
+local(%config, %cfg, %usr);
+
+# Required Libraries
+# --------------------------------------------------------
+eval {
+	require ("../subs/auth.cgi");
+	require ("../subs/sub.base.html.cgi");
+	require ('../subs/sub.func.html.cgi');
+};
+
+if ($@) { &cgierr ("Error loading required Libraries",300,$@); }
+
+eval { &main; };
+if ($@) { &cgierr("Fatal error, 301, $@"); }
+
+exit;
+
+sub main {	
+	$|++;
+	print "Content-type: text/html\n\n";	
+	$in{'e'} = 2 if (!$in{'e'}); # Empresa 2 por default (TMK)
+	my $onoff = 1; # 1=Activa Logs de querys en archivo .txt $cfg{'path_orders_depref'}.'logs/'
+	if(!$in{'cmd'}){
+		$cmd=1;
+		$printLog.= "<span style='color:green;'><h4>Modo: Commit</h4></span><br>\r\n";
+	}else{
+		$cmd=0;
+		$printLog.="<span style='color:red;'>Sin ejecucion.</span><br>\r\n";
+	}
+	$changeStatus=1; #Activa el update para el Status en sl_orders <-USE CON CUIDADO
+	&load_settings;
+	$sys{'fmt_curr_decimal_digits'} = 2 if(!$sys{'fmt_curr_decimal_digits'});
+	print "<h4>DIREKSYS($in{'e'}) - CARGA MASIVA DE ORDENES DE DEPOSITO REFERENCIADO</h5>";
+	my $email_text = 'Cargado masivo de Ordenes -- '.localtime."\n";
+
+	&connect_db;
+	# paso 1 - revisar si en el folder configurado existe el archivo
+	my $dir = $cfg{'path_orders_depref'};
+	my $dir_loaded = $dir . 'loaded/';
+	if(-e $dir ) {
+		# cambiar a nombre archivo dinamico
+		use POSIX qw(strftime);
+		my $date = strftime "%Y%m%d", localtime;
+		$file_name = ($in{'a'})?$in{'a'}.'.csv':'ordenes_depref_'.$date.'.csv';
+		$file = $dir.$file_name;
+		if(-r $file ) {
+			print "abriendo: ".$file." <br>";
+			if(-r $file and open (FILE, $file)) {					
+				while (my $record = <FILE>) {
+					$tRegs++;
+					$printLog.= $tRegs.'.- ';
+					chomp $record;
+					$total_regs++;
+					my @fields2 = split "," , $record;					
+					$printLog.= "$fields2[0] 0| $fields2[1] 1| $fields2[2] 2| $fields2[3] 3| $fields2[4] 4| $fields2[5] 5|"."<br/>\r\n";
+					$msj.=$printLog;
+					my $idOrder = $fields2[0];
+					if($fields2[1] ne ''){
+						my @values = split('/', $fields2[1]); #PaymentDate
+						$valuePaymentDate = $values[2].'-'.$values[1].'-'.$values[0];
+					}else{ $valuePaymentDate="CURDATE()";}
+					my $Amount=$fields2[2];
+					my $authCode=$fields2[3];
+					my $Bank=$fields2[4];
+					if($fields2[5] ne ''){ #Invoice
+						my @values = split('N', $fields2[5]); 
+						my $invoiceSerial = $values[0].'N';
+						my $invoicesNum = $values[1];
+						$invoicesNum =~ s/\s+$//;
+						#my $filterInvoice=" AND c.doc_serial='$invoiceSerial' AND c.doc_num='$invoicesNum'";
+					}else{my $filterInvoice="";}
+					$sql = "SELECT 
+							  a.ID_orders
+							, d.ID_creditmemos
+							, b.id_invoices
+							, c.status
+							, c.doc_serial
+							, c.doc_num
+							, a.Ptype
+							, d.Amount
+							, a.Status as orderStatus
+							FROM sl_orders a
+							LEFT JOIN sl_creditmemos_payments d ON a.ID_orders=d.ID_orders
+							LEFT JOIN cu_invoices_lines b ON b.ID_creditmemos=d.ID_creditmemos
+							LEFT JOIN cu_invoices c ON b.ID_invoices=c.ID_invoices
+							WHERE 1 /*AND a.Ptype='Referenced Deposit' AND b.ID_creditmemos IS NOT NULL AND c.status='Certified'*/
+							AND a.ID_orders='$idOrder' $filterInvoice
+							GROUP BY a.ID_orders,d.ID_creditmemos;";
+					my $sth_search = &Do_SQL($sql);
+					$rec_search = $sth_search->fetchrow_hashref;
+					# if($rec_search->{'Amount'}>0){ #Amount							
+					# 	$valueAmount=$rec_search->{'Amount'};
+					# }else{$valueAmount=$Amount;}
+					if($rec_search->{'ID_orders'} > 0){						
+						#######New Order############
+						$sql="/*$rec_search->{'ID_orders'}*/ select * from sl_orders where ID_orders='$rec_search->{'ID_orders'}';";					
+						my $sth_order = &Do_SQL($sql);					
+						$rec_order = $sth_order->fetchrow_hashref;
+						#Diferencía orden con/sin Nota de Crédito
+						if(!$rec_search->{'doc_num'} ne ''){
+							$OrderShp=0;
+							$OrderDisc=0;
+							$OrderTax=0;
+							$OrderNet=0.01;
+							$valueAmount=0.01;
+						}else{
+							$OrderShp=$rec_order->{'OrderShp'};
+							$OrderDisc=$rec_order->{'OrderDisc'};
+							$OrderTax=$rec_order->{'OrderTax'};
+							$OrderNet=$rec_order->{'OrderNet'};
+							$valueAmount=$rec_search->{'Amount'};
+						}
+						$sql_order = "/*$rec_search->{'ID_orders'}*/ insert into sl_orders SET
+										 ID_orders='0'
+										,ID_orders_alias='$rec_order->{'ID_orders_alias'}'
+										,trackordernumber='$rec_order->{'trackordernumber'}'
+										,ID_customers='$rec_order->{'ID_customers'}'
+										,ID_customers_addresses='$rec_order->{'ID_customers_addresses'}'
+										,Address1='$rec_order->{'Address1'}'
+										,Address2='$rec_order->{'Address2'}'
+										,Address3='$rec_order->{'Address3'}'
+										,Urbanization='$rec_order->{'Urbanization'}'
+										,City='$rec_order->{'City'}'
+										,State='$rec_order->{'State'}'
+										,Zip='$rec_order->{'Zip'}'
+										,Country='$rec_order->{'Country'}'
+										,BillingNotes='$rec_order->{'BillingNotes'}'
+										,shp_type='$rec_order->{'shp_type'}'
+										,shp_name='$rec_order->{'shp_name'}'
+										,shp_Address1='$rec_order->{'shp_Address1'}'
+										,shp_Address2='$rec_order->{'shp_Address2'}'
+										,shp_Address3='$rec_order->{'shp_Address3'}'
+										,shp_Urbanization='$rec_order->{'shp_Urbanization'}'
+										,shp_City='$rec_order->{'shp_City'}'
+										,shp_State='$rec_order->{'shp_State'}'
+										,shp_Zip='$rec_order->{'shp_Zip'}'
+										,shp_Country='$rec_order->{'shp_Country'}'
+										,shp_Notes='$rec_order->{'shp_Notes'}'
+										,ID_zones='$rec_order->{'ID_zones'}'
+										,OrderNotes='$rec_order->{'OrderNotes'}'
+										,OrderQty='$rec_order->{'OrderQty'}'
+										,OrderShp='$OrderShp'
+										,OrderDisc='$OrderDisc'
+										,OrderTax='$OrderTax'
+										,OrderNet='$OrderNet'
+										,PostedDate='$rec_order->{'PostedDate'}'
+										,ID_pricelevels='$rec_order->{'ID_pricelevels'}'
+										,dayspay='$rec_order->{'dayspay'}'
+										,ID_orders_related='$rec_order->{'ID_orders_related'}'
+										,question1='$rec_order->{'question1'}'
+										,answer1='$rec_order->{'answer1'}'
+										,question2='$rec_order->{'question2'}'
+										,answer2='$rec_order->{'answer2'}'
+										,question3='$rec_order->{'question3'}'
+										,answer3='$rec_order->{'answer3'}'
+										,question4='$rec_order->{'question4'}'
+										,answer4='$rec_order->{'answer4'}'
+										,question5='$rec_order->{'question5'}'
+										,answer5='$rec_order->{'answer5'}'
+										,repeatedcustomer='$rec_order->{'repeatedcustomer'}'
+										,Coupon='$rec_order->{'Coupon'}'
+										,Flags='$rec_order->{'Flags'}'
+										,DNIS='$rec_order->{'DNIS'}'
+										,ID_salesorigins='$rec_order->{'ID_salesorigins'}'
+										,ID_mediacontracts='$rec_order->{'ID_mediacontracts'}'
+										,DIDS7='$rec_order->{'DIDS7'}'
+										,Ptype='Referenced Deposit'
+										,Pterms='$rec_order->{'Pterms'}'
+										,Letter='$rec_order->{'Letter'}'
+										,ID_warehouses='$rec_order->{'ID_warehouses'}'
+										,first_call='$rec_order->{'first_call'}'
+										,language='$rec_order->{'language'}'
+										,StatusPrd='None'
+										,StatusPay='None'
+										,Status='New'
+										,Date=CURDATE()
+										,Time=CURTIME()
+										,ID_admin_users='1';";
+						$printLog.= $sql_order."|<br>\r\n";
+						if($cmd){
+							$dbh_order=&Do_SQL($sql_order);
+							$idOrder_New=$dbh_order->{'mysql_insertid'}; ##Obtiene ID_order nuevo
+							$printLog.= "Nueva orden creada con ID_orders: ".$idOrder_New."|<br>\r\n"; 
+							$msj.="Nueva orden creada con ID_orders: ".$idOrder_New."|<br>\r\n"; 
+						}
+						#######New Order Lines############
+						$sql="/*$rec_search->{'ID_orders'}*/ select * from sl_orders_products where ID_orders='$rec_search->{'ID_orders'}';";					
+						my $sth_order_lines = &Do_SQL($sql);
+						while($rec_order_lines=$sth_order_lines->fetchrow_hashref()){
+							$y++;
+							#Diferencía orden con/sin Nota de Crédito
+							if(!$rec_search->{'doc_num'} ne ''){
+								if($y==1){$SalePrice=0.01;}else{$SalePrice=0;}
+								$Shipping=0;
+								$Tax=0;
+								$Tax_percent=0;
+								$Discount=0;
+								$ShpTax=0;
+								$ShpTax_percent=0;
+							}else{
+								$SalePrice=$rec_order_lines->{'SalePrice'};
+								$Shipping=$rec_order_lines->{'Shipping'};
+								$Tax=$rec_order_lines->{'Tax'};
+								$Tax_percent=$rec_order_lines->{'Tax_percent'};
+								$Discount=$rec_order_lines->{'Discount'};
+								$ShpTax=$rec_order_lines->{'ShpTax'};
+								$ShpTax_percent=$rec_order_lines->{'ShpTax_percent'};
+							}
+							$sql_order_lines = "/*$tRegs:$y.- $idOrder_New*/ INSERT INTO sl_orders_products SET
+												 ID_orders_products='0'
+												,ID_products='$rec_order_lines->{'ID_products'}'
+												,ID_orders='$idOrder_New'
+												,ID_packinglist='$rec_order_lines->{'ID_packinglist'}'
+												,Related_ID_products='$rec_order_lines->{'Related_ID_products'}'
+												,ID_products_prices='$rec_order_lines->{'ID_products_prices'}'
+												,Quantity='$rec_order_lines->{'Quantity'}'
+												,SalePrice='$SalePrice'
+												,Shipping='$Shipping'
+												,Cost='$rec_order_lines->{'Cost'}'
+												,Tax='$Tax'
+												,Tax_percent='$Tax_percent'
+												,Discount='$Discount'
+												,FP='$rec_order_lines->{'FP'}'
+												,SerialNumber='$rec_order_lines->{'SerialNumber'}'
+												,ShpDate='$rec_order_lines->{'ShpDate'}'
+												,Tracking='$rec_order_lines->{'Tracking'}'
+												,ShpProvider='$rec_order_lines->{'ShpProvider'}'
+												,ShpTax='$ShpTax'
+												,ShpTax_percent='$ShpTax_percent'
+												,PostedDate='$rec_order_lines->{'PostedDate'}'
+												,Upsell='$rec_order_lines->{'Upsell'}'
+												,Status='$rec_order_lines->{'Status'}'
+												,Date=CURDATE()
+												,Time=CURTIME()
+												,ID_admin_users='1'";
+							if($cmd){&Do_SQL($sql_order_lines);}
+							$printLog.= $sql_order_lines."|<br>\r\n";
+						}	
+						##Nota de orden						
+						&add_order_notes_by_type_admin($idOrder_New,"New Payment added: Order created from ID_orders: $rec_search->{'ID_orders","Low");
+						if($cmd){&Do_SQL($sql_note);}					
+						#####Order Payment#####
+						my ($sql_payment) ="INSERT INTO sl_orders_payments SET
+											ID_orders='$idOrder_New'
+											,Type='Referenced Deposit'										
+											,Amount='$valueAmount'
+											,Reason='Refund'
+											,Paymentdate='$valuePaymentDate'
+											,AuthCode='$authCode'
+											,Captured='Yes'
+											,CapDate='$valuePaymentDate'
+											,Status='Credit'
+											,Date=CURDATE()
+											,Time=CURTIME()
+											,ID_admin_users=1";
+						if($cmd){&Do_SQL($sql_payment);}
+						$printLog.= $sql_payment."|<br>\r\n";
+						$printLog.= "Pago insertado: ".$idOrder_New.'|'.'Referenced Deposit'.'|'."<span style='color:green;'> OK</span>|<br>\r\n";
+						#####Order Note#####												
+						if($cmd){&add_order_notes_by_type_admin($idOrder_New,"New Payment added: Amount:$valueAmount; Reason:Refund; Status:Credit","Low");}
+						$printLog.= $sql_note."|<br>\r\n";
+						$printLog.= "Nota de Pago insertada: New Payment added: Amount:$valueAmount; Reason:Refund; Status:Credit <span style='color:green;'> OK</span>|<br>\r\n";
+						##Nota para Orden con nota de Credito
+						if($rec_search->{'doc_num'} ne ''){
+							my ($sql_note) = "INSERT INTO sl_orders_notes SET
+												ID_orders='$idOrder_New'
+												,Notes='Order Pay with Credit note: $rec_search->{'doc_serial'}$rec_search->{'doc_num'} on ID_orders: $rec_search->{'ID_orders'}; ID_cretimemos: $rec_search->{'ID_creditmemos'}'
+												,Type='Low'
+												,Date=CURDATE()
+												,Time=CURTIME()
+												,ID_admin_users=1";
+							if($cmd){&add_order_notes_by_type_admin($idOrder_New,"Order Pay with Credit note: $rec_search->{'doc_serial'}$rec_search->{'doc_num'} on ID_orders: $rec_search->{'ID_orders'}; ID_cretimemos: $rec_search->{'ID_creditmemos'}","Low");}							
+							$printLog.= $sql_note."|<br>\r\n";
+							$printLog.= "Nota de Pago insertada: Order Pay with Credit note: $rec_search->{'doc_serial'}$rec_search->{'doc_num'} on ID_orders: $rec_search->{'ID_orders'}; ID_cretimemos: $rec_search->{'ID_creditmemos'} <span style='color:green;'> OK</span>|<br>\r\n";						
+						}
+						#######Order Accounting######
+						$idAccount_debit=$Bank;	
+						$idAccount_credit="ANTICIPO DE CLIENTES NACIONALES";					
+						$id_cd_debit = &get_account($idAccount_debit);
+						$id_cd_credit = &get_account($idAccount_credit);
+						##Debit (Banco o NC)
+						$sql_accounting_debit="INSERT INTO sl_movements (ID_accounts,Amount,Reference,EffDate,tableused,ID_tableused,Category,Credebit,Status,Date,Time  ,ID_admin_users ) 
+								VALUES ('$id_cd_debit','$valueAmount', '', CURDATE(), 'sl_orders', '$idOrder_New', 'Anticipo Clientes', 'Debit','Active',CURDATE(), CURTIME(), '1');";
+						##Credit (Anticipo)
+						$sql_accounting_credit="INSERT INTO sl_movements (ID_accounts,Amount,Reference,EffDate,tableused,ID_tableused,Category,Credebit,Status,Date,Time  ,ID_admin_users )
+ 				         		VALUES ('$id_cd_credit','$valueAmount', '', CURDATE(), 'sl_orders', '$idOrder_New', 'Anticipo Clientes', 'Credit','Active',CURDATE(), CURTIME(), '1');";
+						if($cmd){&Do_SQL($sql_accounting_debit); &Do_SQL($sql_accounting_credit);}							
+						$printLog.= $sql_accounting_debit."|<br>\r\n";
+						$printLog.= $sql_accounting_credit."|<br>\r\n";
+						$printLog.= "Contabilidad actualizada: ".$rec_search->{'ID_orders'}.'|'."<span style='color:green;'> OK</span>|<br>\r\n";
+						#######Order Update Status######
+						if($changeStatus){
+							my ($sql_orderStatus) = "UPDATE sl_orders SET Status='Processed' WHERE ID_orders='$idOrder_New' AND Status IN ('New','Pending') LIMIT 1";
+							&auth_logging('opr_orders_stProcessed',$idOrder_New);
+							&status_logging($idOrder_New,'Processed');
+
+							if($cmd){&Do_SQL($sql_orderStatus);}							
+							$printLog.= $sql_orderStatus."|<br>\r\n";
+							$printLog.= "Estatus de Orden $idOrder_New actualizado a: Processed<span style='color:green;'> OK</span>|<br>\r\n";							
+							##Nota de Update Status en Orden
+							my ($sql_noteStatus) = "INSERT INTO sl_orders_notes SET
+												ID_orders='$idOrder_New'
+												,Notes='Order Status updated to: Processed'
+												,Type='Low'
+												,Date=CURDATE()
+												,Time=CURTIME()
+												,ID_admin_users=1";
+
+							if($cmd){&add_order_notes_by_type_admin($idOrder_New,"Order Status updated to: Processed","Low");}							
+							$printLog.= $sql_noteStatus."|<br>\r\n";
+							$printLog.= "Order Status updated to: Processed<span style='color:green;'> OK</span>|<br>\r\n";								
+						}
+						
+					}else{
+						$printLog.= "<span style='color:red;'>No hay coincidencias para el registro idOrden: $idOrder NC: $invoiceSerial$invoicesNum</span><br>\r\n";
+						$msj.=$printLog;
+					}
+				}
+			}else{
+				$printLog.=  "<span style='color:red;'>$file no encontrado </span><br>\r\n";
+				$msj.=$printLog;
+				return;
+			}
+			close FILE;  
+			### Moving the file to Backup
+			if($cmd){
+				$mf=&moveFile($file_name,$dir,$dir_loaded);
+				$printLog.=$mf."|";
+			}
+			##Send mail
+  			#&send_text_mail($cfg{'from_email'},'omaldonado@inovaus.com',"Resumen de Carga masiva de ordenes DEposito Referenciado ATC.", $email_text) if($in{'process'} eq 'commit');
+		}else{
+			$onoff=0;
+			$printLog.=  "<span style='color:red;'>ERROR AL LEER EL ARCHIVO FUENTE <strong>$file</strong> </span><br>";			
+			$msj.=$printLog;
+		}
+	}else{
+		$onoff=0;
+		$printLog.=  "<span style='color:red;'>dir '$dir' not found </span><br>";
+		$msj.=$printLog;
+		$email_text .= "El archivo '$dir' no fue encontrado.\n";
+	}
+	#print $printLog;
+	print $msj;
+	##Create LogTxt
+	if($cmd){&logTxt($printLog,$onoff);}
+	&disconnect_db;
+}
+
+sub logTxt{
+##Graba SQL en txt
+	($logquery,$enabled) = @_;
+	if($enabled and $cfg{'path_orders_depref'} ne ''){
+		my $timestamp = localtime(time);
+		my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=localtime(time);
+		my $file_timestamp = sprintf ( "%04d%02d%02d_%02d%02d%02d",$year+1900,$mon+1,$mday,$hour,$min,$sec);
+		my $filename = $cfg{'path_orders_depref'}."logs/"."logtxt_import_orders_depref_".$file_timestamp.".txt";			
+		open(my $fh, '>>', $filename) or die "Could not open file '$filename' $!";
+		print $fh $logquery."\n\r";		
+		print $fh "\n\r---".$timestamp."---\n\r";
+		close $fh;
+	}
+}
+
+sub moveFile{
+##Mueve un archivo y agrega timestamp al nombre
+##use File::Copy;
+##use File::Basename;
+	($fileName, $dirOrigin, $dirDestiny) = @_;
+	if($fileName and $dirOrigin and $dirDestiny){
+		my $timestamp = localtime(time);
+		my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=localtime(time);
+		my $file_timestamp = sprintf ( "%04d%02d%02d_%02d%02d%02d",$year+1900,$mon+1,$mday,$hour,$min,$sec);	
+		#Splitting a Filename into Its Component Parts
+		$path = $dirOrigin.$fileName;
+		($name,$dir,$ext) = fileparse($path,'\..*');
+		#print '--------'."dir is $dir, name is $name, extension is $ext\n";
+		$fileNameFinal = $name."_".$file_timestamp.$ext;	
+		move($dirOrigin . $fileName, $dirDestiny . $fileNameFinal);
+		#sleep(3);
+		return "Moving $dirOrigin$fileName to $dirDestiny$fileNameFinal";
+	}
+}
+
+sub get_account{
+#-----------------------------------------
+# Created on: 06/30/09  11:47:47 By  Roberto Barcenas
+# Forms Involved: 
+# Description : Devuelve el id de una cuenta
+# Parameters : 	Nombre de la cuenta
+## ToDo: Agregar en un campo el tipo de Movimiento. Ejemplo - Customer Deposit y ahi buscar los que sean de ese tipo
+## Devolver los ID's en un GROUP_CONCAT()
+	
+	my ($account) = @_;
+	
+	my ($sth) = &Do_SQL("SELECT ID_accounts FROM sl_accounts WHERE Name='$account';");
+	return $sth->fetchrow();
+}
+
+#########################################################
+##			Query				##
+##########################################################
+sub parse_form {
+# --------------------------------------------------------
+	my (@pairs, %in);
+	my ($buffer, $pair, $name, $value);
+
+	if ($ENV{'REQUEST_METHOD'} eq 'GET') {
+		@pairs = split(/&/, $ENV{'QUERY_STRING'});
+	}elsif ($ENV{'REQUEST_METHOD'} eq 'POST') {
+		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
+ 		@pairs = split(/&/, $buffer);
+	}else {
+		&cgierr ("This script must be called from the Web\nusing either GET or POST requests\n\n");
+	}
+	PAIR: foreach $pair (@pairs) {
+		($name, $value) = split(/=/, $pair);
+
+		$name =~ tr/+/ /;
+		$name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		$name = lc($name);
+
+		$value =~ tr/+/ /;
+		$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+
+		$value =~ s/^\s+//g;
+		$value =~ s/\s+$//g;
+
+		#$value =~ s/\r//g;
+		$value =~ s/<!--(.|\n)*-->//g;			# Remove SSI.
+		if ($value eq "---") { next PAIR; }		# This is used as a default choice for select lists and is ignored.
+		(exists $in{$name}) ?
+			($in{$name} .= "|$value") :		# If we have multiple select, then we tack on
+			($in{$name}  = $value);			# using the ~~ as a seperator.
+	}
+	return %in;
+}
+
+##################################################################
+#     CGIERR   	#
+##################################################################
+sub cgierr {
+# --------------------------------------------------------
+# Last Modified on: 11/10/08 11:58:21
+# Last Modified by: MCC C. Gabriel Varela S: Se corrige la forma de mostrar la fecha
+	my (@sys_err) = @_;
+	print "Content-type: text/html\n\n";
+
+	my ($key,$env,$out_in,$out_env);
+	if (!$cfg{'cd'}){
+		print qq|
+						<head>
+										<title>CGI - ERROR</title>
+						</head>					
+						<body BGCOLOR="#FFFFFF" LINK="#FF0000" VLINK="#FF0000" ALINK="#FF0000">
+					
+							<table BORDER="0" WIDTH="500" CELLPADDING="10" CELLSPACING="10">
+							  <tr>
+							    <td BGCOLOR="#FF0000" colspan="2"><font size="5" color="#FFFFFF" face="Arial"><b>CGI-Error</b></font></td>
+							  </tr>
+							</table>
+							<table BORDER="0" WIDTH="550" CELLPADDING="2" CELLSPACING="0">|;
+								$sys_err[0]	and print "\n<tr>\n  <td valign='top' width='200'><font face='Arial' size='3'>Error Message</font></td>\n  <td><font face='Arial' size='3' color='#FF0000'><b>$sys_err[0]</b></font></td>\n</tr>\n";
+								$sys_err[1]	and print "<tr>\n  <td width='200'><font face='Arial' size='2'>Error Code</font></td>\n  <td><font face='Arial' size='2'>$sys_err[1]</font></td>\n";
+								$sys_err[2]	and print "<tr>\n  <td valign='top' width='200'><font face='Arial' size='2'>System Message</font></td>\n  <td><font face='Arial' size='2'>$sys_err[2]</font></td>\n";
+								print qq|
+							<tr>
+							  <td colspan="2"><p>&nbsp</p><font face='Arial' size='2'>If the problem percist, please contact us with the above Information.</font><br>
+									<font face='Arial' size='2'><a href="mailto:$systememail">$systememail</a></font></td>
+							</tr>
+							  </table>
+						</body>
+						</html>|;
+		######################################
+		### Save CGI ERR			
+		##############################
+		my ($ip);
+		my (@outmsg) = @sys_err;
+		my ($sec, $min, $hour, $day, $mon, $year, $dweek, $dyear, $daylight) = localtime(time());
+		$year+=1900;
+		$mon++;
+		my ($time,$date) = ("$hour:$min:$sec","$mon-$day-$year");
+		
+		foreach $key (sort keys %in) {
+			$outmsg[3] .= "$key=$in{$key},";
+		}
+		
+		foreach $env (sort keys %ENV) {
+			$outmsg[4] .= "$env=$ENV{$env},";
+		}
+		
+		for (0..4){
+			$outmsg[$_] =~ s/\n|\r/ /g;
+			$outmsg[$_] =~ s/\|/ /g;
+		}
+		
+		if ($ENV{'REMOTE_ADDR'}){
+			$ip = $ENV{'REMOTE_ADDR'};
+		}elsif ($ENV{'REMOTE_HOST'}){
+			$ip = $ENV{'REMOTE_HOST'};
+		}elsif ($ENV{'HTTP_CLIENT_IP'}){
+			$ip = $ENV{'HTTP_CLIENT_IP'};
+		}else{
+			$ip = "Unknow";
+		}
+	
+		(!$cfg{'cgierr_log_file'}) and ($cfg{'cgierr_log_file'} = './logs/cgierr.log');
+		if (open (LOG, ">>$cfg{'cgierr_log_file'}")){;
+			print LOG "$usr{'username'}|$outmsg[0]|$outmsg[1]|$outmsg[2]|$outmsg[3]|$outmsg[4]|$time|$date|$ip\n";
+			close AUTH;
+		}
+	
+
+	}else{
+		print "<PRE>\n\nCGI ERROR\n==========================================\n";
+					$sys_err[0]	and print "Error Message       : $sys_err[0]\n";
+					$sys_err[1]	and print "Error Code          : $sys_err[1]\n";
+					$sys_err[2]	and print "System Message      : $sys_err[2]\n";
+					$0			and print "Script Location     : $0\n";
+					$]			and print "Perl Version        : $]\n";
+					$sid		and print "Session ID          : $sid\n";
+
+
+		print "\nForm Variables IN\n-------------------------------------------\n";
+		
+		foreach $key (sort keys %in) {
+			my $space = " " x (20 - length($key));
+			$out_in .= "$key=$in{$key},";
+			print "$key$space: $in{$key}\n";
+		}
+		
+		print "\nForm Variables ERROR\n-------------------------------------------\n";
+		foreach $key (sort keys %error) {
+			my $space = " " x (20 - length($key));
+			print "$key$space: $error{$key}\n";
+		}
+		
+		print "\nEnvironment Variables\n-------------------------------------------\n";
+		foreach $env (sort keys %ENV) {
+			my $space = " " x (20 - length($env));
+			$out_env .= "$env=$ENV{$env},";
+			print "$env$space: $ENV{$env}\n";
+		}
+		
+		print "\n</PRE>";
+
+	}
+
+	exit -1;
+}
+
+sub load_settings {
+	my ($fname);
+	
+	if ($in{'e'}) {
+		$fname = "../general.e".$in{'e'}.".cfg";
+	}else {
+		$fname = "../general.ex.cfg";
+	}
+
+	## general
+	open (CFG, "<$fname") or &cgierr ("Unable to open: $fname,160,$!");
+	LINE: while (<CFG>) {
+		(/^#/)      and next LINE;
+		(/^\s*$/)   and next LINE;
+		$line = $_;
+		$line =~ s/\n|\r//g;
+		my ($td,$name,$value) = split (/\||\=/, $line,3);
+		if ($td eq "conf") {
+			$cfg{$name} = $value;
+			next LINE;
+		}elsif ($td eq "sys"){
+			$sys{$name} = $value;
+			next LINE;
+		}
+	}
+	close CFG;
+
+}
+
+sub check_ip {
+# --------------------------------------------------------
+	my ($ip, $ipfilter) = @_;
+	
+	my (@ip) = split(/\./,$ip,4);
+	my (@allowip) = split(/\,/,$ipfilter,4);
+	
+	for my $i(0..$#allowip){
+		$allowip[$i] =~ s/\n|\r//g;
+		$ok = 1;
+		my (@ipfilter) = split(/\./,$allowip[$i],4);
+		for my $x(0..3){
+			if ($ip[$x] ne $ipfilter[$x] and $ipfilter[$x] ne 'x'){
+				$ok = 0;
+			}
+		}
+	}
+	return $ok;
+}
+
+
+1;

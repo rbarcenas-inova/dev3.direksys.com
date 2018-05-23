@@ -1,0 +1,71 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 0, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+			
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center" colspan="2">N&uacute;mero asignado</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+		
+	<fieldset><legend>Calificaci&oacute;n de la llamada: <span class="smallfieldterr">[er_calification]</span></legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td>
+					<p><b>Calificacion de llamadas contestadas :</b><br>
+					Contestada/No Venta<br>
+					Contestada/No Venta - Ya tiene Pedido<br>
+					Contestada/No Venta - Precio<br>
+
+					Contestada/No Venta - Gasto Envio<br>
+					Contestada/No Venta - Tiempo de Entrega<br>
+					Contestada/No Venta - Facilidad de Pago<br>
+					Contestada/No Venta - Oferteo Confuso<br>
+					Contestada/No Venta - Competencia<br>
+					Contestada/No Venta - Producto incorrecto<br>
+					Contestada/No Venta - No hay COD<br>
+					Contestada/No Venta - Llamada de ATC<br>
+					Contestada/No Venta - Venta Agendada<br>
+
+					Contestada/No Venta - Broma<br>
+					Contestada - Nadie llamo<br>
+					<p>&nbsp;</p>
+					<p><b>Calificacion de llamadas NO contestadas :</b><br>
+					No contestada - Voicemail (No dejar Voicemail!)/Fax<br>
+					No contestada - Nadie Contesta<br>
+				</td>
+			</tr>
+		</table>
+
+	</fieldset>
+	</form>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+[ip_footer]

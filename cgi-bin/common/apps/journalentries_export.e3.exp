@@ -1,0 +1,51 @@
+#!/usr/bin/expect -f
+
+set force_conservative 0  ;# set to 1 to force conservative mode even if
+			  ;# script wasn't run conservatively originally
+if {$force_conservative} {
+	set send_slow {1 .1}
+	proc send {ignore arg} {
+		sleep .1
+		exp_send -s -- $arg
+	}
+}
+
+set host "172.16.1.7"
+set user "TI Direksys"
+set pass "TI.s0Ptec#\$"
+# TI.s0Ptec#$
+
+set dir "/home/www/domains/direksys.com/files/e3/journalentries"
+set dir_s "/home/www/domains/direksys.com/files/e3/journalentries/done"
+
+puts "$dir"
+cd $dir
+set c_files [glob *.txt]
+
+foreach name $c_files {
+	puts "$name"
+    set timeout -1
+	spawn ftp $host
+	match_max 100000
+	expect "(172.16.1.7:direksysmx):"
+
+	send  -- "$user"
+	expect -exact "$user"
+
+	send -- "\r"
+	expect "Password:"
+	
+	send -- "$pass\r"
+	expect "230 Logged on"
+
+	send -- "put $name"
+	expect -exact "$name"	
+
+	send -- "\r"
+	expect "200 Port command successful"
+
+	send -- "exit\r"
+	expect eof
+
+	file rename -force $name $dir_s/$name
+}

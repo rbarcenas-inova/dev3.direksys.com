@@ -1,0 +1,561 @@
+
+
+
+<style>
+  #selectable .ui-selecting { background: #FECA40;   	-moz-border-radius: 5px;border-radius: 5px;}
+  #selectable .ui-selected { background: #F39814; color: white;  	-moz-border-radius: 5px;border-radius: 5px; }
+
+  #selectable li 
+  { list-style-type: none;  margin: 3px; padding: 1px; float: left; width: 200px; height: 80px; text-align: center;font-weight:bold; border: 1px solid #dddddd;   	-moz-border-radius: 5px;border-radius: 5px; }
+  #selectable li:hover 
+  { list-style-type: none;   margin: 3px; padding: 1px; float: left; width: 200px; height: 80px; text-align: center;font-weight:bold; 
+
+	}
+  .li_disabled 
+  {  background: #ffffff; color: #efefef; font-weight:normal; cursor:text; }
+  .li_disabled:hover 
+  { background: #ffffff; color: #efefef; font-weight:normal; cursor:text; }
+</style>
+
+
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+			
+			
+			
+			
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform" id="productshow"  onsubmit="return checkchoices();">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="2">
+	<input type="hidden" name="action" value="add_to_basket">
+	<input type="hidden" name="skupro" value="1">
+	<input type="hidden" name="id_products" value="[in_id_products]">
+	<input type="hidden" name="pricetype" value="[in_pricetype]">
+	<input type="hidden" name="pricenumber2" id="pricenumber2" value="0">
+
+<a href='#wumsg' id='wumsg'></a>
+<table border="0" cellspacing="0" cellpadding="5" width="100%" class="formtable" >
+	<tr>
+		<td align="center" colspan="2">
+			<!--<input type="button" class="button" name="ajaxw" value="Ver Script de manejo de objeciones" onclick="popup_show('popup_script', 'script_drag', 'script_exit', 'element-right', -1, -1,'wumsg')">-->
+		</td>
+   </tr>
+		<tr>
+			<td nowrap width="30%">ID de Producto : </td>
+			<td >[va_id_products] [va_display_pauta_seca]</td>
+	  </tr>
+		<tr>
+			<td nowrap>Modelo : </td>
+			<td >[in_model]</td>
+	    </tr>
+		<tr>
+			<td nowrap>Nombre : </td>
+			<td >[in_name]</td>
+	    </tr>
+	    <tr>
+			<td nowrap>C&oacute;digo Postal : 
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0" name="lens_address_ctl" id="lens_address_ctl" style="cursor: pointer;" />
+			</td>
+			<td >
+				[va_calc_price_zipcode] &nbsp; [va_fancybox_prices_cities]
+				<br>
+				<span class='stdtxterr'> Ingrese Codigo Postal para ver Zona de Cobertura / Mensajerias / Precios Activos</span>
+			</td>
+	    </tr>
+	    <tr>
+	    	<td colspan="2" style="height:60px;">
+	    	
+	    		<div style="margin-top: 5px; margin-bottom: 5px; display: none;" id="div_sch_zp_by_address">
+					<div style="margin-top: 5px; margin-bottom: 5px;">
+						<div class="ui-widget">
+							<label for="sch_state">Estado: </label>
+							<input id="sch_state" size="50" />
+						</div>
+					</div>
+					
+					<div style="margin-top: 5px; margin-bottom: 5px; display: none;" id="div_sch_city">
+						<div class="ui-widget">
+							<label for="sch_city">Delegaci&oacute;n / Municipio: </label>
+							<input id="sch_city" size="50" />
+						</div>
+					</div>
+					
+					<div style="margin-top: 5px; margin-bottom: 5px; display: none;" id="div_sch_urbanization">
+						<div class="ui-widget">
+							<label for="sch_urbanization">Colonia: </label>
+							<input id="sch_urbanization" size="50" />
+						</div>
+						
+						<input type="submit" class="button" value="Buscar" name="search_zc_btn" id="search_zc_btn" style="margin-top: 10px; margin-bottom: 5px;" />
+					</div>
+				</div>
+				<div style="clear: both;"></div>
+				<div id="list_zip_codes"></div>
+	    	</td>
+	    </tr>
+    	<tr>
+			<td valign="top" colspan="2">
+				Ingresa tu c&oacute;digo de autorizaci&oacute;n para uso de Precios Especiales 
+				&nbsp;&nbsp;
+				<input type="text" id="authcode" name="authcode" size="6">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="smallfieldterr">[va_mp_message]</span>
+				<ol id="selectable" style="display:none;">
+					[va_opt_price2]
+				</ol><BR><BR><BR>
+			</td>
+		</tr>
+
+	<tr>
+		  <td colspan="4" align="center"  style="visibility:hidden;" id="btn_submit_1"><br>[va_submit_button]<br><br></td>
+    </tr>
+
+</table>
+<!-- --> 
+<!--div >
+[fc_parts_more_info]
+</div-->
+<!-- -->
+
+
+	&nbsp;
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable" >
+	<tr>
+		<td align="center" colspan="2" class="menu_bar_title" id="tbl_choices">Opciones del Producto</td>
+    </tr>
+    [va_skuschoice]
+	  <tr>
+
+		  <td colspan="2" align="center" style="visibility:hidden;" id="btn_submit_2">[va_submit_button]</td>
+
+    </tr>
+</table>
+
+	&nbsp;
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#AAAAAA"><td bgcolor=#ffffff>
+	[fc_console_productinfo]
+</td></table>
+
+
+		&nbsp;
+		<div id="popup_script" style="visibility: hidden; display: none; background-color: #ffffff;">
+		<div class="menu_bar_title" id="script_drag">
+		<img id="script_exit" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+		<img id="ajax_new" src="/sitimages//default/tearoff_icon.gif" onclick="popup_exit('popup_script');prnwin('/cgi-bin/common/apps/schid?cmd=show_script&id_products=[in_id_products]')"/>
+		&nbsp;&nbsp;&nbsp;Product Script
+		</div>
+		<div class="formtable">
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=show_script&id_products=[in_id_products]" name="rcmd" TITLE="Recieve Commands" width="560" height="750" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto";>
+		<H2>Unable to do the script</H2>
+		<H3>Please update your Browser</H3>
+		</IFRAME>	
+		</div></div>
+
+</form>
+
+<script type="text/javascript">
+<!--	
+	
+	/*
+		onload = function(){
+			var showone = "[in_tab]";
+			if(showone == ""){
+				popup_show('popup_script', 'script_drag', 'script_exit', 'element-right', -1, -1,'wumsg');
+			}
+		}
+	*/
+	function get_address_data(obj) {
+		var zip_code=$(obj).find("input[name='zip_code_aux']").val();
+		var county_name=$(obj).find("input[name='county_name_aux']").val();
+		var city=$(obj).find("input[name='city_aux']").val();
+		var state=$(obj).find("input[name='state_full_name_aux']").val();
+		//$("input[name='urbanization']").val(county_name);
+		//$("input[name='city']").val(city);
+		$("input[name='zipcode']").val(zip_code);
+		//$('select[name="state"]').val(state);
+		$("#list_zip_codes").hide(500);
+	}
+	
+	$(document).ready(function() {
+		// *************************************************************************************************************
+		
+		$("#lens_address_ctl").click(function() {
+			$("#div_sch_zp_by_address").toggle(500);
+		});
+		
+		$(function() {
+			function split( val ) {
+				return val.split( /,\s*/ );
+			}
+			function extractLast( term ) {
+				return split( term ).pop();
+			}
+			$( "#sch_state" )
+			// don't navigate away from the field on tab when selecting an item
+				.bind( "keydown", function( event ) {
+					if ( event.keyCode === $.ui.keyCode.TAB &&
+					$( this ).data( "ui-autocomplete" ).menu.active ) {
+					event.preventDefault();
+					}
+				})
+				.autocomplete({
+					source: function( request, response ) {
+						
+						$.ajax({
+								contentType: 'application/x-www-form-urlencoded;charset=ISO-8859-1',
+								url: '/cgi-bin/common/apps/ajaxbuild',
+								data: {
+									ajaxbuild: "get_state_zc",
+									state_name: encodeURIComponent(request.term)
+								},
+								success: function( data ) {
+									if (data == 'Error') {
+										alert('No se encontraron datos');
+									} else {
+										response(eval(data));
+									}
+									$('#sch_state').removeClass('ui-autocomplete-loading');
+									
+								}
+						});
+					},
+					search: function() {
+						// custom minLength
+						var term = extractLast( this.value );
+						if ( term.length < 2 ) {
+						return false;
+						}
+					},
+					focus: function() {
+						// prevent value inserted on focus
+						return false;
+					},
+					select: function( event, ui ) {
+						var terms = split( this.value );
+						// remove the current input
+						terms.pop();
+						// add the selected item
+						terms.push( ui.item.value );
+						// add placeholder to get the comma-and-space at the end
+						terms.push( "" );
+						this.value = terms.join( "" );
+						$("#div_sch_city").show(500);
+						return false;
+					}
+				});
+		});
+		
+		$(function() {
+			function split( val ) {
+				return val.split( /,\s*/ );
+			}
+			function extractLast( term ) {
+				return split( term ).pop();
+			}
+			$( "#sch_city" )
+			// don't navigate away from the field on tab when selecting an item
+				.bind( "keydown", function( event ) {
+					if ( event.keyCode === $.ui.keyCode.TAB &&
+					$( this ).data( "ui-autocomplete" ).menu.active ) {
+					event.preventDefault();
+					}
+				})
+					.autocomplete({
+						source: function( request, response ) {
+							$.ajax({
+									url: '/cgi-bin/common/apps/ajaxbuild',
+									data: {
+										ajaxbuild: "get_city_zc",
+										city_name: request.term,
+										state_name: $("#sch_state").val()
+									},
+									success: function( data ) {
+										if (data == 'Error') {
+											alert('No se encontraron datos');
+										} else {
+											response(eval(data));
+										}
+										$('#sch_city').removeClass('ui-autocomplete-loading');
+										
+									}
+							});
+						},
+						search: function() {
+							// custom minLength
+							var term = extractLast( this.value );
+							if ( term.length < 2 ) {
+							return false;
+							}
+						},
+						focus: function() {
+							// prevent value inserted on focus
+							return false;
+						},
+						select: function( event, ui ) {
+							var terms = split( this.value );
+							// remove the current input
+							terms.pop();
+							// add the selected item
+							terms.push( ui.item.value );
+							// add placeholder to get the comma-and-space at the end
+							terms.push( "" );
+							this.value = terms.join( "" );
+							$("#div_sch_urbanization").show(500);
+							return false;
+						}
+					});
+		});
+		
+		$(function() {
+			function split( val ) {
+				return val.split( /,\s*/ );
+			}
+			function extractLast( term ) {
+				return split( term ).pop();
+			}
+			$( "#sch_urbanization" )
+			// don't navigate away from the field on tab when selecting an item
+				.bind( "keydown", function( event ) {
+					if ( event.keyCode === $.ui.keyCode.TAB &&
+					$( this ).data( "ui-autocomplete" ).menu.active ) {
+					event.preventDefault();
+					}
+				})
+					.autocomplete({
+						source: function( request, response ) {
+							$.ajax({
+									contentType: 'application/x-www-form-urlencoded;charset=ISO-8859-1',
+									url: '/cgi-bin/common/apps/ajaxbuild',
+									data: {
+										ajaxbuild: "get_urbanization_zc",
+										urbanization_name: request.term,
+										city_name: encodeURIComponent($("#sch_city").val()),
+										state_name: $("#sch_state").val()
+									},
+									success: function( data ) {
+										if (data == 'Error') {
+											alert('No se encontraron datos');
+										} else {
+											response(eval(data));
+										}
+										$('#sch_urbanization').removeClass('ui-autocomplete-loading');
+										
+									}
+							});
+						},
+						search: function() {
+							// custom minLength
+							var term = extractLast( this.value );
+							if ( term.length < 2 ) {
+							return false;
+							}
+						},
+						focus: function() {
+							// prevent value inserted on focus
+							return false;
+						},
+						select: function( event, ui ) {
+							var terms = split( this.value );
+							// remove the current input
+							terms.pop();
+							// add the selected item
+							terms.push( ui.item.value );
+							// add placeholder to get the comma-and-space at the end
+							terms.push( "" );
+							this.value = terms.join( "" );
+							
+							return false;
+						}
+					});
+		});
+		
+		$("#search_zc_btn").click(function (e){
+			e.preventDefault();
+			$.ajax({
+					url: '/cgi-bin/common/apps/ajaxbuild',
+					data: {
+						ajaxbuild: "get_zc_by_address",
+						urbanization_name: $("#sch_urbanization").val(),
+						city_name: $("#sch_city").val(),
+						state_name: $("#sch_state").val()
+					},
+					success: function( data ) {
+						if(data != null && data != 'Error'){
+							$("#list_zip_codes").show(500);
+							$("#list_zip_codes").html(data);
+						}else if(data == 'Error') {
+							alert('No se encontraron datos');
+						}	
+					}
+			});
+		});
+		
+		
+		
+		
+		// *************************************************************************************************************
+		$("#lens_ctl").click(function() {
+			$("#div_search_zc").toggle(500);
+		});
+		
+		$("#search_btn").click(function(e) {
+			e.preventDefault();
+			$.ajax({
+					url: '/cgi-bin/common/apps/ajaxbuild',
+					data: {
+						ajaxbuild: "get_address_by_zc",
+						zip_code: $("#zip_code").val()
+					},
+					success: function( data ) {
+						if(data != null && data != 'Error'){
+							$("#list_zip_codes").show(500);
+							$("#list_zip_codes").html(data);
+						}else if(data == 'Error') {
+							alert('No se encontraron datos');
+						}	
+					}
+			});
+			return false;
+		});
+		
+		// *************************************************************************************************************
+		
+		$('#fancybox_prices_table').fancybox({
+			'margin': '1',
+			'padding': '1',
+			'autoScale': false,
+			'centerOnScroll': true,
+			'transitionIn': 'none',
+			'transitionOut': 'none',
+			'autoDimensions':'true',
+			'overlayOpacity':	'0.3',
+			'onComplete': function() {
+				$('#fancybox-wrap').css({'margin-top':'10px', 'margin-bottom':'auto'});
+			}
+		});
+
+		/*
+		# Procesa el click en el boton de la caja de texto del codigo postal.
+		# Muestra las zonas de cobertura y habilita la tabla de precios
+		*/
+		$( '#btn_zipcode' ).click(function() {
+
+			var patron = /^\d{5}$/;
+			var zipcode = $( 'input:text[name=zipcode]' ).val();
+			//if(zipcode != '' && zipcode != 'n/a')	 {
+			if( patron.test(zipcode) && zipcode != '00000' ){
+				$.ajaxSetup({ timeout: ( 15 * 1000 ) });
+				$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'inbound_price_plus_tax', 'zipcode':zipcode, 'id_products': '[in_id_products]'},function(response,status,xhr){
+
+					if (status == "error") {
+						alert(msg);
+					}else{
+						if(response.match(/error/gi)){
+							alert("El Codigo Postal no es valido, no se pudo actualizar la informacion\r\n"+response);
+						}else{
+							document.getElementById('modal_prices_cities').innerHTML = response;
+							$( "#fancybox_prices_table" ).trigger('click');
+						}
+					}
+
+				});
+
+				$( "#selectable" ).css({
+					display: 'block'
+				});
+
+			}else{
+				alert("El Codigo postal no es valido");
+		    	return false;
+			}
+		});
+		
+		if(isNaN([in_tab]) && [va_zipcode] != 'n/a'){
+			$( "#fancybox_prices_table" ).trigger('click');	
+		}
+
+
+		/*
+			MultiPrice Selectable
+			Conf: Only li elements id starting with "enabled" are available for selection
+			Conf: Elements starting with disabled are pointed with css
+		*/
+		$( "#selectable" ).selectable({
+
+			filter: "li[id^=enabled]",
+
+			selected: function(event, ui) { 
+				var s = document.getElementById('pricenumber2');
+				var ary = ui.selected.id.split("_");
+				var id  = ary[1];
+				s.value = id;
+		        
+		        /*
+					MultiPrice Selection: Al hacer click sobre un elemento de precio, valida si mostrar boton de submit. Tambien habilita los choices de ser necesario
+				*/
+				if($( "select[id^=choice]" ).length > 0){
+
+	    			var i = 0;
+
+	    			if(ary[2].length >= 9){
+
+		    			var ary_kits = ary[2].split("|");
+
+		    			$( "select[id^=choice] > option" ).each(function() {
+
+		    				var this_option = this.id;
+
+		    				if(this_option.match(/\d{9}$/) ){
+
+			    				var ary_option = this_option.split('_');
+								var id_option  = ary_option[1];
+
+								if($.inArray(id_option, ary_kits) === -1){
+
+									if($(this).is(':selected')) {
+										$( "#" + this_option).removeAttr('selected');
+									}
+									$( "#" + this_option).attr('disabled', 'disabled');
+
+								}else{
+									$( "#" + this_option).removeAttr('disabled');
+								}
+
+							}
+
+		    			});
+		    		}
+	    			
+	    			$( "select[id^=choice]" ).removeAttr('disabled');
+	    		}
+
+	    		$( "td[id^=btn_submit]" ).css('visibility', 'visible');
+
+		    } 
+     
+    	});
+
+			
+	});
+
+	/*
+		MultiPrice Selectable Disable CSS
+	*/
+	$('li').filter(function() {
+	   return this.id.match(/^disabled/)
+	}).addClass('li_disabled');
+
+	chg_select('choice1','[in_choice1]'); 
+	chg_select('choice2','[in_choice2]'); 
+	chg_select('choice3','[in_choice3]'); 
+	chg_select('choice4','[in_choice4]');
+	chg_radio('pricenumber','[in_pricenumber]');
+
+-->
+</script>

@@ -1,0 +1,218 @@
+   <fieldset>
+      <legend>Cliente</legend>
+      <table width="100%" cellspacing="0" cellpadding="2" border="0">
+         <tbody>
+            <tr>
+             <td width="30%">ID Cliente : <span class="smallfieldterr">[er_id_customers]</span></td>
+             <td class="smalltext"><input type="text" name="id_customers" value="[in_id_customers]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+               <a href="/cgi-bin/common/apps/schid?db=sl_customers&cmd=customers&fname=id_customers&returnid=id_customers&value=" title="Search for Customers" class="fancy_modal_iframe">
+                  <img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+               </a>
+             </td>
+         </tr>
+         <tr>
+            <td width="30%">Tax ID :  <span class="smallfieldterr"></span></td>
+            <td><input name="tax_id" value="[in_tax_id]" size="30" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+         </tbody>
+      </table>
+   </fieldset>
+&nbsp;
+<fieldset>
+   <legend>Informaci&oacute;n de Sucursal</legend>
+   <table width="100%" cellspacing="0" cellpadding="2" border="0">
+      <tbody>
+         <tr>
+            <td width="30%">C&oacute;digo :  <span class="smallfieldterr"></span></td>
+            <td><input name="code" value="[in_code]" size="50" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+         <tr>
+            <td width="30%">Alias :  <span class="smallfieldterr"></span></td>
+            <td><input name="alias" value="[in_alias]" size="80" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+         <tr>
+            <td width="30%">GLN :  <span class="smallfieldterr"></span></td>
+            <td><input name="gln" value="[in_gln]" size="30" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+         <tr>
+            <td width="30%">Direcci&oacute;n Fiscal :  <span class="smallfieldterr"></span></td>
+            <td><span class="checa"><input id="primaryrecord_Yes" name="primaryrecord" value="Yes" checked="" class="radio" type="radio"> <label for="primaryrecord_Yes">Yes</label></span>
+               <span class="checa"><input id="primaryrecord_No" name="primaryrecord" value="No" class="radio" type="radio"> <label for="primaryrecord_No">No</label></span>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</fieldset>
+
+   &nbsp;
+   <fieldset>
+      <legend>Direcci&oacute;n (Formato Direksys)</legend>
+   	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+   		<tr>
+   		  <td valign="top" width="30%">Calle y N&uacute;mero :</td>
+   		   <td class="smalltext">
+   		   		<input type="text" name="address1" value="[in_address1]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address1]</span><br>
+   		   	</td>
+   		</tr>
+   		
+
+         <tr>
+           <td valign="top" width="30%">Entre Calles :</td>
+            <td class="smalltext">
+                  <input type="text" name="address2" value="[in_address2]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address2]</span><br>
+               </td>
+         </tr>          
+
+         <tr>
+           <td valign="top" width="30%">Referencias :</td>
+            <td class="smalltext">
+                  <input type="text" name="address3" value="[in_address3]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address3]</span>
+               </td>
+         </tr>
+   		
+         <tr>
+   		  <td valign="top" width="30%">Colonia :</td>
+   		   <td class="smalltext">
+   		   		<input type="text" name="urbanization" value="[in_urbanization]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_urbanization]</span><br>
+   		   	</td>
+   		</tr>
+   		
+   		<tr>
+   		 	<td width="30%">Delegaci&oacute;n/Municipio : <span class="smallfieldterr">[er_city]</span></td>
+   		  <td class="smalltext">
+   					<input type="text" name="city" value="[in_city]" size="30" oocus='focusOn( this )' onBlur='focusOff( this )'>
+   			</td>
+   		</tr>
+   		<tr>
+   		 	<td width="30%">Estado : </td>
+   		  <td class="smalltext">
+   				<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+   					<option value="">---</option>
+   					[fc_build_select_opr_customersstate]
+               </select> 
+   			</td>
+   		</tr>
+         <tr>
+            <td width="30%">C&oacute;digo Postal : </td>
+            <td class="smalltext">
+                  <input type="text" name="zip" value="[in_zip]" size="8" oocus='focusOn( this )' onBlur='focusOff( this )'><span class="smallfieldterr">[er_zip]</span>
+            </td>
+         </tr>
+   		<tr>
+   			<td width="30%">Pa&iacute;s : <span class="smallfieldterr">[er_country]</span></td>
+   			<td class="smalltext"><input type="text" name="country" value="[in_country]" size="30" oocus='focusOn( this )' onBlur='focusOff( this )'></td>		 
+   		</tr>
+      </table>
+   </fieldset> 
+
+         
+&nbsp;
+<fieldset>
+   <legend>Direcci&oacute;n (Formato SAT)</legend>  
+   <table width="100%" cellspacing="0" cellpadding="2" border="0">
+      <tbody>
+         <tr>
+            <td width="30%">Calle :  <span class="smallfieldterr"></span></td>
+            <td><input name="cu_street" value="[in_cu_street]" size="80" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+         <tr>
+            <td width="30%">No. Interior :  <span class="smallfieldterr"></span></td>
+            <td><input name="cu_num" value="[in_cu_num]" size="50" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+         <tr>
+            <td width="30%">No. Exterior :  <span class="smallfieldterr"></span></td>
+            <td><input name="cu_num2" value="[in_cu_num2]" size="50" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+         <tr>
+            <td width="30%">Colonia :  <span class="smallfieldterr"></span></td>
+            <td><input name="cu_urbanization" value="[in_cu_urbanization]" size="50" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+         <tr>
+            <td width="30%">Ciudad :  <span class="smallfieldterr"></span></td>
+            <td><input name="cu_district" value="[in_cu_district]" size="50" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+         <tr>
+            <td width="30%">Delegaci&oacute;n/Municipio :  <span class="smallfieldterr"></span></td>
+            <td><input name="cu_city" value="[in_cu_city]" size="50" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+         <tr>
+            <td width="30%">Estado :  <span class="smallfieldterr"></span></td>
+            <td><input name="cu_state" value="[in_cu_state]" size="80" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+         <tr>
+            <td width="30%">Pa&iacute;s :  <span class="smallfieldterr"></span></td>
+            <td><input name="cu_country" value="[in_cu_country]" size="30" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+         <tr>
+            <td width="30%">C&oacute;digo Postal :  <span class="smallfieldterr"></span></td>
+            <td><input name="cu_zip" value="[in_cu_zip]" size="6" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+      </tbody>
+   </table>
+</fieldset>
+&nbsp;
+<fieldset>
+   <legend>SAT Info</legend>
+   <table width="100%" cellspacing="0" cellpadding="2" border="0">
+      <tbody>
+         <tr>
+            <td width="30%">M&eacute;todo de pago :  <span class="smallfieldterr"></span></td>
+            <td>[fc_build_select_payment_method]</td>
+         </tr>
+         <tr>
+            <td width="30%">Forma de pago :  <span class="smallfieldterr"></span></td>
+            <td>[fc_build_select_payment_type]</td>
+         </tr>
+         <tr>
+            <td width="30%">Uso CFDI Factura:  <span class="smallfieldterr"></span></td>
+            <td>[fc_build_select_use_cfdi_invoice]</td>
+         </tr>
+         <tr>
+            <td width="30%">Uso CFDI Nota de Credito:  <span class="smallfieldterr"></span></td>
+            <td>[fc_build_select_use_cfdi_credit]</td>
+         </tr>
+         <tr>
+            <td width="30%">Banco :  <span class="smallfieldterr"></span></td>
+            <td><input name="bank" value="[in_bank]" size="50" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+         <tr>
+            <td width="30%">RFC Banco :  <span class="smallfieldterr"></span></td>
+            <td><input name="fcode_bank" value="[in_fcode_bank]" size="50" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+         <tr>
+            <td width="30%">N&uacute;mero de cuenta :  <span class="smallfieldterr"></span></td>
+            <td><input name="account_number" value="[in_account_number]" size="50" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+         </tr>
+      </tbody>
+   </table>
+</fieldset>
+
+&nbsp;
+<fieldset>
+   <legend>Estatus</legend>
+   <table width="100%" cellspacing="0" cellpadding="2" border="0">
+      <tbody>
+         <tr>
+            <td width="30%">Status :  <span class="smallfieldterr"></span></td>
+            <td><span class="checa"><input id="status_Active" name="status" value="Active" checked="" class="radio" type="radio"> <label for="status_Active">Active</label></span>
+               <span class="checa"><input id="status_Inactive" name="status" value="Inactive" class="radio" type="radio"> <label for="status_Inactive">Inactive</label></span>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</fieldset>
+
+<script language="JavaScript">
+<!--
+
+chg_select('state','[in_state]');
+chg_select('use_cfdi','[in_use_cfdi]');
+chg_select('payment_method','[in_payment_method]');
+chg_select('payment_type','[in_payment_type]');
+chg_select('use_cfdi_invoice','[in_use_cfdi_invoice]');
+chg_select('use_cfdi_credit','[in_use_cfdi_credit]');
+
+chg_radio('status','[in_status]');
+chg_radio('primaryrecord','[in_primaryrecord]');
+-->
+</script>

@@ -1,0 +1,203 @@
+[ip_header_small]
+
+
+<style type="text/css">
+	.required{
+		font-size: 12pt;
+		font-weight: bold;
+		color: red;
+		display: inline-table;
+		vertical-align: middle;
+	}	
+	.label{
+		color: gray;
+		font-weight: normal;
+	}
+	.text_info{
+		color: gray;
+		font-weight: bold;
+		font-style: italic;
+	}
+</style>
+
+<form action="" method="post" name="sitform" id="frmReceipt">		
+	<input type="hidden" name="view" value="[in_view]">
+	<input type="hidden" name="id_purchaseorders" value="[in_id_purchaseorders]">
+	<input type="hidden" name="po_receipt_services" value="1">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="cmd" value="mer_po">
+	<input type="hidden" name="ajaxbuild" value="po_receipts_services">
+	<input type="hidden" name="invoice" id="invoice" value="">
+
+	<br />
+	<fieldset>
+		<legend>Purchase Orders Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	 		<tr>
+				<td width="30%" valign="top">Purchase Orders ID	 :</td>
+				<td class="smalltext">
+					<input type="text" name="id_vendors" id='id_vendors' value="[in_id_purchaseorders]" size="10" class="input" readonly >
+				</td>
+			</tr>
+			<tr>
+				<td width="30%" valign="top">Deductible	:</td>
+				<td class="smalltext">
+					[in_deductible]
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	<fieldset>
+		<legend>Bill Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	 		<tr>
+				<td width="30%" valign="top">Vendor ID	 : <span class="smallfieldterr">[er_id_vendors]</span></td>
+				<td class="smalltext">
+					<input type="text" name="id_vendors" id='id_vendors' value="[in_id_vendors]" size="10" class="input" readonly ><br>
+					<span class="label">Vendor: </span> <span class="text_info">[in_rfc_vendor] :: [in_vendor]</span><br>
+					<span class="label">PO Terms: </span> <span class="text_info">[in_poterms]</span><br>
+					<span class="label">Currency: </span> <span class="text_info">[in_currency]</span><br>
+				</td>
+			</tr>
+			<tr>
+			  	<td valign="top" width="30%">Type : <span class="smallfieldterr">[er_type]</span></td>			   	
+			   	<td class="smalltext">
+			   		<span style="white-space:nowrap">
+			   			<input type="radio" id="type_bill" name="type" value="Bill" class="radio" checked="true" required> <label for="type_bill">Bill</label>
+			   		</span>
+			   	</td>
+			</tr>
+			<tr>
+				<td width="30%">Invoice # : <span class="smallfieldterr">[er_invoice]</span></td>
+			    <td class="smalltext">
+			    	<select name="id_invoice" class="input" style="max-width: 500px;">
+			    		<option value="0"></option>
+			    		[va_cfdi_vendor_list]
+			    	</select>
+			    </td>
+			</tr>
+
+			<tr>
+			  <td width="30%">Bill Date : <span class="required">*</span> <span class="smallfieldterr">[er_billdate]</span></td>
+				<td class="smalltext">
+					<input type="text" id="billdate" name="billdate" value="[in_billdate]" size="15" class="input" required readonly>
+					<input type="hidden" value="" id="creddays">
+				</td>
+			</tr>
+			<tr>
+			  <td width="30%">Due Date : <span class="required">*</span> <span class="smallfieldterr">[er_duedate]</span></td>
+				<td class="smalltext"><input type="text" id="duedate" name="duedate" value="[in_duedate]" size="15" class="input" required readonly></td>
+			</tr>
+			<tr id="currency_exchange" style="display:none;">
+				<td>Exchange Rate : <span class="smallfieldterr">[er_currency_exchange]</span></td>
+				<td class="smalltext">
+					<input type="text" name="currency_exchange" value="[in_currency_exchange]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' id="get_exchange_rate" >
+					<input type="button" value="Get Current (DOF)" onclick="loadExchangeRate('get_exchange_rate')"> 
+				</td>
+			</tr>			
+	  		<tr>
+			    <td width="30%">Memo : <span class="smallfieldterr">[er_memo]</span></td>
+			    <td class="smalltext"><input type="text" name="memo" value="[in_memo]" size="80" class="input"></td>
+			</tr>			
+		</table>	
+	</fieldset>	
+	<br />
+	<fieldset>
+		<div id="divBtn" align="center" style="display: block; width: 100%; margin: auto auto;">
+			<input id="btnProcess" value="Aceptar" class="button" type="submit">
+			<span id="spnProcessing" style="display: none;">
+				<img src="/sitimages/processing.gif" alt="processing" style="width: 40px; vertical-align: middle;"> Processing...
+			</span>
+		</div>
+	</fieldset>
+</form>
+
+&nbsp;
+
+<script type="text/javascript">
+	
+	//chg_radio('deductible','[in_deductible]');
+
+	var local = true;
+
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+
+		var dates = $( "#duedate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: new Date(),
+			// maxDate: '+2d',
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+		$("#billdate").datepicker({
+		    minDate: 0,
+		    /* altField: "#date_exchange_rate", */
+		    dateFormat: 'yy-mm-dd',
+		    changeMonth: true,
+			numberOfMonths: 3,
+		    onSelect: function(dateText, inst) {
+		    	var creddays = $('#creddays').val();
+				creddays = parseInt(creddays);
+				if(!isNaN(creddays) && creddays >= 0 ) {
+					if (creddays>0){
+						var actualDate = new Date(dateText);
+						var newDate = new Date(actualDate.getFullYear(), actualDate.getMonth(), actualDate.getDate() + creddays);
+						$('#duedate').datepicker('option', 'minDate', newDate );
+						$('#duedate').datepicker('setDate', newDate );
+					}else{
+						$('#duedate').datepicker('setDate', $("#billdate").val() );
+					}
+				}
+		    }
+		});
+
+		$('select[name=id_invoice]').change(function(event) {
+			var this_invoice = $(this).find('option:selected').data('uuid');
+			$('#invoice').val( this_invoice );
+		});
+
+		$('#frmReceipt').submit(function(event) {
+
+			if( $('input[name=billdate]').val() != '' && $('input[name=duedate]').val() ){
+				var resp = confirm('Esta seguro de continuar?');
+				if( resp ){
+					$.ajax({
+						url: '/cgi-bin/common/apps/ajaxbuild',
+						type: 'POST',
+						dataType: 'json',
+						data: $('#frmReceipt').serialize(),
+						async: false,
+						beforeSend: function(){
+							$('#btnProcess').css({'display': 'none'});
+							$('#spnProcessing').css({'display': 'inline-table'});
+						},
+						success: function(response){
+							if( response.result == 200 ){
+								parent.$.fancybox.close();
+								parent.location.href = '/cgi-bin/mod/[ur_application]/dbman?cmd=mer_po&view=[in_id_purchaseorders]&tabs=1&tab=5';
+							}
+						},
+						error: function(xhr, settings, exception){
+							$('#btnProcess').css({'display': 'inline-table'});
+							$('#spnProcessing').css({'display': 'none'});
+						}
+					});
+				}
+			} else {
+				alert('Por favor complete los campos marcados como obligatorios');
+			}
+
+			return false;
+		});
+
+	});
+
+
+</script>

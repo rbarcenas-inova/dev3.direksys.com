@@ -1,0 +1,86 @@
+	&nbsp;
+	<fieldset>
+		<legend>Banks Movements Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tbody><tr>
+				<td width="30%">Bank :  <span class="smallfieldterr">[er_id_banks]</span></td>
+				<td>
+					<select name="id_banks" id="id_banks" onfocus="focusOn( this )" onblur="focusOff( this )" [va_restrict_id_banks]>
+						<option value="">---</option>
+						[fc_build_select_custom_bank]
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td width="30%">Type :  <span class="smallfieldterr">[er_type]</span></td>
+				<td>
+					<span style="white-space:nowrap">
+						<input type="radio" id="type_Credits" name="type" value="Credits" class="radio" [va_restrict_type]>
+						<label for="type_Credits">Credits</label>
+					</span>
+					<span style="white-space:nowrap">
+						<input type="radio" id="type_Debits" name="type" value="Debits" class="radio" [va_restrict_type]>
+						<label for="type_Debits">Debits</label>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td width="30%">Bank Date :  <span class="smallfieldterr">[er_bankdate]</span></td>
+				<td><input id="bankdate" size="20" name="bankdate" value="[in_bankdate]" onfocus="focusOn( this )" onblur="focusOff( this )" [va_restrict_bankdate]>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="30%">Conciliation Date :  <span class="smallfieldterr">[er_consdate]</span></td>
+				<td><input id="consdate" size="20" name="consdate" value="[in_consdate]" onfocus="focusOn( this )" onblur="focusOff( this )" [va_restrict_consdate]>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="30%">Amount :  <span class="smallfieldterr">[er_amount]</span></td>
+				<td><input type="text" name="amount" value="[in_amount]" size="" onfocus="focusOn( this )" onblur="focusOff( this )" [va_restrict_amount]></td>
+			</tr>
+			<tr>
+				<td width="30%">Payment Method :  <span class="smallfieldterr">[er_doc_type]</span></td>
+				<td>[br_doc_type@sl_banks_movements]</td>
+			</tr>
+			<tr>
+				<td width="30%">Reference Number :  <span class="smallfieldterr">[er_refnum]</span></td>
+				<td><input type="text" name="refnum" value="[in_refnum]" size="40" onfocus="focusOn( this )" onblur="focusOff( this )"></td>
+			</tr>
+			<tr>
+				<td width="30%">Reference Number Custom:  <span class="smallfieldterr">[er_refnumcustom]</span></td>
+				<td><input type="text" name="refnumcustom" value="[in_refnumcustom]" size="40" onfocus="focusOn( this )" onblur="focusOff( this )"></td>
+			</tr>
+			<tr>
+				<td width="30%">Memo :  <span class="smallfieldterr">[er_memo]</span></td>
+				<td><input type="text" name="memo" value="[in_memo]" size="60" onfocus="focusOn( this )" onblur="focusOff( this )"></td>
+			</tr>
+			<tr>
+				<td width="30%">Is Refund :  <span class="smallfieldterr">[er_memo]</span></td>
+				<td>
+					<input type="radio" id="is_refund_yes" name="is_refund" value="Yes">
+					<label for="is_refund_yes">Yes</label>
+					<input type="radio" id="is_refund_no" name="is_refund" value="No">
+					<label for="is_refund_no">No</label>
+					<input type="hidden" name="status" value="[in_status]">
+				</td>
+			</tr>
+		</tbody></table>
+	</fieldset>
+
+	<script language="javascript">
+	<!--
+		chg_radio('type','[in_type]');
+		chg_radio('doc_type','[in_doc_type]');
+		chg_select('id_banks','[in_id_banks]');
+
+		$(document).ready(function() {
+
+			var dates = $('#bankdate, #consdate' ).datepicker({
+				dateFormat: 'yy-mm-dd',
+				defaultDate: '-2m',
+				maxDate: new Date(),
+				changeMonth: true,
+				numberOfMonths: 3,
+			});
+
+		});
+	//-->
+	</script>

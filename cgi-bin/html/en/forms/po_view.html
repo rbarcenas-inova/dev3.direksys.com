@@ -1,0 +1,651 @@
+[ip_template_overlay]
+
+	&nbsp;
+	<fieldset><legend>Purchase Order ID</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		  	<td width="30%" class="titletext">Purchase Order ID  :</td>
+		    <td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_purchaseorders] 
+					    	[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton] &nbsp;
+					    	[fc_func_list_manager]
+					    	[fc_custom_id_link]
+							[va_linkadd]
+							<a href="/cgi-bin/common/apps/ajaxfinance?cmd=movements_editor&id_purchaseorders=[in_view]&edit_type=purchaseorders&tablename=purchaseorders" class="fancy_modal_iframe" title="Movements Editor">
+								<img border="0" alt="Edit" title="Edit Movements" src="[va_imgurl]/[ur_pref_style]/icon-edit-movements.png" height="24" width="24">
+							</a>
+							<a href="/cgi-bin/common/apps/ajaxfinance?cmd=adjustment_editor&id_purchaseorders=[in_view]" class="fancy_modal_iframe" title="Adjustment Editor">
+								<img border="0" alt="Adjustment Editor" title="Adjustment Editor" src="[va_imgurl]/[ur_pref_style]/import.png" height="24" width="24">
+							</a>
+							[fc_build_closepo_button]
+						</div>
+					</div>
+				
+		    	</td>
+		 </tr>
+		 <tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+		</table>
+	</fieldset>  
+	&nbsp;
+	<fieldset><legend>Purchase Order Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td width="30%" valign="top">Vendor ID :</span></td>
+	    <td class="smalltext"><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=mer_vendors&view=[in_id_vendors]">([in_id_vendors])</a> [va_vendor_name]</td>
+		 </tr>
+		<tr>
+			<td valign="top" width="30%">Vendor Ref Number :</td>
+		  <td class="smalltext">[in_refnumber]</td>
+		</tr>
+  		<tr>
+		  <td width="30%">PO Date :</td>
+		  <td class="smalltext">[in_podate]</td>
+		</tr>
+		<tr>
+		  <td width="30%">PO Type :</td>
+		  <td class="smalltext">[in_type]</td>
+		</tr>
+		<tr>
+		  <td width="30%">PO Area :</td>
+		  <td class="smalltext">[va_segment_name]</td>
+		</tr>
+  		<tr>
+		  <td width="30%">PO Cancel Date :</td>
+		  <td class="smalltext">[in_canceldate]</td>
+		</tr>
+  		<tr>
+		  <td width="30%">PO Terms :</td>
+		  <td class="smalltext">[in_poterms]</td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Description : <span class="smallfieldterr">[er_poterms_desc]</span></td>
+			<td class="smalltext">[in_poterms_desc]</td>
+		</tr>
+  		<tr id="tr_shipvia">
+		  <td width="30%">Ship Via  :</td>
+		  <td class="smalltext">[in_shipvia]</td>
+		</tr>
+		<tr id="tr_shipvia2">
+		  <td width="30%">Ship Via Description :</td>
+		  <td class="smalltext">[in_other_desc]</td>			
+		</tr>
+  		<tr id="tr_shipto">
+		  <td width="30%" valign="top">Ship To  :</td>
+		  <td class="smalltext">[in_id_warehouses] [va_warehouseinfo]</td>
+		</tr>
+		<tr>
+  		<tr>
+		  <td width="30%">EDT Date :</td>
+		  <td class="smalltext">[in_etd]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Currency:</td>
+		  <td class="smalltext">[ln_id_vendors@sl_vendors:Currency]</td>
+		</tr>
+  		<tr>
+		  <td width="30%">Paid:</td>
+		  <td class="smalltext">[fc_paidpo]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Deductible:</td>
+		  <td class="smalltext">
+		  	<span id="spnDeductible">[in_deductible]</span> [va_edit_deductible]
+		  	
+		  	<div style="display: none;">
+				<div id="deductible_form" style="text-align: center; height: 120px; width: 350px;">
+					<p style="margin: auto auto; padding-top: 15px;">
+						Deductible:
+						<input type="radio" name="deductible" id="deductible1" value="Yes"><label for="deductible1"> Yes</label>
+						<input type="radio" name="deductible" id="deductible2" value="No"><label for="deductible2"> No</label>
+					</p>
+					<br />
+					<br />
+					<p>
+						<a href="#" id="lnk_save_deductible" class="button">Aceptar</a>
+					<p>
+				</div>
+			</div>
+		  </td>
+		</tr>
+	</table>
+	</fieldset>		
+
+  <p class="txtlegend">Purchase Order Items<a name='tabs' id='tabs'>&nbsp;</a>
+	<table id="[tbl_po_list]" border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class="menu_bar_title" nowrap align="center">#</td>
+			<td class="menu_bar_title" nowrap align="center">ID</td>
+			<td class="menu_bar_title" align="center">Vendor SKU / Area</td>
+			<td class="menu_bar_title" align="center">Description</td>
+			<td class="menu_bar_title" align="center">Qty</td>
+			<td class="menu_bar_title" align="center">Unit Price</td>
+			<td class="menu_bar_title" align="center">Tax(%)</td>
+			<td class="menu_bar_title" align="center">Received</td>
+			<td class="menu_bar_title" align="center">STotal</td>
+			<td class="menu_bar_title" align="center">Tax($)</td>
+			<td class="menu_bar_title" align="center">Tax Hold.($)</td>
+			<td class="menu_bar_title" align="center">Other Tax($)</td>
+			<td class="menu_bar_title" align="center">Total</td>
+		</tr>
+		[va_polist]
+		<tr><td>&nbsp;</td></tr>
+		<tr><td colspan="12"><p class="txtlegend">Purchase Order Adjustments</a></td></tr>
+		<tr>
+			<td class="menu_bar_title" nowrap align="center">#</td>
+			<td class="menu_bar_title" nowrap align="center">ID</td>
+			<td class="menu_bar_title" align="center">Vendor SKU</td>
+			<td class="menu_bar_title" align="center">Description</td>
+			<td class="menu_bar_title" align="center">Qty</td>
+			<td class="menu_bar_title" align="center">Unit Price</td>
+			<td class="menu_bar_title" align="center">Tax(%)</td>
+			<td class="menu_bar_title" align="center">Received</td>
+			<td class="menu_bar_title" align="center">STotal</td>
+			<td class="menu_bar_title" align="center">Tax($)</td>
+			<td class="menu_bar_title" align="center">Tax Hold.($)</td>
+			<td class="menu_bar_title" align="center">Other Tax($)</td>
+			<td class="menu_bar_title" align="center">Total</td>
+		</tr>
+		[va_polist_adj]
+		<tr>
+	    	<!--<td colspan="10" align="right" class="smalltext">Total = </td>-->
+			<td colspan="9" class="smalltext" align="right" nowrap>[va_posubtot]</td>
+			<td class="smalltext" align="right" nowrap>[va_potottax]</td>
+			<td class="smalltext" align="right" nowrap>[va_potottax_hold]</td>
+			<td class="smalltext" align="right" nowrap>[va_potottax_other]</td>
+			<td class="smalltext" align="right" nowrap>[va_pototal]</td>
+		</tr>
+	</table>
+	<div style="display: none;">
+		<div id="segment_form" style="text-align: center; height: 150px; width: 600px;">
+			<p style="margin: auto auto; padding-top: 15px;">
+				<label for="id_segments">Seleccione el Area: </label>
+				<select name="id_segments" id="id_segments" data-id="0" onFocus='focusOn( this )' onBlur='focusOff( this )' class="select" style="max-width: 350px;">
+					
+				</select>
+			</p>
+			<br />
+			<br />
+			<br />
+			<p>
+				<a href="#" id="lnk_save_segment" class="button">Aceptar</a>
+			<p>
+		</div>
+	</div>
+</p>	
+	[fc_build_addwreceipt_button]
+	<fieldset ><legend id="shipping_instructions">Shipping Instructions</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td class="smalltext">[va_shipping_inst]</td>
+		</tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+  <fieldset><legend>Purchase Order Authorization</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Final Decision by :</td>
+		  <td class="smalltext">[in_authby] [in_authby_name]</td>
+		</tr>
+ 		<tr>
+		  <td width="30%">Authorized Status :</td>
+		  <td class="smalltext">[in_auth] &nbsp; [va_lnk_get_auth]</td>
+		</tr>
+		[va_final_auth]
+	</table>
+	</fieldset>	
+	&nbsp;	
+  <fieldset><legend>Purchase Order Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  			<tr>
+		  		<td width="30%">Status  : </td>
+		 		<td class="smalltext">[in_status]&nbsp;&nbsp;[va_reopen]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[va_amazon_process]</td> 	  
+		 	</tr>
+  		</table>
+	</fieldset>
+	&nbsp;
+
+
+
+
+
+	<!-- Edit Movements-->
+  <div id='popup_edit_movements' style='visibility: hidden; display: none; background-color: #ffffff;'>
+    <div class='menu_bar_title' id='item_dragiii'>
+      <img id='popup_exiteoi' src='[va_imgurl]/[ur_pref_style]/popupclose.gif' name="popup_exiteoi"> &nbsp;&nbsp;&nbsp;Editing Movements
+    </div>
+    <div class='formtable'>
+      <iframe src='/cgi-bin/common/apps/ajaxfinance?cmd=editing_movements&amp;id_purchaseorders=[in_id_purchaseorders]&amp;edit_type=purchaseorders&amp;tablename=purchaseorders&amp;&amp;path=[va_script_url]&amp;cmdo=[in_cmd]&amp;dototemp=YES' name='rcmd' title='Recieve Commands' width='1024' height='700' frameborder='0' marginwidth='0' marginheight='0' scrolling='auto' id="rcmd">
+      <h2>Unable to do the script</h2>
+      <h3>Please update your Browser</h3></iframe>
+    </div>
+  </div>
+
+	<!-- Amazon Receipts Process -->
+	<div id='amazon_receipt_div' style='visibility: hidden; display: none; background-color: #ffffff;height: 200px; width: 600px; -webkit-box-shadow: 2px 2px 6px 4px rgba(0,0,0,0.4); -moz-box-shadow: 2px 2px 6px 4px rgba(0,0,0,0.4); box-shadow: 2px 2px 6px 4px rgba(0,0,0,0.4);'>
+		<div class='menu_bar_title' id='item_drag_amazon'>
+			<img id='popup_exit_amazon' src='[va_imgurl]/[ur_pref_style]/popupclose.gif' name='popup_exit_amazon'> &nbsp;&nbsp;&nbsp;Amazon Receipt Process
+		</div>
+
+		<form action="/cgi-bin/mod/wms/dbman" name="sitform" method="POST">
+			<input type="hidden" name="cmd" value="mer_po">
+			<input type="hidden" name="view" value="[in_id_purchaseorders]">
+			<input type="hidden" name="id_purchaseorders" value="[in_id_purchaseorders]">
+			<input type="hidden" name="amazon_process" value="1">
+			
+			<center>
+				<table border="0" cellspacing="0" cellpadding="4" width="90%" class="formtable"> 
+				  	<tr>
+						<td width="30%">Order from PuraOferta-Amazon </td>
+						<td>
+						<select name="id_orders" id="id_orders" onfocus="focusOn( this )" onblur="focusOff( this )" style="cursor: pointer; background-color: rgb(255, 255, 255);">
+							<option value="">---</option>
+							[va_orders_options]
+						</select>
+						</td>
+					</tr>
+					<tr>
+						<td width="30%">Exchange Rate</td>
+						<td>[va_currency_options]</td>
+					</tr>
+				  	<tr>
+				  		<td>Number Tracking</td>
+						<td><input type="text" id="number_tracking" name="number_tracking" value="" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				  	</tr>
+				  	<tr>
+				  		<td>Shipment Date:</td>
+						<td><input type="text" id="shpdate" name="shpdate" value="" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				  	</tr>
+				</table>    	
+				<p align="center"><input value="Process" class="button" type="submit"></p>
+			</center>
+		</form>
+	</div>	
+
+<script language="javascript">
+<!--
+	
+	chg_radio('deductible', '[in_deductible]');
+
+	chg_chkbox('bulk','[in_bulk]');
+	chg_chkbox('scan_from_pack','[in_scan_from_pack]');
+	chg_chkbox('skip_batch','[in_skip_batch]');
+
+	chg_select('id_warehouses','[in_id_warehouses]');
+	chg_select('id_purchaseorders_rvendor','[in_id_purchaseorders_rvendor]');
+    chg_select('id_warehouses_rvendor','[in_id_warehouses_rvendor]');
+
+	function deactivate_button()
+	{
+		document.sitform.enterbutton.disabled=true;
+	}
+	
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		$.ajaxSetup({
+	    	timeout: 60000
+	    });
+
+		var dates = $( "#shpdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: new Date(),
+			minDate: new Date(),
+			maxDate: "+6m",
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+		//---------------------------------------------------------
+		//--- Acción para el boton de validar montos de los gastos
+		//---------------------------------------------------------
+		$('.btn_validate').click(function(event) {
+			var this_lnk = $(this);
+
+			var this_resp;
+			if( this_lnk.attr('data-to-val') == '1' ){
+				this_resp = confirm("Esta seguro de validar el monto actual del gasto?");
+			}else{
+				this_resp = confirm("Esta seguro de cancelar la validacion del gasto?");
+			}
+
+			if( this_resp ){
+				// Se envía la petición ajax para actualizar el campo
+				$.ajax({
+					url: '/cgi-bin/common/apps/ajaxbuild',
+					type: 'POST',
+					dataType: 'html',
+					data: {
+						'ajaxbuild': 'po_adj_validate',
+						'id_po_adj': this_lnk.attr('data-id-adj'),
+						'type_val': this_lnk.attr('data-to-val'),
+					},
+					async: false,
+					cache: false,
+					beforeSend: function(){
+						this_lnk.find('img').attr('src', '/sitimages/load16.gif');
+					},
+					success: function(response){
+						// Si el resultado es satisfactorio
+						if( response == 'OK' ){
+							if( this_lnk.attr('data-to-val') == '1' ){
+								this_lnk.attr('data-to-val', '0');
+								this_lnk.find('img').attr('src', '/sitimages/default/b_drop.png');
+							}else{
+								this_lnk.attr('data-to-val', '1');
+								this_lnk.find('img').attr('src', '/sitimages/default/b_ok.png');
+							}
+						// Si ocurrió un error en el código
+						}else{
+							if( this_lnk.attr('data-to-val') == '1' )
+								this_lnk.find('img').attr('src', '/sitimages/default/b_ok.png');
+							else
+								this_lnk.find('img').attr('src', '/sitimages/default/b_drop.png');
+						}
+					},
+					// Si ocurre un error inesperado
+					error: function(objeto, detalle, masdetalles){                
+						if( this_lnk.attr('data-to-val') == '1' )
+							this_lnk.find('img').attr('src', '/sitimages/default/b_ok.png');
+						else
+							this_lnk.find('img').attr('src', '/sitimages/default/b_drop.png');
+						// Imprime el error en la consola
+				        console.log(detalle.toUpperCase() + ': ' + masdetalles);
+					}
+				});
+			}
+
+			return false;
+		});
+		//---------------------------------------------------------
+
+		if( '[in_type]' == 'PO Services' ){
+			$('#tr_shipvia').hide('fast');
+			$('#tr_shipvia2').hide('fast');
+			$('#tr_shipto').hide('fast');
+		}
+
+		//---------------------------------------------------------
+		//--- Editar centro de costo a los items
+		//---------------------------------------------------------
+		var getSegments = function(){
+			var this_response = '';
+
+			$.ajax({
+				url: '/cgi-bin/common/apps/ajaxbuild',
+				type: 'post',
+				dataType: 'html',
+				data: {
+					ajaxbuild: 'get_accounts_segments',
+					restrict: 1,
+				},
+				async: false,
+				cache: false,
+				beforeSend: function(){
+					$('#id_segments').html('<option>Cargando...</option>');
+				},
+				success: function(response){
+					//$('#id_segments').html(response);
+					this_response = response;
+				}
+			});
+			
+			return this_response;
+		};
+
+		var saveSegment = function(id_po_items, id_segments){
+			var this_response = false;
+
+			$.ajax({
+				url: '/cgi-bin/common/apps/ajaxbuild',
+				type: 'post',
+				dataType: 'html',
+				data: {
+					ajaxbuild: 'po_items_segments_update',
+					id_po_items: id_po_items,
+					id_segments: id_segments,
+				},
+				async: false,
+				cache: false,
+				beforeSend: function(){
+					
+				},
+				success: function(response){
+					if( response == 'OK' ){
+						this_response = true;
+					}
+				}
+			});
+			
+			return this_response;
+		};
+
+		$('.segment_edit').click(function(event) {
+			$('#id_segments').data('id', $(this).data('id'));
+			$('#id_segments').html( getSegments() );
+
+			$.fancybox({
+				'autoSize': true,				
+				'href': '#segment_form',
+				'type': 'inline',
+			});
+
+			return false;
+		});	
+
+		$('#lnk_save_segment').click(function(event) {
+			var id_po_items = $('#id_segments').data('id');
+			var id_segments = $('#id_segments').val();
+			var seg_name = $('#id_segments option:selected').text();
+			var resp_save = saveSegment(id_po_items, id_segments);
+			if( resp_save ){
+				$('#segment_'+id_po_items).html(seg_name);
+			} else {
+				console.log(resp_save);
+			}
+
+			$.fancybox.close();
+			return false;
+		});
+		//---------------------------------------------------------
+
+		//---------------------------------------------------------
+		//--- Editar el campo deductible
+		//---------------------------------------------------------
+		if( '[in_deductible]' == 'Yes' ){
+			$('#deductible1').attr('checked', true);
+		} else {
+			$('#deductible2').attr('checked', true);
+		}
+		$('#lnk_deductible_edit').click(function(event) {
+
+			$.fancybox({
+				'autoSize': true,				
+				'href': '#deductible_form',
+				'type': 'inline',
+			});
+
+			return false;
+		});	
+
+		$('#lnk_save_deductible').click(function(event) {
+
+			var this_deductible = $('input[name=deductible]:checked').val();
+			var this_id_po = $('#lnk_deductible_edit').data('id');
+
+			$.ajax({
+				url: '/cgi-bin/common/apps/ajaxbuild',
+				type: 'POST',
+				dataType: 'html',
+				data: {
+					ajaxbuild: 'po_deductible_update',
+					id_po: this_id_po,
+					deductible: this_deductible,
+				},
+				async: false,
+				cache: false,
+				success: function(response){
+					if( response == 'OK' ){
+						$('#lnk_deductible_edit').data('value', this_deductible);
+						$('#spnDeductible').html(this_deductible);
+						$.fancybox.close();
+					} else {
+						alert(response);
+					}
+				}
+			});
+
+			return false;
+		});
+		//---------------------------------------------------------
+
+		$('#lnk_get_auth').click(function(event) {
+			var resp = confirm('Esta seguro de continuar?');
+			return resp;
+		});
+
+
+    	/* 
+			Todos los elementos <span> con clase editable se convierten a editable
+			Todos llevan el formato span_action_id
+			action = qty, price
+			id = id de la tabla id_purchaseorders_items
+			Para saber cual elemento se esta convirtiendo
+		*/
+		$('span.editable').editable( {
+			submit:'Update',
+			editBy:'dblclick',
+			cancel:'Cancel',
+			onSubmit:function(content) {
+				var data = $(this).attr('id').split('_');
+				var f = data[1];
+				var id = data[2];
+
+				if(f == 'qty') {
+					var prev_value = parseInt(content.previous.replace(',',''));
+					var new_value = parseInt(content.current.replace(',',''));
+				}else if(f == 'taxp') {
+					var prev_value = parseFloat(content.previous);
+					var new_value = parseFloat(content.current);
+
+					// Tax Validation
+					if(new_value > 20){
+						alert('New Tax value invalid');
+						new_value = prev_value;
+					}
+
+				}else if(f == 'total') {
+					var prev_value = parseFloat(content.previous);
+					var new_value = parseFloat(content.current);
+
+					// Total Validation
+					if(new_value < 0){
+						alert('New Total value invalid');
+						new_value = prev_value;
+					}
+				}else{
+					var prev_value = parseFloat(content.previous.replace('$',''));
+					var new_value = parseFloat(content.current.replace('$',''));
+				}
+
+				if(prev_value != new_value){
+					$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'po_update', 'id_po_items':id, 'field': f, 'old':prev_value, 'new':new_value},function(response,status,xhr){
+						if (status == "error") {
+							alert(msg);
+							$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/checkmark_off.gif" title="Done">');
+						}else{
+							if(response.match(/error/gi)){
+								alert("Error:\r\n"+response);
+								$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl][ur_pref_style]/checkmark_off.gif" title="Done">');
+							}else{
+								if(f == 'price') {
+									$('#span_' + f + '_' + id).html('\$'+parseFloat(new_value));
+								}
+								$('#span_chg_' + f + '_' + id).html('<img id="#done_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/checkmark.gif" title="Done">');
+
+								if( f == 'total' ){
+									location.href = '/cgi-bin/mod/[ur_application]/dbman?cmd=mer_po&view=[in_view]';
+								}
+							}
+						}
+						$('#span_chg_' + f + '_' + id).fadeIn(2000);
+					});
+
+					setTimeout(function(){
+							$('#span_chg_' + f + '_' + id).fadeOut(2000);
+					},3000);
+					
+					setTimeout(function(){
+						$('#span_chg_' + f + '_' + id).fadeIn(2000);
+						$('#span_chg_' + f + '_' + id).html('<img id="#btn_chg_" + f + "_" + id" src="[va_imgurl]/[ur_pref_style]/b_edit.png" title="Click to edit Cost" style="cursor:pointer;">');
+					},5000);
+		
+				}else{
+					$('#span_chg_' + f + '_' + id).fadeIn(2000);
+				}
+			},
+			onCancel:function(){ 
+				var data = $(this).attr('id').split('_');
+				var f = data[1];
+				var id = data[2];
+				$('#span_chg_' + f + '_' + id).fadeIn(2000);
+			}
+		});
+
+
+		/* 
+			Evento de click de los lapices. Todos los lapices con clase triggers_editable
+			Todos llevan el formato btn_chg_action_if 
+			action = qty, price, taxp
+			id = id de la tabla id_purchaseorders_items
+			Para saber cual elemento poner a editable
+			Independitentemente del lapiz, se puede hacer doble click en el elemento para hacerlo funcionar
+		*/
+		$('img.triggers_editable').live('click',function(){
+			[va_po_blocked]
+			var data = $(this).attr('id').split('_');
+			var f = data[2];
+			var id_poi = data[3];
+			$('#span_chg_' + f + '_' + id_poi).fadeOut();
+			$('#span_' + f + '_' + id_poi).dblclick();
+		});
+
+	});
+
+
+	function amazon_receipts_process(){
+		popup_show('amazon_receipt_div', 'item_drag_amazon', 'popup_exit_amazon', 'element-right', -1, -1,'tabs');
+	}
+
+	function add_noninv(){
+		popup_show('popup_addnoinv', 'noinv_drag', 'popup_exit2', 'element-right', -1, -1,'tabs');
+	}
+
+	function add_part(){
+		popup_show('popup_addparts', 'parts_drag', 'popup_exit3', 'element-right', -1, -1,'tabs');
+	}
+
+	function edit_movements(){
+    	popup_show('popup_edit_movements', 'item_dragiii', 'popup_exiteoi', 'element-right', -1, -1,'tabs');
+    }
+
+	function confirm_adjustment() {
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+    
+
+</script>

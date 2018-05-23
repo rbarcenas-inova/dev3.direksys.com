@@ -1,0 +1,289 @@
+[ip_header]
+<script type="text/javascript" src="/jquery-token/jquery.tokeninput.js"></script>
+<link rel="stylesheet" href="/jquery-token/token-input.css" type="text/css" />
+<link rel="stylesheet" href="/jquery-token/token-input-facebook.css" type="text/css" />
+<style>
+	#usersTree {
+	    border: 1px solid;
+	    margin: 10px auto;
+	    padding: 10px;
+	    width: 100%;
+	    border-collapse: collapse;
+	}
+
+	#usersTree td {
+	    padding: 3px 10px;
+	}
+	.userID {
+	    width: 50px;
+	}
+	.right{
+		float: right;
+		margin-top: -5px
+	}
+	tr[data-new="1"] {
+	    background: yellow none repeat scroll 0 0;
+	}
+
+	.deleteRow {
+	    cursor: pointer;
+	}
+
+</style>
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:8, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+	<div id="resultuser" style="[va_display]">
+		[va_message]
+	</div>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">User Admin Tree</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr"></td>
+		</tr>
+	</table>
+<fieldset><legend>User Admin Tree</legend>
+	<div id="List">
+		<input class="button right" type="button" id="new" value="Nueva Relaci&oacute;n">
+		<table id="usersTree">
+			<thead>
+				<tr>
+					<th>User</th>
+					<th>Supervisor</th>
+					<th>Coordinador</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				[va_body_table]
+			</tbody>
+		</table>
+	</div>
+</fieldset>
+		</td>
+	</tr>
+</table>
+<script type="text/javascript">
+	$('#new').on('click', function(e){
+		if($('#usersTree [data-new="1"]').length > 0){
+			return;
+		}
+		html = '<tr data-new="1">'
+			+'<td> <input type="number" value="" data-pos="1" class="userID input"> <span></span></td>'
+			+'<td> <input type="number" value="" data-pos="2" class="userID input"> <span></span></td>'
+			+'<td> <input type="number" value="" data-pos="3" class="userID input"> <span></span></td>'
+			+'<td> <input type="button" value="Guardar" class="button" data-id="saveButton"> </td>'
+		+'</tr>';
+		$('#usersTree tbody').append(html);
+		$('[data-id="saveButton"]').on('click', function(){
+			that = this;
+			$.ajax({
+				url: '/cgi-bin/common/apps/ajaxbuild',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					ajaxbuild:'usr_admin_tree',
+					type:'save',
+					id_admin1 : $(that).parent().parent().find('[data-pos="1"]').val(),
+					id_admin2 : $(that).parent().parent().find('[data-pos="2"]').val(),
+					id_admin3 : $(that).parent().parent().find('[data-pos="3"]').val()
+				},
+			})
+			.done(function(data) {
+				if(data.code == 500){
+					alert(data.error);
+				}
+				if(data.code == 200){
+					$(that).parent().parent().removeAttr('data-new');
+					$(that).parent().parent().append('<td> <img class="deleteRow" data-id="deleteRow" src="/sitimages/close.png"> </td>');
+					$(".deleteRow").unbind( "click" );
+					$('.deleteRow').on('click', function(){
+						that = this;
+						values = $(this).parent().parent().find('input[type="number"]');
+						$.ajax({
+							url: '/cgi-bin/common/apps/ajaxbuild',
+							type: 'POST',
+							dataType: 'json',
+							data: {
+								ajaxbuild:'usr_admin_tree',
+								id_admin_users:values[0].value,
+								id_admin_users2:values[1].value,
+								id_admin_users3:values[2].value,
+								type:'delete',
+							},
+						})
+						.done(function(data) {
+							if(data.code == 500){
+								alert(data.error);
+							}
+							if(data.code == 200){
+								$(that).parent().parent().remove();
+							}
+						});
+					});
+				}
+			});
+		})
+		$('.userID').on('change', function(){
+			that = this;
+			$.ajax({
+				url: '/cgi-bin/common/apps/ajaxbuild',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					ajaxbuild:'usr_admin_tree',
+					id_admin_users:$(that).val(),
+					type:'get',
+					pos: $(that).attr('data-pos')
+				},
+			})
+			.done(function(data) {
+				if(data.code == 500){
+					alert(data.error);
+					$(that).val('');
+					$(that).focus();
+				}
+				if(data.code == 200){
+					val = [
+						$(that).parent().parent().find('[data-pos="1"]').val() || '-1',
+						$(that).parent().parent().find('[data-pos="2"]').val() || '-2',
+						$(that).parent().parent().find('[data-pos="3"]').val() || '-3',
+					];
+					val = val.unique();
+					console.log(val);
+					if(val.length < 3){
+						$(that).val('');
+						$(that).focus();
+					}else{
+						$(that).parent().find('span').html(' - '+data.msg);
+						if(data.id3){
+							$(that).parent().parent().find('[data-pos="3"]').val(data.id3).change();
+						}
+					}
+				}
+			});
+			
+		});
+	});
+	$('.userID').on('change', function(){
+		that = this;
+		$.ajax({
+			url: '/cgi-bin/common/apps/ajaxbuild',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				ajaxbuild:'usr_admin_tree',
+				id_admin_users:$(that).val(),
+				type:'get',
+				pos: $(that).attr('data-pos')
+			},
+		})
+		.done(function(data) {
+			if(data.code == 500){
+				alert(data.error);
+				$(that).val('');
+				$(that).focus();
+			}
+			if(data.code == 200){
+				$(that).parent().find('span').html(' - '+data.msg);
+			}
+		});
+		
+	});
+
+	$('[data-id="saveButton"]').on('click', function(){
+		that = this;
+		$.ajax({
+			url: '/cgi-bin/common/apps/ajaxbuild',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				ajaxbuild:'usr_admin_tree',
+				type:'save',
+				id_admin1 : $(that).parent().parent().find('[data-pos="1"]').val(),
+				id_admin2 : $(that).parent().parent().find('[data-pos="2"]').val(),
+				id_admin3 : $(that).parent().parent().find('[data-pos="3"]').val()
+			},
+		})
+		.done(function(data) {
+			if(data.code == 500){
+				alert(data.error);
+			}
+			if(data.code == 200){
+				$(that).parent().parent().removeAttr('data-new');
+				$(".deleteRow").unbind( "click" );
+				$('.deleteRow').on('click', function(){
+					that = this;
+					values = $(this).parent().parent().find('input[type="number"]');
+					$.ajax({
+						url: '/cgi-bin/common/apps/ajaxbuild',
+						type: 'POST',
+						dataType: 'json',
+						data: {
+							ajaxbuild:'usr_admin_tree',
+							id_admin_users:values[0].value,
+							id_admin_users2:values[1].value,
+							id_admin_users3:values[2].value,
+							type:'delete',
+						},
+					})
+					.done(function(data) {
+						if(data.code == 500){
+							alert(data.error);
+						}
+						if(data.code == 200){
+							$(that).parent().parent().remove();
+						}
+					});
+				});
+			}
+		});
+	})
+	$('.deleteRow').on('click', function(){
+		that = this;
+		values = $(this).parent().parent().find('input[type="number"]');
+		$.ajax({
+			url: '/cgi-bin/common/apps/ajaxbuild',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				ajaxbuild:'usr_admin_tree',
+				id_admin_users:values[0].value,
+				id_admin_users2:values[1].value,
+				id_admin_users3:values[2].value,
+				type:'delete',
+			},
+		})
+		.done(function(data) {
+			if(data.code == 500){
+				alert(data.error);
+			}
+			if(data.code == 200){
+				$(that).parent().parent().remove();
+			}
+		});
+	});
+	Array.prototype.unique=function(a){
+		return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0
+	});
+</script>
+[ip_footer]

@@ -1,0 +1,128 @@
+<STYLE TYPE="text/css">
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+</STYLE>
+
+<center>
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td><font class=info>
+
+<table cellpadding=0 cellspacing=0 border=0>
+	<td align=left>
+		<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px>
+	</td>
+	[fc_show_companyinfo]
+</table>
+
+
+<hr style="color: #000;background-color: #000;height: 1px;">
+
+	<fieldset>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tbody><tr>
+			<td width="30%" class="titletext">Credit Memo ID : </td>
+			<td class="titletext">[in_id_creditmemos] </td>
+		</tr>
+	</tbody></table>
+	</fieldset>
+	<fieldset><legend>Credit Memo</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tbody><tr>
+			    <td width="25%">ID Customers : </td>
+			    <td class="smalltext">(<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=opr_customers&view=[in_id_customers]"><span class="smalltext">[in_id_customers]</span></a>) [va_customer_name] </td>
+			</tr>
+			<tr>
+				<td width="30%">Reference :  </td>
+				<td>[in_reference]</td>
+			</tr>
+			<tr>
+				<td width="30%" valign="top">Description :  </td>
+				<td class="smalltext">[in_description]</td>
+			</tr>
+			<tr>
+				<td width="30%">Amount :  </td>
+				<td>[in_amount]</td>
+			</tr>
+			<tr>
+				<td width="30%">Status :  </td>
+				<td>[in_status]</td>
+			</tr>
+		</tbody></table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Items</legend>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="" align="center">
+		<tr>
+			<td colspan="2">
+			 	<table border="0" cellspacing="0" cellpadding="7" width="100%" style="border:1px solid #333333;border-bottom:0px solid #333333;">
+					<tr>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>#</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Item ID</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Name</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Qty</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Unit Price</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Shipping</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Unit Cost</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Tax</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Total</td>
+				 	</tr>
+				 	[fc_load_creditmemos_items]
+				</table>
+			</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Orders</legend>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="" align="center">
+		<tr>
+			<td colspan="2">
+			 	<table border="0" cellspacing="0" cellpadding="7" width="100%" style="border:1px solid #333333;border-bottom:0px solid #333333;">
+					<tr>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>#</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>ID Order</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Order Date</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Order Net</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Unpaid</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Invoices</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Order Status</td>
+					    <td style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Amount</td>
+				 	</tr>
+				 	[fc_load_creditmemos_orders]
+				</table>
+			</td>
+		</tr>
+	</table>
+	</fieldset>
+</center>

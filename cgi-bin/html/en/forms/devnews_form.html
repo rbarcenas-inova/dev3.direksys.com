@@ -1,0 +1,51 @@
+	&nbsp;
+	<fieldset><legend>Developer News Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  	<td width="30%">Title : <span class="smallfieldterr">[er_title]</span></td>
+		    <td class="smalltext" colspan="2"><input type="text" name="title" value="[in_title]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		 <td valign="top" width="30%">Description : <span class="smallfieldterr">[er_description]</span></td>
+		 <td class="smalltext" colspan="2"><textarea name="description" cols="50" rows="5" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description]</textarea></td>
+		</tr>		
+		<tr>
+			<td>Application : <span class="smallfieldterr">[er_application]</span></td>
+			<td><select name="application" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option>
+						[bs_application@admin_users]
+					</select></td>
+		</tr>
+		<tr>
+			<td>Type : <span class="smallfieldterr">[er_type]</span></td>
+			<td class="smalltext">
+		    	<input type="radio" name="type" value="New" class="radio">New		    			    	
+		    	<input type="radio" name="type" value="Improvement" class="radio">Improvement
+		    	<input type="radio" name="type" value="Repair" class="radio">Repair
+				</td>
+			</tr>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		  	<td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		    <td class="smalltext">
+		    	<input type="radio" name="status" value="Active" class="radio">Active		    			    	
+		    	<input type="radio" name="status" value="Inactive" class="radio">Inactive
+				</td>
+			</tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript" type="text/javascript">
+<!--
+	
+	chg_radio('status','[in_status]');
+	chg_radio('type','[in_type]');
+
+//-->
+</script>
+

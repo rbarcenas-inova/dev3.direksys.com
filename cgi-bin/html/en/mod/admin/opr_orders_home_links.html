@@ -1,0 +1,91 @@
+<fieldset><legend>Sales / Orders Links</legend>
+    <table border="0" cellspacing="0" cellpadding="4" width="100%">
+	<tr>
+		<td valign="top" width="50%">
+		<ul class='nslist'>
+		<li class='nslist'>Special Links to Orders
+			<ul class='nslist'>
+				<!--<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_sales">Dashboard (Sales Table)</a></li> -->
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_fpbatch&search=advSearch&wprod=1&Status=New|Processed|Pending|Review|Postdated&shp_type=2&sb=id_orders&so=DESC">Orders in Processed w/Express Delivery</a></li>
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_fpbatch&search=advSearch&wpay=1&PmtField2=Web Order&sb=id_orders&so=DESC">Web Orders</a></li>
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_fpbatch&search=advSearch&wprod=1&Status=New|Processed|Pending|Review|Postdated&DropShipment=Yes&sb=id_orders&so=DESC">Orders Withs Items for Drop Shippers</a></li>
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_check">Check Data Consistency</a></li>
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_pendings">Check Pendings</a></li>
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_voids">Check Voids</a></li>
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_rep_prodqty">Product / Qty</a></li> 
+				<li class='nslist'><a href="/cgi-bin/mod/admin/dbman?cmd=opr_orders&search=advSearch&action=1&type=directlink&todo=orders_with_credits_payable">Orders with credit payments payable.</a></li> 
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_eofd">End of Day</a></li>
+				&nbsp;
+				<li><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_rep_prodmoney">Forecast:Products / Money </a></li>
+				<li><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_rep_cod_qty">COD Product / Qty</a></li>
+				&nbsp;
+				<li><a href="/cgi-bin/mod/admin/admin?cmd=opr_bulkorders_prn">Bulk Printing</a></li>
+				<li><a href="/cgi-bin/mod/admin/admin?cmd=opr_changestatus">Bulk Change Status</a></li>
+
+				<li><a href="/cgi-bin/mod/admin/admin?cmd=opr_addnote">Bulk Add Note</a></li><!--@ivanmiranda//-->
+				
+				<li><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_changeso">Bulk Change Sales Origin</a></li>
+				<li><a href="/cgi-bin/mod/admin/admin?cmd=opr_export_trackings">Download Tracking Numbers</a></li>
+			</ul>
+		</li>
+	    </ul>
+	    &nbsp;
+	  </td>
+	  <td valign="top" width="50%">
+		<ul class='nslist'>
+		<li class='nslist'>Batch Order Processing
+			<ul class='nslist'>
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_proccbatch">New Orders to Process (Credit Card)</a></li>
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_prockbatch">New Orders to Process (Check)</a></li>
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_captbatch">Orders to Capture</a></li>
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_prnbatch">Print/Export Process Batch</a></li>				
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_fpbatch&all=1">FlexPay to Process (all)</a></li>
+				<!--li><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_update">Update Data From Cybersoruce</a></li-->
+			</ul>
+		</li>
+	    </ul>
+	      &nbsp;
+	    <ul class='nslist'>
+		<li class='nslist'>C.O.D.
+			<ul class='nslist'>
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_cod">Manifests</a></li>
+				<li><a href="/cgi-bin/mod/admin/dbman?cmd=opr_orders&search=listall&sb=id_orders&status=Processed&so=DESC&ptype=COD">By Status</a></li>
+				<li class='nslist'><a href="/cgi-bin/mod/admin/admin?cmd=opr_cod_advsearch">Search</a></li>
+			</ul>
+		</li>
+	    </ul>
+	    &nbsp;
+	    <ul class='nslist'>
+		<li class='nslist'>Layaway
+			<ul class='nslist'>
+				<li><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_tocancel">Cancell</a></li>
+				<li><a href="/cgi-bin/mod/admin/dbman?cmd=opr_orders&search=listall&sb=id_orders&status=Processed&&so=DESC&ptype=Layaway">By Status</a></li>
+				<li><a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_payments&range=today">By Payment Day</a></li>
+			</ul>
+		</li>
+	    </ul>
+	    </td>
+	</tr>
+	<tr>
+	    <td valign="top" width="50%">
+	      <ul class='nslist'>
+		<li class='nslist'>Orders with Products Info
+			<ul class='nslist'>
+				[fc_links_orders_info]
+				[va_orders_wpayinfo]
+			</ul>
+		</li>
+	    </ul>
+		</td>
+	    <td valign="top" width="50%">
+	      <ul class='nslist'>
+		<li class='nslist'>Orders with Payment Info
+			<ul class='nslist'>
+				[va_orders_wprodinfo]
+			</ul>
+		</li>	
+	    </ul>
+	  </td>
+	</tr>
+    </table>
+</fieldset>

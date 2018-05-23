@@ -1,0 +1,124 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 3, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="left" colspan="2">Orders Change Status </td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+     </table>
+
+<form action="/cgi-bin/mod/admin/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="opr_toshipped">
+	<input type="hidden" name="action" value="1">
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr>
+		<td align="center" class="menu_bar_title">Orders</td>
+    </tr>
+	<tr>
+		<td valign="top">
+			<textarea name="id_orders_bulk" cols="50" rows="8"  style="width:100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_id_orders_bulk]</textarea>
+			<span class="help_on">Comma or Enter Separated IDs, Invalid IDs will be descarted</td>
+    </tr>
+	<tr>
+		<td align="center">Change Status to  : 
+			<select name='new_status' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				[fc_build_select_order_status]
+			</SELECT></td>
+    </tr>
+	<tr>
+		<td align="center">Change Payment Status to  : 
+			<select name='new_paystatus' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<option value='---'>---</option>
+				[fc_build_select_order_paystatus]
+			</SELECT></td>
+    </tr>
+	<tr>
+		<td align="center">Change Product Status to  : 
+			<select name='new_prdstatus' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<option value='---'>---</option>
+				[fc_build_select_order_prdstatus]
+			</SELECT></td>
+    </tr>
+		<tr>
+		  <td align="center">Change Date (For Notes) : <span class="smallfieldterr">[er_shipdate]</span>
+				<input type="text" id="shipdate" name="shipdate" value="[in_shipdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td align="center"> Skip Note : <span class="smallfieldterr">[er_skipnote]</span>
+		  	<input type="checkbox" name="skipnote" value="1">
+		  </td>
+		</tr>	
+	<tr>
+		<td align="center"><br><input type="submit" value="Change Status" class="button"></td>
+    </tr>
+</table>	
+&nbsp;
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr>
+		<td align="center" class="menu_bar_title">Orders Changes Report</td>
+    </tr>
+ 	<tr>
+		<td class="smalltext">[va_changeresult]</td>
+    </tr>   
+</table>
+
+<script language="javascript">
+<!--
+
+	chg_radio('shipdate','[in_shipdate]');
+	chg_select('new_status','[in_new_status]');
+
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#shipdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+	
+//-->
+</script>
+
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+

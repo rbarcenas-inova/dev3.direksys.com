@@ -1,0 +1,17 @@
+
+Estimado Cliente
+
+Su orden numero [in_id_orders] esta lista para ser enviada, pero necesitamos confirmar con usted lo siguiente:
+ - Tiene el money Order listo por : $ ?????
+ - Puede recibir su orden el dia: ??????
+
+Por favor confirmenos lo anterior para proseguir con la entrega de esta orden
+
+Cualquier otra consulta, no dude en contactarnos.
+
+Gracias
+
+-- 
+Servicio al Cliente
+Innova USA
+sales@innovagroupusa.com

@@ -1,0 +1,162 @@
+[ip_header]
+<script type="text/javascript" src="/jquery-token/jquery.tokeninput.js"></script>
+<link rel="stylesheet" href="/jquery-token/token-input.css" type="text/css" />
+<link rel="stylesheet" href="/jquery-token/token-input-facebook.css" type="text/css" />
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+   <tr>
+      <td bgcolor="#ffffff" width=200px valign=top align=center>
+         <!-- Acordion inicia-->
+         <table cellpadding=0 cellspacing=5 border=0>
+            <td align=left>
+               <font face=verdana>
+               <ul id="accordion">
+                  [ip_menu]
+               </ul>
+               <script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+               <script type="text/javascript">
+                  var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:8, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+               </script>
+            </td>
+         </table>
+      <td valign="top" aling="left" bgcolor="#ffffff">
+         <!-- Start Main Area  -->
+         <div style="background-color:#ffffff;margin:15px;">
+         <div id="resultuser" style="[va_display]">
+            [va_message]
+         </div>
+         <table border="0" cellspacing="0" cellpadding="2" width="100%">
+            <tr>
+               <td class="titletext" align="center">Banned Users List</td>
+            </tr>
+         </table>
+         <fieldset>
+            <legend>Banned Users [va_qty]</legend>                        
+            <div>
+              <form action="/cgi-bin/mod/admin/admin" id="frmSearch">
+                <input type="hidden" name="cmd" value="usr_admin_banned">                
+                <table>
+                  <tr>
+                    <td><b>Search by Username:</b></td>
+                    <td><input type="text" name="usernametofind" id="usernametofind" value="[va_usernametofind]"></td>
+                    <td><input type="submit" name="btnSearch" id="btnSearch" value="Search"></td>
+                    <!--td><input type="button" name="btnClean" id="btnClean" value="Reset"></td-->
+                  </tr>
+                </table>
+              </form>
+            </div>
+            <div id="message" style="color:red;font-weight:bold"></div>
+            <div id="List">
+               <table width="100%" class="formtable">
+                  <thead>
+                     <tr>
+                        <th class="menu_bar_title">USERNAME</th>
+                        <th class="menu_bar_title">USER</th>
+                        <th class="menu_bar_title">IP</th>
+                        <th class="menu_bar_title">BLOCKING DATE</th>
+                        <th class="menu_bar_title">BLOCKING TIME</th>
+                        <th class="menu_bar_title"><input type="checkbox" name="selectAll" id="selectAll"></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     [va_body_table]
+                  </tbody>
+               </table>
+            </div>
+            <hr>
+            <div id="actions">
+              <table>
+                <tr>
+                  <td><strong>Action for selected users: </strong>&nbsp;&nbsp;&nbsp;</td>                  
+                  <td>
+                    <input type="button" name="btnActionGo" id="btnActionGo" value="Unban">
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+         </fieldset>
+      </td>
+   </tr>
+</table>
+[ip_footer]
+
+<script>
+$("#message").hide();
+
+function getValueUsingClass(){
+  var chkArray = [];
+  
+  $(".chk:checked").each(function() {
+    chkArray.push($(this).val());
+  });
+  
+  var selected;
+  selected = chkArray.join(',') ;
+  
+  if(selected.length > 0){
+    return selected; 
+  }else{
+    return false; 
+  }
+}
+
+
+
+$(document).ready(function() { 
+  $('#btnClean').on('click',function(){
+    $('#usernametofind').val('');
+    $('#frmSearch').submit();
+  });
+
+  $('#selectAll').on('click',function(){
+    
+    if($(this).is(':checked')){
+      $(".chk").attr('checked',true)
+    }else{
+      $(".chk").attr('checked',false)
+    }
+
+  });
+
+  $('#btnActionGo').on('click',function(){
+     var chks=getValueUsingClass();
+     if(!chks){
+        alert('Please at least check one of the checkbox');
+      }else{          
+          var r = confirm("Are you sure you want to unlock the selected Users");
+          if (r == true) {                        
+             $.ajax({
+                url: '/cgi-bin/common/apps/ajaxbuild',
+                type: 'POST',
+                data: {
+                  ajaxbuild: "unlock_users",
+                  ids_admin_users_to_unlock: chks,            
+                }
+              })
+              .done(function(data) {                
+                if(data=="OK"){                  
+                  var array = chks.split(',');
+                  array.forEach( function(valor, indice, array) {
+                      var tr_to_delete=".tr_"+valor;
+                      $(tr_to_delete).remove();
+                  });
+
+                  $("#message").append("The user(s) was unbanned");
+                  $("#message").show('slide');
+
+                  setTimeout(function(){ 
+                    $("#message").hide('slide');
+                    $("#message").html("");
+                  }, 3000);
+
+                }else{
+                  alert(" An error has occurred while unlocking the user(s), please try again. If the error persist, contact I.T. department to solve the issue");
+                }
+              });
+          }
+       }         
+  });
+});
+
+</script>

@@ -1,0 +1,994 @@
+[ip_header_blank]
+<link rel="stylesheet" href="/libs/jsgrid/jsgrid.css">
+<link rel="stylesheet" href="/libs/jsgrid/jsgrid-theme.css" />
+<script src="/finkok/common/js/jquery.mask.min.js"></script>
+<script src="/libs/jsgrid/jsgrid.js"></script>
+<style>
+    .stdtext, p, td {
+        font-family: Arial;
+        font-size: 10px;
+    }
+   
+    #top_div_messages {
+        background-color: #f3e63f;
+        border-radius: 5px;
+        display: none;
+        font-family: Arial;
+        font-size: 12px;
+        margin: 5px;
+        padding: 5px 10px;
+        text-align: center;
+        position: absolute;
+        width: 97%;
+        top: 0;
+        left: 0;
+    }
+
+    #open_newTab {
+        position: absolute;
+        right: 10px;
+        top: 15px;
+        z-index: 99999;
+    }
+
+    .jsgrid-header-cell {
+        font-size: 11px;
+    }
+
+    #totales_contabilidad table td, #tab-history > div > div table td {
+        font-size: 15px;
+        font-weight: bold;
+        text-align: right;
+        width: 150px;
+    }
+
+    #totales_contabilidad tbody td[data-total], #tab-history > div > div table tbody td[data-total] {
+        color: red;
+    }
+    #totales_contabilidad tbody td[data-total="0.00"], #tab-history > div > div table tbody td[data-total="0.00"] {
+        color: green;
+    }
+
+
+
+    /*Tabs Style*/
+        .tabs {
+            background: #fff none repeat scroll 0 0;
+            padding: 10px;
+        }
+        .tabs .tabcontainer > div{
+            display:none;
+        }
+        .active{
+            display: block !important;
+        }
+        .tabs > ul {
+            list-style: outside none none;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+
+        }
+        .tabs > ul li {
+            border-bottom: 10px solid 1px #111;
+        }
+        .tabs li.open{
+            /*background-color: blue*/
+        }
+        .tabs > ul li a {
+            font-size: 17px;
+            text-decoration: none;
+            color: #000;
+        }
+        .tabs > ul li {
+            border-bottom: 3px solid #ccc;
+            float: left;
+            text-align: center;
+            width: 50%;
+        }
+        .tabs > ul li.open {
+            border-color: #0275d8;
+        }
+        .tabcontainer {
+            padding: 20px;
+        }
+    /*Tabs Style*/
+
+
+
+
+    .history {
+        margin: 0 auto;
+        width: 80%;
+    }
+    .history th {
+        background: #f9f9f9 none repeat scroll 0 0;
+        font-size: 9px;
+        padding: 5px;
+        text-transform: uppercase;
+    }
+    .history td {
+        padding: 3px;
+        text-transform: uppercase;
+        cursor: default;
+    }
+
+    .history tr[data-status="Inactive"] td{
+        text-decoration: line-through;
+    }
+    .history > table {
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+    }
+    .history tr {
+        border-bottom: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+    }
+    .history td:nth-child(4), .history td:nth-child(5) {
+        font-weight: bolder;
+        padding: 0 15px;
+    }
+
+
+</style>
+
+
+[va_header]
+
+
+<a href="#" id="open_newTab"><img src="/sitimages/default/tearoff_icon.gif" alt=""></a>
+<br><br>
+<div class="tabs">
+    <ul>
+        <li class="open"><a  href="#tab-edit" >Edit</a></li>
+        <li><a href="#tab-history">View All Movements</a></li>
+    </ul>
+    <div class="tabcontainer">
+        <div id="tab-edit" class="active">
+<div id="top_div_messages"></div>
+<div class="content">
+    <h3>Accounting Movements Editor: ([in_tablename]) [in_id_orders]</h3>
+<hr>
+<div id="jsGrid"></div>
+<div id="totales_contabilidad"></div>
+</div>
+        </div>
+        <div id="tab-history">
+            <div class="history"></div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var from_date = '[va_from_date]';
+    var to_date = '[va_to_date]';
+    var data = [va_data];
+    var segments = [va_segments];
+    segments.splice(0,0,{Name: 'Ninguno', Id: "0"})
+    var categories = [va_categories];
+    var tables = [va_tables];
+    var serviceUrl = '[va_urlservice]';
+    var table = '[va_id_tabled]';
+    var idtable = '[va_tableused]';
+    var full = '[in_full]';
+    var height = "420px";
+    $('.tabs > ul > li a').on('click', function(e){
+        e.preventDefault();
+        $('.tabs .tabcontainer div').removeClass('active');
+        $('.tabs > ul li').removeClass('open');
+        $($(this).attr('href')).addClass('active');
+        if(this.dataset.href && this.dataset.href != ''){
+            $($(this).attr('href')).load(this.dataset.href);
+        }
+        $(this).parent().addClass('open');
+    });
+    Number.prototype.format = function(n, x, s, c) {
+        var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+        num = this.toFixed(Math.max(0, ~~n));
+        return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+    };
+    if(full != ''){
+        $('#open_newTab').hide();
+        height = "90%";
+    }else{
+        $('#open_newTab').on('click', function(evt){
+            evt.preventDefault();
+            parent.$.fancybox.close();
+            window.open(window.location+'&full=1', '_blank');
+        });
+    }
+
+    var buildRowRetotals = function(totalColumns, creditColumn, debitColumn, withMaster){
+        let totalDebit = 0;
+        let totalCredit = 0;
+        let build = true;
+        $('#jsGrid').find('tbody tr').each(function(index, el) {
+            if(el.childNodes[4]){
+            totalDebit +=  /^[0-9.]+$/.test(el.childNodes[4].innerHTML) ? parseFloat(el.childNodes[4].innerHTML) : 0;
+            totalCredit += /^[0-9.]+$/.test(el.childNodes[5].innerHTML) ? parseFloat(el.childNodes[5].innerHTML) : 0;
+            }else{
+                build = false;
+            }
+        });
+        $('#totales_contabilidad').append(
+                
+            $('<table>')
+                .append($('<tr>')
+                    .append($('<td>').html('TOTAL DEBIT'))
+                    .append($('<td>').html('TOTAL CREDIT'))
+                    .append($('<td>').html( 'DIFFERENCE' ))
+                )
+                .append($('<tr>')
+                    .append($('<td>').attr('id', 'totalDebit').html('$ '+totalDebit.format(2, 3, ',', '.')))
+                    .append($('<td>').attr('id', 'totalCredit').html('$ '+totalCredit.format(2, 3, ',', '.')))
+                    .append($('<td>').attr('id', 'Diferencia').attr('data-total',Math.abs(totalDebit - totalCredit).toFixed(2)).html( '$ '+Math.abs(totalDebit - totalCredit).toFixed(2) ))
+                )
+        ).css({
+            width: '450px',
+            margin: '10px auto'
+        });
+    }
+    var updateTotales = function(){
+        let totalDebit = 0;
+        let totalCredit = 0;
+        $('#jsGrid').find('tbody tr').each(function(index, el) {
+            if(el.childNodes[4]){
+            totalDebit +=  /^[0-9.]+$/.test(el.childNodes[4].innerHTML) ? parseFloat(el.childNodes[4].innerHTML) : 0;
+            totalCredit += /^[0-9.]+$/.test(el.childNodes[5].innerHTML) ? parseFloat(el.childNodes[5].innerHTML) : 0;
+            }
+        });
+        $('#totalDebit').html('$ '+totalDebit.format(2, 3, ',', '.'));
+        $('#totalCredit').html('$ '+totalCredit.format(2, 3, ',', '.'));
+        $('#Diferencia').html( '$ '+Math.abs(totalDebit - totalCredit).format(2, 3, ',', '.') ).attr('data-total',Math.abs(totalDebit - totalCredit).toFixed(2));
+        
+    }
+
+    var buildViewTab = function(data){
+        let htmlcontent = $('<table>');
+        let tablehead = $('<thead>');
+        tablehead
+        .append($('<tr>')
+            .append($('<th>').html('ID Movements'))
+            .append($('<th>').html('ID Account'))
+            .append($('<th>').html('Account Name'))
+            .append($('<th>').html('Debit'))
+            .append($('<th>').html('Credit'))
+            .append($('<th>').html('Effective Date'))
+            .append($('<th>').html('Category'))
+            .append($('<th>').html('Table Related'))
+            .append($('<th>').html('ID Table Related'))
+            .append($('<th>').html('Journal'))
+        );
+        htmlcontent.append(tablehead);
+        for(i = 0, j = data.data.length ; i < j; i++){
+            let rowObject = data.data[i];
+            let row = $('<tr>');
+            row
+            .attr('data-status', rowObject['Status'])
+            .append($('<td>').html(rowObject['ID_movements']))
+            .append($('<td>').html(rowObject['ID Account']))
+            .append($('<td>').html(rowObject['Account Name']))
+            .append($('<td>').html(rowObject['Debit']).css('text-align', 'right'))
+            .append($('<td>').html(rowObject['Credit']).css('text-align', 'right'))
+            .append($('<td>').html(rowObject['Eff Date']))
+            .append($('<td>').html(rowObject['Category']))
+            .append($('<td>').html(rowObject['Table Related']))
+            .append($('<td>').html(rowObject['ID tablerelated']))
+            .append($('<td>').html(rowObject['Journal Entry']))
+            htmlcontent.append(row);
+        }
+        $('#tab-history > .history').html(htmlcontent);
+
+
+        let totalDebit = 0;
+        let totalCredit = 0;
+        let build = true;
+        $('#tab-history > .history table').find('tbody tr[data-status="Active"]').each(function(index, el) {
+            if(el.childNodes[3]){
+                totalDebit +=  /^[0-9.]+$/.test(el.childNodes[3].innerHTML) ? parseFloat(el.childNodes[3].innerHTML) : 0;
+                totalCredit += /^[0-9.]+$/.test(el.childNodes[4].innerHTML) ? parseFloat(el.childNodes[4].innerHTML) : 0;
+            }else{
+                build = false;
+            }
+        });
+        let div = $('<div>').append(
+                
+            $('<table>')
+                .append($('<tr>')
+                    .append($('<td>').html('TOTAL DEBIT'))
+                    .append($('<td>').html('TOTAL CREDIT'))
+                    .append($('<td>').html( 'DIFFERENCE' ))
+                )
+                .append($('<tr>')
+                    .append($('<td>').attr('id', 'totalDebit').html('$ '+totalDebit.format(2, 3, ',', '.')))
+                    .append($('<td>').attr('id', 'totalCredit').html('$ '+totalCredit.format(2, 3, ',', '.')))
+                    .append($('<td>').attr('id', 'Diferencia').attr('data-total',Math.abs(totalDebit - totalCredit).toFixed(2)).html( '$ '+Math.abs(totalDebit - totalCredit).toFixed(2) ))
+                )
+        ).css({
+            width: '450px',
+            margin: '10px auto'
+        });
+
+        $('#tab-history > .history').append(div);
+
+
+    }
+
+    var Movement = function(id_movement){
+        this.id_movement = id_movement || 0;
+    };
+    Movement.prototype.getAll = function(){
+        $.ajax({
+            url: serviceUrl,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                cmd: 'movement_actions',
+                action: 'getAll',
+                idtable : window.table,
+                table : window.idtable
+            },
+        })
+        .done(function(data) {
+            buildViewTab(data)
+        });
+    }
+
+
+    Movement.prototype.add = function(data, callback){
+        data.cmd = 'movement_actions';
+        data.action = 'add';
+        that = this;
+        $.ajax({
+            url: serviceUrl,
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+        })
+        .done(function(data) {
+            if(typeof callback == 'function'){
+                callback(data);
+                updateTotales();
+                that.getAll();
+            }
+        });
+    }
+    Movement.prototype.update = function(data, callback) {
+        data.cmd = 'movement_actions';
+        data.action = 'update';
+        that = this;
+        $.ajax({
+            url: serviceUrl,
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+        })
+        .done(function(data) {
+            if(typeof callback == 'function'){
+                callback(data);
+                updateTotales();
+                that.getAll();
+            }
+        });        
+    };
+    Movement.prototype.remove = function(data, callback) {
+        that = this;
+        $.ajax({
+            url: serviceUrl,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                cmd: 'movement_actions',
+                action: 'remove',
+                id_movements: data.ID_movements,
+                table : window.table,
+                idtable : window.idtable
+
+            },
+        })
+        .done(function(data) {
+            if(typeof callback == 'function'){
+                callback(data);
+                updateTotales()
+                that.getAll();
+            }
+        });
+        
+    };
+
+    
+
+
+    var mov = new Movement();
+
+    // Init Tab View
+    mov.getAll();
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    var dateField = function(config) {
+        jsGrid.Field.call(this, config);
+    };
+     
+    dateField.prototype = new jsGrid.Field({
+
+        css: "date-field",
+        align: "center",
+
+        sorter: function(date1, date2) {
+            return new Date(date1.replace(/-/g, '\/')) - new Date(date2.replace(/-/g, '\/'));
+        },
+     
+        itemTemplate: function(value) {
+            d = null;
+            if(typeof value == 'object'){
+                d = new Date(value);
+            }else{
+                d = new Date(value.replace(/-/g, '\/'));
+            }
+            return d.toJSON().substring(0,10) || '';
+        },
+     
+        insertTemplate: function(value) {
+            return this._insertPicker = $("<input>").datepicker({ 
+                dateFormat: "yy-mm-dd", 
+                numberOfMonths:3,
+                onSelect: function(dateText, inst) {
+                    that = this;
+                    $.ajax({
+                        url: serviceUrl,
+                        type: 'POST',
+                        dataType: 'json',
+                        async: false,
+                        data: {
+                            cmd: 'movement_actions',
+                            action: 'validateDate',
+                            date: dateText
+                        },
+                    })
+                    .done(function(data) {
+                        if(data.code == 200){
+                            that.value = dateText;
+                        }else{
+                            that.value = inst.lastVal;
+                        }
+                    });
+                }
+            }).datepicker('setDate', new Date());
+        },
+     
+        editTemplate: function(value) {
+            return this._editPicker = $("<input>").datepicker({ 
+                dateFormat: "yy-mm-dd", 
+                numberOfMonths:3,  
+                onSelect: function(dateText, inst) {
+                    that = this;
+                    $.ajax({
+                        url: serviceUrl,
+                        type: 'POST',
+                        dataType: 'json',
+                        async: false,
+                        data: {
+                            cmd: 'movement_actions',
+                            action: 'validateDate',
+                            date: dateText
+                        },
+                    })
+                    .done(function(data) {
+                        if(data.code == 200){
+                            that.value = dateText;
+                        }else{
+                            print_message(data.msg, 'error');
+                            that.value = inst.lastVal;
+                        }
+                    });
+                }
+            }).datepicker("setDate", new Date(value.replace(/-/g, '\/')));
+        },
+     
+        insertValue: function() {
+            return this._insertPicker.datepicker("getDate");
+        },
+     
+        editValue: function() {
+            return this._editPicker.datepicker("getDate");
+        }
+
+    });
+     
+    jsGrid.fields.date = dateField;
+
+    var accountField = function(config) {
+        jsGrid.Field.call(this, config);
+    };
+
+    accountField.prototype = new jsGrid.Field({
+        sorter: function(value1, value2) {
+            return value1 - value2;
+        },
+     
+        itemTemplate: function(value) {
+            return value
+        },
+     
+        insertTemplate: function(value) {
+            rand = getRandomInt(1000,9999);
+            let element = $('<a class="fancy_modal_iframe" title="Chart of Accounts" href="/cgi-bin/mod/[ur_application]/admin?cmd=accountsTree&element_id=id_accounts_'+rand+'&element_descrip=insert_name&tipo=accounting&parent=no"><img border="0" src="/sitimages/default/icsearchsmall.gif"></a>')
+            .fancybox({
+                'width'       : '85%',
+                'height'      : '85%',
+                'autoScale'       : 'false',
+                'transitionIn'    : 'elastic',
+                'transitionOut'   : 'elastic',
+                'type'        : 'iframe'
+
+            });
+            let elemento = $('<div>')
+            .append(
+                $("<input>")
+                .mask('000-00-000')
+                .css('width', '80%')
+                .attr('id', 'id_accounts_'+rand)
+                .on('focus', function(evt){
+                    this.dataset.value = this.value;
+                    this.value='';
+                })
+                .on('blur', function(evt){
+                    if(this.value.length != 10 && this.value.length != 0){
+                        print_message('La cuenta Contable debe llevar 10 caracteres');
+                        this.value = this.dataset.value;
+                        this.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].value = '';
+                    }else if(this.value.length == 0){
+                        this.value = this.dataset.value;
+                    }
+                })
+                .on('keyup', function(evt){
+                    if(this.value.length == 10){
+                        $.ajax({
+                            url: serviceUrl,
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                cmd: 'get_account_name',
+                                id : this.value.replace(/-/g, '')
+                            },
+                        })
+                        .done((data)=> {
+                            if(data.length > 0)
+                                this.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].value = data[0].name;
+                            else{
+                                print_message(`La cuenta ${this.value} no existe o esta inactiva.`);
+                                this.value = '';
+                                this.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].value = '';
+                            }
+
+                        });
+                        
+                    }
+                })
+            )
+            .append(element);
+
+            return this._insertPicker = elemento;
+        },
+     
+        editTemplate: function(value) {
+            rand = getRandomInt(1000,9999);
+            let element = $('<a class="fancy_modal_iframe" title="Chart of Accounts" href="/cgi-bin/mod/[ur_application]/admin?cmd=accountsTree&element_id=id_accounts_'+rand+'&element_descrip=editing_name&tipo=accounting&parent=no"><img border="0" src="/sitimages/default/icsearchsmall.gif"></a>')
+            .fancybox({
+                'width'       : '85%',
+                'height'      : '85%',
+                'autoScale'       : 'false',
+                'transitionIn'    : 'elastic',
+                'transitionOut'   : 'elastic',
+                'type'        : 'iframe'
+
+            });
+            elemento = $('<div>')
+            .append($("<input>")
+            .mask('000-00-000')
+            .css('width', '80%')
+            .attr('id', 'id_accounts_'+rand)
+            .attr('maxlength', '10')
+            .val(value)
+            .on('focus', function(evt){
+                this.dataset.value = this.value;
+                this.value='';
+            })
+            .on('blur', function(evt){
+                if(this.value.length != 10 && this.value.length != 0){
+
+                    print_message('La cuenta Contable debe llevar 10 caracteres');
+                    this.value = this.dataset.value;
+                    this.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].value = '';
+                }else if(this.value.length == 0){
+                    this.value = this.dataset.value;
+                }
+            })
+            .on('keyup', function(evt){
+                if(this.value.length == 10){
+                    $.ajax({
+                        url: serviceUrl,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            cmd: 'get_account_name',
+                            id : this.value.replace(/-/g, '')
+                        },
+                    })
+                    .done((data)=> {
+                        if(data.length > 0)
+                            this.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].value = data[0].name;
+                        else{
+                            this.value = '';
+                            print_message('La cuenta que escribiste no existe o esta inactiva.');
+                        }
+
+                    });
+                    
+                }
+            }))
+            .append(element);
+            return this._editPicker = elemento;
+        },
+     
+        insertValue: function() {
+            return $(this._insertPicker).find('input').val().replace(/-/g, '');
+        },
+     
+        editValue: function() {
+            return $(this._editPicker).find('input').val().replace(/-/g, '');
+        }
+    });
+
+    jsGrid.fields.account = accountField;
+
+    var accountName = function(config) {
+        jsGrid.Field.call(this, config);
+    };
+
+    accountName.prototype = new jsGrid.Field({
+        sorter: function(value1, value2) {
+            return value1 - value2;
+        },
+        itemTemplate: function(value) {
+            return value
+        },
+        insertTemplate: function(value) {
+            return this._insertPicker = $("<input>").attr({
+                readonly: 'readonly',
+                id: 'insert_name'
+            });
+        },
+        editTemplate: function(value) {
+            return this._editPicker = $("<input>").val(value).attr({
+                readonly: 'readonly',
+                id: 'editing_name'
+            });;
+        },
+     
+        insertValue: function() {
+            
+            return $(this._insertPicker).prop('value')
+
+        },
+     
+        editValue: function() {
+            return $(this._editPicker).prop('value')
+        }
+    });
+    
+
+    jsGrid.fields.accountName = accountName;
+
+
+
+    var debit = function(config) {
+        jsGrid.Field.call(this, config);
+    };
+    debit.prototype = new jsGrid.Field({
+        align: "right",
+        itemTemplate: function(value) {
+            return value
+        },
+        insertTemplate: function(value) {
+            rand = getRandomInt(1000,9999);
+            let elemento = $('<input>')
+            .attr('id', 'debit_'+rand)
+            .attr('data-value', value)
+            .on('focus', function(e){
+                this.dataset.value = this.value;
+                this.value = '';
+                creditNode = this.parentNode.parentNode.childNodes[5].childNodes[0];
+                creditNode.dataset.value = creditNode.value;
+                creditNode.value = '0.00';
+            })
+            .on('blur', function(e){
+                if(this.value == ''){
+                    this.value = this.dataset.value;
+                    return;
+                }
+                if(parseFloat(this.value) == 'NaN'){
+                    print_message('Solo se permiten Numeros');
+                    return;
+                }
+                if(this.value != this.dataset.value && this.value != '' && parseFloat(this.value) > 0){
+                    this.value = parseFloat(this.value).toFixed(2);
+                    this.dataset.value = this.value;
+                }else{
+                    this.value = parseFloat(this.value).toFixed(2);
+                    this.value = this.dataset.value;
+                    creditNode = this.parentNode.parentNode.childNodes[5].childNodes[0];
+                    creditNode.value = creditNode.dataset.value;
+                }
+
+            })
+            return this._insertPicker = elemento;
+        },
+     
+        editTemplate: function(value) {
+            rand = getRandomInt(1000,9999);
+            let elemento = $('<input>')
+            .attr('id', 'debit_'+rand)
+            .attr('data-value', value)
+            .val(value)
+            .on('focus', function(e){
+                this.dataset.value = this.value;
+                this.value = '';
+                creditNode = this.parentNode.parentNode.childNodes[5].childNodes[0];
+                creditNode.dataset.value = creditNode.value;
+                creditNode.value = '0.00';
+            })
+            .on('blur', function(e){
+                if(this.value == ''){
+                    this.value = this.dataset.value;
+                    return;
+                }
+                if(parseFloat(this.value) == 'NaN'){
+                    print_message('Solo se permiten Numeros');
+                    return;
+                }
+                if(this.value != this.dataset.value && this.value != '' && parseFloat(this.value) > 0){
+                    this.value = parseFloat(this.value).toFixed(2);
+                    this.dataset.value = this.value;
+                }else{
+                    this.value = parseFloat(this.value).toFixed(2);
+                    this.value = this.dataset.value;
+                    creditNode = this.parentNode.parentNode.childNodes[5].childNodes[0];
+                    creditNode.value = creditNode.dataset.value;
+                }
+
+            })
+            return this._editPicker = elemento;
+        },
+     
+        insertValue: function() {
+            
+            return $(this._insertPicker).prop('value')
+
+        },
+     
+        editValue: function() {
+            return $(this._editPicker).prop('value')
+        }
+    });
+
+    jsGrid.fields.debit = debit;
+
+
+    var credit = function(config) {
+        jsGrid.Field.call(this, config);
+    };
+    credit.prototype = new jsGrid.Field({
+        align: "right",
+        itemTemplate: function(value) {
+            return value
+        },
+        insertTemplate: function(value) {
+            rand = getRandomInt(1000,9999);
+            let elemento = $('<input>')
+            .attr('id', 'credit_'+rand)
+            .attr('data-value', value)
+            .on('focus', function(e){
+                this.dataset.value = this.value;
+                this.value = '';
+                creditNode = this.parentNode.parentNode.childNodes[4].childNodes[0];
+                creditNode.dataset.value = creditNode.value;
+                creditNode.value = '0.00';
+            })
+            .on('blur', function(e){
+                if(this.value == ''){
+                    this.value = this.dataset.value;
+                    return;
+                }
+                if(parseFloat(this.value) == 'NaN'){
+                    print_message('Solo se permiten Numeros');
+                    return;
+                }
+                if(this.value != this.dataset.value && this.value != '' && parseFloat(this.value) > 0){
+                    this.value = parseFloat(this.value).toFixed(2);
+                    this.dataset.value = this.value;
+                }else{
+                    this.value = parseFloat(this.value).toFixed(2);
+                    this.value = this.dataset.value;
+                    creditNode = this.parentNode.parentNode.childNodes[4].childNodes[0];
+                    creditNode.value = creditNode.dataset.value;
+                }
+
+            })
+            return this._insertPicker = elemento;
+        },
+     
+        editTemplate: function(value) {
+            rand = getRandomInt(1000,9999);
+            let elemento = $('<input>')
+            .attr('id', 'credit_'+rand)
+            .attr('data-value', value)
+            .val(value)
+            .on('focus', function(e){
+                console.log('focus');
+                this.dataset.value = this.value;
+                this.value = '';
+                creditNode = this.parentNode.parentNode.childNodes[4].childNodes[0];
+                creditNode.dataset.value = creditNode.value;
+                creditNode.value = '0.00';
+            })
+            .on('blur', function(e){
+                console.log('blur');
+                if(this.value == ''){
+                    this.value = this.dataset.value;
+                    return;
+                }
+                if(parseFloat(this.value) == 'NaN'){
+                    print_message('Solo se permiten Numeros');
+                    return;
+                }
+                if(this.value != this.dataset.value && this.value != '' && parseFloat(this.value) > 0){
+                    console.log('if');
+                    console.log(this.value);
+                    this.value = parseFloat(this.value).toFixed(2);
+                    this.dataset.value = this.value;
+                }else{
+                    console.log('else');
+                    console.log(this.value);
+                    this.value = parseFloat(this.value).toFixed(2);
+                    this.value = this.dataset.value;
+                    creditNode = this.parentNode.parentNode.childNodes[4].childNodes[0];
+                    creditNode.value = creditNode.dataset.value;
+                }
+
+            })
+            return this._editPicker = elemento;
+        },
+     
+        insertValue: function() {
+            
+            return $(this._insertPicker).prop('value')
+
+        },
+     
+        editValue: function() {
+            return $(this._editPicker).prop('value')
+        }
+    });
+
+    jsGrid.fields.credit = credit;
+
+    // if(data.length > 0){
+    $("#jsGrid").jsGrid({
+        width: "100%",
+        height: height,
+ 
+        inserting: true,
+        editing: true,
+        sorting: true,
+        paging: false,
+ 
+        data: data,
+        confirmDeleting: false,
+        deleteConfirm: "¿Esta seguro que quiere borrar el movimiento?",
+        loadIndication: true,
+        loadIndicationDelay: 500,
+        loadMessage: "Please, wait...",
+        loadShading: true,
+        onItemInvalid: function(args) {
+            // prints [{ field: "Name", message: "Enter client name" }]
+            console.log(args.errors);
+        },
+        onItemInserting: function(args) {
+            args.item.table = window.table;
+            args.item.idtable = window.idtable;
+            args.item['Eff Date'] = new Date(args.item['Eff Date']).toJSON().substring(0,10);
+            grid = this;
+            mov.add( args.item, function(data){
+                if(data.code == 200)
+                    print_message('Nuevo registro insertado');
+                else{
+                    print_message(data.msg);
+                    grid.deleteItem(args.item)
+                }
+            })
+        },
+        onItemDeleting: function(args) {
+            args.item.table = window.table;
+            args.item.idtable = window.idtable;
+            mov.remove( args.item,function(data){
+                if(data.code == 200)
+                    print_message('Registro eliminando');
+            })
+        },
+        onItemUpdating: function(args){
+            console.log('Actualizando',args);
+            fieldsToUpdate = {};
+            for (index in args.item) {
+                if(index == 'Eff Date'){
+                    args.item[index] = new Date(args.item[index]).toJSON().substring(0,10)
+                }
+                if(args.item[index] != args.previousItem[index]){
+                    fieldsToUpdate[index] = args.item[index];
+                }
+            };
+            fieldsToUpdate.id_movements = args.item.ID_movements;
+                fieldsToUpdate.table = window.table;
+                fieldsToUpdate.idtable = window.idtable;
+            mov.update(fieldsToUpdate, function(data){
+                console.log(data);
+                    if(data.code == 200)
+                        print_message('Registro actualizado');
+                    else{
+                        console.log(args);
+                        args.item = args.previousItem;
+                        args.cancel = true;
+                        print_message(data.msg, 'error');
+                        $("#jsGrid").jsGrid("refresh");
+                    }
+            })
+        },
+        fields: [
+            { name: "ID Account", type: "account", width: 50, validate: "required" },
+            { name: "Account Name", type: "accountName", width: 100},
+            { name: "Segment", type: "select", width: 50, items: segments, valueField: "Id", textField: "Name" },
+            { name: "Category", type: "select", width: 50, items: categories, valueField: "Id", textField: "Name"  },
+            { name: "Debit", type: "debit","id":"hola", width: 50, validate: "required", value:0 },
+            { name: "Credit", type: "credit", width: 50, validate: "required", value:0 },
+            { name: "Eff Date", type: "date", width: 50, validate: "required" },
+            // { name: "Journal Entry", type: "text", width: 50, validate: "required", editing:false,inserting:false },
+            { name: "Table Related", type: "select", width: 50, items: tables, valueField: "Id", textField: "Name"},
+            { name: "ID tablerelated", type: "number", width: 50},
+            { type: "control" }
+        ]
+    });
+
+    $(function() {
+            console.log('init');
+            console.log($(this).attr('style'))
+            let w = $('#jsGrid').css('width');
+            let table = $('#jsGrid .jsgrid-grid-body');
+            let tw = table.css('width');
+            let numofcolumns = table.find('tbody tr').get(0).childNodes.length;
+            let ccredit = 5;
+            let cdebit = 6;
+            buildRowRetotals(numofcolumns, ccredit, cdebit, tw);
+    });
+    // }else{
+    //     $("#jsGrid").append("No se pude editar la contabilidad.");
+    // }
+
+    
+    /**
+     *  Funcion para imprimir mensajes y automaticamente ocultarlos
+     *  ISC Alejandro DIaz
+     */
+    function print_message(message, tipo) {
+        $('#top_div_messages').text(message);
+        if(tipo == 'error'){
+            $('#top_div_messages').css({'background-color': 'red', 'color': '#fff'}).fadeIn("fast").delay(2000).fadeOut("fast");
+        }else{
+            $('#top_div_messages').css({'background-color': '#f3e63f', 'color': '#000'}).fadeIn("fast").delay(2000).fadeOut("fast");
+        }
+    }
+
+</script>

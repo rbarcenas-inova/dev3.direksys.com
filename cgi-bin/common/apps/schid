@@ -1,0 +1,121 @@
+#!/usr/bin/perl
+#######################################################################
+#######################################################################
+#######################################################################
+use DBI;
+use DBIx::Connector;
+use DBD::mysql;
+
+# Load the form information and set the config file and userid.
+local(%in) = &parse_form;
+local(@db_cols,%db_select_fields,%db_valid_types,%db_not_null);
+local($sid,%error,%va,%trs,%perm);
+$in{'sid'} ? ($sid   = $in{'sid'}): ($sid   = '');
+
+# Required Libraries
+# --------------------------------------------------------
+eval {
+	require ("../subs/auth.cgi");
+	require ("../subs/sub.base.html.cgi");
+	require ("schid.cfg");
+	require ("schid.html.cgi");
+};
+if ($@) { &cgierr ("Error loading required Libraries",300,$@); }
+
+eval { &main; };
+if ($@) { &cgierr("Fatal error,301,$@"); }
+
+exit;
+
+sub main {
+# --------------------------------------------------------
+	$|++;
+	&connect_db;
+	&auth_cleanup;
+	my ($status) = &auth_check_password;
+
+	if ($status eq "ok") {
+		my ($cmd) = $in{cmd};
+		if (defined &$cmd){	
+			&$cmd();
+		}elsif(!$in{'db'} and !$in{'fname'}){ 
+			&html_error_page(&trans_txt('invalid_params'));
+		}elsif ($in{'value'}){
+			&html_view_record;
+		}elsif ($in{'search'} or $in{'listall'}){
+			&search_menu;
+		}else{
+			foreach my $key (sort keys %in) {
+				if ($in{$key} eq "V"){
+					$in{'value'} = substr($key,5);
+					&html_view_record;
+					return;
+				}
+			}
+			&html_search_form;
+		}
+	}else {
+		&html_blank;
+	}
+	&disconnect_db;
+}
+
+sub decode_returl {
+# --------------------------------------------------------
+	my ($in_url) = @_;
+	$in_url =~ s/~~/&/g;
+	$in_url =~ s/``/?/g;
+	$in_url =~ s/\^\^/=/g;
+	return $in_url;
+}
+
+##########################################################
+##			Query				##
+##########################################################
+sub parse_form {
+# --------------------------------------------------------
+# Forms Involved: 
+# Created on: 1/1/2007 9:43AM
+# Last Modified on:
+# Last Modified by:
+# Author: 
+# Description : Decoding Form Data. This is taken in %in hash as pairs.
+# Parameters : 
+
+	my (@pairs, %in);
+	my ($buffer, $pair, $name, $value);
+	if ($ENV{'REQUEST_METHOD'} eq 'GET') {
+		@pairs = split(/&/, $ENV{'QUERY_STRING'});
+	}elsif ($ENV{'REQUEST_METHOD'} eq 'POST') {
+		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
+ 		@pairs = split(/&/, $buffer);
+ 		$ENV{'QUERY_STRING'} =  $buffer;
+ 		$ENV{'REQUEST_METHOD'} = 'GET';
+	}else {
+		&cgierr ("This script must be called from the Web\nusing either GET or POST requests\n\n");
+	}
+	
+	PAIR: foreach my $pair (@pairs) {
+			($name, $value) = split(/=/, $pair);
+		
+			$name =~ tr/+/ /;
+			$name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+			$name = lc($name);
+		
+			$value =~ tr/+/ /;
+			$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		
+			$value =~ s/^\s+//g;
+			$value =~ s/\s+$//g;
+			
+			$value =~ s/\r//g;
+			#$value =~ s/<!--(.|\n)*-->//g;			# Remove SSI.
+			if ($value eq "---") { next PAIR; }		# This is used as a default choice for select lists and is ignored.
+			
+			(exists $in{$name}) ?
+				($in{$name} .= "|$value") :		# If we have multiple select, then we tack on
+				($in{$name}  = $value);			# using the ~~ as a seperator.
+	}
+	
+	return %in;
+}

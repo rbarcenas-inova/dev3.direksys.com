@@ -1,0 +1,18 @@
+<style>
+	embed {
+	    width: 100%;
+	    height: 100%;
+	    position: fixed;
+	}
+</style>
+<script>
+	var pdfId = '[va_ids]';
+	window.onload = undefined;
+	if(pdfId == ''){
+		alert('Este Batch No tiene Comprobantes de Traslado.')
+		window.close();
+	}
+</script>	
+<embed id="pdfEmbed" src="data:application/pdf;base64,[va_pdf]">
+
+

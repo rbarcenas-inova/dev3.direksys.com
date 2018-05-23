@@ -1,0 +1,83 @@
+[ip_header_blank]
+
+<form action="/cgi-bin/mod/wms/admin" method="POST" name="sitform">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="cmd" value="cod_wreceipt">
+		
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="10%" align="center"></td>
+	    [va_warehouses_list]
+	  </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Receipt COD Shipment</legend>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+			<td><span class="bigerrtext">[va_error]</span>
+				<span class="stdtxterr">[va_message]</span></td>
+		</tr>
+		<tr>
+	    	<td valign="top">COD Receipt<span class="help_on">(Invoice / UPC Number)</span><br>
+		    				
+		    				<textarea name="tracking" cols="50" style="width:100%" rows="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_tracking]</textarea>
+		    				
+		    				Date <input type="text" id="shpdate" name="shpdate" value="[in_shpdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'><br><br>
+		    				From Driver <select name="from_wh"><option>---</option>[fc_build_select_virtual_warehouses]</select><br><br>
+		    				Back to Warehouse <select name="id_warehouses"><option>---</option>[fc_build_select_regular_warehouses]</select><br><br>
+										    				
+		    </td>
+ 		 </tr>
+		<tr>
+	    	<td valign="top">Create Note (optional)<br>
+		    				<textarea name="note" cols="50" style="width:100%" rows="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_note]</textarea>
+		    </td>
+ 		 </tr>
+ 		 <tr>
+ 		 	<td align="center"><input type="submit" value="Receipt" class="button" name="btnSend" onClick="disableSubmits(this);"></td>
+ 		</tr>
+    </table>
+	</fieldset>
+	
+</form>	
+
+<script language="javascript">
+<!--
+
+	function disableSubmits(formObj) {
+	for(i=0;i<formObjs.length;i++) {
+		for(j=0;j<formObjs[i].elements.length;j++) {
+			if(formObjs[i].elements[j].type == null) { j++; } else {}
+			var fieldName = formObjs[i].elements[j].name.toLowerCase();
+			if((formObjs[i].elements[j].type == "submit") || ((formObjs[i].elements[j].type == "button") && (fieldName.indexOf("submit") != -1))) {
+				formObjs[i].elements[j].disabled = true;
+			}
+		}
+	}
+	return true;
+	}
+
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#shpdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+	
+	chg_select('id_warehouses','[in_id_warehouses]');
+	chg_select('from_wh','[in_from_wh]');
+	
+//-->
+</script>
+	

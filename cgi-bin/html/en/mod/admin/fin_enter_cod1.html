@@ -1,0 +1,178 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 3, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+			  <tr>
+			    <td width="28%" align="center"></td>
+			    <td width="18%" class="cell_[va_mocash]" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_enter_cod")'>MO/Cash</td>
+			    <td width="18%" class="cell_[va_cc]" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_enter_cod&cc=1")'>Credit Card</td>
+			  </tr>
+			</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				    <td class="titletext" align="left" colspan="2">Enter COD</td>
+				</tr>
+				<tr>
+				    <td class="stdtxterr" colspan="2">[va_message]</td>
+			  </tr>
+		   </table>
+
+			
+					<form action="/cgi-bin/mod/admin/admin" method="post" name="sitform">
+						<input type="hidden" name="cmd" value="fin_enter_cod">
+				 		<input type="hidden" name="action" value="1">
+				 		<input type="hidden" name="cc" value="1">
+						
+					<table border="0" cellspacing="0" cellpadding="4" width="350" class="formtable" bgcolor="#FFFFFF">
+						<tr>
+					<td align="center" class="menu_bar_title" colspan="2">Please Enter Payment Information</td>
+			  </tr>
+					<tr>
+			  	<td class="stdtxterr" colspan="2">[va_tbmessage]<td>
+					</tr>	
+					
+					<tr>
+			  	<td bgcolor="#EAEAEA" valign="top">
+					<table border='0' cellspacing='0' cellpadding='2' width='100%'>	
+						<tr>
+					  	<td>Order :  <span class="smallfieldterr">[er_id_orders]</span></td>
+					  	<td class="smalltext"><input type="text" name="id_orders" value="[in_id_orders]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							</td>
+						</tr>
+						<tr>
+					  	<td>Driver :  <span class="smallfieldterr">[er_id_warehouses]</span></td>
+					  	<td class="smalltext">
+					  		<select name="id_warehouses"><option>---</option>[fc_build_select_virtual_warehouses]</select>
+							</td>
+						</tr>
+					  <tr>
+					     <td class='smalltext' valign="top" nowrap>Tipo Tarjeta : <span class='smallfieldterr'>[er_pmtfield1]</span></td>
+					     <td class='smalltext'>
+					     		<input type='radio' class='radio' name='pmtfield1' value='Visa'> Visa
+					     		<input type='radio' class='radio' name='pmtfield1' value='Mastercard'> Master Card	
+					     		<input type='radio' class='radio' name='pmtfield1' value='American Express'> American Express
+					     		<input type='radio' class='radio' name='pmtfield1' value='Discover'> Discover	
+					     		<input type='radio' class='radio' name='pmtfield1' value='Money Order'> Cash
+					     		<img src="[va_imgurl]/creditcards.gif" border="0">
+					     </td>
+					  </tr>
+					  <tr>
+					     <td class='smalltext' nowrap>Nombre en Tarjeta : <span class='smallfieldterr'>[er_pmtfield2]</span></td>
+					     <td class='smalltext'><input type='text' name='pmtfield2' value='[in_pmtfield2]' size='35' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					  </tr>
+					  <tr>
+					     <td class='smalltext' nowrap>Numero Tarjeta # : <span class='smallfieldterr'>[er_pmtfield3]</span></td>
+					     <td class='smalltext'><input type='text' name='pmtfield3' value='[in_pmtfield3]' size='20' MAXLENGTH='16' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					  </tr>
+					  <tr>
+					     <td class='smalltext' nowrap>Expiración : <span class='smallfieldterr'>[er_pmtfield4]</span></td>
+					     <td class='smalltext'>
+					     	<select size="1" name="Month" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+									<option value=""></option>
+							    <option value="01">Enero</option>
+									<option value="02">Febrero</option>
+									<option value="03">Marzo</option>
+									<option value="04">Abril</option>
+									<option value="05">Mayo</option>
+									<option value="06">Junio</option>
+									<option value="07">Julio</option>
+									<option value="08">Agosto</option>
+									<option value="09">Septiembre</option>
+									<option value="10">Octubre</option>
+									<option value="11">Noviembre</option>
+									<option value="12">Diciembre</option>
+						        </select>
+					     	<select size="1" name="Year" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+									<option value=""></option>
+									[fc_build_exp_date_opts]
+						        </select></td>
+					  </tr>
+					  <tr>
+					     <td class='smalltext'>CVN : <span class='smallfieldterr'>[er_pmtfield5]</span></td>
+					     <td class='smalltext'><input type='text' name='pmtfield5' value='[in_pmtfield5]' size='5' MAXLENGTH='4' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					  </tr>
+					  <tr>
+					     <td class='smalltext'>Teléfono Casa : <span class='smallfieldterr'>[er_pmtfield6]</span></td>
+					     <td class='smalltext'><input type='text' name='pmtfield6' value='[in_pmtfield6]' size='12' MAXLENGTH='10' onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">10 numeros sin parentesis o guiones</span></td>
+					  </tr>
+					  <tr>
+					     <td class='smalltext'>Date: <span class='smallfieldterr'>[er_paymentdate]</span></td>
+					     <td class='smalltext'><input type="text" id="paymentdate" name="paymentdate" value="[in_paymentdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					  </tr>	
+					  <tr>
+					     <td class='smalltext'>Amount: <span class='smallfieldterr'>[er_amount]</span></td>
+					     <td class='smalltext'><input type='text' name='amount' value='[in_amount]' size='12' MAXLENGTH='10' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					  </tr>	
+					  <tr>
+					  	<td valign="top">Notes for Paylog : <span class="smallfieldterr">[er_notes]</span></td>
+					  	<td><textarea name="notes" cols="50" rows="4" style="width:100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_notes]</textarea></td>
+						</tr>
+					</table>
+			  	</td>
+			  	<td><img src="[va_imgurl]/cvn2.png" border="0"><br>
+			  		<img src="[va_imgurl]/cvn1.png" border="0"></td>
+				</tr>
+				<tr>
+			  <td colspan="2" align="center"><input class="button" type="submit" value="Enter payment"></td>
+				</tr>
+				</table>
+				</form>
+				<script language="JavaScript">
+		
+				chg_radio('pmtfield1','[in_pmtfield1]');
+				chg_select('Month','[in_month]');
+				chg_select('Year','[in_year]');
+				chg_select('id_warehouses','[in_id_warehouses]');
+	
+		        $(document).ready(function() {
+
+					/*AJAX Error handler*/
+					$(document).ajaxError(function(e, xhr, settings, exception) {
+					alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+					});
+
+					var dates = $( "#paymentdate" ).datepicker({
+						dateFormat: 'yy-mm-dd',
+						defaultDate: "-2m",
+						maxDate: new Date(),
+						changeMonth: true,
+						numberOfMonths: 3,
+					});
+
+		        });
+		        
+				//-->
+				</script>
+
+			
+			
+			<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+
+

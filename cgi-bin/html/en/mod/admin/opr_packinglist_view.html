@@ -1,0 +1,77 @@
+[ip_header]
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="[ur_table_width]" class="container_white">	<tr>
+		<td bgcolor=#ffffff width=230px valign=top align=center style="background-image:url([va_imgurl]menu/menubg.jpg); background-repeat:repeat-x; background-position: top left;">
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="20%" align="center"></td>
+	    <td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_orders")'>Add Order</td>
+	    <td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_orders&search=form")'>Search</td>
+	    <td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_orders&search=advform")'>Adv Search</td>
+	    <td width="20%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/admin/dbman?cmd=opr_orders&search=listall&sb=id_orders&so=DESC")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="left" colspan="2">View Order : [in_id_orders]</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Packing List Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Packing List ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons"> 
+							[in_id_orders] &nbsp;
+							<a href="/cgi-bin/mod/admin/dbman?cmd=opr_orders&modify=[in_id_orders]"><img src='[va_imgurl]/[ur_pref_style]/b_edit.gif' title='Edit' alt='Edit' border='0'></a>
+							<a href="/cgi-bin/mod/admin/dbman?cmd=opr_orders&view=[in_id_orders]"><img src='[va_imgurl]/[ur_pref_style]/b_view.gif' title='View' alt='View' border='0'></a>
+		  					<a href="javascript:prnwin('/cgi-bin/mod/admin/dbman?cmd=opr_packinglist&search=Print&toprint=[in_id_orders]&id_orders_products=[in_id_orders_products]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.gif' title='Print' alt='' border='0'></a>
+		  					<a href="javascript:prnwin('/cgi-bin/mod/admin/dbman?cmd=opr_ppackinglist&search=Print&toprint=[in_id_orders]&id_orders_products=[in_id_orders_products]')"><img src='[va_imgurl]/[ur_pref_style]/b_pinvoice.gif' title='Print' alt='' border='0'></a>
+						</div>
+					</div>
+
+
+
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+	[ip_forms:packinglist_view]
+ 
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

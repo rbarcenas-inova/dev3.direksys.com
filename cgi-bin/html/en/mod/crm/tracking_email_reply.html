@@ -1,0 +1,93 @@
+[ip_header]
+<table border="0" cellspacing="0" cellpadding="4" width="[ur_table_width]" class="container_white">
+	<tr>
+		<td width="140" align="center" valign="top">
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+			  <tr>
+			    <td width="28%" align="center"></td>
+			    <!--td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/crm/dbman?cmd=tracking_email&search=form")'>Search</td>
+			    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/crm/dbman?cmd=tracking_email&search=advform")'>Adv Search</td-->
+			    <td width="18%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/crm/dbman?cmd=tracking_email&search=listall&sb=id_tracking_email&so=DESC")'>View / Edit / Delete</td>
+			  </tr>
+			</table>
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+  <form action="/cgi-bin/mod/crm/admin" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="tracking_email_reply">
+	<input type="hidden" name="uid" value="[in_uid]">
+	<input type="hidden" name="id_tracking_email" value="[in_id_tracking_email]">
+	<input type="hidden" name="site" value="[in_site]">
+	<input type="hidden" name="action_reply" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Reply an Email</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Send To</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="20%">ID Order  : <span class="smallfieldterr">[er_id_orders]</span></td>
+		  <td class="smalltext"><input type="text" name="id_orders" value="[in_id_orders]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+  	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="20%">Subject : <span class="smallfieldterr">[er_subject]</span></td>
+		  <td class="smalltext"><input type="text" name="subject" value="[in_subject]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="20%">From email: <span class="smallfieldterr">[er_from]</span></td>
+		  <td class="smalltext"><input type="text" name="from" value='[in_from]' size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="20%">To email: <span class="smallfieldterr">[er_to]</span></td>
+		  <td class="smalltext"><input type="text" name="to" value='[in_to]' size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Template</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td colspan="2" width="90%" align="left">
+		  	&nbsp;
+		  	<span class="smallfieldterr">[er_to]</span>
+		  	<br>
+		  	<textarea name="body" style="width: 100%" cols="50" rows="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_body]</textarea>
+		  </td>
+		 </tr>
+  	</table>
+	</fieldset>
+	&nbsp;
+	<p align="center"><input type="submit" value=" Send " class="button"></p>
+  </form>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

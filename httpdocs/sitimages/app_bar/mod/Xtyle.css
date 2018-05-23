@@ -1,0 +1,667 @@
+/* Pages CSS */
+
+html{
+margin:0px;
+height:100%;
+}
+
+body{
+padding:0px;
+margin:0px;
+height:100%;
+background-image: url(/sitimages/app_bar/mod/fondoa.jpg); 
+background-repeat: repeat; 
+background-attachment:fixed;
+background-position: bottom right;
+background-color:#bebebe;
+font-family: arial;
+font-size:14px;
+line-height:23px;
+color:#333333;
+}
+
+a {text-decoration: none;}
+a:hover {text-decoration: none;}
+A:link			{ color:#7e7e7e;	font-size: 11px;font-weight: normal;	font-family: Verdana, Arial, Helvetica, sans-serif;	text-decoration: none;}
+A:visited	{ color:#7e7e7e;	font-size: 11px;	font-weight: normal;	font-family: Verdana, Arial, Helvetica, sans-serif;	text-decoration: none;}
+A:hover		{ color:#424242;	font-size: 11px;	font-weight: normal;	font-family: Verdana, Arial, Helvetica, sans-serif;	text-decoration: underline;}
+
+
+A.top:link			{ color:#eeeeee;	font-size: 12px;	font-weight: normal;	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none; display:block;}
+A.top:visited		{ color:#eeeeee;	font-size: 12px;	font-weight: normal;	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none; display:block;}
+A.top:hover			{ color:#ffffff;	font-size: 12px;	font-weight: normal;	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+	background-image:url(/sitimages/app_bar/mod/glow.png); 
+background-repeat:no-repeat; 
+background-position: center bottom; display:block;}
+
+A.view:link			{ color:#98ddff;	font-size: 12px;	font-weight: normal;	font-family:Arial, Helvetica, sans-serif;text-decoration: none;}
+A.view:visited			{ color:#98ddff;	font-size: 12px;	font-weight: normal;	font-family: Arial, Helvetica, sans-serif;text-decoration: none;}
+A.view:hover			{ color:#b5e5fc;	font-size: 12px;	font-weight: normal;	font-family: Arial, Helvetica, sans-serif;text-decoration: none;}
+
+
+A.lineOff:link			{ color:#666666;	font-size: 13px;	font-weight: normal;	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none; display:block; padding:3px; text-align:center;}
+A.lineOff:visited		{ color:#666666;	font-size: 13px;	font-weight: normal;	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none; display:block; }
+A.lineOff:hover			{ color:#444444;	font-size: 13px;	font-weight: normal;	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none; display:block; }
+
+
+font.mbbtxt
+{
+font-family:  Arial, Helvetica, sans-serif;
+background: ;
+color:#666666;
+font-size: 13px;
+font-weight: normal;
+text-decoration: none; display:block; padding:3px; text-align:center;
+}
+
+
+font.menu1
+{
+font-family: verdana, arial;
+background: ;
+color:#666666;
+font-size: 14px;
+font-weight: normal;
+text-decoration: none;
+cursor: default;
+line-height:18px;
+}
+
+
+font.menu2
+{
+font-family: verdana, arial;
+background: ;
+color:#666666;
+font-size: 14px;
+font-weight: normal;
+text-decoration: none;
+cursor: default;
+line-height:18px;
+}
+
+
+
+A.compania:link			{ color:#c12222;	font-size: 14px;	font-weight: normal;		font-family:verdana, Arial, Helvetica, sans-serif;text-decoration: none; }
+A.compania:visited		{ color:#c12222;	font-size: 14px;	font-weight: normal;		font-family:verdana, Arial, Helvetica, sans-serif;text-decoration: none; }
+A.compania:hover			{ color:#ee4646;	font-size: 14px;	font-weight: normal;		font-family:verdana, Arial, Helvetica, sans-serif;text-decoration: none; }
+	
+A.modulo:link			{ color:#7e7e7e;	font-size: 14px;	font-weight: normal;		font-family:verdana, Arial, Helvetica, sans-serif;text-decoration: none; }
+A.modulo:visited		{ color:#7e7e7e;	font-size: 14px;	font-weight: normal;		font-family:verdana, Arial, Helvetica, sans-serif;text-decoration: none; }
+A.modulo:hover			{ color:#acd340;	font-size: 14px;	font-weight: normal;		font-family:verdana, Arial, Helvetica, sans-serif;text-decoration: none; }
+	
+	
+font.compania
+{
+font-family: verdana;
+background: ;
+color:#c12222;
+font-size: 14px;
+font-weight: bold;
+text-decoration: none;
+cursor: hand;
+line-height:22px;
+}
+
+font.modulo1
+{
+font-family: verdana;
+background: ;
+color:#72aa00;
+font-size: 14px;
+font-weight: bold;
+text-decoration: none;
+cursor: hand;
+line-height:22px;
+}
+
+
+
+	
+A.blos:link			{ color:#ffffff;	font-size: 25px;	font-weight: normal;		font-family:Arial, Helvetica, sans-serif;text-decoration: none; display: block; 	padding:20px;}
+A.blos:visited	{ color:#ffffff;	font-size: 25px;	font-weight: normal;		font-family:Arial, Helvetica, sans-serif;text-decoration: none; display: block; 	padding:20px;}
+A.blos:hover		{ color:#eeeeee;	font-size: 25px;		font-family:Arial, Helvetica, sans-serif;text-decoration: none; display: block; 	padding:20px;}
+	
+	
+A.mtabon:link			{ color:#000000;	font-size: 12px;	
+	font-weight: normal;		
+	font-family:Arial, Helvetica, sans-serif;text-decoration: none; 
+	display: block; 	padding:10px;	padding-left:20px;	padding-right:20px;white-space:nowrap;
+	background-color: #ffffff;}
+A.mtabon:visited	{ color:#000000;	font-size: 12px;	
+	font-weight: normal;		
+	font-family:Arial, Helvetica, sans-serif;text-decoration: none; 
+	display: block; 	padding:10px;	padding-left:20px;	padding-right:20px;white-space:nowrap;
+	background-color: #ffffff;}
+A.mtabon:hover		{ color:#333333;	font-size: 12px;	
+	font-weight: normal;		
+	font-family:Arial, Helvetica, sans-serif;text-decoration: none; 
+	display: block; 	padding:10px;	padding-left:20px;	padding-right:20px;white-space:nowrap;
+	background-color: #ffffff;}
+	
+
+A.mtaboff:link			{ color:#ffffff;	font-size: 12px;	
+	font-weight: normal;		
+	font-family:Arial, Helvetica, sans-serif;text-decoration: none; 
+	display: block; 	padding:10px;	padding-left:20px;	padding-right:20px;white-space:nowrap;
+	background: url(/sitimages/app_bar/mod/tabdiv.png) no-repeat;
+	background-position: top left;
+	}
+A.mtaboff:visited	{ color:#ffffff;	font-size: 12px;	
+	font-weight: normal;		
+	font-family:Arial, Helvetica, sans-serif;text-decoration: none; 
+	display: block; 	padding:10px;	padding-left:20px;	padding-right:20px;white-space:nowrap;
+	background: url(/sitimages/app_bar/mod/tabdiv.png) no-repeat;
+	background-position: top left;
+	}
+A.mtaboff:hover		{ color:#eeeeee;	font-size: 12px;	
+	font-weight: normal;		
+	font-family:Arial, Helvetica, sans-serif;text-decoration: none; 
+	display: block; 	padding:10px;	padding-left:20px;	padding-right:20px;white-space:nowrap;
+	background: url(/sitimages/app_bar/mod/tabdiv.png) no-repeat;
+	background-position: top left;
+	}
+	
+
+
+
+
+
+font.username
+{
+font-family: verdana, arial;
+background: ;
+color:#fff;
+font-size: 20px;
+font-weight: bold;
+text-decoration: none;
+cursor: default;
+line-height:28px;
+text-shadow:1px 1px 2px #111111;
+}
+font.userinfo
+{
+font-family: verdana, arial;
+background: ;
+color:#fff;
+font-size: 12px;
+font-weight: normal;
+text-decoration: none;
+cursor: default;
+line-height:18px;
+text-shadow:1px 1px 2px #111111;
+}
+
+
+
+a.sel:hover img {
+filter:alpha(opacity=100);   
+-moz-opacity: 1.00;   
+opacity: 1.00;
+cursor:hand;
+}
+a.sel img {
+filter:alpha(opacity=70); 
+-moz-opacity: 0.70; 
+opacity: 0.70;
+cursor:hand;
+}
+
+a.ico:hover img {
+filter:alpha(opacity=100);   
+-moz-opacity: 1.00;   
+opacity: 1.00;
+cursor:hand;
+width:35px;
+}
+a.ico img {
+filter:alpha(opacity=70); 
+-moz-opacity: 0.70; 
+opacity: 0.70;
+cursor:hand;
+width:30px;
+}
+
+
+
+fieldset {
+background:#ffffff none repeat scroll 0 0;//Gives the form a nice blue background
+border:0px solid #B7DDF2;//with a blue border
+-moz-border-radius: 7px;
+border-radius: 7px;
+}
+legend {
+color: #111111;
+background: #f1f1f1;
+border: 1px solid #cccccc;
+    background: url(/sitimages/app_bar/mod/legend.png) bottom left;
+    background-repeat: repeat-x;
+padding: 7px;
+font-weight:bold;
+		font-size: 11px;
+font-family:verdana;
+-moz-border-radius: 5px;
+border-radius: 5px;
+	-moz-box-shadow: 0 0px 6px #cccccc;
+	-webkit-box-shadow: 0 0px 6px #cccccc;
+	box-shadow: 0 0px 6px #cccccc;
+}
+
+
+
+.inputs {
+    border: 1px solid #aaaaaa;
+    background-color: #ffffff;
+		font-family: verdana, arial;
+		color:#727272;
+		font-size: 12px;
+    height:22px;
+    background: url(/sitimages/app_bar/mod/inpdeg.jpg) top left;
+    background-repeat: repeat-x;
+line-height:17px;
+-moz-border-radius: 7px;
+border-radius: 7px;}
+
+
+
+
+	
+	
+.inputs:hover {
+    border: 1px solid #888888;
+    background-color: #ffffff;
+		font-family: verdana, arial;
+		color:#727272;
+		font-size: 12px;
+    height:22px;
+    background: url(/sitimages/app_bar/mod/inpdeg.jpg) top left;
+    background-repeat: repeat-x;
+line-height:17px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+	-moz-box-shadow: 0 0px 3px #dadada;
+	-webkit-box-shadow: 0 0px 3px #dadada;
+	box-shadow: 0 0px 3px #dadada;
+	}
+
+.intext {
+    border: 1px solid #aaaaaa;
+    background-color: #ffffff;
+		font-family: verdana, arial;
+		color:#727272;
+		font-size: 12px;
+    height:90px;
+    background-repeat: repeat-x;
+line-height:17px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+}
+
+.intext:hover {
+    border: 1px solid #777777;
+    background-color: #ffffff;
+		font-family: verdana, arial;
+		color:#727272;
+		font-size: 12px;
+    height:90px;
+    background-repeat: repeat-x;
+line-height:17px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+	-moz-box-shadow: 0 0px 3px #dadada;
+	-webkit-box-shadow: 0 0px 3px #dadada;
+	box-shadow: 0 0px 3px #dadada;
+} 
+.dropdown {
+    border: 1px solid #aaaaaa;
+    background-color: #ffffff;
+		font-family: verdana, arial;
+		color:#727272;
+		font-size: 12px;
+    height:26px;
+    background: url(/sitimages/app_bar/mod/inpdeg.jpg) top left;
+    background-repeat: repeat-x;
+line-height:17px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+}
+
+.dropdown:hover {
+    border: 1px solid #777777;
+    background-color: #ffffff;
+		font-family: verdana, arial;
+		color:#727272;
+		font-size: 12px;
+    height:26px;
+    background: url(/sitimages/app_bar/mod/inpdeg.jpg) top left;
+    background-repeat: repeat-x;
+line-height:17px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+	-moz-box-shadow: 0 0px 3px #dadada;
+	-webkit-box-shadow: 0 0px 3px #dadada;
+	box-shadow: 0 0px 3px #dadada;
+}
+
+.input250 {
+    border: 1px solid #aaaaaa;
+    background-color: #ffffff;
+		font-family: verdana, arial;
+		color:#727272;
+		font-size: 14px;
+    width:250px;height:35px;
+    background: url(/sitimages/app_bar/mod/inpdeg.jpg) top left;
+    background-repeat: repeat-x;
+line-height:17px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+}
+
+.input250:hover {
+    border: 1px solid #777777;
+    background-color: #ffffff;
+		font-family: verdana, arial;
+		color:#727272;
+		font-size: 14px;
+    width:250px; height:35px;
+    background: url(/sitimages/app_bar/mod/inpdeg.jpg) top left;
+    background-repeat: repeat-x;
+line-height:17px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+	-moz-box-shadow: 0 0px 3px #dadada;
+	-webkit-box-shadow: 0 0px 3px #dadada;
+	box-shadow: 0 0px 3px #dadada;
+}
+
+
+
+.button {
+	background-color: #90ba2b;
+	background-image: url(/sitimages/app_bar/mod/button.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	background-size:  auto 100%;
+	color:#ffffff;
+	cursor: pointer;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 13px;
+	height: 35px;
+	border: 1px solid #629202;
+	padding-left:10px;
+	padding-right:10px;
+	text-align:center;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	text-shadow:1px 1px 4px #456503;
+}
+
+.button:hover {
+	background-color: #90ba2b;
+	background-image: url(/sitimages/app_bar/mod/button2.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	border: 1px solid #629202;
+	text-shadow:1px 1px 7px #456503;
+}
+
+
+
+
+.buttonback {
+	background-color: #9e0606;
+	background-image: url(/sitimages/app_bar/mod/bred.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	background-size:  auto 100%;
+	color:#ffffff;
+	cursor: pointer;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 13px;
+	height: 32px;
+	border: 1px solid #7b0707;
+	padding-left:10px;
+	padding-right:10px;
+	text-align:center;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	text-shadow:1px 1px 5px #111111;
+	width:130px;
+}
+
+.buttonback:hover {
+	background-color: #7b0707;
+	background-image: url(/sitimages/app_bar/mod/b2red.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	border-left: 1px solid #610606;
+}
+
+
+font.sectit
+{
+font-family: century gothic, verdana, arial;
+background: ;
+color:#058dc7;
+font-size: 20px;
+font-weight: normal;
+text-decoration: none;
+cursor: default;
+line-height:28px;
+}
+
+font.secsub
+{
+font-family: century gothic, verdana, arial;
+background: ;
+color:#ab0303;
+font-size: 16px;
+font-weight: normal;
+text-decoration: none;
+cursor: default;
+line-height:25px;
+}
+
+font.quote
+{
+font-family: century gothic, verdana, arial;
+background: ;
+color:#666666;
+font-size: 20px;
+font-weight: normal;
+text-decoration: none;
+cursor: default;
+line-height:28px;
+}
+
+
+font.tit
+{
+font-family: century gothic, verdana, arial;
+background: ;
+color:#444444;
+font-size: 25px;
+font-weight: normal;
+text-decoration: none;
+cursor: default;
+line-height:30px;
+}
+font.tit2
+{
+font-family: century gothic, verdana, arial;
+background: ;
+color:#058dc7;
+font-size: 20px;
+font-weight: normal;
+text-decoration: none;
+cursor: default;
+line-height:20px;
+}
+
+
+
+font.txt
+{
+font-family: verdana, arial;
+background: ;
+color:#666666;
+font-size: 13px;
+font-weight: normal;
+text-decoration: none;
+cursor: default;
+line-height:23px;
+}
+
+
+
+
+
+
+
+
+
+
+
+font.res
+{
+font-family: verdana;
+background: ;
+color:#ee2e24;
+font-size: 14px;
+font-weight:  bold;
+text-decoration: none;
+cursor: default;
+line-height:22px;
+}
+
+
+font.none
+{
+font-family: verdana;
+background: ;
+color:#ffffff;
+font-size: 1x;
+font-weight: normal;
+text-decoration: none;
+cursor: default;
+line-height:0px;
+}
+
+font.cred
+{
+font-family: century gothic, verdana, arial;
+background: ;
+color:#838383;
+font-size: 12px;
+font-weight: normal;
+text-decoration: none;
+cursor: default;
+line-height:22px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+ul{	margin:0px;	padding:0;}
+
+
+
+/* accordion1 */
+.yui-skin-sam .yui-accordionview div.yui-accordion-content {	overflow: hidden;	margin: 0;	padding: 0;	}
+.yui-skin-sam .hidden {		visibility: hidden;	max-height: 100px;	position: absolute;	margin: 0;	padding: 0;	}
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel {	display: inline; margin: 0;	padding: 0;	 }
+
+
+
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle {
+	display: block;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight:normal;
+	color: #179c01;
+	text-decoration: none;
+	background: url(/sitimages/menu/color1.png) no-repeat;
+	background-position: 0 0px;
+	position: relative;
+	cursor: pointer;
+	width:180px;
+	height:27px;
+	text-align: left;
+	text-decoration: none;
+}
+
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle:hover {
+	background: url(/sitimages/menu/color1.png) no-repeat;
+	background-position: 0 -40px;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight:normal;
+	color: #178604;
+}
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle.active {
+	background: url(/sitimages/menu/color1.png) no-repeat;
+	background-position: 0 -80px;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight:normal;
+	color: #179c01;
+	text-decoration: none;
+}
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle.active:hover {
+	background: url(/sitimages/menu/color1.png) no-repeat;
+	background-position: 0 -120px;
+	text-decoration: none;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight:normal;
+	color: #178604;
+}
+
+
+img { border: none; } 
+
+A.acormenu:link			{ color:#666666;	font-size: 12px;line-height:16px;	font-weight: normal;	font-family: Verdana, Arial, Helvetica, sans-serif;	text-decoration: none;}
+A.acormenu:visited	{ color:#666666;	font-size: 12px;line-height:16px;	font-weight: normal;	font-family: Verdana, Arial, Helvetica, sans-serif;	text-decoration: none;}
+A.acormenu:hover		{ color:#7e7e7e;	font-size: 12px;line-height:16px;	font-weight: normal;	font-family: Verdana, Arial, Helvetica, sans-serif;	text-decoration: none;}
+
+font.sub
+{	font-family:  verdana;	background: ;	color:#454545;	font-size: 12px;	line-height:18px;	font-weight: bold;	text-decoration: none;	cursor: default;	width:235px; }
+
+font.subsub
+	{font-family:  verdana;	background: ;	color:#fefefe;	font-size: 12px;	line-height:18px;	font-weight: bold;	text-decoration: none;	padding-left:10px;}
+
+
+
+/*#productsaccordion
+/*{
+/*width:auto;
+/*background: url(/sitimages/app_bar/mod/tabh.png) repeat-x;
+/*color:#222222;
+/*border-left:1px #dddddd solid;
+/*border-right:1px #cccccc solid;
+/*border-top:1px #dddddd solid;
+/*border-bottom:1px #cccccc solid;
+/*padding-top:10px;
+/*padding-left:10px;
+/*font-weight:normal;
+/*	}
+
+
+
+

@@ -1,0 +1,38 @@
+	&nbsp;
+	<fieldset><legend>Zip Codes Excluded</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">		
+		<tr>
+		   <td class='smalltext' width="30%">Warehouse : <span class="smallfieldterr">[er_Warehouse]</span></td>
+		   <td>
+		   		<select name='ID_warehouses' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value=''>---</option>
+					[fc_build_select_warehouses]
+				</select>
+			</td>
+		</tr>
+		<tr>
+		   <td class='smalltext' width="30%">Zip Code : <span class="smallfieldterr">[er_ZipCode]</span></td>
+		   <td class='smalltext'>
+			   	<input type="text" name="ZipCode" size="10" onfocus="focusOn( this )" onblur="focusOff( this )" value="[in_ZipCode]" style="background-color: rgb(255, 255, 255); cursor: pointer;">
+			</td>
+		</tr>
+	</table>
+</fieldset>	
+<fieldset><legend>Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		    <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		    <td class="smalltext">
+		    	<input type="radio" name="status" value="Active" class="radio">Active
+	            <input type="radio" name="status" value="Inactive" class="radio">Inactive
+	       	</td>
+		 </tr>
+	</table>
+</fieldset>
+
+<script language="javascript">
+<!--
+	chg_select('ID_warehouses','[in_ID_warehouses]');
+	chg_radio('status','[in_status]');
+//-->
+</script>

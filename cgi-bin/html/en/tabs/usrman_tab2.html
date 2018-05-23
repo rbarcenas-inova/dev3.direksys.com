@@ -1,0 +1,55 @@
+&nbsp;
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+			<td class="tbltextttl"><span class='fieldterr'>[va_tabmessages]</span>&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="tbltextttl">
+				Groups : <span data-numberresults="[va_matches]">[va_matches]</span>
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_view]&tab=[va_activetab]&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a name='tabs' id='tabs'>&nbsp;</a>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>						
+						<td class="menu_bar_title">ID Group</td>
+						<td class="menu_bar_title">Grop</td>
+					</tr>
+					[va_searchresults]
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" class="smallfieldterr">&nbsp;[va_tabmessages]</td>
+		</tr>
+	</table>
+</form>
+<script>
+$(function() {
+	$('[data-type="ajax"]').on('click', function(evt){
+		evt.preventDefault();
+		let that = $(this);
+		$.ajax({
+			url: that.attr('href'),
+			type: 'GET',
+			dataType: 'json',
+		})
+		.done(function(data) {
+			if(data.code == '200'){
+				alert(data.msg);
+				let curr = $('[data-numberresults]').attr('data-numberresults');
+				curr -= 1;
+				$('[data-numberresults]').attr('data-numberresults', curr).html(curr);
+				that.parent().parent().remove();
+			}else{
+				alert(data.msg);
+			}
+		});
+
+	});
+});
+</script>

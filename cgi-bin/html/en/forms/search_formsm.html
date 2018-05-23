@@ -1,0 +1,24 @@
+&nbsp;
+<fieldset><legend>Opciones de B&uacute;squeda</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td align="center"><input name="ST" value="or" checked="checked" type="radio" class="radio"> con <b>alguna</b> de las palabras (OR)
+				<input name="ST" value="and" type="radio" class="radio"> con <b>todas</b> las palabras (AND)
+				<input name="sx" value="1" type="checkbox" class="checkbox" checked> B&uacute;squeda Exacta
+			</td>
+		</tr>
+		<tr>
+			<td align="center"><input name="keyword" size="40" maxlength="255" type="text"  onFocus='focusOn( this )' onBlur='focusOff( this )'> &nbsp; B&uacute;squeda de Palabra Clave (en todos los campos)</td>
+		</tr>
+		<tr>
+			<td align="center">Ordenar Por :        
+				<select name="sb"  onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option>---</option>
+					[fc_build_select_sortby]
+				</select>     	
+				&nbsp; Ordenar : <input name="so" value="asc" checked="checked" type="radio" class="radio">Ascendente o
+				<input name="so" value="desc" type="radio" class="radio">Descendente<br>
+			</td>
+		</tr>
+	</table>
+</fieldset>

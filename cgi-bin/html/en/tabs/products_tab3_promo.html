@@ -1,0 +1,223 @@
+	&nbsp;
+	<a href='/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_products]&tab=[va_activetab]&tabs=3#initab' id="rel"><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+	<br>
+	<span class="stdtxterr">[va_tabmessage]</span>
+	<button class="button pull-right" id="convertToProduct">Convert to Simple Product</button>
+	<button class="button pull-right fancy" href="/cgi-bin/common/apps/ajaxbuild?ajaxbuild=editproduct&id_skus_products=[in_id_products]&type=product" >Add Product</button>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable" id="promoTable">
+ 		<tr>
+ 			<td class="menu_bar_title" colspan="4" align="center" style="font-size:16px;font-weight:bold;">Item is a Promo</td>
+ 		</tr>
+		<tr>
+	   		 <td class="menu_bar_title">ID Product</td>
+	   		 <td class="menu_bar_title">Model</td>			   	
+	   		 <td class="menu_bar_title">Name</td>
+	   		 <td class="menu_bar_title">%</td>
+	 	</tr>
+	 	[va_searchresults]
+		<tr>
+			<td class="smalltext" colspan="8"></td>
+		</tr>
+	</table>
+	<button class="button pull-right" id="saveProducts">Save Product</button>
+	[va_script]
+<style>
+	.dataTables_paginate.paging_simple_numbers {
+    	width: 100%;
+	}
+	#accounts{
+		width: 700px !important
+	}
+	.pull-right{
+		float: right !important;
+	}
+	.pull-left{
+		float: left !important;
+	}
+	.pull-right.button {
+	    margin: 10px;
+	}
+	tr th:nth-child(6) {
+	    width: 30%;
+	}
+	.els tbody tr {
+	    text-align: right;
+	}
+	#promoTable div input {
+	    float: right;
+	}
+	#promoTable div {
+	    background: #fff none repeat scroll 0 0;
+	    border-top: 1px solid #bbb;
+	    margin-left: 0;
+	    padding: 10px;
+	}
+	#promoTable div img {
+	    float: right;
+	    margin-left: 15px;
+	}
+	#promoTable{
+		border-collapse:collapse;
+	}
+	#promoTable td{
+		margin: 0;
+		padding: 0;
+	}
+</style>
+<script>
+
+	
+	String.prototype.splix = function(n, str){
+		cadena = this.toString();
+		limit = cadena.length;
+		trozos = Math.floor(limit / n);
+		res = [];
+		for(var i = 0; i < trozos; i++){
+			ini = i * n;
+			res.push(cadena.substr(ini, n));
+		}
+
+		return res.join(str);
+	}
+
+
+
+	var saveProducts = function(){
+
+		rowsSku = $('div[data-id_skus_products]').get();
+		requestObj = {};
+		aux = 0;
+		for (var i = 0; i < rowsSku.length; i++) {
+			el = rowsSku[i];
+			$('div[data-id_skus_products]').get(0).dataset.id_part
+			requestObj[el.dataset.id_part] = {};
+			qty = $(el).find('[name="porcentaje"]').val();
+			if( qty == '' ) {
+				alert('Todos los porcentajes deben ser llenados');
+				return;
+			}
+			aux += parseInt(qty);
+			requestObj[el.dataset.id_part].percent = qty;
+		};
+		console.log(aux);
+		// if(aux < 100 || aux > 100){
+		// 	alert('La suma de los Porcentajes debe ser 100');
+		// 	return;
+		// }
+		console.log(requestObj);
+		$.ajax({
+			url: '/cgi-bin/common/apps/ajaxbuild',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				ajaxbuild : 'editproduct',
+				saveProducts : 1,
+				id_products: '[in_id_products]',
+				edit : 1,
+				skus_parts: JSON.stringify(requestObj)
+			},
+
+		})
+		.done(function(data) {
+			if(data.code == 200){
+				alert(data.msg);
+			}
+			console.log(data);
+			// buildListSkus(data);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+
+
+	}
+
+	var buildProducts = function(id_skus_products, id_parts, partName, callback){
+		console.log(id_skus_products, id_parts, partName);
+		div = $('<div></div>');
+		div.className = 'rowSkusProducts';
+		div.attr('data-id_skus_products', id_skus_products);
+		div.attr('data-id_part', id_parts);
+		contenedor = $('#promoTable tbody');
+		$('#no-result').remove();
+		formated_id_product = '100'+id_parts;
+		formated_id_product = formated_id_product.splix(3,'-');
+		div.append(`
+			( <a href="/cgi-bin/mod/admin/dbman?cmd=mer_parts&view=${id_parts}" target="_blank">${formated_id_product}</a> ) ${partName} <img class="borrarSku" src="/sitimages/aqua/b_drop.png">
+			<input name="porcentaje" type="number"/>
+		`);
+		div.find('img').on('click', function(){
+			if(confirm('¿Esta seguro de eliminar el Part seleccionado?')){
+				$(this).parent().hide('slow', function(){$(this).remove()});
+			}
+		});
+		tr = $('<tr></tr>');
+		td = $('<td colspan="4"></td>');
+		td.append(div);
+		tr.append(td);
+		contenedor.append(tr);
+		
+		if(typeof callback == 'function'){
+			callback();
+		}
+	}
+	var loadFancy = function(){
+		$('.fancy').off();
+		$('.fancy').on('click', function(e){
+			e.preventDefault();
+			$.fancybox({
+		        width: 600,
+		        height: 600,
+		        autoSize: false,
+		        href: $(this).attr('href'),
+		        type: 'ajax'
+		    });
+		})
+	}
+
+	$(function() {
+		loadFancy();
+		$('#saveProducts').on('click', function(){
+			saveProducts();
+		});
+
+
+		$('#convertToProduct').on('click', function(){
+			if(!confirm('Esta seguro de convetir producto a Promo?'))
+				return;
+			$.ajax({
+				url: '/cgi-bin/common/apps/ajaxbuild',
+				type: 'POST',
+				dataType: 'html',
+				data: {
+					ajaxbuild : 'editproduct',
+					id_products: '[in_id_products]',
+					edit: 1,
+					convert_to_product: 1,
+				},
+
+			})
+			.done(function(data) {
+				console.log($('#rel').attr('href'))
+				window.location = $('#rel').attr('href');
+				// $('.container').hide();
+				// $('.container').parent().html(data);
+				
+				
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+		});
+
+		$('#convertToProduct').on('click', function(){
+
+		})
+	});
+</script>

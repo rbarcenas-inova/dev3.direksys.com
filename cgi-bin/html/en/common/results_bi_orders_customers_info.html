@@ -1,0 +1,59 @@
+[ip_header]
+
+<table border="0" cellspacing="0" cellpadding="4" width="[ur_table_width]" class="container_white">
+	<tr>
+		<td width="140" align="center" valign="top">
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: [fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="14%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_orders_customers_info")'> Orders/Cust. Info</td>
+		<td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_orders_filter")'>Orders Filters</td>
+		<td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_noorder")'>Calls without Order</td>
+		<td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_salesbysku")'>Sales by SKU</td>
+		<td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_prodfam")'>Sales by ProdFam</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	&nbsp;
+	[va_report_tbl]
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td class="tbltextttl">
+	    	<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/admin?[in_qs]&print=1')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+	    	[va_extabtns]
+	    	Records : [va_matches]</td>
+	    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+  </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title" align="center">ID Order</td>
+		    <td class="menu_bar_title" align="center">Date</td>
+		    <td class="menu_bar_title" align="center">Status</td>
+		    <td class="menu_bar_title" align="center">Customer</td>
+		    <td class="menu_bar_title" align="center">State (City)</td>
+		    <td class="menu_bar_title" align="center">Phone Number(s)</td>
+		</tr>
+		[va_searchresults]
+	</table>
+	&nbsp;
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

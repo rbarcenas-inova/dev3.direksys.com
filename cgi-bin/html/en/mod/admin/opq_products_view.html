@@ -1,0 +1,136 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="40%" align="center"></td>
+		<td width="30%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=opq_products_view&view=[in_id_products]")'>View</td>
+		<td width="30%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=opq_products")'>List</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="left" colspan="2">View Product : [in_id_products_code]</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>		 
+	</table>
+	&nbsp;
+	[ip_forms:products_view2]
+	&nbsp;
+	<a name='tabs' id='tabs'>&nbsp;</a>
+	&nbsp;
+	[tb_products]
+	&nbsp;
+
+	<!-- AJAX Elements -->
+	
+	<!-- Tab 3 - Setup -->
+	<script language="JavaScript">
+		function add_item(num){
+			popup_show('popup_additem', 'item_drag', 'popup_exit2', 'element-right', -1, -1,'tabs');
+			self.document.sitform.choicenum.value=num;
+		}
+	
+		function add_ritem(){
+			popup_show('popup_ritem', 'item_dragr', 'popup_exitr', 'element-right', -1, -1,'tabs');
+		}
+		
+		function add_rnitem(){
+			popup_show('popup_rnitem', 'item_dragrn', 'popup_exitrn', 'element-right', -1, -1,'tabs');
+		}
+	
+		[va_autorun_js]
+	</script>
+
+	<!-- Related Item  -->
+		<div id="popup_ritem" style="visibility: hidden; display: none; background-color: #ffffff;">
+			<div class="menu_bar_title" id="item_dragr">
+				<img id="popup_exitr" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+				&nbsp;&nbsp;&nbsp;Add Related Item ([in_id_products])
+			</div>
+			<div class="formtable">
+				<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=products_addrelated&id_products=[in_id_products]" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+					<H2>Unable to do the script</H2>
+					<H3>Please update your Browser</H3>
+				</IFRAME>	
+			</div>
+		</div>
+
+
+	<!-- Related Non Inventory Item  -->
+		<div id="popup_rnitem" style="visibility: hidden; display: none; background-color: #ffffff;">
+			<div class="menu_bar_title" id="item_dragrn">
+				<img id="popup_exitrn" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+				&nbsp;&nbsp;&nbsp;Add Related Non Inventory Item
+			</div>
+			<div class="formtable">
+				<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=products_addrelatednoninventory&id_products=[in_id_products]" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+					<H2>Unable to do the script</H2>
+					<H3>Please update your Browser</H3>
+				</IFRAME>	
+			</div>
+		</div>
+
+
+	<!-- Item Choice  -->
+		<div id="popup_additem" style="visibility: hidden; display: none; background-color: #ffffff;">
+			<div class="menu_bar_title" id="item_drag">
+				<img id="popup_exit2" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+				&nbsp;&nbsp;&nbsp;Add Choice Info
+			</div>
+			<div class="formtable">
+				<form method="post" action="[va_script_url]" name="sitform">
+					<input type="hidden" name="view" value="[in_id_products]">
+					<input type="hidden" name="add_choices" value="1">
+					<input type="hidden" name="tab" value="3">
+					<input type="hidden" name="choicenum" value="0">
+					<input type="hidden" name="cmd" value="[in_cmd]">
+					<table border="0" cellspacing="0" cellpadding="4" width="350" class="formtable" bgcolor="#FFFFFF">
+						<tr>
+  						<td>Name: <span class="smallfieldterr">[er_choicename]</span></td>
+  						<td><input name="choicename" type="text" size="30" value="[in_choicename]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+						</tr>
+						<tr>
+  						<td>SKU: <span class="smallfieldterr">[er_vendorsku]</span></td>
+  						<td><input name="choicesku" type="text" size="30" value="[in_choicesku]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+						</tr>
+						<tr>
+  						<td colspan="2" align="center"><input class="button" type="submit" value="Add Choice" name="add_item"></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+ 	<!-- Tab 3 - Setup -->
+
+	<!-- AJAX Elements -->
+	
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

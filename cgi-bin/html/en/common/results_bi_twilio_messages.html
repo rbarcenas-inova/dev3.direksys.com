@@ -1,0 +1,66 @@
+[ip_header]
+
+<table border="0" cellspacing="0" cellpadding="4" width="[ur_table_width]" class="container_white">
+	<tr>
+		<td width="140" align="center" valign="top">
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: [fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		<td valign="top">
+		<!-- Start Main Area  -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+			  <tr>
+			    <td width="30%" align="center"></td>
+				<td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_shipinfo")'>Shipping Info</td>
+			    <td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_frec")'>Customer Frecuency</td>
+			    <td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_sex")'>Customer by Sex</td>
+			    <td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_sales_behavior")'>Sales Behavior</td>
+			    <td width="14%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_twilio_messages")'>Twilio Messages</td>
+			  </tr>
+			</table>	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+			&nbsp;
+			[va_report_tbl]
+			&nbsp;
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td class="tbltextttl">
+						<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]&print=1&[in_qs]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+						<a href="/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]&export=1&[in_qs]"><img src='[va_imgurl]/[ur_pref_style]/b_xls.gif' title='Export' alt='' border='0'></a>
+						Records : [va_matches]</td>
+					<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+				</tr>
+			</table>
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+					<td class="menu_bar_title">Date Sent</td>
+					<td class="menu_bar_title" align="center">Cellphone</td>
+					<td class="menu_bar_title" align="center">Order ID</td>
+					<td class="menu_bar_title" align="center">Customer</td>
+					<td class="menu_bar_title" align="center">Order Date</td>
+					<td class="menu_bar_title" align="center">Order Status</td>
+					<td class="menu_bar_title" align="center">Order Net</td>
+				</tr>
+				[va_searchresults]
+			</table>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td class="tbltextttl">
+						Records : [va_matches]</td>
+					<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+				</tr>
+			</table>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

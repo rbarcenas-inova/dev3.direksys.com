@@ -1,0 +1,195 @@
+
+<div id="div_supplies" style="[va_style_supplies]">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr><td><a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&tab=6&view=[in_view]&[va_rndnumber]#initab")'><img src="/sitimages//default/b_reload.gif" title="Refresh" alt="" border="0"></a>&nbsp;<span class="stdtxterr">[va_messages]</span></td></tr>
+		<tr>
+			<td>
+				<table width="100%" border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+						<td class="menu_bar_title" width="20%" align="left">ID</td>
+						<td class="menu_bar_title" width="40%" align="center">Name</td>
+						<td class="menu_bar_title" width="20%" align="center">Qty</td>
+						<td class="menu_bar_title" width="20%" align="right">Received</td>
+					</tr>
+					[va_rpolist]
+				</table>
+			</td>
+		</tr>
+
+	</table>
+	&nbsp;	
+	<div style="background-color:#FFF;[va_style_form_supplies]">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+			<tbody>
+				<tr>
+					<td class="tbltextttl">
+						<!--<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=mer_po&tab=6&view=[in_view]")'><img src="/sitimages//default/b_reload.gif" title="Refresh" alt="" border="0"></a>&nbsp;<span class="stdtxterr">[va_messages]</span>-->
+						<form action="/cgi-bin/mod/[ur_application]/dbman/" method="post" name="sitform" onsubmit="return confirm_apply();">
+							<input type="hidden" name="id_purchaseorders" value="[in_id_purchaseorders]" />
+							<input type="hidden" name="view" value="[in_id_purchaseorders]" />
+							<input type="hidden" name="action" value="1" />
+							<input type="hidden" name="tab" value="[in_tab]" />
+							<input type="hidden" name="cmd" value="mer_po" />
+							<input type="hidden" name="wreceipt_noninventory" value="1" />
+							<span class='fieldterr'>[va_tabmessages]</span>
+							<fieldset>
+								<legend>[va_fset_receipts]</legend>
+								<input type="hidden" name="id_customers" value="100001">
+								<table border="0" cellspacing="0" cellpadding="4" width="100%" class="container_white">
+									<tbody><tr>
+										<td class="menu_bar_title" width="20%" align="left">ID</td>
+										<td class="menu_bar_title" width="40%" align="center">Name</td>
+										<td class="menu_bar_title" width="20%" align="center">Max. Qty</td>
+										<td class="menu_bar_title" width="20%" align="right">Qty</td>
+
+									</tr>
+									
+									[va_list_payments]
+									[va_polistwr]	
+								</tbody></table>
+							</fieldset><br>
+
+							<fieldset style="[va_displaydate]">
+								<legend>Date of Exchange </legend>
+								<input type="hidden" name="id_customers" value="100001">
+								<table border="0" cellspacing="0" cellpadding="4" width="100%" class="container_white">
+									<tbody>
+										<tr>
+											<td>Date: <input type="text" id="date" name="dateexchange" /></td>
+											
+										</tr>
+									</tbody></table>
+							</fieldset>
+							<div>&nbsp;</div>
+							<center><input type="submit" value="Add" class="button"></center>
+							
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<div id="div_services" style="[va_style_services]">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr><td><a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&tab=6&view=[in_view]&[va_rndnumber]#initab")'><img src="/sitimages//default/b_reload.gif" title="Refresh" alt="" border="0"></a>&nbsp;<span class="stdtxterr">[va_messages]</span></td></tr>
+		<tr>
+			<td>
+				<table width="100%" border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+					<tr>
+						<td class="menu_bar_title" width="20%" align="left">ID</td>
+						<td class="menu_bar_title" width="40%" align="center">Name</td>
+						<td class="menu_bar_title" width="20%" align="center">Qty</td>
+						<td class="menu_bar_title" width="20%" align="right">Received</td>
+					</tr>
+					[va_rpolist]
+				</table>
+			</td>
+		</tr>
+
+	</table>
+	&nbsp;	
+	<div style="background-color:#FFF;[va_style_form_services]">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+			<tbody>
+				<tr>
+					<td class="tbltextttl">
+						<!--<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=mer_po&tab=6&view=[in_view]")'><img src="/sitimages//default/b_reload.gif" title="Refresh" alt="" border="0"></a>&nbsp;<span class="stdtxterr">[va_messages]</span>-->
+						<form action="/cgi-bin/mod/[ur_application]/dbman/" method="post" name="sitform" onsubmit="return confirm_apply();">
+							<input type="hidden" name="id_purchaseorders" value="[in_id_purchaseorders]" />
+							<input type="hidden" name="view" value="[in_id_purchaseorders]" />
+							<input type="hidden" name="action" value="1" />
+							<input type="hidden" name="tab" value="[in_tab]" />
+							<input type="hidden" name="cmd" value="mer_po" />
+							<input type="hidden" name="wreceipt_noninventory" value="1" />
+							<span class='fieldterr'>[va_tabmessages]</span>
+							<fieldset>
+								<legend>Pending Receipts</legend>
+								<input type="hidden" name="id_customers" value="100001">
+								<table border="0" cellspacing="0" cellpadding="4" width="100%" class="container_white">
+									<tbody><tr>
+										<td class="menu_bar_title" width="20%" align="left">ID</td>
+										<td class="menu_bar_title" width="40%" align="center">Name</td>
+										<td class="menu_bar_title" width="20%" align="center">Max. Qty</td>
+										<td class="menu_bar_title" width="20%" align="right">Qty</td>
+
+									</tr>
+									
+									[va_list_payments]
+									[va_polistwr]	
+								</tbody></table>
+							</fieldset><br>
+
+							<fieldset style="[va_displaydate]">
+								<legend>Date of Exchange </legend>
+								<input type="hidden" name="id_customers" value="100001">
+								<table border="0" cellspacing="0" cellpadding="4" width="100%" class="container_white">
+									<tbody>
+										<tr>
+											<td>Date: <input type="text" id="date" name="dateexchange" /></td>
+											
+										</tr>
+									</tbody></table>
+							</fieldset>
+							<div>&nbsp;</div>
+							<center><input type="submit" value="Add" class="button"></center>
+							
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+
+<div id="div_skus" style="[va_style_skus]">
+	<span class='fieldterr'>[va_tabmessages]</span>
+	<table width="100%" cellspacing="0" cellpadding="0" border="0" align="center" class="gborder">
+		<tbody>
+			
+			<tr>
+				<td>
+					
+					<table width="100%" border="0" cellspacing="0" cellpadding="4" class="formtable" align="center">
+						<tbody>
+							     
+							<tr>
+									<td class="tbltextttl">
+										Items : [va_matches]
+										<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_customers]&tab=10&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+										<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=10&tabcmd=products&toprint=[in_id_customers]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										</td>
+									<td class="small_text" align="right" valign="top" colspan="4">
+										[va_editorder]
+										<br />Pages :[va_pageslist]
+									</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="menu_bar_title">ID W. Receipt</td>
+								<td class="menu_bar_title">ID</td>
+								<td class="menu_bar_title">Qty</td>
+								<td class="menu_bar_title">Date</td>
+								<td class="menu_bar_title">Status</td>
+							</tr>
+							[va_searchresults]
+							<tr>
+								<td colspan="5">&nbsp;</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+</div>

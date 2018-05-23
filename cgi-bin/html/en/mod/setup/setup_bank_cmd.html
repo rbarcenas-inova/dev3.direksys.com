@@ -1,0 +1,63 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">General Setup : Banks Available By Command</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+  <form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="setup_bank_cmd">
+	<input type="hidden" name="action" value="1">
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class='small_txt'>Add New Command</td>
+			<td class='small_txt'><input type="text" name="field_new_cmd" value="[in_field_new_cmd]" style="width:30%" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		<tr>
+		<tr>
+			<td class='small_txt'>&nbsp;</td>
+			<td class='small_txt'>
+				<select name="field_new_banks"  id="field_new_banks" size = '15' multiple required>
+					<option>---</option>
+					[fc_build_select_custom_bank]
+				</select>
+
+			</td>
+		<tr>
+     </table>
+	<p align="center"><input type="submit" value="Add" class="button"></p>
+</form>
+&nbsp;
+<br><br><br>
+&nbsp;
+<table align="center" width="100%" border="0" cellpadding="4">
+	[va_banks_cmd]
+</table>
+&nbsp;
+<br><br><br>
+&nbsp;
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+[ip_footer]

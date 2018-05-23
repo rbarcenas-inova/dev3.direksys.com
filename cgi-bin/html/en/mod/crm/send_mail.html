@@ -1,0 +1,178 @@
+[ip_header]
+
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+	var dates = $( "#date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		minDate: new Date(2009,1-1,1),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		},
+		onClose: function(selectedDate){
+			show_template(selectedDate);
+		}
+
+	});
+
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+		
+		<div style="background-color:#ffffff;margin:15px;">
+	
+			<form action="/cgi-bin/mod/crm/admin" method="post" name="sitform">
+				<input type="hidden" name="cmd" value="send_mail_template">
+				<input type="hidden" name="action" value="1">
+				<input type="hidden" id="company" name="company" value="[va_company]">
+
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					<tr>
+						<td class="titletext" align="center">CRM: Enviar E-Mail</td>
+					</tr>
+					<tr>
+						<td class="stdtxterr">[va_message]</td>
+					</tr>
+					<tr>
+						<td class="smalltext">[va_result]</td>
+					</tr>
+				</table>
+				&nbsp;
+				<fieldset>
+					<legend>Datos</legend>
+					<table border="0" cellspacing="0" cellpadding="2" width="100%">
+						<tr>
+							<td width="25%">E-Mails : <span class="smallfieldterr">[er_to_mails]</span></td>
+							<td class="smalltext">
+								<textarea id="to_mails" name="to_mails" onFocus='focusOn( this )' onBlur='focusOff( this )' style="width: 575px; height: 150px;" class="input">[in_to_mails]</textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>Subject: <span class="smallfieldterr">[er_subject]</span></td>
+							<td><input type="text" id="subject" name="subject" value="[in_subject]" style="width: 575px;" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input"></td>
+						</tr>
+						<tr>
+							<td>Template:
+								<span class="smallfieldterr">[er_template]</span>
+							</td>
+							<td>[va_select_template]</td>
+						</tr>
+						<tr>
+							<td>Date</td>
+							<td><input type="text" id="date" name="date" value="[in_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input"></td>
+						</tr>
+						<tr>
+							<td>Field 1</td> 
+							<td><input type="text" id="textA" name="textA" value="[in_textA]" style="width: 575px;" class="input"></td>							
+						</tr>
+						<tr>
+							<td>Field 2</td> 
+							<td><input type="text" id="textB" name="textB" value="[in_textB]" style="width: 575px;" class="input"></td>							
+						</tr>
+						<tr>
+							<td>Field 3</td> 
+							<td><input type="text" id="textC" name="textC" value="[in_textC]" style="width: 575px;" class="input"></td>							
+						</tr>
+						<tr>
+							<td width="25%" valign="top">Previsualizaci&oacute;n : <span class="smallfieldterr">[er_to_message]</span></td>
+							<td class="smalltext">
+								<div id="mail_template"></div>
+							</td>
+						</tr>
+					</table>
+				</fieldset>
+
+				<p align="center"><input type="submit" value="Enviar" class="button"></p>
+			</form>
+
+			<script language="javascript">
+			<!--
+				chg_select('from_number','[in_from_number]');
+			//-->
+
+				function show_template(selected_date)
+				{
+					if( selected_date != null && selected_date !== undefined ){
+						$('#date').val(selected_date);
+					}
+
+
+					company = $('#company').val();
+					template = $('#template').val();
+					fieldDate = $('#date').val();
+					fieldA = $('#textA').val();
+					fieldB = $('#textB').val();
+					fieldC = $('#textC').val();
+
+
+
+					if(template != '')
+					{
+						$.ajax({url: '/cgi-bin/common/apps/ajaxbuild',
+								type: 'POST',
+								data:{ajaxbuild:'api_get_template_mail', template:template, date:fieldDate, textA:fieldA, textB:fieldB, textC:fieldC, company:company}
+							}).done(function( msg ) {
+								$( "#mail_template" ).html( msg );
+							});
+
+					}
+				}
+
+				$(function(){
+
+					$('#template').change(function(){
+						show_template( );
+					});
+
+					$('#date, #textA, #textB, #textC').change(function(){
+						show_template( );
+					});
+
+					$('#date').focusOff(function(){
+						show_template( );
+					});
+
+				});
+
+
+			</script>
+		
+<!-- End Main Area  -->
+  	</td>
+  </tr>
+</table>
+
+[ip_footer]

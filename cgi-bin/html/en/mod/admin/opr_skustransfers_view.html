@@ -1,0 +1,107 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="23%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&add=1")'>Add SKU Transfer</td>
+	    <td width="23%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=form")'>Search</td>
+	    <td width="23%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=listall&sb=id_skustransfers&so=DESC")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="left" colspan="2">Viewing SKU Transfer: [in_id_skustransfers]</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<!--
+	<fieldset><legend>Transfer Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">ID : </td>
+			<td class="titletext">[in_id_skustransfers] &nbsp;
+				<a href="[va_script_url]?cmd=opr_skustransfers&modify=[in_id_skustransfers]"><img src='[va_imgurl]/[ur_pref_style]/b_edit.gif' title='View' alt='' border='0'></a>
+		  	<a href="javascript:prnwin('[va_script_url]?cmd=opr_skustransfers&search=Print&toprint=[in_id_skustransfers]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.gif' title='Print' alt='' border='0'></a>
+			</td>
+		</tr>
+	</table>
+	</fieldset>		
+	&nbsp;
+	-->
+	[ip_forms:skustransfers_view]
+	&nbsp;
+	<a name='tabs' id='tabs'>&nbsp;</a>
+	&nbsp;
+	[tb_skustransfers]
+	<p>[va_tabmessage]</p>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script language="JavaScript">
+	function add_item(){
+		popup_show('popup_additem', 'item_drag', 'popup_exit2', 'element-right', -1, -1,'tabs');
+	}
+</script>
+<div id="popup_additem" style="visibility: hidden; display: none; background-color: #ffffff;">
+<div class="menu_bar_title" id="item_drag">
+<img id="popup_exit2" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+&nbsp;&nbsp;&nbsp;Add Item Info
+</div>
+<div class="formtable">
+<form method="post" action="[va_script_url]" name="sitform2">
+	<input type="hidden" name="id_skustransfers" value="[in_id_skustransfers]">
+	<input type="hidden" name="view" value="[in_id_skustransfers]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="add_item" value="1">
+	<input type="hidden" name="tab" value="1">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+<table border="0" cellspacing="0" cellpadding="4" width="400" class="formtable" bgcolor="#FFFFFF">
+<tr>
+  <td width="20%">From SKU: <span class="smallfieldterr">[er_id_fromsku]</span></td>
+  <td><input name="id_fromsku" type="text" size="12"  maxlength="11" value="[in_id_fromsku]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td>To SKU: <span class="smallfieldterr">[er_id_tosku]</span></td>
+  <td><input name="id_tosku" type="text" size="12"  maxlength="11" value="[in_id_tosku]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+</tr>
+<tr>
+  <td colspan="2" align="center"><input class="button" type="submit" value="Add Item" name="add_item"></td>
+</tr>
+</table>
+</form></div></div>
+
+<script language="JavaScript">
+	[va_autorun_js]
+	chg_select('ID_warehouses_location','[in_id_warehouses_location]');
+</script>
+
+[ip_footer]

@@ -1,0 +1,57 @@
+<script>
+	$(document).ready(function() {
+
+
+	});
+</script>
+
+<style>
+</style>
+
+<h3 align="center">LLAMADA ENTRANTE!</h3>
+
+[va_customer_info]
+<div [va_customer_list_show]>
+	<table width="100%" border="0" cellpadding="4">
+		<tr style="background-color:silver;">
+			<th>NOMBRE</th>
+			<th>APELLIDOS</th>
+			<th>TEL&Eacute;FONO</th>
+			<th>FECHA DE &Uacute;LTIMA COMPRA</th>
+		</tr>
+		[va_customer_list]
+	</table>
+</div>
+
+<p align="center">
+	[va_redirect_button]
+</p>
+<div [va_orders_list_show]>
+	<p>&Uacute;ltimas compras:</p>
+	<table width="100%" border="0" cellpadding="4">
+		<tr style="background-color:silver;">
+			<th>ID orden</th>
+			<th>Fecha</th>
+			<th>Tipo de Pago</th>
+			<th>Municipio</th>
+			<th>Estado</th>
+			<th>Estatus</th>
+		</tr>
+		[va_orders_list]
+	</table>
+</div>
+
+<div [va_dids_list_show]>
+	<p>Informaci&oacute;n de la pauta:</p>
+	<table width="100%" border="0" cellpadding="4">
+		<tr style="background-color:silver;">
+			<th>NUM. 800</th>
+			<th>DID</th>
+			<th>PRODUCTO</th>
+			<th>DMA</th>
+			<th>AGENCIA</th>
+			<th>CANAL</th>
+		</tr>
+		[va_dids_list]
+	</table>
+</div>

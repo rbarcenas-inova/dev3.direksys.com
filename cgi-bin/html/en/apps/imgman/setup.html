@@ -1,0 +1,87 @@
+[ip_header]
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="720" class="container_white">
+	<tr>
+		<td width="140" align="center" valign="top">
+			[ip_menu_main]
+			&nbsp;
+			[ip_imgman:menu]
+			&nbsp;
+			[fc_menu_custom]
+			&nbsp;
+		</td>
+		<td valign="top">
+<!-- Start Main Area  -->
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="50%" align="center"></td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/imgman/admin?cmd=home")'>Images</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/imgman/admin?cmd=upload")'>Upload</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/imgman/admin?cmd=gallery")'>Gallery</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/imgman/dbman?cmd=categories")'>Add Category</td>
+	  </tr>
+	</table>
+
+<form action="/cgi-bin/imgman/admin" method="post" name="sitform" onsubmit="return disableSubmits();">
+	     <input type="hidden" name="cmd" value="setup">
+	     <input type="hidden" name="action" value="1">
+     
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center">General Images manager Setup</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Configuration: </legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td>Images per Page:</td>
+		    <td><input type="text" size="5" name="img_maxhits" value="[in_img_maxhits]" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>
+		<tr>
+		    <td colspan="2"><span id="help" class="help_on">Recommended value 10, maximum value 50.</span></td>
+		 </tr>
+		<tr>
+		    <td>Thumbnail size:</td>
+		    <td><input type="text" size="5" name="thumbnail_w" value="[in_thumbnail_w]" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+                        x
+                        <input type="text" size="5" name="thumbnail_h" value="[in_thumbnail_h]" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">(width x height)</span></td>
+		 </tr>
+		<tr>
+		    <td colspan="2"><span id="help" class="help_on">Left one (width or height) to maitain the aspect ratio.</span></td>
+		 </tr>
+		<tr>
+		    <td>Type of Images Allowed:</td>
+		    <td><input type="checkbox" name="img_types" value="jpg"> JPG
+                        <input type="checkbox" name="img_types" value="gif"> GIF
+                        <input type="checkbox" name="img_types" value="png"> PNG
+                    </td>
+		 </tr>
+		<tr>
+		    <td colspan="2"><span id="help" class="help_on">Left one (width or height) to maitain the aspect ratio.</span></td>
+		 </tr>
+
+        </table>
+	</fieldset>
+	<p align="center"><input type="submit" value="Update Setup" class="button"></p>
+</form>
+
+<script language="javascript">
+<!--
+
+chg_chkbox('img_types','[in_img_types]');
+
+//-->
+</script>
+	<p>&nbsp;</p>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

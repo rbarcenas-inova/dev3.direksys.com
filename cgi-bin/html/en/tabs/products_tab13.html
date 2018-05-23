@@ -1,0 +1,56 @@
+
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+
+	<input type="hidden" name="id_products" value="[in_id_products]">
+	<input type="hidden" name="view" value="[in_id_products]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="13">
+
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="add_new" value="1">
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+	<tr>
+	<td class="tbltextttl">
+	<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_products]&tab=13&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+	<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=13&tabcmd=products&toprint=[in_id_products]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+	Records : [va_matches]</td>
+	<td align="right" class="tbltext">
+
+		Add New in:
+		<select name="new_belongsto">
+			<option value="---">---</option>
+			[fc_build_select_prior_belongsto]
+		</select>
+		&nbsp;
+		<input type="submit" value="Go" class="button">
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		Pages: [va_pageslist]
+	</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+			<tr>
+				<td class="menu_bar_title" align="center">Actions</td>
+				<td class="menu_bar_title">Website</td>
+				<td class="menu_bar_title">Price</td>
+				<td class='menu_bar_title'>SPrice1</td>
+				<td class='menu_bar_title'>FPPrice</td>
+				<td class='menu_bar_title'>Flexipago</td>
+				<td class='menu_bar_title'>Shipping</td>
+				<td class='menu_bar_title'>Valid From</td>
+				<td class='menu_bar_title'>Valid To</td>
+			</tr>
+				[va_searchresults]
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+</table>
+
+</form>

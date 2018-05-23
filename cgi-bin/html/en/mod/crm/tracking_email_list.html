@@ -1,0 +1,82 @@
+[ip_header]
+
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+			  <tr>
+			    <td width="28%" align="center"></td>
+			    <!--td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/crm/dbman?cmd=tracking_email&search=form")'>Search</td>
+			    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/crm/dbman?cmd=tracking_email&search=advform")'>Adv Search</td-->
+			    <td width="18%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/crm/dbman?cmd=tracking_email&search=listall&sb=id_tracking_email&so=DESC")'>View / Edit / Delete</td>
+			  </tr>
+			</table>
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	
+<form action="/cgi-bin/mod/crm/dbman" method="post" name="sitform" onsubmit="return warningmsg()">
+	<input type="hidden" name="cmd" value="tracking_email">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Emails List</td>
+		 </tr>
+		<tr>
+		   <td colspan="2"><span class="help_on">These are the emails in the database, To view the email information click on "V" To Edit it, click on "E" or "D" if you want to delete it</span></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Emails : [va_matches]
+					
+		    	</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title" width="20%">View / Edit / Delete</td>
+		    <td class="menu_bar_title">Uid</td>
+		    <td class="menu_bar_title">Subject</td>
+		    <td class="menu_bar_title">EmailDate</td>
+		    <td class="menu_bar_title">From</td>
+		    <td class="menu_bar_title">ID_orders</td>
+		    <td class="menu_bar_title">Site</td>
+		    <td class="menu_bar_title">Status</td>
+		    
+		 </tr>
+		[va_searchresults]
+  </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">Emails : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>  
+</form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

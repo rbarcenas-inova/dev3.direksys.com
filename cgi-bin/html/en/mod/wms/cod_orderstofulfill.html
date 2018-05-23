@@ -1,0 +1,98 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center style="background-image:url([va_imgurl]menu/menubg.jpg); background-repeat:repeat-x; background-position: top left;">
+		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0>
+				<tr>
+					<td align=left>
+						<font face=verdana>
+						<ul id="accordion">
+							[ip_menu]
+						</ul>
+						<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+						<script type="text/javascript">
+							var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+						</script>
+					</td>
+				</tr>
+			</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="40%" align="center"></td>
+	    <td width="15%" class="cell_[va_sitems]" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=cod_orderstofulfill&sing=1")'>Sgl Items</td>
+	    <td width="15%" class="cell_[va_mitems]" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=cod_orderstofulfill&mult=1")'>MM Items</td>
+	    <td width="15%" class="cell_[va_xitems]" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=cod_orderstofulfill&xd=1")'>Exp Delivery</td>
+	    <td width="15%" class="cell_[va_oitems]" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=cod_orderstofulfill&ostock=1")'>Out of Stock</td>
+	  </tr>
+	</table>
+	
+	
+	<div style="background-color:#ffffff;margin:15px;">
+	
+	
+
+	<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform" target="upwin" onsubmit="upwin()">
+	<input type="hidden" name="cmd" value="cod_orderstofulfill">
+	<input type="hidden" name="action" value="full">
+	<input type="hidden" name="sing" value="[in_sing]">
+	<input type="hidden" name="mult" value="[in_mult]">
+	<input type="hidden" name="ds" value="[in_ds]">
+	<input type="hidden" name="xd" value="[in_xd]">
+	<input type="hidden" name="ostock" value="[in_ostock]">
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Items Ready to Process (COD Orders)</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message][va_multi]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">
+		    	<!--<a href="javascript:prnwin('/cgi-bin/mod/wms/admin.cgi?cmd=[in_cmd]&print=1&dropship=[in_dropship]&mult=[in_mult]&xd=[in_xd]&ostock=[in_ostock]&partialshipped=[in_partialshipped]&partialshipment=[in_partialshipment]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a-->
+		    	Items : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td class="menu_bar_title" align="center"><input type="checkbox" id="inp_sel_all" stype=""></td>
+		    <td class="menu_bar_title" nowrap>Qty</td>
+		    <td class="menu_bar_title">ID</td>
+		    <td class="menu_bar_title">Name/Model</td>
+		    <td class="menu_bar_title">In Batches</td>
+		    <td class="menu_bar_title">Inventory</td>
+		    <td class="menu_bar_title">&nbsp;</td>
+		 </tr>
+		[va_searchresults]
+     </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="tbltextttl">Items : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+     <p align="center">
+     	<input type="submit" value="Assign Selected" class="button">
+     	<span [va_sty_bo]>
+	 		<input type="checkbox" name="tobackorder" value="1" class="checkbox">To Back Order
+	 	</span>
+	 </p>
+     <br>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+<script type="text/javascript">
+	$('#inp_sel_all').click(function () {
+		if($(this).attr('checked'))
+			$('input.checkbox').attr('checked','checked');
+		else
+			$('input.checkbox').removeAttr('checked');
+    });
+</script>
+[ip_footer]

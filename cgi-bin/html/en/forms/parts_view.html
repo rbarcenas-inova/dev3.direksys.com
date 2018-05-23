@@ -1,0 +1,145 @@
+	<fieldset><legend>SKU ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">SKU ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[va_id_parts] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]
+							[fc_func_list_manager]
+							<a href="/cgi-bin/common/apps/schid?cmd=parts_addvendor&id_parts=[in_id_parts]" title="Add vendor" class="fancy_modal_iframe">
+								<img src='[va_imgurl]/[ur_pref_style]/b_addvendor.gif' title=' Add Vendor ' alt=' Add Vendor ' border='0' width='24' height='24'>
+							</a>
+							<a href="/cgi-bin/common/apps/full_kardex.pl?id_products=[in_view]"  class='fancy_modal_iframe'>
+								<img src='[va_imgurl]/[ur_pref_style]/kardex.png' title='Kardex' alt='Kardex' border='0' width='24' height='24'>
+							</a>
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	<a name='tabs' id='tabs'>&nbsp;</a>
+	<fieldset><legend>SKU Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Model : </td>
+		    <td class="smalltext">[in_model]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Item Title : </td>
+		    <td class="smalltext">[in_name]</td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="30%">Category : </td>
+		    <td class="smalltext"><a href="[va_script_url]?cmd=mer_categories&view=[in_id_categories]">([in_id_categories])</a> [va_catname]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Vendor SKU :</td>
+		    <td class="smalltext">[in_vendorsku]</td>
+		</tr>
+		<tr>
+		    <td width="30%">UPC :</td>
+		    <td class="smalltext">[in_upc]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Lot Manager : </td>
+		    <td class="smalltext">[in_lots]</td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="30%">Asset Account : </td>
+		    <td class="smalltext">[in_id_accounts] [va_account_name]</td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="30%">Classification : </td>
+		    <td class="smalltext">[in_classification]</td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="30%">Reference Cost ($): </td>
+		    <td class="smalltext">[in_refcost]</td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="30%">Reference Cost Percentage(%): </td>
+		    <td class="smalltext">[in_refcostpct]</td>
+		</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Accounting</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  	<td valign="top" width="33%" class="smalltext">Purchase Account : 
+		  		<br>([in_purchaseid_accounts]) [va_paccount_name]
+		  		<br>Purchase Tax : [in_purchase_tax] %
+		  	</td>
+		  	<td valign="top" width="33%" class="smalltext">Sale Account : 
+		  		<br>([in_saleid_accounts]) [va_saccount_name]
+		  		<br>Sale Tax : [in_sale_tax] %
+		  		<br><br><span class="smallfieldterr">(0) To select the sale account based on Customer Type</span>
+		  	</td>
+		  	<td valign="top" width="33%" class="smalltext">Asset Account : ([in_assetid_accounts]) [va_aaccount_name]</span></td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="33%" class="smalltext">&nbsp;</td>
+		  	<td valign="top" width="33%" class="smalltext"></td>
+		  	<td valign="top" width="33%" class="smalltext">&nbsp;</td>
+		</tr>
+  	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Stock Management</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			  <td width="30%" class="titletext">Actual Inventory : </td>
+			  <td class="titletext" onmouseover='m_over(this)' onmouseout='m_out(this)' >
+			  	[in_inventory] <span class="help_on">Units</span>
+		  		<a href="#ajax_inv" class="scroll" onClick="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'ajax_inv');loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=inventory&id_products=[in_id_parts]&cols=ID,Choices,Vendor SKU,Warehouse,Qty');">
+		  			<img id='ajax_inv' src='[va_imgurl]/[ur_pref_style]/b_view.png' title='More Info' alt='More Info' border='0'></a>
+
+			  	</td>
+			</tr>		 
+		</table>
+	</fieldset>	
+ 	&nbsp;
+	<fieldset><legend>Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			    <td width="30%">Status  : </td>
+			    <td class="smalltext">[in_status]</td>
+			</tr>
+  	</table>
+	</fieldset>
+	&nbsp;
+
+	<fieldset><legend>SAT info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td width="30%" >ID Product / Service : </td>
+				<td class="smalltext">[in_id_product_service]</td>
+			</tr>
+		</table>
+	</fieldset>
+
+	<fieldset><legend>Extra Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+				<td width="50%" align="center" class="menu_bar" onmouseover="m_over(this)" onmouseout="m_out(this)">
+					<a href="/cgi-bin/common/apps/ajaxbuild?ajaxbuild=mer_parts&id_parts=[in_id_parts]&edit=1&opt=1" title="Techs Specs" class="fancy_modal_iframe">Edit Techs Specs</a>
+				</td>
+			    <td width="50%" align="center" class="menu_bar">
+			    	<a href="/cgi-bin/common/apps/ajaxbuild?ajaxbuild=mer_parts_tecs_specs&id_parts=[in_id_parts]" title="Techs Specs" class="fancy_modal_iframe">View Techs Specs</a>
+			    </td>
+			</tr>
+		</table>
+	 </fieldset>
+
+
+	

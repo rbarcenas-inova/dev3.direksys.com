@@ -1,0 +1,73 @@
+&nbsp;
+<fieldset><legend>Accounting Periods</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tbody><tr>
+			<td width="30%">Short Name :  <span class="smallfieldterr">[er_short_name]</span></td>
+			<td><input type="text" name="short_name" value="[in_short_name]" size="25" onfocus="focusOn( this )" onblur="focusOff( this )"></td>
+		</tr>
+		<tr>
+			<td width="30%">Description :  <span class="smallfieldterr">[er_description]</span></td>
+			<td>
+				<!-- <input type="text" name="description" value="[in_description]" size="80" onfocus="focusOn( this )" onblur="focusOff( this )"> -->
+				<textarea name="description" rows="4" cols="80">[in_description]</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">From Date :  <span class="smallfieldterr">[er_from_date]</span></td>
+			<td>
+				<input id="from_date" size="20" name="from_date" value="[in_from_date]" onfocus="focusOn( this )" onblur="focusOff( this )">
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">To Date :  <span class="smallfieldterr">[er_to_date]</span></td>
+			<td>
+				<input id="to_date" size="20" name="to_date" value="[in_to_date]" onfocus="focusOn( this )" onblur="focusOff( this )">
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Es periodo de cierre:  <span class="smallfieldterr">[er_is_closing_periods]</span></td>
+			<td>[br_is_closing_periods@sl_accounting_periods]</td>
+		<tr>
+		<tr>
+			<td width="30%">Code :  <span class="smallfieldterr"></span></td>
+			<td class="smalltext">
+				[fc_build_select_accounting_periods_code]
+			</td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="30%">Status : </td>
+		  	<td class="smalltext">[fc_periods_status]</td>
+		</tr>
+	</tbody>
+	</table>
+</fieldset>
+
+<script language="javascript">
+<!--
+
+	$(document).ready(function() {
+
+		var dates = $( "#from_date, #to_date" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			minDate: new Date(2009,1-1,1),
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 3,
+			onSelect: function( selectedDate ) {
+				var option = this.id == "from_date" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+
+	});
+	chg_select('num','[in_num]')
+	chg_select('year','[in_year]')
+	chg_radio('is_closing_periods','[in_is_closing_periods]');
+
+</script>

@@ -1,0 +1,65 @@
+
+	&nbsp;
+	<fieldset><legend>Claim Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Claim ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_claims] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]
+						</div>
+					</div>
+				
+							
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Claim Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		
+		<tr>
+	    <td width="30%">ID Orders  : </td>
+	    <td class="smalltext"><a href="/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&view=[in_orders_products.id_orders]">[in_orders_products.id_orders]</a></td>
+		</tr>
+		<tr>
+	    <td width="30%">ID Products  : </td>
+	    <td class="smalltext">[va_products_desc]</td>
+		</tr>		
+		<tr>
+	    <td width="30%">Claim To : </td>
+	    <td class="smalltext">[in_claimto]</td>
+		</tr>
+		<tr>
+		  	<td width="30%">Product Category : </td>
+		    <td class="smalltext">[in_prodcategory]</td>
+		</tr>	
+		<!--
+		<tr>
+		  	<td width="30%">Notes : </td>
+		    <td class="smalltext">[in_Notes]</td>
+		 </tr>   
+		 -->
+		
+		
+	</table>
+	</fieldset>
+	&nbsp;
+   <fieldset><legend>Claim Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Status  :</td>
+		    <td class="smalltext">[in_status]</td>
+		 </tr>
+  	</table>
+	</fieldset>
+	&nbsp;

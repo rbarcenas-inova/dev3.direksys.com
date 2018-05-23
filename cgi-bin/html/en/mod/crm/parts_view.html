@@ -1,0 +1,112 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Viewing Parts : [in_id_parts]</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+<fieldset><legend>Parts ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Part ID : </td>
+			<td class="titletext">
+
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons"> 
+							[in_id_parts] &nbsp;
+				<a href="javascript:prnwin('/cgi-bin/mod/crm/dbman?cmd=parts&search=Print&toprint=[in_id_parts]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.gif' title='Print' alt='' border='0'></a>
+
+
+						</div>
+					</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Part Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Model : </td>
+		    <td class="smalltext">[in_model]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Item Title : </td>
+		    <td class="smalltext">[in_name]</td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="30%">Category : </td>
+		    <td class="smalltext">([in_id_categories]) [va_catname]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Vendor SKU :</td>
+		    <td class="smalltext">[in_vendorsku]</td>
+		</tr>
+		<tr>
+		    <td width="30%">UPC :</td>
+		    <td class="smalltext">[in_upc]</td>
+		</tr>	
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Stock Management</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			  <td width="30%" class="titletext">Actual Inventory : </td>
+			  <td class="titletext" onmouseover='m_over(this)' onmouseout='m_out(this)' >
+			  	[in_inventory] <span class="help_on">Units</span>
+		  		<a href="#ajax_inv" onClick="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'ajax_inv');loadDoc('/cgi-bin/common/apps/ajaxbuild?ajaxbuild=inventory&id_products=[in_id_parts]&cols=ID,Choices,Vendor SKU,Warehouse,Qty');">
+		  			<img id='ajax_inv' src='[va_imgurl]/[ur_pref_style]/b_view.png' title='More Info' alt='More Info' border='0'></a>
+
+			  	</td>
+			</tr>		 
+		</table>
+	</fieldset>	
+ 	&nbsp;
+	<fieldset><legend>Part Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			    <td width="30%">Status  : </td>
+			    <td class="smalltext">[in_status]</td>
+			</tr>
+  	</table>
+	</fieldset>
+	&nbsp;
+  &nbsp;
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

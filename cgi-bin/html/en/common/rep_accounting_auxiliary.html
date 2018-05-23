@@ -1,0 +1,120 @@
+[ip_header]
+
+<script src="/chosen/chosen.jquery.min.js"></script>
+<link rel="stylesheet" href="/chosen/chosen.min.css">
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:[va_expanditem], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="70%" align="center"></td>
+	    <td width="30%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]")'>Auxiliary Reports</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+  <form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="export" value="1">
+	<input type="hidden" name="posted" value="Posted" />
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">Reports : Auxiliary Report</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Filters</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+			    <td width="20%">Custom filename : <span class="smallfieldterr">[er_filename]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="filename" name="filename" value="[in_filename]" size="60" class="input" placeholder="filename">&nbsp;.csv
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">Date : <span class="smallfieldterr">[er_effdate_from]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="effdate_from" name="effdate_from" value="[in_effdate_from]" size="10" class="input" placeholder="From Date">&nbsp;
+			    	<input type="text" id="effdate_to" name="effdate_to" value="[in_effdate_to]" size="10" class="input" placeholder="To Date">
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">ID Journal Entry : <span class="smallfieldterr">[er_id_journalentries]</span></td>
+			    <td class="smalltext">
+			    	<input type="text" id="id_journalentries" name="id_journalentries" value="[in_id_journalentries]" size="15" class="input" placeholder="ID Journal Entry">
+		    	</td>
+			</tr>
+			<tr>
+			    <td width="20%">Accounts : <span class="smallfieldterr">[er_id_accounting]</span></td>
+			    <td class="smalltext">			    	
+			    	<select  type="text" id="id_accounts" name="id_accounts" value="[in_id_accounts]" data-placeholder="Select some Accounts" style="width:350px;" multiple class="chosen-select">
+			    		[va_id_accouns_options]
+			    	</select>
+		    	</td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	
+	<p align="center"><input type="submit" value="Export" class="button" loading="0"></p>
+  </form>
+
+<script>
+<!--
+$(document).ready(function() {
+	
+	$('#id_accounts').chosen({width: "100%"});
+	$(".chosen-select").chosen({no_results_text: "Oops, nothing found!"}); 
+
+
+	var dates = $( "#effdate_from, #effdate_to" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		changeYear: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "effdate_from" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+});
+-->
+</script>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

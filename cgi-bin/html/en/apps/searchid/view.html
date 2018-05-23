@@ -1,0 +1,62 @@
+[ip_header_small]
+<body bgcolor="#EEEEEE" topmargin="0">
+<table cellpadding=0 cellspacing=10 width=100% height=100% bgcolor=#ffffff><td valign=top align=left>
+		
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function setid(id,dname) {
+	dname = '[in_returnid]';
+	for (var f=0; f<window.top.document.forms.length; f++){
+		for (var i=0; i<window.top.document.forms[f].length; i++){
+    		if (window.top.document.forms[f].elements[i].name == dname){
+        		window.top.document.forms[f].elements[i].value = id;
+        		window.top.document.forms[f].elements[i].focus();
+    		}
+		}
+	}
+	// Close Fancybox
+	parent.$.fancybox.close();
+}
+
+function hide_popup() {
+	var divs = window.top.document.getElementsByTagName('div');
+	var numdivs = divs.length;
+	for (var a = 0; a < numdivs; ++a) {
+		if (divs[a].id.substr(0,6) == 'popup_'){
+			divs[a].style.display='none';
+		}
+	}
+}
+//-->
+</script>
+
+
+<form action="/cgi-bin/common/apps/schid" name="sitform">
+     <input type="hidden" name="search" value="1">
+     <input type="hidden" name="db" value="[in_db]">
+     <input type="hidden" name="app" value="[in_app]">
+	<input type="hidden" name="fname" value="[in_fname]">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="returnid" value="[in_returnid]">
+	<input type="hidden" name="returnurl" value="[in_returnurl]">
+	<input type="hidden" name="returnfield" value="[in_returnfield]">
+
+<center>
+<table border="0" width="95%" cellspacing="0" cellpadding="2" class="container_white">
+  <tr>
+    <td bgcolor="#3E76DD" colspan="3"><div class="tbltextttlwte">View Record</div></td>
+  </tr>
+  [va_viewrecord]
+</table>
+
+<p><input type='submit' name="listall" Value='Select' class="button" onClick="[va_jsselect]">
+   <input type='submit' name="listall" Value='List All' class="button">
+   <input type='button' Value='Close' OnClick="hide_popup();" class="button"></p>
+</form>
+</center>
+
+		</td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,74 @@
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+
+
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform"  onsubmit="return checkchoices();">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="2">
+	<input type="hidden" name="action" value="add_to_basket">
+	<input type="hidden" name="skupro" value="1">
+	<input type="hidden" name="id_products" value="[in_id_products]">
+
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable" >
+	<tr>
+		<td align="center" colspan="2" class="menu_bar_title">Descripci&oacute;n de Producto</td>
+    </tr>
+	<tr>
+		<td nowrap>ID de Item : </td>
+		<td>[va_id_products]</td>
+    </tr>
+</table>
+<fieldset><legend>Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	  	<td width="30%">Name : <span class="smallfieldterr">[er_name]</span></td>
+	   	<td class="smalltext">[in_name]</td>
+		</tr>
+		<tr>
+	    <td valign="top" width="30%">Description : <span class="smallfieldterr">[er_description]</span></td>
+	    <td class="smalltext">[in_description]</td>
+		</tr>	
+		<tr>
+	  	<td width="30%">Price : <span class="smallfieldterr">[er_sprice]</span></td>
+	   	<td class="smalltext">[in_sprice]</td>
+		</tr>	
+		<tr>
+	  	<td width="30%">Sales Price : <span class="smallfieldterr">[er_salesprice]</span></td>
+		  <td class="smalltext">[in_salesprice]</td>	   		
+		</tr>		
+		<tr>
+			<td width="30%">Type : <span class="smallfieldterr">[er_tax]</span></td>
+			<td class="smalltext">[in_tax]</td>
+		</tr>	
+	</table>
+	</fieldset>
+	&nbsp;	
+ 	<fieldset><legend>Service Type</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+				<td width="30%">Type : <span class="smallfieldterr">[er_servicetype]</span></td>
+			  <td class="smalltext">[in_servicetype]</td>
+			</tr>
+		<tr>
+	  	<td width="30%">Other : <span class="smallfieldterr">[er_other]</span></td>
+	   	<td class="smalltext">[in_other]</td>
+		</tr>			
+  	</table>
+	</fieldset>
+	&nbsp;	
+ 	<fieldset><legend>Service Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+				<td width="30%">Status : <span class="smallfieldterr">[er_status]</span></td>
+			  <td class="smalltext">[in_status]</td>
+			</tr>
+  	</table>
+	</fieldset>
+</form>
+
+
+

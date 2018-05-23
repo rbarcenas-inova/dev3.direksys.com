@@ -1,0 +1,140 @@
+[ip_header]
+<style>
+    .icon{
+		display: inline-block;
+	}
+	.icon_files{
+		height: 40px;
+		vertical-align: middle;
+	}
+    .icon_delete{
+        float:right;
+    }
+	.each_file{
+		width:35%;
+		padding: 5px;
+		margin: 5px;
+		border:solid 1px #EFE;
+		display: inline-block;
+		cursor: pointer;
+	}
+	.icon_processing{
+		height: 48px;
+		vertical-align: middle;
+	}
+	.names{
+    	display: inline-block;
+        width: 80%;
+	}
+	.Report{
+		font-weight: bolder;
+	}
+	.File{
+	    font-size: small;
+	    color: #666;
+	}
+	.parameters{
+		background-color: #fafafa;
+		border: 1px solid #ddd;
+		display: none;
+		padding-left: 15px;
+		padding-right: 15px;
+		margin-top: 10px;
+	}
+	.keyparam{
+		text-align: right;
+		font-size: small;
+		color:#666;
+	}
+
+</style>
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0>
+				<tr>
+					<td align=left>
+						<font face=verdana>
+							<ul id="accordion">
+								[ip_menu]
+							</ul>
+						</font>
+						<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+						<script type="text/javascript">
+							var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 5, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+						</script>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+
+		<!-- Start Main Area  -->
+
+			<div style="background-color:#ffffff;margin:15px;">
+		
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td class="titletext" align="center" colspan="2">Extracted Reports in Background</td>
+				</tr>
+			</table>
+			&nbsp;
+			<fieldset>
+				<legend>Processing</legend>
+				<table border="0" cellspacing="0" cellpadding="4" width="100%">
+					<tr>
+						<td valign="top">[va_pending]</td>
+
+					</tr>
+  				</table>
+			</fieldset>
+			<fieldset>
+				<legend>Ready</legend>
+				<table border="0" cellspacing="0" cellpadding="4" width="100%">
+					<tr>
+						<td valign="top">[va_finished]</td>
+					</tr>
+  				</table>
+			</fieldset>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script>
+	function show_parameters( id )
+	{
+		$(id).find('table').css('position','absolute');
+		$(id).find('table').show();
+	}
+
+	function hide_parameters( id )
+	{
+		$(id).find('table').hide();
+	}
+
+    function delete_file( obj )
+    {
+        filename = $(obj).attr('id');
+        response = confirm('Esta seguro de borrar el reporte filename?');
+        if( response == true ){
+
+            $.ajax({
+                method: "POST",
+                url: "/cgi-bin/common/apps/ajaxbuild",
+                data: { ajaxbuild:'delete_background_report', file:filename }
+            })
+            .done(function( msg ) {
+                  $(obj).parent().parent().parent().slideUp(400);
+            });
+
+        }
+    } 
+
+    $('.names').mouseenter( function(){ show_parameters(this); });
+    $('.names').mouseleave( function(){ hide_parameters(this); });
+    $('.icon_delete').click( function(){ delete_file(this); });
+</script>
+[ip_footer]

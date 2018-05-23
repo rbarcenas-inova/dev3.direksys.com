@@ -1,0 +1,299 @@
+[ip_header_blank]
+
+ 
+
+  <!-- Direksys v2 -->  
+  <link rel="stylesheet" type="text/css" href="[va_imgurl]app_bar/mod/Xtyle[in_e].css" />
+  <!-- Direksys v2 -->  
+
+ 
+<!-- FancyBox -->
+<script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="/fancybox/jquery.easing-1.3.4.pack.js"></script>
+<link rel="stylesheet" href="/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+<!-- FancyBox -->
+
+
+
+
+<style type="text/css">
+.tbListTracking{
+	border: 2px solid gray;
+	border-spacing: 0;
+	border-collapse: collapse;
+	width: 650px;	
+}
+.tbListTracking th{
+	border-bottom: 2px solid gray;
+}
+.tbListTracking td{
+	border: 1px dotted gray;
+	padding: 2px 5px 2px 5px;
+	text-align: center;
+}
+required{
+	color: red; font-weight: bold;
+}
+</style>
+
+ 
+<table border="0" cellspacing="0" cellpadding="0" style="background-color:#ffffff;  -moz-border-radius: 0px 0px 10px 10px;border-radius:  0px 0px 10px 10px ; ">
+  <tr>
+    <td width=10px>
+       &nbsp;
+    </td>
+    <td width=100% >
+      <div style="position:relative;left:0px;">
+            
+        <div class="scroller_anchor"></div> 
+          <div class="scroller">
+              <table border="0" cellspacing="0" cellpadding="0">
+                <td valign=middle align=left nowrap>&nbsp;  <img src=[va_imgurl]app_bar/mod/direksysRN.png border=0 height=25px> </td>
+                <td valign=middle align=left><img src=[va_imgurl]app_bar/mod/menubgdiv.png></td>
+                    <td valign=middle align=left nowrap>
+                                  
+                  <font class="compania">[va_app_title] </font> 
+                    </a>
+                </td>
+
+
+
+                <td valign=middle align=left>
+                  <img src=[va_imgurl]app_bar/mod/menubgdiv.png>
+                </td>
+              </table>
+
+          </div>
+      </div>
+
+    </td>
+  </tr>
+</table>
+
+
+	<div style="background-color:#ffffff; margin:15px;border:1px solid #666666;">
+
+<form action="[va_cgiurl]" method="POST" name="sitform" onsubmit="deactivate_button();">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="cmd" value="enternewcmreturn">		
+		
+<!-- Start Main Area  -->
+ 
+
+ 	<div style="margin:15px;">
+
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+			<td class="titletext" colspan="2" align="center">
+				Enter Return Whitout Credit Memo
+			</td>
+		</tr>
+		<tr>
+			<td>
+
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" style="min-width: 550px;">
+		<tr>
+			<td><span class="bigerrtext">[va_error]</span>
+				<span class="stdtxterr">
+					<!-- start_err_msg  -->
+					[va_message]
+					<!-- end_err_msg  -->
+				</span>
+			</td>
+		</tr>
+		<tr>
+	    	<td valign="top">Enter Return <required>*</required>&nbsp;&nbsp;<span class="help_on"><b><u>Dest Location UPC</u></b> @ <b><u>SKU</u></b> x <b><u>QTY</u></b>  (no spaces, SKU or UPC is Valid)</span><br>
+		    	<textarea name="tracking" id="txtTracking" class="input" style="width:98%;height:80px;">[in_tracking]</textarea>
+		    	<div id="dvListTracking" style="display: none; width: 100%;">
+					
+		    	</div>
+
+		    	<table width=100%>
+		    		<tr>
+		    			<td>Customer <required>*</required></td>
+		    			<td>
+		    				<input type="text" id="customer" name="customer" value="[in_customer]" size="10" class="input">
+		    				<a href="/cgi-bin/common/apps/schid?db=sl_customers&amp;cmd=customers&amp;fname=customer&amp;returnid=customer&amp;value=" target="_blank" title="Search for Customers" class="fancy_modal_iframe">
+		  						<img src="/sitimages//default/icsearchsmall.gif" border="0">
+		  					</a> 
+		  					<span class="smallfieldterr">[er_customer]</span>
+		  				</td>
+		  			</tr>
+		    		<tr>
+		    			<td>Return Date <required>*</required></td>
+		    			<td>
+		    				<input type="text" id="retdate" name="retdate" value="[in_retdate]" size="20" class="input"><span class="smallfieldterr">[er_retdate]</span>
+		    			</td>
+		    		</tr>
+		    		<tr>
+		    			<td>Note <required>*</required></td>
+		    			<td width=85%>
+		    				<input type="text"  name="note" value="[in_note]" size="20" style="width:75%" class="input"><span class="smallfieldterr">[er_note]</span>
+		    			</td>
+		    		</tr>
+		    	</table>
+ 				<br>
+		    </td>
+ 		 </tr>
+ 		 <tr>
+ 		 	<td align="center">
+ 		 		<input type="submit" name="enterbutton" id="enterbutton" value="Enter Return" class="button">  		
+ 		 	</td>
+ 		</tr>
+    </table>
+ 
+	
+</form>	
+
+
+
+
+<script language="javascript">
+  
+  /* IFRAME */
+  $(".fancy_modal_iframe").fancybox({
+    'width'       : '85%',
+    'height'      : '85%',
+        'autoScale'       : false,
+        'transitionIn'    : 'none',
+    'transitionOut'   : 'none',
+    'type'        : 'iframe'
+
+  });
+  
+</script>
+
+<script language="javascript">
+<!--
+	
+	function deactivate_button()
+	{
+		document.sitform.enterbutton.disabled=true;
+	}
+	
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#retdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: new Date(),
+			minDate: new Date(),
+			maxDate: "+6m",
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+		/**
+		*------------------------------------------------------------------
+		* Prevalidación de las lineas del campo tracking
+		*------------------------------------------------------------------
+		*/
+		$('#enterbutton').click(function(){
+			return true;
+
+			var list_tracking = $('#txtTracking').val().split('\n');
+
+			var html_append = '<table class="tbListTracking">';
+				html_append += '<tr>';
+				html_append += '	<th>Dest Location</th>';
+				html_append += '	<th>SKU</th>';
+				html_append += '	<th>Quantity</th>';
+				html_append += '	<th>Sale Price</th>';
+				html_append += '	<th>Tax Rate</th>';
+				html_append += '	<th>Subtotal</th>';
+				html_append += '	<th>Tax</th>';
+				html_append += '	<th>Total</th>';
+				html_append += '</tr>';
+			var html_msj = '';
+
+			var patron_decimal = /^\d*(\.\d{1,2})$/;
+			var patron_entero = /^\d*$/;
+
+			var total_qty = 0;
+			var total_price = 0;
+			var total_subtotal = 0;
+			var total_tax = 0;
+			var total = 0;
+			for( var i=0; i<list_tracking.length; i++ ){
+				var list_splits = list_tracking[i].split(/\@|x|\/|\//);
+				
+				var this_subtotal = 0;
+				var this_amt_tax = 0;
+				var this_total = 0;
+				if( patron_entero.test(list_splits[2]) && (patron_decimal.test(list_splits[3]) || patron_entero.test(list_splits[3])) && (patron_decimal.test(list_splits[4]) || patron_entero.test(list_splits[4])) ){
+					if( list_splits[2] != '' && list_splits[3] != '' && list_splits[4] ){
+						this_subtotal = parseFloat(list_splits[2] * list_splits[3]);
+						this_subtotal = Math.round(this_subtotal*100)/100;
+						this_amt_tax = parseFloat((list_splits[4] / 100) * this_subtotal);
+						this_amt_tax = Math.round(this_amt_tax*100)/100;
+						this_total = (this_subtotal) + (this_amt_tax);
+
+						total_qty = (total_qty) + parseInt(list_splits[2]);
+						total_price = (total_price) + parseFloat(list_splits[3]);
+						total_subtotal = (total_subtotal) + (this_subtotal);
+						total_tax = (total_tax) + (this_amt_tax);
+						total = (total) + (this_total);
+					}else{
+						if( list_splits[2] == '' )	list_splits[2] = '<span style="color: red;">?<span>';
+						if( list_splits[3] == '' )	list_splits[3] = '<span style="color: red;">?<span>';
+						if( list_splits[4] == '' )	list_splits[4] = '<span style="color: red;">?<span>';
+						html_msj = '<span style="color: red; display: block; width: 650px;">Es posible que algunos valores esten incorrectos, por favor verifique</span>';			
+					}
+				}else{			
+					if( !patron_entero.test(list_splits[2]) )	
+						list_splits[2] = '<span style="color: red;">'+list_splits[2]+'<span>';
+					if( !patron_decimal.test(list_splits[3]) && !patron_entero.test(list_splits[3]) )
+						list_splits[3] = '<span style="color: red;">'+list_splits[3]+'<span>';
+					if( !patron_decimal.test(list_splits[4]) && !patron_entero.test(list_splits[4]) )
+						list_splits[4] = '<span style="color: red;">'+list_splits[4]+'<span>';
+					html_msj = '<span style="color: red; display: block; width: 650px;">Es posible que algunos valores esten incorrectos, por favor verifique</span>';
+				}				
+
+				html_append += '<tr>';
+				html_append += '<td>'+list_splits[0]+'</td>';
+				html_append += '<td>'+list_splits[1]+'</td>';
+				html_append += '<td style="text-align: right;">'+list_splits[2]+'</td>';
+				html_append += '<td style="text-align: right;">'+list_splits[3]+'</td>';
+				html_append += '<td style="text-align: right;">'+list_splits[4]+'</td>';
+				html_append += '<td style="text-align: right;">'+this_subtotal+'</td>';
+				html_append += '<td style="text-align: right;">'+this_amt_tax+'</td>';
+				html_append += '<td style="text-align: right;">'+this_total+'</td>';
+				html_append += '</tr>';
+
+			}
+			html_append += '<tr style="font-weight: bold;">';
+			html_append += '<td colspan="2" style="text-align: right;">Totals:</td>';
+			html_append += '<td style="text-align: right;">'+total_qty+'</td>';
+			html_append += '<td style="text-align: right;">'+total_price+'</td>';
+			html_append += '<td style="text-align: right;">&nbsp</td>';
+			html_append += '<td style="text-align: right;">'+total_subtotal+'</td>';
+			html_append += '<td style="text-align: right;">'+total_tax+'</td>';
+			html_append += '<td style="text-align: right;">'+total+'</td>';
+			html_append += '</tr>';
+			html_append += '</table>';
+
+			$('#txtTracking').fadeOut('fast', function() {				
+				$('#dvListTracking').html(html_msj);
+				$('#dvListTracking').append(html_append);
+				$('#dvListTracking').fadeToggle('500');
+
+				$('#enterbutton').css({'display': 'none'});
+			});
+			
+		});
+		/*
+		*------------------------------------------------------------------
+		*/
+    });
+	
+//-->
+</script>
+
+
+
+  </div>
+</div>

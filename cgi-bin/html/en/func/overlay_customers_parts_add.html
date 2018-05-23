@@ -1,0 +1,77 @@
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="opr_customers">
+	<input type="hidden" name="view" value="[in_id_customers]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="[in_tab]">
+	<input type="hidden" name="belongsto" value="[in_belongsto]">
+	<input type="hidden" name="add_new" value="1 ">
+	<input type="hidden" name="flag_add" value="1 ">
+
+	<div class="container_white" style="padding:5px">
+		<center class="titletext">
+			Add SKU Alias: ([in_id_customers])
+		</center>
+		<span class="stdtxterr">[va_message]</span>
+		&nbsp;
+		<fieldset><legend>SKU Alias Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			
+			<tr>
+				<td>SKU : </td>
+				<td class="smalltext">
+					<input type="hidden" name="new_id_parts" id="new_id_parts" value="[in_new_id_parts]" size="60" >
+					<input type="text" name="tags_parts" id="tags_parts" value="[in_tags_parts]" size="80" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_new_id_parts]</span>
+			   	</td>
+			</tr>
+			<tr>
+				<td>Alias : </td>
+				<td class="smalltext">
+					<input type="text" name="new_sku_customers" value="[in_new_sku_customers]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_new_sku_customers]</span>
+			   	</td>
+			</tr>
+			<tr>
+				<td>Precio : </td>
+				<td class="smalltext">
+					<input type="text" name="new_sprice" value="[in_new_sprice]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_new_sprice]</span>
+			   	</td>
+			</tr>
+			<tr>
+				<td>Talla : </td>
+				<td class="smalltext">
+					<input type="text" name="new_size" value="[in_new_size]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_new_size]</span>
+			   	</td>
+			</tr>
+		</table>
+		</fieldset>
+		&nbsp;
+		<center>
+			<input type="submit" id="btn_submit" value="Send" class="button">
+		</center>
+		<br>
+	</div>
+
+	</form>
+
+	<script language="javascript">
+	<!--
+		chg_select('new_state','[in_new_state]');
+
+		$(function() {
+			var availableTags = [
+			  [fc_data_customers_parts]
+			];
+
+			$( "#tags_parts" ).autocomplete({
+			  source: availableTags,
+			  change: function( event, ui ) {
+			  	var id = $(this).val().split('||',2)
+			  	$( "#new_id_parts").val(id[0])
+			  	$(this).val(id[1]);
+			  }
+			});
+
+		});
+  
+	//-->
+	</script>

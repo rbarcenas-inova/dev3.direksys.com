@@ -1,0 +1,281 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">View Order : [in_id_orders]</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Customer Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Customer ID : </td>
+			<td class="smalltext"><a href="[va_script_url]?cmd=[va_cmd_customer]&view=[in_id_customers]">[in_id_customers]</a></td>
+		</tr>
+		<tr>
+		    <td width="30%">Company Name : </td>
+		    <td class="smalltext">[in_customers.company_name]</td>
+		</tr>
+		<tr>
+		    <td width="30%">Name (First/Last) : </td>
+		    <td class="smalltext">[in_customers.firstname] [in_customers.lastname1] [in_customers.lastname2]</td>
+		</tr>
+		<tr>
+		  	<td width="30%">Sex : </td>
+		    <td class="smalltext">[in_customers.sex]</td>
+		</tr>
+
+		<tr>
+		  	<td width="30%">Phone (Day) : </td>
+		    <td class="smalltext"><span id='span_phone'>[va_customers.phone1]</span>&nbsp;&nbsp;</td>
+		</tr>
+		<tr>
+		  	<td width="30%">Phone (Evening) : </td>
+		    <td class="smalltext"><span id='span_phone2'>[va_customers.phone2]</span>&nbsp;&nbsp;</td>
+		</tr>	
+		<tr>
+		  	<td width="30%">Cellphone : </td>
+		    <td class="smalltext"><span id='span_cellphone'>[va_customers.cellphone]</span>&nbsp;&nbsp;</td>
+		</tr>
+		<tr>
+		  	<td width="30%">Email : </td>
+		    <td class="smalltext"><!--<a href="mailto:[in_customers.email]">--><span id='span_email'>[in_customers.email]</span></td>
+		</tr>	
+		<tr>
+		  	<td width="30%">Available Time : </td>
+		    <td class="smalltext">[in_customers.atime]</td>
+		</tr>
+		<tr>
+		  	<td width="30%">Type : </td>
+		    <td class="smalltext">[in_customers.Type]</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Orden de compra</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td valign="top" width="30%">Orden de compra :</td>
+				<td class="smalltext">[in_id_orders_alias]</td>
+			</tr>
+		</table>
+	</fieldset>
+	[va_legal_info]
+	&nbsp;
+	<fieldset><legend>Order Billing Info </legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">			
+		<tr>
+		  <td valign="top" width="30%">Calle y N&uacute;mero :</td>
+		  <td class="smalltext">[in_address1]<br></td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Colonia :</td>
+			<td class="smalltext">[in_urbanization]</td>
+		</tr>			
+		<tr>
+			<td valign="top" width="30%">Entre Calles :</td>
+			<td class="smalltext">[in_address2]</td>
+		</tr>					
+		<tr>
+		 	<td width="30%">Delegaci&oacute;n o Municipio : </td>
+			<td class="smalltext">[in_city]</td>
+		</tr>
+		<tr>
+		 	<td width="30%">Estado / CP : </td>
+			<td class="smalltext">[in_state], CP.[in_zip] </td>
+		</tr>	
+		<tr>
+			<td>Pais : </td>
+			<td class="smalltext">[in_country]</td>		 
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Notes : </td>
+		  <td class="smalltext">[in_billingnotes]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Order Shipping Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td valign="top" width="30%">Name :</td>
+		  <td class="smalltext">[in_shp_name]</td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Calle y N&uacute;mero :</td>
+		  <td class="smalltext">[in_address1]<br></td>
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Colonia :</td>
+			<td class="smalltext">[in_shp_urbanization]</td>
+		</tr>			
+		<tr>
+			<td valign="top" width="30%">Entre Calles :</td>
+			<td class="smalltext">[in_shp_address2]</td>
+		</tr>			
+		<tr>
+		 	<td width="30%">Delegaci&oacute;n o Municipio :</td>
+			<td class="smalltext">[in_shp_city]</td>
+		</tr>
+		<tr>
+		 	<td width="30%">Estado / CP : </td>
+			<td class="smalltext">[in_shp_state], CP.[in_shp_zip] </td>
+		</tr>	
+		<tr>
+			<td>Pais : </td>
+			<td class="smalltext">[in_shp_country]</td>		 
+		</tr>
+		<tr>
+			<td valign="top" width="30%">Notes : </td>
+		  <td class="smalltext">[in_shp_notes]</td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Order Notes</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		    <td valign="top" width="30%">Notes : </td>
+		    <td class="smalltext">[in_ordernotes]</td>
+		 	</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Order Status </legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			    <td valign="top" width="30%">Status : </td>
+			    <td class="smalltext">[in_status]&nbsp;&nbsp;[va_reactivate_cod]</td>
+		 	</tr>
+	  		<tr>
+			    <td width="30%" valign="top">Payment Status  :</td>
+			    <td class="smalltext">[in_statuspay]</td>
+			 </tr>
+	  		<tr>
+			    <td width="30%" valign="top">Product Status  :</td>
+			    <td class="smalltext">[in_statusprd]</td>
+			 </tr>
+		</table>
+	</fieldset>	
+	&nbsp;		
+	<fieldset><legend>Shipping Type</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Type  : <span class="smallfieldterr">[er_shp_type]</span></td>
+		    <td class="smalltext">[in_shp_type]&nbsp;&nbsp;[va_changeto_cod]&nbsp;&nbsp;[va_conver_to_cc]&nbsp;&nbsp;[va_changeto_wholesale]</td>
+  	</table>
+	</fieldset>		
+	&nbsp;
+	<fieldset><legend>Other Info</legend>	
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td valign="top" width="30%" valign="top">Order Type</td> 
+				<td class="smalltext" valign="top">
+					<span id='span_order_type'>[in_ptype] | [in_pterms]</span>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Order Currency</td> 
+				<td class="smalltext" valign="top">[in_currency]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Order Language</td> 
+				<td class="smalltext" valign="top">[in_language]</td>
+			</tr>			
+			
+			<tr>
+				<td valign="top" width="30%" valign="top">Price Level: </td> 
+				<td class="smalltext" valign="top">([in_id_pricelevels])  [fc_load_pricelevel_name]</td>
+			</tr>			
+			[fc_load_station_qa]
+			<tr>
+				<td valign="top" width="30%" valign="top">Repeated Customer : </td> 
+				<td class="smalltext" valign="top">[in_repeatedcustomer]</td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">DID USA/ MX: </td> 
+				<td class="smalltext" valign="top"><a href="[va_script_url]?cmd=[va_cmd_did]&search=Search&didmx=[in_dnis]">[in_dids7] - [in_dnis]</a></td>
+			</tr>
+			<tr>
+				<td valign="top" width="30%" valign="top">Media Contract: </td> 
+				<td class="smalltext" valign="top"><a href="[va_script_url]?cmd=mm_contracts&search=Search&id_mediacontracts=[in_id_mediacontracts]">[in_id_mediacontracts]</a></td>
+			</tr>
+			[va_sales_origins]
+		</table>
+	</fieldset>
+[ip_forms:orders_view_total]
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+    <tr>
+		<td class="tbltextttl">Items : [va_matches]</td>
+    </tr>
+    <tr>
+    	<td>      	
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+      			<tr>         	
+					<td class="menu_bar_title" nowrap>Item ID</td>
+					<td class="menu_bar_title">Model/Name</td>
+					<td class="menu_bar_title">Serial Number</td>
+					<td class="menu_bar_title" nowrap>Ship Date</td>
+					<td class="menu_bar_title" nowrap>Qty</td>
+					<td class="menu_bar_title" nowrap>Unit Price</td>
+					<td class="menu_bar_title" nowrap>Shipping</td>
+					<td class="menu_bar_title" nowrap>Sale Price</td>
+			 	</tr>
+			 	[va_productslist]
+      </table>       
+     </td>
+    </tr>
+    <tr>
+    	<td colspan="2">&nbsp;</td>
+    </tr>
+  </table>
+  &nbsp;
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+		    <td class="tbltextttl">Payments : [va_matches]</td>
+		</tr>
+		<tr>
+			<td>
+		 		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				 [va_paymentlist]
+				</table>
+			</td>
+		</tr>	
+		<tr>
+		 	<td colspan="3">&nbsp;</td>
+		</tr>
+	</table>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

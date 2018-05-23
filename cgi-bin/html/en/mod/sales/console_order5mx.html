@@ -1,0 +1,195 @@
+[ip_header_console]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td valign="top" align="left" bgcolor="#ffffff">
+			
+		<table width="100%" height=41px border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+				<td>&nbsp;</td>
+				<td class="cell_on" width="14%" align="center">Consola [va_salesorigins.channel]</td>
+		 </tr>
+		</table>
+		
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+				
+				
+	[fc_customer_header]
+			<br>
+			
+			
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="5">
+	<input type="hidden" name="country_tab" value="mx">
+	<input type="hidden" name="action" value="1">
+	
+<fieldset><legend>Creando Nueva Orden : Información de Envio</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td class="stdtxterr" colspan="2">[va_message]<td>
+		</tr>
+		<tr>
+	      <td colspan="2">
+	      	
+	      	
+	      		      	  		
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+			
+			</td>
+	   </tr>	
+		<tr>
+		  <td width="30%">Nombre Cliente  : </td>
+		  <td class="smalltext">[in_firstname] [in_lastname1] [in_lastname2]</td>
+		</tr>
+		<tr>
+		  <td colspan="2">[fc_products_inorder]</td>
+		</tr>	
+		<tr>
+			<td colspan="2">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+				  <tr>
+				    <td width="20%" align="center"></td>
+				  	<td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&step=5&country_tab=us")'>USA/Canada</td>
+				  	<td width="20%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&step=5&country_tab=mx")'>M&eacute;xico</td>
+				  	<td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&step=5&country_tab=pr")'>Puerto Rico</td>
+						<td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&step=5&country_tab=ot")'>Otros</td>				  	
+				  </tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%">Nombre Persona Recibe  : <span class="smallfieldterr">[er_shp_name]</span></td>
+		  <td class="smalltext"><input type="text" name="shp_name" value="[in_shp_name]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>	
+		<tr>
+		  <td valign="top" width="30%">Dirección :<br> <span class="smallfieldterr">(Incluye # Apt. , Trailer, Ste, etc)</span></td>
+		 
+		   <td class="smalltext">
+		   		<input type="text" name="shp_address1" value="[in_shp_address1]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address1]</span><br>
+		   		<input type="text" name="shp_address2" value="[in_shp_address2]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address2]</span><br>
+		   		<input type="text" name="shp_address3" value="[in_shp_address3]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address3]</span>
+		   	</td>
+		</tr>
+		<tr>
+		  <td width="30%">Tipo de asentamiento  : <span class="smallfieldterr">[er_shp_settlement_type]</span></td>
+		  <td class="smalltext">
+		  	<select name="shp_settlement_type" onFocus="focusOn( this )" onBlur="focusOff( this )">
+		  			<option value='---'>---</option>
+					<option value='Colonia'>Colonia</option>
+					<option value='Fraccionamiento'>Fraccionamiento</option>
+					<option value='Unidad habitacional'>Unidad habitacional</option>
+					<option value='Condominio'>Condominio</option>
+					<option value='Barrio'>Barrio</option>
+					<option value='Residencial'>Residencial</option>
+					<option value='Granja'>Granja</option>
+					<option value='Ejido'>Ejido</option>
+					<option value='Pueblo'>Pueblo</option>
+					<option value='Rancho o rancheria'>Rancho o rancheria/option>
+					<option value='Hacienda'>Hacienda</option>
+					<option value='Ampliacion'>Ampliacion</option>
+					<option value='Conjunto habitacional'>Conjunto habitacional<o/ption>
+					<option value='Unidad'>Unidad</option>
+					<option value='Villa'>Villa</option>
+					<option value='Zona urbana'>Zona urbana</option>
+					<option value='Centro urbano'>Centro urbano</option>
+					<option value='Base naval'>Base naval</option>
+					<option value='Campamento'>Campamento</option>
+					<option value='Finca'>Finca</option>
+					<option value='Zona rural'>Zona rural</option>
+		  	</select>
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">Asentamiento  : <span class="smallfieldterr">[er_shp_settlement]</span></td>
+		  <td class="smalltext"><input type="text" name="shp_settlement" value="[in_shp_settlement]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Municipio/Delegación : <span class="smallfieldterr">[er_shp_town]</span></td>
+		  <td class="smalltext"><input type="text" name="shp_town" value="[in_shp_town]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>		
+		<tr>
+		  <td width="30%">Ciudad  : <span class="smallfieldterr">[er_shp_city]</span></td>
+		  <td class="smalltext"><input type="text" name="shp_city" value="[in_shp_city]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Estado  : <span class="smallfieldterr">[er_shp_state]</span></td>
+		  <td>
+		  	<select name="shp_state" onFocus="focusOn( this )" onBlur="focusOff( this )">
+		  			<option value='---'>---</option>
+		  			<option value='Aguascalientes'>Aguascalientes</option>
+					<option value='Baja California'>Baja California</option>
+					<option value='Baja California Sur'>Baja California Sur</option>
+					<option value='Campeche'>Campeche</option>
+					<option value='Chiapas'>Chiapas</option> 	
+					<option value='Chihuahua'>Chihuahua</option>
+					<option value='Coahuila'>Coahuila</option>
+					<option value='Colima'>Colima</option>
+					<option value='Durango'>Durango</option>
+					<option value='Guanajuato'>Guanajuato</option>
+					<option value='Guerrero'>Guerrero</option>
+					<option value='Hidalgo'>Hidalgo</option>
+					<option value='Jalisco'>Jalisco</option>
+					<option value='Distrito Federal'>Distrito Federal</option>
+					<option value='Estado de México'>Estado de México</option>
+					<option value='Michoacán'>Michoacán</option>
+					<option value='Morelos'>Morelos</option>
+					<option value='Nayarit'>Nayarit</option>
+					<option value='Nuevo León'>Nuevo León</option>
+					<option value='Oaxaca'>Oaxaca</option>
+					<option value='Puebla'>Puebla</option>
+					<option value='Querétaro'>Querétaro</option>
+					<option value='Quintana Roo'>Quintana Roo</option>
+					<option value='San Luis Potosí'>San Luis Potosí</option>
+					<option value='Sinaloa'>Sinaloa</option>
+					<option value='Sonora'>Sonora</option>
+					<option value='Tabasco'>Tabasco</option>
+					<option value='Tamaulipas'>Tamaulipas</option>
+					<option value='Tlaxcala'>Tlaxcala</option>
+					<option value='Veracruz'>Veracruz</option>
+					<option value='Yucatán'>Yucatán</option>
+					<option value='Zacatecas'>Zacatecas</option>
+		  	</select>
+		  </td>
+		</tr>				
+		<tr>
+		 	<td width="30%">Zip Code  : <span class="smallfieldterr">[er_shp_zip]</span></td>
+		 	<td class="smalltext"><input type="text" name="shp_zip" value="[in_shp_zip]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		 	<td width="30%" valign="top">Notas  : <span class="smallfieldterr">[er_shp_notes]</span></td>
+		    <td class="smalltext"><textarea name="shp_notes" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_shp_notes]</textarea> </td>
+		</tr>		
+		<tr>
+		  <td colspan="2" align="center"><input type="submit"  value="Continuar (a Tipo de Envio)>>" class="button"></td>
+		</tr>		
+	</table>
+</fieldset>
+
+<script language="javascript">
+<!--
+
+chg_select('shp_settlement_type','[in_shp_settlement_type]');
+chg_select('shp_state','[in_shp_state]');
+
+
+//-->
+</script>
+
+    </td>
+    </tr>
+</table>	
+			
+[ip_footer_console]
+
+

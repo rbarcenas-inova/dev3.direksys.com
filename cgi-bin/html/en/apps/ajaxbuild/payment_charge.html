@@ -1,0 +1,58 @@
+[ip_header_small]
+
+<table border="0" cellspacing="0" cellpadding="10" width="100%" height="100%" bgcolor=white>
+	<tr>
+		<td valign=top>
+			
+			<div><span class="stdtxterr" id="message">[va_message]</span></div>
+			<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform" onsubmit="return payment_charge_val(this)">
+				<input type="hidden" name="cmd" value="opr_orders">
+				<input type="hidden" name="view" value="[in_id_orders]">
+				<input type="hidden" name="payment_charge" value="1">
+				<input type="hidden" name="pc_captured" value="Yes">
+				<input type="hidden" name="pc_id_orders" value="[in_id_orders]">
+				<input type="hidden" name="pc_id_orders_payments" value="[in_id_orders_payments]">
+				
+				<table width="100%" border="0" cellspacing="0" cellpadding="0"  align="center" style="[va_display]">
+					<tbody>
+						<tr>
+							<td class="tbltextttl">
+								<fieldset>
+									<legend>Payment Charge</legend>
+										<table border="0" cellpadding="2" cellspacing="0" width="100%">
+											<tr>
+												<td width="40%">Amount: </td>
+												<td width="60%"><input type="text" name="pc_amount" value="" /></td>
+											</tr>
+											<tr>
+												<td >Auth Code: </td>
+												<td ><input type="text" name="pc_authcode" value="" /></td>
+											</tr>
+											<tr>
+												<td >Capture Date: </td>
+												<td ><input type="text" name="pc_capdate" id="pc_capdate" value="" /></td>
+											</tr>
+										</table>
+									</fieldset>
+
+									<p align="center"><input type="submit" name="actbutton" value="Pay" class="button"></p>
+								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$('#pc_capdate' ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: '-2m',
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+	});
+</script>

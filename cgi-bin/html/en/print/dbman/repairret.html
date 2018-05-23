@@ -1,0 +1,102 @@
+<STYLE TYPE="text/css">
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+</STYLE>
+
+<center>
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td><font class=info>
+
+
+	       		<table width="300px" border="1" cellpadding="7" cellspacing="0" bordercolor="#666666" align=right>
+          		<tr>
+            		<td><div align="center"><font class=infot>REPAIR ORDER: [in_id_orders]</div></td>
+          		</tr>
+          		<tr>
+            		<td bgcolor="#B8B8B8" align="center"><font class=infot><img src="[va_imgurl]/packing_list/url.gif" width="200" height="32" border="0" ></td>
+          		</tr>
+        		</table>
+        		
+        		
+<table cellpadding=0 cellspacing=0 border=0>
+	<td align=left>
+		<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px>
+	</td>
+	[fc_show_companyinfo]
+</table>
+
+<center>
+<hr style="color: #000;background-color: #000;height: 1px;">
+
+
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+	<tr>
+		<td> <font class=info>
+			[fc_customerdata]
+		</td>	
+	</tr>	
+	<tr><td>&nbsp;</td></tr>
+	<tr>
+		<td>  
+			<fieldset><legend>Return info </legend>
+				<table border="0" cellspacing="0" cellpadding="0" width="100%">
+					<tr>
+						<td width="30%" valign="top"><font class=infot>Return Type</td>
+						<td><font class=info>[in_type]</td>
+					</tr>
+					<tr>
+						<td width="30%" valign="top"><font class=infot>General Package Condition</td>
+						<td><font class=info>[in_generalpckgcondition]</td>
+					</tr>
+					<tr>
+						<td width="30%" valign="top"><font class=infot>Items Quantity</td>
+						<td><font class=info>[in_itemsqty]</td>
+					</tr>
+					<tr>
+						<td width="30%" valign="top"><font class=infot>Action Type</td>
+						<td><font class=info>Repair</td>
+					</tr>
+				</table>
+			</fieldset>
+		</td>
+	</tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr>
+		<td>  
+			<fieldset><legend>Work Done</legend>
+				<font class=info>[in_workdone]
+			</fieldset>
+		</td>
+	</tr>			
+</table>

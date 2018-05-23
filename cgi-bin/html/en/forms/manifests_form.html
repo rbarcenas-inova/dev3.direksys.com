@@ -1,0 +1,47 @@
+	&nbsp;
+	<fieldset><legend>Warehouse Transfer Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		   <td class='smalltext' width="30%">Requested By : <span class="smallfieldterr">[er_RequestedBy]</span></td>
+		   <td class='smalltext'>
+		   		<select name='RequestedBy' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		   			<option value=''>---</option>
+		   			[fc_build_userlist_manifest]
+				</select></td>
+		</tr>
+		<tr>
+		   <td class='smalltext' width="30%">Authorized By : <span class="smallfieldterr">[er_AuthorizedBy]</span></td>
+		   <td class='smalltext'>
+		   		<select name='AuthorizedBy' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		   			<option value=''>---</option>
+		   			[fc_build_userlist_manifest]
+				</select></td>
+		</tr>
+		<tr>
+		    <td valign="top" width="30%">Comments : <span class="smallfieldterr">[er_comments]</span></td>
+		    <td class="smalltext"><textarea name="comments" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_comments]</textarea> </td>
+		 </tr>
+	</table>
+</fieldset>	
+&nbsp;
+<fieldset><legend>Transfer Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+			<td width="30%">Status : </td>
+			<td class="smalltext">[fc_manifests_status]</td>
+		</tr>
+  	</table>
+</fieldset>
+<script language="javascript">
+<!--
+	chg_select('RequestedBy','[in_RequestedBy]');
+	chg_select('AuthorizedBy','[in_AuthorizedBy]');
+	
+//-->
+</script>
+
+	<script language="JavaScript" type="text/javascript">
+		[va_autorun_js]
+				
+</script>
+

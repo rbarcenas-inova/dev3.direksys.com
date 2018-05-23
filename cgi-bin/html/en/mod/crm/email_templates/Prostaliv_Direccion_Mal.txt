@@ -1,0 +1,12 @@
+
+Estimado Cliente
+
+Su orden numero [in_id_orders] no ha podido ser enviada ya que nuestro sistema detecta un error en la dirección. Para poder proseguir necesitamos que a la brevedad posible nos envie su dirección completa tal como este registrada en su tarjeta de crédito
+
+Cualquier otra consulta, no dude en contactarnos.
+
+Gracias
+
+
+-- 
+Prostaliv

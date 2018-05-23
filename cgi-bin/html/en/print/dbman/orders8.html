@@ -1,0 +1,375 @@
+<STYLE TYPE="text/css">
+font.part
+{font-family:  arial;background: ;color:#000000;font-size: 15px;	font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+
+font.line 
+{float:left; overflow:hidden; 	width:100%; max-height:15px;	padding-left:0px;	display:block;	}
+
+td.line 
+{	height:15px;	max-height:15px;	padding-left:0px;overflow:hidden; border:1px solid;	}
+
+body
+{padding:0px;margin:0px;font-family: arial;font-size:10px;line-height:12px;color:#222222;}
+
+</STYLE>
+
+<center>
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td>
+[fc_load_shplabel_info]
+	
+		<table border=0 cellpadding="0" cellspacing="7" width="100%">
+
+			<tr>
+
+				<td style="width:430px; border: 0px solid;height:550px;" valign="top">
+					<!-- Encabezado -->
+					<table align="center" width="100%" cellpadding=0 cellspacing=0>
+						<tr height=50px>
+							<td width="20%">ORDEN: </td>
+							<td width="30%">[in_id_orders]</td>
+							<td colspan="2">
+								<img src="/cgi-bin/common/apps/barcode?code=[va_e_prefix][in_id_orders]" style="margin-top:6px" border="0">
+							</td>
+						</tr>
+						<tr>
+							<td width="20%">Remesa: </td>
+							<td width="30%">[in_id_warehouses_batches]</td>
+							<td width="20%">Tipo Cobro: </td>
+							<td width="30%">[va_ptype]</td>
+						</tr>
+						<tr>
+							<td width="20%">No. Guia: </td>
+							<td width="30%">[va_tracking]</td>
+							<td width="20%">Forma Pago: </td>
+							<td width="30%">[in_ptype]</td>
+						</tr>
+						<tr height=34px>
+							<td width="20%">Alta: </td>
+							<td width="30%">[in_date]</td>
+							<td width="20%">RVT: </td>
+							<td width="30%">[ln_id_admin_users@admin_users:FirstName] [ln_id_admin_users@admin_users:LastName] </td>
+						</tr>
+						<tr>
+							<td width="20%">Asig: </td>
+							<td width="30%">[va_batch_date]</td>
+							<td width="20%">Men: </td>
+							<td width="30%">[ln_id_warehouses@sl_warehouses:Name]</td>
+						</tr>
+					</table>
+					<!-- Encabezado -->
+					<!-- REMITENTE -->
+					<div><font class=part>REMITENTE:</font></div>
+					<table align="center" width="100%" height="90px">
+						<td width="30%"><img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 width=90%></td>
+						<td>[fc_show_companyinfo]</td>
+					</table>
+					<!-- REMITENTE -->
+					<!-- DESTINATARIO -->
+					<div ><font class=part>DESTINATARIO:</font></div>
+					<table align="center" width="100%">
+						<b>[in_shp_name]</b> <br>
+						[in_shp_address1] [in_shp_address2] <span style=white-space:nowrap;><i>([in_shp_address3])</i></span>
+						[in_shp_urbanization] [in_shp_state]
+						[in_shp_city] <span style=white-space:nowrap;>C.P. [in_shp_zip] </span>
+						<span style=white-space:nowrap;>Tel: [va_phone]</span>
+					</table>
+					<!-- DESTINATARIO -->
+					<br>
+					<!-- PRODUCTS -->
+					<table align="center" width="100%" style="border:1px solid;">
+						<tr>
+							<td class="line">Clave</td>
+							<td class="line"><font class="lin">Producto</font></td>
+							<td class="line">Precio</td>
+							<td class="line">Cant.</td>
+							<td class="line">Subtotal</td>
+						</tr>
+						[va_searchresults]
+						<tr>
+							<td colspan="2" rowspan="4" valign="top">En caso de requerir factura tendr&aacute; 30 d&iacute;s naturales para solicitarla</td>
+							<td colspan="2" class="line">Descuentos</td><td align="right" class="line">[va_tot_dis]</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="line">Gastos de Envio</td><td align="right" class="line">[va_tot_shp]</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="line">IVA</td><td align="right" class="line">[va_tot_tax]</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="line">Total</td><td align="right" class="line">[va_tot_ord]</td>
+						</tr>
+					</table>
+					<!-- PRODUCTS -->
+
+				</td>
+			<td width=7px rowspan=3>&nbsp;</td>
+				<td style="width:430px; border: 0px solid;" valign="top">
+					<!-- Encabezado -->
+					<table align="center" width="100%" cellpadding=0 cellspacing=0>
+						<tr height=50px>
+							<td width="20%">ORDEN: </td>
+							<td width="30%">[in_id_orders]</td>
+							<td colspan="2">
+								<img src="/cgi-bin/common/apps/barcode?code=[va_e_prefix][in_id_orders]" style="margin-top:6px" border="0">
+							</td>
+						</tr>
+						<tr>
+							<td width="20%">Remesa: </td>
+							<td width="30%">[in_id_warehouses_batches]</td>
+							<td width="20%">Tipo Cobro: </td>
+							<td width="30%">[va_ptype]</td>
+						</tr>
+						<tr>
+							<td width="20%">No. Guia: </td>
+							<td width="30%">[va_tracking]</td>
+							<td width="20%">Forma Pago: </td>
+							<td width="30%">[in_ptype]</td>
+						</tr>
+						<tr height=34px>
+							<td width="20%">Alta: </td>
+							<td width="30%">[in_date]</td>
+							<td width="20%">RVT: </td>
+							<td width="30%">[ln_id_admin_users@admin_users:FirstName] [ln_id_admin_users@admin_users:LastName]</td>
+						</tr>
+						<tr>
+							<td width="20%">Asig: </td>
+							<td width="30%">[va_batch_date]</td>
+							<td width="20%">Men: </td>
+							<td width="30%">[ln_id_warehouses@sl_warehouses:Name]</td>
+						</tr>
+					</table>
+					<!-- Encabezado -->
+					<!-- REMITENTE -->
+					<div><font class=part>RECIBO DE CONFORMIDAD:</font></div>
+					<table align="center" width="100%" height="90px">
+						<tr>
+						<td width="80%" style="border:1px solid;"></td>
+						<td width="20%" style="border:1px solid;"></td>
+					</tr>
+					<tr>
+						<td width="80%" style="height:15px;">Nombre y Firma</td>
+						<td width="20%" style="height:15px;" align="center">Fecha</td>
+					</tr>
+					</table>
+					<!-- REMITENTE -->
+					<!-- DESTINATARIO -->
+					<div><font class=part>DESTINATARIO:</font></div>
+					<table align="center" width="100%">
+						<b>[in_shp_name]</b> <br>
+						[in_shp_address1] [in_shp_address2] <span style=white-space:nowrap;><i>([in_shp_address3])</i></span>
+						[in_shp_urbanization] [in_shp_state]
+						[in_shp_city] <span style=white-space:nowrap;>C.P. [in_shp_zip] </span>
+						<span style=white-space:nowrap;>Tel: [va_phone]</span>
+					</table>
+					<!-- DESTINATARIO -->
+					<br>
+					<!-- PRODUCTS -->
+					<table align="center" width="100%" style="border:1px solid;">
+						<tr>
+							<td class="line">Clave</td>
+							<td class="line">Producto</td>
+							<td class="line">Precio</td>
+							<td class="line">Cant.</td>
+							<td class="line">Subtotal</td>
+						</tr>
+						[va_searchresults]
+						<tr>
+							<td colspan="2" rowspan="4" valign="top">En caso de requerir factura tendr&aacute; 30 d&iacute;s naturales para solicitarla</td>
+							<td colspan="2" class="line">Descuentos</td><td align="right" class="line">[va_tot_dis]</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="line">Gastos de Envio</td><td align="right" class="line">[va_tot_shp]</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="line">IVA</td><td align="right" class="line">[va_tot_tax]</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="line">Total</td><td align="right" class="line">[va_tot_ord]</td>
+						</tr>
+					</table>
+					<!-- PRODUCTS -->
+
+				</td>
+
+			</tr>
+
+			<tr>	<td style="height:5px;"></td><td style="height:5px;"></td>		</tr>
+
+			<tr>
+
+				<td style="width:430px; border: 0px solid;" valign="top">
+					<!-- Encabezado -->
+					<table align="center" width="100%" cellpadding=0 cellspacing=0>
+						<tr height=50px>
+							<td width="20%">ORDEN: </td>
+							<td width="30%">[in_id_orders]</td>
+							<td colspan="2">
+								<img src="/cgi-bin/common/apps/barcode?code=[va_e_prefix][in_id_orders]" style="margin-top:6px" border="0">
+							</td>
+						</tr>
+						<tr>
+							<td width="20%">Remesa: </td>
+							<td width="30%">[in_id_warehouses_batches]</td>
+							<td width="20%">Tipo Cobro: </td>
+							<td width="30%">[va_ptype]</td>
+						</tr>
+						<tr>
+							<td width="20%">No. Guia: </td>
+							<td width="30%">[va_tracking]</td>
+							<td width="20%">Forma Pago: </td>
+							<td width="30%">[in_ptype]</td>
+						</tr>
+						<tr height=34px>
+							<td width="20%">Alta: </td>
+							<td width="30%">[in_date]</td>
+							<td width="20%">RVT: </td>
+							<td width="30%">[ln_id_admin_users@admin_users:FirstName] [ln_id_admin_users@admin_users:LastName]</td>
+						</tr>
+						<tr>
+							<td width="20%">Asig: </td>
+							<td width="30%">[va_batch_date]</td>
+							<td width="20%">Men: </td>
+							<td width="30%">[ln_id_warehouses@sl_warehouses:Name]</td>
+						</tr>
+					</table>
+					<!-- Encabezado -->
+					<!-- REMITENTE -->
+					<div><font class=part>REMITENTE:</font></div>
+					<table align="center" width="100%" height="90px">
+						<td width="30%"><img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 width=90%></td>
+						<td>[fc_show_companyinfo]</td>
+					</table>
+					<!-- REMITENTE -->
+					<!-- DESTINATARIO -->
+					<div ><font class=part>DESTINATARIO:</font></div>
+					<table align="center" width="100%">
+						<b>[in_shp_name]</b> <br>
+						[in_shp_address1] [in_shp_address2] <span style=white-space:nowrap;><i>([in_shp_address3])</i></span>
+						[in_shp_urbanization] [in_shp_state]
+						[in_shp_city] <span style=white-space:nowrap;>C.P. [in_shp_zip] </span>
+						<span style=white-space:nowrap;>Tel: [va_phone]</span>
+					</table>
+					<!-- DESTINATARIO -->
+					<br>
+					<!-- PRODUCTS -->
+					<table align="center" width="100%" style="border:1px solid;">
+						<tr>
+							<td class="line">Clave</td>
+							<td class="line">Producto</td>
+							<td class="line">Precio</td>
+							<td class="line">Cant.</td>
+							<td class="line">Subtotal</td>
+						</tr>
+						[va_searchresults]
+						<tr>
+							<td colspan="2" rowspan="4" valign="top">En caso de requerir factura tendr&aacute; 30 d&iacute;s naturales para solicitarla</td>
+							<td colspan="2" class="line">Descuentos</td><td align="right" class="line">[va_tot_dis]</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="line">Gastos de Envio</td><td align="right" class="line">[va_tot_shp]</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="line">IVA</td><td align="right" class="line">[va_tot_tax]</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="line">Total</td><td align="right" class="line">[va_tot_ord]</td>
+						</tr>
+					</table>
+					<!-- PRODUCTS -->
+
+				</td>
+
+				<td style="width:430px; border: 0px solid;" valign="top">
+					<!-- Encabezado -->
+					<table align="center" width="100%" cellpadding=0 cellspacing=0>
+						<tr height=50px>
+							<td width="20%">ORDEN: </td>
+							<td width="30%">[in_id_orders]</td>
+							<td colspan="2">
+								<img src="/cgi-bin/common/apps/barcode?code=[va_e_prefix][in_id_orders]" style="margin-top:6px" border="0">
+							</td>
+						</tr>
+						<tr>
+							<td width="20%">Remesa: </td>
+							<td width="30%">[in_id_warehouses_batches]</td>
+							<td width="20%">Tipo Cobro: </td>
+							<td width="30%">[va_ptype]</td>
+						</tr>
+						<tr>
+							<td width="20%">No. Guia: </td>
+							<td width="30%">[va_tracking]</td>
+							<td width="20%">Forma Pago: </td>
+							<td width="30%">[in_ptype]</td>
+						</tr>
+						<tr height=34px>
+							<td width="20%">Alta: </td>
+							<td width="30%">[in_date]</td>
+							<td width="20%">RVT: </td>
+							<td width="30%">[ln_id_admin_users@admin_users:FirstName] [ln_id_admin_users@admin_users:LastName]</td>
+						</tr>
+						<tr>
+							<td width="20%">Asig: </td>
+							<td width="30%">[va_batch_date]</td>
+							<td width="20%">Men: </td>
+							<td width="30%">[ln_id_warehouses@sl_warehouses:Name]</td>
+						</tr>
+					</table>
+					<!-- Encabezado -->
+					<!-- REMITENTE -->
+					<div><font class=part>RECIBO DE CONFORMIDAD:</font></div>
+					<table align="center" width="100%" height="90px">
+						<tr>
+						<td width="80%" style="border-bottom: 1px solid;height:55px;"></td>
+						<td width="20%" style="border-bottom: 1px solid;height:55px;"></td>
+					</tr>
+					<tr>
+						<td width="80%" style="height:15px;">Nombre y Firma</td>
+						<td width="20%" style="height:15px;" align="center">Fecha</td>
+					</tr>
+					</table>
+					<!-- REMITENTE -->
+					<!-- DESTINATARIO -->
+					<div><font class=part>DESTINATARIO:</font></div>
+					<table align="center" width="100%">
+						<b>[in_shp_name]</b> <br>
+						[in_shp_address1] [in_shp_address2] <span style=white-space:nowrap;><i>([in_shp_address3])</i></span>
+						[in_shp_urbanization] [in_shp_state]
+						[in_shp_city] <span style=white-space:nowrap;>C.P. [in_shp_zip] </span>
+						<span style=white-space:nowrap;>Tel: [va_phone]</span>
+					</table>
+					<!-- DESTINATARIO -->
+					<br>
+					<!-- PRODUCTS -->
+					<table align="center" width="100%" style="border:1px solid;">
+						<tr>
+							<td class="line">Clave</td>
+							<td class="line">Producto</td>
+							<td class="line">Precio</td>
+							<td class="line">Cant.</td>
+							<td class="line">Subtotal</td>
+						</tr>
+						[va_searchresults]
+						<tr>
+							<td colspan="2" rowspan="4" valign="top">En caso de requerir factura tendr&aacute; 30 d&iacute;s naturales para solicitarla</td>
+							<td colspan="2" class="line">Descuentos</td><td align="right" class="line">[va_tot_dis]</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="line">Gastos de Envio</td><td align="right" class="line">[va_tot_shp]</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="line">IVA</td><td align="right" class="line">[va_tot_tax]</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="line">Total</td><td align="right" class="line">[va_tot_ord]</td>
+						</tr>
+					</table>
+					<!-- PRODUCTS -->
+
+				</td>
+
+			</tr>
+			
+		</table>				
+	</body>

@@ -1,0 +1,27 @@
+&nbsp;
+<form name="sitform">
+	&nbsp;<span class="stdtxterr">[va_tabmessage]</span>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+		    <td class="tbltextttl" >
+		    	<a href='javascript:trjump("[va_script_url]?cmd=[in_cmd]&view=[in_id_wreceipts]&tab=[va_activetab]&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+				<a href="javascript:prnwin('[va_script_url]?cmd=[in_cmd]&search=Print&tab=1&tabcmd=wreceipt&toprint=[in_id_wreceipts]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+		    	Items : [va_matches]
+		    </td>
+		 </tr>
+		<tr>
+			<td>
+			 <table border="0" cellspacing="0" cellpadding="3" width="100%" class="formtable">
+				<tr>
+				    <td class="menu_bar_title" colspan="2">Item ID</td>
+				    <td class="menu_bar_title">Model / Name</td>
+				    <td class="menu_bar_title">Price</td>
+				    <td class="menu_bar_title">Qty</td>
+				 </tr>
+				 [va_searchresults]
+				</table>
+			</td>
+		</tr>
+	</table>
+	&nbsp;
+</form>

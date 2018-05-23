@@ -1,0 +1,51 @@
+	&nbsp;
+	<fieldset><legend>Claim Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			
+		<tr>
+		  <td width="30%">ID Orders : <span class="smallfieldterr">[er_id_orders]</span></td>
+		  <td class="smalltext">
+		  	<input type="text" name="id_orders" value="[in_id_orders]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	  		<a href="/cgi-bin/common/apps/schid?cmd=select_orders&fname=id_orders&value=" title="Search for Orders" class="fancy_modal_iframe">
+	  			<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+	  		</a>
+		  </td>
+		</tr>
+				<tr>
+		  <td width="30%">ID Products : <span class="smallfieldterr">[er_id_products]</span></td>
+		  <td class="smalltext"><input type="text" name="id_products" value="[in_id_products]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	<input type="hidden" name="id_orders_products" value="[in_id_orders_products]">
+		  	<a href="/cgi-bin/common/apps/schid?db=sl_products&cmd=products&fname=id_products&value="  title="Advance Search for Products" class="fancy_modal_iframe">
+		  		<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+		  	</a>
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">Claim To  : <span class="smallfieldterr">[er_claimto]</span></td>
+		  <td class="smalltext">
+		  	<select name="claimto" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					  [fc_build_select_opr_claimto]
+			</select> <span class="smallfieldterr">[er_claimto]</span>
+		  	
+		  </td>
+		</tr>
+		<tr>
+		  <td width="30%">Product Category : <span class="smallfieldterr">[er_prodcategory]</span></td>
+		  <td class="smalltext">
+		  <select name="prodcategory" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					  [fc_build_select_categories_title]
+			</select> <span class="smallfieldterr">[er_prodcategory]</span>
+			</td>		
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	[fc_restrict_status_on_add]
+
+<script language="JavaScript">
+	chg_select('prodcategory','[in_prodcategory]');
+	chg_select('claimto','[in_claimto]');
+	chg_select('status','[in_status]');
+</script>

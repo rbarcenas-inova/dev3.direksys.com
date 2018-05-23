@@ -1,0 +1,284 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"   "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://opengraphprotocol.org/schema/"
+      xmlns:fb="http://www.facebook.com/2008/fbml"
+      xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="es-mx">
+<title>Editing Order</title>
+<link rel="stylesheet" type="text/css" href="/sitimages/orders/orders.css">
+<script language="JavaScript1.2" src="/sitimages/orders/orders.js" type="text/javascript"></script>
+<META NAME="Author" CONTENT="ArielAleXCo." />
+
+  <!-- Calendar -->
+  <style type="text/css">@import url([va_imgurl]/jscalendar/calendar-win2k-1.css);</style>
+  <link rel="stylesheet" type="text/css" media="all" href="[va_imgurl]/jscalendar/skins/aqua/theme.css" title="Aqua">
+  <script type="text/javascript" src="[va_imgurl]/jscalendar/calendar.js"></script>
+  <script type="text/javascript" src="[va_imgurl]/[ur_pref_style]/calendar_lang.js"></script>
+  <script type="text/javascript" src="[va_imgurl]/jscalendar/calendar-setup.js"></script>
+  <script type="text/javascript" src="[va_imgurl]/[ur_pref_style]/popup.js"></script>
+  <script type="text/javascript" src="[va_imgurl]/[ur_pref_style]/dropdown.js"></script>
+  <!-- Calendar -->
+  
+<!-- Jquery -->
+
+<link rel="stylesheet" href="/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src=" /libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script type="text/javascript" language="JavaScript" src="[va_imgurl]/jquery-events.js"></script>
+<script type="text/javascript" language="JavaScript" src="[va_imgurl]/jquery-events.administration.js"></script>
+<!-- Jquery -->
+
+<!-- JqueryTools -->
+<script type="text/javascript" src="/jquery.tools.min.js"></script>
+<!-- JqueryTools -->
+  
+</head>
+<body>
+
+
+
+<center>
+<form action="/cgi-bin/common/apps/e_orders" method="post" name="sitform">
+	<input type="hidden" name="action" value="addcard">
+	<input type="hidden" name="cmd" value="stdedition">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="path" value="[in_path]">
+	<input type="hidden" name="taxmode" value="[in_taxmode]">
+	<input type="hidden" name="add_card" value="1">
+	<input type="hidden" value="[in_force_calc]" name="force_calc">
+	<input type="hidden" value="CreditCard" name="pmtfield7">
+	[va_productslist]
+	[va_paymentsupdlist]
+
+<table cellpadding=0 cellspacing=5 width=95% border=0>
+	<tr>
+		<td valign=bottom align=left><font class=modaltit>Editing Order : [in_id_orders]</font><br><br></td>
+	</tr>	
+	<tr>
+		<td colspan=2 align=left>
+		<table cellpadding=4 cellspacing=0 width=100% style="border:1px solid;">
+			<tr bgcolor=#4d6ce4 background="/sitimages/orders/tabla.jpg">
+				<td colspan="2"><font class=mthead>Add Credit Card Payment</font></td>
+			</tr>
+			<tr>
+				<td colspan="2" class="stdtxterr">[va_message]</td>
+			</tr>			
+			  <tr>
+			     <td valign="top" nowrap>Type : <span class='fieldterr'>[er_pmtfield1]</span></td>
+			     <td>
+			     		<input type='radio' class='radio' name='pmtfield1' value='Visa'> Visa
+			     		<input type='radio' class='radio' name='pmtfield1' value='Mastercard'> Master Card	
+			     		<input type='radio' class='radio' name='pmtfield1' value='American Express'> American Express
+			     		<input type='radio' class='radio' name='pmtfield1' value='Discover'> Discover<br>	
+			     		<img src="[va_imgurl]/creditcards.gif" border="0">
+			     </td>
+			  </tr>
+			  <tr>
+			     <td nowrap>Name in Card : <span class='fieldterr'>[er_pmtfield2]</span></td>
+			     <td><input type='text' name='pmtfield2' value='[in_pmtfield2]' size='35' class="inputsm"></td>
+			  </tr>
+			  <tr>
+			     <td nowrap>Card Number : <span class='fieldterr'>[er_pmtfield3]</span></td>
+			     <td><input type='text' name='pmtfield3' value='[in_pmtfield3]' size='20' MAXLENGTH='16' class="inputsm"></td>
+			  </tr>
+			  <tr>
+			     <td nowrap>Expiration : <span class='fieldterr'>[er_pmtfield4]</span></td>
+			     <td>
+			     	<select size="1" name="month" >
+							<option value=""></option>
+					   		 <option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+				        </select>
+			     	<select size="1" name="year" >
+							<option value=""></option>
+							[fc_build_exp_date_opts]
+				        </select></td>
+			  </tr>
+			  <tr>
+			     <td>CVN : <span class='fieldterr'>[er_pmtfield5]</span></td>
+			     <td><input type='text' name='pmtfield5' value='[in_pmtfield5]' size='5' MAXLENGTH='4' class="inputsm"></td>
+			  </tr>
+			  <tr>
+			     <td>Phone : <span class='fieldterr'>[er_pmtfield6]</span></td>
+			     <td><input type='text' name='pmtfield6' value='[in_pmtfield6]' size='12' MAXLENGTH='10' class="inputsm"> 
+			     	<span class="help_on">Only numbers, no Dash or Parentesis</span></td>
+			  </tr>
+			  <tr>
+			     <td>Payment Date: <span class='fieldterr'>[er_paymentdate]</span></td>
+			     <td><input type="text" id="paymentdate" name="paymentdate" value="[in_paymentdate]" size="20" class="inputsm"></td>
+			  </tr>	
+			  <tr>
+			     <td>Amount: <span class='fieldterr'>[er_amount]</span></td>
+			     <td>
+			     	<div class="puntos_disponibles" style="display:none;">
+			     		Esta tarjeta tiene <span id="puntos_disponibles"></span>
+			     		<input type="checkbox" name="activate_points" id="ppuntos"> Usar Puntos.
+			     	</div>
+			     	<input type='text' name='amount' value='[in_amount]' size='12' MAXLENGTH='10' class="inputsm"></td>
+			  </tr>	
+			  <tr>
+			     <td nowrap>Flexpay : <span class='fieldterr'>[er_pmtfield8]</span></td>
+			     <td>
+			     	<select size="1" name="pmtfield8" >
+							[fc_availablepayments]
+				        </select></td>
+			  </tr>		
+	
+			<tr>
+				<td>&nbsp;</td>
+				<td><input type="submit" name="search" value="Add" class="button"> &nbsp;
+					<input type="submit" name="return" value="Return" class="button">
+				</td>
+			</tr>
+		</table>
+	
+	<font class=modalsec>Payments: <b>[va_paylines]</b></font>
+			<table cellpadding=4 cellspacing=0 width=100% style="border:1px solid;">
+				<tr bgcolor=#4d6ce4 background="/sitimages/orders/tabla.jpg">
+					<td align="center"><font class=mthead>#</font></td>
+					<td align="center"><font class=mthead>Type</font></td>
+					<td align="center"><font class=mthead>Info</font></td>
+					<td align="center"><font class=mthead>Amount</font></td>
+					<td align="center"><font class=mthead>Payment Date <br><font color=#eeeeee><I>(YYYY-MM-DD)</I></font></td>
+					<td align="center"><font class=mthead>Action</font></td>
+				</tr>
+				[va_paymentslist]
+				<tr bgcolor="#ffffff">
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td align="right"><b>TOTAL</td>
+					<td class="num"><b>[va_ptotal]</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+			<table cellpadding=4 cellspacing=0 width="400" style="border:1px solid;" align="right">
+				<tr bgcolor=#4d6ce4 background="/sitimages/orders/tabla.jpg">
+					<td align="center"><font class=mthead>Payments :<br>[va_ptotal]</font></td>
+					<td align="center"><font class=mthead>Products :<br>[va_total]</font></td>
+					<td align="center"><font class=mthead>Differencte :<br>[va_tdiff]</font></td>
+				</tr>
+				<tr bgcolor="#ffffff">
+					<td colspan="3">[va_diffmessage]</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>
+
+	<script language="javascript" type="text/javascript">
+		chg_radio('pmtfield1','[in_pmtfield1]');
+		chg_select('month','[in_month]');
+		chg_select('year','[in_year]');
+
+		var lastRequest = {};
+
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			// alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+
+		var dates = $( "#paymentdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: new Date(),
+			// maxDate: '+2d',
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+	});
+
+
+	$('[name="pmtfield3"]').on('blur', function(){
+		that = $(this);
+		if(this.value.length == 16){
+			if(lastRequest.cc == this.value && lastRequest.data){
+				updateView();
+				return;
+			}else{
+				lastRequest.cc = this.value;
+			}
+			that.toggleClass('loading');
+			$.ajax({
+				url: '/cgi-bin/common/apps/ajaxbuild',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					ajaxbuild : 'check_diestel_points',
+					creditcard: this.value
+				},
+			})
+			.done(function(data) {
+				console.log(data);
+				if(!data['CODIGORESPUESTA']){
+					lastRequest.data = data;
+					updateView();
+					$('.puntos_disponibles').show();
+					that.toggleClass('loading');
+				}else{
+					$('.puntos_disponibles').hide();
+					that.toggleClass('loading');
+					lastRequest.cc = null;
+					updateView(1)
+				}
+			});
+		}
+		
+	});
+
+	$('#ppuntos').on('click', function(){
+		if($(this).is(':checked')){
+			if(parseFloat($('[name="amount"]').val()) > lastRequest.data['SALDO PESOS']){
+				alert(`La cantidad maxima para puntos es: ${lastRequest.data['SALDO PESOS']}`);
+				$('[name="amount"]').val('');
+			}
+
+		}
+	})
+
+	$('[name="amount"]').on('blur', function(){
+		if($('#ppuntos').is(':checked')){
+			if(parseFloat(this.value) > lastRequest.data['SALDO PESOS']){
+				this.value = '';
+				alert(`La cantidad maxima para puntos es: ${lastRequest.data['SALDO PESOS']}`);
+			}
+		}
+	}).on('focus', function(){
+		$(this).val('');
+	})
+
+	var updateView = function(borrar){
+		if(borrar){
+			$('#puntos_disponibles').html('');
+			return;
+		}
+		if(lastRequest.data){
+			$('#puntos_disponibles').html(`$ ${lastRequest.data["SALDO PESOS"]}.00 ( ${lastRequest.data["SALDO PUNTOS"]} PUNTOS)`);
+		}
+	}
+
+
+
+	</script>
+	<style>
+		.inputsm.loading {
+	    	background: rgba(0, 0, 0, 0) url("/sitimages/ui-anim_basic_16x16.gif") no-repeat scroll 140px 3px;
+		}
+	</style>
+</body>

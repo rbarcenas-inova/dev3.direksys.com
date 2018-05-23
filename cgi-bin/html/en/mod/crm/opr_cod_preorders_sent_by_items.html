@@ -1,0 +1,70 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="50%" align="center"></td>
+	    <!-- <td class="cell_[va_mitems]" align="center" onClick='trjump("/cgi-bin/mod/crm/admin?cmd=cod_preorderstobefulfilled")'>To Fulfill</td>-->
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/crm/admin?cmd=opr_cod_preorders_sent")'>By Warehouses</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/crm/admin?cmd=opr_cod_preorders_sent_by_preorders")'>By Preorders</td>
+	    <td class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/crm/admin?cmd=opr_cod_preorders_sent_by_items")'>By Items</td>
+	  </tr>
+	</table>
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">COD Preorders sent</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message][va_multi]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">
+		    	<!--<a href="javascript:prnwin('/cgi-bin/mod/crm/admin?cmd=[in_cmd]&print=1&dropship=[in_dropship]&mult=[in_mult]&xd=[in_xd]&ostock=[in_ostock]&partialshipped=[in_partialshipped]&partialshipment=[in_partialshipment]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a-->
+		    	Items : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title" nowrap>ID items</td>
+		    <td class="menu_bar_title">Model/Name</td>
+		    <td class="menu_bar_title">COD Date</td>
+		    <td class="menu_bar_title">Warehouses</td>
+		 </tr>
+		[va_searchresults]
+     </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="tbltextttl">Items : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+     &nbsp;
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

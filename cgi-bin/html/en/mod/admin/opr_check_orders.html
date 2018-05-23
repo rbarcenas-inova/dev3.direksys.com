@@ -1,0 +1,99 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->				
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+			    <td class="titletext" align="left" colspan="2">Check Orders for Consistency</td>
+				</tr>
+				<tr>
+			    <td class="stdtxterr" colspan="2">[va_message]</td>
+		  	</tr>
+	    </table>
+			<form action="/cgi-bin/mod/admin/admin" method="post" name="sitform">
+				<input type="hidden" name="cmd" value="opr_checkfile">
+        		<input type="hidden" name="action" value="1">
+	
+			<table border="0" cellspacing="0" cellpadding="2" width="100%" class="formtable">
+				<tr>
+					<td  align="center" class="menu_bar_title" colspan="3"> Run File for Clean up</td>
+			  </tr>				
+				<tr>
+					<td align="center" class="smalltext" colspan="3">File Name : 
+						<select name="form_file" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							<option value="">---</option>
+								[va_filelist]
+							</select>
+							</td>
+				</tr>
+				<tr>
+					<td bgcolor="#E6E6E6" align="center" class="smalltext" width="33%">Drop Shipment Files</td>
+					<td bgcolor="#E6E6E6" align="center" class="smalltext" width="33%">Payments</td>
+					<td bgcolor="#E6E6E6" align="center" class="smalltext" width="33%">Others</td>
+				</tr>
+				<tr>
+					<td class="smalltext" valign="top">
+						<input type="radio" class="radio" name="filetype" value="dsinnova"> DS Innova<br>
+						<input type="radio" class="radio" name="filetype" value="dseagle"> DS Eagle Collenction<br>
+						<input type="radio" class="radio" name="filetype" value="dsactive"> DS Sta-Active<br>
+						<input type="radio" class="radio" name="filetype" value="dsultralities"> DS Ultralities<br>
+						<input type="radio" class="radio" name="filetype" value="dsstimulight"> DS Stimulaight<br>
+						<input type="radio" class="radio" name="filetype" value="dsmetro"> DS Metro<br>
+						<input type="radio" class="radio" name="filetype" value="dsoliso"> DS Oliso<br>
+						<input type="radio" class="radio" name="filetype" value="dskinetic"> DS Kinetic<br>
+						<input type="radio" class="radio" name="filetype" value="dsalexander"> DS Alexander<br>
+					</td>
+					<td class="smalltext" valign="top">
+						<input type="radio" class="radio" name="filetype" value="paycer1">Certegy (Type 1)<br>
+						<input type="radio" class="radio" name="filetype" value="paycer2">Certegy (Type 2)<br>
+						<input type="radio" class="radio" name="filetype" value="paycyb">Cybersource (CDR)<br>
+						</td>
+					<td class="smalltext" valign="top">
+						<input type="radio" class="radio" name="filetype" value="pcs">Computer Assembly<br>
+						</td>
+				</tr>									
+				<tr>
+					<td align="center" colspan="3"><br>	
+						<input type="submit" value="Order All Orders" class="button"></td>
+				  </td>
+			  </tr>
+			</table>
+	   </form>	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%" class="formtable">
+		<tr>
+			<td>[va_cleanupresult]</td>
+	  </tr>
+	</table>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+<script language="javascript">
+<!--
+
+	chg_select('form_file','[in_form_file]');
+	chg_radio('filetype','[in_filetype]');
+
+
+//-->
+</script>
+[ip_footer]

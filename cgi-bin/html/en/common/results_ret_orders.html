@@ -1,0 +1,64 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: [fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="35%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_ret_prod")'>Based in Returns</td>
+	    <td width="35%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_ret_orders")'>Based in Orders</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">Returns Report</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td align="center">
+	    	<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/admin?cmd=rep_ret_orders&from_date=[in_from_date]&to_date=[in_to_date]&action=1&filter=[in_filter]&print=1')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>&nbsp;&nbsp;
+	    </td>
+	    <td width="12%" class="gcell_[va_cell1]" align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_ret_orders&from_date=[in_from_date]&to_date=[in_to_date]&action=1&filter=Active")'>Active</td>
+	   	<td width="12%" class="gcell_[va_cell2]" align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_ret_orders&from_date=[in_from_date]&to_date=[in_to_date]&action=1&filter=Exchange")'>Exchange</td>
+	   	<td width="12%" class="gcell_[va_cell3]" align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_ret_orders&from_date=[in_from_date]&to_date=[in_to_date]&action=1&filter=Returned")'>Returned</td>
+	   	<td width="12%" class="gcell_[va_cell4]" align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_ret_orders&from_date=[in_from_date]&to_date=[in_to_date]&action=1&filter=Undeliverable")'>Undeliverable</td>
+	   	<td width="12%" class="gcell_[va_cell5]" align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_ret_orders&from_date=[in_from_date]&to_date=[in_to_date]&action=1&filter=Lost")'>Lost</td>
+	   	<td width="12%" class="gcell_[va_cell6]" align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_ret_orders&from_date=[in_from_date]&to_date=[in_to_date]&action=1&filter=ReShip")'>ReShip</td>
+	   	<td width="12%" class="gcell_[va_cell7]" align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_ret_orders&from_date=[in_from_date]&to_date=[in_to_date]&action=1&filter=All")'>All</td>
+	  </tr>
+	</table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		[va_searchresults]
+		</table>
+		
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

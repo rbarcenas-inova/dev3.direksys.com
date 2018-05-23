@@ -1,0 +1,290 @@
+	&nbsp;
+	<fieldset><legend>Vendors Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Vendor ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_vendors] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]
+							<a href="/cgi-bin/common/apps/ajaxfinance?cmd=movements_editor&id_vendors=[in_view]&tablename=vendors&edit_type=vendors" class="fancy_modal_iframe" title="Movements Editor">
+								<img border="0" alt="Edit" title="Edit Movements" src="[va_imgurl]/[ur_pref_style]/icon-edit-movements.png" height="24" width="24">
+							</a>
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+<fieldset><legend>Vendor Main Info</legend>
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	
+	<tr>
+	  <td width="30%">Company Name :</td>
+		<td class="smalltext">[in_companyname]</td>
+	</tr>
+
+	<tr>
+	  <td width="30%">RFC :</td>
+		<td class="smalltext">[in_rfc]</td>
+	</tr>
+
+	<tr>
+	  	<td width="30%">Category :</td>
+		<td class="smalltext">[in_category]</td>
+	</tr>
+
+</table>
+</fieldset>
+
+&nbsp;
+
+<fieldset><legend>Vendor Address Info</legend>
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	
+	<tr>
+	    <td valign="top" width="30%">Address : </td>
+	    <td class="smalltext">[in_address]</td>
+	</tr>
+
+	<tr>
+	    <td valign="top" width="30%">County/Town :</td>
+	    <td class="smalltext">[in_address2] [in_address3]</td>
+	</tr>
+
+	<tr>
+	  	<td width="30%">City/State/Zip :</td>
+		<td class="smalltext">[in_city], [in_state] [in_zip] </td>
+	 </tr>
+
+		<tr>
+	    <td width="30%">Country : </td>
+	    <td class="smalltext">[in_country]</td>
+	 </tr>
+
+		<tr>
+	    <td width="30%">Phone :</td>
+	    <td class="smalltext">[in_phone]</td>
+	 </tr>
+		
+		<tr>
+	    <td width="30%">Fax : </td>
+	    <td class="smalltext">[in_fax]</td>
+	</tr>
+	<tr>
+	    <td width="30%">WebSite  : </td>
+	    <td class="smalltext">[in_website]</td>
+	</tr>
+</table>
+</fieldset>
+
+&nbsp;
+
+<fieldset><legend>Vendor Payment Info</legend>
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	<tr>
+	    <td width="30%">Method :</td>
+	    <td class="smalltext">[in_paymentmethod]</td>
+	</tr>
+	<tr>
+	  <td width="30%">PO Terms :</td>
+	  <td class="smalltext">[in_poterms]</td>
+	</tr>	
+</table>
+</fieldset>
+
+&nbsp;
+
+<fieldset><legend>Vendor Bank Info</legend>	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+	    <td width="30%">Name : </td>
+	    <td class="smalltext">[in_bankname]</td>
+	</tr>
+		
+		<tr>
+	    <td width="30%">Bank Vendor ID  :</td>
+	    <td class="smalltext">[in_bankid]</td>
+	</tr>
+
+		<tr>
+	    <td width="30%">Branch  :</td>
+	    <td class="smalltext">[in_bankbranch]</td>
+	</tr>
+
+	<tr>
+	    <td width="30%">Account : </td>
+	    <td class="smalltext">[in_bankaccount]</td>
+	</tr> 
+
+	<tr>
+	    <td width="30%">CLABE : </td>
+	    <td class="smalltext">[in_bankwt]</td>
+	</tr> 
+
+	<tr>
+	    <td width="30%">Currency : </td>
+	    <td class="smalltext">[in_currency]</td>
+	</tr> 
+</table>
+</fieldset>	
+&nbsp;
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr>
+	    <td class="menu_bar_title" colspan="10" align="center">
+	    	<a href="#add_contact" name='add_contact' id='add_contact' onClick="add_contact()"><img src="[va_imgurl]/default/b_add.png" border="0" style="vertical-align:middle;"><font color=#ffffff> Contacts</a>
+	    </td>
+	</tr>
+	<tr>
+	    <td class="menu_bar_title">&nbsp;</td>
+	    <td class="menu_bar_title">ID</td>
+	    <td class="menu_bar_title">Name</td>
+	    <td class="menu_bar_title">Title</td>
+	    <td class="menu_bar_title">Phone</td>
+	    <td class="menu_bar_title">Mobile</td>
+	    <td class="menu_bar_title">Fax</td>
+	    <td class="menu_bar_title">Email</td>
+	    <td class="menu_bar_title">Status</td>
+	    <td class="menu_bar_title">Vendor site User</td>
+	 </tr>
+	[va_contacts]
+ </table>
+&nbsp;
+
+	<fieldset><legend>Comments</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    	<td valign="top" width="30%">
+	    		Comments : </td>
+	    	<td class="smalltext">[in_comments]</td>
+	 	</tr>
+	</table>
+</fieldset>
+
+&nbsp;
+
+<fieldset><legend>Vendor Accounts</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    	<td width="30%">Account Debit  : </td>
+	    	<td class="smalltext">[va_debit_accounting]</td>
+	 	</tr>
+	 	<tr>
+	    	<td width="30%">Account Credit  : </td>
+	    	<td class="smalltext">[va_credit_accounting]</td>
+	 	</tr>
+	</table>
+</fieldset>
+
+<fieldset><legend>Vendor Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    	<td width="30%">Status  : </td>
+	    	<td class="smalltext">[in_status]</td>
+	 	</tr>
+	 	<tr>
+	    	<td width="30%">View in Adjustments  : </td>
+	    	<td class="smalltext">[in_adjustment]</td>
+	 	</tr>
+	</table>
+</fieldset>
+
+<label id="tabs"</label>
+
+<script type="text/javascript">
+<!--
+	function add_contact(){
+		popup_show('popup_contact', 'contact_drag', 'popup_exit1', 'element-right', -1, -1,'add_contact');
+	}
+
+	function edit_movements() {
+		var objFrame=document.getElementById("rcmd_movements");
+		objFrame.src="/cgi-bin/common/apps/ajaxfinance?cmd=editing_movements&id_vendors=[in_id_vendors]&tablename=vendors&edit_type=vendors&path=[va_script_url]&cmdo=[in_cmd]&dototemp=YES";
+		popup_show('popup_edit_movements', 'item_dragiii', 'popup_exiteoi', 'element-right', -1, -1,'tabs');
+	}
+-->
+</script>
+
+<div id="popup_contact" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+<div class="menu_bar_title" id="contact_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Contact Info</td>
+			<td align=right width=20px><img id="popup_exit1" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+</div>
+	<div>
+		<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+			<input type="hidden" name="id_vendors" value="[in_id_vendors]">
+			<input type="hidden" name="view" value="[in_id_vendors]">
+			<input type="hidden" name="action" value="add_contact">
+			<input type="hidden" name="cmd" value="mer_vendors">
+			<input type="hidden" name="contact_status" value="Active">
+			<table border="0" cellspacing="0" cellpadding="10" width="450" bgcolor="#FFFFFF">
+				<tr>
+				  <td>First Name:</td>
+				  <td><input name="contact_firstname" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+				<tr>
+				  <td>Last Name 1:</td>
+				  <td><input name="contact_lastname1" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+				<tr>
+				  <td>Last Name 2:</td>
+				  <td><input name="contact_lastname2" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+				<tr>
+				  <td>Title:</td>
+				  <td><input name="contact_title" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+				<tr>
+				  <td>Phone:</td>
+				  <td><input name="contact_phone" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+				<tr>
+				  <td>Mobile:</td>
+				  <td><input name="contact_mobile" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+				<tr>
+				  <td>Fax:</td>
+				  <td><input name="contact_fax" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+				<tr>
+				  <td>E-mail:</td>
+				  <td><input name="contact_email" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+				<tr>
+				  <td>IM:</td>
+				  <td><input name="contact_im" type="text" style="width: 80%" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+				<tr>
+				  <td colspan="2" align="center"><input class="button" type="submit" value="Add Contact" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+&nbsp;
+<!-- Edit Movements-->
+<div id='popup_edit_movements' style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+<div class='menu_bar_title' id='item_dragiii'>
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp; </td>
+			<td align=right width=20px><img id="popup_exiteoi" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+</div>
+<div>
+  <iframe src='' id='rcmd_movements' name='rcmd_movements' title='Recieve Commands' width='1150' height='500' frameborder='0' marginwidth='0' marginheight='0' scrolling='auto'>
+  <h2>Unable to do the script</h2>
+  <h3>Please update your Browser</h3></iframe>
+</div>
+</div>
+&nbsp;

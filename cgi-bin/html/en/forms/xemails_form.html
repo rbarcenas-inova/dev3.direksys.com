@@ -1,0 +1,31 @@
+	&nbsp;
+	<fieldset><legend>Email Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Email : <span class="smallfieldterr">[er_email]</span></td>
+		  <td class="smalltext"><input type="text" name="email" value="[in_email]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+ <fieldset><legend>Email Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		  <td class="smalltext">
+		  	<input type="radio" name="status" value="Active" class="radio">Active
+				<input type="radio" name="status" value="Inactive" class="radio">Inactive</td>
+		 </tr>
+  	</table>
+	</fieldset>
+<input type="hidden" name="lastime_sent" value="[in_lastime_sent]">
+
+<script language="javascript">
+<!--
+
+	chg_radio('status','[in_status]');
+
+	
+//-->
+</script>
+

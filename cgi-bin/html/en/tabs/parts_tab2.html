@@ -1,0 +1,35 @@
+&nbsp;
+
+<form name="sitform">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+	    <td class="tbltextttl">	
+	    	<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_parts]&tab=[va_activetab]&tabs=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;	
+	      <a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=2&tabcmd=parts&toprint=[in_id_parts]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+        Vendors : [va_matches]</td>
+	    <td class="fieldterr">[va_tabmessage]</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+				  <td class="menu_bar_title" width="20%">&nbsp;</td>
+					<td class="menu_bar_title" width="20%">Vendor ID / Name</td>
+					<td class="menu_bar_title" width="20%">Last PO</td>
+					<td class="menu_bar_title" width="20%">Total in POs</td>
+					<td class="menu_bar_title" width="20%" align="right">Status</td>
+				 </tr>
+				 [va_searchresults]
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td><a href='javascript:add_vendor()'>Add Vendor</a></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+</form>
+
+

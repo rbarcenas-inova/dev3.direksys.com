@@ -1,0 +1,172 @@
+
+<table style="border-collapse:collpase;border:2px solid;padding:5px;margin:5px;font-weight:bold">
+	<tr>
+		<td colspan="3" style="text-align: center"><h3>Puntos Santander</h3></td>
+	</tr>
+	<tr>
+		<td>Disponible:</td>
+		<td><span class="disponibles"><strong id="vals">$ 0.00</strong></span></td>
+		<td>
+			<div class="button" id="getPoints" style="display: none">Consultar Puntos</div>
+			<input type="hidden" name="consultas" value="0">
+			<input type="hidden" name="auth-codes">
+			<input type="hidden" name="id-transaccion">
+			<input type="hidden" name="comision">
+		</td>
+	</tr>
+	<tr>
+		<td style="width:85px;"> Monto a pagar con puntos </td>
+		<td> <strong>$ </strong><input name="used_points" value="0.00" readonly></td>
+		<td>usar Puntos:<input type="checkbox" name="activar_puntos" id="" ></td>
+		<!-- <td></td> -->
+	</tr>
+</table>
+<style type="text/css">
+	div.button{
+		display: table-cell;
+		vertical-align: middle;
+	}
+	[data-monto="0"]{
+		display: none;
+	}
+</style>
+<script type="text/javascript">
+	var values = {
+		disponibles : 0,
+		puntos : 0,
+		autorizacion : 0
+	};
+	var activar = function(){
+	    $(window).bind("beforeunload", function(e) {
+	        e.returnValue="Test"; return "Test";
+	    });
+	}
+	var desactivar = function(){
+		$(window).unbind('beforeunload');
+	}
+	var consultarPuntos = function(){
+		activar();
+		$.post('[va_url_diestel]', {
+			ajaxbuild: 'check_diestel_points',
+			type : 'getPoints',
+			creditcard : '[in_pmtfield3]',
+			cvc :'[in_pmtfield5]',
+			date : '[in_Month][in_year]'
+		}, function(data){
+			if(data['SALDO PESOS']){
+				let pesos_disponibles = parseFloat(data['SALDO PESOS']).toFixed(2);
+				let puntos_disponibles = data['SALDO PUNTOS'];
+				window.localStorage.setItem('puntos_disponibles',
+					JSON.stringify({
+						disponibles: pesos_disponibles, 
+						puntos: puntos_disponibles,
+						order_total: parseFloat(window.localStorage.getItem('order_total_net')),
+						max_disponible : pesos_disponibles
+					})
+				);
+				let values = JSON.parse(localStorage.getItem('puntos_disponibles'));
+				let order_total = parseFloat(ordersPayments.data('order_total').substring(2));
+				if(values.disponibles > order_total){
+					values.max_disponible = order_total;
+					window.localStorage.setItem('puntos_disponibles', JSON.stringify(values));
+				}
+				$('.disponibles').html('<strong style="color:green">$ '+pesos_disponibles+' ('+puntos_disponibles+' puntos)</strong>');
+			}else{
+				$('.disponibles').html('<strong style="color:red">No es posible obtener los puntos disponibles, consulte m&aacute;s tarde.</strong>')
+				// alert(data['CODIGORESPUESTA']+' => '+data['CODIGORESPUESTADESCR']);
+			}
+			desactivar();
+			$('#getPoints').hide('slow');
+		});
+	}
+	$('[name="used_points"]').val('0.00');
+	if(window.localStorage.getItem('puntos_disponibles')){
+		values = JSON.parse(localStorage.getItem('puntos_disponibles'));
+		$('.disponibles').html( values.disponibles > 0 ? '<strong style="color:green"> $ ' + values.disponibles + ' ('+values.puntos+' puntos) </strong>' : $(this).html());
+		$('[name="auth-codes"]').val(values.autorizacion);
+		$('[name="consultas"]').val(1);
+
+	}
+	
+	if($('[name="activar_puntos"]').is(':checked')){
+		$('[name="used_points"]').removeAttr('readonly');
+	}
+	$('[name="used_points"]').on('keydown',function(e){
+		if($(this).prop('readonly'))
+			return false;
+		if( (e.keyCode > 95 && e.keyCode < 106) || (e.keyCode > 47 && e.keyCode < 58) || e.keyCode == 8 || e.keyCode == 9 || e.keyCode == 13 || e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40 || e.keyCode== 110 || e.keyCode == 190){
+			if(parseFloat($(this).val()+e.key) > parseFloat(values.max_disponible)){
+				alert('La cantidad maxima que puedes usar es: $ '+values.max_disponible);
+				$(this).val('');
+				return false;
+			}
+			return true
+		}
+		return false
+	}).on('focus', function(){
+		if (!$(this).attr('readonly')) {
+			$('#puntos_santander').remove();
+			$(this).val('');
+		}
+	}).on('blur', function(){
+		if($(this).val() == ''){
+			$('#puntos_santander').remove();
+			$(this).val('0.00');
+		}else{
+			var temp = $(this).val();
+			$(this).val(parseFloat(temp).toFixed(2))
+		}
+	});
+	$('[name="activar_puntos"]').on('click',function(){
+		if($(this).is(':checked')){
+			$('[name="used_points"]').removeAttr('readonly');
+			$('[name="used_points"]').val(parseFloat(JSON.parse(localStorage.getItem('puntos_disponibles')).max_disponible).toFixed(2));
+			$('[name="used_points"]').trigger('change');
+
+		}else{
+			$('[name="used_points"]').val('0.00').prop('readonly', 'readonly');
+			$('#puntos_santander').remove();
+			$('[name="used_points"]').trigger('change');
+		}
+	});
+	if('[va_autoget_points]' == '1' ){
+		$('.disponibles').html('<strong>Obteniendo </strong><img src="/sitimages/load16.gif">');
+		consultarPuntos()
+	}else{
+		if(!window.localStorage.getItem('puntos_disponibles')){
+			$('#getPoints').show();
+			$('#getPoints').on('click',function(){
+				if(confirm("Esta seguro que desea consultar Puntos")){
+					$('.disponibles').html('<strong>Obteniendo </strong><img src="/sitimages/load16.gif">');
+					consultarPuntos();
+				}
+			});
+		}
+	}
+	$('[name="used_points"]').on('change', function(evt){
+		let monto = $(this).val();
+
+		let template =  `<tr id="puntos_santander">
+		  <td style="border-bottom: 1px solid silver; " align="left" valign="top">Puntos Santander</td>
+		  <td style="border-bottom: 1px solid silver; " align="left" valign="top">[va_pmtfield2]</td>
+		  <td style="border-bottom: 1px solid silver; " align="center" valign="top">[va_pmtfield3]</td>
+		  <td style="border-bottom: 1px solid silver; " align="center" valign="top">[va_pmtfield4]</td>	
+		  <td style="border-bottom: 1px solid silver; " align="center" valign="top">[va_pmtfield5]</td>
+		  <td style="border-bottom: 1px solid silver; " align="center" valign="top">[va_pmtfield6]</td>
+		  <td style="border-bottom: 1px solid silver; " align="right" valign="top" nowrap><span id="span_order_first_pmt" data-amt="[va_pmts_amount]">$ ${monto}</span> &nbsp;&#64;&nbsp; [va_curdate]</td>
+		</tr>`;
+		ordersPayments.data('points_value', monto);
+		$('#span_order_first_pmt').html(ordersPayments.data('order_total'));
+		$('#span_order_first_pmt').parent().parent().attr("data-monto", parseInt(ordersPayments.data('order_total').substring(2)));
+		if(!$('#puntos_santander').length)
+			$('#div_credit_card table > tbody').append(template);
+		else{
+			$('#puntos_santander').find('#span_order_first_pmt').html('$ '+parseFloat(monto).toFixed(2) );
+		}
+		if(monto == 0){
+			$('#puntos_santander').remove();
+		}
+		return true;
+	});
+
+</script>

@@ -1,0 +1,221 @@
+<br>
+<fieldset><legend>Informaci&oacute;n de la cuenta</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<input type="hidden" name="id_accategories" id="id_accategories" value="0">
+		<input type="hidden" name="taxline" id="taxline" value="0">
+		<input type="hidden" name="Description" id="Description" value="0">
+		<tr>
+			<td width="30%">N&uacute;mero de cuenta :  <span class="smallfieldterr">[er_id_accounting]</span></td>
+			<td>
+				<input name="id_accounting" id="id_accounting" value="[in_id_accounting]" size="20" onfocus="focusOn( this )" type="text" maxlength="10" class="input" placeholder="000-00-000">
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Nombre :  <span class="smallfieldterr">[er_name]</span></td>
+			<td><input name="name" value="[in_name]" size="80" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td width="30%">Cuenta padre :  <span class="smallfieldterr">[er_id_parent]</span></td>
+		    <td class="smalltext">
+		    	<span id="spnParent"></span>
+		    	<input type="hidden" name="id_parent" id="id_parent" value="[in_id_parent]">
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Agrupador SAT :  <span class="smallfieldterr">[er_idagrupadorSat]</span></td>
+		    <td class="smalltext">
+		    	<select name="id_agrupadorSat" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		      		<option value=""></option>
+		        	[fc_build_select_agrupadorsat]
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Tipo de cuenta:</td>
+		    <td class="smalltext">
+		    	<select name="ID_account_nature" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		       		[fc_build_select_accounts_nature]
+				</select>
+			</td>
+		</tr>
+		<tr id="currency_exchange" >
+			<td>Moneda : <span class="smallfieldterr">[er_currency]</span></td>
+			<td class="smalltext">
+				<select name="Currency" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value=""></option>
+		       		[bs_currency@sl_accounts]
+				</select>
+			</td>
+		</tr>
+		<!-- <tr>
+			<td width="30%">Taxline :  <span class="smallfieldterr">[er_taxline]</span></td>
+			<td><input name="taxline" value="[in_taxline]" size="80" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr> -->
+		<tr>
+			<td width="30%">Segmento :  <span class="smallfieldterr">[er_segment]</span></td>
+			<td>[br_segment@sl_accounts]</td>
+		<tr>
+			<td width="30%">Es cuenta detalle :  <span class="smallfieldterr">[er_isdetailaccount]</span></td>
+			<td>[br_isdetailaccount@sl_accounts]</td>
+		<tr>
+			<td width="30%">Estatus :  <span class="smallfieldterr">[er_status]</span></td>
+			<td>[fc_accounts_status]</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+<link rel="stylesheet" href="/chosen/chosen.min.css">
+<script src="/chosen/chosen.jquery.min.js"></script>
+
+
+<script language="JavaScript">
+<!--
+	
+	chg_radio('Segment','[in_Segment]');
+	chg_radio('status','[in_status]');
+	chg_radio('isdetailaccount','[in_isdetailaccount]');
+	chg_select('id_agrupadorSat','[in_id_agrupadorsat]');
+	chg_select('ID_account_nature','[in_id_account_nature]');
+	chg_select('Currency','[in_currency]');
+
+	
+
+	$('[name="id_agrupadorSat"],[name="ID_account_nature"],[name="id_parent"]').attr('style','width:516px');
+
+
+var action="[in_add]";
+var modify="[in_modify]";
+
+
+
+$(function(){
+	formatAccount();
+
+	$('#id_accounting').on('keyup',function(){
+		formatAccount();
+	});
+
+	$('[name="sitform"]').on('submit',function(e){
+		//e.preventDefault();
+		var str = $('#id_accounting').val();
+		var res = str.replace("-", "");
+		var res2 = res.replace("-", "");
+		$('#id_accounting').val(res2);
+	});
+
+	//Si se trae un valor para modificar, se llena el span con el nombre de la cuenta y el identificador
+	if(modify){
+		var parent=get_value('/cgi-bin/common/apps/ajaxbuild','ajaxbuild=getRecordParentByAccount&padre='+modify);
+		if(parent!='ERROR'){
+			var cuentacompleta=parent.split('-');
+			var cuenta=cuentacompleta[0];
+			var nombrecuenta=cuentacompleta[1];
+			cuenta=checkUndef(cuenta[0]+cuenta[1]+cuenta[2])+'-'+checkUndef(cuenta[3]+cuenta[4])+'-'+checkUndef(cuenta[5]+cuenta[6]+cuenta[7]);
+			$('#spnParent').empty().append(cuenta+' '+nombrecuenta);
+		}
+	}
+
+})
+
+function checkUndef(cad){
+	if(cad)
+		return cad;
+	else
+		return "";
+}
+
+function get_value(purl, pparameters) {
+    var valor = "N/A_";
+    
+    $.ajax({
+        url: purl,
+        type: 'POST',
+        data: pparameters,
+        async: false,
+        cache: false,
+        dataType: 'text',
+        timeout: 30000,
+        error: function(a, b) {
+            valor = b;
+        },
+        success: function(msg) {
+            valor = msg;
+        }
+    });   
+
+    return valor;
+}
+ 
+function get_object(purl, pparameters) {
+    var t = get_value(purl, pparameters);
+    var j = eval('(' + t + ')');
+    return j;
+}
+
+
+function lookparent(idaccounting){
+	console.log(idaccounting);
+	var s1=idaccounting.substr(1, 2);
+	var s2=idaccounting.substr(3, 2);
+	var s3=idaccounting.substr(5, 3);
+	var nuevacuenta=idaccounting[0] +s1+s2+s3;
+	var padre='';
+	var flagparent="N";
+	console.log('s1:'+s1+'| s2:'+s2+'|'+' s3:'+s3)
+
+	
+	if(s1 == "00" && s2=="00" && s3=="000"){//Es cuenta padre
+		flagparent="Y";
+	}else if(s1 != "00" && s2=="00" && s3=="000"){ // Es cuenta nivel 1
+		padre = '00' + s2 +s3;
+	}else if(s1!="00" && s2!="00" && s3=="000"){//Es cuenta de nivel 2
+		padre=s1+"00000";
+	}else if(s1!="00" && s2!="00" && s3!="000"){//Es cuenta de nivel 3
+		padre=s1+s2+"000";
+	}
+	padre = idaccounting[0] + padre
+	var res=get_value('/cgi-bin/common/apps/ajaxbuild','ajaxbuild=getRecordParent&padre='+padre+'&nuevacuenta='+nuevacuenta);
+	var arr=res.split('-');
+	if(res!="EXISTS"){
+		if(res=="ERROR"){
+			alert("La cuenta no tiene un elemento padre o la cuenta padre se encuentra inactiva.");
+		}else{
+			$('#id_parent').val(arr[0]);
+			var cuenta=arr[2];
+			cuenta=checkUndef(cuenta[0]+cuenta[1]+cuenta[2])+'-'+checkUndef(cuenta[3]+cuenta[4])+'-'+checkUndef(cuenta[5]+cuenta[6]+cuenta[7]);
+			$('#spnParent').empty().append(cuenta+' '+arr[1]);
+			console.log(arr[0]);
+		}
+	}else{
+		alert("La cuenta que intenta dar de alta ya existe");
+		$('#id_accounting').val('');
+	}
+}
+
+function formatAccount() {
+	var obj=document.getElementById('id_accounting');
+	var len=obj.value.length;
+	// console.log(len);
+	var numbers = obj.value.replace(/\D/g, ''),
+	char = {3: '-', 5: '-' };
+	obj.value = '';
+	for (var i = 0; i < numbers.length; i++) {
+	    obj.value += (char[i] || '') + numbers[i];
+	}
+	if(len==10){
+		var str = $('#id_accounting').val();
+		var res = str.replace("-", "");
+		var res2 = res.replace("-", "");
+		if('[in_search]'!='form'){
+			lookparent(res2);	
+		}else{
+			$('#id_accategories, #taxline, #Description').remove();
+		}
+	}
+}
+
+
+</script>
+
+
+

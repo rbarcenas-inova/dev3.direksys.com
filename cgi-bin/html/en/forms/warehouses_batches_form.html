@@ -1,0 +1,39 @@
+	[va_towh]	
+	&nbsp;
+	<fieldset><legend>Batches Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  
+  	<tr>
+		    <td width="30%" valign="top">Warehouses ID : <span class="smallfieldterr">[er_id_warehouses]</span></td>
+		    <td class="smalltext">
+    	 		<input type="text" name="id_warehouses" value="[in_id_warehouses]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<a class="scroll" href="#warehouses" id="warehouses" onClick="add_warehouses()">
+					<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+				</a>
+				<div id="popup_warehouses" style="visibility: hidden; display: none; background-color: #ffffff;">
+				<div class="menu_bar_title" id="item_drag1">
+				<img id="popup_exit1" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+				&nbsp;&nbsp;&nbsp;Warehouses
+				</div>
+				<div class="formtable">
+				<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=warehouses&db=sl_warehouses&fname=id_warehouses&ajaxtype=1" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+				<H2>Unable to do the script</H2>
+				<H3>Please update your Browser</H3>
+				</IFRAME>	
+				</div></div>
+		    </td>
+		 </tr>				
+  		 
+  		 
+	</table>
+	</fieldset>
+	&nbsp;
+  	 
+<script language="javascript">
+<!--
+	function add_warehouses(){
+		popup_show('popup_warehouses', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'warehouses');
+	}
+//-->
+</script>
+

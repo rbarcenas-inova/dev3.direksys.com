@@ -1,0 +1,71 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="20%" align="center"></td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=pklist")'>Create</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_list&status=New")'>New</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_list&status=In Process")'>In Process</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_list&status=Backorder")'>Backorder</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_list&status=Processed")'>Processed</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_list&status=Pending")'>Pending</td>
+	    <td class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_search")'>Search</td>
+	  </tr>
+	</table>
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center" colspan="2">View Invoice : [in_id_orders]</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Order Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Invoice #  : </td>
+			<td class="titletext">[in_id_orders] &nbsp;
+		  	<a href="javascript:prnwin('/cgi-bin/mod/wms/admin?cmd=packing_list_inv&print=1&id_orders=[in_id_orders]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.gif' title='Print' alt='' border='0'></a>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+	[ip_forms:invoice_view]
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

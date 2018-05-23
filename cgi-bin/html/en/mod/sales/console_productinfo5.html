@@ -1,0 +1,36 @@
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+		    <td width="30%" align="center"></td>
+		    <td width="14%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&id_products=[in_id_products]&action=search&step=2&tab=1")'>Descripcion</td>
+		    <td width="14%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&id_products=[in_id_products]&action=search&step=2&tab=4")'>Opc. Envio</td>
+		    <td width="14%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&id_products=[in_id_products]&action=search&step=2&tab=5")'>Opc. Pago</td>
+		  </tr>
+		</table>
+			<div style="background-color:#ffffff;margin:10px;">
+<table border="0" cellspacing="0" cellpadding="4" width="100%" >		
+			<tr>
+				<td valign="top">Tarjetas de Credito : </td>
+				<td>Visa, Master Card, American Express, Discover, Diners<br>
+					<img src="[va_imgurl]/creditcards.gif" border="0"></td>
+		    </tr>    
+			<tr>
+				<td>Cheque : </td>
+				<td>Personal o Compañia</td>
+		    </tr>
+			<tr>
+				<td>Western Union : </td>
+				<td> ---</td>
+		    </tr>
+			<tr>
+				<td>Money Order : </td>
+				<td> ---</td>
+		  </tr>
+		  <tr>
+		  	<td valign="top">Payments : </td>
+				<td>[fc_product_payments_view]</td>
+		  </tr>
+		  <tr>
+		  	<td valign="top">Payments : </td>
+				<td>[fc_build_product_pay_typedescription]</td>
+		  </tr>
+		</table>

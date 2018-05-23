@@ -1,0 +1,55 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: [fc_template_myprefsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<table class="tab" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+	  <tbody><tr>
+	    <td align="center" width="30%"></td>
+		<td width="14%" class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=myprefs&quot;)" align="center" width="23%">Preferences</td>
+		<td width="14%" class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=myprefs_mypass&quot;)" align="center" width="23%">Password</td>
+		<td width="14%" class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=myprefs_wpage&quot;)" align="center" width="23%">Homepage</td>
+		<td width="14%" class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=myprefs_mlogs&quot;)" align="center" width="23%">Logs</td>
+		<td width="14%" class="cell_on" onclick="trjump(&quot;/cgi-bin/mod/[ur_application]/admin?cmd=help&quot;)" align="center" width="23%">Help</td>
+	  </tr>
+	</tbody></table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+
+
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		    <td class="titletext" align="left">My Help</td>
+		 	</tr>
+			<tr>
+		    <td class="stdtxterr">[va_message]</td>
+			</tr>
+  	</table>
+
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+

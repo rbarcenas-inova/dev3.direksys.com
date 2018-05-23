@@ -1,0 +1,67 @@
+[ip_header_blank]
+<table cellpadding=0 cellspacing=10 width=100% height=100% bgcolor=#ffffff><td valign=top align=left>
+ <form action="[va_script_url]" method="get" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="[in_id_name]" value="[in_id_value]">
+	<input type="hidden" name="[in_id_name2]" value="[in_id_value2]">
+	<input type="hidden" name="[in_id_name3]" value="[in_id_value3]">
+	<input type="hidden" name="[in_id_name4]" value="[in_id_value4]">
+	<input type="hidden" name="action" value="1">	
+	<input type="hidden" name="path" value="[in_path]">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td align="center"><input type="text" name="keyword" value="[in_keyword]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'> 
+		    	<input type="submit" value="Search" class="button"></td>
+		 </tr>
+     </table>
+</form>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="tbltextttl">Records : [va_matches]  [va_btn_select]</td>
+		    <td align="center" class="tbltextttl">[va_this_link]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		[va_header]
+		[va_searchresults]
+  </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="tbltextttl">Records : [va_matches]  </td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+	</table>  
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			$('#checkall').click(function() {
+				if ( $(this).is(':checked') ) {
+					$('input:checkbox.inpcheck').attr('checked','checked');
+				}else {
+					$('input:checkbox.inpcheck').removeAttr('checked');
+				}
+				
+			});
+
+			$('#btn_sel_mult').click(function() {
+				var values='';
+				$(".inpcheck").each(function (i) {
+					if ( $(this).is(':checked') ) {
+						values += '&additem=' + $(this).val()
+					}
+				});
+				if (values != '') {
+					var url = $(this).attr('href');
+					url += values;
+					trjump(url);
+				}
+			});
+		});
+	</script>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>

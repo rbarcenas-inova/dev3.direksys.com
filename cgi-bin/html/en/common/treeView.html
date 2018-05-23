@@ -1,0 +1,52 @@
+<script type="text/javascript">
+	var data = [va_data];
+	$( document ).ready(function() {
+		$('#tree').tree({
+		    data: data,
+		    autoOpen: false,
+		    dragAndDrop: false
+		});
+
+		$(".jqtree-title").on('click',function(evt){
+			// console.log(this.parentNode.parentNode.dataset.isdetail);
+			if (this.parentNode.parentNode.dataset.isdetail == 'No') return;
+
+			var tex=$(this).text();
+			var arr=tex.split("-");
+			var last = arr[arr.length - 1];
+			
+			//parent.id_parent.value=this.parentNode.parentNode.dataset.id_accounts
+			parent.[in_element_id].value=this.parentNode.parentNode.dataset.id_accounts
+			var cuenta=arr[0]+'-'+arr[1]+'-'+arr[2]+' '+arr[3];	
+			//parent.spnParent.innerHTML=cuenta+' '+last;
+			parent.[in_element_descrip].innerHTML=cuenta+' '+last;
+
+			r = parent.document.querySelectorAll('#[in_element_id]');
+			for (var i = 0; i < r.length; i++) {
+				r[i].value = this.parentNode.parentNode.dataset.id_accounts; 
+				if('[in_tipo]' == 'accounting'){
+					r[i].value=arr[0]+'-'+arr[1]+'-'+arr[2];
+				}
+			};
+			r = parent.document.querySelectorAll('#[in_element_descrip]');
+			
+			for (var i = 0; i < r.length; i++) {
+				r[i].innerHTML =  cuenta+' '+last;
+				if('[in_tipo]' == 'accounting'){
+					r[i].value=last.trim();
+				}
+			};
+
+
+
+			if('[in_hide_element]' != '')
+				$("#[in_hide_element]", parent.document).attr('style','display: none;');
+			if(parent.$.fancybox)
+				parent.$.fancybox.close();
+			
+		});
+
+	});
+
+</script>
+<div id="tree"></div>

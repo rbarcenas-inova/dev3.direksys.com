@@ -1,0 +1,92 @@
+&nbsp;
+<fieldset><legend>Notfication Identification</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Name :  <span class="smallfieldterr">[er_name]</span></td>
+			<td><input name="name" value="[in_name]" size="80" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td colspan="2">Message :  <span class="smallfieldterr">[er_message]</span></td>
+		</tr>
+		<tr>
+			<td colspan="2"><textarea    rows="5" cols="10" style="width: 100%;" name="message" onfocus="focusOn( this )" onblur="focusOff( this )">[in_message]</textarea></td>
+		</tr>
+		<tr>
+			<td width="30%">Command :  <span class="smallfieldterr">[er_event]</span></td>
+			<td><input name="event" value="[in_event]" size="50" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>		
+	</table>
+</fieldset>	
+&nbsp;
+<fieldset><legend>Filters</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Filter 1 :  <span class="smallfieldterr">[er_filter1] </span></td>
+			<td><input name="filter1name" value="[in_filter1name]" size="30" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			<td nowrap>[br_filter1cond@admin_notifs]</td>
+			<td><input name="filter1value" value="[in_filter1value]" size="30" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td width="30%">Filter 2 :  <span class="smallfieldterr">[er_filter2] </span></td>
+			<td ><input name="filter2name" value="[in_filter2name]" size="30" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			<td nowrap>[br_filter2cond@admin_notifs]</td>
+			<td><input name="filter2value" value="[in_filter2value]" size="30" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td width="30%">Filter 3 :  <span class="smallfieldterr">[er_filter3] </span></td>
+			<td ><input name="filter3name" value="[in_filter3name]" size="30" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+			<td nowrap>[br_filter3cond@admin_notifs]</td>
+			<td ><input name="filter3value" value="[in_filter3value]" size="30" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td width="30%">Contition :  <span class="smallfieldterr">[er_filterscond]</span></td>
+			<td colspan="3">[br_filterscond@admin_notifs]</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+<fieldset><legend>Notfication Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Status :  <span class="smallfieldterr">[er_status]</span></td>
+			<td ><span style="white-space:nowrap"><input id="status_Active" name="status" value="Active" class="radio" type="radio"> <label for="status_Active">Active</label></span>
+			<span style="white-space:nowrap"><input id="status_Inactive" name="status" value="Inactive" class="radio" type="radio"> <label for="status_Inactive">Inactive</label></span>
+		</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+
+<script language="javascript">
+<!--
+
+	chg_radio('status','[in_status]');
+	chg_radio('filter1cond','[in_filter1cond]');
+	chg_radio('filter2cond','[in_filter2cond]');
+	chg_radio('filter3cond','[in_filter3cond]');
+	chg_radio('filterscond','[in_filterscond]');
+
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#fromdate,#todate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			maxDate: new Date(),
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 3,
+		});
+
+		if ('[in_pterms]'.length == 0) {
+			$(":radio[name='pterms']").prop('checked', false);
+		}
+	});
+
+//-->
+</script>
+

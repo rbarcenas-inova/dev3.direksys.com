@@ -1,0 +1,78 @@
+&nbsp;
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="view" value="[in_id_orders]">
+	<input type="hidden" name="action" value="changecc">
+	<input type="hidden" name="tab" value="2">
+	<input type="hidden" name="tabsl" value="1">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+	    <td class="tbltextttl" width="20%" nowrap>
+	    	Payments : [va_matches]
+	    	<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_orders]&tab=[va_activetab]&tabs=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+	    	<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=2&tabcmd=orders&toprint=[in_id_orders]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+	    </td>
+	    <td class="fieldterr" align="center">[va_tabmessages]&nbsp;</td>
+	    <td class="small_text" align="right" valign="top" width="30%" nowrap>
+	    	<span style="[va_display_orders_options]">
+		    	<!--<a href="#tabs" onClick="add_flexipay()">To Flexipay</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    	<a href="#tabs" onClick="add_cc()">Add Credit Card</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    	<a href="#tabs" onClick="add_chk()">Add Check</a>
+		    	[va_flexipago]-->
+		    	<a name="paymenu" id="paymenu">&nbsp;</a>
+		    	<a href="#paymenu" class="scroll" onClick="check_avs();">Check AVS</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
+		    	<a href="#paymenu" class="scroll" onClick="add_flexipay();">Duplicate Payments</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
+		    	<a href="#paymenu" class="scroll" onClick="add_cc();">Add Credit Card</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
+		    	<a href="#paymenu" class="scroll" onClick="changecc();">Change Credit Card</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		    	<a href="#paymenu" class="scroll" onClick="add_chk();">Add Check</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		    	<!--<a href="#paymenu" onClick="upd_dts();">Update Dates</a>&nbsp;&nbsp;|&nbsp;&nbsp;-->
+		    	<a href="#paymenu" onClick="add_chrg();">Add Charge</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	    		<a href="#paymenu" class="scroll" onClick="edit_order();">Edit order</a>&nbsp;&nbsp; 
+	    	</span>
+	    	</td>
+		</tr>
+		<tr>
+			<td colspan="4">
+		 		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				 [va_searchresults]
+				</table>
+			</td>
+		</tr>	
+		<!--
+		<tr>	
+			<td colspan="4" class='smalltext' align='center'>
+		 		<input type="button" value='Change Credit Card' class='button' onclick="changecc()">
+			</td>
+		</tr>
+	-->
+		<tr>
+		 	<td colspan="3">&nbsp;</td>
+		</tr>
+	</table>
+</form>
+<table align="center" width="100%">
+	<tr>
+		<td>
+			<img src='[va_imgurl]/[ur_pref_style]/auth-fu.png' title='Authorized' alt='' border='0'> =  Pago Autorizado <br>
+			<img src='[va_imgurl]/[ur_pref_style]/capt-fu.png' title='Authorized' alt='' border='0'> =  Pago Capturado <br>
+		</td>
+	</tr>
+</table>
+
+<script language="javascript">
+<!--
+	chg_chkbox('checkpayments','[in_checkpayments]');
+	
+	//$(document).ready(function(){
+	//	var format_cc = $('input[name="format_credit_card"]').val();
+	//	if (typeof format_cc  !== "undefined") {
+	//		$("div[name='[va_divpayment_name]']").hide();
+	//	} else {
+	//		$("div[name='[va_divpayment_name]f2']").hide();
+	//	}
+	//});
+
+//-->
+</script>

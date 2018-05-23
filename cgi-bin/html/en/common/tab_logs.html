@@ -1,0 +1,27 @@
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+			<td class="tbltextttl">
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[fc_template_idvalue]&tab=[va_activetab]&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+				<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=[in_tab]&tabcmd=[va_tab_name]&toprint=[fc_template_idvalue]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+				Logs : [va_matches]</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+	 	</tr>
+		<tr>
+			<td colspan="2">
+			 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+				  <td class="menu_bar_title">Log Date</td>
+				  <td class="menu_bar_title">Log Time</td>
+				  <td class="menu_bar_title">Action</td>
+				  <td class="menu_bar_title">User</td>					  					  
+				  <td class="menu_bar_title" colspan="2">IP Address</td>
+				 </tr>
+				 [va_searchresults]
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+	</table>
+	&nbsp;

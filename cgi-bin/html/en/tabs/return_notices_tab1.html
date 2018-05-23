@@ -1,0 +1,71 @@
+
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+
+	<input type="hidden" name="id_products" value="[in_id_return_notices]">
+	<input type="hidden" name="view" value="[in_id_return_notices]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="update" value="1">
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+	<tr>
+	<td class="tbltextttl">
+	<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_view]&tab=1&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+	<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=13&tabcmd=products&toprint=[in_id_products]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+	Records : [va_matches]</td>
+	<td align="right" class="tbltext">
+	</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+			<tr>
+				<td class="menu_bar_title" align="center">Action</td>
+				<td class="menu_bar_title" align="center">Id</td>
+				<td class="menu_bar_title">SKU</td>
+				<td class="menu_bar_title">UPC</td>
+				<td class='menu_bar_title'>Product</td>
+				<td class='menu_bar_title'>Quanty</td>
+				<td class='menu_bar_title'>Sale Price</td>
+				<td class='menu_bar_title'>RcpQty</td>
+				<td class='menu_bar_title'>Total</td>
+				<td class='menu_bar_title'>Total Rec</td>
+			</tr>
+				[va_searchresults]
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align:center"><input type="submit" class="button" value="Update Records"></td>
+	</tr>
+</table>
+
+</form>
+
+
+
+<script>
+$(document).ready(function() {
+	$('.update').on('change',function(){
+		that = $(this);
+		that.parent().parent().find('.total1').html('$ '+ parseFloat(that.parent().parent().find('.l1').val() * that.parent().parent().find('.l2').val()).toFixed(2))
+		that.parent().parent().find('.total2').html('$ '+ parseFloat(that.parent().parent().find('.l3').val() * that.parent().parent().find('.l2').val()).toFixed(2))
+	});
+	$('.superajax').on('click',function(e){
+		e.preventDefault();
+		$.ajax({
+			url: $(this).attr('href'),
+			type: 'GET',
+		})
+		.done(function(s) {
+			console.log(s);
+			location.reload();
+		});
+		return false;
+	});
+	
+});
+	
+
+</script>

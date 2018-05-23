@@ -1,0 +1,319 @@
+	<script type="text/javascript" src="/sitimages//jquery-events.cc-inbound.js"></script>
+
+<STYLE TYPE="text/css"> 
+font.script
+{font-family:  verdana;background: ;color:#444444;font-size: 13px;font-weight: normal;text-decoration: none;cursor: default;line-height:19px;}
+font.acor
+{font-family:  verdana;background: ;color:#0991e8;font-size: 13px;font-weight: bold;text-decoration: none;cursor: default;line-height:19px;}
+
+font.desglo
+{font-family:  verdana;background: ;color:#444444;font-size: 12px;font-weight: normal;text-decoration: none;cursor: default;line-height:15px;}
+font.descue
+{font-family:  verdana;background: ;color:#ff0000;font-size: 12px;font-weight: normal;text-decoration: none;cursor: default;line-height:15px;}
+
+A.gen:link		{
+	background-color: #90ba2b;
+	background-image: url(/sitimages/app_bar/mod/button.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	border: none;
+	color:#ffffff;
+	cursor: pointer;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 13px;
+	height: 35px;
+	border-left: 1px solid #77ac07;
+	border-right: 1px solid #77ac07;
+	border-top: 1px solid #77ac07;
+	border-bottom: 1px solid #77ac07;
+	padding: 9px 15px 9px 15px;
+	text-align:center;
+	text-decoration: none;
+}
+
+A.gen:hover		{
+	background-color: #90ba2b;
+	background-image: url(/sitimages/app_bar/mod/button2.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	border: none;
+	color:#ffffff;
+	cursor: pointer;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 13px;
+	height: 35px;
+	border-left: 1px solid #8ec012;
+	border-right: 1px solid #8ec012;
+	border-top: 1px solid #8ec012;
+	border-bottom: 1px solid #8ec012;
+	padding: 9px 15px 9px 15px;
+}
+
+
+</STYLE>
+
+
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+<!-- Start Main Area  -->
+		
+
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	<tr>
+		<td class="titletext" align="center" colspan="2">Arboles de Decision</td>
+	</tr>
+	<tr>
+		<td class="stdtxterr" colspan="2">[va_message]</td>
+	</tr>
+</table>
+&nbsp;
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform" id="productshow">
+<input type="hidden" name="cmd" value="console_order">
+<input type="hidden" name="step" value="2">
+<input type="hidden" name="action" value="add_to_basket">
+
+<input type="hidden" name="skupro" value="1">
+<input type="hidden" id="id_products" name="id_products" value="0">
+<input type="hidden" id="overwrite_option" name="overwrite_option" value="0">
+
+<fieldset><legend>USA Ingles</legend>
+	<div id="showquestion" class="answers"></div>
+
+	<table width="100%" border="1" cellspacing="1" cellpadding="2" id="questions" >
+	<tr>
+	<td>No</td>
+	<td>Question/Heading </td>
+	<td>Answers </td>
+	</tr>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<tr>
+	<td>1</td>
+	<td><!--b>standard 149.95 + 9.95</b><br--><font class=script>
+<font class=acor>OFRECER Version PRO (+19.95)</font><br>
+Le gustaría que le enviáramos el <b>Modelo Pro</b> el cual cuenta con <b>pantalla digital</b> por tan solo <b>$ 19.95 adicionales</b>.
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="2">Si</li>
+		<li id="11">No</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>2</td>
+	<td><!--b>si a version pro [149.95 (+19.95) + 9.95 ]</b><br--><font class=script>
+<font class=acor>OFRECER segunda unidad PRO con descuento de $40 y Envio Gratis</font><br>
+Sabemos que le gustaría <b>compartir esta excelente promoción con alguien más</b> por lo que en este momento podemos enviarle el segundo kit y aplicarle un descuento de <b>$ 40 USD</b> al total de su compra además los gastos de envió del segundo Kit corren por nuestra cuenta.
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="3">Si</li>
+		<li id="21">No</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>3</td>
+	<td><!--b>si version pro [149.95 (+19.95) + 9.95 ] mas segunda unidad pro [169.90-40]</b><br--><font class=script>
+<font class=acor>OFRECER 1 SOLO PAGO con descuento de $30</font><br>
+El monto total que usted pagaría por los <b>2 Kits es de $ 309.75</b>, pero si usted decide realizar su compra en un solo pago Inova le otorga <b>un descuento de $30 USD</b> sobre el total de su compra es decir solo pagaría <b>un total de $279.75</b>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="4">Si</li>
+		<li id="5">No, quiero pagar a meses</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>4</td>
+	<td><!--b>single payment</b><br--><font class=script>
+		<font class=acor>Single Payment | 2 PRO [149.95 (+19.95) + 9.95 ] + [169.90-40] - $30 de descuento 1 pago</font><br>
+<table cellpadding=0 cellspacing=3 style="margin-left:25px;">
+ 	<tr><td align=right><font class=desglo> 169.90</td><td width=15px></td><td align=left><font class=desglo>Pro 1 [ 149.95 + 19.95 ]</td></tr>
+  <tr><td align=right><font class=desglo>  9.95</td><td width=15px></td><td align=left><font class=desglo>De envio</td></tr>
+ 	<tr><td align=right><font class=desglo> 129.90</td><td width=15px></td><td align=left><font class=desglo>Pro 2 [ 149.95 + 19.95 - 40]</td></tr>
+	<tr><td align=right><font class=descue> -30</td><td width=15px></td><td align=left><font class=descue>Descuento single payment</td></tr>
+	<tr><td colspan=3><hr></td></tr>
+	<tr><td align=right><font class=desglo><b>$279.75</td><td width=15px></td><td align=left><font class=desglo><b>Total</td></tr>
+</table>
+</td>
+	<td nowrap><br><a href="javascript:return false;" id="1213384" class="gen">Generar Pedido</a><br><br></td>
+	</tr>
+	<tr>
+	<td>5</td>
+	<td><!--b>no single payment</b><br--><font class=script>
+		<font class=acor>NO Single Payment | 2 PRO [149.95 (+19.95) + 9.95 ] + [169.90-40]  A PAGOS</font><br>
+<table cellpadding=0 cellspacing=3 style="margin-left:25px;">
+ 	<tr><td align=right><font class=desglo> 169.90</td><td width=15px></td><td align=left><font class=desglo>Pro 1 [ 149.95 + 19.95 ]</td></tr>
+  <tr><td align=right><font class=desglo>  9.95</td><td width=15px></td><td align=left><font class=desglo>De envio</td></tr>
+ 	<tr><td align=right><font class=desglo> 129.90</td><td width=15px></td><td align=left><font class=desglo>Pro 2 [ 149.95 + 19.95 - 40]</td></tr>
+	<tr><td colspan=3><hr></td></tr>
+	<tr><td align=right><font class=desglo><b>$309.75</td><td width=15px></td><td align=left><font class=desglo><b>Total</td></tr>
+</table>
+</td>
+	<td nowrap><br><a href="javascript:return false;" id="2213384" class="gen">Generar Pedido</a><br><br></td>
+	</tr>
+	<tr>
+
+
+
+
+
+	<tr>
+	<td>11</td>
+	<td><!--b>no solo version standar [149.95 + 9.95 ]</b><br--><font class=script>
+<font class=acor>OFRECER segunda unidad standar con descuento de $40 envio gratis</font><br>
+Sabemos que le gustaría <b>compartir esta excelente promoción con alguien más</b> por lo que en este momento podemos enviarle el segundo kit y aplicarle un descuento de <b>$ 40 USD</b> al total de su compra además los gastos de envió del segundo Kit corren por nuestra cuenta.
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="12">Si</li>
+		<li id="31">No</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>12</td>
+	<td><!--b>si version standar [149.95 + 9.95 ] mas segunda unidad standar [149.95-40]</b><br--><font class=script>
+<font class=acor>OFRECER 1 SOLO PAGO con descuento de $30 de la orden completa</font><br>
+El monto total que usted pagaría por los <b>2 Kits es de $269.85</b>, pero si usted decide realizar su compra en un solo pago Inova le otorga un <b>descuento de $ 30 USD</b> sobre el total de su compra es decir solo pagaría un <b>total de $239.85</b>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="13">Si</li>
+		<li id="14">No, quiero pagar a meses</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>13</td>
+	<td><!--b>single payment</b><br--><font class=script>
+		<font class=acor>Single Payment | 2 standars [149.95 + 9.95 ] + [149.90-40] - $30 de descuento 1 pago</font><br>
+<table cellpadding=0 cellspacing=3 style="margin-left:25px;">
+	<tr><td align=right><font class=desglo> 149.95</td><td width=15px></td><td align=left><font class=desglo>Standard 1 [ 149.95 ]</td></tr>
+	<tr><td align=right><font class=desglo> 9.95</td><td width=15px></td><td align=left><font class=desglo>De envio</td></tr>
+	<tr><td align=right><font class=desglo> 109.95</td><td width=15px></td><td align=left><font class=desglo>Standard 2 [ 149.95 - 40]</td></tr>
+	<tr><td align=right><font class=descue> -30</td><td width=15px></td><td align=left><font class=descue>Descuento single payment</td></tr>
+	<tr><td colspan=3><hr></td></tr>
+	<tr><td align=right><font class=desglo><b>$239.85</td><td width=15px></td><td align=left><font class=desglo><b>Total</td></tr>
+</table>
+</td>
+	<td nowrap><br><a href="javascript:return false;" id="5213384" class="gen">Generar Pedido</a><br><br></td>
+		</tr>
+	<tr>
+	<td>14</td>
+	<td><!--b>no single payment </b><br--><font class=script>
+<font class=acor>NO Single Payment | 2 standars [149.95 + 9.95 ] + [149.90-40] A PAGOS</font><br>
+<table cellpadding=0 cellspacing=3 style="margin-left:25px;">
+	<tr><td align=right><font class=desglo> 149.95</td><td width=15px></td><td align=left><font class=desglo>Standard 1 [ 149.95 ]</td></tr>
+	<tr><td align=right><font class=desglo> 9.95</td><td width=15px></td><td align=left><font class=desglo>De envio</td></tr>
+	<tr><td align=right><font class=desglo> 109.95</td><td width=15px></td><td align=left><font class=desglo>Standard 2 [ 149.95 - 40]</td></tr>
+	<tr><td colspan=3><hr></td></tr>
+	<tr><td align=right><font class=desglo><b>$269.85</td><td width=15px></td><td align=left><font class=desglo><b>Total</td></tr>
+</table>
+</td>
+	<td nowrap><br><a href="javascript:return false;" id="6213384" class="gen">Generar Pedido</a><br><br></td>
+	</tr>
+	<tr>
+		
+		
+		
+		
+	<tr>
+	<td>21</td>
+	<td><!--b>no a segunda unidad version pro [149.95 (+19.95) + 9.95 ]</b><br--><font class=script>
+<font class=acor>OFRECER 1 SOLO PAGO con descuento de $30 de la orden completa</font><br>
+El monto total que <b>usted pagaría es de $179.85</b>, pero si usted decide realizar su compra en un solo pago Inova le otorga un <b>descuento de $ 30 USD</b> sobre el total de su compra es decir solo pagaría un <b>total de $149.85</b>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="22">Si</li>
+		<li id="23">No, quiero pagar a meses</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>22</td>
+	<td><!--b>single payment</b><br--><font class=script>
+		<font class=acor>Single Payment | 1 PRO [149.95 (+19.95) + 9.95 ] - $30 de descuento 1 pago</font><br>
+<table cellpadding=0 cellspacing=3 style="margin-left:25px;">
+	<tr><td align=right><font class=desglo> 169.90</td><td width=15px></td><td align=left><font class=desglo>Pro 1 [ 149.95 + 19.95 ]</td></tr>
+	<tr><td align=right><font class=desglo> 9.95</td><td width=15px></td><td align=left><font class=desglo>De envio</td></tr>
+	<tr><td align=right><font class=descue> -30</td><td width=15px></td><td align=left><font class=descue>Descuento single payment</td></tr>
+	<tr><td colspan=3><hr></td></tr>
+	<tr><td align=right><font class=desglo><b>$149.85</td><td width=15px></td><td align=left><font class=desglo><b>Total</td></tr>
+</table>
+</td>
+	<td nowrap><br><a href="javascript:return false;" id="3213384" class="gen">Generar Pedido</a><br><br></td>
+	</tr>
+	<tr>
+	<td>23</td>
+	<td><!--b>no single payment </b><br--><font class=script>
+<font class=acor>NO Single Payment | 1 PRO [149.95 (+19.95) + 9.95 ] A PAGOS</font><br>
+<table cellpadding=0 cellspacing=3 style="margin-left:25px;">
+	<tr><td align=right><font class=desglo> 169.90</td><td width=15px></td><td align=left><font class=desglo>Pro 1 [ 149.95 + 19.95 ]</td></tr>
+	<tr><td align=right><font class=desglo> 9.95</td><td width=15px></td><td align=left><font class=desglo>De envio</td></tr>
+	<tr><td colspan=3><hr></td></tr>
+	<tr><td align=right><font class=desglo><b>$179.85</td><td width=15px></td><td align=left><font class=desglo><b>Total</td></tr>
+</table>
+</td>	
+	<td nowrap><br><a href="javascript:return false;" id="4213384" class="gen">Generar Pedido</a><br><br></td>
+	</tr>
+	<tr>
+
+
+		
+	<tr>
+	<td>31</td>
+	<td><!--b>no a segunda unidad standar [149.95 + 9.95 ]</b><br--><font class=script>
+<font class=acor>OFRECER 1 SOLO PAGO con descuento de $30 de la orden completa</font><br>
+El monto total que <b>usted pagaría es de $159.90</b>, pero si usted decide realizar su compra en un solo pago Inova le otorga un <b>descuento de $ 30 USD</b> sobre el total de su compra es decir solo pagaría un <b>total de $129.90</b>
+</td>
+	<td><ul style="padding-left:30px;">
+		<li id="32">Si</li>
+		<li id="33">No, quiero pagar a meses</li>
+	</ul></td>
+	</tr>
+	<tr>
+	<td>32</td>
+	<td><!--b>single payment</b><br--><font class=script>
+		<font class=acor>Single Payment |1 standard [149.95 + 9.95 ] - $30 de descuento 1 pago</font><br>
+<table cellpadding=0 cellspacing=3 style="margin-left:25px;">
+	<tr><td align=right><font class=desglo> 149.95 </td><td width=15px></td><td align=left><font class=desglo>standard 1 [ 149.95]</td></tr>
+	<tr><td align=right><font class=desglo> 9.95</td><td width=15px></td><td align=left><font class=desglo>De envio</td></tr>
+	<tr><td align=right><font class=descue> -30</td><td width=15px></td><td align=left><font class=descue>Descuento single payment</td></tr>
+	<tr><td colspan=3><hr></td></tr>
+	<tr><td align=right><font class=desglo><b>$129.90</td><td width=15px></td><td align=left><font class=desglo><b>Total</td></tr>
+</table>
+</td>
+	<td nowrap><br><a href="javascript:return false;" id="7213384" class="gen">Generar Pedido</a><br><br></td>
+	</tr>
+	<tr>
+	<td>33</td>
+	<td><!--b>no single payment </b><br--><font class=script>
+<font class=acor>NO Single Payment | 1 standard [149.95 + 9.95 ] A PAGOS</font><br>
+<table cellpadding=0 cellspacing=3 style="margin-left:25px;">
+	<tr><td align=right><font class=desglo> 149.95 </td><td width=15px></td><td align=left><font class=desglo>standard 1 [ 149.95]</td></tr>
+	<tr><td align=right><font class=desglo> 9.95</td><td width=15px></td><td align=left><font class=desglo>De envio</td></tr>
+	<tr><td colspan=3><hr></td></tr>
+	<tr><td align=right><font class=desglo><b>$159.90</td><td width=15px></td><td align=left><font class=desglo><b>Total</td></tr>
+</table>
+</td>
+	<td nowrap><br><a href="javascript:return false;" id="8213384" class="gen">Generar Pedido</a><br><br></td>
+	</tr>
+	<tr>
+		
+		
+	</table>
+</fieldset>
+
+</form>
+&nbsp;
+
+<!-- End Main Area  -->

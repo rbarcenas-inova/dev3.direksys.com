@@ -1,0 +1,301 @@
+[ip_header_blank]
+
+[va_javascriptvar]
+
+	<form method="post" action="[va_script_url]">
+		<input type="hidden" name="id_orders" value="[in_id_orders]">
+		<input type="hidden" name="id_preorders" value="[in_id_preorders]">
+		<!--<input type="hidden" name="view" value="[in_id_orders]">-->
+		[va_view]
+		<input type="hidden" name="action" value="editorders">
+		<input type="hidden" name="tabsl" value="1">
+		<input type="hidden" name="cmd" value="[va_cmdtoapply]">
+		<input type="hidden" name="dototemp" value="NO">
+		<input type="hidden" name="return" value="[in_return]">
+		<input type="hidden" name="path" value="[in_path]">
+		<input type="hidden" name="returntype" value="[in_returntype]">
+		<input type="hidden" name="edit_type" value="[in_edit_type]">
+
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+	    <tr>
+	      <td class="tbltextttl" colspan="2"><span class='fieldterr'>[va_tabmessages]</span>&nbsp;</td>
+	    </tr>     
+	    <tr>
+				<td class="tbltextttl">
+					Items : [va_matchespr]
+					<a name="add_prdmenu" id="add_prdmenu">&nbsp;</a>
+					<a href='#add_prdmenu' onClick="popup_show('popup_additem', 'item_drag', 'popup_exiti', 'element-right', -1, -1,'add_prdmenu');"><img src='/sitimages//default/b_add.gif' title='Add products' alt='' border='0'></a>
+				</td>
+				<td class="small_text" align="right" valign="top">
+						<!--<a name="prdmenu" id="prdmenu">&nbsp;</a>
+						<a href='#prdmenu' onMouseOver="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'prdmenu');loadDoc('/cgi-bin/common/apps/ajaxorder?cmd=edit_actions&id_orders=[in_id_orders]');"><img src='/sitimages//default/return.gif' title='Return' alt='Return' border='0'>Edit actions</a>
+						<a href="#prdmenu" onMouseOver="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'prdmenu');loadDoc('/cgi-bin/common/apps/ajaxorder?cmd=edit_actions&id_orders=[in_id_orders]');">Edit Actions</a>-->
+				</td>
+	    </tr>
+	    <tr>
+	    	<td colspan="2">      	
+				<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	      	<tr>         	
+						<td class="menu_bar_title" nowrap>Select</td>
+						<td class="menu_bar_title" nowrap>Item ID</td>
+						<td class="menu_bar_title">Model/Name</td>
+						<td class="menu_bar_title" nowrap>Sale Price</td>
+						<td class="menu_bar_title" nowrap>Discount</td>
+						<td class="menu_bar_title" nowrap>Shipping</td>
+						<td class="menu_bar_title" nowrap>Tax</td>
+						<td class="menu_bar_title" nowrap>Product total</td>
+						<td class="menu_bar_title" nowrap>Action</td>
+				 	</tr>
+				 	[va_searchresultspr]
+				</table>
+				<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				 	<tr>
+						<td class="tbltextttl" nowrap>
+								Payments : [va_matchespa]
+								<a name="add_paymenu" id="add_paymenu">&nbsp;</a>
+								<!--<a href='#add_paymenu' onClick="popup_show('popup_addpay', 'chrg_drag', 'popup_exitchrg', 'element-right', -1, -1,'add_paymenu');"><img src='/sitimages//default/b_add.gif' title='Add payments' alt='' border='0'></a>-->
+								<a href='#add_paymenu' onClick="popup_show('popup_addnpay', 'nchrg_drag', 'popup_exitnchrg', 'element-right', -1, -1,'add_paymenu');"><img src='/sitimages//default/b_add.gif' title='Add payments' alt='' border='0'></a>
+						</td>
+						<td class="small_text" align="right" valign="top">
+								<a name="prdmenu" id="prdmenu">&nbsp;</a>
+						</td>
+					</tr>
+				 	[va_searchresultspa]
+	      </table>       
+	     </td>
+	    </tr>
+	    <tr> <!--onmouseover='m_over(this)' onmouseout='m_out(this)' onclick="trjump('[va_script_url]?cmd=[va_cmdtoapply]&view=[in_id_orders]&id_orders=[in_id_orders]&tab=[in_tab]#tabs')">
+	    	<td class="smalltext" valign="top" align="right" nowrap>[va_btntxt]</td>-->
+	    	<td colspan="5" align="center" class="stdtxterr">&nbsp;Diff: [va_diff]</td>
+	    </tr>
+	    <tr>
+		    <td colspan="5" align="center" >[va_bothmovements_checkbox]</td>
+	    </tr>
+	    <tr>	
+	    	<td colspan="5" align="center">&nbsp;[va_btntxt]</td>
+	    	<input type="hidden" name="finish" value="[va_finish]">
+	    	<!--	<input type='submit' align="center" value='[va_btntxt]' class='button' onclick="editorders()"></td>-->
+	    </tr>
+	  </table>
+</form>  
+<div id="ajax_windows" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="ajax_drag" align="left">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Direksys</td>
+			<td align=right width=20px><img id="popup_exiti" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+</div>
+	<div id="ajaxcontent">&nbsp;</div>
+
+</div>
+<!--
+<div id="ajax_windows2" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="ajax_drag2" align="left">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Direksys</td>
+			<td align=right width=20px><img id="popup_exit2" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div id="ajaxcontent2">&nbsp;</div>
+
+</div>
+
+
+<!--  Regular Item  -->
+				<div id="popup_additem" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+				<div class="menu_bar_title" id="item_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Regular Item</td>
+			<td align=right width=20px><img id="popup_exiti" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+				</div>
+				<div >
+				<IFRAME SRC="/cgi-bin/common/apps/ajaxorder?cmd=edit_orders_additems&id_orders=[in_id_orders]&id_preorders=[in_id_preorders]&path=[in_path]&exchange=[in_id_orders_products]&returntype=[in_returntype]&edit_type=[in_edit_type]" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+<!--		<IFRAME SRC="/cgi-bin/common/apps/ajaxorder?cmd=edit_orders_additems&id_orders=[in_id_orders]&path=[va_script_url]&exchange=[in_id_orders_products]" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+				<IFRAME SRC="/cgi-bin/common/apps/ajaxorder?cmd=edit_orders_additems&id_orders=[in_id_orders]&exchange=[in_id_orders_products]" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">-->
+				<H2>Unable to do the script</H2>
+				<H3>Please update your Browser</H3>
+				</IFRAME>	
+				</div></div>
+<!-- Add Charges -->
+				<div id="popup_addpay" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+				<div class="menu_bar_title" id="chrg_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Charges</td>
+			<td align=right width=20px><img id="popup_exitchrg" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+				</div>
+				<div >
+					<form method="post" action="[va_script_url]" name="sitform4">
+						<input type="hidden" name="id_orders" value="[in_id_orders]">
+						<input type="hidden" name="id_preorders" value="[in_id_preorders]">
+						<input type="hidden" name="addpa" value="1">
+						<input type="hidden" name="cmd" value="editing_order">
+						<input type="hidden" name="path" value="[in_path]">
+						<input type="hidden" name="returntype" value="[in_returntype]">
+						<input type="hidden" name="edit_type" value="[in_edit_type]">
+						<table border="0" cellspacing="0" cellpadding="2" class="formtable" bgcolor="#FFFFFF">
+							<tr>
+			  				<td class="stdtxterr" colspan="2">[va_tabmessage]<td>
+							</tr>	
+							<tr>
+			  				<td colspan="2">
+			  					<span class='smallfieldterr'>[er_ccnumber]</span>
+			  					<table border='0' cellspacing='0' cellpadding='2' width='100%'>	
+			  						[fc_showcreditcards]
+			  					</table>
+			  				</td>
+			  			</tr>
+			  			<tr>
+								<td class='smalltext'>Amount : <span class='smallfieldterr'>[er_amount]</span></td>
+								<td class='smalltext'><input type='text' name='amount' value='[in_amount]' size='30' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+							</tr>
+							<tr>
+								<td class='smalltext'>Payment Date : <span class='smallfieldterr'>[er_paymentdate]</span></td>
+								<td class='smalltext'><input type='text' name='paymentdate' value='[in_paymentdate]' size='30' onFocus='focusOn( this )' onBlur='focusOff( this )'>(YYYY-MM-DD)</td>
+							</tr>
+							<tr>
+								<td class='smalltext'><input type="checkbox" name="refundworeturn" value="1" class="checkbox">Refund w/o Return</td>
+							</tr>
+							<tr>
+								<td colspan="2" align="center"><input class="button" type="submit" value="Add Charge"></td>
+							</tr>
+			  		</table>
+			  	</form>
+				</div></div>
+				
+<!-- New Add Charges-->		
+			
+					<div id="popup_addnpay" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">	
+					<div class="menu_bar_title" id="nchrg_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Charges</td>
+			<td align=right width=20px><img id="popup_exitnchrg" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+					</div>
+					<div >
+					<form method="post" action="[va_script_url]" name="sitform">
+						
+					<input type="hidden" name="id_orders" value="[in_id_orders]">
+					<input type="hidden" name="id_preorders" value="[in_id_preorders]">
+					<input type="hidden" name="addnpa" value="1">
+					<input type="hidden" name="cmd" value="editing_order">
+					<input type="hidden" name="path" value="[in_path]">
+					<input type="hidden" name="returntype" value="[in_returntype]">
+					<input type="hidden" name="edit_type" value="[in_edit_type]">
+						[fc_showcreditncards]
+					<table border="0" cellspacing="0" cellpadding="4" width="350" class="formtable" bgcolor="#FFFFFF">
+					<tr>
+			  	<td class="stdtxterr" colspan="2">[va_tbmessage]<td>
+					</tr>	
+					<tr>
+			  	<td bgcolor="#EAEAEA" valign="top">
+					<table border='0' cellspacing='0' cellpadding='2' width='100%'>	
+					  <tr>
+					     <td class='smalltext' valign="top" nowrap>Tipo Tarjeta : <span class='smallfieldterr'>[er_pmtfield1]</span></td>
+					     <td class='smalltext'>
+					     		<input type='radio' class='radio' name='pmtfield1' value='Visa'> Visa
+					     		<input type='radio' class='radio' name='pmtfield1' value='Mastercard'> Master Card	
+					     		<input type='radio' class='radio' name='pmtfield1' value='American Express'> American Express
+					     		<!--input type='radio' class='radio' name='pmtfield1' value='Discover'> Discover	-->
+					     		<input type='radio' class='radio' name='pmtfield1' value='Money Order'> Cash
+					     		<img src="[va_imgurl]/creditcards.e2.gif" border="0">
+					     </td>
+					  </tr>
+					  <tr>
+					     <td class='smalltext' nowrap>Nombre en Tarjeta : <span class='smallfieldterr'>[er_pmtfield2]</span></td>
+					     <td class='smalltext'><input type='text' name='pmtfield2' value='[in_pmtfield2]' size='35' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					  </tr>
+					  <tr>
+					     <td class='smalltext' nowrap>Numero Tarjeta # : <span class='smallfieldterr'>[er_pmtfield3]</span></td>
+					     <td class='smalltext'><input type='text' name='pmtfield3' value='[in_pmtfield3]' size='20' MAXLENGTH='16' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					  </tr>
+					  <tr>
+					     <td class='smalltext' nowrap>Expiración : <span class='smallfieldterr'>[er_pmtfield4]</span></td>
+					     <td class='smalltext'>
+					     	<select size="1" name="Month" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+									<option value=""></option>
+							    <option value="01">Enero</option>
+									<option value="02">Febrero</option>
+									<option value="03">Marzo</option>
+									<option value="04">Abril</option>
+									<option value="05">Mayo</option>
+									<option value="06">Junio</option>
+									<option value="07">Julio</option>
+									<option value="08">Agosto</option>
+									<option value="09">Septiembre</option>
+									<option value="10">Octubre</option>
+									<option value="11">Noviembre</option>
+									<option value="12">Diciembre</option>
+						        </select>
+					     	<select size="1" name="Year" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+									<option value=""></option>
+							        [fc_build_exp_date_opts]
+						        </select></td>
+					  </tr>
+					  <tr>
+					     <td class='smalltext'>CVN : <span class='smallfieldterr'>[er_pmtfield5]</span></td>
+					     <td class='smalltext'><input type='text' name='pmtfield5' value='[in_pmtfield5]' size='5' MAXLENGTH='4' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					  </tr>
+					  <tr>
+					     <td class='smalltext'>Teléfono Casa : <span class='smallfieldterr'>[er_pmtfield6]</span></td>
+					     <td class='smalltext'><input type='text' name='pmtfield6' value='[in_pmtfield6]' size='12' MAXLENGTH='10' onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="help_on">10 numeros sin parentesis o guiones</span></td>
+					  </tr>
+					  <tr>
+					     <td class='smalltext'>Date: <span class='smallfieldterr'>[er_paymentdate]</span></td>
+					     <td class='smalltext'><input type="text" id="paymentdate" name="paymentdate" value="[in_paymentdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					  </tr>	
+					  <tr>
+					     <td class='smalltext'>Amount: <span class='smallfieldterr'>[er_amount]</span></td>
+					     <td class='smalltext'><input type='text' name='amount' value='[in_amount]' size='12' MAXLENGTH='10' onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					  </tr>	
+					  <tr>
+								<td class='smalltext'><input type="checkbox" name="refundworeturn" value="1" class="checkbox">Refund w/o Return</td>
+						</tr>
+					</table>
+			  	</td>
+			  	<td><img src="[va_imgurl]/cvn2.png" border="0"><br>
+			  		<img src="[va_imgurl]/cvn1.png" border="0"></td>
+				</tr>
+				<tr>
+			  <td colspan="2" align="center"><input class="button" type="submit" value="Add payment"></td>
+				</tr>
+				</table>
+				</form>
+				<script language="javascript">
+				<!--					
+
+				    chg_radio('pmtfield1','[in_pmtfield1]');
+					chg_select('Month','[in_month]');
+					chg_select('Year','[in_year]');
+
+					$(document).ready(function() {
+
+						/*AJAX Error handler*/
+						$(document).ajaxError(function(e, xhr, settings, exception) {
+						alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+						});
+
+						var dates = $( "#paymentdate" ).datepicker({
+							dateFormat: 'yy-mm-dd',
+							defaultDate: "-2m",
+							maxDate: new Date(),
+							changeMonth: true,
+							numberOfMonths: 3,
+						});
+
+				    });
+				//-->
+				</script>
+				</div>
+				</div>
+				<!-- Add Credit-Card -->				
+[fc_scriptexchanges]
+[va_cadtoprint]
+<script type='text/javascript'>
+//<![CDATA[
+	function change_txt_button(){
+		document.form.btnact.value="Recalcular";
+	}
+//]]>
+</script>

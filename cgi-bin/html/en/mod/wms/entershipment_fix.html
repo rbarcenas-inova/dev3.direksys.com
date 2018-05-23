@@ -1,0 +1,93 @@
+[ip_header_blank]
+
+<!-- Jquery -->
+<link rel="stylesheet" href="/libs/jqueryui/1.9.1/themes/cupertino/jquery-ui.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src=" /libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script type="text/javascript" language="JavaScript" src="/sitimages//jquery-events.js"></script>
+<script type="text/javascript" language="JavaScript" src="/sitimages//jquery-events.administration.js"></script>
+<!-- Jquery -->
+
+<!-- JqueryTools -->
+<script type="text/javascript" src="/jquery.tools.min.js"></script>
+<!-- JqueryTools -->
+
+<form action="[va_cgiurl]" method="POST" name="sitform" onsubmit="deactivate_button();">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="cmd" value="entershipment">
+		
+<!-- Start Main Area  -->
+	<fieldset><legend>Enter Shipment</legend>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+			<td><span class="bigerrtext">[va_error]</span>
+				<span class="stdtxterr">
+					<!-- start_err_msg  -->
+					[va_message]
+					<!-- end_err_msg  -->
+				</span>
+			</td>
+		</tr>
+		<tr>
+	    	<td valign="top">
+	    		Enter Shipment 
+	    		<span class="help_on">(Invoice / Tracking Number / Product Number)</span>
+		    	<br><textarea name="tracking" cols="50" style="width:100%" rows="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_tracking]</textarea>		
+		    	Shipment Date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		    	<input type="text" id="shpdate" name="shpdate" value="[in_shpdate]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'><br><br>
+		    	Warehouse: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    	<select name="id_warehouses"><option>---</option>[fc_build_select_warehouses]</select><br><br>
+		    	Consolidated Shipment: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    	<input type="checkbox" id="bulk" name="bulk" value="1" class="checkbox"><br><br>
+		    	Scan From Pack Location: &nbsp;&nbsp;&nbsp;
+		    	<input type="checkbox" id="scan_from_pack" name="scan_from_pack" value="1" class="checkbox"><br><br>
+		    	Skip Batch Validation: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    	<input type="checkbox" id="skip_batch" name="skip_batch" value="1" class="checkbox"><br><br>
+		    	Authorization Code: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    	<input type="text" id="authcode" name="authcode" value="[in_authcode]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<br><br><br><br>
+		    </td>
+ 		 </tr>
+
+ 		 <tr>
+ 		 	<td align="center"><input type="submit" name="enterbutton" id="enterbutton" value="Enter shipment" class="button" onclick=""></td>
+ 		</tr>
+    </table>
+	</fieldset>
+	
+</form>	
+
+<script language="javascript">
+<!--
+	
+	function deactivate_button()
+	{
+		document.sitform.enterbutton.disabled=true;
+	}
+	
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#shpdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: new Date(),
+			minDate: new Date(),
+			maxDate: "+6m",
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+	
+	chg_select('id_warehouses','[in_id_warehouses]');
+	chg_chkbox('bulk','[in_bulk]');
+	chg_chkbox('scan_from_pack','[in_scan_from_pack]');
+	chg_chkbox('skip_batch','[in_skip_batch]');
+
+//-->
+</script>
+	

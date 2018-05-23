@@ -1,0 +1,246 @@
+[ip_header]
+
+<script>
+<!--
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+
+	var dates = $( "#from_date, #to_date" ).datepicker({
+		dateFormat: 'yy-mm-dd',
+		defaultDate: "-2m",
+		minDate: new Date(2009,1-1,1),
+		maxDate: new Date(),
+		changeMonth: true,
+		numberOfMonths: 3,
+		onSelect: function( selectedDate ) {
+			var option = this.id == "from_date" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+			dates.not( this ).datepicker( "option", option, date );
+		}
+	});
+
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+			  <tr>
+			    <td width="30%" align="center"></td>
+			    <td width="14%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=opr_orders_home")'>Orders</td>
+			    <td width="14%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&add=1")'>Add</td>
+			    <td width="14%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=form")'>Search</td>
+			    <td width="14%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=advform")'>Adv Search</td>
+			    <td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=opr_orders&search=listall&sb=id_orders&so=DESC")'>View / Edit / Delete</td>
+			  </tr>
+			</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+  <form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="opr_orders">
+	<input type="hidden" name="search" value="advSearch">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="left" colspan="2">Search Order : [in_id_orders]</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Advanced Search : Order ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">Order ID : <span class="smallfieldterr">[er_id_orders]</span></td>
+		    <td class="smalltext"><input type="text" name="id_orders" value="[in_id_orders]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Advanced Search : Customer Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td width="30%">First Name  : <span class="smallfieldterr">[er_firstname]</span></td>
+		  <td class="smalltext"><input type="text" name="firstname" value="[in_firstname]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Last Name (Father) : <span class="smallfieldterr">[er_lastname1]</span></td>
+		  <td class="smalltext"><input type="text" name="lastname1" value="[in_lastname1]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>	
+		<tr>
+		  <td width="30%">Last Name (Mother) : <span class="smallfieldterr">[er_lastname2]</span></td>
+		  <td class="smalltext"><input type="text" name="lastname2" value="[in_lastname2]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Email : <span class="smallfieldterr">[er_email]</span></td>
+		  <td class="smalltext"><input type="text" name="email" value="[in_email]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">Phone : <span class="smallfieldterr">[er_phone]</span></td>
+		  <td class="smalltext"><input type="text" name="phone" value="[in_phone]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Advanced Search : Shipping Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>			
+			<td width="30%">City : <span class="smallfieldterr">[er_shp_city]</span></td>
+			<td class="smalltext">
+				<input type="text" name="shp_city" value="[in_shp_city]" size="30" oocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		 	<td width="30%">State/Zip : </td>
+		  <td class="smalltext">
+				<select name="shp_state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+						[fc_build_select_opr_salesstate]
+				</select> <span class="smallfieldterr">[er_shp_state]</span>
+				<input type="text" name="shp_zip" value="[in_shp_zip]" size="8" oocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Advanced Search : Product Info</legend>
+	 <table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td width="30%">Product ID : <span class="smallfieldterr">[er_id_products]</span></td>
+		  <td class="smalltext"><input type="text" id="resp" name="id_products" value="[in_id_products]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				<a href="javascript:search_id('id_products','db=sl_products&cmd=products')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a></td>
+		</tr>
+		<tr>
+		  <td width="30%">Tracking : <span class="smallfieldterr">[er_tracking]</span></td>
+		  <td class="smalltext"><input type="text" name="tracking" value="[in_tracking]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Advanced Search : Order</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">From Date : <span class="smallfieldterr">[er_from_date]</span></td>
+		    <td class="smalltext"><input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    </td>	
+		    	&nbsp;&nbsp;&nbsp;&nbsp;
+		    	<input type="checkbox" name="bposteddate" value="1" class="checkbox">Shipping Date		
+		    </td>
+		</tr>
+		<tr>
+		    <td width="30%">To Date : <span class="smallfieldterr">[er_to_date]</span></td>
+		    <td class="smalltext"><input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    </td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Main Status : <span class="smallfieldterr">[er_status]</span></td>
+			<td class="smalltext">[fc_build_checkbox_order_status]
+				<br><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'></td>
+		</tr>		 
+		<tr>
+			<td width="30%" valign="top">Order Type : <span class="smallfieldterr">[er_status]</span></td>
+			<td class="smalltext">[fc_build_checkbox_ptype]
+				<br><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'></td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Payment Exception : <span class="smallfieldterr">[er_statuspay]</span></td>
+			<td class="smalltext">[fc_build_checkbox_order_paystatus]
+				<br><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'></td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Product Exception : <span class="smallfieldterr">[er_statusprd]</span></td>
+			<td class="smalltext">[fc_build_checkbox_order_prdstatus]</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Ship Type : <span class="smallfieldterr">[er_shp_type]</span></td>
+			<td class="smalltext">
+				<span style="white-space:nowrap"><input type="checkbox" id="shp_type_regular" name="shp_type" value="1" class="checkbox"> <label for="shp_type_regular">Regular</label></span>&nbsp;&nbsp;&nbsp;&nbsp;
+				<span style="white-space:nowrap"><input type="checkbox" id="shp_type_rush" name="shp_type" value="2" class="checkbox"> <label for="shp_type_rush">Rush Shipping</label></span>&nbsp;&nbsp;&nbsp;&nbsp;
+				<span style="white-space:nowrap"><input type="checkbox" id="shp_type_cod" name="shp_type" value="3" class="checkbox"> <label for="shp_type_cod">COD</label></span>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">AVS Response: <span class="smallfieldterr">[er_statusprd]</span></td>
+			<td class="smalltext">[fc_build_checkbox_avs_response]</td>
+		</tr>
+		<tr>
+		    <td width="30%">ID Users : <span class="smallfieldterr">[er_id_admin_users]</span></td>
+		    <td class="smalltext"><input type="text" name="id_admin_users" value="[in_id_admin_users]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	<a name="tabs" id="tabs">&nbsp;</a>
+		    	<a href="javascript:search_id('id_admin_users','db=admin_users&cmd=users')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a></td>
+		</tr>
+	</table>
+	</fieldset>	
+	&nbsp
+		<fieldset><legend>Advanced Search : Credit Card</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>			  	
+			<td>Name in Credit Card / Check</td>
+			<td><input type="text" name="PmtField2" value="[in_pmtfield2]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>													
+		<tr>			  	
+			<td>Last 4 Digits in CC</td>
+			<td><input type="text" name="PmtField3" value="[in_pmtfield3]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>		
+		<tr>			  	
+			<td>Auth Code</td>
+			<td><input type="text" name="AuthCode" value="[in_authcode]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>	
+		<tr>			  	
+			<td>Reference ID</td>
+			<td><input type="text" name="refid" value="[in_refid]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>				
+		<tr>
+		  <td width="30%">Pay Type  : <span class="smallfieldterr">[er_status]</span></td>
+		  <td class="smalltext">
+		  	<input type="radio" name="Type" value="Credit-Card" class="radio">Credit-Card
+				<input type="radio" name="Type" value="Check" class="radio">Check
+				<input type="radio" name="Type" value="WesternUnion" class="radio">WesternUnion
+				<input type="radio" name="Type" value="Money Order" class="radio">Money Order</td>
+		 </tr>									
+	</table>
+	</fieldset>	
+	
+	[ip_forms:search_form]
+	<p align="center"><input type="submit" value="Search" class="button"></p>
+  </form>
+  
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

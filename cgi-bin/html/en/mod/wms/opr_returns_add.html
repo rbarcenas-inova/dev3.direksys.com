@@ -1,0 +1,132 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+	<table class="tab" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+	  <tbody><tr>
+	    <td align="center" width="30%"></td>
+<td class="cell_on" onclick="trjump(&quot;/cgi-bin/mod/wms/dbman?cmd=opr_returns&amp;add=1&quot;)" align="center" width="23%">Add Returns</td>
+<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/wms/dbman?cmd=opr_returns&amp;search=form&quot;)" align="center" width="23%">Search</td>
+<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/wms/dbman?cmd=opr_returns&amp;search=listall&amp;so=DESC&amp;sb=ID_returns&quot;)" align="center" width="23%">View / Edit / Delete</td>
+	  </tr>
+	</tbody></table>
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">W.Receipt for Returns</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message] [in_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	
+       <form action="/cgi-bin/mod/wms/admin" method="post" name="sitform">
+					<input type="hidden" name="cmd" value="customer_search">
+					<input type="hidden" name="action" value="1">
+
+		<fieldset><legend>Searching Customer</legend>
+		 <table border="0" cellspacing="0" cellpadding="2" width="100%">
+		  <tr>
+	         <td colspan="2" class="stdtxterr">[va_message]</td>
+	        </tr>		
+	        <tr>
+			    <td>Order ID  : <span class="smallfieldterr">[er_id_orders]</span></td>
+			    <td class="smalltext"><input type="text" name="id_orders" value="[in_id_orders]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+			    <td>Customer ID  : <span class="smallfieldterr">[er_id_customers]</span></td>
+			    <td class="smalltext"><input type="text" name="id_customers" value="[in_id_customers]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+			    <td colspan="2" class="help_on" align="center">Will look for the exact match for Order ID or Customer ID. And will skip other data.</td>
+			</tr>	
+			<tr>
+			    <td>First Name  : <span class="smallfieldterr">[er_firstname]</span></td>
+			    <td class="smalltext"><input type="text" name="firstname" value="[in_firstname]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+			    <td>Last Name  : <span class="smallfieldterr">[er_lastname]</span></td>
+			    <td class="smalltext"><input type="text" name="lastname" value="[in_lastname]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+			    <td>Phone  : <span class="smallfieldterr">[er_phone]</span></td>
+			    <td class="smalltext"><input type="text" name="phone" value="[in_phone]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+			    <td>RMA Number: <span class="smallfieldterr">[er_rmanum]</span></td>
+			    <td class="smalltext"><input type="text" name="rmanum" value="[in_rmanum]" size="12" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+		  </tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Search Options</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    <td align="center"><input name="ST" value="or" checked="checked" type="radio" class="radio"> with <b>any</b> of the words (OR)
+        <input name="ST" value="and" type="radio" class="radio"> with <b>all</b> of the words (AND)
+      	<input name="sx" value="1" type="checkbox" class="checkbox"> Exact Match</td>
+      </tr>
+      <tr>
+      	<td align="center"><input name="keyword" size="40" maxlength="255" type="text"  onFocus='focusOn( this )' onBlur='focusOff( this )'> Keyword Search (will match against all fields)</td>
+      </tr>
+      <tr>
+      	<td align="center">Sort By :        
+					<select name="sb"  onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option>---</option>
+						[fc_build_select_sortby]
+					</select>     	
+      		Sort : <input name="so" value="asc" checked="checked" type="radio" class="radio">Ascending or
+      		<input name="so" value="desc" type="radio" class="radio">Descending
+        <br>
+	    </td>
+		 </tr>
+	</table>
+	</fieldset>
+			<p align="center"><input type="submit" value="Buscar Cliente" class="button"></p>
+			</form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script language="javascript">
+<!--
+
+	chg_select('sb','[in_sb]');
+	chg_radio('so','[in_so]');	
+	chg_radio('ST','[in_st]');
+	chg_radio('sx','[in_sx]');
+
+//-->
+</script>
+
+
+
+[ip_footer]

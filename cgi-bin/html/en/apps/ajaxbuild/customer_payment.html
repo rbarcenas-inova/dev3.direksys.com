@@ -1,0 +1,422 @@
+[ip_header_small]
+
+<table border="0" cellspacing="0" cellpadding="10" width="100%" height="100%" bgcolor=white>
+	<tr>
+		<td valign=top>
+			
+			<form action="/cgi-bin/common/apps/ajaxbuild" method="post" name="sitform" onsubmit="return confirm_apply();">
+				<input type="hidden" name="action" value="1">
+				<input type="hidden" name="id_customers" value="[in_id_customers]">
+				<input type="hidden" name="ajaxbuild" value="customer_addpmt">
+				<input type="hidden" name="extra_services" value="[in_extra_services]">
+				
+					<table width="100%" border="0" cellspacing="0" cellpadding="0"  align="center">
+						<tbody>
+							<tr>
+								<td class="tbltextttl">
+									<a href='/cgi-bin/common/apps/ajaxbuild?ajaxbuild=customer_addpmt&id_customers=[in_id_customers]&[va_rndnumber]")'><img src="/sitimages//default/b_reload.gif" title="Refresh" alt="" border="0"></a>&nbsp;<span class="stdtxterr">[va_messages]</span>
+
+
+			 						<div id="div-payment-info" [va_this_application_style]>
+										<fieldset>
+											<legend>Banks Info</legend>
+											<table border="0" cellspacing="0" cellpadding="2" width="100%">
+
+												<tbody>
+													<tr>
+
+														<td width="30%">Bank :  <span class="smallfieldterr">[er_id_banks]</span></td>
+														<td>
+															<select name="id_banks" onfocus="focusOn( this )" onblur="focusOff( this )">
+																<option value="">---</option>
+																[fc_build_select_custom_bank]
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td width="30%">Bank Date :  <span class="smallfieldterr">[er_bankdate]</span></td>
+														<td><input id="bankdate" size="20" name="bankdate" value="[in_bankdate]" onfocus="focusOn( this )" onblur="focusOff( this )" [va_restrict_bankdate]>&nbsp;</td>
+													</tr>
+													<tr>
+														<td width="30%">Accounting Date :  </td>
+														<td><input id="eff_date" size="20" name="eff_date" value="[in_eff_date]" onfocus="focusOn( this )" onblur="focusOff( this )" [va_restrict_eff_date]>&nbsp;<span class="smallfieldterr">[er_eff_date]</span></td>
+													</tr>
+													<tr>
+														<td width="30%">Amount :  <span class="smallfieldterr">[er_amount]</span></td>
+														<td><input type="text" name="amount" id="amount" value="[in_amount]" size="" onfocus="focusOn( this )" onblur="focusOff( this )" [va_restrict_amount]>
+															<img src="[va_imgurl]newstyle/b_adjtotals.gif" id="amount_same_total" title="Same as Total" style="cursor:pointer;">
+															&nbsp;&nbsp;
+															<span class="help_on">Amount of the bank movement</span></td>
+													</tr>
+													<tr>
+														<td width="30%">Doc Type :  <span class="smallfieldterr">[er_doc_type]</span></td>
+														<td>
+															[br_doc_type@sl_banks_movements]
+														</td>
+													</tr>
+													<tr>
+														<td width="30%">Reference Number :  <span class="smallfieldterr">[er_refnum]</span></td>
+														<td><input type="text" name="refnum" value="[in_refnum]" size="40" maxsize="40" onfocus="focusOn( this )" onblur="focusOff( this )"></td>
+													</tr>
+													<tr>
+														<td width="30%">Memo :  <span class="smallfieldterr">[er_memo]</span></td>
+														<td><input type="text" name="memo" value="[in_memo]" size="60" maxsize="90" onfocus="focusOn( this )" onblur="focusOff( this )"></td>
+													</tr>
+
+												<tr>
+													<td>
+														M&eacute;todo de Pago : 
+														<span class="samllfieldterr">[er_mp]</span> 
+													</td>
+													<td>
+														[va_payment_method]
+													</td>
+												</tr>
+												<tr>
+													<td>
+														Forma de Pago : 
+														<span class="samllfieldterr">[er_mp]</span> 
+													</td>
+													<td>
+														[va_payment_type]
+													</td>
+												</tr>
+
+												<tr>
+													<td>
+														Uso CFDI : 
+														<span class="samllfieldterr">[er_mp]</span> 
+													</td>
+													<td>
+														<input type="text" name="use_cfdi_ingreso" value="P01" onfocus="focusOn( this )" onblur="focusOff( this )" require readonly=""> Por definir
+													</td>
+												</tr>
+												<tr>
+													<td>
+														Banco Emisor : 
+														<span class="samllfieldterr">[er_mp]</span> 
+													</td>
+													<td>
+														<input type="text" name="banco_emisor" value="[va_bank]" size="60" maxsize="90" data-validate="text" data-validate-null="1" data-validate-name="Banco Emisor" onfocus="focusOn( this )" onblur="focusOff( this )" require>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														RFC Banco Emisor : 
+														<span class="samllfieldterr">[er_mp]</span> 
+													</td>
+													<td>
+														<input type="text" name="rfc_banco_emisor" value="[va_fcode_bank]" size="60" maxsize="90" data-validate="regex" data-validate-type="rfc" data-validate-null="1" data-validate-name="Rfc" onfocus="focusOn( this )" onblur="focusOff( this )" require>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														Cuenta Emisora : 
+														<span class="samllfieldterr">[er_mp]</span> 
+													</td>
+													<td>
+														<input type="text" name="cuenta_emisor" value="[va_account_number]" data-validate="regex" data-validate-null="1" data-validate-type="account_number" data-validate-name="Cuenta Emisor" onfocus="focusOn( this )" onblur="focusOff( this )" style="width: 320px;" require>
+													</td>
+												</tr>
+
+											</tbody></table>
+
+										</fieldset>
+									</div>	
+										
+									&nbsp;
+									<div id="pmt-in" [va_this_style]>
+										<fieldset>
+											<legend>Search Payments </legend>
+											<div [va_this_application_style]>
+												<br>
+												<label for="invoice" class='smalltext'>Invoice: </label> (Invoice Doc / Invoice Date)
+												<div id="div-id-in" [va_this_style]>
+													<input type="text" id="id-in" name="id-in" value="" size="80">&nbsp; X &nbsp;
+													<input type="text" id="amt-in" name="amt-in" value="" size="10">&nbsp;&nbsp;
+													<input type="button" id="btn-in" name="btn-in" value="Add This" style="display:none;">
+													<span id="loadingimg" ></span>
+												</div>
+											</div>
+											&nbsp;
+											<div id="div-ids-in" style="width:98%;height:[va_div_height]px;overflow-y:auto;">
+												[va_ids_in]
+											</div>
+										</fieldset>
+									</div>
+
+									<div id="div-resume-info" [va_this_application_style]>
+										<p align="center" style="height:25px;font-size:2em;color:red">
+											<span id="amt_balance"></span>
+
+											<div id="amt_balance_greater" style="text-align:center;display:none;"> <input type="checkbox" id="accept_greather_amount" name="accept_greather_amount" value="1"> Accept higher payment amount. </div>
+										</p>
+										<p align="center">
+											<input type="button" id="cfm_button" name="cmfbutton" value="[va_btncfm]" class="button" style="visibility:visible;">
+											&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="submit" id="act_button" name="actbutton" value="[va_btnname]" class="button" style="visibility:hidden;">
+											&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="button" id="res_button" name="resbutton" value="[va_btnres]" class="button" style="visibility:hidden;">
+										</p>
+									</div>	
+									
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</form>
+
+<script type="text/javascript">
+	chg_select('id_banks','[in_id_banks]');
+	chg_select('add_type','[in_add_type]');
+	chg_select('add_id_orders','[in_add_id_orders]');
+	chg_select('add_id_services','[in_add_id_services]');
+	chg_radio('doc_type','[in_doc_type]');
+	
+
+	chg_select('payment_method','[in_payment_method]');
+	chg_select('payment_type','[in_payment_type]');
+	
+	var validateFields = function(){
+		let valid = true;
+		let msg = '';
+		document.querySelectorAll('[data-validate]').forEach(function(e){
+			if(valid == false){
+				return;
+			}
+			if(e.dataset.validateNull == '1' && e.value.trim() == ''){
+				valid = true;
+				return valid;
+			}
+			if(e.dataset.validate == 'regex'){
+				if(e.dataset.validateType == 'account_number'){
+					name="payment_type"
+					regex = null;
+					validationRules = {
+						'2' : /^\d{11}$|^\d{18}$/,
+						'3' : /^\d{10}$|^\d{16}$|^\d{18}$/,
+						'4' : /^\d{16}$/,
+						'5' : /^\d{11}$|^\d{15,16}$|^\d{18}$/,
+						'6' : /^\d{10}$/,
+						'28' : /^\d{16}$/,
+						'29' : /^\d{15,16}$/
+					};
+					valTipo = document.querySelector('[name="payment_type"]').value;
+					if( validationRules[valTipo]){
+						regex = validationRules[valTipo];
+					}
+					if(regex){
+						if (regex.test(e.value.trim())) {
+							valid = true;
+						}else{
+							valid = false;
+							msg += 'El numero de cuenta no cumple con el formato.' + "\n";
+						}
+					}
+					
+				}
+				if(e.dataset.validateType == 'rfc'){
+					const regex = /^([A-ZÑ&]{3,4})?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))?([A-Z\d]{2})([A\d])$/;
+					if(regex.test(e.value.trim().toUpperCase())){
+						valid = true;
+					}else{
+						valid = false;
+						msg += 'El RFC es invalido' + "\n";
+
+					}
+				}
+			}else if(e.dataset.validate == 'text'){
+				if(e.value.trim() != ""){
+					valid = true;
+				}else{
+					valid = false;
+					msg += 'El campo '+e.dataset.validateName+' no debe estar vacio';
+				}
+			}else {
+				valid = true;
+			}
+		});
+		console.log(valid,msg);
+		return {valid, msg };
+	}
+
+	$(document).ready(function() {
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+		$.ajaxSetup({
+	    	timeout: 60000
+	    });
+		var dates = $( "#bankdate,#eff_date" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			maxDate: "+2m +1w",
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 2,
+		});
+		if ('[in_pterms]'.length == 0) {
+			$(":radio[name='pterms']").prop('checked', false);
+		}
+		/* Amount Total Same as Apllied */
+		$( "#amount_same_total" ).click(function(){
+			var amt_applied = parseFloat($( "#total_amt" ).val()) || 0;
+			$( "#amount" ).val(amt_applied) || 0;
+		});
+		/* Confirm | Apply | Reset Buttons */
+
+		$( "#cfm_button" ).click(function(){
+			let validacion = validateFields();
+			if(!validacion.valid){
+				alert(`Existe un error en el formulario ${validacion.msg}`);
+				return false;
+			}
+			var amt_to_apply = parseFloat($( "#amount" ).val()) || 0;
+			var amt_applied = parseFloat($( "#total_amt" ).val()) || 0;
+			var balance = parseFloat(amt_to_apply - amt_applied).toFixed(2);
+			var accept_greather_amt = ( $('#accept_greather_amount').attr('checked') == 'checked' ) ? true : false;
+
+			var allow_greather_amt = '[va_allow_payment_greather_amount]';
+			console.log(allow_greather_amt);
+			if( (balance<0 || balance>0) && !accept_greather_amt){
+
+				$( "#amt_balance" ).text('$' + balance);
+				if(allow_greather_amt == '1'){
+					if(balance > 0){ 
+						$( "#amt_balance_greater" ).show(); 
+					}else{ 
+						$( "#amt_balance_greater" ).hide(); 
+					}
+				}
+				return false;
+			}else{
+
+				if(Math.abs(balance) > 0 && allow_greather_amt == '0' )
+					return false;
+				$( "#amt_balance" ).text('');
+				$( "#amt_balance_greater" ).hide();
+			  	$( "#cfm_button" ).fadeOut(1000).hide();
+			  	$( "#act_button" ).css('visibility','visible').fadeIn(2500);
+			  	$( "#res_button" ).css('visibility','visible').fadeIn(2500);
+			 }
+		});
+		$( "#act_button, #res_button" ).click(function(){
+		  	$( "#act_button" ).fadeOut(1000).hide();
+		  	$( "#res_button" ).fadeOut(1000).hide();
+		  	$( "#cfm_button" ).css('visibility','visible').fadeIn(2500);
+		});
+		$( "#amount" ).focus(function(){
+			$( "#res_button" ).click();
+		});
+		
+		/*Autocomplete/Qty Disabled/Enabled*/
+		var this_id = $( '#id-in' ).val();
+		(this_id  == '') ? $( "#amt-in" ).attr('disabled','disabled') : $( "#amt-in" ).removeAttr('disabled');
+		
+		/* Reset textbox & fadeOut button onFocus */
+		$( "#id-in" ).focus(function(){
+		  	$( "#id-in" ).val('');
+		  	$( "#amt-in" ).attr('disabled','disabled');
+		  	$( "#amt-in" ).val('');
+		  	$( "#btn-in" ).fadeOut(1000);
+		});
+		/* Autocomplete Search */
+		$( "#id-in" ).autocomplete({
+			minLength: 2,
+			source: function( request, response ) {
+				$( "#loadingimg" ).html("<img src='../../../sitimages/load16.gif' /> Loading");
+				$.ajax({
+					url: '/cgi-bin/common/apps/ajaxbuild',
+					datatype: 'jsonp',
+					data: {
+						ajaxbuild: "customers_addpmt_edit",
+						id: [in_id_customers],
+						type: 'load',
+						keyword: request.term,
+						idmi: 0,
+						data_in : 0
+					},
+					success: function( data ) {
+						$( "#loadingimg" ).html("");
+						 if(data != null){
+							response( $.map( data.inv, function( inv ) {
+								return {
+									label: inv.ido + ' @@ ' + inv.idi + ' @@ ' + inv.name + ' @@ ' + inv.mdate + ' @@ ' + inv.due,
+									value: inv.ido + ' @@ ' + inv.idi + ' @@ ' + inv.name + ' @@ ' + inv.mdate + ' @@ ' + inv.due,
+								}
+							}));
+						}else if(request.term.length > 3) {
+							alert('No data found with this keyword');
+						}	
+					}
+				});
+			},
+		  	select: function( event, ui ) {
+		  		$( "#amt-in" ).removeAttr('disabled');
+		  		$( '#amt-in' ).focus();
+		  		$( '#btn-in' ).fadeIn(1000);
+		  	}
+		});	
+		/* Adding Items */
+		$( "#btn-in" ).click(function(e){
+		  	var t = $( '#id-in' ).val().split(' @@ ',5);
+		  	var this_id_orders = parseInt(t[0]) || 0;
+		  	var this_id_invoices = parseInt(t[1]) || 0;
+		  	var max_amt = parseFloat(t[4]).toFixed(2) || 0;
+		  	var this_amt = parseFloat($( '#amt-in' ).val()).toFixed(2);
+		  	var idmi = 0;
+		  	var nid = this_id_orders + ':' + this_id_invoices + ':' + this_amt;
+		  	var accept_greater_amt = ( $('#accept_greather_amount').attr('checked') == 'checked' ) ? 1 : 0;
+		  	if( parseFloat(this_amt) > parseFloat(max_amt) && accept_greater_amt == 0 ){
+		  		alert('Amount Greater than Allowed: (' + this_amt + ' > ' + max_amt + ')');
+		  		$( "#amt-in" ).focus();
+		  		return false;
+		  	}else{
+			  	$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'customers_addpmt_edit', 'id':[in_id_customers], 'type': 'add', 'idmi':idmi, 'data_in':nid, 'accept_greater_amt':accept_greater_amt },function(response,status,xhr){
+					if (status == "error") {
+						alert(msg);
+						$( '#id-in' ).focus();
+					}else{
+						if(response.match(/error/gi)){
+							alert(response + "\r\nPlease Try again");
+							$( '#id-in' ).focus();
+						}else{
+							$( '#div-ids-in' ).html(response).animate({height: '+=22'},1000);
+						}
+					}
+				});
+			}
+		});
+		/* Drop Row*/
+		$( ".rdrop" ).live('click',function(){
+			var p = $(this).attr('id').split('-',2);
+		  	var idmi = parseInt(p[1]);
+		  	$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'customers_addpmt_edit', 'id':[in_id_customers], 'type': 'drop', 'idmi':idmi, 'data_in':0 },function(response,status,xhr){
+				if (status == "error") {
+					alert(msg);
+					$( '#id-in' ).focus();
+				}else{
+					if(response.match(/error/gi)){
+						alert(response + "\r\nPlease Try again");
+						$( '#id-in' ).focus();
+					}else{
+						$( '#div-ids-in' ).html(response).animate({height: '-=22'},1000);
+					}
+				}
+			});
+		  	
+		  	
+		});	
+	});
+	
+	function confirm_apply() {
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+	$(function(){
+		// $( "#cfm_button" ).click();
+		// $( "#res_button" ).click();
+	});
+</script>

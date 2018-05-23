@@ -1,0 +1,252 @@
+<style>
+
+/* use a semi-transparent image for the overlay */
+#overlay {
+	background-image:url(/jquerytools/overlay/transparent.png);
+	color:#fff;
+	height:580px;
+}
+
+/* container for external content. uses vertical scrollbar, if needed */
+div.contentWrap {
+	height:581px;
+	overflow-y:auto;
+}
+/* the overlayed element */
+.apple_overlay {
+
+	/* initially overlay is hidden */
+	display:none;
+
+	/* growing background image */
+	background-image:url(/jquerytools/overlay/white.png);
+
+	/*
+		width after the growing animation finishes
+		height is automatically calculated
+	*/
+	width:540px;
+
+	/* some padding to layout nested elements nicely  */
+	padding:35px;
+
+	/* a little styling */
+	font-size:11px;
+}
+
+/* default close button positioned on upper right corner */
+.apple_overlay .close {
+	background-image:url(/jquerytools/overlay/close.png);
+	position:absolute; right:5px; top:5px;
+	cursor:pointer;
+	height:35px;
+	width:35px;
+}
+
+</style> 
+
+ &nbsp;
+	<fieldset><legend>Batches ID</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		  	<td width="30%" class="titletext">ID :</td>
+		    <td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+					    	[in_id_warehouses_batches]
+							[fc_template_prnbutton]	
+							[fc_template_exportbutton]
+						</div>
+					</div>
+				
+			</td>
+		 </tr>
+		 <tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+		</table>
+	</fieldset> 
+	&nbsp;
+	<fieldset><legend>Batches Main Info's</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%" valign="top">Warehouses ID : </td>
+		    <td class="smalltext">
+		    		<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=opr_warehouses&view=[in_id_warehouses]">
+		    		(<label id="old">[in_id_warehouses]</label>)</a><span id='span_wh'>&nbsp;[va_warehouses_name]</span>
+		    	&nbsp;
+		    	[va_chg_remesa]
+		    </td>
+		 </tr>				
+		 <tr>				
+  		 
+		  <td width="30%">Date : </td>
+			<td class="smalltext">[in_date]</td>
+		</tr>
+		 
+  		 
+	</table>
+	</fieldset>
+	&nbsp;
+    
+	<fieldset><legend>Batches Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		 	<tr>
+				<td valign="top" width="30%" valign="top">Status: </td> 
+				<td class="smalltext" valign="top">[in_status]
+					&nbsp;&nbsp;&nbsp; 
+					<span class='smalltext'>[va_changestatus]</span>
+					&nbsp;&nbsp;&nbsp; 
+					[va_certifybatch]
+					&nbsp;&nbsp;&nbsp;
+					[va_reshipbatch]
+					&nbsp;&nbsp;&nbsp;
+					[va_conciliatebatch]
+				</td>
+			</tr>
+  		</table>
+	</fieldset>
+
+	<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="thisform">
+		<input type="hidden" name="cmd" value="warehouses_batches">
+		<input type="hidden" name="view" value="[in_id_warehouses_batches]">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="chgsr" value="1">
+	</form>
+
+
+	<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="reasform">
+		<input type="hidden" name="cmd" value="warehouses_batches">
+		<input type="hidden" name="view" value="[in_id_warehouses_batches]">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" id="hdn_rx" name="rx" value="0">
+	</form>
+
+<!-- Overlay -->
+<div class="apple_overlay" id="overlay">
+	<!-- the external content is loaded inside this tag -->
+	<div class="contentWrap"></div>
+</div>
+<!-- Overlay -->
+
+<script type="text/javascript" src="/jquery.editable-1.3.3.min.js"></script>
+<script type="text/javascript">
+<!--
+
+$(document).ready(function() {
+
+	/*AJAX Error handler*/
+	$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+	});
+
+	$.ajaxSetup({
+    	timeout: 60000
+    });
+
+
+	$('#span_wh').editable({
+		type:'select',
+		[va_wh_options],
+		//options:{'Monterrey':'Monterrey','Vixicom':'Vixicom','Mixicom':'Mixicom','No-CC':'No-CC'},
+		editBy:'dblclick',
+		submit:'Update',
+		cancel:'Cancel',
+		onSubmit:function(content){
+			var id = [in_id_warehouses_batches]
+			var prev_value = $('#old').html();
+			prev_value = parseInt(prev_value);
+			var new_value = parseInt(content.current);
+			if(prev_value != new_value){
+				$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'chg_warehouse_batch', 'id_batch':id, 'old':prev_value, 'new':new_value},function(response,status,xhr){
+
+					if (status == "error") {
+						alert(msg);
+						$('#span_chg_wh').html('<img id="done_chg_wh" src="/sitimages/default/checkmark_off.gif" title="Done">');
+					}else{
+						if(response.match(/error/gi)){
+							alert("Error:\r\n"+response);
+							$('#span_chg_wh').html('<img id="done_chg_wh" src="/sitimages/default/checkmark_off.gif" title="Done">');
+						}else{
+							//$('#span_chg_wh').html('<img id="done_chg_wh" src="/sitimages/default/checkmark.gif" title="Done">');
+	
+							window.location ="/cgi-bin/mod/[ur_application]/dbman?cmd=warehouses_batches&view="+parseInt(response)+"&second_conn=0";
+						}
+					}
+					$('#span_chg_wh').fadeIn(2000);
+				});
+
+				setTimeout(function(){
+						$('#span_chg_wh').fadeOut(2000);
+				},3000);
+
+				setTimeout(function(){
+					$('#span_chg_wh').fadeIn(2000);
+					$('#span_chg_wh').html('<img id="btn_chg_wh" src="/sitimages/default/b_edit.png" title="Click to edit Offer" style="cursor:pointer;">');
+				},5000);
+			}else{
+				//alert(prev_value+'=='+new_value);
+				$('#span_chg_wh').fadeIn(2000);
+			}
+		},
+		onCancel:function(){
+			$('#span_chg_wh').fadeIn(2000);
+		}
+	});
+
+	$('#btn_chg_wh').live('click',function(){
+		$('#span_chg_wh').fadeOut();
+		$('#span_wh').dblclick();
+	});
+
+	$("#tab_results_list a[rel]").overlay({
+
+		effect: 'apple',
+		onBeforeLoad: function() {
+
+			$(".apple_overlay .contentWrap").html('<div style="height:422px;width:537px;background-color:#fff;text-align:center;position:relative;"><img style="position:absolute;top:50%;left:50%;margin-top:-25px;margin-left:-25px;" alt="Loading..." src="[va_imgurl]/processing.gif" /><br>Loading...Please Wait</div>');
+
+			setTimeout(function(){},2000);
+
+			// grab wrapper element inside content
+			var wrap = this.getOverlay().find(".contentWrap");
+
+			// load the page specified in the trigger
+			wrap.load(this.getTrigger().attr("href"));
+			
+		}
+
+	});
+
+
+});
+
+
+function to_reasign(id_orders){
+
+	if(id_orders > 0) {
+
+		var this_form = document.reasform;
+		var this_order = document.getElementById('hdn_rx');
+		var r=confirm("Want to Reasign Order " + id_orders + "?");
+
+
+		if (r == true){
+
+			this_order.value = id_orders;
+			this_form.submit();
+
+		}
+
+	}
+
+}
+
+
+function to_sent() {
+	document.thisform.submit();
+}
+
+</script>

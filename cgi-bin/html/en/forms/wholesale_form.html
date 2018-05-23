@@ -1,0 +1,51 @@
+&nbsp;
+ <fieldset><legend>Return Form</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+    <tr>
+		    <td width="30%">ID Order :<span class="smallfieldterr">[er_id_orders]</span></td>
+		    <!--<td class="smalltext" colspan="2"><input type="text" name="id_orders" value="[in_id_orders]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>-->
+		  <td class="smalltext">
+		  	<input type="text" name="id_orders" value="[in_id_orders]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	<a href="#" id="orders" onClick="add_order()"><img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+			  <!-- Add Orders-->
+				<div id="popup_ord" style="visibility: hidden; display: none; background-color: #ffffff;">
+				<div class="menu_bar_title" id="item_drag1">
+				<img id="popup_exit1" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+				&nbsp;&nbsp;&nbsp;Orders
+				</div>
+				<div class="formtable">
+				<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=select_orders" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+				<H2>Unable to do the script</H2>
+				<H3>Please update your Browser</H3>
+				</IFRAME>	
+				</div></div>			
+		  </td>		
+			
+			
+		</tr>
+		 	<tr>
+			  <td width="20%" valign="top">General Package Condition: <span class="smallfieldterr">[er_generalpckgcondition]</span></td>
+			  <td class="smalltext">[fc_build_radio_return_generalpckgcondition]</td>
+			</tr>
+			<tr>
+			  <td width="20%" valign="top">Reception notes: <span class="smallfieldterr">[er_receptionnotes]</span></td>
+			  <td class="smalltext"><textarea name="receptionnotes" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_receptionnotes]</textarea></td>
+			</tr>
+  	</table>
+	</fieldset>	
+<script language="javascript">
+<!--
+	
+	chg_radio('generalpckgcondition','[in_generalpckgcondition]');
+	function add_order(){
+	
+		/*document.sitform.id_products.value="";
+		document.sitform.id_orders_products.value="";*/
+		
+	  /*var element = document.getElementById('popup_prod');
+	  element.style.visibility = 'hidden';
+	  element.style.display    = 'none';*/
+		popup_show('popup_ord', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'orders');
+	}
+//-->
+</script>

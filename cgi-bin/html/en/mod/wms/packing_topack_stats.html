@@ -1,0 +1,92 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="23%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=pklist")'>Packing List</td>
+	    <td width="23%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_topack")'>Orders to Fulfill</td>
+	    <td width="24%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=packing_topack")'>Search</td>
+	  </tr>
+	</table>
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+	
+<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform" onsubmit="return warningmsg()">
+	<input type="hidden" name="cmd" value="packing_topack">
+	<input type="hidden" name="search" value="1">
+	<input type="hidden" name="oids" value="[in_oids]">
+	<input type="hidden" name="id_manifests" value="[in_id_manifests]">
+	
+	
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center">Items to Pick</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td align="center">From Warehouse :
+		    	<select name="id_warehouses"><option>---</option>[fc_build_select_warehouses]</select>
+		    	<input type="submit" value="Change" class="button"></td>
+		 </tr> 
+     </table>
+  	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable" align="center">
+		<tr>
+		    <td class="menu_bar_title" align="center">#</td>
+		    <td class="menu_bar_title" align="center">SKU ID</td>
+		    <td class="menu_bar_title" align="center">UPC</td>
+		    <td class="menu_bar_title" align="center">Name</td>
+		    <td class="menu_bar_title" align="center">Qty</td>
+		    <td class="menu_bar_title" align="center">Location</td>
+		 </tr>
+	[va_searchresults]
+	</table>
+	&nbsp;
+	<p align="center"><input type="submit" name="finished" value="Next" class="button"></p>      	
+	<p align="center">[va_prnbutton]</p>   	
+
+</form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+	$('#inp_sel_all').click(function () {
+		if($(this).attr('checked'))
+			$('input.checkbox').attr('checked','checked');
+		else
+			$('input.checkbox').removeAttr('checked');
+    });
+    
+	chg_select('id_warehouses','[in_id_warehouses]');
+    
+</script>
+
+
+[ip_footer]

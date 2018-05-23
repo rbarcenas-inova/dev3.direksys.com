@@ -1,0 +1,27 @@
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%" class="formtable">
+		<tr>
+	    <td colspan="6" align="center" class="menu_bar_title">Total de la Orden
+	    	<a href="[va_script_url]?cmd=orders&view=[in_id_orders]&update_totals=1#tabs"><img src='[va_imgurl]/[ur_pref_style]/b_adjtotals.gif' title='Adjust Totals' alt='' border='0'></a>
+	    	<a href="[va_script_url]?cmd=orders&view=[in_id_orders]&recalc_totals=1#tabs"><img src='[va_imgurl]/[ur_pref_style]/b_recalctotales.gif' title='Recalc Totals' alt='' border='0'></a>
+	    </td>
+	 	</tr>			
+		<tr>
+		    <td width="16%" class="smalltext" align="center">Art&iacute;culos</td>
+		    <td width="16%" class="smalltext" align="center">Monto</td>
+		    <td width="16%" class="smalltext" align="center">- Descuento</td>
+		    <td width="16%" class="smalltext" align="center">+ Impuestos</td>
+		    <td width="16%" class="smalltext" align="center">+ Env&iacute;o</td>
+		    <td width="16%" class="smalltext" align="center">Monto Total</td>
+	 	</tr>
+		<tr>
+		    <td class="smalltext" align="center">[in_orderqty] <input type="hidden" name="orderqty" value="[in_orderqty]"></td>
+		    <td class="smalltext" align="center">[va_ordernet] <input type="hidden" name="orderqty" value="[in_ordernet]"></td>
+		    <td class="smalltext" align="center" style="color:red">[va_orderdisc] <input type="hidden" name="orderdisc" value="[in_orderdisc]"></td>
+		    <td class="smalltext" align="center">[va_total_taxes] ([va_tax]%) <input type="hidden" name="ordertax" value="[in_ordertax]"></td>
+		    <td class="smalltext" align="center">[va_ordershp] <input type="hidden" name="ordershp" value="[in_ordershp]"></td>
+		    
+		    <td class="smalltext" align="center">[va_total_order]</td>
+	 	</tr>
+	</table>
+	&nbsp;

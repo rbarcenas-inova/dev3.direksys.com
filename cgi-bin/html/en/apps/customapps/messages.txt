@@ -1,0 +1,2 @@
+# Transition Order
+trans_order_not_fullshipped=The order is not Completly Shipped, Only Completed Order can have a Full Return

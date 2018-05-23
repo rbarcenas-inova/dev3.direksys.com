@@ -1,0 +1,418 @@
+	<fieldset><legend>Transfer Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_skustransfers] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]&nbsp;
+					  		[fc_func_list_manager]
+					  		<a href="/cgi-bin/common/apps/full_kardex.pl?tbl_name=sl_skustransfers&id_trs=[in_view]"  class='fancy_modal_iframe'>
+								<img src='[va_imgurl]/[ur_pref_style]/kardex.png' title='Kardex' alt='Kardex' border='0' width='24' height='24'>
+							</a>
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		 <tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>	
+	</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Warehouse Transfer Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		   <td class='smalltext' width="30%">Requested By : </td>
+		   <td >([in_RequestedBy]) [va_reqname]</td>
+		</tr>
+		<tr>
+		   <td class='smalltext' width="30%">Authorized By : </td>
+		   <td >([in_AuthorizedBy]) [va_reqauth]</td>
+		</tr>
+		<tr>
+		    <td class='smalltext' width="30%">Comments : </td>
+		    <td class="smalltext">[in_comments]</td>
+		 </tr>
+	</table>
+</fieldset>	
+&nbsp;
+<div id="skus-in" [va_this_style]>
+<fieldset>
+	<legend>SKUs </legend>
+	<label for="from_warehouses" class='smalltext'>From: </label>
+	<br/>
+	<select id="from_warehouses" name="from_warehouses" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		<option value="">---</option>
+		[fc_build_select_warehouses]
+	</select>
+	<br/>
+	<label for="id_parts" class='smalltext'>From SKU: </label> (ID PART: 400000000)
+	<br/>
+	<input type="text" id="id_parts" name="id_parts" value="" size="25" disabled="disabled" />
+	&nbsp; X &nbsp;
+	<input type="text" id="des_sku_qty" name="des_sku_qty" value="" size="6" disabled="disabled" />
+	<input type="button" style="display: inline;" value="Search" name="btn_id_part" id="btn_id_part" />
+	<br/>
+	<br/>
+	<div id="list_skus_qty">
+		
+	</div>
+	<br/>
+	<div id="div-id-in" [va_this_style]>
+		<label for="id_warehouses" class='smalltext'>To: </label>(Warehouse / Location)
+		<br>
+		<select id="to_warehouses" name="to_warehouses" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+  			<option value="">---</option>
+			[fc_build_select_warehouses]
+		</select>
+		<input type="text" id="id-out" name="id-out" value="" size="10">
+		<br/>
+	<label for="to_sku" class='smalltext'>To SKU: </label> (SKU / UPC / MODEL / NAME)
+	<br/>
+	<input type="text" id="to_sku" name="to_sku" value="" size="80" disabled="disabled" /> <input type="button" style="display: inline;" value="Add This" name="btn_skus_add" id="btn_skus_add" />
+	<br/>
+	</div>
+	&nbsp;
+	<div id="div-ids-in" style="width:98%;height:[va_div_height]px;">
+		[va_ids_in]
+	</div>
+</fieldset>
+</div>
+&nbsp;
+  <fieldset><legend>Transfer Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	    	<td width="30%" valign="top">Processed By  :</td>
+	    	<td class="smalltext">[va_procby] [in_proccesdate]</td>
+		</tr>
+  		<tr>
+		    <td width="30%" class='smalltext'>Status  : </td>
+		    <td class="smalltext">[in_status] [va_status] </td>
+		 </tr>
+  	</table>
+</fieldset>
+
+<script type="text/javascript" language="JavaScript">
+
+	$(document).ready(function() {
+		$("#btn_id_part").click(function(){
+			$.ajax({
+					url: '/cgi-bin/common/apps/ajaxbuild',
+					data: {
+						ajaxbuild: "manifests_edit",
+						id: [in_id_skustransfers],
+						type: 'list_skus_qty',
+						id_warehouses: $( '#from_warehouses' ).val(),
+						keyword: $("#id_parts").val(),
+						des_sku_qty: $("#des_sku_qty").val(),
+						idmi: 0,
+						data_in : 0
+					},
+					success: function( data ) {
+						if(data != null){
+							$("#list_skus_qty").html(data);
+						}else if(request.term.length > 3) {
+							alert('No data found with this keyword');
+						}	
+					}
+			});
+		});
+		
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		$.ajaxSetup({
+	    	timeout: 60000
+	    });
+
+		/*Autocomplete/Qty Disabled/Enabled*/
+		var this_idwh = $( '#from_warehouses' ).val();
+		(this_idwh  == '') ? $( "#id-in" ).attr('disabled','disabled') : $( "#id-in" ).removeAttr('disabled');
+		(this_idwh  == '') ? $( "#qty-in" ).attr('disabled','disabled') : $( "#qty-in" ).removeAttr('disabled');
+		(this_idwh  == '') ? $( "#to_warehouses" ).attr('disabled','disabled') : $( "#to_warehouses" ).removeAttr('disabled');
+		(this_idwh  == '') ? $( "#id-out" ).attr('disabled','disabled') : $( "#id-out" ).removeAttr('disabled');
+
+		/* Reset textbox & fadeOut button onFocus */
+		$( "#from_warehouses, #id-in" ).focus(function(){
+		  	$( "#id-in" ).val('');
+		  	$( "#qty-in" ).val('');
+		  	$( "#to-warehouses" ).val('');
+		  	$( "#id-out" ).val('');
+		  	$( "#btn-in" ).fadeOut(1000);
+		});
+
+		$( "#to_warehouses, #id-out" ).focus(function(){
+		  	$( "#id-out" ).val('');
+		  	$( "#btn-in" ).fadeOut(1000);
+		});		
+
+		/* Warehouse Selection*/
+		$( "#from_warehouses").change(function(){
+			var this_idwh = $( this ).val();
+			
+			
+			(this_idwh  == '') ? $( "#id_parts" ).attr('disabled','disabled') : $( "#id_parts" ).removeAttr('disabled');
+			(this_idwh  == '') ? $( "#des_sku_qty" ).attr('disabled','disabled') : $( "#des_sku_qty" ).removeAttr('disabled');
+			
+			(this_idwh  == '') ? $( "#id-in" ).attr('disabled','disabled') : $( "#id-in" ).removeAttr('disabled');
+			(this_idwh  == '') ? $( "#qty-in" ).attr('disabled','disabled') : $( "#qty-in" ).removeAttr('disabled');
+			(this_idwh  == '') ? $( "#to_warehouses" ).attr('disabled','disabled') : $( "#to_warehouses" ).removeAttr('disabled');
+			(this_idwh  == '') ? $( "#id-out" ).attr('disabled','disabled') : $( "#id-out" ).removeAttr('disabled');
+		});
+
+		$( "#to_warehouses").change(function(){
+			var this_idwh = $( this ).val();
+			(this_idwh  == '') ? $( "#id-out" ).attr('disabled','disabled') : $( "#id-out" ).removeAttr('disabled');
+		});
+
+		/* Drop Row*/
+		$( ".rdrop" ).live('click',function(){
+			var p = $(this).attr('id').split('-',2);
+		  	var idmi = parseInt(p[1]);
+
+		  	$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'manifests_edit', 'id':[in_id_skustransfers], 'type': 'skus_drop', 'id_warehouses':0 , 'keyword':'', 'idmi':idmi, 'data_in':0 },function(response,status,xhr){
+
+				if (status == "error") {
+					alert(msg);
+					$( '#id-in' ).focus();
+				}else{
+					if(response.match(/error/gi)){
+						alert(response + "\r\nPlease Try again");
+						$( '#id-in' ).focus();
+					}else{
+						$( '#div-ids-in' ).html(response).animate({height: '-=22'},1000);
+					}
+				}
+			});
+		  	
+		  	
+		});	
+
+		/* Autocomplete Search */
+		$( "#id-in" ).autocomplete({
+			minLength: 3,
+			source: function( request, response ) {
+			alert("fo");
+				$.ajax({
+					url: '/cgi-bin/common/apps/ajaxbuild',
+					datatype: 'jsonp',
+					data: {
+						ajaxbuild: "manifests_edit",
+						id: [in_id_skustransfers],
+						type: 'load_data_from',
+						id_warehouses: $( '#from_warehouses' ).val(),
+						keyword: request.term,
+						idmi: 0,
+						data_in : 0
+					},
+					success: function( data ) {
+						 if(data != null){
+							response( $.map( data.skus, function( sku ) {
+								return {
+									label: sku.id+ ' @@ ' + sku.name + ' @@ ' + sku.location + ' @@ ' + sku.qty,
+									value: sku.id+ ' @@ ' + sku.name + ' @@ ' + sku.location + ' @@ ' + sku.qty,
+								}
+							}));
+						}else if(request.term.length > 3) {
+							alert('No data found with this keyword');
+						}	
+					}
+				});
+			},
+		  	change: function( event, ui ) {
+		  		$( '#qty-in' ).focus();
+		  	}
+		});
+
+		$( "#id-out" ).autocomplete({
+			minLength: 1,
+			source: function( request, response ) {
+				$.ajax({
+					url: '/cgi-bin/common/apps/ajaxbuild',
+					datatype: 'jsonp',
+					data: {
+						ajaxbuild: "manifests_edit",
+						id: [in_id_skustransfers],
+						type: 'load_data_to',
+						id_warehouses: $( '#to_warehouses' ).val(),
+						keyword: request.term,
+						idmi: 0,
+						data_in : 0
+					},
+					success: function( data ) {
+						//alert(data.toSource());
+						//alert(data.locations);
+						//alert(data.locations[0].name);
+						if(typeof data.locations[0] !== 'undefined'){
+							response( $.map( data.locations, function( loc ) {
+								return {
+									label: loc.name,
+									value: loc.name,
+								}
+							}));
+							$( "#to_sku" ).removeAttr('disabled');
+						}else if(request.term.length > 2) {
+							$( "#to_sku" ).attr('disabled','disabled');
+							alert('No location found with this keyword');
+						}	
+					}
+				});
+			},
+		  	select: function( event, ui ) {
+		  		$( '#btn-in' ).fadeIn(1000);
+		  	}
+		});			
+		
+		$( "#to_sku" ).autocomplete({
+			minLength: 3,
+			source: function( request, response ) {
+				$.ajax({
+					url: '/cgi-bin/common/apps/ajaxbuild',
+					datatype: 'jsonp',
+					data: {
+						ajaxbuild: "manifests_edit",
+						id: [in_id_skustransfers],
+						type: 'load_sku_data',
+						id_warehouses: $( '#to_warehouses' ).val(),
+						keyword: $('#to_sku').val(),
+						idmi: 0,
+						data_in : 0
+					},
+					success: function( data ) {
+						 if(data != null){
+							response( $.map( data.skus, function( sku ) {
+								return {
+									label: sku.id_parts+ ' @@ ' + sku.upc + ' @@ ' + sku.model + ' @@ ' + sku.name,
+									value: sku.id_parts+ ' @@ ' + sku.upc + ' @@ ' + sku.model + ' @@ ' + sku.name,
+								}
+							}));
+						}else if(request.term.length > 3) {
+							alert('No data found with this keyword');
+						}	
+					}
+				});
+			},
+		  	change: function( event, ui ) {
+		  		$( '#qty-in' ).focus();
+		  	}
+		});
+
+		$( "#id_parts" ).autocomplete({
+			minLength: 6,
+			source: function( request, response ) {
+				$.ajax({
+					url: '/cgi-bin/common/apps/ajaxbuild',
+					datatype: 'jsonp',
+					data: {
+						ajaxbuild: "manifests_edit",
+						id: [in_id_skustransfers],
+						type: 'load_sku_data',
+						id_warehouses: $( '#from_warehouses' ).val(),
+						keyword: $('#id_parts').val(),
+						idmi: 0,
+						data_in : 0
+					},
+					success: function( data ) {
+						 if(data != null){
+							response( $.map( data.skus, function( sku ) {
+								return {
+									label: sku.id_parts+ ' @@ ' + sku.upc + ' @@ ' + sku.model + ' @@ ' + sku.name,
+									value: sku.id_parts,
+								}
+							}));
+						}else if(request.term.length > 3) {
+							alert('No data found with this keyword');
+						}	
+					}
+				});
+			},
+		  	change: function( event, ui ) {
+		  		$( '#qty-in' ).focus();
+		  	}
+		});
+		
+		/* Adding Items */
+		$( "#btn-in" ).click(function(e){
+		  	var t = $( '#id-in' ).val().split(' @@ ',4);
+		  	var id = parseInt(t[0]) || 0;
+		  	var loc = t[2];
+		  	var qty = parseInt($( '#qty-in' ).val()) || 0;
+		  	var idmi = 0;
+		  	var this_idwh = parseInt($( '#from_warehouses' ).val());
+		  	var to_idwh = parseInt($( '#to_warehouses' ).val());
+		  	var to_location = $( '#id-out' ).val();
+		  	var nid = id + ':' + loc + ':' + to_idwh + ':' + to_location + ':' + qty;
+
+		  	$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'manifests_edit', 'id':[in_id_skustransfers], 'type': 'add', 'id_warehouses':this_idwh , 'keyword':'', 'idmi':idmi, 'data_in':nid },function(response,status,xhr){
+
+				if (status == "error") {
+					alert(msg);
+					$( '#id-in' ).focus();
+				}else{
+					if(response.match(/error/gi)){
+						alert(response + "\r\nPlease Try again");
+						$( '#id-in' ).focus();
+					}else{
+						$( '#div-ids-in' ).html(response).animate({height: '+=22'},1000);
+					}
+				}
+			});
+		});
+		
+		$( "#btn_skus_add" ).click(function(e){
+		  	var split_tsku = $( '#to_sku' ).val().split(' @@ ',4);
+		  	var to_sku = parseInt(split_tsku[0]) || 0;
+			
+			if($.trim($('#to_warehouses').val()).length == 0) {
+				alert('Warehouse is required');
+				return;
+			} else if ($.trim($('#id-out').val()).length == 0) {
+				alert('Location is required');
+				return;
+			} else if($.trim($('#to_sku').val()).length == 0) {
+				alert('"To SKU" is required');
+				return;
+			}
+			
+			$("input[name^='from_sku_qty_']").each(function( index, element ){
+				if ($(element).val().length > 0 && parseInt($(element).val()) > 0) {
+					var id = parseInt($('#id_parts').val()) || 0;
+					var loc = $('#from_sku_location_'+(index + 1)).val();
+					var qty = parseInt($(element).val()) || 0;
+					var idmi = 0;
+					var this_idwh = parseInt($( '#from_warehouses' ).val());
+					var to_idwh = parseInt($( '#to_warehouses' ).val());
+					var to_location = $( '#id-out' ).val();
+					var nid = id + ':' + loc + ':' + to_idwh + ':' + to_location + ':' + qty + ':' + to_sku;
+					//data_in  400001178:D2A23C:1001:A1A03B:1000
+					//alert('/cgi-bin/common/apps/ajaxbuild'+'  '+'ajaxbuild'+'   '+'manifests_edit'+'  '+'id'+'  '+[in_id_skustransfers]+'  '+'type'+'  '+'skus_add'+'  '+'id_warehouses'+'  '+this_idwh+'  '+'keyword'+'  '+''+'  '+'idmi'+'  '+idmi+'  '+'data_in'+'  '+nid );
+					$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'manifests_edit', 'id':[in_id_skustransfers], 'type': 'skus_add', 'id_warehouses':this_idwh , 'keyword':'', 'idmi':idmi, 'data_in':nid },function(response,status,xhr){
+						if (status == "error") {
+							alert(msg);
+							$( '#id-in' ).focus();
+						}else{
+							if(response.match(/error/gi)){
+								alert(response + "\r\nPlease Try again");
+								$( '#id-in' ).focus();
+							}else{
+								$( '#div-ids-in' ).html(response).animate({height: '+=22'},1000);
+							}
+						}
+					});	
+				}
+			});
+		});
+	});	
+
+  
+	//-->
+
+</script>

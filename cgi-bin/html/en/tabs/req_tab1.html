@@ -1,0 +1,55 @@
+&nbsp;
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman">
+	<input type="hidden" name="id_itrequests" value="[in_id_itrequests]">
+	<input type="hidden" name="view" value="[in_id_itrequests]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="1">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gtab" align="center">
+		<tr>
+			<td width="18%" class="gcell_on" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_itrequests]&tab=1")'>Notes</td>
+			<td width="18%" class='gcell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_itrequests]&tab=2")'>Logs</td>
+			<td width="64%" align="center"></td>
+		</tr>
+	</table>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+			<td class="tbltextttl">
+				<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=1&tabcmd=req&toprint=[in_id_itrequests]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>
+				Notes : [va_matches]</td>
+	   	<td class="smalltext">Filter By : <a href="/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_itrequests]&tab=1&filter=High">High</a> - 
+				<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_itrequests]&tab=1&filter=Middle">Middle</a> - 
+				<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_itrequests]&tab=1&filter=Low">Low</a></td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+	 	</tr>
+		<tr>
+			<td colspan="3">
+		 		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+			<tr>
+			  <td class="menu_bar_title">Date/Time/User</td>
+			  <td class="menu_bar_title">Type</td>
+			  <td class="menu_bar_title" colspan="2">Notes</td>
+			 </tr>
+				 [va_searchresults]
+				</table>
+			</td>
+		</tr>
+		<tr>
+		 <td colspan="3"><span class='fieldterr'>[va_tabmessages]</span>&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="menu_bar_title" colspan="3">Add New Note</td>
+		</tr>	
+		<tr>
+			<td class="smalltext" colspan="3">
+				<input type="radio" name="notestype" class="radio" value="High">High
+				<input type="radio" name="notestype" class="radio" value="Middle">Middle
+				<input type="radio" name="notestype" class="radio" value="Low">Low
+			<textarea name="notes" style="width: 100%" cols="50" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_notes]</textarea></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="3"><input type="submit" value="Add Notes" class="button"></td>
+		</tr>
+	</table>
+</form>

@@ -1,0 +1,123 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="23%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=wholesale")'>Add Wholesale</td>
+	    <td width="23%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=wholesale&search=form")'>Search</td>
+	    <td width="23%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/wms/admin?cmd=wholesale&search=listall&sb=0&so=DESC")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+
+
+
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Wholesale / View</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Return Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">ID : </td>
+			<td class="titletext">
+
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons"> 
+												[in_id_returns] &nbsp;
+				<!--<a href="[va_script_url]?cmd=wholesale&modify=[in_id_returns]"><img src='[va_imgurl]/[ur_pref_style]/b_edit.gif' title='Edit' alt='' border='0'></a>-->
+		  	<a href="javascript:prnwin('[va_script_url]?cmd=wholesale&view=[in_id_returns]&print=1')"><img src='[va_imgurl]/[ur_pref_style]/b_print.gif' title='Print' alt='' border='0'></a>
+
+
+						</div>
+					</div>
+
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>	
+	</table>
+	</fieldset>	
+	&nbsp;
+	[ip_forms:wholesale_view]
+	&nbsp;
+	<a name='tabs' id='tabs'>&nbsp;</a>
+	&nbsp;
+	[tb_wholesale]
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script language="JavaScript">
+<!--	
+	
+	function add_item(){
+		popup_show('popup_additem', 'item_drag', 'popup_exit', 'element-right', -1, -1,'tabs');
+	}
+-->	
+</script>
+
+<!-- Add Parts -->
+<div id="popup_additem" style="visibility: hidden; display: none; background-color: #ffffff;">
+<div class="menu_bar_title" id="item_drag">
+<img id="popup_exit" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+&nbsp;&nbsp;&nbsp;Add Part Info
+</div>
+<div class="formtable">
+<form method="post" action="[va_script_url]" name="sitform2">
+	<input type="hidden" name="id_returns" value="[in_id_returns]">
+	<input type="hidden" name="view" value="[in_id_returns]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="2">
+	<input type="hidden" name="add_item" value="1">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	[va_total_items]
+<table border="0" cellspacing="0" cellpadding="4" width="600" class="formtable" bgcolor="#FFFFFF">
+  <tr>
+	   <td class="menu_bar_title">&nbsp;</td>
+    <td align="center" class="menu_bar_title">Part ID</td>
+    <td align="center" class="menu_bar_title">Model / Name</td>
+    <td align="center" class="menu_bar_title">Qty Sent</td>
+    <td align="center" class="menu_bar_title">Qty Returned</td>
+    <td align="center" class="menu_bar_title">Warehouse</td>
+  </tr>
+[va_partresults]
+<tr>
+  <td colspan="6" align="center"><input class="button" type="submit" value="Add Item" name="add_part" id="add_part"></td>
+</tr>
+</table>
+</form></div></div>
+<!-- Add Items -->
+
+[ip_footer]

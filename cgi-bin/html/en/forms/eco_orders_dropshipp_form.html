@@ -1,0 +1,122 @@
+	&nbsp;
+  <fieldset><legend>Order Info</legend>	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">						
+		<tr>
+		  <td width="30%">ID Order  : <span class="smallfieldterr">[er_id_orders]</span></td>
+		  <td class="smalltext"><input type="text" name="id_orders" value="[in_id_orders]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">P.O. : <span class="smallfieldterr">[er_id_purchaseorders]</span></td>
+		  <td class="smalltext">
+		  	<input name="id_purchaseorders" value="[in_id_purchaseorders]" size="20" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+						<a href="#pos" id="pos" onclick="add_po()"><img src="/sitimages//default/icsearchsmall.gif" border="0"></a>
+						<div id="popup_pos" style="visibility: hidden; display: none; background-color: rgb(255, 255, 255);">
+						<div class="menu_bar_title" id="item_drag2">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Purchase Orders</td>
+			<td align=right width=20px><img id="popup_exit2" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+						</div>
+						<div >
+						<iframe src="/cgi-bin/common/apps/schid?cmd=purchaseorders&amp;db=sl_purchaseorders&amp;fname=id_purchaseorders&amp;ajaxtype=1" name="rcmd" title="Recieve Commands" marginwidth="0" marginheight="0" scrolling="auto" frameborder="0" height="250" width="546">
+						&lt;H2&gt;Unable to do the script&lt;/H2&gt;
+						&lt;H3&gt;Please update your Browser&lt;/H3&gt;
+						</iframe>	
+						</div></div>
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%">Vendor : <span class="smallfieldterr">[er_id_vendors]</span></td>
+		  <td class="smalltext">
+		  	<input name="id_vendors" value="[in_id_vendors]" size="20" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+						<a href="#vendors" id="vendors" onclick="add_vendor()"><img src="/sitimages/default/icsearchsmall.gif" border="0"></a>
+						<div id="popup_vendors" style="visibility: hidden; display: none; background-color: rgb(255, 255, 255);">
+						<div class="menu_bar_title" id="item_drag3">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Vendors</td>
+			<td align=right width=20px><img id="popup_exit3" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+						</div>
+						<div >
+						<iframe src="/cgi-bin/common/apps/schid?cmd=vendors&amp;db=sl_vendors&amp;fname=id_vendors&amp;ajaxtype=1" name="rcmd" title="Recieve Commands" marginwidth="0" marginheight="0" scrolling="auto" frameborder="0" height="250" width="546">
+						&lt;H2&gt;Unable to do the script&lt;/H2&gt;
+						&lt;H3&gt;Please update your Browser&lt;/H3&gt;
+						</iframe>	
+						</div></div>
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%">Tracking Number  : <span class="smallfieldterr">[er_tracking]</span></td>
+		  <td class="smalltext"><input type="text" name="tracking" value="[in_tracking]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;	
+  <fieldset><legend>Products Info</legend>	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>         	
+			<td class="menu_bar_title" nowrap="nowrap">Select</td>
+			<td class="menu_bar_title" nowrap="nowrap">Item ID</td>
+	 	</tr>
+		<tr>
+		  <td width="30%">Product 1: </td>
+		  <td class="smalltext"><input type="text" name="id_products1" value="[in_id_products1]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	<span class="smallfieldterr">[er_id_products1]</span>
+		    	<a name="tabs" id="tabs">&nbsp;</a>
+		    	<a href="javascript:search_id('id_products1','db=sl_products&cmd=products')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>				
+		</tr>
+		
+		<tr>
+		  <td width="30%">Product 2: </td>
+		  <td class="smalltext"><input type="text" name="id_products2" value="[in_id_products2]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	<span class="smallfieldterr">[er_id_products2]</span>
+		    	<a name="tabs" id="tabs">&nbsp;</a>
+		    	<a href="javascript:search_id('id_products2','db=sl_products&cmd=products')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+		</tr>
+		
+		<tr>
+		  <td width="30%">Product 3: </td>
+		  <td class="smalltext"><input type="text" name="id_products3" value="[in_id_products3]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	<span class="smallfieldterr">[er_id_products3]</span>
+		    	<a name="tabs" id="tabs">&nbsp;</a>
+		    	<a href="javascript:search_id('id_products3','db=sl_products&cmd=products')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+		</tr>
+		
+		<tr>
+		  <td width="30%">Product 4: </td>
+		  <td class="smalltext"><input type="text" name="id_products4" value="[in_id_products4]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	<span class="smallfieldterr">[er_id_products4]</span>
+		    	<a name="tabs" id="tabs">&nbsp;</a>
+		    	<a href="javascript:search_id('id_products4','db=sl_products&cmd=products')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+		</tr>
+		
+		<tr>
+		  <td width="30%">Product 5: </td>
+		  <td class="smalltext"><input type="text" name="id_products5" value="[in_id_products5]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		  	<span class="smallfieldterr">[er_id_products5]</span>
+		    	<a name="tabs" id="tabs">&nbsp;</a>
+		    	<a href="javascript:search_id('id_products5','db=sl_products&cmd=products')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+		</tr>
+		
+	</table>
+	</fieldset>
+	
+	&nbsp;	
+
+<script language="javascript">
+<!--
+
+	function add_po(){
+					popup_show('popup_pos', 'item_drag2', 'popup_exit2', 'element-right', -1, -1,'pos');
+	}
+	
+	function add_vendor(){
+					popup_show('popup_vendors', 'item_drag3', 'popup_exit3', 'element-right', -1, -1,'vendors');
+	}
+//-->
+</script>

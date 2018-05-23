@@ -1,0 +1,175 @@
+&nbsp;
+<fieldset><legend>Event Identification</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Name :  <span class="smallfieldterr">[er_name]</span></td>
+			<td><input name="name" value="[in_name]" size="80" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td colspan="2">Description :  <span class="smallfieldterr">[er_description]</span></td>
+		</tr>
+		<tr>
+			<td colspan="2"><textarea    rows="5" cols="10" style="width: 100%;" name="description" onfocus="focusOn( this )" onblur="focusOff( this )">[in_description]</textarea></td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+<fieldset><legend>General</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="20%">From (Date/Time) :  <span class="smallfieldterr">[er_fromdatetime] </span></td>
+			<td nowrap>
+				<input name="fromdate" id="fromdate" value="[in_fromdate]" size="15" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">&nbsp;
+				<input name="fromtime" value="[in_fromtime]" size="15" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+			</td>
+		</tr>
+		<tr>
+			<td width="20%">To (Date/Time) :  <span class="smallfieldterr">[er_todatetime]</span></td>
+			<td nowrap>
+				<input name="todate" id="todate" value="[in_todate]" size="15" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">&nbsp;
+				<input name="totime" value="[in_totime]" size="15" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Frecuency (Every):  <span class="smallfieldterr">[er_eventtrigger]</span></td>
+			<td colspan="3">
+					<input name="everymin" value="[in_everymin]" size="8" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"> Mins<br />
+					<input name="everyhour" value="[in_everyhour]" size="8" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"> Hours<br />
+					<input name="everyday" value="[in_everyday]" size="8" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"> Days<br />
+				<input type="checkbox" name="everyweekday" value="mon" class="checkbox">Mon
+				<input type="checkbox" name="everyweekday" value="tue" class="checkbox">Tue
+				<input type="checkbox" name="everyweekday" value="wed" class="checkbox">Wed
+				<input type="checkbox" name="everyweekday" value="thu" class="checkbox">Thu
+				<input type="checkbox" name="everyweekday" value="fri" class="checkbox">Fri
+				<input type="checkbox" name="everyweekday" value="sat" class="checkbox">Sat
+				<input type="checkbox" name="everyweekday" value="sun" class="checkbox">Sun
+				</td>
+		</tr>
+		<tr>
+			<td colspan="4" class="help_on" align="center">Empty to execute it every 5 Minutes, every day, always</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;	
+<fieldset><legend>Trigger</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Trigger Type :  <span class="smallfieldterr">[er_eventtriggertype]</span></td>
+			<td>[br_eventtriggertype@admin_events] </td>
+		</tr>
+		<tr>
+			<td colspan="2">Trigger :  <span class="smallfieldterr">[er_eventtrigger]</span></td>
+		</tr>
+		<tr>
+			<td colspan="2"><textarea    rows="5" cols="10" style="width: 100%;" name="eventtrigger" onfocus="focusOn( this )" onblur="focusOff( this )">[in_eventtrigger]</textarea></td>
+		</tr>
+		<tr>
+			<td width="30%">Trigger Condition :  <span class="smallfieldterr">[er_eventtriggercond]</span></td>
+			<td>[br_eventtriggercond@admin_events]</td>
+		</tr>		
+		<tr>
+			<td width="30%">Trigger Value :  <span class="smallfieldterr">[er_eventtriggervalue]</span></td>
+			<td><input name="eventtriggervalue" value="[in_eventtriggervalue]" size="50" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>
+		<tr>
+			<td colspan="2" class="help_on" align="center">No Trigger means, the action will be executed in every cicle. </td>
+		</tr>	
+	</table>
+</fieldset>
+&nbsp;	
+<fieldset><legend>Action if Trigger True</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Action Type :  <span class="smallfieldterr">[er_actiontype]</span></td>
+			<td>[br_actiontype@admin_events]</td>
+		</tr>		
+		<tr>
+			<td colspan="2">Action :  <span class="smallfieldterr">[er_runaction]</span></td>
+		</tr>
+		<tr>
+			<td colspan="2"><textarea    rows="5" cols="10" style="width: 100%;" name="runaction" onfocus="focusOn( this )" onblur="focusOff( this )">[in_runaction]</textarea></td>
+		</tr>
+		<tr>
+			<td width="30%">Timeout :  <span class="smallfieldterr">[er_timeout]</span></td>
+			<td><input name="timeout" value="[in_timeout]" size="5" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"> Min</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+<fieldset><legend>Notification</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Return Condition :  <span class="smallfieldterr">[er_actionretcond]</span></td>
+			<td colspan="3">[br_actionretcond@admin_events]</td>
+		</tr>		
+		<tr>
+			<td width="30%">Return Value :  <span class="smallfieldterr">[er_actionretvalue]</span></td>
+			<td colspan="3"><input name="actionretvalue" value="[in_actionretvalue]" size="50" onfocus="focusOn( this )" onblur="focusOff( this )" type="text"></td>
+		</tr>		
+		<tr>
+			<td width="50%" colspan="2" class="menu_bar_title">Return Condition : True</td>
+			<td width="50%" colspan="2" class="menu_bar_title">Return Condition : False</td>
+		</tr>
+		<tr>
+			<td width="30%">Notif. If True :  <a href=”#” name="id_pos" id="id_pos"></a><span class="smallfieldterr">[er_ok_id_admin_notifs]</span></td>
+			<td width="20%"><input name="ok_id_admin_notifs" value="[in_ok_id_admin_notifs]" size="10" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+				<a href="/cgi-bin/common/apps/schid?[va_rndnumber]&db=admin_notifs&cmd=admin_notifs&returnid=ok_id_admin_notifs" class="fancy_modal_iframe">
+				   <img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+				</a>
+			</td>
+			<td width="30%">Notif If False :  <span class="smallfieldterr">[er_nok_id_admin_notifs]</span></td>
+			<td width="20%"><input name="nok_id_admin_notifs" value="[in_nok_id_admin_notifs]" size="10" onfocus="focusOn( this )" onblur="focusOff( this )" type="text">
+				<a href="/cgi-bin/common/apps/schid?[va_rndnumber]&db=admin_notifs&cmd=admin_notifs&returnid=nok_id_admin_notifs" class="fancy_modal_iframe">
+					<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+				</a>
+			</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+<fieldset><legend>Event Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Status :  <span class="smallfieldterr">[er_status]</span></td>
+			<td>[br_status@admin_events]</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+
+<script language="javascript">
+<!--
+
+	chg_radio('status','[in_status]');
+	chg_radio('eventtriggertype','[in_eventtriggertype]');
+	chg_radio('eventtriggercond','[in_eventtriggercond]');
+	chg_radio('actiontype','[in_actiontype]');
+	chg_radio('actionretcond','[in_actionretcond]');
+	chg_chkbox('everyweekday','[in_everyweekday]');
+
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#fromdate,#todate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 3,
+		});
+
+		if ('[in_pterms]'.length == 0) {
+			$(":radio[name='pterms']").prop('checked', false);
+		}
+	});
+
+
+//-->
+</script>
+
+
+

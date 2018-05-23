@@ -1,0 +1,243 @@
+&nbsp;
+<fieldset><legend>Adjustments Info</legend>
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	<tr>
+		<td width="30%" class="titletext">Adjustments ID  : </td>
+		<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+				<div class="scrollermenu">
+					<div class="top_icons">
+						[in_id_adjustments] &nbsp;						
+						[fc_template_idbutton]					
+						[fc_template_prnbutton]						
+						[fc_func_list_manager]
+						<a name='top' id='top'></a>
+						<a href="/cgi-bin/common/apps/ajaxfinance?cmd=movements_editor&id_adjustments=[in_view]&tablename=adjustments&edit_type=adjustments" class="fancy_modal_iframe" title="Movements Editor">
+							<img border="0" alt="Edit" title="Edit Movements" src="[va_imgurl]/[ur_pref_style]/icon-edit-movements.png" height="24" width="24">
+						</a>
+					</div>
+				</div>
+		</td>
+	</tr>
+	<tr>
+		<td width="30%" class="smalltext" valign="top">Date / Time /user  : </td>
+		<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]<br>
+			<!--Sale Date : [in_posteddate]--></td>
+	</tr>		
+</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Adjustments Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Reference Name  : </td>
+		    <td class="smalltext">[in_title]</td>
+		 </tr>
+		<tr>
+		    <td valign="top" width="30%">Comments : </td>
+		    <td class="smalltext">[in_comments]</td>
+		 </tr>
+	</table>
+</fieldset>	
+&nbsp;
+<!--
+<fieldset>
+	<legend>Accounting </legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="30%">Accounting for Positive Adjustments  : </td>
+		    <td class="smalltext">[va_accounts_positive]</td>
+		</tr>
+		<tr>    
+		    <td valign="top" width="30%">Accounting for Negative Adjustments : </td>
+		    <td class="smalltext">[va_accounts_negative]</td>
+		 </tr>
+	</table>
+</fieldset>
+&nbsp;
+-->
+<div id="skus-in" [va_this_style]>
+<fieldset>
+	<legend>SKUs </legend>
+	<br>
+	<label for="id_warehouses">Make Selection</label>
+	<div id="div-id-in" [va_this_style]>
+		<select id="id_warehouses" name="id_warehouses" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+  			<option value="">---</option>
+			[fc_build_select_warehouses]
+		</select>
+		<input type="hidden" id="ids-in" name="ids-in" value="">
+		<input type="text" id="id-in" name="id-in" value="" size="80">&nbsp; X &nbsp;
+		<input type="text" id="qty-in" name="qty-in" value="" size="6">
+		<input type="button" id="btn-in" name="btn-in" value="Add This" style="display:none;">
+	</div>
+	&nbsp;
+	<div id="div-ids-in" style="width:98%;height:[va_div_height]px;">
+		[va_ids_in]
+	</div>
+</fieldset>
+</div>
+&nbsp;	
+<fieldset><legend>Status</legend>
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	<tr>
+	    <td width="30%" valign="top">Authorized By  :</td>
+	    <td class="smalltext">[va_authby] [in_authdate]</td>
+	</tr>
+	<tr>
+	    <td width="30%" valign="top">Status  :</td>
+	    <td class="smalltext">[in_status] [va_status]</td>
+	</tr>
+</table>
+</fieldset>
+
+
+<script language="JavaScript">
+	
+	function edit_movements(){
+    	popup_show('popup_edit_movements', 'item_dragiii', 'popup_exiteoi', 'element-right', -1, -1,'tabs');
+  	}
+	
+</script>
+
+
+<!-- Edit Movements-->
+  <div id='popup_edit_movements' style='visibility: hidden; display: none; background-color: #ffffff; overflow: auto;'>
+    <div class='menu_bar_title' id='item_dragiii'>
+      <img id='popup_exiteoi' src='[va_imgurl]/[ur_pref_style]/popupclose.gif' name="popup_exiteoi"> &nbsp;&nbsp;&nbsp;Editing Movements
+    </div>
+    <div class='formtable'>
+	  <iframe src='/cgi-bin/common/apps/ajaxfinance?cmd=editing_movements&id_adjustments=[in_id_adjustments]&edit_type=adjustments&tablename=adjustments&path=[va_script_url]&cmdo=[in_cmd]&dototemp=YES' name='rcmd' title='Recieve Commands' width='900' height='700' frameborder='0' marginwidth='0' marginheight='0' scrolling='auto' id="rcmd">
+      <h2>Unable to do the script</h2>
+      <h3>Please update your Browser</h3></iframe>
+    </div>
+  </div>
+<!-- Edit Movements-->
+
+
+<script language="JavaScript">
+
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		$.ajaxSetup({
+	    	timeout: 60000
+	    });
+
+		/*Autocomplete/Qty Disabled/Enabled*/
+		var this_idwh = $( '#id_warehouses' ).val();
+		(this_idwh  == '') ? $( "#id-in" ).attr('disabled','disabled') : $( "#id-in" ).removeAttr('disabled');
+		(this_idwh  == '') ? $( "#qty-in" ).attr('disabled','disabled') : $( "#qty-in" ).removeAttr('disabled');
+
+		/* Reset textbox & fadeOut button onFocus */
+		$( "#id_warehouses, #id-in" ).focus(function(){
+		  	$( "#id-in" ).val('');
+		  	$( "#qty-in" ).val('');
+		  	$( "#btn-in" ).fadeOut(1000);
+		});
+
+		/* Warehouse Selection*/
+		$( "#id_warehouses").change(function(){
+			var this_idwh = $( '#id_warehouses' ).val();
+			(this_idwh  == '') ? $( "#id-in" ).attr('disabled','disabled') : $( "#id-in" ).removeAttr('disabled');
+			(this_idwh  == '') ? $( "#qty-in" ).attr('disabled','disabled') : $( "#qty-in" ).removeAttr('disabled');
+		});
+
+		/* Drop Row*/
+		$( ".rdrop" ).live('click',function(){
+			var p = $(this).attr('id').split('-',2);
+		  	var idai = parseInt(p[1]);
+
+		  	$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'adjustments_edit', 'id':[in_id_adjustments], 'type': 'drop', 'id_warehouses':0 , 'keyword':'', 'idai':idai, 'data_in':0 },function(response,status,xhr){
+
+				if (status == "error") {
+					alert(msg);
+					$( '#id-in' ).focus();
+				}else{
+					if(response.match(/error/gi)){
+						alert(response + "\r\nPlease Try again");
+						$( '#id-in' ).focus();
+					}else{
+						$( '#div-ids-in' ).html(response).animate({height: '-=22'},1000);
+					}
+				}
+			});
+		  	
+		  	
+		});	
+
+		/* Autocomplete Search */
+		$( "#id-in" ).autocomplete({
+			minLength: 3,
+			source: function( request, response ) {
+				$.ajax({
+					url: '/cgi-bin/common/apps/ajaxbuild',
+					datatype: 'jsonp',
+					data: {
+						ajaxbuild: "adjustments_edit",
+						id: [in_id_adjustments],
+						type: 'load_data',
+						id_warehouses: $( '#id_warehouses' ).val(),
+						keyword: request.term,
+						idai: 0,
+						data_in : 0
+					},
+					success: function( data ) {
+						 if(data != null){
+							response( $.map( data.skus, function( sku ) {
+								return {
+									label: sku.id+ ' @@ ' + sku.name + ' @@ ' + sku.location + ' @@ ' + sku.qty,
+									value: sku.id+ ' @@ ' + sku.name + ' @@ ' + sku.location + ' @@ ' + sku.qty,
+								}
+							}));
+						}else if(request.term.length > 3) {
+							alert('No data found with this keyword');
+						}	
+					}
+				});
+			},
+		  	change: function( event, ui ) {
+		  		$( '#btn-in' ).fadeIn(1000);
+		  	}
+		});			
+
+
+		/* Adding Items */
+		$( "#btn-in" ).click(function(e){
+		  	var t = $( '#id-in' ).val().split(' @@ ',4);
+		  	var id = parseInt(t[0]) || 0;
+		  	var loc = t[2];
+		  	var qty = parseInt($( '#qty-in' ).val()) || 0;
+		  	var nid = id + ':' + loc + ':' + qty;
+		  	var idai = 0;
+		  	var this_idwh = parseInt($( '#id_warehouses' ).val());
+
+		  	$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'adjustments_edit', 'id':[in_id_adjustments], 'type': 'add', 'id_warehouses':this_idwh , 'keyword':'', 'idai':idai, 'data_in':nid },function(response,status,xhr){
+
+				if (status == "error") {
+					alert(msg);
+					$( '#id-in' ).focus();
+				}else{
+					if(response.match(/error/gi)){
+						alert(response + "\r\nPlease Try again");
+						$( '#id-in' ).focus();
+					}else{
+						$( '#div-ids-in' ).html(response).animate({height: '+=22'},1000);
+					}
+				}
+			});
+
+
+		});
+
+
+	});	
+
+  
+	//-->
+
+</script>

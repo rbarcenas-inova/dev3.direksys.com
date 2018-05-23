@@ -1,0 +1,95 @@
+<link rel="stylesheet" type="text/css" href="/finkok/common/css/jquery.dataTables.min.css" />
+<script src="/finkok/common/js/jquery.dataTables.min.js"></script>
+<style>
+	table#accounts {
+	    font-size: 12px;
+	}
+	.dataTables_length{
+		display: none;
+	}
+	.dataTables_filter{
+		float: left !important;
+		width: 97%
+	}
+	.dataTables_filter input{
+		width: 100%;
+		font-size:14px;
+		margin-bottom: 15px;
+	}
+	#accounts thead th {
+	    background-color: #ddefef;
+	    border: 1px solid #ddeeee;
+	    color: #000;
+	    padding: 10px;
+	    text-align: left;
+	    text-shadow: 1px 1px 1px #fff;
+	}
+	#accounts {
+	    border: 1px solid #ddeeee;
+	    border-collapse: collapse;
+	    border-spacing: 0;
+	    font: 12px Arial,sans-serif;
+	}
+	#accounts tbody td {
+	    color: #000;
+	    font: 10px Arial,sans-serif;
+	    padding: 5px;
+	}
+	#accounts tbody tr:hover {
+		background: #CCC
+	}	
+</style>
+
+<div class="tabcontainer">
+	<div id="tab-search" class="active">
+		[va_table_parts]
+	</div>
+</div>
+<script>
+typeFrame = '[in_type]';
+table = $('#accounts').DataTable({
+	"aoColumns": [ 
+		{"bSearchable": false}, 
+		{"bSearchable": true}, 
+		{"bSearchable": true}, 
+		{"bSearchable": true}
+	],
+	language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Search..."
+    },
+	order: [[ 2, "asc" ]],
+	iDisplayLength: 10,
+	"fnDrawCallback": function(){
+		if(typeFrame == 'parts'){
+			$(this).find('tbody tr')
+			.off('click')
+			.on('click', function(e){
+				buildSkusProducts($(this).attr('data-id_skus_products'), $(this).attr('data-id_part'), $(this).attr('data-name'), function(){
+					$.fancybox.close();
+					window.count++;
+					console.log(window.count);
+					return;
+				});
+				
+			})
+			.css('cursor', 'pointer')
+		}else if(typeFrame == 'product'){
+			$(this).find('tbody tr')
+			.off('click')
+			.on('click', function(e){
+				buildProducts($(this).attr('data-id_skus_products'), $(this).attr('data-id_products'), $(this).attr('data-name'), function(){
+					$.fancybox.close();
+					window.count++;
+					console.log(window.count);
+					return;
+				});
+				
+			})
+			.css('cursor', 'pointer')
+		}
+	}
+});
+
+	
+</script>

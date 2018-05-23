@@ -1,0 +1,45 @@
+[ip_header_small]
+<body bgcolor="#EEEEEE" topmargin="0">
+
+<!-- Start Main Area  -->
+
+<form action="/cgi-bin/common/apps/custom" name="sitform" method="POST">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<input type="hidden" name="id" value="[in_id]">
+	<input type="hidden" name="tab" value="2">
+	<input type="hidden" name="action" value="1">
+
+<center>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+  <tr>
+    <td width="30%" align="center"></td>
+    <td width="35%" class="cell_off" align="center" onClick='trjump("/cgi-bin/common/apps/custom?cmd=mer_po&tab=1&id=[in_id]")'>Pre Receipt</td>
+    <td width="35%" class="cell_on" align="center" onClick='trjump("/cgi-bin/common/apps/custom?cmd=mer_po&tab=2&id=[in_id]")'>Pre Payment</td>
+  </tr>
+</table>
+
+<center>
+
+<table border="0" width="95%" cellspacing="0" cellpadding="2" class="gborder">
+  <tr>
+    <td bgcolor="#3E76DD" class="tbltextttlwte">&nbsp; Purchase Order (Transition Operations)</td>
+  </tr>
+  <tr>
+    <td class="stdtxterr">[va_message]</td>
+  </tr>
+  <tr>
+    <td>
+    	<p>&nbsp;</p>
+    	<p>To Process a Payment to a Purchase Order Create a Bill with the Payment and use 
+    	<img src='[va_imgurl]/[ur_pref_style]/b_special.gif' title='Custom App' alt='' border='0'>
+    	to process the payment.</p>
+    	<p>&nbsp;</p></td>
+  </tr>  
+
+</table>
+</center>
+
+
+</body>
+</html>

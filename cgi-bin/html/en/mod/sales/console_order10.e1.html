@@ -1,0 +1,147 @@
+[ip_header_console]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" bgcolor="#dedede">
+	<tr>
+		<td valign="top" align="left" bgcolor="#ffffff">
+			
+		<table width="100%" height=41px border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+		  <tr>
+				<td>&nbsp;</td>
+				<td class="cell_on" width="14%" align="center">Consola [va_salesorigins.channel]</td>
+		 </tr>
+		</table>
+		
+		
+		
+			<div style="background-color:#ffffff;margin:15px;">
+				
+				
+		[fc_customer_header]
+			<br>
+			
+<fieldset>
+<legend>Gracias : Hasta Luego </legend>
+
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="10">
+	<input type="hidden" name="add_extrainfo" value="1">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="id_customers" value="[in_id_customers]">
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td class="stdtxterr">[va_message]<td>
+		</tr>
+		<tr>
+      	<td colspan="2">
+	      		      	  		
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+			
+			<br>
+			
+			</td>
+	  </tr>
+</table>
+&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%" class="titletext" align="center">Orden : [in_id_orders]</td>
+		</tr>
+		<tr>
+		  <td width="30%" class="titletext" align="center">Cliente : [in_id_customers]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="menu_bar_title" align="center" colspan="2">Informaci&oacute;n Importante pero no Requerida</td>
+		</tr>
+		<tr>
+		  <td>Email  : <span class="smallfieldterr">[er_email]</span></td>
+		  <td class="smalltext"><input type="text" name="email" value="[in_email]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td>Su Cumpleaños : </td>
+		  <td class="smalltext">Mes <span class="smallfieldterr">[er_bday_month]</span>
+				<select size="1" name="bday_month" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value=""></option>
+			    <option value="01">Enero</option>
+					<option value="02">Febrero</option>
+					<option value="03">Marzo</option>
+					<option value="04">Abril</option>
+					<option value="05">Mayo</option>
+					<option value="06">Junio</option>
+					<option value="07">Julio</option>
+					<option value="08">Agosto</option>
+					<option value="09">Septiembre</option>
+					<option value="10">Octubre</option>
+					<option value="11">Noviembre</option>
+					<option value="12">Diciembre</option>
+		     </select>    
+				D&iacute;a<span class="smallfieldterr">[er_bday_day]</span>
+				<select size="1" name="bday_day" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="" selected></option>
+					<option value="01">1</option>
+					<option value="02">2</option>
+					<option value="03">3</option>
+					<option value="04">4</option>
+					<option value="05">5</option>
+					<option value="06">6</option>
+					<option value="07">7</option>
+					<option value="08">8</option>
+					<option value="09">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option>
+					<option value="24">24</option>
+					<option value="25">25</option>
+					<option value="26">26</option>
+					<option value="27">27</option>
+					<option value="28">28</option>
+					<option value="29">29</option>
+					<option value="30">30</option>
+					<option value="31">31</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+		  <td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+		  <td colspan="2" align="center"><br><input type="submit"  value="Gracias!!  Finalizar LLamada>>" class="button"></td>
+		</tr>		
+	</table>
+</fieldset>
+</form>
+<p>&nbsp;</p>
+</td>
+</tr>
+</table>	
+<script language="javascript">
+<!--
+
+chg_select('bday_day','[in_bday_day]');
+chg_select('bday_month','[in_bday_month]');
+
+//-->
+</script>			
+[ip_footer_console]
+
+

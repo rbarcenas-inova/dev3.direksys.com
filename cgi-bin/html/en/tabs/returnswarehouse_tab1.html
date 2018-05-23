@@ -1,0 +1,63 @@
+&nbsp;
+<form method="post" action="[va_script_url]">
+	<input type="hidden" name="id_returns" value="[in_id_returns]">
+	<input type="hidden" name="modify" value="[in_id_returns]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="1">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+			<td class="tbltextttl">
+				<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&search=Print&tab=1&tabcmd=devjobs&toprint=[in_id_returns]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'></a>			
+				Notes : [va_matches]</td>
+	   	<td class="smalltext">Filter By :
+	   		<select name="filter" onFocus='focusOn( this )' onBlur='focusOff( this )' onChange='trjump("[va_script_url]?cmd=[in_cmd]&modify=[in_id_returns]&tab=1&filter="+this.options[this.selectedIndex].value+"")' >
+			  	<option value="">---</option>
+			  	[fc_build_select_return_notes_type]
+		    </select>
+	   	</td>
+			<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+	 	</tr>
+		<tr>
+			<td colspan="3">
+		 		<table border="0" cellspacing="0" cellpadding="3" width="100%" class="formtable">
+					<tr>
+					  <td class="menu_bar_title" >Date/Time/User</td>
+					  <td class="menu_bar_title" >Type</td>
+					  <td class="menu_bar_title" >Notes</td>
+					 </tr>
+				 [va_searchresults]
+				</table>
+			</td>
+		</tr>
+		<tr>
+		 	<td colspan="3"><span class='fieldterr'>[va_tabmessages]</span>&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="menu_bar_title" colspan="3">Add New Note</td>
+		</tr>	
+		<tr>
+			<td class="smalltext" colspan="3">
+				<input type="radio" name="notestype" class="radio" value="Reception">Reception
+				<input type="radio" name="notestype" class="radio" value="Sorting">Sorting
+				<input type="radio" name="notestype" class="radio" value="Repair">Repair
+				<input type="radio" name="notestype" class="radio" value="QC/IT">QC/IT
+				<input type="radio" name="notestype" class="radio" value="ATC">ATC
+				<input type="radio" name="notestype" class="radio" value="CR">CR
+				<input type="radio" name="notestype" class="radio" value="Warehouse">Warehouse
+				<input type="radio" name="notestype" class="radio" value="Pending Payments">Pending Payments
+			<textarea name="notes" style="width: 100%" cols="50" rows="3" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_notes]</textarea></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="3"><input name="btnsubmit" type="submit" value="Add Notes" class="button"></td>
+		</tr>
+	</table>
+</form>
+<script language="javascript">
+<!--
+	chg_select('filter','[in_filter]');
+	chg_radio('notestype','[in_cmd]');
+	
+
+//-->
+</script>

@@ -1,0 +1,44 @@
+<input type="hidden" id="idws" value="[va_update_warehouses]">
+<input type="hidden" id="idcs" value="[va_update_customer]">
+<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform">
+	<input name="cmd" value="usrman" type="hidden">
+	<input name="action" value="1" type="hidden">
+	<input name="view" value="[in_id_admin_users]" type="hidden">
+	<input name="tab" value="5" type="hidden">
+	<input name="addpos" value="1" type="hidden">	
+	<table id="add_perm" width="100%" cellspacing="0" cellpadding="4" border="0" class="gborder">
+		<tr>
+			<td>Warehouses:</td>
+		</tr>
+		<tr>
+			<td>
+				<select name="update_warehouses" value="[va_update_warehouses]">	
+					<option value=""></option>			
+					[fc_build_select_warehouses_pos]
+				</select>			
+			</td>
+		</tr>
+		<!-- <tr>
+			<td>Customers: </td>	
+		</tr> 
+		<tr>
+			<td>
+				<select name="update_customers" id="update_customers">				
+					<option value=""></option>			
+					[fc_build_select_customer_pos]
+				</select>	
+			</td>
+		</tr>	
+		<tr>	 -->
+			<td>
+				<p align="right"><input value="Actualizar" class="button" type="submit"></p>	
+			</td>
+		</tr>		
+		<tr>	
+			<td>
+				&nbsp;
+			</td>
+		</tr>
+    </table>
+
+</form>	

@@ -1,0 +1,55 @@
+<!--
+Autor: MCC C. Gabriel Varela S.
+Fecha: 20 de febrero de 2008
+Acción: Creación
+-->
+&nbsp;
+<fieldset><legend>Información de la pregunta</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">ID del padre: <span class="smallfieldterr">[er_id_parent]</span></td>
+			<td class="smalltext">
+	    	<select name="id_parent" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	      	<option value="0">Nivel superior</option>
+	        [fc_build_select_parent]
+				</select>
+			</td>
+		</tr>		
+		<tr>
+	    <td width="30%">Título: <span class="smallfieldterr">[er_title]</span></td>
+	    <td class="smalltext"><input type="text" name="title" value="[in_title]" size="64" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+	    <td width="30%">Título abreviado: <span class="smallfieldterr">[er_smalltitle]</span></td>
+	    <td class="smalltext"><input type="text" name="smalltitle" value="[in_smalltitle]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+			<td width="30%">Mensaje de pregunta:<span class="smallfieldterr">[er_mainmess]</span></td>
+			<td class="smalltext"><textarea name="mainmess" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_mainmess]</textarea></td>
+		</tr>
+		<tr>
+			<td width="30%">Acción:<span class="smallfieldterr">[er_actiontodo]</span></td>
+			<td class="smalltext">
+	    	<select name="actiontodo" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	      	<option value="0">Ninguna</option>
+	        [fc_build_select_action]
+				</select>
+				<input type="hidden" name="id_title" value="[fc_genidtitle]">
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Mensaje de Respuesta:<span class="smallfieldterr">[er_answer]</span></td>
+			<td class="smalltext"><textarea name="answer" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_answer]</textarea></td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+
+<script language="javascript">
+<!--
+
+	chg_select('id_parent','[in_id_parent]');	
+	chg_select('actiontodo','[in_actiontodo]');
+
+//-->
+</script>		

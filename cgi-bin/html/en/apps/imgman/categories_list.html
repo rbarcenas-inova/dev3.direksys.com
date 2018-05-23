@@ -1,0 +1,57 @@
+[ip_header]
+
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="720" class="container_white">
+	<tr>
+		<td width="140" align="center" valign="top">
+			[ip_menu_main]
+			&nbsp;
+			[ip_imgman:menu]
+			&nbsp;
+			[fc_menu_custom]
+			&nbsp;
+		</td>
+		<td valign="top">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="50%" align="center"></td>
+	    <td width="25%" class="cell_off" align="center" onClick='trjump("/cgi-bin/imgman/dbman?cmd=categories")'>Add Category</td>
+	    <td width="25%" class='cell_on' align='center' onClick='trjump("/cgi-bin/imgman/dbman?cmd=categories&search=listall")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+<form action="/cgi-bin/imgman/dbman" method="post" name="sitform" onsubmit="return warningmsg()">
+	<input type="hidden" name="cmd" value="categories">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Categories</td>
+		 </tr>
+		<tr>
+		   <td colspan="2"><span class="help_on">This are the Images Categories in your database, To view the customer information click on "V" To Edit it, click on "E" or "D" if you want to delete it</span></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Categories : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title" width="20%">View / Edit / Delete</td>
+		    <td class="menu_bar_title">ID</td>
+		    <td class="menu_bar_title">Name</td>
+		    <td class="menu_bar_title">Status</td>
+		 </tr>
+		 [va_searchresults]
+     </table>
+</form>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

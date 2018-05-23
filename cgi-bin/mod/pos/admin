@@ -1,0 +1,278 @@
+#!/usr/bin/perl
+#######################################################################
+#######################################################################
+#######################################################################
+use DBI;
+use DBIx::Connector;
+use DBD::mysql;
+use URI::Escape;
+
+# Load the form information and set the config file and userid.
+local(%in) = &parse_form;
+local($sid,%error,%va,%trs,%perm);
+$in{'sid'} ? ($sid   = $in{'sid'}): ($sid   = '');
+
+
+# Required Librariers
+# --------------------------------------------------------
+eval {
+	require ("../../common/subs/auth.cgi");
+	require ("../../common/subs/sub.base.html.cgi");
+	require ("sub.base.html.cgi");
+	require ("sub.func.html.cgi");
+	require ("admin.html.cgi");
+	require ("admin.console.html.cgi");
+	require ("admin.inv.cgi");
+	require ("admin.dbman.cgi");
+	require ("admin.func.cgi");
+	require ("../../common/subs/sub.func.html.cgi");
+	## Loadng Extra Admin Files
+	if ($in{'cmd'} =~ /^(\w{3}|\w{2})_/){
+		if(-e "../../common/reports/".$1.".cgi"){
+			require ("../../common/reports/".$1.".cgi");
+		}elsif (-e "./admin.".$1.".cgi"){
+			require ("./admin.".$1.".cgi");
+		}elsif (-e "../../common/subs/admin/".$1.".pl"){
+			require ("../../common/subs/admin/".$1.".pl");
+		}
+	}
+
+	## Loadng Extra common/Admin
+	if ($in{'cmd'} =~ /^(\w+)_|^(\w{7})$/){
+		my ($fname) = $1; $fname = $2 if(!$1);
+		if (-e "../../common/subs/admin/".$fname.".pl"){
+			require ("../../common/subs/admin/".$fname.".pl");
+		}
+	}
+	require ("admin.cfg");
+};
+
+if ($@) { &cgierr ("Error loading required libraries,100,$@"); }
+eval { &main; };
+if ($@) { &cgierr("Fatal error",101,$@); }
+
+exit;
+
+sub main {
+# --------------------------------------------------------
+	$|++;
+
+	&connect_db;
+	&auth_cleanup;
+	my ($status) = &auth_check_password;
+
+	## Logoff
+	if ($in{'logoff'}){
+		&auth_logging('logout');
+		&auth_cleanup($sid);
+		$cfg{'auth_logoff'} ?
+			(print "Location: $cfg{'auth_logoff'}\n\n"):
+			(print "Location: http://www.direksys.com\n\n");
+		return;
+	}
+
+	#### Check for Right User App
+	if ($cfg{'oper_mode'} eq 'updating'){
+		&html_updating;
+		return;
+	}elsif($cfg{'oper_mode'} eq 'closed'){
+		&html_closed;
+		return;
+	}elsif($in{'cmd'} eq 'changee'){	
+		if ($usr{'application'}){
+			print "Location: $cfg{'pathcgi'}/mod/$usr{'application'}/admin?cmd=home&e=$in{'e'}\n\n";
+		}else{
+			print "Location: $cfg{'auth_logoff'}\n\n"
+		}
+		return;
+	}elsif($usr{'application'} ne 'pos' and $status eq "ok"){
+		&html_unauth;
+		return;
+	}
+
+	if ($status eq "ok") {
+		if(!&check_permissions($in{'cmd'},'','')){ &html_unauth; return; };
+		if(!&check_permissions('view_all_records','','')){ $in{'only_my_records'} = 1; }
+		################# Main Menu. #########################
+		if ($in{'xtabs'}){  #dhtmlxtabbar
+			if (-e "../../common/tabs/".$in{'xtabs'}.".cgi"){
+				$in{'db'} = $sys{"db_$in{'cmd'}"};
+				@headerfields = split(/,/, $sys{"db_$in{'cmd'}_list"});
+				$va{'id_cmd'} = lc($headerfields[0]);
+				&load_cfg($in{'db'});
+				$in{lc($db_cols[0])} = int($in{lc($db_cols[0])});
+				$va{'id_cmd_value'} = int($in{lc($db_cols[0])});
+				
+				if ($in{lc($db_cols[0])}==0){
+					delete($in{lc($db_cols[0])});
+					$va{'id_cmd_value'} = int($in{'view'});
+					if ($va{'id_cmd_value'}==0){
+						$va{'id_cmd_value'} = int($in{'modify'});
+						if ($va{'id_cmd_value'}==0){
+							delete($va{'id_cmd_value'});
+						}
+					}
+				}
+			
+				require "../../common/tabs/".$in{'xtabs'}.".cgi";
+				&build_tabs;
+			}
+			#dhtmlxtabbar
+		}else{
+			$in{'id_admin_users'} = $usr{'id_admin_users'};
+			if (!&run_function($in{'cmd'})){
+				my ($fname) = $cfg{'path_templates'}."/mod/".$usr{'application'}."/".$in{'cmd'} .".html";
+				$fname =~ s/\[lang\]/$usr{'pref_language'}/gi;
+				if (-e "$fname"){
+					print "Content-type: text/html\n\n";
+					print &build_page($in{'cmd'} .".html");
+				}else{
+					my ($fname) = $cfg{'path_templates'}."/common/".$in{'cmd'} .".html";
+					$fname =~ s/\[lang\]/$usr{'pref_language'}/gi;
+					if(-e "$fname"){
+						print "Content-type: text/html\n\n";
+						print &build_page($in{'cmd'} .".html");	
+					}else{
+						&html_base_home('home.html');
+					}
+				}
+				&run_eafunction($in{cmd});
+			}
+		}
+	}else {
+		&html_login_form($status);
+	}
+	&disconnect_db;
+}
+
+##########################################################
+##			PARSE			##
+##########################################################
+sub create_inorder {
+# --------------------------------------------------------
+	my (%tmp,$line);
+	if (open(my $auth, "<", "$cfg{'auth_dir'}/call$sid")){
+		LINE: while (<$auth>) {
+			$line = $_;
+			$line =~ s/\r|\n//g;
+			($line =~ /([^=]+)=(.*)/) or (next LINE);
+			$tmp{$1} = $2;
+			$tmp{$1} =~ s/~~/\n/g;
+		}
+	}
+	&load_cfg('sl_inorders');
+
+	####### Load Products #######
+	my ($sth);
+	if ($tmp{'items_in_basket'} > 0){
+		for my $i(1..$tmp{'items_in_basket'}){
+			if ($tmp{'items_'.$i.'_qty'}>0 and $tmp{'items_'.$i.'_id'}>0){
+				($sth) = &Do_SQL("SELECT * FROM sl_products WHERE ID_products='$tmp{'items_'.$i.'_id'}'");
+				$rec = $sth->fetchrow_hashref;
+				$tmp{'products'} .= qq|<li> $tmp{'items_'.$i.'_qty'} x  ($tmp{'items_'.$i.'_id'}) $rec->{'Model'} = |. &format_price($rec->{'SPrice'}). qq|<br>$rec->{'Name'}</a>\n|;
+			}
+		}
+	}else{
+		$tmp{'products'} &trans_txt('empty_cart');
+	}
+
+	####### Load Payments #######
+	my (%paytype)  = ('cc'=>'Credit-Card', 'check'=>'Check','wu' => 'Wester Union','mo'=> 'Money Order','fp'=> 'Fexipago');
+
+	$tmp{'payments'} = $paytype{$tmp{'pay_type'}};
+
+	####### CREATE IN-ORDER #######
+	for my $i(1..$#db_cols-4){
+		$query .= "$db_cols[$i]='".&filter_values($tmp{lc($db_cols[$i])})."',";
+	}
+	if ($tmp{'cid'} or $tmp{'FirstName'}){
+		my ($sth) = &Do_SQL("INSERT INTO sl_inorders SET $query Status='New',Date=Curdate(),Time=NOW(),ID_admin_users='$usr{'id_admin_users'}'");
+	}
+}
+
+
+
+sub cybersource_codes {
+# --------------------------------------------------------
+	my ($code,%tmp)= @_;
+	my ($sth) = &Do_SQL("SELECT * FROM sl_vars WHERE VName='cybersource' AND VValue='$code'");
+	$rec = $sth->fetchrow_hashref;
+	#"<br>$tmp{'reasoncode'} " . $rec->{'Definition_En'} . ;
+	my (%fname)= ('card_accountNumber'=>'pmtfield3');
+	if ($code == 102){
+		for (0..6){
+			if ($tmp{'invalidfield'.$_}){
+				$error{$fname{$tmp{'invalidfield'.$_}}} = &trans_txt('invalid');
+			}
+		}
+	}
+	if ($rec->{'Definition_Sp'}){
+		return "<br>$rec->{'Definition_Sp'}";
+	}else{
+		return "<br>$rec->{'Definition_En'}";
+	}
+}
+
+sub certegy_codes {
+# --------------------------------------------------------
+	my ($code,%tmp)= @_;
+	my ($sth) = &Do_SQL("SELECT * FROM sl_vars WHERE VName='Certegy' AND Subcode='$code'");
+	$rec = $sth->fetchrow_hashref;
+	return "<br>$rec->{'Definition_Sp'} ";
+}
+
+
+sub build_search_result {
+# --------------------------------------------------------
+	my ($color,$db,%rec)=@_;
+	my (@cols) = split(/,/,$sys{'srcols_'.$db});
+	my ($output) = "\n<tr onmouseover='m_over(this)' onmouseout='m_out(this)' bgcolor='$color'> ";
+	for my $i(0..$#cols){
+		if ($cols[$i] =~ /^ID/){
+			$output .= "   <td nowrap><input type='submit' name='$rec{$db_cols[$i]}' value='".&trans_txt('btn_view')."' class='button'>
+			   <input type='submit' name='$rec{$db_cols[$i]}' value='".&trans_txt('btn_edit')."' class='button'>
+			   <input type='submit' name='$rec{$db_cols[$i]}' value='".&trans_txt('btn_del')."' class='button' onclick='notest=false;return;'>
+			   &nbsp;$rec{$db_cols[$i]}</td>\n";
+		}else{
+			$output .= "   <td>$rec{$cols[$i]}</td>\n";
+		}
+	}
+	$output .= "</tr>";
+	return $output;
+}
+
+
+
+
+####################################################################
+########                 UTILITIES                          ########
+####################################################################
+
+sub parse_form {
+# --------------------------------------------------------
+# Forms Involved: 
+# Created on: 1/1/2007 9:43AM
+# Last Modified on:
+# Last Modified by:
+# Author: 
+# Description : Decoding Form Data. This is taken in %in hash as pairs.
+# Parameters : 
+	
+	use CGI;
+
+	my (@pairs, %in);
+	my ($buffer, $pair, $name, $value);
+	if ($ENV{'REQUEST_METHOD'} eq 'GET' or $ENV{'REQUEST_METHOD'} eq 'POST') {
+		$cgi = new CGI;
+		%in = $cgi->Vars;
+		%in = map { lc $_ => $in{$_} } keys %in;
+	}else {
+		&cgierr ("This script must be called from the Web\nusing either GET or POST requests\n\n");
+	}
+
+	foreach my $key (keys %in){
+		$in{$key} =~ s/\0/\|/g;
+	}
+
+	return %in;
+}

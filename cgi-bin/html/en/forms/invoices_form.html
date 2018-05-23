@@ -1,0 +1,89 @@
+<div class="filtros">
+    <fieldset class="field-set">
+        <legend>Filtro para la B&uacute;squeda</legend>
+        <table cellpadding="0" cellspacing="5px">
+            <tbody>
+            <tr>
+                <td><label>ID del Cliente: </label></td>
+                <td>
+                    <input type="text" name="id_customers" id="txtIdCustomers" value="" onblur="focusOff( this )" onfocus="focusOn( this )" placeholder="ID Cliente" >
+                </td>
+            </tr>
+            <tr>
+                <td><label>Razon Social del Cliente: </label></td>
+                <td>
+                    <input type="text" onblur="focusOff( this )" onfocus="focusOn( this )" name="customer_fname" id="txtNameCustomers" value="" placeholder="Razon social" >
+                </td>
+            </tr>
+            <tr>
+                <td><label>RFC del Cliente: </label></td>
+                <td>
+                    <input type="text" onblur="focusOff( this )" onfocus="focusOn( this )" name="customer_fcode" id="txtCustomerFiscalCode" value="" placeholder="RFC" >&nbsp;&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td><label>Serie y Folio: </label></td>
+                <td>
+                    <input type="text" onblur="focusOff( this )" onfocus="focusOn( this )" name="doc_serial" id="txtDocSerial" style="width:90px"  placeholder="Serie"  autofocus="">
+                    -
+                    <input type="text" onblur="focusOff( this )" onfocus="focusOn( this )" name="doc_num" id="txtDocNum" style="width:90px" placeholder="Folio" >
+                </td>
+            </tr>
+            <tr>
+                <td><label>Fecha del Documento: </label></td>
+                <td>
+                    <input type="text" onblur="focusOff( this )" onfocus="focusOn( this )" name="doc_date" id="txtDocDateIni" data-datepicker="1" placeholder="Fecha del Documento" class="">
+                    &nbsp;
+                 </td>
+            </tr>
+            <tr>
+                <td><label>Tipo: </label></td>
+                <td>
+                    <select onblur="focusOff( this )" onfocus="focusOn( this )" name="invoice_type" id="lstDocType" >
+                        <option value="" selected="">--- Todos ---</option>
+                        [bs_invoice_type@cu_invoices]
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Estatus: </label></td>
+                <td>
+                    <select onblur="focusOff( this )" onfocus="focusOn( this )" name="status" id="lstDocStatus" >
+                        <option value="" selected="">--- Todos ---</option>
+                        [bs_status@cu_invoices]
+                    </select>
+                </td>
+            </tr>
+        </tbody></table>
+    </fieldset>
+</div>
+
+<script>
+    var dates = $( '[data-datepicker="1"]' ).datepicker({
+        dateFormat: 'yy-mm-dd',
+        defaultDate: "-2m",
+        maxDate: new Date(),
+        changeMonth: true,
+        changeYear: true,
+        numberOfMonths: 3,
+    });
+</script>
+<style>
+    .filtros{
+        margin-top: 30px;
+    }
+    .filtros td:first-child{
+        width: 29%
+    }
+    .filtros table{
+        width: 100%
+    }
+
+    .filtros input {
+        width: 200px;
+    }
+    .filtros select{
+        width: 210px;
+    }
+
+</style>

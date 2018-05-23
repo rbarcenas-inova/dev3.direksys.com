@@ -1,0 +1,82 @@
+[ip_header]
+
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="720" class="container_white">
+	<tr>
+		<td width="140" align="center" valign="top">
+			[ip_menu_main]
+			&nbsp;
+			[ip_imgman:menu]
+			&nbsp;
+			[fc_menu_custom]
+			&nbsp;
+		</td>
+		<td valign="top">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="50%" align="center"></td>
+	    <td width="25%" class="cell_off" align="center" onClick='trjump("/cgi-bin/imgman/dbman?cmd=categories")'>Add Category</td>
+	    <td width="25%" class='cell_on' align='center' onClick='trjump("/cgi-bin/imgman/dbman?cmd=categories&search=listall")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">View Category : [in_id_categories]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Category Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="25%">Name  : </td>
+		    <td class="smalltext">[in_name]</td>
+		 </tr>
+  		<tr>
+		    <td width="25%">Parent Category  : </td>
+		    <td class="smalltext">[in_parentid] [va_parentname]</td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+     <fieldset><legend>Comments</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td valign="top" width="25%">Comments : </td>
+		    <td class="smalltext">[in_comments]</td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+     <fieldset><legend>Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="25%">Status  : </td>
+		    <td class="smalltext">[in_status]</td>
+		 </tr>
+  	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Created Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td width="25%">Created Date / Time : </td>
+		    <td class="smalltext">[in_date] / [in_time]</td>
+		 </tr>
+		<tr>
+		    <td width="25%" valign="top">Created by : </td>
+		    <td class="smalltext">([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		 </tr>
+     </table>
+	</fieldset>
+	&nbsp;
+	<p>&nbsp;</p>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

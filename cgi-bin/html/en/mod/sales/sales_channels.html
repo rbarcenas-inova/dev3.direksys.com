@@ -1,0 +1,94 @@
+[ip_header]
+
+<STYLE TYPE="text/css">
+
+	.homemain{
+		font-family: 'Lato', sans-serif;
+		padding: 5px;
+		/*background: #353535;*/
+		/*color: #FFF;*/
+	}
+	
+	.container_title{
+		padding: 0.5em;
+		margin-top: 1em;
+	}
+
+	h1 {
+	  color: #5D5D5D;
+	  text-transform: uppercase;
+	  letter-spacing: 1px;
+	}
+	/*-+++++++++++++++++++++++++++++++*/
+	a.button_channel {
+	    background-color: #4CAF50; /* Green */
+	    border: none;
+	    color: white;
+	    padding: 3em 0.3em;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 1.2em;
+	    margin: 4px 2px;
+	    -webkit-transition-duration: 0.4s; /* Safari */
+	    transition-duration: 0.4s;
+	    cursor: pointer;
+	    -webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		text-transform: capitalize;
+		width: 200px;
+		/*height: 120px;*/
+		word-wrap:normal;
+	}
+	a.button_black {
+	    background-color: white; 
+    	color: black; 
+    	border: 2px solid #008CBA;
+	}
+
+	a.button_black:hover {
+	    background-color: #008CBA;
+    	color: white;
+	}
+</STYLE>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+			<div class="homemain">
+				<div class="container_title">
+					<h1>Canales de Venta</h1>
+					<p style="color:#888;">Selecciona una opci&oacute;n: </p>
+				</div>
+				[fc_build_origins_list_v2]
+				<!-- <a href="#" class="cuadrito">FIDELIZACION</a>
+				<a href="#" class="cuadrito">FIDELIZACION</a> -->
+			</div>
+	</td>
+</tr>
+<tr>
+	<td colspan=2>
+	</td>
+</tr>
+</table>
+
+</div>
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

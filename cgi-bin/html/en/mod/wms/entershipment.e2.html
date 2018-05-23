@@ -1,0 +1,593 @@
+[ip_header_blank]
+
+  <!-- Direksys v2 -->  
+  <link rel="stylesheet" type="text/css" href="[va_imgurl]app_bar/mod/Xtyle[in_e].css" />
+  <!-- Direksys v2 -->  
+
+
+<style TYPE="text/css"> 
+
+font.estit
+{font-family:  century gothic, verdana;background: ;color:#48a5f2;
+	font-size: 25px;font-weight: normal;text-decoration: none;cursor: default;line-height:30px;}
+
+font.essub
+{font-family:  century gothic, verdana;background: ;color:#888888;
+	font-size: 13px; }
+
+div.part
+{margin-left:25px;}
+	
+font.espart
+{ 
+	font-family:  century gothic, verdana;background: ;color:#111111;
+	font-size: 13px; line-height:25px;}
+
+
+.scan
+{ border: 1px solid #48a5f2;  	
+	width:300px;
+	height:450px;  	padding-left:4px;  	font-family:century gothic, verdana;  	font-size:15px; font-weight:normal; color:#777777;line-height:24px;
+}
+
+font.eselem
+{font-family:  century gothic, verdana;background: ;color:#333333;
+	font-size: 13px; }
+
+div.error 
+ { border: 1px solid #840000; padding: 8px; background-color:#c80000;margin-bottom:5px;color:#ffffff;font-size: 20px; }
+ 
+.authcode {
+    border: 1px solid #aaaaaa;
+    background-color: #ffffff;
+		font-family: verdana, arial;
+		color:#727272;
+		font-size: 14px;
+    width:80px;height:30px;
+    background: url(/sitimages/app_bar/mod/inpdeg.jpg) top left;
+    background-repeat: repeat-x;
+line-height:17px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+}
+
+.authcode:hover {
+    border: 1px solid #777777;
+    background-color: #ffffff;
+		font-family: verdana, arial;
+		color:#727272;
+		font-size: 14px;
+    width:80px;height:30px;
+    background: url(/sitimages/app_bar/mod/inpdeg.jpg) top left;
+    background-repeat: repeat-x;
+line-height:17px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+	-moz-box-shadow: 0 0px 3px #dadada;
+	-webkit-box-shadow: 0 0px 3px #dadada;
+	box-shadow: 0 0px 3px #dadada;
+}
+
+
+
+.logdrop {
+    border: 1px solid #2f83b6;
+    background-color: #2f83b6;
+		font-family: century gothic, verdana, arial;
+		color:#ffffff;
+		font-size: 11px;
+		padding:  5px;
+		
+    width:250px;height:30px;
+    background: url(/sitimages/droplogblue.jpg) top left;
+    background-repeat: repeat-x;
+line-height:15px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+}
+
+.logdrop:hover {
+    border: 1px solid #2f83b6;
+	-moz-box-shadow: 0 0px 3px #dadada;
+	-webkit-box-shadow: 0 0px 3px #dadada;
+	box-shadow: 0 0px 3px #dadada;
+}
+
+
+select option{
+    color:#111111;background-color:#ffffff;
+}
+
+
+input.red {
+	background-color: #d3042d;
+	background-image: url(/sitimages/app_bar/mod/bred.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	border: none;
+	color:#ffffff;
+	cursor: pointer;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 13px;
+	height: 35px;
+	border: 1px solid #72071c;
+	padding-left:10px;
+	padding-right:10px;
+	text-align:center;
+-moz-border-radius: 7px;
+border-radius: 7px;text-shadow:1px 1px 2px #111111;
+}
+
+input.red:hover {
+	background-color: #c3072c;
+	background-image: url(/sitimages/app_bar/mod/b2red.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	border: none;
+	color:#ffffff;
+	cursor: pointer;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 13px;
+	height: 35px;
+	border: 1px solid #72071c;
+	padding-left:10px;
+	padding-right:10px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+}
+
+
+input.button {
+	background-color: #90ba2b;
+	background-image: url(/sitimages/app_bar/mod/button.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	border: none;
+	color:#ffffff;
+	cursor: pointer;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 13px;
+	height: 35px;
+	border-left: 1px solid #77ac07;
+	border-right: 1px solid #77ac07;
+	border-top: 1px solid #77ac07;
+	border-bottom: 1px solid #77ac07;
+	padding-left:10px;
+	padding-right:10px;
+	text-align:center;
+-moz-border-radius: 7px;
+border-radius: 7px;
+}
+
+input.button:hover {
+	background-color: #90ba2b;
+	background-image: url(/sitimages/app_bar/mod/button2.png);
+	background-position: center bottom;
+	background-repeat: repeat;
+	border: none;
+	color:#ffffff;
+	cursor: pointer;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 13px;
+	height: 35px;
+	border-left: 1px solid #8ec012;
+	border-right: 1px solid #8ec012;
+	border-top: 1px solid #8ec012;
+	border-bottom: 1px solid #8ec012;
+	padding-left:10px;
+	padding-right:10px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+}
+
+div.standby {
+border: 1px solid #fcb544; padding: 8px; background-color:#fef698;margin-bottom:5px;color:#111111;-moz-border-radius: 7px;border-radius: 7px;
+}
+div.ok {
+border: 1px solid #45cc58; padding: 8px; background-color:#bafeaa;margin-bottom:5px;color:#1d7708;-moz-border-radius: 7px;border-radius: 7px;
+}
+div.miss {
+border: 1px solid #fe2323; padding: 8px; background-color:#fa5276;margin-bottom:5px;color:#ffffff;-moz-border-radius: 7px;border-radius: 7px;text-shadow:1px 1px 1px #111111;
+}
+
+</style>
+
+<div style="background-color:#ffffff;margin:7px;padding:15px;">
+	
+<!-- Jquery -->
+<link rel="stylesheet" href="/libs/jqueryui/1.9.1/themes/cupertino/jquery-ui.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src=" /libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script  type="text/javascript" lang="JavaScript" src="/sitimages//jquery-events.js"></script>
+<script type="text/javascript" lang="JavaScript" src="/sitimages//jquery-events.administration.js"></script>
+<!-- Jquery -->
+
+<!-- JqueryTools -->
+<script type="text/javascript" src="/jquery.tools.min.js"></script>
+<!-- JqueryTools -->
+
+<form action="[va_cgiurl]" method="POST" name="sitform" onsubmit="deactivate_button();" id="form">
+		<input type="hidden" name="action" value="1" />
+		<input type="hidden" name="cmd" value="[in_cmd]" />
+        <input type="hidden" name="localdelivery" value="[in_localdelivery]" />
+        <input type="hidden" name="enter_shippment_full" id="enter_shippment_full" value="1"/>
+		<input type="hidden" name="ajax" value="1" />
+		
+<!-- Start Main Area  -->
+<!--table width="100%" border="1">
+	<tr>
+		<td width="50%">
+			<textarea name="tracking" cols="50" style="width:100%" rows="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_tracking]</textarea>
+		</td>
+		<td width="50%">
+			
+		</td>
+	</tr>
+</table-->
+<table align="right">
+	<tr><td align=left>Almacen:</td><td align=left><select name="id_warehouses" class="input" style="Width:250px;"><option class="dropop">---</option>[fc_build_select_regular_warehouses]</select></td></tr>	
+</table>	
+
+<font class="estit">[va_nameenter] </font><br />
+<font class="essub">[va_descriptionenter]</font><br /><br />
+
+ 
+
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+			<td>
+				
+				<span class="bigerrtext">[va_error]</span>
+				<span class="stdtxterr">[va_message]</span>
+    <div id="submit_form" style="display: none; width:100px;margin:auto;" ><img src="/sitimages/processing.gif" /></div>
+ <table cellpadding=0 cellspacing=0 border=0 width=100% id="table_form">
+ 	<td width=300px rowspan=2 valign="top">
+ 
+ <textarea name="tracking" id="tracking" class="scan" autofocus="autofocus">[in_tracking]</textarea>
+ <br>
+<!--<table width=100% style="position:relative;bottom:50px;" border=0 cellspacing=5><td align=right><input type="button" value="Vaciar Scaneo" onclick="window.location.href=window.location.href" class=red></td></table>-->
+
+	</td>
+	<td width=15px rowspan=2></td>
+	<td valign=top align=left >
+		<font class="estit"># de Orden : <span id="orderno">[in_orderno]</span> </font>
+        <span id="loading" style="display: none;">
+        <img src="../../../sitimages/ui-anim_basic_16x16.gif" /> Loading ...
+        </span>
+        <input type="hidden" id="order_number" />
+		<br />
+		<font class="eselem"># de Remesa : <span id="batchno"></span> <span id="name_driver"></span> </font>
+        <br />
+        <font class="eselem">Zona : <span id="zone"></span> </font>
+
+<br /><br />
+<font class="eselem">UPC:</font> 
+<br /><br />
+<div class="part">
+<div  id="upclist"></div>
+<div id="upcfields"></div>
+</div>
+
+
+<br /><br />
+<font class="eselem"># de Rastreo:</font> <br> 
+
+<table cellpadding=0 cellspacing=0>
+    <tr>
+        <td id="imgshipp"><td>
+            <input type="hidden" id="tracking_number" />
+            <input type="hidden" id="total_item" />
+            <input type="hidden" id="total_item2" />
+            <div class="part">
+                <font class="espart" id="tracking_number_draw"></font>
+            </div>
+        </td>
+    </tr>
+</table>
+<br />
+<font class="eselem">Dirección:</font> <br> 
+ <div style="margin-left: 25px;margin-top: 3px;" id="address">
+ </div>
+
+<br /><br />
+
+
+
+<hr style="border:0px; border-top:1px solid #dddddd;" />
+<!--<font class="eselem">Código de Autorización: &nbsp; </font>-->
+<input type="hidden" id="authcode" name="authcode" value="[in_authcode]" size="15"  />
+<input type="hidden" id="shpdate" name="shpdate" value="[in_shpdate]" size="15" />
+
+<br /><hr style="border:0px; border-top:1px solid #dddddd;"><center><br>
+<!--<input type="button" name="enterbutton" id="enterbutton" value="Enter shipment" class="button"  />-->
+
+</td>
+</table>
+<!--
+<table>
+	<tr><td align=left>Shipment Date:</td><td align=left><input type="text" id="shpdate" name="shpdate" value="[in_shpdate]" size="15"></td></tr>	
+	<tr><td align=left>Consolidated Shipment:</td><td align=left><input type="checkbox" id="bulk" name="bulk" value="1" class="checkbox"></td></tr>	
+	<tr><td align=left>Scan From Pack Location:</td><td align=left><input type="checkbox" id="scan_from_pack" name="scan_from_pack" value="1" class="checkbox"></td></tr>	
+	<tr><td align=left>Skip Batch Validation:</td><td align=left><input type="checkbox" id="skip_batch" name="skip_batch" value="1" class="checkbox"></td></tr>	
+</table>	
+-->
+
+ 		</tr>
+    </table>
+ 
+ 
+<audio src="/sitimages/beep.mp3" id="beep_ok"></audio>
+<audio src="/sitimages/error.mp3" id="beep_error"></audio>
+</form>	
+<script lang="javascript">
+
+function DoSubmit(json){
+    if($('#total_item').val() <= 0){
+        $(".stdtxterr").html('');
+        $("#table_form").hide();
+        $("#submit_form").show();
+        //$('#table_form').hide('slow');
+        //$('#submit_form').show("slide");
+        //$('.stdtxterr').html('');
+        $.ajax({
+            type: "POST",
+            url: "[va_cgiurl]",
+            data: $("#form").serialize()
+        })
+        .done(function( msg ) {
+            var result = msg.split(/\|/);
+            msg = result[0];
+            
+            if (typeof result[2] !== "undefined"){
+                msg += result[2];
+            }
+
+            if(result[1] == 1){
+                $("#table_form").show();
+                $("#submit_form").hide();
+                $(".bigerrtext").html('');
+                $(".stdtxterr").html('');
+                $("#orderno").html('');
+                $("#order_number").val('');
+                $("#batchno").html('');
+                $("#name_driver").html('');
+                $("#upclist").html('');
+                $("#tracking").val('');
+                $("#upcfields").html('');
+                $("#tracking_number").val('');
+                $("#total_item").val('');
+                $("#total_item2").val('');
+                $("#tracking_number_draw").html('');
+                $("#address").html('');
+                $("#zone").html('');
+                $("#authcode").val('');
+                $("#imgshipp").html('');
+                $("#tracking").attr('autofocus', 'autofocus');
+            }else{
+                $("#table_form").show();
+                $("#submit_form").hide();
+            }
+                $(".stdtxterr").html(msg);
+        });
+        }else{
+            $('.stdtxterr').html(json.entershipment_scan_order_noupc);
+        }
+}
+
+$(document).ready(function() {
+    $("#tracking").keydown(function(e){
+        if(e.keyCode==13 || e.keyCode==8 || e.keyCode==46 ){
+            
+            var field = $("#tracking").val();
+            lines = field.split(/\n/);
+            var lineNumber = (lines.length);
+            var lastline = lines[lineNumber-1];
+            lastline = $.trim(lastline);
+            var fieldRemoveLastLine = '';
+            if(0 == 1 && lineNumber > 1){
+                lineNumber = lineNumber + 1;
+                zvalue = 1;
+            }else{
+                zvalue = 2;
+            }
+            for(i=1; i<=lineNumber;i++){
+                if(i!=1){
+                    key = i-2;
+                    fieldRemoveLastLine = fieldRemoveLastLine+lines[i-2]+'\n';
+                } 
+            }
+            if(e.keyCode==13){
+                
+                if(lastline == 'limpiarpantalla'){
+                    window.location.href=window.location.href;
+                    return false;
+                }
+                
+                $("#loading").show();
+                $.post('/cgi-bin/common/apps/ajaxbuild',{
+                'ajaxbuild':'EnterShipmentAjax',
+                'line' : lineNumber,
+                'lastline':lastline, 
+                'trackingtxt':$("#tracking").val(),
+                'id_order': $('#order_number').val(),
+                'localdelivery': "[in_localdelivery]"},
+                function(response,status,xhr){
+                    $("#loading").hide();
+                    if (status == "error") {
+        				alert(status);
+                    }else if(response.search(/cgi/i) >= 0){    
+
+                        alert( response );
+
+                    }else{
+
+                        var json = jQuery.parseJSON( response );
+                        switch(json.line){
+                            case 1:
+                            if(json.error == 'yes'){
+                                $('#beep_error').get(0).play();
+                                $(".stdtxterr").html(json.message);
+                                $("#tracking").val("");
+                                $("#orderno").html("");
+                                $("#upclist").html("");
+                                $("#upcfields").html("");
+                                $("#address").html("");
+                                $("#zone").html("");
+
+                            }else{
+                                
+                                $('#beep_ok').get(0).play();
+                                $(".stdtxterr").html("");
+                                $(".bigerrtext").html('');
+                                $("#address").html(json.address);
+                                $("#zone").html(json.zone);
+                                $("#enter_shippment_full").val(json.enter_shippment_full);
+                                if(json.authcode){
+                                    $("#authcode").val(json.authcode);
+                                }
+                                switch(json.status){
+                                    case 'getOrder':
+                                        $("#orderno").html(json.order);
+                                        $("#batchno").html(json.warehouses_batches);
+                                        $("#name_driver").html(json.name_driver);
+                                        $("#order_number").val(json.order);
+                                        $("#total_item").val(json.totalItem);
+                                        $("#total_item2").val(json.totalItem);
+                                        var items = json.items;
+                                        var html = ' ';
+                                        var input = '';
+                                        for (var key in items) {
+                                          if (items.hasOwnProperty(key)) {
+                                            
+                                            html = html + '<div class="standby list_upc list_'+items[key]['upc']+'_'+items[key]['list']+'" id="list_'+items[key]['upc']+'_'+items[key]['list']+'"> '+ items[key]['name'] + '<br />'+items[key]['upc'] + ' | <i>'+ items[key]['sku'] +'</i> </div>';
+                                            
+                                            input = input + '<input type="hidden" id="upc_'+items[key]['upc']+'_'+items[key]['list']+'" value="'+items[key]['list']+'" class="list_item_field" />';                            
+                                          }
+                                        }
+                                        $("#upclist").hide();
+                                        $("#upclist").html(html);
+                                        $("#upclist").show('fast');
+                                        $("#upcfields").html(input);
+                                        break;
+                                }
+                            }
+                            break;
+                            case 2 :
+                                $('.list_upc').removeClass('ok');
+                                $('.list_upc').addClass('standby');
+                                if(json.error == 'yes'){
+                                    $('#beep_error').get(0).play();
+                                    $("#tracking").val(fieldRemoveLastLine);
+                                    $(".stdtxterr").html(json.message);
+                                    $("#tracking_number_draw").html('');
+                                    $("#imgshipp").html('');
+                                }else{
+                                    $('#beep_ok').get(0).play();
+                                    $("#tracking_number_draw").html(lines[1]+'\n');
+                                    $(".stdtxterr").html('');
+                                    $(".bigerrtext").html('');
+                                    $("#imgshipp").html('<img src="/sitimages/'+json.shippment+'on.jpg" />');
+                                    $("#total_item").val($("#total_item2").val());
+                                }
+                            break; 
+                            case 3:
+                                if(json.submit == 'yes'){
+                                    var trackingValue = $("#tracking").val();
+                                    var search = /[va_submit_code]\n/i; 
+                                    trackingValue = trackingValue.replace(search, '');
+                                    $("#tracking").val(trackingValue);
+                                    //$("#tracking").val(fieldRemoveLastLine);
+                                    DoSubmit(json);
+                                    
+                                    //setTimeout(function(){$("#form").submit();}, 2000);
+                                }else{
+                                    var contar = 0;                                                                            
+                                    for(z=zvalue;z<lineNumber;z++){
+                                        
+                                        if($.trim(lines[z]) == $.trim(lastline)){
+                                            contar = contar + 1;
+                                        }
+                                    }
+                                    
+                                    if ($('#upc_'+lastline+'_'+contar).length) {
+                                        $('#beep_ok').get(0).play();
+                                        $('#list_'+lastline+'_'+contar).hide();
+                                        $('#list_'+lastline+'_'+contar).show("slide", { direction: "left" }, 500);
+                                        $('#list_'+lastline+'_'+contar).removeClass('standby');
+                                        $('#list_'+lastline+'_'+contar).addClass('ok');
+                                        $('#list_'+lastline+'_'+contar).val('0');
+                                        $('#total_item').val($('#total_item').val() - 1);
+                                        $('.stdtxterr').html('');
+                                        $('.stdtxterr').html('');
+                                        
+                                        
+                                    }else{
+                                        $('#beep_error').get(0).play();
+                                        $("#tracking").val(fieldRemoveLastLine);
+                                        $('.stdtxterr').html('[va_entershipment_scan_upc_unknown]');
+                                        $('.bigerrtext').html('');
+                                    }  
+                                }
+                            break;                   
+                        }
+                        
+                    }
+        						
+                });
+            }
+        }
+    });        
+});
+
+function deleteLine(lineNumber, textarea){
+    var splitLines = textarea.split(/\n/);
+    var totalLines = (splitLines.length);
+    var newTxt = '';
+    for(i=1;i<=totalLines;i++){
+        if(i!=lineNumber){
+            newTxt = newTxt + splitLines[i-1]+'\n';
+        }        
+    }
+    return newTxt;
+}
+
+chg_select('id_warehouses','[in_id_warehouses]');
+<!--
+	
+	function deactivate_button()
+	{
+		document.sitform.enterbutton.disabled=true;
+	}
+	
+    $(document).ready(function() {
+        
+        
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#shpdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: new Date(),
+			minDate: new Date(),
+			maxDate: "+6m",
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+	
+	
+	chg_chkbox('bulk','[in_bulk]');
+	chg_chkbox('scan_from_pack','[in_scan_from_pack]');
+	chg_chkbox('skip_batch','[in_skip_batch]');
+
+//-->
+</script>
+	

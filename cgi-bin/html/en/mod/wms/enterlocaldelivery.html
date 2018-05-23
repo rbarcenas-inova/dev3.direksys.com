@@ -1,0 +1,64 @@
+[ip_header_blank]
+
+<form action="/cgi-bin/mod/wms/admin" method="POST" name="sitform" onsubmit="deactivate_button();">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="cmd" value="enterlocaldelivery">
+		
+<!-- Start Main Area  -->
+	<fieldset><legend>Enter Local Delivery</legend>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+			<td><span class="bigerrtext">[va_error]</span>
+				<span class="stdtxterr">[va_message]</span></td>
+		</tr>
+		<tr>
+	    	<td valign="top">Enter Local Delivery <span class="help_on">(Invoice / Product Number)</span><br>
+		    				
+		    				<textarea name="tracking" cols="50" style="width:100%" rows="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_tracking]</textarea>
+		    				
+		    				Shipment Date <input type="text" id="shpdate" name="shpdate" value="[in_shpdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'><br><br>
+		    				Warehouse <select name="id_warehouses"><option>---</option>[fc_build_select_warehouses]</select><br><br>
+		    				Consolidated Shipment <input type="checkbox" id="bulk" name="bulk" value="1" class="checkbox"><br><br>
+		    				Skip Batch Validation <input type="checkbox" id="skip_batch" name="skip_batch" value="1" class="checkbox"><br><br>
+		    				Auth. Code <input type="text" id="authcode" name="authcode" value="[in_authcode]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+										    				
+		    </td>
+ 		 </tr>
+
+ 		 <tr>
+ 		 	<td align="center"><input type="submit" name="enterbutton" id="enterbutton" value="Enter shipment" class="button"></td>
+ 		</tr>
+    </table>
+	</fieldset>
+	
+</form>	
+
+<script language="javascript">
+<!--
+	function deactivate_button()
+	{
+		document.sitform.enterbutton.disabled=true;
+	}
+
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#shpdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+
+	chg_select('id_warehouses','[in_id_warehouses]');
+	
+//-->
+</script>
+	

@@ -1,0 +1,57 @@
+&nbsp;
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman" name="sitform">
+	<input type="hidden" name="id_parts" value="[in_id_parts]">
+	<input type="hidden" name="view" value="[in_id_parts]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="4">
+	<input type="hidden" name="tabs" value="4">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="2" class="gborder" align="center">
+		<tr>
+		  	<td valign="top" width="33%" class="smalltext">Purchase Account : ([in_purchaseid_accounts]) [va_paccount_name]</td>
+		  	<td valign="top" width="33%" class="smalltext">Sale Account : ([in_saleid_accounts]) [va_saccount_name]</span></td>
+		  	<td valign="top" width="33%" class="smalltext">Asset Account : ([in_assetid_accounts]) [va_aaccount_name]</span></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="3" class="menu_bar_title">Change Accounts to:</td>
+		</tr>
+		<tr>
+		  	<td valign="top" width="33%">Purchase Account : <span class="smallfieldterr">[er_purchaseid_accounts]</span></td>
+		  	<td valign="top" width="33%">Sale Account : <span class="smallfieldterr">[er_saleid_accounts]</span></td>
+		  	<td valign="top" width="33%">Asset Account : <span class="smallfieldterr">[er_assetid_accounts]</span></td>
+		</tr>
+		<tr>
+		    <td class="smalltext">
+		    	<select name="newpurchaseid_accounts" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			      	<option value="---">---</option>
+			        [fc_build_select_accounting]
+					</select>
+				</td>			
+		    <td class="smalltext">
+		    	<select name="newsaleid_accounts" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			      	<option value="---">---</option>
+			        [fc_build_select_accounting]
+					</select>
+				</td>
+		    <td class="smalltext">
+		    	<select name="newassetid_accounts" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		      		<option value="---">---</option>
+		        	[fc_build_select_accounting]
+					</select>
+				</td>
+		</tr>
+		<tr>
+		    <td class="smalltext">Purchase Tax : <input type="text" name="newpotax" value="[in_newpotax]" size="8" onFocus='focusOn( this )' onBlur='focusOff( this )'> &nbsp; %
+		    <td class="smalltext">Sale Tax : <input type="text" name="newsaletax" value="[in_newsaletax]" size="8" onFocus='focusOn( this )' onBlur='focusOff( this )'> &nbsp; %
+				</td>
+		    <td class="smalltext">&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="3"><p>&nbsp;</p><input type="submit" value="Update Accounts" class="button"></td>
+		</tr>
+	</table>
+</form>
+
+
+

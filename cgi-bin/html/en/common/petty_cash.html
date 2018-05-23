@@ -1,0 +1,67 @@
+<meta http-equiv= "content-type"content="text/html;charset=ISO-8859-1">
+[ip_header_blank]
+
+<form method="post" id="sitform" action="/cgi-bin/common/apps/ajaxbuild">
+    <input type="hidden" name="id_expenses_users" value="[va_id_expenses_users]">
+    <input type="hidden" name="id_admin_users" value="[in_id_admin_users]">
+    <input type="hidden" name="action" value="1">
+    <input type="hidden" name="ajaxbuild" value="petty_cash">
+ 
+    <table align="center" width="100%">
+        <tr>
+            <td class="menu_bar_title" colspan="3">Add New Adjustment</td>
+        </tr>
+
+        <tr>
+            <td class="smalltext" valign="top" width="30%">Debit Account</td>
+            <td class="smalltext" valign="top">
+                <select name="id_accounts_debit">
+                    <option value="NULL">---</option>
+                    [fc_build_select_accounts]
+                </select>
+                <span class="smallfieldterr" data-err="id_account_debit"></span>
+            </td>
+            
+            
+        </tr>
+
+        <tr>
+            <td class="smalltext" valign="top" width="30%">Credit Account</td>
+            <td class="smalltext" valign="top">
+                <select name="id_accounts_credit">
+                    <option value="NULL">---</option>
+                    [fc_build_select_accounts]
+                </select>
+                <span class="smallfieldterr" data-err="id_account_credit"></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="smalltext" valign="top" width="30%">Debit Account PettyCash</td>
+            <td class="smalltext" valign="top">
+                <select name="id_accounts_debit_pettycash">
+                    <option value="NULL">---</option>
+                    [fc_build_select_accounts]
+                </select>
+                <span class="smallfieldterr" data-err="id_account_pettycash"></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="center" colspan="3">
+                <input type="button" value="Add" class="button" onclick="$('#sitform').submit();">
+            </td>
+        </tr>
+    </table>
+
+</form>
+
+<script>
+
+    $(function(){
+        $('select[name="id_accounts_debit"]').val('[va_id_debit]');
+        $('select[name="id_accounts_credit"]').val('[va_id_credit]');
+        $('select[name="id_accounts_debit_pettycash"]').val('[va_id_debit_pettycash]');
+    });
+
+</script>

@@ -1,0 +1,105 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->				
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+			    <td class="titletext" align="left" colspan="2">Report All Orders to Disk</td>
+				</tr>
+				<tr>
+			    <td class="stdtxterr" colspan="2">[va_message]</td>
+		  	</tr>
+	    </table>
+			<form action="/cgi-bin/mod/admin/admin" method="post" name="sitform" target="upwin" onsubmit="upwin()">
+				<input type="hidden" name="cmd" value="fin_reporder_all">
+        <input type="hidden" name="action" value="1">
+				<input type="hidden" name="reportdatefrom" value="[in_reportdatefrom]">				
+				<input type="hidden" name="reportdateto" value="[in_reportdateto]">				
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+					<td  align="center" class="menu_bar_title" colspan="2"> Report All Orders 
+				  </td>
+			  </tr>				
+				<tr>			  	
+					<td align="center" colspan="2">From Date : 
+						<input type="text" id="reportdatef" name="reportdatef" value="[in_reportdatef]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					</td>
+				</tr>													
+				<tr>			  	
+					<td align="center" colspan="2">To Date : 
+						<input type="text" id="reportdatet" name="reportdatet" value="[in_reportdatet]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					</td>
+				</tr>
+				<tr>
+			   		<td width="30%" align="right">Payment Type : <span class="smallfieldterr">[er_status]</span></td>
+					<td class="smalltext">
+						<input type="radio" class="radio" name="paytype" value="" checked> All
+						<input type="radio" class="radio" name="paytype" value="Credit-Card"> Credit-Card
+						<input type="radio" class="radio" name="paytype" value="Check"> Check
+						<input type="radio" class="radio" name="paytype" value="WesternUnion"> WesternUnion
+					</td>
+				</tr>
+				<tr>
+					<td align="center" colspan="2"><br>	
+						<input type="submit" name="export2" value="Order All Orders" class="button"></td>
+				  </td>
+			  </tr>				
+			</table>
+	   </form>	
+		<script language="javascript">
+		<!--			
+
+	        $(document).ready(function() {
+
+				/*AJAX Error handler*/
+				$(document).ajaxError(function(e, xhr, settings, exception) {
+					alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+				});
+
+				var dates = $( "#reportdatef,#reportdatet" ).datepicker({
+					dateFormat: 'yy-mm-dd',
+					defaultDate: "-2m",
+					minDate: new Date(2009,1-1,1),
+					maxDate: new Date(),
+					changeMonth: true,
+					numberOfMonths: 3,
+					onSelect: function( selectedDate ) {
+						var option = this.id == "reportdatef" ? "minDate" : "maxDate",
+						instance = $( this ).data( "datepicker" ),
+						date = $.datepicker.parseDate(
+							instance.settings.dateFormat ||
+							$.datepicker._defaults.dateFormat,
+							selectedDate, instance.settings );
+						dates.not( this ).datepicker( "option", option, date );
+					}
+				});
+
+	        });
+
+		//-->
+		</script>		
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

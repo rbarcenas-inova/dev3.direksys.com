@@ -1,0 +1,59 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+	<fieldset><legend>Informaci&oacute;n de Lista de Env&iacute;o</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">N&uacute;mero de Env&iacute;o  : </td>
+			<td class="titletext">
+
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons"> 
+							[in_id_orders] &nbsp;
+				<a href="/cgi-bin/mod/crm/dbman?cmd=orders&view=[in_id_orders]"><img src='[va_imgurl]/[ur_pref_style]/b_view.gif' title='View' alt='Ver Orden' border='0'></a>
+		  	<a href="javascript:prnwin('/cgi-bin/mod/crm/dbman?cmd=packinglist&search=Print&toprint=[in_id_orders]&id_orders_products=[in_id_orders_products]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.gif' title='Print' alt='' border='0'></a>
+		  	<a href="javascript:prnwin('/cgi-bin/mod/crm/dbman?cmd=ppackinglist&search=Print&toprint=[in_id_orders]&id_orders_products=[in_id_orders_products]')"><img src='[va_imgurl]/[ur_pref_style]/b_pinvoice.gif' title='Print' alt='' border='0'></a>
+
+
+						</div>
+					</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Fecha / Hora / Usuario : </td>
+			<td class="smalltext">[in_date] [in_time] Creado por : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+	[ip_forms:packinglist_viewsm]
+ 
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

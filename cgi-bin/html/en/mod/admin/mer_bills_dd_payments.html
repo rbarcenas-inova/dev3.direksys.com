@@ -1,0 +1,472 @@
+[ip_header]
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table class="tab" cellpadding="0" cellspacing="0" align="center" border="0" width="100%">
+	  <tbody><tr>
+		<td align="center" width="30%"></td>
+		<td class="cell_on" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=mer_bills_home&quot;)" align="center" width="17%">Bills</td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mer_bills&amp;add=1&quot;)" align="center" width="17%">Add</td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mer_bills&amp;search=form&quot;)" align="center" width="17%">Search</td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mer_bills&amp;search=listall&so=DESC&sb=ID_bills&quot;)" align="center" width="17%">View / Edit / Delete</td>
+	  </tr>
+	</tbody></table>	
+
+	<div style="background-color:#ffffff;margin:15px;[va_div_main]">
+		<div class="stdtxterr">[va_messages]</div>
+		<table width="100%" cellspacing="0" cellpadding="2" border="0">
+			<tbody><tr>
+				<td align="center" colspan="2" class="titletext">Deposits/Debits Payments </td>
+			 </tr>
+			<tr>
+				<td colspan="2" class="stdtxterr"></td>
+			 </tr>
+		</tbody></table>
+		<form name="sitform" method="post" action="/cgi-bin/mod/admin/admin" style="[va_displayform1]">
+			<input type="hidden" value="mer_bills_dd_payments" name="cmd">
+			<input type="hidden" value="Search" name="search">
+			<input type="hidden" value="1" name="action">
+			<input type="hidden" value="[id_bill_s]" name="bills_search">
+
+			
+			&nbsp;
+			<fieldset><legend>Vendor</legend>
+				<table width="100%" cellspacing="0" cellpadding="2" border="0">	
+					<tbody><tr>
+						<td width="30%" valign="top">Vendor ID	 : <span class="smallfieldterr">[er_id_vendors]</span></td>
+						  <td class="smalltext">
+								<input type="text" name="id_vendors" id='id_vendors' value="[in_id_vendors]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+								<a href="/cgi-bin/common/apps/schid?cmd=vendors&db=sl_vendors&fname=id_vendors&ajaxtype=1" title="Search for Vendors" class="fancy_modal_iframe">
+									<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+								</a>
+						   </td>
+						</tr>
+				</tbody></table>
+			</fieldset>		
+		
+			&nbsp;
+			<fieldset><legend>Bill Info</legend>
+				<table width="100%" cellspacing="0" cellpadding="2" border="0">
+					<tbody>
+					<tr>
+						<td width="30%">ID Bill  : <span class="smallfieldterr"></span></td>
+						<td class="smalltext">
+							<input type="text" onblur="focusOff( this )" onfocus="focusOn( this )" size="30" value="[in_id_bills]" name="id_bills"></td>
+					</tr>						
+					<tr>
+					  <td width="30%">Due Date (From/To) : <span class="smallfieldterr">[er_duedate]</span></td>
+						<td class="smalltext">
+							<input type="text" id="duedate" name="duedate" value="[in_duedate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'> - <input type="text" id="toduedate" name="toduedate" value="[in_toduedate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+					</tr>
+					<tr>
+					  <td width="30%">Amount Rate (From/To) : <span class="smallfieldterr">[er_duedate]</span></td>
+						<td class="smalltext">
+							$ <input type="text" name="from_amount" id="from_amount" value="[in_from_amount]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'> - $ <input type="text" name="to_amount" id="to_amount" value="[in_to_amount]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</fieldset>	
+			
+			<p align="center"><input type="submit" class="button" value="Search"></p>
+		</form>	
+
+		<form name="sitform2" method="post" action="/cgi-bin/mod/admin/admin" onsubmit="return confirm_pay()" style="[va_displayform2]">
+			<input type="hidden" value="mer_bills_dd_payments" name="cmd">
+			<input type="hidden" value="Search" name="search">
+			<input type="hidden" value="1" name="process">
+			<input type="hidden" value="[in_id_bills]" name="id_bills">
+			<input type="hidden" value="[in_id_vendors]" name="id_vendors">
+			<input type="hidden" value="[in_duedate]" name="duedate">
+			<input type="hidden" value="[in_toduedate]" name="toduedate">
+			<input type="hidden" value="[in_from_amount]" name="from_amount">
+			<input type="hidden" value="[in_to_amount]" name="to_amount">
+			
+			<table width="100%" border="0" cellspacing="0" cellpadding="4" class="gborder" align="center">
+				<tr>
+					<td class="tbltextttl" colspan="2" align="left">Vendor Info</td>
+				</tr>
+				<tr>
+					<td valign="top">Vendor : </td>
+					<td>[va_vinfo_vendor]</td>
+				</tr>
+				<tr>
+					<td valign="top">Terms : </td>
+					<td>[va_vinfo_terms]</td>
+				</tr>
+				<tr>
+					<td valign="top">Category : </td>
+					<td>[va_vinfo_category]</td>
+				</tr>
+				<tr>
+					<td valign="top">Currency : </td>
+					<td>[va_vinfo_currency]</td>
+				</tr>
+				<tr>
+					<td class="tbltextttl" colspan="2" align="left">Vendor Bank Info</td>
+				</tr>
+				<tr>
+					<td valign="top">Name : </td>
+					<td>[va_vbinfo_name]</td>
+				</tr>
+				<tr>
+					<td valign="top">Branch : </td>
+					<td>[va_vbinfo_branch]</td>
+				</tr>
+				<tr>
+					<td valign="top">Account : </td>
+					<td>[va_vbinfo_account]</td>
+				</tr>
+				<tr>
+					<td valign="top">CLABE : </td>
+					<td>[va_vbinfo_clabe]</td>
+				</tr>
+			</table>
+			<br />
+			<table width="100%" border="0" cellspacing="0" cellpadding="2" class="gborder" align="center">
+				<tr>
+					<td width="50%" align="left" class="tbltextttl">Select Deposits/Debits to be Paid [va_forvendor]</td>
+					<td colspan="2" align="right" class="tbltextttl">Pages: [va_dd_pageslist]</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+					 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+						<tr>
+							<td class="menu_bar_title"><input type="checkbox" name="checkall_dd" id="checkall_dd" value=""> ID Bills</td>
+							<!-- <td class="menu_bar_title">Vendor</td> -->
+							<td class="menu_bar_title">Due Date</td>
+							<td class="menu_bar_title">Currency</td>
+							<td class="menu_bar_title">Type</td>
+							<td class="menu_bar_title">Amount</td>
+							<td class="menu_bar_title">Amount Due</td>
+						 </tr>
+						 [va_dd_searchresults]
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="50%" align="left" class="tbltextttl">Records: [va_dd_matches]</td>
+					<td width="40%" align="right" class="tbltextttl">Total : </td>
+					<td width="10%" align="right" class="tbltextttl"><span id="dd_totals">[va_dd_totals]</span></td>
+				</tr>
+				<tr>
+					<td width="50%" align="left" class="tbltextttl"><input type="hidden" id="dd_totals_paid_unf" value="[va_dd_totals_paid_unformatted]"><input type="hidden" id="dd_totals_unformatted" value="[va_dd_totals_unformatted]"></td>
+					<td width="40%" align="right" class="tbltextttl">Total to be Paid : </td>
+					<td width="10%" align="right" class="tbltextttl"><span id="dd_totals_paid">[va_dd_totals_paid]</span></td>
+				</tr>
+			</table>
+			<br />
+			<table width="100%" border="0" cellspacing="0" cellpadding="4" class="gborder" align="center">
+				<tr>
+					<td class="tbltextttl" colspan="2" align="left">Payment Info</td>
+				</tr>
+				<tr>
+					<td width="30%">Bank Account : <span class="smallfieldterr">[er_id_banks]</span></td>
+					<td class="smalltext">
+						<select name="id_banks" id="id_banks" onfocus="focusOn( this )" onblur="focusOff( this )">
+							<option value="">---</option>
+							[fc_build_select_custom_bank]
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Payment Method : <span class="smallfieldterr">[er_PaymentMethod]</span></td>
+					<td class="smalltext">[br_doc_type@sl_banks_movements]</td>
+				</tr>
+				<tr>
+					<td>Date : <span class="smallfieldterr">[er_bankdate]</span></td>
+					<td class="smalltext"><input type="text" id="bankdate" name="bankdate" value="[in_bankdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+				</tr>
+				<tr>
+					<td>Ref Num : <span class="smallfieldterr">[er_refnum]</span></td>
+					<td class="smalltext">
+						<input type="text" name="refnum" id="refnum" value="[in_refnum]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<input type="checkbox" value="1" name="refnum_auto" id="refnum_auto"><label for="refnum_auto">Auto</label>
+					</td>
+				</tr>		
+				<tr>
+					<td>Memo : <span class="smallfieldterr">[er_memo]</span></td>
+					<td class="smalltext">
+						<input type="text" name="memo" id="memo" value="[in_memo]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<a href="#" onclick="return print_amount('memo','[va_vinfo_vendor]');">[va_vinfo_vendor]</a>
+					</td>
+				</tr>
+				<tr style="[va_display_only_internationals]">
+					<td>Exchange Rate : <span class="smallfieldterr">[er_currency_exchange]</span></td>
+					<td class="smalltext">
+						<input type="text" name="currency_exchange" value="[in_currency_exchange]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' id="get_exchange_rate" >
+						<input type="button" value="Get Current (DOF)" onclick="loadExchangeRate('get_exchange_rate')"> 
+					</td>
+				</tr>
+			</table>
+			[va_button_p]
+		</form>	
+	</div>
+	<div style="background-color:#ffffff;margin:15px;[va_div_summary]">
+		<table width="100%" cellspacing="0" cellpadding="2" border="0">
+			<tbody><tr>
+				<td align="center" colspan="2" class="titletext">Payment Summary</td>
+			 </tr>
+			<tr>
+				<td colspan="2" class="stdtxterr">[va_messages]</td>
+			 </tr>
+		</tbody></table>
+		<form name="sitform3" method="get" action="/cgi-bin/mod/admin/admin">
+			<input type="hidden" value="mer_bills_home" name="cmd">
+			
+			<p>Payments have benn successfully paided for the following bills: </p>
+			<table width="100%" border="0" cellspacing="0" cellpadding="2" class="gborder" align="center">
+				<tr>
+					<td colspan="3" align="right" class="tbltextttl">Pages: [va_summary_pageslist]</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+					 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+						<tr>
+							<td class="menu_bar_title">ID Bills</td>
+							<td class="menu_bar_title">Vendor</td>
+							<td class="menu_bar_title">Due Date</td>
+							<td class="menu_bar_title">Currency</td>
+							<td class="menu_bar_title">Amount Paid</td>
+						 </tr>
+						 [va_summary_searchresults]
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="50%" align="left" class="tbltextttl">Records: [va_summary_matches]</td>
+					<td width="40%" align="right" class="tbltextttl">Total : </td>
+					<td width="10%" align="right" class="tbltextttl"><span id="totals">[va_summary_totals]</span></td>
+				</tr>
+			</table>
+			<p>Payments not paid: </p>
+			<table width="100%" border="0" cellspacing="0" cellpadding="2" class="gborder" align="center">
+				<tr>
+					<td colspan="3" align="right" class="tbltextttl">Pages: [va_summaryfail_pageslist]</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+					 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+						<tr>
+							<td class="menu_bar_title">ID Bills</td>
+							<td class="menu_bar_title">Vendor</td>
+							<td class="menu_bar_title">Due Date</td>
+							<td class="menu_bar_title">Currency</td>
+							<td class="menu_bar_title">Amount to be Paid</td>
+						 </tr>
+						 [va_summaryfail_searchresults]
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="50%" align="left" class="tbltextttl">Records: [va_summaryfail_matches]</td>
+					<td width="40%" align="right" class="tbltextttl">Total : </td>
+					<td width="10%" align="right" class="tbltextttl"><span id="totals">[va_summaryfail_totals]</span></td>
+				</tr>
+			</table>
+			<p>Payment Info: </p>
+			<table width="100%" border="0" cellspacing="0" cellpadding="4" class="gborder" align="center">
+				<tbody><tr>
+					<td width="30%">Bank Name : </td>
+					<td class="smalltext">[va_summary_bankname]</td>
+				</tr>
+				<tr>
+					<td width="30%">Bank Account : </td>
+					<td class="smalltext">[va_summary_bankaccount]</td>
+				</tr>
+				<tr>
+					<td>Date : </td>
+					<td class="smalltext">[va_summary_date]</td>
+				</tr>
+				<tr>
+					<td>Currency : </td>
+					<td class="smalltext">[va_summary_currency]</td>
+				</tr>
+				<tr style="[va_display_only_internationals]">
+					<td>Exchange Rate : </td>
+					<td class="smalltext">[va_summary_currency_exchange]</td>
+				</tr>
+			</tbody></table>
+
+			<p align="center"><input type="submit" class="button" value="Done" style="display:"></p>
+		</form>
+	</div>
+	<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script language="javascript">
+	<!--
+	chg_radio('doc_type','[in_doc_type]');
+
+	function loadExchangeRate(obj) {
+		var url = '/cgi-bin/common/apps/ajaxbuild';
+		var param = 'ajaxbuild=exchange_rate';
+		$.post(url, param, function(data){
+		   $('#'+obj).val(data)
+		});
+	}
+
+	function loadRefNum(obj) {
+		var url = '/cgi-bin/common/apps/ajaxbuild';
+		var param = 'ajaxbuild=bills_payments_refnum';
+		$.post(url, param, function(data){
+		   $('#'+obj).val(data)
+		});
+	}
+
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#duedate, #toduedate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			numberOfMonths: 3,
+			minDate: new Date(2009,1-1,1),
+			onSelect: function( selectedDate ) {
+				var option = this.id == "duedate" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+
+		var dates2 = $( "#bankdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			numberOfMonths: 3
+		});
+
+		$('#checkall').click(function() {
+			var totals_paid = parseFloat( $('#totals_unformatted').val() );
+			if ($(this).attr('checked')=='checked') {
+				$('input:checkbox.id_ordersttia').attr('checked','checked');
+				
+			}else {
+				totals_paid = 0;
+				$('input:checkbox.id_ordersttia').removeAttr('checked');
+			}
+			$('#totals_paid_unf').val(totals_paid);
+			$('#totals_paid').text('$ '+addCommas(totals_paid.toFixed(2)));
+		});
+
+		$('#checkall_dd').click(function() {
+			var totals_paid = parseFloat( $('#dd_totals_unformatted').val() );
+			if ($(this).attr('checked')=='checked') {
+				$('input:checkbox.id_debdep').attr('checked','checked');
+				
+			}else {
+				totals_paid = 0;
+				$('input:checkbox.id_debdep').removeAttr('checked');
+			}
+			$('#dd_totals_paid_unf').val(totals_paid);
+			$('#dd_totals_paid').text('$ '+addCommas(totals_paid.toFixed(2)));
+		});
+
+		$('input:checkbox.id_ordersttia').click(function() {
+			var totals_paid = parseFloat( $('#totals_paid_unf').val() );
+			if ($(this).attr('checked')=='checked') {
+				totals_paid += parseFloat( $('#amount_unformatted_'+$(this).val()).val() );
+			}else {
+				totals_paid -= parseFloat( $('#amount_unformatted_'+$(this).val()).val() );
+			}
+
+			$('#totals_paid_unf').val(totals_paid);
+			$('#totals_paid').text('$ '+addCommas(totals_paid.toFixed(2)));
+		});
+
+		$('input:checkbox.id_debdep').click(function() {
+			var totals_paid = parseFloat( $('#dd_totals_paid_unf').val() );
+			if ($(this).attr('checked')=='checked') {
+				totals_paid += parseFloat( $('#dd_amount_unformatted_'+$(this).val()).val() );
+			}else {
+				totals_paid -= parseFloat( $('#dd_amount_unformatted_'+$(this).val()).val() );
+			}
+
+			$('#dd_totals_paid_unf').val(totals_paid);
+			$('#dd_totals_paid').text('$ '+addCommas(totals_paid.toFixed(2)));
+		});
+
+		$("form").submit(function() {
+			$('#id_banks').change(function() {
+				if ($(this).val() != '') {
+					$('#btn_pay').show();
+				} else {
+					$('#btn_pay').hide();
+				}
+			});
+		});
+
+		$('#to_amount, #from_amount').change(function() {
+			$(this).val($(this).val().replace(/,/g,'') );
+			if ($(this).val() != '' && isNaN($(this).val())) {
+				$(this).val('');
+			}
+		});
+
+		$('#refnum_auto').change(function() {
+			if ($(this).is(':checked')){
+				$('#refnum').val('');
+				$('#refnum').attr("readonly","readonly");
+			}else{
+				$('#refnum').removeAttr("readonly");
+				$('#refnum').focus();
+			}
+		});
+
+		chg_select('id_banks','[in_id_banks]');
+
+	});
+	
+	function addCommas(nStr) {
+		nStr += '';
+		x = nStr.split('.');
+		x1 = x[0];
+		x2 = x.length > 1 ? '.' + x[1] : '';
+		var rgx = /(\d+)(\d{3})/;
+		while (rgx.test(x1)) {
+			x1 = x1.replace(rgx, '$1' + ',' + '$2');
+		}
+		return x1 + x2;
+	}
+
+	function confirm_pay() {
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+
+	function print_amount(id,amount) {
+		$('#'+id).val(amount);
+		return false;
+
+	}
+
+	-->
+</script>
+
+[ip_footer]

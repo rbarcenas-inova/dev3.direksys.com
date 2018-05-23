@@ -1,0 +1,117 @@
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform" id="sitform">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="10">
+	<input type="hidden" name="add_extrainfo" value="1">
+	<input type="hidden" name="id_orders" value="[in_id_orders]">
+	<input type="hidden" name="id_customers" value="[in_id_customers]">
+	<input type="hidden" name="secret_cupon_applied" value="[in_secret_cupon_applied]">
+<table border="0" cellspacing="0" cellpadding="0" width="480" class="container_white">
+<tr>	
+	<td>
+	<fieldset><legend>Confirmaci&oacute;n de env&iacute;o</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		      <td bgcolor="#D2FFD2"><span class="Apple-style-span" style="color: rgb(0, 0, 204);"><strong>Sr./Sra./Srita.______.
+Contamos con un nuevo servicio, el cu&aacute;l consiste en mantener informados a nuestros clientes del env&iacute;o de su orden cuando es escaneada y ha salido del almac&eacute;n hasta llegar a su casa. 
+<br><br>La notificaci&oacute;n ser&aacute; enviada al correo electr&oacute;nico que usted nos proporcione.</span></td>
+		   </tr>
+			<tr>
+			  <td bgcolor="#D2FFD2" height="2">
+			  	Email:
+			  	<input name="email" value="[in_email]" size="50" onfocus="focusOn( this )" onblur="focusOff( this );echeck(this.value);" type="text" required="required">
+				<br/>
+
+				<center>
+			  	<input value="Aceptar>>" class="button" onclick="todos(email.value);">
+				</center>
+			  	<!--input value="No Acepta>>" class="button" onclick="$('.email').colorbox"-->
+			  	<div class="" id="cboxClose">close</div>
+			  </td>
+			</tr>
+			
+		</table>
+	</fieldset>
+  	</td>
+	</tr>
+</table>
+<script language = "Javascript">
+/**
+ * DHTML email validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+ */
+
+function todos(str)
+{
+	if(echeck(str)===true)
+	{
+		document.forms[0].submit();
+	}
+}
+function echeck(str) {
+
+		var at="@"
+		var dot="."
+		var lat=str.indexOf(at)
+		var lstr=str.length
+		var ldot=str.indexOf(dot)
+		if (str.indexOf(at)==-1){
+		   alert("El correo electrónico no es válido")
+		   return false
+		}
+
+		if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr){
+		   alert("El correo electrónico no es válido")
+		   return false
+		}
+
+		if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr){
+		    alert("El correo electrónico no es válido")
+		    return false
+		}
+
+		 if (str.indexOf(at,(lat+1))!=-1){
+		    alert("El correo electrónico no es válido")
+		    return false
+		 }
+
+		 if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot){
+		    alert("El correo electrónico no es válido")
+		    return false
+		 }
+
+		 if (str.indexOf(dot,(lat+2))==-1){
+		    alert("El correo electrónico no es válido")
+		    return false
+		 }
+		
+		 if (str.indexOf(" ")!=-1){
+		    alert("El correo electrónico no es válido")
+		    return false
+		 }
+
+ 		 return true					
+	}
+
+function ValidateForm(){
+	var emailID=document.sitform.Email
+	
+	if ((emailID.value==null)||(emailID.value=="")){
+		alert("Por favor teclee un email.")
+		emailID.focus()
+		return false
+	}
+	if (echeck(emailID.value)==false){
+		emailID.value=""
+		emailID.focus()
+		return false
+	}
+	return true
+ }
+ 
+ $('#bday_year').blur(function(){
+	var year = $(this).val();
+	if (!year.match(new RegExp('^\\d{4}$'))){
+		alert('El a\u00F1o no est\u00E1 en el formato adecuado');
+	}
+});
+
+</script>

@@ -1,0 +1,40 @@
+		<fieldset><legend>Return Receipt</legend>
+		 <table border="0" cellspacing="0" cellpadding="2" width="100%">
+	        <tr>
+			    <td>Order ID  : <span class="smallfieldterr">[er_id_orders]</span></td>
+			    <td class="smalltext"><input type="text" name="id_orders" value="[in_id_orders]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+			    <td>Customer ID  : <span class="smallfieldterr">[er_id_customers]</span></td>
+			    <td class="smalltext"><input type="text" name="id_customers" value="[in_id_customers]" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			    	[va_customername]</td>
+			</tr>
+	  		<tr>
+			  <td width="20%" valign="top">Return Type  : <span class="smallfieldterr">[er_type]</span></td>
+			  <td class="smalltext">[fc_build_radio_return_type]</td>
+			</tr>
+		 	<tr>
+			  <td width="20%" valign="top">General Package Condition: <span class="smallfieldterr">[er_generalpckgcondition]</span></td>
+			  <td class="smalltext" style="border-top: 1px dotted gray;">[fc_build_radio_return_generalpckgcondition]</td>
+			</tr>
+	  		<tr>
+			  <td width="20%" valign="top">Action : <span class="smallfieldterr">[er_merAction]</span></td>
+			  <td class="smalltext" style="border-top: 1px dotted gray;">[fc_build_radio_return_meraction]</td>
+			</tr>
+			<tr>
+			  <td width="20%" valign="top">Status : </td>
+			  <td class="smalltext" style="border-top: 1px dotted gray;">[bc_status@sl_returns]</td>
+			</tr>
+		  </tr>
+		</table>
+	</fieldset>
+<script language="javascript">
+<!--
+
+	chg_radio('Type','[in_type]');
+	chg_radio('merAction','[in_meraction]');	
+	chg_radio('generalpckgcondition','[in_generalpckgcondition]');
+
+//-->
+</script>
+

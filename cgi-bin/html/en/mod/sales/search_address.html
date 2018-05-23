@@ -1,0 +1,63 @@
+[ip_header_blank]
+[va_javascriptvar]
+
+<form method="post" action="/cgi-bin/common/apps/ajaxbuild" name="sitform">
+	<input type="hidden" name="ajaxbuild" value="search_address_window">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="step" value="[in_step]">
+	<input type="hidden" name="cmd" value="[in_cmdo]">
+	<table width="100%" border="0"  class="gborder" align="center">
+		<tr>
+			<td colspan="3" class="smallfieldterr"><P style='font-size:14'>[va_tabmessages]</P></td>
+		</tr>
+		<tr>
+			<td class="menu_bar_title" colspan="3" align="center">
+				<P style='font-size:14'>Introduzca un número de casa o edificio y el zipcode.</P></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<fieldset><legend>Búsqueda de dirección</legend>
+					<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					  <tr>
+						  <td valign="top" width="30%">Número de edificio o casa : <span class="smallfieldterr">[er_search_address_number]</span></td>
+						  <td class="smalltext">
+								<input type="text" name="search_address_number" value="[in_search_address_number]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							</td>
+						</tr>
+						<tr>
+						  <td valign="top" width="30%">Zipcode : <span class="smallfieldterr">[er_search_address_zip]</span></td>
+						  <td class="smalltext">
+								<input type="text" name="search_address_zip" value="[in_search_address_zip]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							</td>
+						</tr>
+						<tr>
+						  <td valign="top" colspan=2 align=center>
+							  <input type="submit" value="Buscar Dirección" class="button" name="search_address" id="search_address">
+							  
+							  <!-- Fancybox -->
+					<a id="fancybox_search_address" href="#modal_address"></a>
+					<div style="display: none;">
+						<div id="modal_address" style="width:500px;overflow:auto;text-align:center;">
+							Insert an iframe here.
+						</div>
+					</div>
+					<!-- Fancybox -->
+						  </td>
+						</tr>
+					</table>
+				</fieldset>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		
+		
+		
+		<tr>
+			<td align="center" colspan="3">
+			<!--<input type="submit" value="Aceptar" class="button">-->
+			</td>
+		</tr>
+	</table>
+</form>

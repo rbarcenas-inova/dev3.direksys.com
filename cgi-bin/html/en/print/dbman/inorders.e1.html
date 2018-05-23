@@ -1,0 +1,192 @@
+<STYLE TYPE="text/css">
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+</STYLE>
+
+<center>
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td><font class=info>
+
+<table cellpadding=0 cellspacing=0 border=0>
+	<td align=left>
+		<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px>
+	</td>
+	[fc_show_companyinfo]
+</table>
+
+<center>
+<hr style="color: #000;background-color: #000;height: 1px;">
+
+
+	<fieldset><legend>Customer Info (Step 1)</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%"><font class=infot>CID : </td>
+		  <td><font class=info>[in_cid]</td>
+		</tr>		
+		<tr>
+		  <td width="30%"><font class=infot>First Name :</td>
+		  <td><font class=info>[in_firstname]</td>
+		</tr>
+		<tr>
+		  <td width="30%"><font class=infot>Last Name (Father) : </td>
+		  <td><font class=info>[in_lastname1]</td>
+		</tr>
+		<tr>
+		  <td width="30%"><font class=infot>Last Name (Mother) : </td>
+		  <td><font class=info>[in_lastname2]</td>
+		</tr>
+		<tr>
+		  <td width="30%"><font class=infot>Phone (Day) : </td>
+		  <td><font class=info>[in_phone1]</td>
+		</tr>
+		<tr>
+		  <td width="30%"><font class=infot>Phone (Evening) : </td>
+		  <td><font class=info>[in_phone2]</td>
+		</tr>
+		<tr>
+		  <td width="30%"><font class=infot>Cellphone : </td>
+		  <td><font class=info>[in_cellphone]</td>
+		</tr>
+		<tr>
+		  <td width="30%"><font class=infot>Available Time : </td>
+		  <td><font class=info>[in_atime]</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Billing Info (Step 2)</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td valign="top" width="30%"><font class=infot>Address : </td>
+		   <td><font class=info>[in_address1]<br>
+		   		[in_address2]<br>
+		   		[in_address3]
+		   	</td>
+		<tr>
+		<tr>
+		  <td valign="top" width="30%"><font class=infot>Urbanization : </td>
+		  <td><font class=info>[in_urbanization]</td>
+		</tr>
+		<tr>			
+			<td width="30%"><font class=infot>City :</td>
+			<td><font class=info>[in_city]</td>
+		</tr>
+		<tr>
+		 	<td width="30%"><font class=infot>State/Zip : </td>
+		  <td><font class=info>[in_state], [in_zip]</td>
+		</tr>
+		<tr>
+		    <td valign="top" width="30%"><font class=infot>Billing Notes : </td>
+		    <td><font class=info>[in_shippingnotes]</td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Shipping Info (Step 3)</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td valign="top" width="30%"><font class=infot>Name :</td>
+		  <td><font class=info>[in_shp_name]<br>
+		</tr>	
+		<tr>
+		    <td valign="top" width="30%"><font class=infot>Address :</td>
+		   <td><font class=info>[in_shp_address1]<br>
+		   		[in_shp_address2]<br>
+		   		[in_shp_address3]</td>
+		<tr>
+		<tr>
+		  <td valign="top" width="30%"><font class=infot>Urbanization : </td>
+		  <td><font class=info>[in_shp_urbanization]</td>
+		</tr>
+		<tr>			
+			<td width="30%"><font class=infot>City : </td>
+			<td><font class=info>[in_shp_city]</td>
+		</tr>
+		<tr>
+		 	<td width="30%"><font class=infot>State/Zip : </td>
+		  <td><font class=info>[in_shp_state] [in_shp_zip]</td>
+		</tr>
+		<tr>
+		    <td valign="top" width="30%"><font class=infot>Shipping Notes : </td>
+		    <td><font class=info>[in_shippingnotes]</td>
+		 </tr>
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Shipping Type (Step 4)</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		  <td width="30%"><font class=infot>Shipping Type  : </td>
+		  <td><font class=info>[in_shp_type]</td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Payment Type (Step 5)</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="30%"><font class=infot>Payment Type  : </td>
+		  <td><font class=info>[in_pay_type]</td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Products in Order</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="30%"><font class=infot>products  : </td>
+		  <td><font class=info>[in_products]</td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Show Price Level Info</legend>	
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td valign="top" width="30%" valign="top"><font class=infot>Price Level: </td> 
+				<td valign="top"><font class=info>([in_id_pricelevels])  [fc_load_pricelevel_name]</td>
+			</tr>			
+			[fc_load_station_qa]			
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Order Status </legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		  <td width="30%"><font class=infot>Status  : </td>
+		  <td><font class=info>[in_status]</td>
+		 </tr>
+	</table>
+	</fieldset>

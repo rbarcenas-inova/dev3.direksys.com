@@ -1,0 +1,88 @@
+[ip_header]
+
+<script>
+<!--
+$(document).ready(function() {
+
+
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td align="center" width="30%"></td>
+		<td class="cell_on" onclick="trjump('/cgi-bin/mod/[ur_application]/admin?cmd=mer_bills_home')" align="center" width="17%">Bills</td>
+		<td class="cell_off" onclick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=mer_bills&add=1')" align="center" width="17%">Add</td>
+		<td class="cell_off" onclick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=mer_bills&search=form')" align="center" width="17%">Search</td>
+		<td class="cell_off" onclick="trjump('/cgi-bin/mod/[ur_application]/dbman?cmd=mer_bills&search=listall&so=DESC&sb=ID_bills')" align="center" width="17%">View / Edit / Delete</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		    	<td class="titletext" align="center" colspan="2">[va_reportname]</td>
+		 	</tr>
+			<tr>
+		    	<td class="tbltextttl">
+		 			Records : [va_matches]
+			    	&nbsp;&nbsp;&nbsp;&nbsp;
+			    	<a href="javascript:trjump('/cgi-bin/mod/[ur_application]/admin?[va_qs]&export=1')"><img src="/sitimages/default/b_xls.gif" title="Export" alt="" border="0"></a>
+		 		</td>
+		    	<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 	</tr>
+	     </table>
+	     &nbsp;	
+	     <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+			<tr>
+				<td class="menu_bar_title" align="left">ID</td>
+				<td class="menu_bar_title" align="center">Type</td>
+				<td class="menu_bar_title" align="center">Date</td>
+				<td class="menu_bar_title" align="center">Status</td>
+			    <td class="menu_bar_title" align="center">Vendor/Memo</td>
+			    <td class="menu_bar_title" align="center">Billed Amount</td>
+			    <td class="menu_bar_title" align="center">Movs. Amount</td>
+			    <td class="menu_bar_title" align="center">Debits Amount</td>
+			    <td class="menu_bar_title" align="center">Credits Amount</td>
+			    <td class="menu_bar_title" align="right">Tested</td>
+			</tr>
+			[va_searchresults]
+	  	</table>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			    <td class="tbltextttl">
+			    	Records : [va_matches]
+			    	&nbsp;&nbsp;&nbsp;&nbsp;
+			    	<a href="javascript:trjump('/cgi-bin/mod/[ur_application]/admin?[va_qs]&export=1')"><img src="/sitimages/default/b_xls.gif" title="Export" alt="" border="0"></a>
+			    </td>
+			    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+			</tr>
+		</table> 
+
+	</div>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

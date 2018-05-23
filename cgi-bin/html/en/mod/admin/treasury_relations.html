@@ -1,0 +1,84 @@
+<link rel="stylesheet" type="text/css" href="/dropzone/dropzone.css">
+
+[ip_header]
+<style>
+	
+	.relations
+	{
+		width: 96%;
+	    border-collapse: collapse;
+	    margin: 15px;
+	}
+
+	.relations td{
+		padding: 2px;
+	}
+
+	.relations img{
+		vertical-align: middle;
+		margin: 0px 2px 0px 2px;
+	}
+
+	.bank_name
+	{
+		border-top: solid 3px black;
+		font-weight: bolder;
+		font-size: 16px;
+		padding-top: 10px;
+	}
+
+	.column_names
+	{
+		background-color:#777;
+		color:#FFF;
+	}
+
+	.action_td
+	{
+		text-align: center;
+		width: 40px;
+	}
+
+	.action_td img
+	{
+		width:10px;
+	}
+
+</style>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+			<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0>
+				<td align=left>
+					<font face=verdana>
+						<ul id="accordion">
+							[ip_menu]
+						</ul>
+						<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+						<script type="text/javascript">
+							var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+						</script>
+					</font>
+				</td>
+			</table>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+			<!-- Start Main Area  -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+				<tr>
+					<td width="60%" align="center"></td>
+					<td width="20%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=treasury_relations")'>Relationship Rules</td>
+					<td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=preview_treasury")'>Upload</td>
+				</tr>
+			</table>
+			<center>
+			[va_table_relations]
+			</center>
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+	

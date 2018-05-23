@@ -1,0 +1,125 @@
+[ip_header_blank]
+
+[va_javascriptvar]
+<body class=" yui-skin-sam">
+
+	<form method="post" action="[va_script_url]">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor=#ffffff align="center">
+			<tr>
+				<td>
+		<input type="hidden" name="id" value="[in_id]">
+		<input type="hidden" name="table" value="[in_table]">
+		<input type="hidden" name="cmd" value="manage_lists">
+		<input type="hidden" name="cmdo" value="[in_cmdo]">
+		<input type="hidden" name="ajaxbuild" value="manage_lists">
+		<input type="hidden" name="path" value="[in_path]">
+		<input type="hidden" name="action" value="1">
+		<fieldset><legend>Assign to list</legend>
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				  <td width="30%">List: </td>
+					<td class="smalltext">
+						
+<div id="myAutoComplete" class="yui-ac">
+	<input id="list" name="list" type="text"><span id="toggleB"></span>
+	<div id="myContainer" class="yui-ac-container"></div>
+</div>
+
+					</td>
+				</tr>
+				<!--tr>
+				  <td width="30%">List: </td>
+					<td class="smalltext">
+						<select name="list" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							<option value="">---</option>
+							[fc_build_select_lists]
+						</select>
+					</td>
+				</tr-->
+				<tr>
+				  <td width="30%">User: </td>
+					<td class="smalltext">
+						<select name="user" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							<option value="">---</option>
+							[fc_build_userlists]
+						</select>
+					</td>
+				</tr>
+				<tr>
+				  <td width="30%">Group: </td>
+					<td class="smalltext">
+						<select name="group" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							<option value="">---</option>
+							[fc_build_grouplists]
+						</select>
+					</td>
+				</tr>
+				<tr>
+				  <td width="30%"><input type="submit" value="Assign" class="button"></td>
+				</tr>
+			</table>
+			</fieldset>
+			&nbsp;
+		</td>
+	</tr>
+	<tr>
+				<td>
+		<fieldset><legend>Actually assigned to</legend>
+			<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	      	<tr>         	
+	      		<td class="menu_bar_title" nowrap>Action</td>
+						<td class="menu_bar_title" nowrap>List</td>
+						<td class="menu_bar_title" nowrap>User</td>
+						<td class="menu_bar_title" nowrap>Application</td>
+				 	</tr>
+				 	[va_searchresults]
+				</table>
+			</fieldset>
+			&nbsp;
+			</td>
+	</tr>
+	<tr>
+				<td>
+		<fieldset><legend>Mark as Favorite</legend>
+			<table border="0" cellspacing="0" cellpadding="4" width="100%">
+	      	<tr>         	
+						<!--td>
+							<a href="[va_script_url]?cmd=manage_lists&ajaxbuild=manage_lists&id=[in_id]&table=[in_table]&path=[in_path]&bookmark=1&color=red"><img name="bookmarkred" src='[va_imgurl]/app_bar/small_bookmarksred[va_bookmarkred].gif' title='red' alt='red' border='0'></a>
+							<a href="[va_script_url]?cmd=manage_lists&ajaxbuild=manage_lists&id=[in_id]&table=[in_table]&path=[in_path]&bookmark=1&color=green"><img name="bookmarkgreen" src='[va_imgurl]/app_bar/small_bookmarksgreen[va_bookmarkgreen].gif' title='green' alt='green' border='0'></a>
+							<a href="[va_script_url]?cmd=manage_lists&ajaxbuild=manage_lists&id=[in_id]&table=[in_table]&path=[in_path]&bookmark=1&color=blue"><img name="bookmarkblue" src='[va_imgurl]/app_bar/small_bookmarksblue[va_bookmarkblue].gif' title='blue' alt='blue' border='0'></a>
+						</td-->
+						<td>
+							<img name="bookmarkred" src='[va_imgurl]/app_bar/small_bookmarksred[va_bookmarkred].gif' title='red' alt='red' border='0' onmouseover='m_over(this)' onmouseout='m_out(this)' onclick="setCookie('[in_table][in_e]red',[in_id],365,'red');">
+							<img name="bookmarkgreen" src='[va_imgurl]/app_bar/small_bookmarksgreen[va_bookmarkgreen].gif' title='green' alt='green' border='0' onmouseover='m_over(this)' onmouseout='m_out(this)' onclick="setCookie('[in_table][in_e]green',[in_id],365,'green');">
+							<img name="bookmarkblue" src='[va_imgurl]/app_bar/small_bookmarksblue[va_bookmarkblue].gif' title='blue' alt='blue' border='0' onmouseover='m_over(this)' onmouseout='m_out(this)' onclick="setCookie('[in_table][in_e]blue',[in_id],365,'blue');">
+						</td>
+				 	</tr>
+				</table>
+			</fieldset>
+			&nbsp;
+			</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+YAHOO.example.BasicLocal = function() {
+    // Use a LocalDataSource
+    var oDS = new YAHOO.util.LocalDataSource([fc_build_select_lists]);
+    // Optional to define fields for single-dimensional array
+    oDS.responseSchema = {fields : ["state"]};
+    
+    // Instantiate the AutoComplete
+    var oAC = new YAHOO.widget.AutoComplete("list", "myContainer", oDS);
+    oAC.applyLocalFilter = true;  
+		oAC.queryMatchContains = true;
+    oAC.prehighlightClassName = "yui-ac-prehighlight";
+    oAC.useShadow = true;
+
+    
+    return {
+        oDS: oDS,
+        oAC: oAC
+    };
+}();
+</script>
+</body>

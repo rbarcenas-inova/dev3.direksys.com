@@ -1,0 +1,85 @@
+[ip_header_blank]
+[va_javascriptvar]
+
+<form method="post" action="/cgi-bin/common/apps/ajaxbuild" name="sitform">
+	<input type="hidden" name="ajaxbuild" value="search_address_window">
+	<input type="hidden" name="action_choose" value="1">
+	<input type="hidden" name="step" value="[in_step]">
+	<input type="hidden" name="cmd" value="[in_cmdo]">
+	<table width="100%" border="0"  class="gborder" align="center">
+		<tr>
+			<td colspan="3" class="smallfieldterr"><P style='font-size:14'>[va_tabmessages]</P></td>
+		</tr>
+		<tr>
+			<td class="menu_bar_title" colspan="3" align="center">
+				<P style='font-size:14'>Seleccione una de las siguientes direcciones</P></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<fieldset><legend>Resultados de dirección</legend>
+					<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					  <tr>
+						  <td valign="top" width="30%">Número de edificio o casa : </td>
+						  <td class="smalltext">
+								[in_search_address_number]
+								<input type="hidden" name="search_address_number" value="[in_search_address_number]">
+							</td>
+						</tr>
+						<tr>
+						  <td valign="top" width="30%">Zipcode : </td>
+						  <td class="smalltext">
+								[in_search_address_zip]
+								<input type="hidden" name="search_address_zip" value="[in_search_address_zip]">
+							</td>
+						</tr>
+						<tr>
+						  <td valign="top" width="30%">City: </td>
+						  <td class="smalltext">
+								[va_address_city]
+								<input type="hidden" name="search_address_city" value="[va_address_city]">
+							</td>
+						</tr>
+						<tr>
+						  <td valign="top" width="30%">State: </td>
+						  <td class="smalltext">
+								[va_address_state]
+								<input type="hidden" name="search_address_state" value="[va_address_state]">
+							</td>
+						</tr>
+						<tr>
+						  <td valign="top" width="30%">Dirección: <span class="smallfieldterr">[er_street_address]</span></td>
+						  <td class="smalltext">
+								[va_possible_addresses]
+							</td>
+						</tr>
+						<tr>
+						  <td valign="top" colspan=2 align=center>
+							  <!-- Fancybox -->
+					<a id="fancybox_search_address" href="#modal_address"></a>
+					<div style="display: none;">
+						<div id="modal_address" style="width:500px;overflow:auto;text-align:center;">
+							Insert an iframe here.
+						</div>
+					</div>
+					<!-- Fancybox -->
+						  </td>
+						</tr>
+					</table>
+				</fieldset>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		
+		
+		<tr>
+		  <td colspan="2" align="center"><input type="checkbox" name="sameshipping" value="same" class="checkbox"> Direcci&oacute;n de cobro igual a la de envio</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="3"><input type="submit" value="Aceptar" class="button"></td>
+		</tr>
+	</table>
+</form>
+
+

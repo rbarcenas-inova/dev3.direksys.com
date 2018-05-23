@@ -1,0 +1,34 @@
+[va_parts_more_info]
+
+<script type="text/javascript">
+$(document).ready(function(){
+  /* IFRAME */
+  $(".fancy_modal_iframe").fancybox({
+    'width'       : '75%',
+    'height'      : '85%',
+        'autoScale'       : false,
+        'transitionIn'    : 'none',
+    'transitionOut'   : 'none',
+    'type'        : 'iframe'
+
+  });
+
+  $(".fancy_modal_iframe_ajax").fancybox({
+    
+    ajax : {
+        type  : "GET",
+        'width'       : '75%',
+      'height'      : '85%',
+          'autoScale'       : false,
+          'transitionIn'    : 'none',
+      'transitionOut'   : 'none'
+    }
+  });
+
+  /* A INLINE*/
+  $("a.fancy_modal_inline").fancybox({
+    'hideOnContentClick': true
+  });
+
+});
+</script>

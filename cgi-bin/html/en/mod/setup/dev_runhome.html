@@ -1,0 +1,53 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 3, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top">
+		<!-- Start Main Area  -->
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td class="titletext" align="center" colspan="2">Developers Reports</td>
+				</tr>
+				<tr>
+				    <td class="stdtxterr" colspan="2">[va_message]</td>
+				 </tr>
+			</table>
+			&nbsp;
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+				<tr>
+					<td>
+						<fieldset><legend>Reports</legend>
+						<table border="0" cellspacing="0" cellpadding="4" width="100%">
+							<tr>
+								<td valign="top">
+							  	<ul class='nslist'>
+									[va_searchresults]
+							    </ul>
+							    </td>
+							</tr>
+					  </table>
+						</fieldset>	
+						</td>
+				</tr>
+			</table>
+
+			<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

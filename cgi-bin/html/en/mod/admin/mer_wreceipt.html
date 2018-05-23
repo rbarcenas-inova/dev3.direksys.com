@@ -1,0 +1,110 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+  <form action="/cgi-bin/mod/admin/admin" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="mer_wreceipt">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="left" colspan="2">Warehouse Receipt for Supplies' POs</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	
+		&nbsp;
+	<fieldset><legend>Purchase Order Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+ 		<tr>
+			<td width="30%" valign="top">PO ID	 : <span class="smallfieldterr">[er_id_purchaseorders]</span></td>
+			  <td class="smalltext">
+			  	<!--<input type="text" name="id_vendors" value="[in_id_vendors]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			    <a href="javascript:search_id('id_vendors','db=sl_vendors&cmd=vendors')">
+					<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a> <span class="help_on">[va_vendor_name]</span>-->
+					<input type="text" name="id_purchaseorders" id='id_purchaseorders' value="[in_id_purchaseorders]" size="4" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<a href="#purchaseorders" id="purchaseorders" onClick="add_purchaseorder()"><img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+					<div id="popup_purchaseorders" style="visibility: hidden; display: none; background-color: #ffffff;">
+					<div class="menu_bar_title" id="item_drag1">
+					<img id="popup_exit1" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+					&nbsp;&nbsp;&nbsp;POs
+					</div>
+					<div class="formtable">
+					<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=purchaseorders&db=sl_purchaseorders&fname=id_purchaseorders&ajaxtype=1" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+					<H2>Unable to do the script</H2>
+					<H3>Please update your Browser</H3>
+					</IFRAME>	
+					</div></div>					
+			   </td>
+			</tr>				
+  			<tr>
+			    <td width="30%">Supply ID: <span class="smallfieldterr">[er_id_supplies]</span></td>
+			    <td class="smalltext"><input type="text" name="id_supplies" value="[in_id_supplies]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		    </tr>		
+			<tr>
+		  	<td width="30%">Received: <span class="smallfieldterr">[er_received]</span></td>
+				<td class="smalltext">
+					<input type="text" id="received" name="received" value="[in_received]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+				</td>
+			</tr>
+			
+			
+		</table>
+		</fieldset>
+	&nbsp;
+		  
+	
+
+	
+<script language="javascript">
+<!--
+	[va_autorun_js]
+
+	function add_purchaseorder(){
+		popup_show('popup_purchaseorders', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'purchaseorders');
+	}
+
+	
+	
+
+//-->
+</script>
+
+
+	
+	
+	
+	
+	<p align="center"><input type="submit" value="Receive" class="button"></p>
+  </form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

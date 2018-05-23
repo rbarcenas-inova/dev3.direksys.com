@@ -1,0 +1,84 @@
+<input type="hidden" name="id_customers" value="[in_id_customers]">
+<input type="hidden" name="meraction" value="[in_meraction]">
+
+ <fieldset><legend>Original Order</legend>
+ <span class="smallfieldterr">[er_orderdata]</span>
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr class="menu_bar_title">
+		<td colspan="5" align="center">Items In Order </td>
+	</tr>
+		<tr>
+			<td class="menu_bar_title" align="center" nowrap>ID Order</td>
+			<td class="menu_bar_title" align="center">Date</td>
+			<td class="menu_bar_title" align="center">Product info</td>
+	 </tr>
+		[fc_returns_itemsordered] 
+	</table>
+	&nbsp;
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr class="menu_bar_title">
+			<td colspan="10" align="center">This Return </td>
+		</tr>
+		<tr>
+			<td class="menu_bar_title">ID products</td>
+			<td class="menu_bar_title">Model / Name</td>
+			<td class="menu_bar_title">UPC</td>
+			<td class="menu_bar_title">Cost</td>
+			<td class="menu_bar_title">Quantity</td>
+			<td class="menu_bar_title">In order</td>
+			<td class="menu_bar_title">Status</td>
+			<td class="menu_bar_title">Warehouse</td>
+			<td class="menu_bar_title">Location</td>
+		</tr>
+		[fc_return_upcs]
+	</table>
+	</fieldset>	
+	
+</fieldset>
+&nbsp;
+<fieldset><legend>Return</legend>
+		 <table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  		<tr>
+			  <td width="20%" valign="top">Return Type  : <span class="smallfieldterr">[er_type]</span></td>
+			  <td class="smalltext">[fc_build_radio_return_type]</td>
+			</tr>
+		 	<tr>
+			  <td width="20%" valign="top">General Package Condition: <span class="smallfieldterr">[er_generalpckgcondition]</span></td>
+			  <td class="smalltext">[fc_build_radio_return_generalpckgcondition]</td>
+			</tr>
+			<tr>
+			  <td width="20%" valign="top">Quantity of items in the box: <span class="smallfieldterr">[er_itemsqty]</span></td>
+			  <td class="smalltext"><input type="text" name="itemsqty" value="[in_itemsqty]" size="4" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+			<tr>
+			  <td width="20%" valign="top">Reception notes: <span class="smallfieldterr">[er_receptionnotes]</span></td>
+			  <td class="smalltext"><textarea name="receptionnotes" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_receptionnotes]</textarea></td>
+			</tr>
+	  		<tr>
+			  <td width="20%" valign="top">Action  : <span class="smallfieldterr">[er_merAction]</span></td>
+			  <td class="smalltext">[in_meraction]</td> <!-- [fc_build_radio_return_meraction] -->
+			</tr>
+	  		<tr>
+			  <td width="20%" valign="top">Status  : <span class="smallfieldterr">[er_status]</span></td>
+			  <td class="smalltext">
+			  	<span style="white-space:nowrap"><input id="Status_New" name="Status" value="New" class="radio" type="radio" checked> <label for="Status_New">New</label></span>
+			  	<span style="white-space:nowrap"><input id="Status_InProcess" name="Status" value="In Process" class="radio" type="radio"> <label for="Status_InProcess">In Process</label></span>
+			  	<span style="white-space:nowrap"><input id="Status_Backtoinventory" name="Status" value="Back to inventory" class="radio" type="radio"> <label for="Status_Backtoinventory">Back to Inventory</label></span>
+			  	<span style="white-space:nowrap"><input id="Status_Void" name="Status" value="Void" class="radio" type="radio"> <label for="Status_Void">Void</label></span>
+			  	</td>
+			</tr>
+		  </tr>
+		</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_radio('Type','[in_type]');
+	//chg_radio('merAction','[in_meraction]');	
+	chg_radio('generalpckgcondition','[in_generalpckgcondition]');
+	chg_radio('order_prod','[va_order_prod]');
+	[va_jsreturns]
+//-->
+</script>
+

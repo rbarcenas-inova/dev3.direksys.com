@@ -1,0 +1,69 @@
+[ip_header]
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="720" class="container_white">
+	<tr>
+		<td width="140" align="center" valign="top">
+			[ip_menu_main]
+			&nbsp;
+			[ip_imgman:menu]
+			&nbsp;
+			[fc_menu_custom]
+			&nbsp;
+		</td>
+		<td valign="top">
+<!-- Start Main Area  -->
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="50%" align="center"></td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/imgman/admin?cmd=home")'>Images</td>
+	    <td class="cell_on" align="center" onClick='trjump("/cgi-bin/imgman/admin?cmd=upload")'>Upload</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/imgman/admin?cmd=gallery")'>Gallery</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/imgman/dbman?cmd=categories")'>Add Category</td>
+	  </tr>
+	</table>
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center">View Image : [in_fname]</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>File Info: </legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td>File Type:</td>
+		    <td>[va_filetype]</td>
+		    <td>&nbsp;&nbsp;</td>
+		    <td>File Size:</td>
+		    <td>[va_filesize] bytes</td>
+		 </tr>
+		<tr>
+		    <td>Image Size :</td>
+		    <td>[va_imgsize]</td>
+		    <td>&nbsp;&nbsp;</td>
+		    <td>Uploaded in</td>
+		    <td>[va_filedate]</td>
+		 </tr>
+     </table>
+	</fieldset>
+	&nbsp;
+	<fieldset>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td><img src="[va_imgspathurl][in_fname]" border="0" onClick="history.go(-1)"></td>
+		 </tr>
+     </table>
+     </fieldset>
+
+	<p>&nbsp;</p>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

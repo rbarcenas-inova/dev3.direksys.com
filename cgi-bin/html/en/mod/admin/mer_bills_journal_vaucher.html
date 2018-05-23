@@ -1,0 +1,167 @@
+[ip_header]
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table class="tab" cellpadding="0" cellspacing="0" align="center" border="0" width="100%">
+	  <tbody><tr>
+		<td align="center" width="30%"></td>
+		<td class="cell_on" onclick="trjump(&quot;/cgi-bin/mod/admin/admin?cmd=mer_bills_home&quot;)" align="center" width="17%">Bills</td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mer_bills&amp;add=1&quot;)" align="center" width="17%">Add</td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mer_bills&amp;search=form&quot;)" align="center" width="17%">Search</td>
+		<td class="cell_off" onclick="trjump(&quot;/cgi-bin/mod/admin/dbman?cmd=mer_bills&amp;search=listall&so=DESC&sb=ID_bills&quot;)" align="center" width="17%">View / Edit / Delete</td>
+	  </tr>
+	</tbody></table>	
+
+	<div style="background-color:#ffffff;margin:15px;[va_div_main]">
+		<div class="stdtxterr">[va_messages]</div>
+		<table width="100%" cellspacing="0" cellpadding="2" border="0">
+			<tbody><tr>
+				<td align="center" colspan="2" class="titletext">Print Journal Vaucher</td>
+			 </tr>
+			<tr>
+				<td colspan="2" class="stdtxterr"></td>
+			 </tr>
+		</tbody></table>
+		<form id="bills_form" name="sitform" method="post"  style="[va_displayform1]" accept-charset="utf-8">
+			<input type="hidden" value="[in_cmd]" name="cmd">
+			<input type="hidden" value="Search" name="search">
+			<input type="hidden" value="1" name="action">
+			
+			&nbsp;
+			<fieldset><legend>Filters</legend>
+				<table width="100%" cellspacing="0" cellpadding="2" border="0">	
+					<tbody><tr>
+						<td width="30%" valign="top">Vendor ID	 : <span class="smallfieldterr">[er_id_vendors]</span></td>
+						  <td class="smalltext">
+								<input type="text" name="id_vendors" id='id_vendors' value="[in_id_vendors]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+								<a href="/cgi-bin/common/apps/schid?cmd=vendors&db=sl_vendors&fname=id_vendors&ajaxtype=1" title="Search for Vendors" class="fancy_modal_iframe">
+									<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+								</a>
+						   </td>
+						</tr>
+				</tbody></table>
+				<table width="100%" cellspacing="0" cellpadding="2" border="0">
+					<tbody>
+					<tr>
+						<td width="30%">ID Bill (Start) : <span class="smallfieldterr"></span></td>
+						<td class="smalltext">
+							<input type="text" onblur="focusOff( this )" onfocus="focusOn( this )" size="6" value="[in_id_bills_start]" name="id_bills_start"></td>
+					</tr>
+					<tr>
+						<td width="30%">ID Bill (End) : <span class="smallfieldterr"></span></td>
+						<td class="smalltext">
+							<input type="text" onblur="focusOff( this )" onfocus="focusOn( this )" size="6" value="[in_id_bills_end]" name="id_bills_end"></td>
+					</tr>
+					<tr>
+					  <td width="30%">Bill Date (From) : <span class="smallfieldterr">[er_duedate_from]</span></td>
+						<td class="smalltext">
+							<input type="text" id="duedate_from" name="duedate_from" value="[in_duedate_from]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+					</tr>
+					<tr>
+					  <td width="30%">Bill Date (To) : <span class="smallfieldterr">[er_duedate_to]</span></td>
+						<td class="smalltext">
+							<input type="text" id="duedate_to" name="duedate_to" value="[in_duedate_to]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+					</tr>
+					<tr>
+					  <td width="30%">Date Payment (From) : <span class="smallfieldterr">[er_paydate_from]</span></td>
+						<td class="smalltext">
+							<input type="text" id="paydate_from" name="paydate_from" value="[in_paydate_from]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+					</tr>
+					<tr>
+					  <td width="30%">Date Payment (To) : <span class="smallfieldterr">[er_paydate_to]</span></td>
+						<td class="smalltext">
+							<input type="text" id="paydate_to" name="paydate_to" value="[in_paydate_to]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						</td>
+					</tr>
+					<tr>
+					  <td width="30%">Status : <span class="smallfieldterr">[er_status]</span></td>
+						<td class="smalltext">
+							[bc_status@sl_bills]
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</fieldset>	
+			<div style="padding:10px;height:80px;text-align:center;" id="print_id_bills"></div>
+			<p align="center"><input type="button" class="button" value="Generate" onclick="prints_generate(this);"></p>
+
+		</form>
+	<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script language="javascript">
+	<!--
+	chg_radio('status','[in_status]');
+
+	$(document).ready(function() {
+
+		var dates = $( "#duedate_from, #duedate_to" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			numberOfMonths: 3,
+			minDate: new Date(2009,1-1,1),
+			onSelect: function( selectedDate ) {
+				var option = this.id == "duedate_from" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+
+
+		var datespay = $( "#paydate_from, #paydate_to" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			numberOfMonths: 3,
+			minDate: new Date(2009,1-1,1),
+			onSelect: function( selectedDate ) {
+				var option = this.id == "paydate_from" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				datespay.not( this ).datepicker( "option", option, date );
+			}
+		});
+	});
+
+	function prints_generate(obj) {
+		var url = '/cgi-bin/common/apps/ajaxbuild';
+		var param = 'ajaxbuild=bills_print_generate&' + $('#bills_form').serialize();
+		
+		$("#print_id_bills").html('<div><img  src="/sitimages/processing.gif" /><br />Cargando...</div>');
+		$.post(url, param, function(data){
+		    if (data != ''){
+		    	$('#print_id_bills').html("<a href=\"javascript:prnwin('/cgi-bin/mod/admin/dbman?cmd=mer_bills&search=Print&toprint="+data+"')\"><img src='/sitimages//default/printbig.png' width='64' height='64' title='Print' border='0'></a><br />Click to print");
+		    }else{
+		    	$('#print_id_bills').html("Not records found'");
+		    }
+		});
+	}
+	-->
+</script>
+
+[ip_footer]

@@ -1,0 +1,137 @@
+#!/usr/bin/perl
+#######################################################################
+#######################################################################
+#######################################################################
+use DBI;
+use DBIx::Connector;
+use DBD::mysql;
+
+# Load the form information and set the config file and userid.
+local(%in) = &parse_form;
+local(@db_cols,%db_select_fields,%db_valid_types,%db_not_null);
+local($sid,%error,%va,%trs,%perm);
+$in{'sid'} ? ($sid   = $in{'sid'}): ($sid   = '');
+
+# Required Libraries
+# --------------------------------------------------------
+eval {
+	require ("../subs/auth.cgi");
+	require ("../subs/sub.base.html.cgi");
+	require ("../subs/sub.func.html.cgi");
+	require ("ajaxfinance.cfg");
+	require ("ajaxfinance.html.cgi");
+};
+if ($@) { &cgierr ("Error loading required Libraries",300,$@); }
+
+eval { &main; };
+if ($@) { &cgierr("Fatal error,301,$@"); }
+
+exit;
+
+sub main {
+# --------------------------------------------------------
+	$|++;
+	&connect_db;
+	&auth_cleanup;
+	my ($status) = &auth_check_password;
+	if ($status eq "ok") {
+		my ($cmd) = $in{'cmd'};
+		if (defined &$cmd){	
+			&connect_db;
+			&$cmd();
+			return;
+		}
+		&html_blank;
+	}else {
+		&html_blank;
+	}
+	&disconnect_db;
+}
+
+##########################################################
+##			Query				##
+##########################################################
+sub parse_form {
+# --------------------------------------------------------
+# Forms Involved: 
+# Created on: 1/1/2007 9:43AM
+# Last Modified on:
+# Last Modified by:
+# Author: 
+# Description : Decoding Form Data. This is taken in %in hash as pairs.
+# Parameters : 
+use utf8;
+binmode(STDOUT, ":utf8");
+	my (@pairs, %in);
+	my ($buffer, $pair, $name, $value);
+	if ($ENV{'REQUEST_METHOD'} eq 'GET') {
+		@pairs = split(/&/, $ENV{'QUERY_STRING'});
+	}elsif ($ENV{'REQUEST_METHOD'} eq 'POST') {
+		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
+ 		@pairs = split(/&/, $buffer);
+ 		$ENV{'QUERY_STRING'} =  $buffer;
+ 		$ENV{'REQUEST_METHOD'} = 'GET';
+	}else {
+		&cgierr ("This script must be called from the Web\nusing either GET or POST requests\n\n");
+	}
+	
+	PAIR: foreach $pair (@pairs) {
+			($name, $value) = split(/=/, $pair);
+		
+			$name =~ tr/+/ /;
+			$name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+			$name = lc($name);
+		
+			$value =~ tr/+/ /;
+			$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		
+			$value =~ s/^\s+//g;
+			$value =~ s/\s+$//g;
+			
+			$value =~ s/\r//g;
+			#$value =~ s/<!--(.|\n)*-->//g;			# Remove SSI.
+			if ($value eq "---") { next PAIR; }		# This is used as a default choice for select lists and is ignored.
+			
+			(exists $in{$name}) ?
+				($in{$name} .= "|$value") :		# If we have multiple select, then we tack on
+				($in{$name}  = $value);			# using the ~~ as a seperator.
+	}
+	
+	return %in;
+}
+
+sub edit_actions{
+# --------------------------------------------------------
+# Forms Involved: 
+# Created on: 11/19/08 16:17:56
+# Author: MCC C. Gabriel Varela S.
+# Description :   
+# Parameters :
+# Last Modified on: 11/21/08 17:48:00
+# Last Modified by: MCC C. Gabriel Varela S: Se mostrarán los hipervínculos
+# Last Modified on: 11/25/08 16:08:36
+# Last Modified by: MCC C. Gabriel Varela S: Se hace la funcionalidad de exchange.
+# Last Modified on: 12/01/08 12:44:01
+# Last Modified by: MCC C. Gabriel Varela S: Se incluye returntype
+# Last Modified on: 12/30/08 16:41:05
+# Last Modified by: MCC C. Gabriel Varela S: Se modifica la forma en que se envía $in{'edit_type'}
+	print "Content-type: text/html\n\n";
+	print qq|
+
+		<table border="0" cellspacing="0" width="120" class="formtable">
+			<tr>
+				<td class="menu_bar" onmouseover='m_over(this)' onmouseout='m_out(this)' >&nbsp;&nbsp; <a href="$script_url?cmd=$in{'cmdo'}&id_orders=$in{'id_orders'}&reship=$in{'id_orders_products'}&return=$in{'id_orders_products'}&path=$in{'path'}&returntype=$in{'returntype'}&edit_type=$in{'edit_type'}">ReShip</a></td>
+			</tr>
+			<tr>
+				<td class="menu_bar" onmouseover='m_over(this)' onmouseout='m_out(this)' >&nbsp;&nbsp; <a href="$script_url?cmd=$in{'cmdo'}&id_orders=$in{'id_orders'}&refund=$in{'id_orders_products'}&return=$in{'id_orders_products'}&path=$in{'path'}&returntype=$in{'returntype'}&edit_type=$in{'edit_type'}">Refund</a></td>
+			</tr>
+			<tr>
+				<td class="menu_bar" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="popup_show('popup_exchangeitem$in{'id_orders_products'}', 'item_drag$in{'id_orders_products'}', 'popup_exiti$in{'id_orders_products'}', 'element-right', -1, -1,'add_prdmenu');">&nbsp;&nbsp; Exchange</td>
+			</tr>
+		</table>
+	
+	|;
+	#<td class="menu_bar" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'prdmenu$i');loadDoc('/cgi-bin/common/apps/ajaxfinance?cmd=edit_actions&id_orders=$in{'id_orders'}&id_orders_products=$in{'id_orders_products'}');">&nbsp;&nbsp; Exchange</td>
+	#<td class="menu_bar" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="popup_show('ajax_windows', 'ajax_drag', 'ajax_exit', 'element-right', -1, -1,'prdmenu$i');loadDoc('/cgi-bin/common/apps/ajaxfinance?cmd=edit_orders_additems&id_orders=$in{'id_orders'}&path=$va{'script_url'}&exchange=$in{'id_orders_products'}');">&nbsp;&nbsp; Exchange</td>
+	#<td class="menu_bar" onmouseover='m_over(this)' onmouseout='m_out(this)' onClick="popup_show('popup_additem', 'item_drag', 'popup_exiti', 'element-right', -1, -1,'add_prdmenu');">&nbsp;&nbsp; Exchange</td>
+}

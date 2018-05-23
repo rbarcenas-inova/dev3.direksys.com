@@ -1,0 +1,67 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="20%" align="center"></td>
+	    <td width="11%" class="cell_[va_cell_admin]" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=usrman_tree&a=admin")'>Admin</td>
+	    <td width="11%" class="cell_[va_cell_sales]" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=usrman_tree&a=sales")'>sales</td>
+	    <td width="11%" class="cell_[va_cell_crm]" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=usrman_tree&a=crm")'>CRM</td>
+	    <td width="11%" class="cell_[va_cell_wms]" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=usrman_tree&a=wms")'>WMS</td>
+	    <td width="11%" class="cell_[va_cell_setup]" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=usrman_tree&a=setup")'>Setup</td>
+	    <td width="11%" class="cell_[va_cell_ecom]" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=usrman_tree&a=ecom")'>Ecommerce</td>
+	    <td width="11%" class="cell_[va_cell_custom]" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=usrman_tree&a=custom")'>Custom</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td class="titletext" align="left" colspan="2">Permission Tree </td>
+		</tr>
+		<tr>
+		  <td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+		<tr>
+		    <td class="tbltextttl">Records : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: 1</td>
+		 </tr>
+	</table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+	    <td class="menu_bar_title">#</td>			
+	    <td class="menu_bar_title">Path / Name</td>
+	    <td class="menu_bar_title">command</td>
+	    <td class="menu_bar_title">Status</td>	    
+		</tr>
+		[va_searchresults]
+  </table>
+	&nbsp;
+
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

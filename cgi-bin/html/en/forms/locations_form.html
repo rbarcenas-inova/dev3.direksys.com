@@ -1,0 +1,54 @@
+	&nbsp;
+	<fieldset><legend>Locations</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		   <td class='smalltext' width="30%">Warehouse : <span class="smallfieldterr">[er_Id_warehouses]</span></td>
+		   <td class='smalltext'>
+		   		<select name='Id_warehouses' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		   			<option value=''>---</option>
+		   			[fc_build_select_warehouses]
+				</select></td>
+		</tr>
+		<tr>
+		   <td class='smalltext' width="30%">Code : <span class="smallfieldterr">[er_Code]</span></td>
+		   <td class='smalltext'><input type="text" name="Code" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' value="[in_Code]">&nbsp;<span class='help_on'>XYYYZ (X : Section(a-z) / YYY : Position(0-999) / Z : Level(a-z))</span></td>
+		</tr>
+		<tr>
+		   <td class='smalltext' width="30%">Upc : <span class="smallfieldterr">[er_Upc]</span></td>
+		   <td class='smalltext'><input type="text" name="Upc" size="15" onFocus='focusOn( this )' onBlur='focusOff( this )' value="[in_UPC]"></td>
+		</tr>
+		<tr>
+		    <td class='smalltext' width="30%">Description : <span class="smallfieldterr">[er_Description]</span></td>
+		    <td class="smalltext"><textarea name="Description" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_Description]</textarea> </td>
+		 </tr>
+	<!--
+		<tr>
+		   <td class='smalltext' width="30%">Status : <span class="smallfieldterr">[er_Status]</span></td>
+		   <td class='smalltext'>[fc_build_radio_locations_status]</td>
+		</tr>
+	-->
+		<tr>
+		    <td class='smalltext' width="30%">Locked : <span class="smallfieldterr">[er_Status]</span></td>
+		    <td class="smalltext">
+		    	<input type="radio" name="Locked" value="Active" class="radio">Active
+                <input type="radio" name="Locked" value="Inactive" class="radio">Inactive</td>
+		 </tr>
+		<tr>
+		    <td class='smalltext' width="30%">Status : <span class="smallfieldterr">[er_Status]</span></td>
+		    <td class="smalltext">
+		    	<input type="radio" name="Status" value="Active" class="radio">Active
+                <input type="radio" name="Status" value="Inactive" class="radio">Inactive</td>
+		 </tr>
+	</table>
+</fieldset>	
+
+<script language="javascript">
+<!--
+	chg_select('Id_warehouses','[in_Id_warehouses]');
+	chg_radio('Status','[in_Status]');
+	chg_radio('Locked','[in_Locked]');
+
+//-->
+</script>
+
+

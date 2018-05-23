@@ -1,0 +1,182 @@
+[ip_header_blank]
+
+<form method="post" id="sitform" >
+    <input type="hidden" name="id_purchaseorders" value="[in_id_purchaseorders]">
+    <input type="hidden" name="view" value="[in_id_purchaseorders]">
+    <input type="hidden" name="action" value="1">
+    <input type="hidden" name="tab" value="[in_tab]">
+    <input type="hidden" name="cmd" value="adjustment_editor">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+        <tr>
+            <td class="tbltextttl" colspan="5">
+                <a href='javascript:location.reload();'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+                Records : [va_matches]</td>
+        </tr>
+        <tr>
+            <td colspan="5"><span class="stdtxterr" data-err="message"></span>
+             <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+                <tr>
+                    <td class="menu_bar_title">&nbsp;</td>
+                    <td class="menu_bar_title" width="10%">Type</td>
+                    <td class="menu_bar_title" width="30%">Vendor</td>
+                    <td class="menu_bar_title" width="20%">Description</td>
+                    <td class="menu_bar_title" width="10%" align ="center" nowrap>Original Amount</td>
+                    <td class="menu_bar_title" width="10%" align ="center" nowrap>Amount</td>
+                    <td class="menu_bar_title" width="8%" align ="center" nowrap>Tax</td>
+                    <td class="menu_bar_title" width="10%" align ="right" nowrap>Total</td>
+                 </tr>
+                 [va_searchresults]
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"><span class='fieldterr'></span>&nbsp;</td>
+        </tr>
+            [va_po_blocked_start]
+        <tr>
+            <td colspan="5">Add New Adjustment</td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <table align="center" width="100%">
+                    <tr>
+                        <td class="smalltext" valign="top">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="smalltext" valign="top" width="30%">Description</td>
+                        <td class="smalltext" valign="top">
+                            <input type="text" name="description" value="[in_description]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+                            <span class="smallfieldterr" data-err="description"></span>
+                        </td>
+                    </tr>
+                    <tr>    
+                        <td class="smalltext" valign="top" width="30%">Vendor</td>
+                        <td class="smalltext" valign="top">
+                            <select name="id_extvendors" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+                                <option value="">---</option>
+                                [fc_build_select_vendors_adjustments]
+                            </select>
+                            <span class="smallfieldterr" data-err="id_extvendors"></span>
+                        </td>
+                    </tr>
+                    <tr>    
+                        <td class="smalltext" valign="top" width="30%">Charge</td>
+                        <td class="smalltext" valign="top">
+                            <select name="id_extracharges" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+                                <option value="">---</option>
+                                [fc_build_select_poadjustments]
+                            </select>
+                            <span class="smallfieldterr" data-err="id_extracharges"></span>
+                        </td>
+                    </tr>
+                    <tr>    
+                        <td class="smalltext" valign="top" width="30%">
+                            Original Amount
+                            <span class="help_on">(Vendor Currency)</span>
+                        </td>
+                        <td class="smalltext" valign="top"> 
+                            $ <input type="text" name="amount_original" value="[in_amount_original]" size="10"  onFocus='focusOn( this )' onBlur='focusOff( this )'>
+                            <span class="smallfieldterr" data-err="amount_original"></span>
+                        </td>
+                    </tr>
+                    <tr id="exchange_row">    
+                        <td class="smalltext" valign="top" width="30%">
+                            Exchange Rate
+                        </td>
+                        <td class="smalltext" valign="top"> 
+                            &nbsp;&nbsp;&nbsp;<input type="text" name="exchange_rate" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' value="[va_exchange_rate]">
+                            <span class="smallfieldterr" data-err="exchange_rate"></span>
+                        </td>
+                    </tr>
+                    <tr>    
+                        <td class="smalltext" valign="top" width="30%">
+                            Amount [ln_id_vendors@sl_vendors:Currency]
+                            <span class="help_on">(P.O. Currency )</span>
+                        </td>
+                        <td class="smalltext" valign="top"> 
+                            $ <input type="text" name="amount" value="[in_amount]" size="10"  onFocus='focusOn( this )' onBlur='focusOff( this )' disabled>
+                            <span class="smallfieldterr" data-err="amount"></span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="center" colspan="5">
+                <input type="button" value="Add Adjustment" onclick="send_data();" class="button">
+            </td>
+        </tr>
+            [va_po_blocked_end]
+    </table>
+</form>
+
+<script>
+
+    chg_select('type','[in_type]');
+    $('[name="id_extvendors"]').on('change', function(){ calulate_amount(); });
+    $('[name="amount_original"]').on("keyup", function(){ calulate_amount(); });
+    $('[name="exchange_rate"]').on("keyup", function(){ calulate_amount(); });
+
+    function send_data(){
+
+        data = $('#sitform').serialize();
+        data += '&amount=' + $('[name="amount"]').val();
+        $.post( 
+            "/cgi-bin/common/apps/ajaxfinance", 
+            data,
+            function(response){
+                var obj = $.parseJSON(response);
+                
+                if( obj == null ){
+                    href = document.location.href;
+                    if( href.indexOf('exchange_rate') == -1 ){
+                        exchange = $('[name="exchange_rate"]').val();
+                        document.location.href = href+'&exchange_rate='+exchange;
+                    }else{
+                        location.reload();
+                    }
+                }else{
+                    for (var item in obj){
+                        $('[data-err="'+item+'"]').html( obj[item] );
+                    }
+                }
+
+            }
+        );
+
+    }
+
+    function calulate_amount(){
+
+        po_currency     = "[va_po_currency]";
+        id              = $('[name="id_extvendors"]').val();
+        text            = $('[value="'+id+'"]').text();
+
+        original_amount = parseFloat( $('[name="amount_original"]').val() );
+        original_amount = isNaN(original_amount)? 0 : original_amount;
+
+        exchange        = parseFloat( $('[name="exchange_rate"]').val() );
+        exchange        = isNaN(exchange)? 0 : exchange;
+
+        if( text.indexOf(po_currency) != -1 ){
+            $('#exchange_row').hide();
+            $('[name="amount"]').val(original_amount);
+        }else{
+            $('#exchange_row').show();
+            if( exchange != 0){
+                if( text.indexOf('MX$') != -1 ){
+                    amount = parseFloat(original_amount/exchange).toFixed(2);
+                    $('[name="amount"]').val(amount);
+                }else{
+                    amount = parseFloat(original_amount*exchange).toFixed(2);
+                    $('[name="amount"]').val(amount);
+                }
+            }
+        }
+
+    }
+
+</script>

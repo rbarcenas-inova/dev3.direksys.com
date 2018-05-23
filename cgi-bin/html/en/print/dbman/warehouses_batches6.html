@@ -1,0 +1,117 @@
+<STYLE TYPE="text/css">	
+@page  
+{size: auto;     margin: 25mm 25mm 25mm 25mm;  } 
+body  
+{margin: 0px;  } 
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+</style>
+
+		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+			<tr>
+				
+				<td style="width:350px;">
+					<!-- Encabezado -->
+					<table align="center" width="100%">
+						<tr>
+							<td width="20%">ORDEN: </td>
+							<td width="30%">[in_id_orders]</td>
+							<td colspan="2">
+								<img src="/cgi-bin/common/apps/barcode?code=[va_e_prefix][in_id_orders]" style="margin-top:6px" border="0">
+							</td>
+						</tr>
+						<tr>
+							<td width="20%">Remesa: </td>
+							<td width="30%">[in_id_warehouses_batches]</td>
+							<td width="20%">Tipo Cobro: </td>
+							<td width="30%">[va_ptype]</td>
+						</tr>
+						<tr>
+							<td width="20%">No. Guia: </td>
+							<td width="30%">[va_tracking]</td>
+							<td width="20%">Forma Pago: </td>
+							<td width="30%">[in_ptype]</td>
+						</tr>
+						<tr>
+							<td width="20%">Alta: </td>
+							<td width="30%">[in_date]</td>
+							<td width="20%">RVT: </td>
+							<td width="30%">[ln_id_admin_users@admin_users:FirstName] [ln_id_admin_users@admin_users:LastName]</td>
+						</tr>
+						<tr>
+							<td width="20%">Asig: </td>
+							<td width="30%">[va_date]</td>
+							<td width="20%">Men: </td>
+							<td width="30%">[ln_id_warehouses@sl_warehouses:Name]</td>
+						</tr>
+					</table>
+					<!-- Encabezado -->
+				</td>
+
+				<td style="width:350px;">
+					<!-- Encabezado -->
+					<table align="center" width="100%">
+						<tr>
+							<td width="20%">ORDEN: </td>
+							<td width="30%">[in_id_orders]</td>
+							<td colspan="2">
+								<img src="/cgi-bin/common/apps/barcode?code=[va_e_prefix][in_id_orders]" style="margin-top:6px" border="0">
+							</td>
+						</tr>
+						<tr>
+							<td width="20%">Remesa: </td>
+							<td width="30%">[in_id_warehouses_batches]</td>
+							<td width="20%">Tipo Cobro: </td>
+							<td width="30%">[va_ptype]</td>
+						</tr>
+						<tr>
+							<td width="20%">No. Guia: </td>
+							<td width="30%">[va_tracking]</td>
+							<td width="20%">Forma Pago: </td>
+							<td width="30%">[in_ptype]</td>
+						</tr>
+						<tr>
+							<td width="20%">Alta: </td>
+							<td width="30%">[in_date]</td>
+							<td width="20%">RVT: </td>
+							<td width="30%">[ln_id_admin_users@admin_users:FirstName] [ln_id_admin_users@admin_users:LastName]</td>
+						</tr>
+						<tr>
+							<td width="20%">Asig: </td>
+							<td width="30%">[va_date]</td>
+							<td width="20%">Men: </td>
+							<td width="30%">[ln_id_warehouses@sl_warehouses:Name]</td>
+						</tr>
+					</table>
+					<!-- Encabezado -->
+				</td>
+
+			</tr>
+
+			
+		</table>				
+	</body>
+</html>

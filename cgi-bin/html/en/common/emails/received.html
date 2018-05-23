@@ -1,0 +1,314 @@
+<div style="width:100%;background-color:#e5e5e5;padding:2%">
+	<div class="adM"></div>
+	<center>
+		<table cellpadding="18px" cellspacing="0" style="border:1px solid silver;width:700px;background-color:#ffffff">
+			<tbody>
+				<tr bgcolor="#111111">
+					<td>
+						<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/logo2.png" width="110px" border="0" class="CToWUd">
+					</td>
+					<td align="right">
+						<font face="verdana" size="3" color="#ffffff">
+							<b>Pedido No. [va_id_orders_full]</b>
+
+						</font>
+					</td>
+				</tr>
+				<tr>
+					<td align="left" colspan="2">
+						<font face="arial, verdana">
+							<span class="im">
+								<table cellpadding="0" cellspacing="0" border="0">
+									<tbody>
+										<tr>
+											<td width="215px">
+												<font face="arial, verdana" size="1" color="#111111">
+													<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/paso1on.jpg" align="left" width="65px" style="margin-right:15px" class="CToWUd">
+													<font color="#2ab10b"><b>Pedido por confirmar</b></font><br>
+													Tu pedido ha sido recibido y está a la espera de la confirmación de pago
+												</font>
+											</td>
+											<td width="15px"></td>
+											<td width="215px">
+												<font face="arial, verdana" size="1" color="#bbbbbb">
+													<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/paso2.jpg" align="left" width="65px" style="margin-right:15px" class="CToWUd">
+													<b>Pedido confirmado</b><br>
+													Tu pedido ha sido confirmado y está siendo agendado para su entrega
+												</font>
+											</td>
+											<td width="15px"></td>
+											<td width="215px">
+												<font face="arial, verdana" size="1" color="#bbbbbb">
+													<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/paso3.jpg" align="left" width="65px" style="margin-right:15px" class="CToWUd">
+													<b>Pedido enviado</b><br>
+													¡Tu pedido está en camino y llegará pronto a tu domicilio!
+												</font>
+											</td> 
+										</tr>
+									</tbody>
+								</table>
+							</span>
+							<center>
+								<br><br>
+								<font face="century gothic, verdana" size="5" color="#2ab10b">¡Gracias, recibimos tu pedido!</font>
+								<br>
+							</center>
+							<br>
+							<br>
+							<table cellpadding="0" cellspacing="5px" border="0">
+								<tbody>
+									<tr>
+										<td valign="top" align="left">
+											<font face="arial, verdana">
+												<font size="3" style="text-transform: capitalize;">¡Hola, [va_name]!</font><br><br>
+												¡Gracias por comprar con nosotros! Por tu seguridad, estamos validando los datos de tu pedido y en breve te lo confirmaremos. Es posible que nos pongamos en contacto contigo y te pidamos algún documento para validar tu identidad y prevenir posibles fraudes<br><br>
+												Por favor, verifica que los datos de tu pedido son correctos, si no es as&iacute;, cont&aacute;ctanos.<br>
+												<span class="im">
+													<span>
+														<!--br>
+														<a style="font-family:arial;color:0000ee!important;font-size:12px">Quiero saber más</a>
+														<br--><br><br><br>
+														<font face="century gothic, verdana" size="3" color="#2ab10b">Productos:</font><br>
+														<div style="text-transform:capitalize;margin-left:15px">
+															<table style="border-collapse: collapse; font-size: 9pt; width: 100%;">
+																<tr>
+																	<th style="background-color: #088A08; color: #ffffff; padding: 3px;">CANT.</th>
+																	<th style="background-color: #088A08; color: #ffffff; padding: 3px; text-align: left;">PRODUCTO</th>
+																	<th style="background-color: #088A08; color: #ffffff; padding: 3px; text-align: right;">P. UNITARIO</th>
+																</tr>												
+																[va_email_products_list]
+															</table>
+														</div>
+														<div style="float: right; font-size: 12pt; border-top: 1px solid #088A08; text-align: right; width: 97%;">
+															<table style="border-collapse: collapse; font-size: 10pt; width: 100%;">
+																[va_email_total_order]
+															</table>
+														</div>
+													</span>
+													<br><br><br>
+													<table cellpadding="0" cellspacing="0" border="0" width="100%">
+														<tbody>
+															<tr>
+																<td valign="top">
+																	<font face="arial, verdana">
+																		<span style="font-family: century gothic, verdana; font-size: 13pt; color: #2ab10b;">Datos de Env&iacute;o:</span>
+																		<div style="text-transform:uppercase; margin-left:10px; font-size:12px;">
+																			[va_shp_name]<br>
+																			[va_shp_address1]<br>
+																			[va_shp_urbanization]<br>
+																			[va_shp_address2]<br>
+																			[va_shp_address3]<br>
+																			[va_shp_city], [va_shp_state].<br>
+																			C.P. [va_shp_zipcode].<br>
+																		</div>
+																	</font>
+																</td>
+																<td width="15px"></td>
+																<td valign="top">
+																	[va_invoice_info]
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</span>
+											</font>
+										</td>
+										<td width="1px"></td>
+										<td></td>
+										<td width="5px" style="border-left:1px solid #dddddd">&nbsp;</td>
+										<td></td>
+										<td valign="top" style="width: 200px;">
+											<center>
+												<font face="arial, verdana" size="3">
+													<font face="century gothic, verdana" size="3" color="#2ab10b">Información importante</font>
+													<br><br>
+													<a href="http://pedidos.inova.com.mx/?id_orders=[va_id_orders_full]&email=[va_email]" target="_blank" style="font-family:arial;color:0000ee!important;font-size:17px">Ver mi pedido</a> 
+													<br><br><br>													
+													[va_ptype_info]
+												</font>
+											</center>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div>
+								<div class="adm">
+									<div id="q_14be5c044e7256dd_7" class="ajR h4">
+										<div class="ajT">
+										</div>
+									</div>
+								</div>
+								<div class="h5">
+									<font face="arial, verdana">
+										<hr style="border:0;border-top:1px solid #2ab10b;min-height:0px;width:100%">
+										<br>
+										<table cellpadding="0" cellspacing="0" border="0" width="100%">
+											<tbody>
+												<tr>
+													<td valign="top">
+														<font face="arial, verdana">
+															<font face="century gothic, verdana" size="3" color="#2ab10b">Si tienes dudas, envíanos un correo a:</font>
+															<br><br>
+															<a href="mailto:info@inova.com.mx" style="font-family:arial;color:0000ee!important;font-size:18px" target="_blank">info@inova.com.mx</a>
+															<br>
+															Si es relacionado con tu compra, no olvides <b>incluir el número de tu pedido</b>.
+															<br><br>
+															<font face="century gothic, verdana" size="3" color="#2ab10b">O llámanos a los teléfonos:</font>
+															<br><br>
+															México, D.F. 
+															<b>1087 2577</b>.
+															<br>
+															Resto del país: 
+															<b>01 (55) 1087 2577</b>
+															<br>
+														</font>
+													</td>
+													<td valign="top" width="200px">
+														<font face="arial, verdana">
+															<center>
+																<font face="century gothic, verdana" size="3" color="#2ab10b">¿Necesitas ayuda?</font>
+																<br><br>
+																<a href="https://www.inova.com.mx/preguntas-frecuentes" style="font-family:arial;color:0000ee!important;font-size:12px" target="_blank">Preguntas Frecuentes</a>
+															</center>
+														</font>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<br><br>
+										<hr style="border:0;border-top:1px solid #2ab10b;min-height:0px;width:100%">
+										<br> 
+										
+
+										<!-- tracker -->
+										<div style="max-width: 900px; width: 100%; margin:0 auto;">
+											<table border="0" cellpadding="0" cellspacing="0">
+												<tr style="border: 0">
+													<td align="left" valign="top" colspan="3" cellspacing="0">
+														<img style="width:100%; border: 0; line-height: 0; padding: 0; margin: 0;"  style="line-height: 0;" src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/banner_rastrea_pedidos_01.jpg" alt=""></td>
+												</tr>
+												<tr style="border: 0;">
+													<td align="left" valign="top" cellspacing="0">
+														<img style="width:100%; border: 0; line-height: 0; padding: 0; margin: 0; margin-top: -1;" style="line-height: 0;" 
+														src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/banner_rastrea_pedidos_02.jpg" alt=""></td>
+													<td align="left" valign="top" cellspacing="0">
+														<a href="http://pedidos.inova.com.mx/?id_orders=[va_id_orders_full]&email=[va_email]" target="_blank">
+															<img style="width:100%; border: 0; line-height: 0; padding: 0; margin: 0; margin-top: -1;"  
+															src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/entrar.jpg" alt=""></a></td>
+													<td align="left" valign="top" cellspacing="0">
+														<img style="width:100%; border: 0; line-height: 0; padding: 0; margin: 0; margin-top: -1;" 
+														src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/banner_rastrea_pedidos_03.jpg"  alt=""></td>
+												</tr>
+												<tr style="border: 0">
+													<td align="left" valign="top" colspan="3" cellspacing="0">
+														<img style="width:100%;border: 0; line-height: 0; padding: 0; margin: 0; margin-top: -1;" 
+														src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/banner_rastrea_pedidos_04.jpg"  alt=""></td>
+												</tr>
+												<tr style="border: 0">
+													<td align="left" valign="top" colspan="3" cellspacing="0">
+														<a href="http://factura.inova.com.mx/" target="_blank"><img style="width:100%; border: 0; line-height: 0; padding: 0; margin: 0; margin-top: -1;" src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/factura.jpg"  alt="Facturar"></a>
+														</td>
+												</tr>
+											</table>
+										</div>
+										<!--//tracker -->
+										<br><br>
+										<hr style="border:0;border-top:1px solid #2ab10b;min-height:0px;width:100%">
+										<br>
+
+										<!-- tracker -->
+										<div style="max-width: 900px; width: 100%; margin:0 auto;">
+											<table border="0" cellpadding="0" cellspacing="0">
+												<tr style="border: 0">
+													<td align="left" valign="top" colspan="3" cellspacing="0">
+														<img style="width:100%; border: 0; line-height: 0; padding: 0; margin: 0;"  style="line-height: 0;" src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/banner_whatsapp.jpg" alt=""></td>
+												</tr>
+												
+											</table>
+										</div>
+										<!--//tracker -->
+										<br><br>
+										<hr style="border:0;border-top:1px solid #2ab10b;min-height:0px;width:100%">
+										<font face="century gothic, verdana" size="3" color="#2ab10b">¡Encuentra esto y más en Inova!</font>
+										<br><br>
+										<table width="100%" cellpadding="0" cellspacing="0">
+											<tbody>
+												<tr>
+													<td align="right">
+														<a href="https://www.inova.com.mx/categoria/salud-y-belleza" target="_blank">
+															<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/salud.jpg" width="210px" border="0" class="CToWUd">
+														</a>
+													</td>
+													<!--td align="left">
+														<a href="http://www.inova.com.mx/Categories/80-Electronica-y-Tecnologia.aspx" target="_blank">
+															<img src="http://mx.direksys.com/sitimages/default/cat01.jpg" width="210px" border="0" class="CToWUd">
+														</a>
+													</td-->
+													<td align="center">
+														<a href="https://www.inova.com.mx/categoria/hogar" target="_blank">
+															<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/hogar.jpg" width="210px" border="0" class="CToWUd">
+														</a>
+													</td>
+													<td align="left">
+														<a href="https://www.inova.com.mx/categoria/fitness-y-bienestar" target="_blank">
+															<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/bienestar.jpg" width="210px" border="0" class="CToWUd">
+														</a>
+													</td>
+												</tr>
+												<tr>
+													<td align="left" height="15px"></td>
+												</tr>
+												<tr>
+													<td align="right">
+														<a href="https://www.inova.com.mx/categoria/cocina" target="_blank">
+															<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/cocina.jpg" width="210px" border="0" class="CToWUd">
+														</a>
+													</td>
+													<td align="center">
+														<a href="https://www.inova.com.mx/categoria/ferreteria" target="_blank">
+															<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/ferreteria.jpg" width="210px" border="0" class="CToWUd">
+														</a>
+													</td>
+													<td align="left">
+														<a href="https://www.inova.com.mx/categoria/como-lo-vio-en-tv" target="_blank">
+															<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/tv.jpg" width="210px" border="0" class="CToWUd">
+														</a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<br><br>
+										¡Síguenos!
+										<br><br>
+										<a href="https://www.facebook.com/inovamexico" target="_blank">
+											<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/ico-facebook.jpg" border="0" class="CToWUd"></a>&nbsp;
+										<a href="https://twitter.com/inovamexico" target="_blank">
+											<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/ico-twitter.jpg" border="0" class="CToWUd"></a>&nbsp;
+										<a href="https://www.youtube.com/user/inovamx" target="_blank">
+											<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/ico-youtube.jpg" border="0" class="CToWUd"></a>&nbsp;
+										<a href="http://blog.inova.com.mx/" target="_blank">
+											<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/ico-blog.jpg" border="0" class="CToWUd"></a>&nbsp;
+										<a href="https://instagram.com/inovamexico/" target="_blank">
+											<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/ico-instagram.jpg" border="0" class="CToWUd"></a>&nbsp;
+										<a href="https://plus.google.com/u/0/101738740723697128544/posts" target="_blank">
+											<img src="https://s3.us-east-2.amazonaws.com/direksys-cloudfront/ico-googleplus.jpg" border="0" class="CToWUd"></a>&nbsp;
+										<br><br>
+										<hr style="border:0;border-top:1px solid #cccccc;min-height:0px;width:100%">
+										<br>
+										<font face="arial, verdana" size="1">
+											Esta dirección de correo fue utilizada para realizar una compra en nuestro website.<br>
+											Si desea que demos de baja su dirección o que lo contactemos en una dirección de correo diferente, por favor póngase en contacto con nosotros a la dirección de correo <a href="mailto:info@inova.com.mx" target="_blank">info@inova.com.mx</a> a los teléfonos siguientes. México, D.F. 1087 2577.Resto del país: 01 (55) 1087 2577, en caso contrario entenderemos que está de acuerdo en que lo contactemos en tal dirección para cualquiera asunto relacionado con su compra. Si es relacionado con tu orden, no olvides incluir el número de tu pedido.<br>
+											En caso que usted no haya autorizado el uso de esta dirección de correo por favor reporte esta situación a la dirección de correo y teléfonos antes mencionados.<br>
+											Este mensaje podría contener información confidencial, si usted no es el destinatario por favor reporte esta situación a los datos de contacto aquí descritos y bórrelo sin retener copia alguna.
+											<br><br>
+										</font>
+									</font>
+								</div>
+							</div>
+						</font>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</center>
+</div>

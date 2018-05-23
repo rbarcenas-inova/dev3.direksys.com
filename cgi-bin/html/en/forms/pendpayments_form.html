@@ -1,0 +1,56 @@
+&nbsp;
+	<fieldset><legend>Return info </legend>
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tr>
+				<td width="20%" valign="top">Action Type</td>
+				<td class="smalltext">[in_meraction]
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a name='pamount' id='pamount'>	
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" valign="top">Return Type</td>
+				<td class="smalltext">[in_type]</td>
+			</tr>
+			<tr>
+				<td width="20%" valign="top">General Package Condition</td>
+				<td class="smalltext">[in_generalpckgcondition]</td>
+			</tr>
+			<tr>
+				<td width="20%" valign="top">Items Quantity</td>
+				<td class="smalltext">[in_itemsqty]</td>
+			</tr>
+			<tr>
+				<td width="20%" valign="top">Amount</td>
+				<td class="smalltext">$[in_amount] [fc_payreturn]</td>
+			</tr>
+		</table>
+	</fieldset>  &nbsp;
+	<fieldset><legend>Action Type</legend>
+			[in_meraction] [in_id_products_exchange]
+	</fieldset>
+	
+	&nbsp;
+		<fieldset><legend>Shipping & Handling Return Fees</legend>
+		[in_atcreturnfees]
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Re-Stock Fees</legend>
+		[in_atcrestockfees]
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Return Old Shipping</legend>
+		[in_oldshpreturn]
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>New Shipping</legend>
+		[in_newshp]
+	</fieldset>
+	&nbsp;
+	
+<script language="javascript">
+	function add_ritem(){
+		popup_show('popup_ritem', 'item_dragr', 'popup_exitr', 'element-right', -1, -1,'productsexchange');
+	}
+ </script>

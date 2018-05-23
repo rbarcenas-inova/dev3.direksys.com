@@ -1,0 +1,138 @@
+<script src="/sitimages/FCKeditor/ckeditor.js"></script>
+
+ <fieldset><legend>Original Order</legend>
+ <span class="smallfieldterr">[er_orderdata]</span>
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr class="menu_bar_title">
+		<td colspan="5" align="center">Items In Order </td>
+	</tr>
+		<tr>
+			<td class="menu_bar_title" nowrap>ID Orden</td>
+			<td class="menu_bar_title">Date</td>
+			<td class="menu_bar_title">Product info</td>
+			<td class="menu_bar_title">Ship Info</td>
+			<td class="menu_bar_title">Status</td>
+	 </tr>
+		[fc_returns_itemsordered] 
+	</table>
+	&nbsp;
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	<tr class="menu_bar_title">
+		<td colspan="6" align="center">This Return </td>
+	</tr>
+	<tr>
+		<td class="menu_bar_title">ID products</td>
+		<td class="menu_bar_title">Model / Name</td>
+		<td class="menu_bar_title">UPCs</td>
+		<td class="menu_bar_title">In order</td>
+		<td class="menu_bar_title">Status</td>
+		<td class="menu_bar_title">Back to Inventory</td>
+	</tr>
+	[fc_return_upcs]
+	</table>
+</fieldset>
+&nbsp;
+
+
+<fieldset><legend>Return</legend>
+		 <table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  		<tr>
+			  <td width="20%" valign="top">Return Type  : <span class="smallfieldterr">[er_type]</span></td>
+			  <td class="smalltext">[fc_build_radio_return_type]</td>
+			</tr>
+		 	<tr>
+			  <td width="20%" valign="top">General Package Condition: <span class="smallfieldterr">[er_generalpckgcondition]</span></td>
+			  <td class="smalltext">[fc_build_radio_return_generalpckgcondition]</td>
+			</tr>
+	  		<tr>
+			  <td width="20%" valign="top">Action  : <span class="smallfieldterr">[er_merAction]</span></td>
+			  <td class="smalltext">[fc_build_radio_return_meraction]</td>
+			</tr>
+		  </tr>
+		</table>
+</fieldset>
+&nbsp;
+<fieldset>
+	<legend>Repair Work Sheet : <span class="smallfieldterr">[er_workdone]</span></legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td valign="top" class="smalltext" colspan="2">
+			<textarea cols="80" id="workdone" name="workdone" rows="10">[in_workdone]</textarea>
+		<script>
+
+			// Replace the <textarea id="editor"> with an CKEditor
+			// instance, using default configurations.
+			CKEDITOR.replace( 'workdone', {
+				uiColor: '#9AC02F',
+				toolbar: [
+					[ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
+					[ 'FontSize', 'TextColor', 'BGColor' ]
+				]
+			});
+
+		</script></td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset>
+	<legend>Charges</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  	<tr>
+			  <td width="20%" valign="top">Shipping Charges (1st Ship) : <span class="smallfieldterr">[er_oldshpreturn]</span></td>
+			  <td class="smalltext">[br_oldshpreturn@sl_returns]</td>		
+	  	</tr>		
+	  	<tr>
+			  <td width="20%" valign="top">Shipping Charges (Reship) : <span class="smallfieldterr">[er_newshp]</span></td>
+			  <td class="smalltext">[br_newshp@sl_returns]</td>		
+	  	</tr>
+	  	<tr>
+			  <td width="20%" valign="top">Service Charge :  <span class="smallfieldterr">[er_sprice]</span></td>
+			  <td class="smalltext"><input type="text" name="sprice" value="[in_sprice]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'><br>
+			  	<span class="help_on">Service Charge include Shipping Charges if applicable</span></td>	
+	  	</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Return Status</legend>
+		 <table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  		<tr>
+			  <td width="20%" valign="top">Status  : <span class="smallfieldterr">[er_status]</span></td>
+			  <td class="smalltext">[fc_build_radio_return_status]</td>
+			</tr>
+		  </tr>
+		</table>
+	</fieldset>
+
+<div id="popup_ritem" style="visibility: hidden; display: none; background-color: #ffffff;">
+<div class="menu_bar_title" id="item_dragr">
+<img id="popup_exitr" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+&nbsp;&nbsp;&nbsp;Products Exchange
+</div>
+<div class="formtable">
+<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=products_exchange&id_products=[in_id_products]&path=[va_script_url]&id_returns=[in_id_returns]&cmdret=qcreturns" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+<H2>Unable to do the script</H2>
+<H3>Please update your Browser</H3>
+</IFRAME>	
+</div></div>
+
+<script language="javascript">
+<!--
+
+	chg_radio('Type','[in_type]');
+	chg_radio('merAction','[in_meraction]');	
+	chg_radio('Status','[in_status]');
+	chg_radio('newshp','[in_newshp]');
+	chg_radio('oldshpreturn','[in_oldshpreturn]');
+
+	chg_radio('generalpckgcondition','[in_generalpckgcondition]');
+	chg_radio('order_prod','[va_order_prod]');
+
+	function add_ritem(){
+		popup_show('popup_ritem', 'item_dragr', 'popup_exitr', 'element-right', -1, -1,'productsexchange');
+	}
+	
+
+//-->
+</script>
+

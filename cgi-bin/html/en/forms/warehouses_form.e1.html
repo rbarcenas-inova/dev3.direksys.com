@@ -1,0 +1,86 @@
+	&nbsp;
+	<fieldset><legend>Warehouse Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Name  : <span class="smallfieldterr">[er_name]</span></td>
+		  <td class="smalltext"><input type="text" name="name" value="[in_name]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>	
+		<tr>
+		  <td width="30%">Warehouse Manager : <span class="smallfieldterr">[er_wmanager]</span></td>
+		  <td class="smalltext">
+		  	<select name="wmanager" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	      	<option value="---">---</option>
+	      		[fc_build_userlist]
+				</select>
+			</td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Type :</td>
+		   <td class="smalltext">
+		   		<select name="type" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		   			<option value="---">---</option>
+						[bs_type@sl_warehouses]
+					</select><span class="smallfieldterr">[er_type]</span>
+		   	</td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Address :</td>
+		   <td class="smalltext">
+		   		<input type="text" name="address1" value="[in_address1]" style="width:100%" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address1]</span><br>
+		   		<input type="text" name="address2" value="[in_address2]" style="width:100%" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address2]</span><br>
+		   		<input type="text" name="address3" value="[in_address3]" style="width:100%" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_address3]</span>
+		   	</td>
+		</tr>
+		<tr>
+			<td width="30%">City  : <span class="smallfieldterr">[er_city]</span></td>
+			<td class="smalltext"><input type="text" name="city" value="[in_city]" size="30" oocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		 	<td width="30%">State/Zip : </td>
+		  <td class="smalltext">
+						<select name="state" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							<option value="">---</option>
+								[fc_build_select_opr_customersstate]
+						</select> <span class="smallfieldterr">[er_state]</span>
+					<input type="text" name="zip" value="[in_zip]" size="8" oocus='focusOn( this )' onBlur='focusOff( this )'> <span class="smallfieldterr">[er_zip]</span>
+			</td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">Notes : <span class="smallfieldterr">[er_notes]</span></td>
+		  <td class="smalltext"><textarea name="notes" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_notes]</textarea></td>	
+		</tr>
+		<tr>
+		  <td width="30%">Is a DropShipper ? :  <span class="smallfieldterr">[er_dropshipper]</span></td>
+			<td class="smalltext">
+				<input type="radio" name="dropshipper" value="Yes" class="radio">Yes
+        <input type="radio" name="dropshipper" value="No" class="radio">No
+      </td>
+		</tr>
+		<tr>
+		  <td valign="top" width="30%">ID Users for COD Confirmations : <span class="smallfieldterr">[er_codlist]</span></td>
+		  <td class="smalltext"><input type="text" name="codlist" value="[in_codlist]" style="width:100%" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>	
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+  <fieldset><legend>Warehouse Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		    <td class="smalltext"><input type="radio" name="status" value="Active" class="radio">Active
+                                   <input type="radio" name="status" value="Inactive" class="radio">Inactive</td>
+		 </tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+	chg_radio('dropshipper','[in_dropshipper]');
+	chg_radio('status','[in_status]');
+	chg_select('wmanager','[in_wmanager]');
+	chg_select('state','[in_state]');
+	chg_select('type','[in_type]');
+
+//-->
+</script>
+

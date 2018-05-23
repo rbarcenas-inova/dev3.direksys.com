@@ -1,0 +1,236 @@
+[ip_header_newsales]
+	
+	<table cellpadding="0" cellspacing="1" border="0" width="100%" bgcolor="#cccccc" style="height: 500px; min-width: 1050px;">
+		<tr bgcolor="#ffffff">
+			
+			[ip_sales_shop_cart]
+			
+			<td valign="top" align="left">
+				<div class="content">
+					
+					[ip_sales_header_info]
+					
+					[ip_sales_header_steps]
+
+					<div id="step5" class="div_step" style="">
+						<h1>Informaci&oacute;n Extra</h1>
+
+						<form action="/cgi-bin/mod/sales/admin" method="post" name="frm_sales" id="frm_sales_step6" autocomplete="off">
+							<input type="hidden" name="cmd" id="cmd" value="console_sales">
+							<input type="hidden" name="step" id="step" value="0">
+							<input type="hidden" name="action" id="action" value="infoextra">
+							<input type="hidden" name="id_salesorigins" id="id_salesorigins" value="[va_id_salesorigins]">
+							<input type="hidden" name="postdate" id="postdate" value="[va_postdate]">
+
+							<h2>Gracias por su compra.</h2>
+							<!--
+							<div style="border-top: 1px solid silver; border-bottom: 1px solid silver; margin-bottom: 2px; text-align: right; width: 100%;">
+								<a href="#" id="lnk_invoice" class="lnk_button_icon" title="Definir los datos para la factura">
+									<img src="/sitimages/sales/invoice.png" class="ico" style="height: 25px; width: 25px;">
+									Facturaci&oacute;n
+								</a>
+							</div>
+							<br>
+							-->
+							<font size="5">Su n&uacute;mero de orden es: <a href="/cgi-bin/mod/sales/dbman?cmd=opr_orders&view=[va_id_orders]" style="font-size: 14pt;"><b>[va_order_prefix][va_id_orders]</b></a></font><br>
+							MONTO TOTAL: <strong>[va_order_ftotal]</strong><br><br />
+							ID Cliente: <strong>[va_id_customers]</strong><br>
+							E-mail: <strong><span id="spn_email">[va_email]</a></strong>&nbsp;
+								<!--
+								<a href="#" id="lnk_edit_email" title="Agregar/Editar el Correo electr&oacute;nico">
+									<img src="/sitimages/sales/b_edit.png" alt="edit" style="width: 20px; vertical-align: middle;" />
+								</a>
+								<a href="#" id="lnk_send_email" title="Enviar email de notificaci&oacute;n al cliente" style="display: inline-block;">
+									<img src="/sitimages/sales/mail.gif" alt="edit" style="width: 20px; vertical-align: middle;" />									
+								</a>
+								<div id="div_msj_send_mail" style="display: block; font-size: 10pt;"></div>
+								<div style="clear: both; "></div>
+								-->
+								<br>
+								<!-- 
+								Celular: <strong>[va_cellphone]</strong>&nbsp;
+								<a href="#" id="lnk_edit_cellphone" title="Editar el Tel&eacute;fono Celular">
+									<img src="/sitimages/sales/b_edit.png" alt="edit" style="width: 20px; vertical-align: middle;" />
+								</a><br> 
+								-->
+							<br>
+
+							<!-- pago TDC -->
+							<div id="div_credit_card" style="display: none;">
+								<h2><img src="/sitimages/sales/iconCredit-Card.png" class="ico" style="width: 35px;"> Tarjeta de Cr&eacute;dito</h2>
+ 								Tarjeta: <strong>[va_pmtfield3_mask]</strong><br>
+ 								C&oacute;digo de autorizaci&oacute;n: <span id="span_auth_code" style="font-weight: bold;">[va_auth_code]</span><br>
+							</div>
+							<!-- pago TDC end -->
+
+							<!-- pago referenciado start -->
+							<div id="div_referenced_deposit" style="display: none;">
+								<h2><img src="/sitimages/sales/iconReferenced-Deposit.png" class="ico" style="width: 35px;"> Pago Referenciado</h2> 
+								<br>
+								Necesitamos que realize su pronto pago en alguna de las siguientes instituciones bancarias:<br>
+								<br>
+								[ip_sales_deposit_info]								
+							</div>
+							<!-- pago referenciado end -->
+
+							<!-- pago COD start -->
+							<div id="div_cod" style="display: none;">
+								<h2><img src="/sitimages/sales/iconCOD.png" class="ico" style="width: 35px;"> COD (Contra entrega)</h2>
+
+								<table width=100% cellpadding=0 cellspacing=0 border=0>
+									<tr>
+										<td class="cont">
+											Pague cuando le llegue la mercanc&iacute;a.
+										</td>
+										<td class="div">
+										</td>
+										<td class="cont"> 
+										</td>
+									</tr>
+								</table>
+							</div>
+							<!-- pago COD end -->
+							
+
+							<br><br>
+							<center>
+								<input type="button" id="btn_submit" value="Terminar llamada" class="buttonv2">	
+							</center>	
+						</form>
+						<!--
+						<div id="div_form_invoice" title="Direksys :: Datos de Facturaci&oacute;n" style="text-align: center;">
+							<form action="#" method="post" name="frm_sales_invoice" id="frm_sales_invoice" autocomplete="off">
+								<input type="hidden" name="id_customers" id="id_customers" value="[va_id_customers]">
+
+								<table border="0" cellspacing="0" cellpadding="2" width="85%" style="margin: auto auto; text-align: left;">
+									<tr>
+										<td width="30%">RFC : </td>
+										<td width="70%">
+											<div class="line" style="margin: 2px 0px 0px 1px;">
+												<input type="text" name="invoice_rfc" id="invoice_rfc" value="[va_invoice_rfc]" class="input" maxlength="13" style="width: 150px;">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>Raz&oacute;n Social : </td>
+										<td>
+											<div class="line" style="margin: 2px 0px 0px 1px; float: left;">
+												<input type="text" name="invoice_name" id="invoice_name" value="[va_invoice_name]" class="input" data-value="[va_fullname]" style="width: 340px;">
+												<a id="copy_data_customer" href="#" style="">
+													<img src="/sitimages/sales/ico-sameclient.png" width="20px" class="ico" title="Mismo cliente">
+												</a>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>Direcci&oacute;n : </td>
+										<td>
+											<div class="line" style="margin: 0px 4px 0px 0px; float: left; width: auto;">
+												<input type="text" name="invoice_street" id="invoice_street" value="[va_invoice_street]" class="input" data-value="[va_address1]" style="width: 220px;" placeholder="Nombre de la Calle" title="Nombre de la calle">
+												<input type="hidden" name="invoice_street_clsfd" id="invoice_street_clsfd" value="">
+												<input type="text" name="invoice_noext" id="invoice_noext" value="[va_invoice_noext]" class="input" style="width: 55px;" placeholder="No. Ext." title="N&uacute;mero Exterior">
+												<input type="hidden" name="invoice_noext_clsfd" id="invoice_noext_clsfd" value="">
+											</div>
+											<input type="text" name="invoice_noint" id="invoice_noint" value="[va_invoice_noint]" class="input" style="width: 55px;" placeholder="No Inter." title="N&uacute;mero Interior">
+											<input type="hidden" name="invoice_noint_clsfd" id="invoice_noint_clsfd" value="">
+										</td>
+									</tr>
+									<tr>
+										<td>Colonia : </td>
+										<td>
+											<div class="line" style="margin: 2px 0px 0px 1px;">
+												<input type="text" name="invoice_urbanization" id="invoice_urbanization" value="[va_invoice_urbanization]" class="input" data-value="[va_urbanization]" style="width: 290px;">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Municipio &oacute; Delegaci&oacute;n : </td>
+										<td>
+											<div class="line" style="margin: 2px 0px 0px 1px;">
+												<input type="text" name="invoice_city" id="invoice_city" value="[va_invoice_city]" class="input" data-value="[va_city]" style="width: 200px;">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>Estado : </td>
+										<td>
+											<div class="line" style="margin: 2px 0px 0px 1px;">
+												<input type="text" name="invoice_state" id="invoice_state" value="[va_invoice_state]" class="input" data-value="[va_state]" style="width: 200px;">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>Pa&iacute;s : </td>
+										<td>
+											<div class="line" style="margin: 2px 0px 0px 1px;">
+												<input type="text" name="invoice_country" id="invoice_country" value="[va_invoice_country]" class="txt_only_info" readonly style="width: 200px;">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>C&oacute;digo Postal : </td>
+										<td>
+											<div class="line" style="margin: 2px 0px 0px 1px;">
+												<input type="text" name="invoice_zipcode" id="invoice_zipcode" value="[va_invoice_zipcode]" class="input" data-value="[va_zipcode]" style="width: 80px;">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td id="td_invoice_saving" style="min-height: 25px; max-height: 25px; text-align: center;"></td>
+									</tr>
+								</table>
+							</form>
+						</div>
+						-->
+						<div id="div_email_edit" style="text-align: center;">
+							<form action="#" method="post" name="frm_email" id="frm_email">
+								<input type="hidden" name="id_customers" id="id_customers" value="[va_id_customers]">
+								<div class="line" style="margin: 2px 0px 0px 1px;">
+									<input type="text" name="email" id="email" value="[va_email]" class="input">
+								</div>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+
+	<div id="speech_main" class="speech_main">
+		<div id="div_hide" class="speech_title">
+			<a href="#" id="lnk_hide_speech" style="position: relative;" title="Ocultar">
+				<img src="/sitimages/sales/minimize.png" alt="minimize">
+			</a>
+		</div>
+		<div class="speech_content">
+			<img src="/sitimages/default/console-head.png" style="margin: 5px 10px 5px 0px; width: 50px; float: left;">
+			<div class="speech_content_text">
+				[va_speech_content]
+			</div>			
+			<div style="clear: both;"></div>
+			<div style="text-align: right; width: 100%; display: block;">
+				<span style="text-align: left; font-size: 8pt; margin-right: 20px;">[va_speech_code]</span>
+				<label style="font-size: 8pt; width: auto; position: relative;"><input type="checkbox" name="chk_speech_nevershow" id="chk_speech_nevershow" value="1">No volver a mostrar</label>
+			</div>
+		</div>
+	</div>
+
+	<div id="div_speech_icon" class="div_speech_icon" style="display: none;">
+		<a href="#">
+			<img src="/sitimages/default/console-head.png" style="width: 45px; height: 45px;">
+		</a>
+	</div>
+<!-- PNG IMAGE -->
+<!-- <p style="background:url(https://h.onlinemetrix.net/fp/clear.png?org_id=[va_cybersource_orgid]&session_id=[va_cybersource_merchantid][in_id_orders_payments]&m=1)"></p> -->
+<!-- <img src="https://h.onlinemetrix.net/fp/clear.png?org_id=[va_cybersource_orgid]&session_id=[va_cybersource_merchantid][in_id_orders_payments]&m=2" alt="" > -->
+<!-- FLASH CODE -->
+<!-- <object type="application/x-shockwave-flash" data="https://h.onlinemetrix.net/fp/fp.swf?org_id=[va_cybersource_orgid]&session_id=[va_cybersource_merchantid][in_id_orders_payments]"width="1" height="1" id="thm_fp">
+<param name="movie" value="https://h.onlinemetrix.net/fp/fp.swf?org_id=[va_cybersource_orgid]&session_id=[va_cybersource_merchantid][in_id_orders_payments]"/><div></div></object> -->
+<!-- JAVASCRIPT -->
+<!-- <script src="https://h.onlinemetrix.net/fp/check.js?org_id=[va_cybersource_orgid]&session_id=[va_cybersource_merchantid][in_id_orders_payments]" type="text/javascript"></script> -->
+
+[ip_footer_console]

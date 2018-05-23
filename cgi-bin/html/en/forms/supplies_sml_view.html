@@ -1,0 +1,161 @@
+	&nbsp;
+	<fieldset><legend>Supply ID</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+		  	<td width="30%" class="titletext">Supplies :</td>
+		    <td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons"> 
+							[in_id_supplies_code] 
+		    				[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]
+						</div>
+					</div>
+
+
+		    	</td>
+		 </tr>
+		 <tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+		</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Supply Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  <td width="30%">Model  :</td>
+		  <td class="smalltext">[in_model]</td>
+		 </tr>
+		<tr>
+		  <td width="30%">Name  :</td>
+		  <td class="smalltext">[in_name]</td>
+		 </tr>
+		<tr>
+		  <td valign="top" width="30%">Small Description : </td>
+		  <td class="smalltext">[in_smalldescription]</td>
+		 </tr>
+		<tr>
+		  <td valign="top" width="30%">Full Description : </td>
+		  <td class="smalltext">[in_description]</td>
+		 </tr>
+		<tr>
+		  <td valign="top" width="30%">Small Description(EN) : </td>
+		  <td class="smalltext">[in_smalldescription_en]</td>
+		 </tr>
+		<tr>
+		  <td valign="top" width="30%">Full Description(EN) : </td>
+		  <td class="smalltext">[in_description_en]</td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Shipping Specs</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td width="30%">Weight  : </td>
+		  <td class="smalltext">[in_weight] <span class="help_on">Lb</span></td>
+		</tr>
+		<tr>
+		  <td width="30%">Dimensions (w x h x l)  : </td>
+		  <td class="smalltext">[in_sizew] <span class="help_on">x</span> [in_sizeh] <span class="help_on">x</span> [in_sizel] <span class="help_on">in</span></td>
+		 </tr>
+		<tr>
+		  <td width="30%">Packing : </td>
+		  <td class="smalltext">[in_packing]</td>
+		 </tr>
+		<tr>
+		  <td width="30%">Handling Specs : </td>
+		  <td class="smalltext">[in_handling]</td>
+		 </tr>
+		<tr>
+		  <td width="30%">Warehouse Handling  : </td>
+		  <td class="smalltext">[in_warehousehandling]</td>
+		 </tr>
+		<tr>
+		  <td width="30%">Supply Type : </td>
+		  <td class="smalltext">[in_producttype]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Supply Documentation : </td>
+		  <td class="smalltext">[in_productdocs]</td>
+		</tr>
+		<tr>
+		  <td width="30%">Packing Options : </td>
+		  <td class="smalltext">([in_id_packingopts]) [in_pckoptsname]</td>
+		</tr>		
+		<tr>
+				  <td width="30%" valign="top">Free Shipping Opt.: </td>
+				  <td class="smalltext">[in_free_shp_opt]</td>
+				</tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+	<fieldset><legend>Pricing</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		  <td width="30%">Retail Price(MSRP)  : </td>
+		  <td class="smalltext">[in_msrp] <span class="help_on">in US$</span></td>
+		</tr>
+		<tr>
+		  <td colspan="2"><hr color="#C0C0C0"></td>
+		</tr>
+		<tr>
+		  <td width="30%" class="titletext">Sale Price  : </td>
+		  <td class="titletext">[in_spricename] $ [in_sprice]</td>
+		</tr>
+		<tr>
+		  <td colspan="2"><hr color="#C0C0C0"></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<table border="0" cellspacing="0" cellpadding="2" width="100%">
+					<tr>
+						<td width="48%" colspan="2">United States (UPS)</td>
+						<td width="4%">&nbsp;</td>
+						<td width="48%" colspan="2">Puerto Rico (USPS)</td>
+				    </tr>   
+					<tr>
+						<td class="smalltext" nowrap valign="top">[va_shp_text1] : </td>
+						<td class="smalltext" align="right" nowrap>[va_shptotal1]</td>
+						<td width="4%">&nbsp;</td>
+						<td class="smalltext" nowrap valign="top">[va_shp_textpr1] : </td>
+						<td class="smalltext" align="right" nowrap>[va_shptotal1pr]</td>
+				    </tr>    
+					<tr>
+						<td class="smalltext" nowrap valign="top">[va_shp_text2] : </td>
+						<td class="smalltext" align="right" nowrap>[va_shptotal2]</td>
+						<td width="4%">&nbsp;</td>
+						<td class="smalltext" nowrap valign="top">[va_shp_textpr2] : </td>
+						<td class="smalltext" align="right" nowrap>[va_shptotal2pr]</td>
+				    </tr>  
+				
+				</table>
+				</td>
+	    </tr> 
+	</table>
+	</fieldset>		
+	&nbsp;
+	<fieldset><legend>Brand Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+		    <td width="30%">Brand  : </td>
+		    <td class="smalltext">([in_id_brands]) [in_brands_name]</td>
+		 </tr>
+		<tr>
+		    <td width="30%">Brand SKU  : </td>
+		    <td class="smalltext">[in_manufactersku]</td>
+		 </tr>
+	</table>
+	</fieldset>	
+	&nbsp;
+  <fieldset><legend>Supply Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+	   <td width="30%">Status : </td>
+	   <td class="smalltext">[in_status]</td>
+	 </tr>
+  </table>
+	</fieldset>

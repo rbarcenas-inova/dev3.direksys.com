@@ -1,0 +1,44 @@
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+	<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform" onsubmit="/*return disableSubmits();*/">
+	<input type="hidden" name="cmd" value="mer_po">
+	<input type="hidden" name="view" value="[in_id_po]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="1">
+	<input type="hidden" name="add_row_segment" value="[in_id_row]">
+
+	<div class="container_white" style="padding:5px">
+		
+		<span class="stdtxterr">[va_message]</span>
+		&nbsp;
+		<fieldset><legend>Requisici&oacute;n por L&iacute;nea</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+
+			<tr>
+				<td>&Aacute;rea : </td>
+				<td class="smalltext">
+					<select name="id_po_segments" id="id_po_segments" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option>
+						[fc_build_select_accounts_segments]
+					</select>
+					<span class="smallfieldterr">[er_id_po_segments]</span>
+			   	</td>
+			</tr>
+			
+		</table>
+		</fieldset>
+		&nbsp;
+
+		<center>
+			<input type="submit" id="btn_submit" value="Enviar" class="button">
+		</center>
+		<br>
+	</div>
+
+	</form>
+
+	<script language="javascript">
+	<!--
+		chg_select('id_po_segments','[in_ids]');
+		
+	//-->
+	</script>

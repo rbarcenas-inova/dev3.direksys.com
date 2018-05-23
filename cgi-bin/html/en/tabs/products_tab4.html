@@ -1,0 +1,75 @@
+&nbsp;
+<form action="/cgi-bin/mod/[ur_application]/dbman" method="post" name="sitform">
+	<input type="hidden" name="id_products" value="[in_id_products]">
+	<input type="hidden" name="view" value="[in_id_products]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="[in_tab]">
+	<input type="hidden" name="add_new" value="1">
+	<input type="hidden" name="tabsl" value="[in_tab]">
+	<input type="hidden" name="cmd" value="[in_cmd]">
+
+	<fieldset><legend>Add Price</legend>
+		<table>
+		<tr>
+			<td align="center" class="" width="30%"> <b>Name</b></td>
+			<td align="center" class="" width="10%"> <b>Price</b></td>
+			<td align="center" class="" width="10%"> <b>Original Price</b></td>
+			<td align="center" class="" width="10%"> <b>Downpayment</b></td>
+			<td align="center" class="" width="10%"> <b>FP</b></td>
+			<td align="center" class="" width="20%"> <b>Payment</b></td>
+			<td align="center" class="" width="10%"> <b>Auth Code</b></td>
+			<td align="center" class="" width="10%">&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="center" class=""><input type="text" id="new_name" name="new_name" size="50"onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			<td align="center" class=""><input type="text" id="new_price" name="new_price" size="10"onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			<td align="center" class=""><input type="text" id="new_originalprice" name="new_originalprice" size="10"onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			<td align="center" class=""><input type="text" id="new_dp" name="new_dp" size="10"onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			<td align="center" class=""><input type="text" id="new_fp" name="new_fp" size="5"onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			<td align="center" class="">
+				<select id="new_paytype" name="new_paytype" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<option value="">---</option>
+					[bs_type@sl_orders_payments]
+				</select>
+			</td>
+			<td align="center" class=""><input type="checkbox" id="new_auth" name="new_auth" value="1" class="checkbox"> Yes</td>
+			<td align="center"><br><input type="submit" value="Add" class="button"></td>
+		</tr>
+		<tr>
+			<td align="center" class="smalltext" colspan="7">Sales Origins <br>
+				[fc_build_checkbox_saleorigins]</td>
+		</tr>
+		<tr>
+			<td align="center" class="smalltext" colspan="7">Price Valid Kits (Default All) <br>
+				[fc_build_checkbox_kitproducts]</td>
+		</tr>
+		<tr>
+			<td align="left" class="smalltext" colspan="7">Sites Availables : [br_belongsto@sl_products_prices]</td>
+		</tr>
+		</table>
+		
+	</fieldset>
+</form>	
+&nbsp;
+	<table width="100%" cellspacing="0" cellpadding="4" border="0" class="gborder">
+		<tbody>
+		<tr>
+			<td class="tbltextttl" colspan="6">
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_products]&tab=[in_tab]&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+				Records : [va_matches]
+				<span class='fieldterr'>[va_tabmessages]</span>
+			</td>
+		</tr>
+		</tr>		
+		<tr>
+			<td align="center" class="menu_bar_title" width="10%">&nbsp;</td>
+			<td align="center" class="menu_bar_title" width="40%"> <b>Name</b></td>
+			<td align="center" class="menu_bar_title" width="10%"> <b>FP</b></td>
+			<td align="center" class="menu_bar_title" width="20%"> <b>Payment</b></td>
+			<td align="center" class="menu_bar_title" width="10%"> <b>Auth Code</b></td>
+			<td align="center" class="menu_bar_title" width="10%"> <b>Price</b></td>
+			<td align="center" class="menu_bar_title" width="10%"> <b>Downpayment</b></td>
+		</tr>
+		[va_searchresults]
+		</tbody>
+	</table>

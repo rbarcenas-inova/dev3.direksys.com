@@ -1,0 +1,184 @@
+<fieldset><legend>User Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">User ID : </td>
+			<td class="titletext" width="50%">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_admin_users] &nbsp;
+							<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=man_users&modify=[in_id_admin_users]"><img src='[va_imgurl]/[ur_pref_style]/b_edit.gif' title='View' alt='' border='0'></a>
+					  		<a href="javascript:prnwin('/cgi-bin/mod/[ur_application]/dbman?cmd=man_users&search=Print&toprint=[in_id_admin_users]')"><img src='[va_imgurl]/[ur_pref_style]/b_print.gif' title='Print' alt='' border='0'></a>
+						</div>
+					</div>
+				
+			</td>
+			<td width="20%" align="right" valign="top" class="smalltext" nowrap>[ <a href="/cgi-bin/mod/[ur_application]/admin?cmd=man_users_admin&id_admin_users=[in_id_admin_users]">Change Password</a> ]<br>
+				Temp Passwd : [in_temppasswd]</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Created Date / Time  : </td>
+			<td class="smalltext" colspan="2">[in_date] [in_time] &nbsp; &nbsp; Created by : ([in_createdby]) [in_createdby.firstname] [in_createdby.lastname]</td>
+		</tr>		
+	</table>
+</fieldset>			
+&nbsp;	  
+<fieldset><legend>User Basic Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="smalltext">Login ID : </td>
+			<td class="smalltext">[in_username]</td>
+			<td class="smalltext">Account is : </td>
+			<td class="smalltext">[in_status]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">First Name : </td>
+			<td class="smalltext">[in_firstname]</td>
+			<td class="smalltext">Job Title:</td>
+			<td class="smalltext">[in_jobtitle]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Middle Name :</td>
+			<td class="smalltext">[in_middlename]</td>
+			<td class="smalltext">E-Mail :</td>
+			<td class="smalltext"><a href="mailto:[in_email]">[in_email]</a></td>
+		</tr>
+		<tr>
+			<td class="smalltext">Last Name :</td>
+			<td class="smalltext">[in_lastname]</td>
+			<td class="smalltext">E-Mail 2 :</td>
+			<td class="smalltext">[in_opcemail2]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">User Group : </td>
+			<td class="smalltext">([in_usergroup]) [fc_user_group]</td>
+			<td class="smalltext">Expiration :</td>
+			<td class="smalltext">[va_expiration]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Application :</td>
+			<td class="smalltext">[in_application]</td>
+			<td class="smalltext" valign="top">Access Filter (IP) :</td>
+			<td class="smalltext">[in_ipfilter]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">User Type:</td>
+			<td class="smalltext">[in_user_type]</td>
+			<td class="smalltext" valign="top"></td>
+			<td class="smalltext"></td>
+		</tr>
+		<tr>
+			<td class="smalltext">Change Password:</td>
+			<td class="smalltext">[in_change_pass]</td>
+			<td class="smalltext" valign="top"></td>
+			<td class="smalltext"></td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Optional Basic Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="smalltext">Birthday : </td>
+			<td class="smalltext">[in_opcbirthday]</td>
+			<td class="smalltext">Employee Number :</td>
+			<td class="smalltext">[in_opclegalid]</td>
+		</tr>
+	 	<tr>
+			<td class="smalltext">Married Status : </td>
+			<td class="smalltext">[in_opcmarriedstatus]</td>
+			<td class="smalltext">Childrens :</td>
+			<td class="smalltext">[in_opcchildrens]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Optional Home Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%" id="table290">
+		<tr>
+			<td class="smalltext" valign="top">Street :</td>
+			<td class="smalltext">[in_homestreet]</td>
+			<td class="smalltext" valign="top">Phone :</td>
+			<td valign="top" class="smalltext"><a href="/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]&id_admin_users=[in_id_admin_users]&sitdialnum=[in_homephone]">[in_homephone]</a></td>
+		</tr>
+		<tr>
+			<td class="smalltext">City :</td>
+			<td class="smalltext">[in_homecity]</td>
+			<td class="smalltext" valign="top">Phone :</td>
+			<td valign="top" class="smalltext"><a href="/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]&id_admin_users=[in_id_admin_users]&sitdialnum=[in_homephone2]">[in_homephone2]</a></td>
+		</tr>
+		<tr>
+			<td class="smalltext">State/Province :</td>
+			<td class="smalltext">[in_homestate]</td>
+			<td class="smalltext" valign="top">Fax :</td>
+			<td valign="top" class="smalltext">[in_homefax]</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Postal Code :</td>
+			<td class="smalltext">[in_homepostalcode]</td>
+			<td class="smalltext" valign="top">Mobile :</td>
+			<td valign="top" class="smalltext"><a href="/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]&id_admin_users=[in_id_admin_users]&sitdialnum=[in_homemobile]">[in_homemobile]</a></td>
+		</tr>
+		<tr>
+			<td class="smalltext">Country/Region :</td>
+			<td class="smalltext">[in_homecountry]</td>
+			<td class="smalltext" valign="top">Mobile2 :</td>
+			<td valign="top" class="smalltext"><a href="/cgi-bin/mod/[ur_application]/admin?cmd=[in_cmd]&id_admin_users=[in_id_admin_users]&sitdialnum=[in_homemobile2]">[in_homemobile2]</a></td>
+		</tr>
+		<tr>
+			<td class="smalltext">Web Page :</td>
+			<td class="smalltext">[in_homeweb]</td>
+			<td class="smalltext" valign="top">SMS :</td>
+			<td valign="top" class="smalltext">[in_homesms]</td>
+		</tr>
+		<tr>
+			<td colspan="2" width="50%"></td>
+			<td colspan="2" width="50%"></td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>User Preferences</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="smalltext">Language : </td>
+			<td class="smalltext">[tt_in_pref_language] &nbsp;</td>
+			<td class="smalltext">Style : </td>
+			<td class="smalltext">[in_pref_style]&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="smalltext">Display New Msgs: </td>
+			<td class="smalltext">[in_pref_newmsg]</td>
+			<td class="smalltext">Max Hits</td>
+			<td class="smalltext">[in_pref_maxh]&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="4" class="smalltext">Applications in ToolBar<br>
+		  [in_pref_applications]</td>
+		</tr>
+		<tr>
+			<td colspan="4" class="smalltext">Applications in Welcome Page<br>
+		    [in_pref_wpage]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>Optional Notes</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="smalltext">[in_opcnotes]</td>
+		</tr>
+	</table>
+</fieldset>
+&nbsp;
+<fieldset><legend>User Activity</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="smalltext">Last Login : </td>
+			<td class="smalltext">[in_lastlogin]</td>
+			<td class="smalltext">From IP : </td>
+			<td class="smalltext">[in_lastip]</td>
+		</tr>
+ 	</table>
+</fieldset>
+&nbsp;

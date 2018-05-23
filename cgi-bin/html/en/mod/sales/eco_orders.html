@@ -1,0 +1,193 @@
+[ip_header]
+
+<script type="text/javascript">
+<!--	
+	
+/*
+	onload = function(){
+		var showone = "[in_tab]";
+		if(showone == ""){
+			popup_show('popup_script', 'script_drag', 'script_exit', 'element-right', -1, -1,'wumsg');
+		}
+	}
+*/
+$(document).ready(function() {
+
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+				alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		}); 
+
+		$("#fancybox_review_customer").fancybox({
+				'margin'				:	'1',
+				'padding'				:	'1',
+				'autoScale'			: false,
+				'centerOnScroll': true,
+				'transitionIn'	: 'none',
+				'transitionOut'	: 'none',
+				'autoDimensions':	'true',
+				'overlayOpacity':	'0.3',
+				'onComplete'		: function() {
+						$("#fancybox-wrap").css({'margin-top':'10px', 'margin-bottom':'auto'}); 
+				}
+		});
+		
+		$( '#review_customers' ).click(function() {
+
+			var name = $( 'input:text[name=firstname]' ).val();
+			var firstlastname = $( 'input:text[name=lastname1]' ).val();
+			var secondlastname = $( 'input:text[name=lastname2]' ).val();
+			var phone1 = $( 'input:text[name=phone1]' ).val();
+			var cellphone = $( 'input:text[name=cellphone]' ).val();
+			var address1 = $( 'input:text[name=address1]' ).val();
+			var city = $( 'input:text[name=city]' ).val();
+			var state = $( 'input:text[name=state]' ).val();
+			var zip = $( 'input:text[name=zip]' ).val();
+			var email = $( 'input:text[name=email]' ).val();
+			
+//  			alert("Step: "+email);
+				$.ajaxSetup({ timeout: ( 15 * 1000 ) });
+				$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'review_customers', 
+				'name':name,
+				'firstlastname':firstlastname,
+				'secondlastname':secondlastname,
+				'phone1':phone1,
+				'cellphone':cellphone,
+				'address1':address1,
+				'city':city,
+				'state':state,
+				'zip':zip,
+				'email':email,
+				},function(response,status,xhr){
+						
+						if (status == "error") {
+ 								alert(msg);
+						}else{
+								if(response.match(/error/gi)){
+			    					alert("Hubo un error.\r\n"+response);
+			    			}else{
+									document.getElementById('modal_review_customer').innerHTML = response;
+									$( "#fancybox_review_customer" ).trigger('click');
+								}
+						}
+			
+				});
+		});
+
+
+		$('#btn_cal').click(function(){
+			
+			var city = $( 'input:text[name=city]' ).val();
+			var state = $( '#state' ).val();
+			var zip = $( 'input:text[name=zip]' ).val();
+			var tsprice=0;
+			var tshp=0
+			$('input:text[id^=sprice]').each(function(){
+				var this_price = parseFloat($(this).attr('value'));
+				if(this_price > 0){
+					tsprice += this_price;
+				}
+			});
+
+			$('input:text[id^=shipping]').each(function(){
+				var this_shp = parseFloat($(this).attr('value'));
+				if(this_shp > 0){
+					tshp += this_shp;
+				}
+			});
+
+			if(tsprice > 0 && city != '' && state != '' && zip.length == 5){
+
+				$('#refresh').html('<img src="[va_imgurl]/processing.gif" title="Waiting for response" height="30" width="30">');
+
+				setTimeout(function(){
+					$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'get_xamount',
+					'city':city,
+					'state':state,
+					'zip':zip,
+					'sprice':tsprice,
+					'shp':tshp
+					},function(response,status,xhr){
+
+							if (status == "error") {
+									alert(msg);
+							}else{
+									if(response.match(/error/gi)){
+										alert("Hubo un error.\r\n"+response);
+									}else{
+										$('#amount').val(response);
+									}
+							}
+					});
+					$('#refresh').html('&nbsp;');
+				},3000);
+
+			}
+		});
+		
+});
+-->
+</script>
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 0, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="20%" align="center"></td>
+		<td width="20%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=eco_orders")'>Add</td>
+		<td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/sales/dbman?cmd=orders&search=form")'>Search</td>
+		<td width="20%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/sales/dbman?cmd=orders&search=advform")'>Adv Search</td>
+	  	<td width="20%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/sales/dbman?cmd=orders&search=listall&sb=id_orders&so=DESC")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+	
+	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+  <form action="/cgi-bin/mod/sales/admin" method="post" name="sitform" onsubmit="return disableSubmits();">
+	<input type="hidden" name="cmd" value="eco_orders">
+	<input type="hidden" name="add" value="1">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="status" value="Active">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Add order</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<!-- Fancybox -->
+	<a id="fancybox_review_customer" href="#modal_review_customer"></a>
+	<div style="display: none;">
+		<div id="modal_review_customer" style="width:500px;overflow:auto;text-align:center;">
+			Insert an iframe here.
+		</div>
+	</div>
+	<!-- Fancybox -->
+	[ip_forms:eco_orders_form]
+	<p align="center"><input type="submit" value="Add order" class="button"></p>
+  </form>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

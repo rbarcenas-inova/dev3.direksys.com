@@ -1,0 +1,119 @@
+			<fieldset style="background-color:#ecfee2;border:#34800d solid 1px;text-align:left;">
+				<table cellpadding=0 cellspacing=0 border=0 width=100%>
+					<td valign=top align=left width=110><img src=/sitimages/default/console-head.png align=left width=90px style="margin-right:15px;"></td>
+					<td valign=top align=left><font color=222222 size=3>[fc_load_stepspeech]</b></font></td>
+				</table>
+			</fieldset>
+
+<script type="text/javascript">
+<!--	
+	
+$(document).ready(function() {
+
+		[va_fancybox_trigger]
+
+		$( '#btn_zipcode' ).click(function() {
+
+			if('[va_pricetype]' == 'Gross'){
+				$( "#fancybox_prices_table" ).trigger('click');
+			}else{
+				var zipcode = $( 'input:text[name=zipcode]' ).val();
+				$.ajaxSetup({ timeout: ( 15 * 1000 ) });
+				$.post('/cgi-bin/common/apps/ajaxbuild',{'ajaxbuild':'inbound_price_plus_tax', 'zipcode':zipcode, 'id_products': '[in_id_products]'},function(response,status,xhr){
+
+					if (status == "error") {
+						alert(msg);
+					}else{
+						if(response.match(/error/gi)){
+							alert("El Zipcode no era valido, no se pudo actualizar la información\r\n"+response);
+						}else{
+							document.getElementById('modal_prices_cities').innerHTML = response;
+							$( "#fancybox_prices_table" ).trigger('click');
+						}
+					}
+
+				});
+			}
+		});
+		
+		if(isNaN([in_tab]) && [va_zipcode] != 'n/a'){
+				$( "#fancybox_prices_table" ).trigger('click');	
+		}
+		
+});
+-->
+</script>
+
+<form action="/cgi-bin/mod/sales/admin" method="post" name="sitform" id="productshow"  onsubmit="return checkchoices();">
+	<input type="hidden" name="cmd" value="console_order">
+	<input type="hidden" name="step" value="2">
+	<input type="hidden" name="action" value="add_to_basket">
+	<input type="hidden" name="skupro" value="1">
+	<input type="hidden" name="id_products" value="[in_id_products]">
+	<input type="hidden" name="pricetype" value="[in_pricetype]">
+
+<a href='#wumsg' id='wumsg'></a>
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable" >
+	<tr>
+		<td align="center" colspan="3">
+			<!--<input type="button" class="button" name="ajaxw" value="Ver Script de manejo de objeciones" onclick="popup_show('popup_script', 'script_drag', 'script_exit', 'element-right', -1, -1,'wumsg')">-->
+		</td>
+   </tr>
+		<tr>
+			<td nowrap>ID de Producto : </td>
+			<td colspan="3">[va_id_products]</td>
+	  </tr>
+		<tr>
+			<td nowrap>Modelo : </td>
+			<td colspan="3">[in_model]</td>
+	    </tr>
+		<tr>
+			<td nowrap>Nombre : </td>
+			<td colspan="3">[in_name]</td>
+	    </tr>
+		<tr>
+			<td nowrap valign="top" class="titletext">Precio (Precio 1) : Al aire </td>
+			<td class="titletext" valign="top" id="prices_container" colspan="2" width="50%" nowrap>
+				<input type="radio" name="pricenumber" value="1" class="radio">[in_sprice]
+				  	[va_fancybox_prices_cities]
+					[va_opt_price]
+			</td>
+    </tr>
+    [va_calc_proce_zipcode]
+	<tr>
+		  <td colspan="4" align="center">[va_submit_button]</td>
+    </tr>
+</table>
+	[fc_console_productinfo]
+	&nbsp;
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable" >
+	<tr>
+		<td align="center" colspan="2" class="menu_bar_title">Opciones del Producto</td>
+    </tr>
+    [va_skuschoice]
+	  <tr>
+		  <td colspan="2" align="center">[va_submit_button]</td>
+    </tr>
+</table>	
+		&nbsp;
+		<div id="popup_script" style="visibility: hidden; display: none; background-color: #ffffff;">
+		<div class="menu_bar_title" id="script_drag">
+		<img id="script_exit" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+		<img id="ajax_new" src="/sitimages//default/tearoff_icon.gif" onclick="popup_exit('popup_script');prnwin('/cgi-bin/common/apps/schid?cmd=show_script&id_products=[in_id_products]')"/>
+		&nbsp;&nbsp;&nbsp;Product Script
+		</div>
+		<div class="formtable">
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=show_script&id_products=[in_id_products]" name="rcmd" TITLE="Recieve Commands" width="560" height="750" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto";>
+		<H2>Unable to do the script</H2>
+		<H3>Please update your Browser</H3>
+		</IFRAME>	
+		</div></div>
+<script language="JavaScript">
+	chg_select('choice1','[in_choice1]'); 
+	chg_select('choice2','[in_choice2]'); 
+	chg_select('choice3','[in_choice3]'); 
+	chg_select('choice4','[in_choice4]');
+	chg_radio('pricenumber','[in_pricenumber]');
+</script>
+
+</form>

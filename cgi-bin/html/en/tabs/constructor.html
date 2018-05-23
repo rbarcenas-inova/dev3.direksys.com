@@ -1,0 +1,88 @@
+
+[va_anchor_tbname]
+&nbsp;
+<div class="preload" style="display:none">[va_tbbuild]</div>
+<a name='tabs' id='tabs'>&nbsp;</a>
+<div id="container_[va_tbname]" class="yui-skin-sam"></div>
+<script language="javascript" type="text/javascript">
+		var TABS = [va_tabs_perpage];
+		var now=[va_activetab];
+		var jump = '[in_tab_pos]';
+		if(jump != '')now=jump;
+		var tabArray = [[va_data_array]];
+		var page = parseInt(now/(TABS+1));
+		var tabView_[va_tbname] = new YAHOO.widget.TabView(); 
+		var currconten = $('.preload').html();
+		$('.preload').remove();
+		for(var i = 0, j = tabArray.length; i < j; i ++){
+			if(now == (i+1) ){
+				tabView_[va_tbname].addTab(new YAHOO.widget.Tab({
+					label: tabArray[i].label,
+					content: currconten,
+				}));
+			}else{
+				var tab = new YAHOO.widget.Tab({
+					label: tabArray[i].label,
+					dataSrc: tabArray[i].dataSrc,
+					cacheData: true,
+				});
+				tab.addListener('contentChange',function(){
+					$(".fancy_modal_iframe").fancybox({
+						'width'       : '85%',
+						'height'      : '85%',
+						'autoScale'       : 'false',
+						'transitionIn'    : 'elastic',
+						'transitionOut'   : 'elastic',
+						'type'        : 'iframe'
+					});
+
+					$(".fancy_modal_iframe_mante").fancybox({
+						'width'       : '60%',
+						'height'      : '70%',
+						'autoScale'       : 'false',
+						'transitionIn'    : 'none',
+						'transitionOut'   : 'none',
+						'type'        : 'iframe',
+						'padding' : '0',
+					});
+
+					$(".fancy_modal_iframe_expir").fancybox({
+						'width'       : '60%',
+						'height'      : '70%', 
+						'transitionIn'    : 'none',
+						'transitionOut'   : 'none',
+						'type'        : 'iframe',
+						'padding' : '0',
+					});
+
+					$(".fancy_modal_iframe_outside").fancybox({
+						'width'			: '60%', 
+						'height'		: '80%',
+						 'autoScale'       : 'false',
+						'transitionIn'	: 'none',
+						'transitionOut'	: 'none',
+						'type'			: 'iframe',
+						'padding'		: '0',
+					});
+
+					$(".fancy_modal_iframe_ajax").fancybox({
+						ajax : {
+							type  : "GET",
+							'width'       : '85%',
+							'height'      : '85%',
+							  'autoScale'       : false,
+							  'transitionIn'    : 'none',
+							'transitionOut'   : 'none'
+						}
+					});
+				})
+				YAHOO.plugin.Dispatcher.delegate (tab, tabView_[va_tbname]);
+			}
+		}
+
+		tabView_[va_tbname].set('activeIndex',now-1); 
+		tabView_[va_tbname].appendTo('container_[va_tbname]');
+
+		/* IFRAME */
+  
+</script>

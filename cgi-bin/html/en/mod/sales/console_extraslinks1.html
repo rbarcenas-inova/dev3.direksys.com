@@ -1,0 +1,33 @@
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" id="tabinf" align="center">
+		  <tr>
+		    <td width="30%" align="center"></td>
+		    <td width="17%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&step=[in_step]&tab=1#tabinf")'>Prod. Relacionados</td>
+		    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&step=[in_step]&tab=2#tabinf")'>Prod. Sugeridos</td>
+		    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&step=[in_step]&tab=3#tabinf")'>Ofertas</td>
+		    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/sales/admin?cmd=console_order&step=[in_step]&tab=4#tabinf")'>Servicios</td>
+		  </tr>
+		</table>
+
+		
+			<div style="background-color:#ffffff;margin:10px;">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+		<td class="tbltextttl">Productos relacionados: [va_matches]</td>
+		<td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+ 	</tr>
+	<tr>
+		<td colspan="3">
+	 		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+					<td class="menu_bar_title">ID de producto</td>
+				  <td class="menu_bar_title">Nombre</td>
+				  <td class="menu_bar_title">Precio</td>
+				 </tr>
+			 [va_searchresults]
+			</table>
+		</td>
+	</tr>
+	<tr>
+	 <td colspan="3">&nbsp;<span class="smallfieldterr">[va_messages]</span></td>
+	</tr>
+</table>

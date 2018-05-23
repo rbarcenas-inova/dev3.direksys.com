@@ -1,0 +1,171 @@
+<script src="/sitimages/jquery.switches/jquery.js"></script>
+<script src="/sitimages/jquery.switches/switches.js"></script>
+<link rel="stylesheet" href="/sitimages/jquery.switches/switches.css">
+
+	<fieldset><legend>Debit Memo ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Debit Memo ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_debitmemos] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]
+							[fc_func_list_manager]
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+
+&nbsp;
+<fieldset><legend>Debit Memo</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		[va_view_transition]
+		<tr>
+		    <td width="25%">ID Customers : </td>
+		    <td class="smalltext">(<a href="/cgi-bin/mod/[ur_application]/dbman?cmd=opr_customers&view=[in_id_customers]"><span  class="smalltext">[in_id_customers]</span></a>) [va_customer_name]</td>
+		</tr>
+		<tr>
+			<td width="30%">Reference :  </td>
+			<td>[in_reference]</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">Description :  </td>
+			<td class="smalltext">[in_description]</td>
+		</tr>
+		<tr>
+			<td width="30%">Amount :  </td>
+			<td>[in_amount]</td>
+		</tr>
+		<tr>
+			<td width="30%">Type :  </td>
+			<td>[in_Type]</td>
+		</tr>		
+		
+		<tr>
+			<td width="30%">Bank : </td>
+			<td>
+				[va_bank]
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">Status :  </td>
+			<td>[in_status] [va_action_status]</td>
+		</tr>
+	</table>
+</fieldset>	
+&nbsp;
+
+<!-- Add Products-->
+
+<div id="popup_addorder" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="item_drag1">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Order</td>
+			<td align=right width=20px><img id="popup_exit1" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div>
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=debitmemo_addorder&id_customers=[in_id_customers]&id_debitmemos=[in_id_debitmemos]&[va_rndnumber]" name="rcmd" TITLE="Recieve Commands" width="600" height="300" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+		</IFRAME>	
+	</div>
+</div>
+
+<div id="popup_additem" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="item_drag2">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Item</td>
+			<td align=right width=20px><img id="popup_exit2" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div>
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=parts&db=sl_parts&returnurl=/cgi-bin/mod/admin/dbman``cmd^^opr_debitmemos~~view^^[in_id_debitmemos]~~tab^^4~~addsku^^&[va_rndnumber]" name="rcmd" TITLE="Recieve Commands" width="400" height="300" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+		</IFRAME>	
+
+	</div>
+</div>
+
+<div id="popup_addserv" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="item_drag3">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Service</td>
+			<td align=right width=20px><img id="popup_exit3" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div>
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=services&db=sl_services&returnurl=/cgi-bin/mod/admin/dbman``cmd^^opr_debitmemos~~view^^[in_id_debitmemos]~~tab^^4~~addserv^^&[va_rndnumber]" name="rcmd" TITLE="Recieve Commands" width="400" height="300" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+		</IFRAME>	
+
+	</div>
+</div>
+
+<script language="JavaScript">
+	function add_order(){
+		popup_show('popup_addorder', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'tabs');
+	}
+
+	function add_serv(){
+		popup_show('popup_addserv', 'item_drag3', 'popup_exit3', 'element-right', -1, -1,'tabs');
+	}
+
+	function Confirm_to_continue(){
+		if (confirm('Are you sure you want to continue?'))
+			return true;
+		else
+			return false;
+	}
+
+function ok(val){
+	var txtSpan = $("#ok").html();
+	
+	if(val==1){
+		var vFirst = txtSpan.split('<img');
+		var vSecond = vFirst[0].split('">');
+		var vThird = vSecond[0].split("&amp;transition=1");
+		var txtFinal = vThird[0]+"&transition=1"+'">'+'<img'+vFirst[1];	
+		$("#ok").html(txtFinal);	
+	}
+	else{		
+		var vFirst = txtSpan.split("&amp;transition=1");
+		var txtFinal = vFirst[0]+vFirst[1];
+		$("#ok").html(txtFinal);
+	}
+}
+
+function bank(id){
+	var txtSpan = $("#ok").html();
+
+	var vFirst = txtSpan.split("banks_account");
+	var txtSpan = vFirst[0]+vFirst[1];
+
+	var vFirst = txtSpan.split('<img');
+	var vSecond = vFirst[0].split('">');
+	var vThird = vSecond[0].split("&amp;banks_accounts="+id);
+	var txtFinal = vThird[0]+"&amp;banks_accounts="+id+'">'+'<img'+vFirst[1];	
+	var txtFinal = txtFinal.split("undefined");
+	$("#ok").html(txtFinal[0]);	
+}
+</script>
+
+	
+<script language="javascript">
+<!--
+	chg_select('banks_accounts','[in_banks_accounts]');
+	//chg_select('type','[in_type]');
+//-->
+</script>

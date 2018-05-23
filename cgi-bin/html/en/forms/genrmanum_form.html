@@ -1,0 +1,23 @@
+	&nbsp;
+	<fieldset><legend>Order/Products Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			    <td class="menu_bar_title" nowrap>ID Orden <span class="stdtxterr">[er_id_orders_products]</span></td>
+			    <td class="menu_bar_title">Date</td>
+			    <td class="menu_bar_title">Product info</td>
+			    <td class="menu_bar_title">Ship Info</td>
+			    <td class="menu_bar_title">Ord Status</td>
+			 </tr>
+			<tr>
+			  [fc_build_order_products_option]
+			</tr>		
+		</table>
+		&nbsp;
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				[fc_genrmanum1]
+				<td width="30%">RMA number generated  : <span class="smallfieldterr">[er_num_rma]</span></td>
+				<td class="smalltext"><input type="text" name="num_rma" value="[in_num_rma]" size="5" readonly="readonly" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			</tr>
+		</table>
+	</fieldset>

@@ -1,0 +1,80 @@
+	&nbsp;
+	<script src="/sitimages/FCKeditor/ckeditor.js"></script>
+	<fieldset><legend>Speech Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Name  : <span class="smallfieldterr">[er_name]</span></td>
+			<td class="smalltext"><input type="text" name="name" value="[in_name]" size="50" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		</tr>
+		<tr>
+		  <td width="30%">DID  : <span class="smallfieldterr">[er_id_dids]</span></td>
+		  <td class="smalltext">
+  			<select name="id_dids" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+      		<option value="---">---</option>
+      		[fc_build_select_dids]
+				</select>
+			</td>
+		</tr>
+		<tr>
+		  <td width="30%">Type of Speech  : <span class="smallfieldterr">[er_type]</span></td>
+		  <td class="smalltext"><select name="type" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+    		<option value="---">---</option>
+    		[fc_build_select_speechtype]
+			</select></td>
+		</tr>
+		<tr>
+		  <td colspan="2">Speech : <span class="smallfieldterr">[er_speech]</span></td>
+		</tr>
+		<tr>
+		  <td class="smalltext" colspan="2">
+		  <!--[fc_build_html_textbox]-->
+		  <textarea cols="80" id="speech" name="speech" rows="10">[in_speech]</textarea>
+		  </td>
+		</tr>
+		<tr>
+		  <td colspan="2" class="help_on">Fields Available for Returned Customers:<br>
+		  [va_customersfields]</td>
+		</tr>		 
+	</table>
+	</fieldset>
+	&nbsp;
+ 	<fieldset><legend>Speech Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  	<tr>
+		<td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		 <td class="smalltext">
+		 	<input type="radio" name="status" value="Active" class="radio">Active
+			<input type="radio" name="status" value="Inactive" class="radio">Inactive
+		</td>
+	</tr>
+  </table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_radio('retcust','[in_retcust]');
+	chg_radio('status','[in_status]');
+	chg_select('id_dids','[in_id_dids]');
+	chg_select('type','[in_type]');
+	
+//-->
+
+CKEDITOR.replace( 'speech', {
+	uiColor: '#9AC02F',
+	toolbarGroups: [
+		//{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'styles', groups: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
+		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+		{ name: 'links' },
+		{ name: 'insert' },
+		'/',
+		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },			
+		{ name: 'colors' },
+		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ] }
+	
+	]
+});
+</script>
+

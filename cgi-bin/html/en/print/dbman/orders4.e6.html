@@ -1,0 +1,130 @@
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center" valign="top" colspan="3">
+      <h3>[va_invoice_message]</h3> 
+    </td>
+  </tr>
+   <tr>
+    <td colspan="2">
+<table cellpadding=0 cellspacing=0>
+	<td align=left>
+	<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px>
+	</td>
+	[fc_show_companyinfo]
+</table>
+    	<div align="left">
+    	</div>
+   	</td>   	
+    <td width="51%" align="center">
+    	<table width="500" border="1" align="right" cellpadding="0" cellspacing="0">
+      	<tr>
+      		<td>
+        		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	          	<tr>
+	            	<td align="center" class="tbltextttl">Customer Info:</td>
+		          </tr>
+							<tr>
+							  <td align="center">
+							  	[fc_load_customer_name]<br>
+							  	[in_address1]<br>
+							  	[in_address2]<br>
+							  	[in_address3]
+						  	</td>
+							</tr>
+							<tr>
+						  	<td align="center">[in_urbanization]</td>
+							</tr>
+							<tr>			
+								<td align="center">[in_city]</td>
+							</tr>
+							<tr>
+							  <td align="center">[in_state] [in_zip]</td>
+							</tr>
+		      	</table>
+		    	</td>
+        	<td>
+        		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	          	<tr>
+	            	<td align="center" class="tbltextttl">SEND TO:</td>
+	          	</tr>
+							<tr>
+						  	<td align="center">
+						  		[in_shp_name]<br>
+						  		[va_shp_phone]
+						  		[in_shp_address1]<br>
+						  		[in_shp_address2]<br>
+						  		[in_shp_address3]
+						  	</td>
+							</tr>
+							<tr>
+						  	<td align="center">[in_shp_urbanization]</td>
+							</tr>
+							<tr>			
+								<td align="center">[in_shp_city]</td>
+							</tr>
+							<tr>
+							  <td align="center">[in_shp_state] [in_shp_zip]</td>
+							</tr>
+		    	  </table>
+		     	</td>
+		    </tr>
+    	</table>
+    <div align="center">
+    </div>
+    </td>
+  </tr>
+	<tr>
+		<td colspan="2"><table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>Order ID</td>
+					<td>[in_id_orders]</td>
+				</tr>
+				<tr>
+					<td>Order Date</td>
+					<td>[in_date]</td>
+				</tr>
+				<tr>
+					<td>Shipping Date</td>
+					<td>[in_shpdate]</td>
+				</tr>
+				<tr>
+					<td>Shipping Type</td>
+					<td>[in_shptype]</td>
+				</tr>
+			</table>&nbsp;
+		</td>
+		<td valign='top' align='center'><br>
+			<img src="/cgi-bin/common/apps/barcode?code=[va_e_prefix][in_id_orders]" style="margin-top:6px" border="0">
+		</td>
+	</tr>
+  </tr>
+  <tr>
+    <td colspan="3">
+     <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+      <tr>
+        <td width="10%" bgcolor="#C0C0C0" align="center">Product ID</td>      	
+        <td width="40%" bgcolor="#C0C0C0" align="center">Product Description</td>
+        <td width="10%" bgcolor="#C0C0C0" align="center">Quantity</td>
+        <td width="15%" bgcolor="#C0C0C0" align="center">Unit Price</td>
+        <td width="15%" bgcolor="#C0C0C0" align="center">Total</td>
+      </tr>
+[fc_load_inv_products]
+	  <tr>
+	    <td colspan="5">&nbsp;</td>      	
+	  </tr>
+    </table>
+	</td>
+  </tr>
+
+
+
+</table>	
+	
+	
+	
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3" bgcolor="#C0C0C0" height="2"></td>
+  </tr>
+</table>

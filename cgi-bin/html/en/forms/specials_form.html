@@ -1,0 +1,56 @@
+	&nbsp;
+	<fieldset><legend>Daily Special Show Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%">Name : <span class="smallfieldterr">[er_name]</span></td>
+			<td class="smalltext">
+				<input type="text" name="name" value="[in_name]" size="40" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>	
+		<tr>
+			<td width="30%">Show Day : <span class="smallfieldterr">[er_sday]</span></td>
+			<td class="smalltext">
+					<input type="text" id="sday" name="sday" value="[in_sday]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>				
+		<tr>
+		  	<td valign="top" width="30%">Comments : <span class="smallfieldterr">[er_comments]</span></td>
+		    <td class="smalltext"><textarea name="comments" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_comments]</textarea> </td>
+		</tr>
+	</table>
+	</fieldset>
+ &nbsp;
+     <fieldset><legend>Show Status</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		    <td class="smalltext"><input type="radio" name="status" value="Plan" class="radio">Plan
+                                   <input type="radio" name="status" value="Actual" class="radio">Actual</td>
+		 </tr>
+  	</table>
+	</fieldset>
+	
+<script language="JavaScript">
+<!--
+
+	chg_radio('status','[in_status]');
+
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#sday" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+
+//-->
+</script>

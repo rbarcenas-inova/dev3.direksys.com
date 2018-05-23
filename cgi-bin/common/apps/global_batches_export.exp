@@ -1,0 +1,48 @@
+#!/usr/bin/expect -f
+
+set force_conservative 0  ;# set to 1 to force conservative mode even if
+			  ;# script wasn't run conservatively originally
+if {$force_conservative} {
+	set send_slow {1 .1}
+	proc send {ignore arg} {
+		sleep .1
+		exp_send -s -- $arg
+	}
+}
+
+set host "secureftp.globalresponse.com"
+set user "MOM-1545"
+set pass "Inn0v3nt10n$"
+#set dir "/home/www/github/dev.direksys.com/files/batches/e1"
+#set dir_s "/home/www/github/dev.direksys.com/files/batches/e1/sent"
+set dir "/home/www/domains/d2.direksys.com/files/batches/e1"
+set dir_s "/home/www/domains/d2.direksys.com/files/batches/e1/sent"
+
+puts "$dir"
+cd $dir
+set c_files [glob *.csv]
+
+foreach name $c_files {
+	puts "$name"
+    set timeout -1
+	spawn sftp $user@$host
+	match_max 100000
+	expect "password:"
+	
+	send -- "$pass\r"
+	expect "sftp>"
+
+	send -- "\[A"
+	expect -exact ""
+
+	send -- "put $dir/$name"
+	expect -exact "$dir/$name"	
+
+	send -- "\r"
+	expect "Uploading $dir/$name"
+
+	send -- "exit\r"
+	expect eof
+
+	file rename -force $name $dir_s/$name
+}

@@ -1,0 +1,95 @@
+	&nbsp;
+	<fieldset><legend>Warehouse Receipt Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%" valign="top">Vendor ID : <span class="smallfieldterr">[er_id_vendors]</span></td>
+		    <td class="smalltext"><input type="text" name="id_vendors" value="[in_id_vendors]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	<span class="help_on">[va_vendor_name]</span>
+		    	<a href="javascript:search_id('id_vendors','db=sl_vendors&cmd=vendors')">
+						<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+
+		    	</td>
+		 </tr>				
+  		<tr>
+		    <td width="30%" valign="top">PO ID : <span class="smallfieldterr">[er_id_purchaseorders]</span></td>
+		    <td class="smalltext"><input type="text" name="id_purchaseorders" value="[in_id_purchaseorders]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	<a href="javascript:search_id('id_purchaseorders','db=sl_purchaseorders&cmd=mer_po')">
+						<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+
+		    	</td>
+		 </tr>	
+  		<tr>
+		    <td width="30%">Invoice # : <span class="smallfieldterr">[er_invoice]</span></td>
+		    <td class="smalltext"><input type="text" name="invoice" value="[in_invoice]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>	
+		<tr>
+		  <td width="30%">Invoice Date : <span class="smallfieldterr">[er_invoicedate]</span></td>
+			<td class="smalltext">
+				<input type="text" id="invoicedate" name="invoicedate" value="[in_invoicedate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</td>
+		</tr>
+		<tr>
+		    <td valign="top" width="30%">Description : <span class="smallfieldterr">[er_description]</span></td>
+		    <td class="smalltext"><textarea name="description" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description]</textarea> </td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Delivery Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		   <td valign="top" width="30%">Received From : <span class="smallfieldterr">[er_receivedfrom]</span></td>
+		   <td class="smalltext">
+		   			<select name="receivedfrom" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+                        <option value="">---</option>
+							[fc_build_select_receivedfrom]
+					</select></td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Driver Name : <span class="smallfieldterr">[er_driver]</span></td>
+		    <td class="smalltext"><input type="text" name="driver" value="[in_invoice]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>	
+  		<tr>
+		    <td width="30%">Driver ID : <span class="smallfieldterr">[er_driverid]</span></td>
+		    <td class="smalltext"><input type="text" name="driverid" value="[in_driverid]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+		 </tr>	
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Purchase Order Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		    <td class="smalltext">
+		    	<input type="radio" name="status" value="In Process" class="radio">In Process
+          		<input type="radio" name="status" value="Processed" class="radio">Processed
+      </td>
+		 </tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+
+	chg_radio('status','[in_status]');
+	chg_select('receivedfrom','[in_receivedfrom]');
+	
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#invoicedate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+
+//-->
+</script>

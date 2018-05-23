@@ -1,0 +1,29 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center style="background-image:url([va_imgurl]menu/menubg.jpg); background-repeat:repeat-x; background-position: top left;">
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+				<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.5', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+			<iframe 
+				src="https://docs.google.com/a/inovaus.com/forms/d/19sPPkMaE5Pt4iUNhM80hO3tWAQjU0TmcvTwBnvGOKgs/viewform" 
+				frameborder="0"
+				style="width: 100%;height: 800px">
+			</iframe>
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
+

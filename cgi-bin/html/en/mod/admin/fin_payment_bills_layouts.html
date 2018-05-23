@@ -1,0 +1,121 @@
+[ip_header]
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="60%" align="center"></td>
+		<td width="20%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=fin_payment_bills")'>Payment Bills</td>
+		<td width="20%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=fin_payment_bills_layouts")'>Payment Layouts</td>
+
+	  </tr>
+	</table>
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Payment Bills</td>
+		 </tr>
+
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+
+		</table>
+	<br>
+	&nbsp;
+	<div id="">
+		<form name="sitform" method="post" action="/cgi-bin/mod/admin/admin" id="form1" >
+			<input type="hidden" value="fin_payment_bills_layouts" name="cmd">
+			<input type="hidden" value="1" name="action">
+			<input type="hidden" value="0" id="id_hd_layout_extraction_type" name="hd_layout_extraction_type">
+
+			<fieldset><legend>Payment Info</legend>
+				<table width="100%" cellspacing="0" cellpadding="2" border="0">
+					<tbody>						
+					
+					<tr>
+						<td width="30%">Bank Account : <span class="smallfieldterr">[er_id_banks]</span></td>
+						<td class="smalltext">
+							<select name="id_banks" id="id_banks" onfocus="focusOn( this )" onblur="focusOff( this )">
+								<option value="">---</option>
+								[fc_build_select_custom_bank]
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Date : <span class="smallfieldterr">[er_bankdate]</span></td>
+						<td class="smalltext"><input type="text" id="bankdate" name="bankdate" value="[in_bankdate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+					</tr>		
+				
+				</table>
+			</fieldset>
+			&nbsp;
+			<p align="center">
+				<input type="button" class="button" value="Export File" id="btn_export_02" style="display:">
+				<input type="button" class="button" value="Export File SPEI" id="btn_export_04" style="display:">
+			</p>
+
+		</form>
+	</div>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script>
+	
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+		
+		var date = $( "#bankdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			minDate: new Date(),
+			defaultDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 2
+		});
+
+		$( "[id^=btn_export]" ).click(function(){
+		
+			var this_type = this.id;
+			var ary_option = this_type.split('_');
+			var id_option  = ary_option[2];
+			$("#id_hd_layout_extraction").val('1');
+			$("#id_hd_layout_extraction_type").val(id_option);
+			$("#form1").submit();
+
+		});
+
+		$("[id^=btn_export]").dblclick(function(){
+			return false;
+		});
+		
+		
+	});
+
+	chg_select('id_banks','[in_id_banks]');
+	
+</script>
+[ip_footer]

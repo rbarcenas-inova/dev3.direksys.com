@@ -1,0 +1,215 @@
+#### Messages
+msgd_sent=Mensaje enviado
+msgd_nomsgs=No hay mensajes
+
+
+### Products Search
+searchempty=Su busqueda No encontro productos
+
+ses_info=Caller ID: [cid]<br>Current Step : [curstep]<br>Time in Order : [tottime] mins.
+ses_empty=No Agents
+
+#### Callers DB
+cupon_used=Cupon Usado
+
+
+#### Callers DB
+pageproducts=Productos
+prods_onairnow=On Air ahora
+prods_onairtoday=On Air hoy
+total=Total = 
+vpo_total=Total = 
+
+
+no_speech_available=No hay un Script disponible<br>Presione siguiente para continuar
+no_stepspeech_available=Lo sentimos, No hay un script disponible
+
+
+search_noitem=No se encontró el registro 
+empty_cart=El carro esta vacio
+samebillshp=La direccion de facturación es la misma que de despacho.
+difbillshp=La dirección de facturación NO es la misma que de despacho.
+shp_type_1=Despacho Standard
+shp_type_2=Despacho Express
+shp_type_3=Despacho Programado
+pay_type_cc=Tarjeta de Credito
+pay_type_check=Cheque
+pay_type_wu=Western Union
+cc_problem=Hay un problema al procesar la tarjeta de Crédito
+ck_problem=Hay un problema al procesar el Cheque
+
+msg_edt=Tiempo estimado para la entrega
+msg_days=días
+msg_items=Cantidad de articulos en la orden
+msg_servis=Cantidad de servicios en la orden
+msg_stotal=Total Orden
+msg_shp=Cargos de Envío
+msg_total=Total a Pagar
+msg_tax=Impuestos
+
+
+### Orders
+pageorders=Orden
+orders_added=Orden Ingresada :
+orders_updated=Orden Actualizada :
+orders_deleted=Orden Borrada :
+orders_noteadded=Nueva Nota de Orden Ingresada
+orders_itemadded=Art&iacute;culo de Orden Ingresado
+orders_itemdroped=Art&iacute;culo borrado de la Orden
+orders_paydroped=Pago Borrado
+orders_payadded_chk=Pago con Cheque Ingresado
+orders_payadded_cc=Pago con Tarjeta de Cr&eacute;dito Ingresado
+orders_procpayment=Autorizaci&oacute;n de Pago Procesada
+orders_viewpaylog=Ver Mensajes de Pagos
+orders_viewpay=Ver Pagos
+orders_shipped=La Orden fue mandada y no puede ser modificada
+orders_viewed=Orden Vista :
+
+### PreOrders
+pagepreorders=PreOrden
+preorders_added=PreOrden Ingresada :
+preorders_updated=PreOrden Actualizada :
+preorders_deleted=PreOrden Borrada :
+preorders_noteadded=Nueva Nota de PreOrden Ingresada
+preorders_itemadded=Art&iacute;culo de PreOrden Ingresado
+preorders_itemdroped=Art&iacute;culo borrado de la PreOrden
+preorders_paydroped=Pago Borrado
+preorders_payadded_chk=Pago con Cheque Ingresado
+preorders_payadded_cc=Pago con Tarjeta de Cr&eacute;dito Ingresado
+preorders_procpayment=Autorizaci&oacute;n de Pago Procesada
+preorders_viewpaylog=Ver Mensajes de Pagos
+preorders_viewpay=Ver Pagos
+preorders_shipped=La PreOrden fue mandada y no puede ser modificada
+preorders_viewed=PreOrden Vista :
+
+pageatcreturns=Return ATC
+atcreturns_updated=Return Updated :
+atcreturns_deleted=Return Receipt Deleted :
+atcreturns_noteadded=New Return Receipt Note Added
+atcreturns_viewed=Return Receipt Viewed :
+
+### Leads Flash
+leads_flash_noteadded=Nueva Nota Agregada
+leads_flash_st_updated=Status Actualizado
+leads_flash_header_tab1=Dest. Hpne, IO, Called By, Calif, Dur, Date, time
+leads_flash_header_tab3=Date,Time,Info,User,IP
+leads_flash_updated=Leads Updated
+
+## Customers
+opr_customers_updated=Customer Updated
+opr_customers_deleted=Customer deleted
+opr_customers_added=Customer Added
+
+## News
+mkt_news_added=News Added
+mkt_news_updated=News Updated
+mkt_news_deleted=News Deleted
+
+## Products
+mer_products_noteadded=New Note Added
+mer_products_catadded=New Category product Added
+mer_products_catdel=Product Deleted
+mer_products_propadded=New Property Added
+mer_products_prodel=Property Deleted
+products_chnamesupd=Updated Names
+mer_products_panadded=New Sale Price Analisis Added
+mer_products_htab14=,Name,Pay Type,Price,Months,Auth
+
+#### Messages
+msgd_sent=Mensaje enviado
+msgd_nomsgs=No hay mensajes
+
+
+### Products Search
+searchempty=Su busqueda No encontro productos
+
+
+#### Callers DB
+cupon_used=Cupon Usado
+
+
+#### Callers DB
+pageproducts=Productos
+prods_onairnow=On Air ahora
+prods_onairtoday=On Air hoy
+total=Total = 
+
+
+
+no_speech_available=No hay un Script disponible<br>Presione siguiente para continuar
+no_stepspeech_available=Lo sentimos, No hay un script disponible
+
+
+search_noitem=No se encontró el registro 
+empty_cart=El carro esta vacio
+samebillshp=La direccion de facturación es la misma que de despacho.
+difbillshp=La dirección de facturación NO es la misma que de despacho.
+shp_type_1=Despacho Standard
+shp_type_2=Despacho Express
+shp_type_3=Despacho Programado
+pay_type_cc=Tarjeta de Credito
+pay_type_check=Cheque
+pay_type_wu=Western Union
+cc_problem=Hay un problema al procesar la tarjeta de Crédito
+ck_problem=Hay un problema al procesar el Cheque
+
+msg_edt=Tiempo estimado para la entrega
+msg_days=días
+msg_items=Cantidad de articulos en la orden
+msg_servis=Cantidad de servicios en la orden
+msg_stotal=Total Orden
+msg_shp=Cargos de Envío
+msg_total=Total a Pagar
+msg_tax=Impuestos
+
+
+### Orders
+pageorders=Orden
+orders_added=Orden Ingresada :
+orders_updated=Orden Actualizada :
+orders_deleted=Orden Borrada :
+orders_noteadded=Nueva Nota de Orden Ingresada
+orders_itemadded=Art&iacute;culo de Orden Ingresado
+orders_itemdroped=Art&iacute;culo borrado de la Orden
+orders_paydroped=Pago Borrado
+orders_payadded_chk=Pago con Cheque Ingresado
+orders_payadded_cc=Pago con Tarjeta de Cr&eacute;dito Ingresado
+orders_procpayment=Autorizaci&oacute;n de Pago Procesada
+orders_viewpaylog=Ver Mensajes de Pagos
+orders_viewpay=Ver Pagos
+orders_shipped=La Orden fue mandada y no puede ser modificada
+orders_viewed=Orden Vista :
+
+### PreOrders
+pagepreorders=PreOrden
+preorders_added=PreOrden Ingresada :
+preorders_updated=PreOrden Actualizada :
+preorders_deleted=PreOrden Borrada :
+preorders_noteadded=Nueva Nota de PreOrden Ingresada
+preorders_itemadded=Art&iacute;culo de PreOrden Ingresado
+preorders_itemdroped=Art&iacute;culo borrado de la PreOrden
+preorders_paydroped=Pago Borrado
+preorders_payadded_chk=Pago con Cheque Ingresado
+preorders_payadded_cc=Pago con Tarjeta de Cr&eacute;dito Ingresado
+preorders_procpayment=Autorizaci&oacute;n de Pago Procesada
+preorders_viewpaylog=Ver Mensajes de Pagos
+preorders_viewpay=Ver Pagos
+preorders_shipped=La PreOrden fue mandada y no puede ser modificada
+preorders_viewed=PreOrden Vista :
+
+pageatcreturns=Return ATC
+atcreturns_updated=Return Updated :
+atcreturns_deleted=Return Receipt Deleted :
+atcreturns_noteadded=New Return Receipt Note Added
+atcreturns_viewed=Return Receipt Viewed :
+
+### Leads Flash
+leads_flash_noteadded=Nueva Nota Agregada
+leads_flash_st_updated=Status Actualizado
+leads_flash_header_tab1=Dest. Hpne, IO, Called By, Calif, Dur, Date, time
+leads_flash_header_tab3=Date,Time,Info,User,IP
+leads_flash_header_tab3=Date,Time,Info,User,IP
+## send_sms
+send_sms_sent=Message Sent
+send_sms_not_sent=Message Not Sent
+

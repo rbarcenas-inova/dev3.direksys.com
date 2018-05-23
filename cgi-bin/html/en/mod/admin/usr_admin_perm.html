@@ -1,0 +1,288 @@
+[ip_header]
+<script type="text/javascript" src="/jquery-token/jquery.tokeninput.js"></script>
+<link rel="stylesheet" href="/jquery-token/token-input.css" type="text/css" />
+<link rel="stylesheet" href="/jquery-token/token-input-facebook.css" type="text/css" />
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: [va_expanditem], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+				<tr>
+					<td width="20%" align="center"></td>
+					<td width="20%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=usr_admin_perm")'>Users Permissions Manager</td>
+					<td width="20%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=group_admin_perm")'>Groups Permissions Manager</td>
+					<td width="20%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=usr_users_perms_list")'>User Permissions List</td>
+					<td width="20%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=usr_view_groups_perm")'>Group Permissions List</td>
+				</tr>
+			</table>
+<!-- Start Main Area  -->
+
+
+	<div style="background-color:#ffffff;margin:15px;">
+	
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td align="center"><h1 class="titletext" >Users Permissions Manager</h1></td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	<div id="formuser" style="[va_display2]">
+
+		<form method="post" action="/cgi-bin/mod/admin/admin" id="form">
+			<input type="hidden" name="cmd" value="usr_admin_perm" />
+			<input type="hidden" name="action" value="1" />
+			<input type="hidden" name="type" id="type" value="admin" />
+			
+			<fieldset><legend>Add Permission</legend>
+				<label for="user">For Users: </label>
+				<input type="text" name="user" id="user" /> 
+			</fieldset>
+			&nbsp;
+			<fieldset><legend>Detail Permission</legend>
+				<div id="tabs">
+					<ul>
+						<li><a href="#tabs-1" id="admin" class="tab-a">Admin</a></li>
+						<li><a href="#tabs-2" id="dbman" class="tab-a">Dbman</a></li>
+						<li><a href="#tabs-3" id="special" class="tab-a">Perm Special</a></li>
+						
+					</ul>
+					<div id="tabs-1">
+						
+						<table border="0">
+							<tr>
+								<td width="50%" align="center">
+									Application : 
+								</td>
+								<td>
+									<select id="new_application_admin">
+										<option value=""></option>
+										[bs_application@admin_perms]
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td width="50%" align="center">
+									Command :
+								</td>
+								<td>
+									<input type="text" placeholder="Command for Admin" id="cmd_admin" style="width:150px;height:20px;" />
+								</td>
+							</tr>
+							<tr>
+								<td width="50%" align="center">
+									<input type="radio" class="radio" id="ptype_allow2" value="allow" name="radio-tab1">
+									<label for="ptype_allow2">Allow</label>
+								</td>
+								<td>
+									<input type="radio" class="radio" id="ptype_disallow2" value="disallow" name="radio-tab1">
+									<label for="ptype_disallow2">Disallow</label>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div id="tabs-2">
+						<table border="0">
+							<tr>
+								<td width="50%" align="center">
+									Application : 
+								</td>
+								<td>
+									<select id="new_application_dbman">
+										<option value=""></option>
+										[bs_application@admin_perms]
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td width="50%" align="center">
+									Command :
+								</td>
+								<td>
+									<input type="text"  id="cmd_dbman" placeholder="Command for DBman" style="width:150px;height:20px;" />
+								</td>
+							</tr>
+							<tr>
+								<td width="50%" align="center">Basics :</td>
+								<td>
+									<input type='checkbox' class='checkbox' id="dbman_view_on" name="dbman_view" value="on"><label for="dbman_view_on">View</label>
+									<input type='checkbox' class='checkbox' id="dbman_add_on" name="dbman_add" value="on"><label for="dbman_add_on">Add</label>
+									<input type='checkbox' class='checkbox' id="dbman_edit_on" name="dbman_edit" value="on"><label for="dbman_edit_on">Edit</label>
+									<input type='checkbox' class='checkbox' id="dbman_del_on" name="dbman_del" value="on"><label for="dbman_del_on">Delete</label>
+									<input type='checkbox' class='checkbox' id="dbman_print_on" name="dbman_print" value="on"><label for="dbman_print_on">Print</label>
+								</td>
+							</tr>
+							<tr>
+								<td  width="50%" align="center"  valign="top">Tabs: </td>
+								<td><input type='checkbox' class='checkbox' id="dbman_tab1_on" name="dbman_tab1" value="on"><label for="dbman_tab1_on">1</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab2_on" name="dbman_tab2" value="on"><label for="dbman_tab1_on">2</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab3_on" name="dbman_tab3" value="on"><label for="dbman_tab1_on">3</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab4_on" name="dbman_tab4" value="on"><label for="dbman_tab1_on">4</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab5_on" name="dbman_tab5" value="on"><label for="dbman_tab1_on">5</label><br>
+									<input type='checkbox' class='checkbox' id="dbman_tab6_on" name="dbman_tab6" value="on"><label for="dbman_tab1_on">6</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab7_on" name="dbman_tab7" value="on"><label for="dbman_tab1_on">7</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab8_on" name="dbman_tab8" value="on"><label for="dbman_tab1_on">8</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab9_on" name="dbman_tab9" value="on"><label for="dbman_tab1_on">9</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab10_on" name="dbman_tab10" value="on"><label for="dbman_tab1_on">10</label><br>
+									<input type='checkbox' class='checkbox' id="dbman_tab11_on" name="dbman_tab11" value="on"><label for="dbman_tab1_on">11</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab12_on" name="dbman_tab12" value="on"><label for="dbman_tab1_on">12</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab13_on" name="dbman_tab13" value="on"><label for="dbman_tab1_on">13</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab14_on" name="dbman_tab14" value="on"><label for="dbman_tab1_on">14</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab15_on" name="dbman_tab15" value="on"><label for="dbman_tab1_on">15</label><br>
+									<input type='checkbox' class='checkbox' id="dbman_tab16_on" name="dbman_tab16" value="on"><label for="dbman_tab1_on">16</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab17_on" name="dbman_tab17" value="on"><label for="dbman_tab1_on">17</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab18_on" name="dbman_tab18" value="on"><label for="dbman_tab1_on">18</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab19_on" name="dbman_tab19" value="on"><label for="dbman_tab1_on">19</label>
+									<input type='checkbox' class='checkbox' id="dbman_tab20_on" name="dbman_tab20" value="on"><label for="dbman_tab1_on">20</label>
+								</td>
+							</tr>
+							<tr>
+								<td width="50%" align="center">
+									<input type="radio" class="radio" id="ptype_allow"  value="allow" name="radio-tab2">
+									<label for="ptype_allow2">Allow</label>
+								</td>
+								<td>
+									<input type="radio" class="radio" id="ptype_disallow"  value="disallow" name="radio-tab2">
+									<label for="ptype_disallow2">Disallow</label>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div id="tabs-3">
+						<table border="0">
+							<tr>
+								<td width="50%" align="center">
+									Application : 
+								</td>
+								<td>
+									<select id="new_application_special">
+										<option value=""></option>
+										[bs_application@admin_perms]
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td width="50%" align="center">
+									Command :
+								</td>
+								<td>
+									<input type="text" id="cmd_special" placeholder="Special Command" style="width:150px;height:20px;" />
+								</td>
+							</tr>
+							<tr>
+								<td width="50%" align="center">
+									<input type="radio" class="radio" id="ptype_allow3"  value="allow" name="radio-tab3">
+									<label for="ptype_allow">Allow</label>
+								</td>
+								<td>
+									<input type="radio" class="radio" id="ptype_disallow3" value="diallow" name="radio-tab3">
+									<label for="ptype_disallow">Disallow</label>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div><br>
+			</fieldset>
+			&nbsp;
+			<div align="center"><input value="Add Record" class="button" type="submit"></div>
+			<!--Hidden Input for send the final acction-->
+			<input type="hidden" name="application" id="application" />
+			<input type="hidden" name="command" id="command" />
+			<input type="hidden" name="ptype" id="ptype" />
+		</form>
+	</div>
+
+		<script type="text/javascript">
+        $(document).ready(function() {
+
+        	$(".collapse").click(function (){
+
+        		var id = $(this).attr('id');
+        		var partes = id.split("_");
+        		id = partes[1];
+        		$("#table_"+id).toggle();
+        	});
+
+        	$(".tablecollapse").hide();
+
+        	$("#user").tokenInput("/cgi-bin/common/apps/ajaxbuild?ajaxbuild=searchUser", {
+				preventDuplicates: true
+			});
+			$("#tabs").tabs();
+			$(".tab-a").click(function (){
+				if($(this).attr('id') == 'admin'){
+					$("#type").val('admin');
+				}else if($(this).attr('id') == 'dbman'){
+					$("#type").val('dbman');
+				}else{
+					$("#type").val('special');
+				}
+				
+			});
+			
+			$("#form").submit(function (event) {
+			if($("#user").val() == ''){
+				alert("User is required for continue")
+				return false;
+			}
+				if($("#type").val() == 'admin'){
+					$("#application").val($("#new_application_admin").val())
+					$("#command").val($("#cmd_admin").val());
+					$("#new_application_special").val('');
+					$("#new_application_dbman").val('');
+					$("#new_application_admin").val('');
+					if($("#ptype_allow2").is(':checked')){
+						$("#ptype").val('allow');
+					}else{
+						$("#ptype").val('disallow');
+					}
+					
+				}else if($("#type").val() == 'dbman'){
+					$("#application").val($("#new_application_dbman").val());
+					$("#command").val($("#cmd_dbman").val());
+					$("#new_application_special").val('');
+					$("#new_application_admin").val('');
+					$("#new_application_dbman").val('');
+					if($("#ptype_allow").is(':checked')){
+						$("#ptype").val('allow');
+					}else{
+						$("#ptype").val('disallow');
+					}
+					
+				}else{
+					$("#application").val($("#new_application_special").val());
+					$("#command").val($("#cmd_special").val());
+					$("#new_application_dbman").val('');
+					$("#new_application_admin").val('');
+					$("#new_application_special").val('');
+					if($("#ptype_allow3").is(':checked')){
+						$("#ptype").val('allow');
+					}else{
+						$("#ptype").val('disallow');
+					}
+				}
+				//return false;
+				
+			});
+			
+         });
+
+        </script>
+		</td>
+	</tr>
+</table>
+[ip_footer]

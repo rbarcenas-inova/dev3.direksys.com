@@ -1,0 +1,46 @@
+	<!--
+
+	-->
+	<!-- 2. Add the JavaScript to initialize the chart on document ready -->
+	<script type="text/javascript">
+	var chart;
+	$(document).ready(function() {
+		
+		[va_highchart_theme]
+		
+		chart = new Highcharts.Chart({
+			chart: {
+				[va_chart_options]
+			},
+			title: {
+				text: '[va_chart_title]'
+			},
+			subtitle: {
+				text: '[va_chart_subtitle]'
+			},
+			plotArea: {
+				[va_chart_plotarea]
+			},
+			xAxis: {
+				[va_chart_xaxis]
+			},
+			yAxis: {
+				[va_chart_yaxis]
+			},
+			tooltip: {
+				[va_chart_tooltip]
+			},
+			credits: {
+				enabled:false
+			},
+			plotOptions: {
+				[va_chart_plotoptions]
+			},
+			legend: {
+				[va_chart_legend]
+			},
+			series: [[va_series_data]]
+		});
+						
+	});
+	</script>

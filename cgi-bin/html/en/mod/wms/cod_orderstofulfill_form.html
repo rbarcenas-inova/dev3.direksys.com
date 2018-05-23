@@ -1,0 +1,95 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center style="background-image:url([va_imgurl]menu/menubg.jpg); background-repeat:repeat-x; background-position: top left;">
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 2, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="50%" align="center"></td>
+	    <td class="cell_[va_sitems]" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=cod_orderstofulfill&sing=1")'>Sgl Items</td>
+	    <td class="cell_[va_mitems]" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=cod_orderstofulfill&mult=1")'>MM Items</td>
+	    <td class="cell_[va_oitems]" align="center" onClick='trjump("/cgi-bin/mod/wms/admin?cmd=cod_orderstofulfill&ostock=1")'>Out of Stock</td>
+	  </tr>
+	</table>
+	
+	
+	<div style="background-color:#ffffff;margin:15px;">
+	
+	
+	<form action="/cgi-bin/mod/wms/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="cod_orderstofulfill">
+	<input type="hidden" name="id_products" value="[in_id_products]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="mult" value="[in_mult]">
+	<input type="hidden" name="ostock" value="[in_ostock]">
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Items Ready to Process (COD Orders)</td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+     </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+			<td align="center" colspan="2" class="menu_bar_title">Product Description</td>
+	  	</tr>
+		<tr>
+			<td nowrap>ID : </td>
+			<td>[in_id_products]</td>
+	  	</tr>
+		<tr>
+			<td nowrap>Model : </td>
+			<td>[va_model]</td>
+	  	</tr>
+	  	<tr>
+			<td nowrap>Name : </td>
+			<td>[va_name]</td>
+	  	</tr>
+		<tr>
+			<td nowrap>Choices : </td>
+			<td>[va_choices]</td>
+	  	</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>COD Orders To Fulfill</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td valign="top">Orders Ready to Process : </td>
+			<td valign="top"><input type="text" name="orders" value="[va_orders]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'></td>
+			<td><input type="submit" name="export" value="To Fulfill" class="button"></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="3" class="smalltext"><input type="radio" name="so" value="desc" class="radio">New First
+				<input type="radio" name="so" value="asc" class="radio" checked> Old First</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Other SKUs in these orders</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		[va_skuslog]	
+	</table>	
+	</fieldset>		
+</form>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

@@ -1,0 +1,141 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_home")'>Financial Home</td>
+	    <td width="17%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reports")'>Sales Reports</td>
+	    <td width="18%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reconcile")'>Reconcile</td>
+	    <td width="18%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reports_fp")'>Flex Pay</td>
+	  </tr>
+	</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+	&nbsp;
+
+  <form action="/cgi-bin/mod/admin/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="fin_reconcile">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="left" colspan="2">Reconcile Bank</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Current State</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+			<tr>
+		    <td width="30%">From Date : <span class="smallfieldterr">[er_from_date]</span></td>
+		    <td class="smalltext">
+				<input type="text" id="from_date" name="from_date" value="[in_from_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' />
+		    </td>
+			</tr>
+			<tr>
+				<td width="30%">To Date : <span class="smallfieldterr">[er_to_date]</span></td>
+				<td class="smalltext">
+					<input type="text" id="to_date" name="to_date" value="[in_to_date]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' />
+		    	</td>
+			</tr>
+			<tr>
+			 	<td width="30%">Bank : </td>
+			  <td class="smalltext">
+					<select name="id_banks" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+						<option value="">---</option>
+							[va_select_bank]
+					</select>
+				</td>
+			</tr>
+			<!--
+			<tr>
+		   		<td width="30%" valign="top">Current Balance : <span class="smallfieldterr">[er_balance]</span></td>
+				<td class="smalltext"><input type="text" name="balance" value="[in_balance]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+			</tr>
+			-->
+		</table>
+	</fieldset>
+
+	<p align="center"><input type="submit" value="Next" class="button"></p>
+  </form>
+  		<script language="javascript">
+		<!--			
+			chg_select('id_banks','[in_id_banks]');
+	        $(document).ready(function() {
+
+				/*AJAX Error handler*/
+				$(document).ajaxError(function(e, xhr, settings, exception) {
+					alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+				});
+
+				var dates = $( "#from_date" ).datepicker({
+					dateFormat: 'yy-mm-dd',
+					defaultDate: "-2m",
+					minDate: new Date(2009,1-1,1),
+					maxDate: new Date(),
+					changeMonth: true,
+					numberOfMonths: 3,
+					onSelect: function( selectedDate ) {
+						var option = this.id == "from_date" ? "minDate" : "maxDate",
+						instance = $( this ).data( "datepicker" ),
+						date = $.datepicker.parseDate(
+							instance.settings.dateFormat ||
+							$.datepicker._defaults.dateFormat,
+							selectedDate, instance.settings );
+						dates.not( this ).datepicker( "option", option, date );
+					}
+				});
+				
+		var dates2 = $( "#to_date" ).datepicker({
+					dateFormat: 'yy-mm-dd',
+					defaultDate: "-2m",
+					minDate: new Date(2009,1-1,1),
+					maxDate: new Date(),
+					changeMonth: true,
+					numberOfMonths: 3,
+					onSelect: function( selectedDate ) {
+						var option = this.id == "from_date" ? "minDate" : "maxDate",
+						instance = $( this ).data( "datepicker" ),
+						date = $.datepicker.parseDate(
+							instance.settings.dateFormat ||
+							$.datepicker._defaults.dateFormat,
+							selectedDate, instance.settings );
+						dates.not( this ).datepicker( "option", option, date );
+					}
+				});
+				
+
+	        });
+
+		//-->
+		</script>	
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+
+
+
+[ip_footer]

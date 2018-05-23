@@ -1,0 +1,86 @@
+/* 
+    Document   : main
+    Created on : 5/11/2012, 09:30:33 AM
+    Author     : ccedillo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.img_button1{
+    width: 224px;
+    height: 124px;                
+    color: #FFFFFF;
+    text-align: center;
+    #position: absolute;
+    #top: 50%;
+    display: table-cell;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.txt_button{
+    width: 100%;
+    font-family: Arial;
+    font-size: 16pt;
+    #position: relative;
+    #top: -50%
+}
+
+font.menu1 {
+    color: #B8B8B8;
+    cursor: default;
+    font-family: verdana,arial;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 18px;
+    text-decoration: none;
+}
+
+font.menu2 {
+    color: #727272;
+    cursor: default;
+    font-family: verdana,arial;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 18px;
+    text-decoration: none;
+}
+
+font.compania {
+    color: #C12222;
+    cursor: default;
+    font-family: verdana;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 22px;
+    text-decoration: none;
+}
+font.modulo1 {
+  color: #72AA00;
+  cursor: default;
+  font-family: verdana;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 22px;
+  text-decoration: none;
+}
+
+font.userinfo{
+    color: #000000; 
+    cursor: default; 
+    font-family: verdana,arial; 
+    font-size: 12px; 
+    font-weight: normal; 
+    line-height: 18px; 
+    text-decoration: none;
+}
+
+font.username {
+  color: #000000;
+  cursor: default;
+  font-family: verdana,arial;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 28px;
+  text-decoration: none;
+}

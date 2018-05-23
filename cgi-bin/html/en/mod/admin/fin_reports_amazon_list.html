@@ -1,0 +1,85 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0 width="100%">
+				<td align=left width="230px">
+					<font face=verdana>
+					<ul id="accordion">
+						[ip_menu]
+					</ul>
+					<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+					<script type="text/javascript">
+						var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+					</script>		
+				</td>
+			</table>	
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+			  <tr>
+			    <td width="30%" align="center"></td>
+			    <td class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_home")'>Financial Home</td>
+			    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reports")'>Sales Reports</td>
+			    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reports_tax")'>Tax  Collected</td>
+			    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_reports_fp")'>Flex Pay</td>
+			  </tr>
+			</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+	<div style="padding: 10px 0;">
+	<table border="0" cellspacing="0" cellpadding="4" width="70%" class="formtable" align="center">
+    	<tr>
+    		<td class="menu_bar_title" colspan="2">Report Name: Amazon Orders </td>
+    	</tr>
+		[va_descfilters]
+    </table>
+	</div>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="stdtxterr" colspan="2">[va_message]</td>
+		</tr>
+		<tr>
+		    <td class="tbltextttl">
+		    	<a href="javascript:prnwin('[va_script_url]?[va_qs]&print=1')">
+		    		<img src='[va_imgurl]/[ur_pref_style]/b_print.png' title='Print' alt='' border='0'>
+		    	</a>
+		    	<a href="javascript:return false;" onClick="trjump('/cgi-bin/mod/admin/admin?[va_qs]&export=1')">
+		    		<img src='[va_imgurl]/[ur_pref_style]/b_xls.gif' title='Export' alt='' border='0'>
+		    	</a>
+		    	Records : [va_matches]
+		    </td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		</tr>
+    </table>    
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>		    
+		    <td class="menu_bar_title" align="center">ID orders</td>
+		    <td class="menu_bar_title" align="center">Fulfilled By</td>
+		    <td class="menu_bar_title" align="center">Date</td>
+		    <td class="menu_bar_title" align="center">Amazon ID</td>
+		    <td class="menu_bar_title" align="center">Customer</td>
+		    <td class="menu_bar_title" align="center">Saleprice</td>
+		    <td class="menu_bar_title" align="center">Shipping</td>
+		    <td class="menu_bar_title" align="right">Tax</td>
+		 </tr>
+		[va_searchresults]
+     </table>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="tbltextttl">Records : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+     </table> 
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

@@ -1,0 +1,166 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem:[fc_template_reportsmenu], width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+		<td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_orders_shipinfo")'>Shipping Info</td>
+	    <td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_frec")'>Customer Frecuency</td>
+	    <td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_sex")'>Customer by Sex</td>
+	    <td width="14%" class='cell_on' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_sales_behavior")'>Sales Behavior</td>
+	    <td width="14%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=rep_bi_twilio_messages")'>Twilio Messages</td>
+	  </tr>
+	</table>	
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+
+
+
+  <form action="/cgi-bin/mod/[ur_application]/admin" method="post" name="sitform">
+	<input type="hidden" name="cmd" value="rep_bi_sales_behavior">
+	<input type="hidden" name="action" value="1">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="titletext" align="center">Business Intelligence : Sales Behavior</td>
+		</tr>
+		<tr>
+			<td class="stdtxterr">[va_message]</td>
+		</tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>Query</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+	    <td width="25%">Base Range :</td>
+	    <td class="smalltext">
+	    	From Date <input type="text" id="from_date_base" name="from_date_base" value="[in_from_date_base]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	    	<span class="smallfieldterr">[er_from_date_base]</span>
+	    	&nbsp;&nbsp;&nbsp;&nbsp;
+	    	To Date <input type="text" id="to_date_base" name="to_date_base" value="[in_to_date_base]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	    	<span class="smallfieldterr">[er_to_date_base]</span>	
+	    </td>
+		</tr>
+		<tr>
+	    <td width="25%">Compare Versus :</td>
+	    <td class="smalltext">
+	    	From Date <input type="text" id="from_date_compare" name="from_date_compare" value="[in_from_date_compare]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	    	<span class="smallfieldterr">[er_from_date_compare]</span>
+	    	&nbsp;&nbsp;&nbsp;&nbsp;
+	    	To Date <input type="text" id="to_date_compare" name="to_date_compare" value="[in_to_date_compare]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	    	<span class="smallfieldterr">[er_to_date_compare]</span>
+	    </td>
+		 </tr>
+		</tr>
+	  	<td valign="top" width="25%">Category : <span class="smallfieldterr">[er_id_categories]</span></td>
+	    <td class="smalltext">
+	    	<select name="id_categories" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	      	<option value="---">---</option>
+	        [fc_build_select_maincategories]
+	        <option value='-1'>Others</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+	   		<td class="smalltext" valign="top" width="25%">User Type :</td>
+	   		<td class="smalltext">
+		   		[fc_build_checkbox_usertype]
+	   		</td>
+		</tr>
+		<tr>
+	   		<td class="smalltext" valign="top" width="25%">Order Type :</td>
+	   		<td class="smalltext">
+		   		[fc_build_checkbox_ptype]
+	   		</td>
+		</tr>
+		<tr>
+		    <td width="25%">ID Product : <span class="smallfieldterr">[er_id_products]</span></td>
+		    <td class="smalltext"><input type="text" name="id_products" value="[in_id_products]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		    	<a name="tabs" id="tabs">&nbsp;</a>
+		    	<a href="javascript:search_id('id_products','db=sl_products&cmd=products')">
+				<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+				<!--<br><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'><img src='[va_imgurl]/[ur_pref_style]/line1.gif' title='line' alt='' border='0'>--></td>
+		</tr>
+	</table>
+	</fieldset>
+
+	<p align="center"><input type="submit" value="Run" class="button"></p>
+  </form>
+<script language="javascript">
+<!--      
+    
+	$(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		$( "#from_date_base, #to_date_base" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			minDate: new Date(2009,1-1,1),
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+			onSelect: function( selectedDate ) {
+				var option = this.id == "from_date_base" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+
+		$( "#from_date_compare, #to_date_compare" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			minDate: new Date(2009,1-1,1),
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+			onSelect: function( selectedDate ) {
+				var option = this.id == "from_date_compare" ? "minDate" : "maxDate",
+				instance = $( this ).data( "datepicker" ),
+				date = $.datepicker.parseDate(
+					instance.settings.dateFormat ||
+					$.datepicker._defaults.dateFormat,
+					selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+
+		chg_chkbox('user_type','[in_user_type]');
+		chg_chkbox('ptype','[in_ptype]');
+		chg_chkbox('id_categories','[in_id_categories]');
+
+	});
+
+//-->
+</script>
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

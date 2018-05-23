@@ -1,0 +1,842 @@
+###################################
+### Menu General
+#####################################
+about_general=
+
+###################################
+### Administration
+#####################################
+
+admin_vendor_gsetup=General Vendor Setup
+admin_vendor_type_upd=Vendor Type Updated
+admin_vendor_popt_upd=Vendor Payment Terms 
+admin_vendor_veninv_upd=Vendor Inventory Status Updated
+admin_vendor_shpopt_upd=Vendor Shipping Options Updated
+admin_vendor_venret=Vendor Return Policy Updated
+admin_vendor_disc=Vendor Discounts Updated
+admin_vendor_dair=Vendor Dedicated Airtime Program Updated
+admin_vendor_sprog=Vendor Special Programs Updated
+admin_vendor_mformat=Vendor Merchandise Format Updated
+
+admin_prd_packing=Product Packing Updated
+admin_prd_instructions=Product Instructions Updated
+admin_prd_handling=Product handling Updated
+admin_prd_material=Product Material Updated
+admin_prd_whandling=Product Warehouse Handling Updated
+admin_prd_spacking=Product Supplier Packing Updated
+admin_prd_pterms=Products Payment Tems Updated
+admin_email_success=e-mail successfully sent
+admin_email_err=Unable to send e-mail
+admin_email_subject=SLTV Password
+
+
+#############################
+# Menu General
+################################
+
+### Admin Users
+pageman_users=Admin Users
+man_users_added=Admin User Added :
+man_users_updated=Admin User Updated :
+man_users_deleted=Admin User Deleted :
+man_users_noteadded=New Admin User Note Added
+man_users_viewed=Admin User Viewed :
+
+#############################
+# Developer messages
+################################
+
+### Developer Jobs
+pagedev_jobs=Developer Jobs
+dev_jobs_added=Developer Job Added :
+dev_jobs_updated=Developer Job Updated :
+dev_jobs_deleted=Developer Job Deleted :
+dev_jobs_noteadded=New Developer Job Note Added
+dev_jobs_viewed=Developer Job Viewed :
+
+#############################
+# Planning messages
+################################
+
+### Shows
+shows_noteadded=Show Note Added :
+
+#############################
+# IT messages
+############
+
+##Perms Branch
+pageusr_permtree=Perm
+usr_permtree_added=Perm Added :
+usr_permtree_updated=Perm Updated :
+usr_permtree_deleted=Perm Deleted :
+usr_permtree_viewed=Perm Viewed :
+
+### IT Jobs
+pageit_jobs=IT Jobs
+it_jobs_added=IT Job Added :
+it_jobs_updated=IT Job Updated :
+it_jobs_deleted=IT Job Deleted :
+it_jobs_noteadded=New IT Job Note Added
+it_jobs_viewed=IT Job Viewed :
+
+### Departments
+pageit_depts=Department
+it_depts_added=Department Added :
+it_depts_updated=Deparment Updated :
+it_depts_deleted=Department Deleted :
+it_depts_viewed=Department Viewed :
+
+### Bugs
+pageit_bugs=Bug
+it_bugs_added=Bug Added :
+it_bugs_updated=Bug Updated :
+it_bugs_deleted=Bug Deleted :
+it_bugs_noteadded=New Bug Note Added
+it_bugs_viewed=Bug Viewed :
+
+### Request
+pageit_req=Request
+it_req_added=Request Added :
+it_req_updated=Request Updated :
+it_req_deleted=Request Deleted :
+it_req_noteadded=New Request Note Added
+it_req_viewed=Request Viewed :
+
+### Request
+pageit_devnews=Dev. News
+it_devnews_added=Dev. News Added :
+it_devnews_updated=Dev. News Updated :
+it_devnews_deleted=Dev. News Deleted :
+it_devnews_noteadded=New Dev. News Note Added
+it_devnews_viewed=Dev. News Viewed :
+
+########################################
+### Finance
+########################################
+
+### Accounting
+pagefin_accounting=Accounting
+fin_accounting_added=Accounting Added :
+fin_accounting_updated=Accounting Updated :
+fin_accounting_deleted=Accounting Deleted :
+fin_accounting_viewed=Accounting Viewed :
+
+### State Tax
+pagefin_taxstate=State Tax
+fin_taxstate_added=State Tax Added :
+fin_taxstate_updated=State Tax Updated :
+fin_taxstate_deleted=State Tax Deleted :
+fin_taxstate_viewed=State Tax Viewed :
+
+### County Tax
+pagefin_taxcounty=County Tax
+fin_taxcounty_added=County Tax Added :
+fin_taxcounty_updated=County Tax Updated :
+fin_taxcounty_deleted=County Tax Deleted :
+fin_taxcounty_viewed=County Tax Viewed :
+
+No_cybersource_data=No Data for the specifed Date
+
+########################################
+### Operations
+########################################
+
+###Customers
+pageopr_customers=Customer
+opr_customers_added=Customer Added :
+opr_customers_updated=Customer Updated :
+opr_customers_deleted=Customer Deleted :
+opr_customers_noteadded=New Customer Note Added
+opr_customers_viewed=Customer Viewed :
+opr_customers_sku_alias_duplicated=Alias Duplicated
+
+### Incomplete Orders
+pageopr_inorders=Incomplete Order
+opr_inorders_added=Incomplete Order Added :
+opr_inorders_updated=Incomplete Order Updated :
+opr_inorders_deleted=Incomplete Order Deleted :
+opr_inorders_noteadded=New InOrder Note Added
+opr_inorders_viewed=Incomplete Order Viewed :
+
+### Orders
+pageopr_orders=Orders Manager
+opr_orders_added=Order Added :
+opr_orders_updated=Order Updated :
+opr_orders_deleted=Order Deleted :
+opr_orders_noteadded=New Order Note Added
+opr_orders_itemadded=Item Added to Order
+opr_orders_itemdroped=Item Dropped from Order
+opr_orders_paydroped=Payment Dropped
+opr_orders_payadded_chk=Check Payment Added
+opr_orders_payadded_cc=Credit Card Payment Added
+opr_orders_payadded_man=Manual/MO/Check Payment Added
+opr_orders_procpayment=Payment Authorization Processed
+opr_orders_viewpaylog=View Payment Logs
+opr_orders_viewpay=View Payments
+opr_orders_shipped=The Order was shipped you can not modified
+
+
+fin_banks_movements_viewed= Banks Movements Viewed :
+usrman_viewed= User Viewed : 
+opr_orders_capimp=Order Captured File Imported
+opr_orders_capdimp=Order Captured File Deleted
+opr_orders_services_added=Service Item Added to the Order
+opr_isorder=Became Order: 
+opr_waspreorder=Originally Preorder:
+orders_viewed=Order Viewed
+
+opr_orders_stNew=Order Status Change to New
+opr_orders_stProcessed=Order Status Change to Processed
+opr_orders_stPending=Order Status Change to Pending
+opr_orders_stShipped=Order Status Change to Shipped
+opr_orders_stCancelled=Order Status Change to Cancelled
+opr_orders_stVoid=Order Status Change to Void
+opr_orders_stSystem Error=Order Status Change to System Error
+
+opr_orders_strOut of Stock=Order Product Exeption Change to Out of Stock
+opr_orders_strIn Fulfillment=Order Product Exeption Change to In Fulfillment
+opr_orders_strIn Dropshipment=Order Product Exeption Change to Dropship Sent
+opr_orders_strDropship Sent=Order Product Exeption Change to Dropship Sent
+opr_orders_strPartial Shipment=Order Product Exeption Change to Partial Shipment
+opr_orders_strPartial Dropship=Order Product Exeption Change to Partial Dropship
+opr_orders_strFor Return=Order Product Exeption Change to For Return
+opr_orders_strFor Exchange=Order Product Exeption Change to For Exchange
+opr_orders_strFor Re-Ship=Order Product Exeption Change to For Re-Ship
+opr_orders_strUndeliverable=Order Product Exeption Change to Undeliverable
+opr_orders_strNone=Order Product Exeption Change to None
+
+opr_orders_stpReview Order=Order Payment Exeption Change to Review Order
+opr_orders_stpReview Address=Order Payment Exeption Change to Review Address
+opr_orders_stpPayment Declined=Order Payment Exeption Change to Payment Declined
+opr_orders_stpInsufficient Funds=Order Payment Exeption Change to Insufficient Funds
+opr_orders_stpPost-Dated=Order Payment Exeption Change to Post-Dated
+opr_orders_stpFor Refund=Order Payment Exeption Change to For Refund
+opr_orders_stpFP:Review Payment=Order Payment Exeption Change to FP:Review Payment
+opr_orders_stpFP:Insufficient Funds=Order Payment Exeption Change to FP:Insufficient Funds
+opr_orders_stpChargeBack=Order Payment Exeption Change to ChargeBack
+opr_orders_stpNone=Order Payment Exeption Change to None
+
+opr_orders_cu_payupd=Cleanup Mode Payment Updated
+opr_orders_cu_prdupd=Cleanup Mode Product Updated
+opr_orders_recalc=Order recalculated
+opr_orders_totals=Orders Totals Updated
+opr_orders_partial_payupd=Captured, CapDate and AuthCode Updated
+
+opr_orders_service_chargeback_notfound= ID Service for Chargeback Not Found
+opr_orders_service_return_notfound=ID Service for Refund Not Found
+
+### CREDIT MEMOS
+opr_creditmemos=Credit Memos
+opr_creditmemos_added=Credit Memo Added :
+opr_creditmemos_updated=Credit Memo Updated :
+opr_creditmemos_deleted=Credit Memo Deleted :
+opr_creditmemos_noteadded=Credit Memo Added
+opr_creditmemos_viewed=Credit Memo Viewed :
+opr_creditmemos_htab2=ID_order,Order Date,Order Net,Order Status,Amount Credit
+opr_creditmemos_updbtn=Update Records
+opr_creditmemos_approved=Credit Memo Approved
+opr_creditmemos_applied=Credit Memo Applied
+opr_creditmemos_new=Credit Memo Unapproved
+opr_creditmemos_applied_err=Unable to Applied the credit memo. Replace the order(s) and try again
+opr_creditmemos_amnts=Amounts Updated
+opr_creditmemos_amnts_exceeds=Amount Excess
+opr_creditmemos_cost_invalid=No deben existir productos con Costo "0"
+opr_creditmemos_already_applied=Credit Memo ya habia sido aplicado
+opr_creditmemos_ordermaxamount=Alguno de las ordenes no tenia el monto que se pretende aplicar
+opr_creditmemos_invoice_added=New Invoice Added
+
+### Journal Entries
+fin_journalentries=Journal Entriess
+fin_journalentries_added=Journal Entry Added :
+fin_journalentries_updated=Journal Entry Updated :
+fin_journalentries_deleted=Journal Entry Deleted :
+fin_journalentries_noteadded=Journal Entry Added
+fin_journalentries_viewed=Journal Entry Viewed :
+fin_journalentries_htab2=#,ID Accounts,Category,Efective date,Reference,Credit,Debit
+fin_journalentries_htab3=#,ID Accounts,Category,Efective date,Credit,Debit
+fin_journalentries_ea=Entries Added 
+fin_journalentries_edrop=Entries Removed from Journal
+
+### Services
+pageopr_services=Service
+opr_services_added=Service Added :
+opr_services_updated=Service Updated :
+opr_services_deleted=Service Deleted :
+opr_services_noteadded=New Service Note Added
+opr_services_viewed=Service Viewed :
+
+
+### Warehouse
+pageopr_warehouse=Warehouse
+opr_warehouse_added=Warehouse Added :
+opr_warehouse_updated=Warehouse Updated :
+opr_warehouse_deleted=Warehouse Deleted :
+opr_warehouse_viewed=Warehouse Viewed :
+opr_warehouses_updated=Warehouse Updated
+
+### Tips Pages
+pageopr_tipspages=Tip Pages
+opr_tipspages_added=Tip Page Added :
+opr_tipspages_updated=Tip Page Updated :
+opr_tipspages_deleted=Tip Page Deleted :
+opr_tipspages_viewed=Tip Page Viewed :
+
+### Speech
+pageopr_speech=Speech
+opr_speech_added=Speech Added :
+opr_speech_updated=Speech Updated :
+opr_speech_deleted=Speech Deleted :
+opr_speech_viewed=Speech Viewed :
+
+### FAQ
+pageopr_faqs=FAQ
+opr_faqs_added=FAQ Added :
+opr_faqs_updated=FAQ Updated :
+opr_faqs_deleted=FAQ Deleted :
+opr_faqs_viewedd=FAQ Viewed :
+
+### DID
+pageopr_did=DID
+opr_did_added=DID Added :
+opr_did_updated=DID Updated :
+opr_did_deleted=DID Deleted :
+opr_did_viewed=DID Viewed :
+
+### Operator Pages
+pageopr_operpages=Operator Pages
+opr_operpages_added=Operator Pages Added :
+opr_operpages_updated=Operator Pages Updated :
+opr_operpages_deleted=Operator Pages Deleted :
+opr_operpages_viewed=Operator Pages Viewed :
+
+
+
+### Coverage Pages
+pageopr_coverages=Coverage
+opr_coverages_added=Coverage Added :
+opr_coverages_updated=Coverage Updated :
+opr_coverages_deleted=Coverage Deleted :
+opr_coverages_viewed=Coverage Viewed :
+
+
+##########################
+# Banks Movements
+########################################
+banks_mv_amount_no_equals=The amount of bank movement does not match the amount allocated.
+banks_mv_paid_order=The order has been paid :
+banks_mv_paid_bill=The bills has been paid :
+banks_mv_payment_added_order=It has been applied to a new payment order :
+banks_mv_service_added_order=Added a new service to order :
+banks_mv_service_notadded_order=Service not added. The amount of service is greater than the amount of the order :
+banks_mv_no_editable=This movement has already been applied
+banks_mv_apply=Bank Movement Applied
+banks_mv_errcons=Unable to add Service to a Order with Unconsolidate Payments. Please Add it Manually, or Consolidate the order
+fin_banks_movements_added=Bank Movement Added
+fin_banks_movements_updated=Bank Movement Updated
+fin_banks_movements_noteadded=New note added
+fin_banks_movements_payment_cancelled=Payment Cancelled
+fin_banks_movements_payment_not_cancelled=Could not Cancelled Payment
+fin_banks_movements_payment_not_cancelled_bills_locked=Bills with movements already in Journal: 
+fin_banks_movements_payment_not_cancelled_timeout=Time Not allowed
+fin_banks_htab1=ID,Account ID,Account Name,Account Description
+
+
+########################################
+# Marketing
+########################################
+
+###Coupons
+pagemkt_coupons=Coupon
+mkt_coupons_added=Coupon Added :
+mkt_coupons_updated=Coupon Updated :
+mkt_coupons_deleted=Coupon Deleted :
+mkt_coupons_noteadded=New Coupon Note Added
+mkt_coupons_incatadded=New Product Included Category Added
+mkt_coupons_excatadded=New Product Excluded Category Added
+mkt_coupons_incatdel=Product Included Category Deleted
+mkt_coupons_excatdel=Product Excluded Category Deleted
+mkt_coupons_viewed=Coupon Viewed :
+
+###News
+pagemkt_news=News
+mkt_news_added=News Added :
+mkt_news_updated=News Updated :
+mkt_news_deleted=News Deleted :
+mkt_news_noteadded=New News Note Added
+mkt_news_viewed=News Viewed :
+
+### Promotions
+# Customers
+mkt_promotions_htab2=ID Customers,Name,City,State,ZipCode,Folio,ID Orders
+# Messages
+mkt_promotions_updated=Updated successfull
+mkt_promotions_prefix_required=Prefix and initial folio required
+
+########################################
+# Merchandising
+########################################
+
+### Vendors
+mer_mer_pagevendors=Vendors
+mer_vendors_added=Vendor Added :
+mer_vendors_updated=Vendor Updated :
+mer_vendors_deleted=Vendor Deleted :
+mer_vendors_nocat=No Categories
+mer_vendors_nocontact=No Contacts
+mer_vendors_contact_err=Unable to Add the Contact
+mer_vendors_contact_ok=Contact Added
+mer_vendors_contact_updated=Contact Updated
+mer_vendors_contact_del=Contact Deleted
+mer_vendors_category_err=Unable to Add the Category
+mer_vendors_category_ok=Vendor Category Added
+mer_vendors_category_updated=Vendor Category Updated
+mer_vendors_category_del=Vendor Category Deleted
+mer_vendors_noteadded=New Vendor Note Added
+mer_vendors_viewed=Vendor Viewed :
+mer_vendors_notedel=Vendor Note Deleted
+
+
+### Suppliers
+mer_mer_pagesuppliers=Suppliers
+mer_suppliers_added=Supplier Added :
+mer_suppliers_updated=Supplier Updated :
+mer_suppliers_deleted=Supplier Deleted :
+mer_suppliers_nocontact=No Contacts
+mer_suppliers_contact_err=Unable to Add the Contact to the Supplier
+mer_suppliers_contact_ok=Supplier Contact Added
+mer_suppliers_contact_updated=Supplier Contact Updated
+mer_suppliers_contact_del=Supplier Contact Deleted
+mer_suppliers_noteadded=New Supplier Note Added
+mer_suppliers_viewed=Supplier Viewed :
+
+### Supplies
+mer_mer_pagesupplies=Supplies
+mer_supplies_added=Supply Added :
+mer_supplies_updated=Supply Updated :
+mer_supplies_deleted=Supply Deleted :
+mer_supplies_nocontact=No Contacts
+mer_supplies_contact_err=Unable to Add the Contact to the Supply
+mer_supplies_addsupplier=Supplier added
+mer_supplies_updsupplier=Supplier updated
+mer_supplies_delsupplier=Supplier deleted
+mer_supplies_contact_updated=Supply Contact Updated
+mer_supplies_contact_del=Supply Contact Deleted
+mer_supplies_noteadded=New Supply Note Added
+mer_supplies_viewed=Supply Viewed :
+
+### Products
+pagemer_products=Products
+mer_products_added=Product Added :
+mer_products_updated=Product Updated :
+mer_products_deleted=Product Deleted :
+mer_products_noteadded=New Product Note Added
+mer_products_catadded=Product Category Added
+mer_products_catdel=Product Category Deleted
+mer_products_propadded=Product Property Added
+mer_products_prodel=Product Property Deleted
+mer_products_coadded=Product Choice Added
+mer_products_codel=Product Choice Deleted
+mer_products_addvend=Vendor Added to the Product
+mer_products_updvend=Vendor Info Updated to the Product
+mer_products_delvend=Vendor Deleted to the Product
+mer_products_novendor=No vendors found with that id
+mer_products_testadded=New Test Note Added
+mer_products_test_auth_final=Testing Final Decition
+mer_products_panadded=Price analisis Added
+mer_products_pandel=Price Analisis Deleted
+mer_products_test_auth_final=Test Final Decision
+products_war_nocat=No Categories defined for this Product
+products_war_noven=No Vendor defined for this Product
+products_war_noimgs=No images available for this product
+products_war_noinv=No inventory for this product
+products_war_price=The active price could not be equal to zero
+mer_products_priceupdated=Product price updated
+mer_products_priceact=New Price marked as Active
+mer_products_finaldec=Final decision added
+mer_products_statuschg_onair=Product status changed to On-Air
+mer_products_statuschg_active=Product status changed to Active
+mer_products_statuschg_inactive=Product status changed to Inactive
+mer_products_statuschg_webonly=Product status changed to Web Only
+mer_products_statuschg_upsell=Product status changed to Up Sell Only
+products_chnamesupd=Choices names and vendors SKUs Updated
+products_chnamesupderror=ERROR: The Vendor SKU is already being use by another produuct : 
+products_chadded=New Choice Added
+products_chactivated=Choice Activated
+products_chdeactivated=Choice Deactivated
+mer_products_viewed=Product Viewed :
+mer_products_choice=This product have choices then can not be converted to an Assebly
+mer_products_parts=This product have Parts then can not have Choices
+mer_products_partsadded=Part added to this Product
+mer_products_partsdel= Part deleted to this Product
+mer_products_nochoicename=The name of the choice cannot be blank
+
+### Products Speech
+pagemer_products_speech=Products Speech
+mer_products_speech_added= Speech Added :
+
+### Adjusts
+adjustments_noteadded=New Note Added
+sku_cost_updated=SKU Cost Updated
+sku_cost_added=SKU Cost Added
+opr_adjustments_added=Adjustment Added :
+opr_adjustments_updated=Adjustment Updated :
+opr_adjustments_deleted=Adjustment Deleted :
+opr_adjustments_viewed=Adjustment Viewed :
+
+### Customer Advances
+opr_customers_advances_ordermaxamount=La orden no tiene el monto que se desea aplicar
+
+
+### Items
+pagemer_itemtransfers=Item Transfer
+mer_itemtransfers_added=Item Transfer Added :
+mer_itemtransfers_updated=Item Transfer Updated :
+mer_itemtransfers_deleted=Item Transfer Deleted :
+mer_itemtransfers_viewed=Item Transfer Viewed :
+mer_itemtransfers_noteadded=New Item Transfer Note Added
+mer_itemtransfers_invalid=Unable to delete Items from Completed Transfers
+
+### Items
+pagemer_services=Service Item
+mer_services_added=Service Item Added :
+mer_services_updated=Service Item Updated :
+mer_services_deleted=Service Item Deleted :
+mer_services_viewed=Service Item Viewed :
+mer_services_noteadded=New Service Item Note Added
+
+### Purchase Orders
+pagemer_po=Purchase Order
+mer_po_added=Purchase Order Added :
+mer_po_updated=Purchase Order Updated :
+mer_po_deleted=Purchase Order Deleted :
+mer_po_itemadded=Purchase Order Item Added
+mer_po_itemdel=Purchase Order Item Deleted
+mer_po_itemupdated=Purchase Order Item Updated
+mer_po_viewed=Purchase Order Viewed :
+mer_po_updbutton=Update Choices
+mer_po_total=Total
+mer_purchaseorders_noteadded=New Purchase Order Note Added
+mer_purchaseorders_auth_noteadded=New Authorization Note Added
+mer_purchaseorders_auth_final=Final Authorization was made
+mer_purchaseorders_shpnoteadded=Shipping Instruction/Tracking Added
+mer_purchaseorders_shpnotedeleted=Shipping Instruction/Tracking Deleted
+mer_po_adj_added=Purchase Order Adjustment Added
+mer_po_adj_del=Purchase Order Adjustment Deleted
+mer_po_itemupd=Item/Choice Updated
+mer_po_blocked=PO Blocked, Already Authorized
+mer_po_paid=Purchase Order Paid
+mer_po_pay_applied=Purchase Order Payment Applied
+mer_purchaseorder_auth_final=Final Authorization was made
+mer_purchaseorder_auth_noteadded=Purchase Auth Note Added
+po_updated_price=Purchase Order Price Updated
+po_updated_qty=Purchase Order Quantity Updated
+mer_wreceipt_adj_added=W. Receipt Adjustment Added
+mer_wreceipt_adj_del=W. Receipt Adjustment Deleted
+
+
+### Purchase Orders
+pagemer_vpo=Item Reserve
+mer_vpo_added=Item Reserve Added :
+mer_vpo_updated=Item Reserve Updated :
+mer_vpo_deleted=Item Reserve Deleted :
+mer_vpo_itemadded=Item Reserve Item Added
+mer_vpo_itemdel=Item Reserve Item Deleted
+mer_vpo_updbutton=Update Choices
+mer_vpo_total=Total 
+mer_vpurchaseorder_noteadded=New Item Reserve Note Added
+mer_vpurchaseorder_auth_noteadded=Auth Note Added
+mer_vpurchaseorder_auth_final=Final Authorization was made
+mer_vpo_itemupd=Item/Choice Updated
+mer_vpo_viewed=Item Reserve Viewed :
+
+### Operation
+ope_orders_itemupd=Item/Choice Updated
+
+### Brands
+pagemer_brands=Brands
+mer_brands_added=Brand Added :
+mer_brands_updated=Brand Updated :
+mer_brands_deleted=Brand Deleted :
+mer_brands_viewed=Brand Viewed :
+
+
+### Properties
+pagemer_properties=Property
+mer_properties_added=Property Added :
+mer_properties_updated=Property Updated :
+mer_properties_deleted=Property Deleted :
+mer_properties_viewed=Property Viewed :
+
+
+### categories
+pagemer_categories=Category
+mer_categories_added=Category Added :
+mer_categories_updated=Category Updated :
+mer_categories_deleted=Category Deleted :
+top_level=Top Level
+mer_categories_viewed=Category Viewed :
+
+###  Stations
+stations=Stations
+
+
+### Packing Options
+pagemer_packingopts=Packing Options
+mer_packingopts_added=Packing Options Added :
+mer_packingopts_updated=Packing Options Updated :
+mer_packingopts_deleted=Packing Options Deleted :
+mer_packingopts_viewed=Packing Options Viewed :
+
+### Parts
+pagemer_parts=Parts
+mer_parts_added=Parts Added :
+mer_parts_updated=Parts Updated :
+mer_parts_deleted=Parts Deleted :
+mer_parts_viewed=Parts Viewed :
+mer_parts_delvend=Vendor Deleted
+mer_parts_addvend=Vendor Added
+mer_parts_accounting=Accounting
+
+########################################
+# MEDIA AND DISTRIBUTIONS
+########################################
+
+### Stations
+pagemm_stations=Station
+mm_stations_added=Station Added :
+mm_stations_updated=Station Updated :
+mm_stations_deleted=Station Deleted :
+mm_stations_viewed=Station Viewed :
+
+pagemm_dmas=DMA
+mm_dmas_added=DMA Added :
+mm_dmas_updated=DMA Updated :
+mm_dmas_deleted=DMA Deleted :
+mm_dmas_viewed=DMA Viewed :
+
+### Media
+pagemm_media=Media Investment
+mm_media_added=Media Investment Added :
+mm_media_updated=Media Investment Updated :
+mm_media_deleted=Media Investment Deleted :
+mm_media_viewed=Media Investment Viewed :
+
+########################################
+# MEDIA AND DISTRIBUTIONS
+########################################
+
+### IT Jobs
+pageusrgroup=User Groups
+usrgroup_added=User Groups Added :
+usrgroup_updated=User Groups Updated :
+usrgroup_deleted=User Groups Deleted :
+usrgroup_permupd=User Groups Permissions Updated :
+usrgroup_viewed=User Groups Viewed :
+
+########################################
+# Shipping & Fulfillment
+########################################
+tochg_none=Enter the Orders and then Click "Change Status", the result will be displayed in this area
+tochg_changed=Status Changed
+toprn_none=Nothing to Print
+
+#RB Start
+### Related Items
+products_ritemduplicated=Product Already Related
+products_ritemadded=Product Related Added
+products_rnitemduplicated=Non Inventory Item Already Related
+products_rnitemadded=Non Inventory Item Related Added
+products_ritemdeleted=Product Related Deleted
+products_rnitemdeleted=Non Inventory Item Related Deleted
+#RB End
+
+
+## Returns
+sorting_updated=Sorting Updated :
+crreturns_updated=Check Return Updated :
+opr_returns_updated=Return Updated :
+
+# AJAX add shipping discount/charges
+opr_orders_shippingdiscount=Shipping Discount Added
+opr_orders_shippingcharges=Shipping Charges Added
+
+#JRG start return/restock fee 23/06/08
+opr_orders_returnfee=Return Fee Added
+opr_orders_restockfee=Restock Fee Added
+#JRG end return/restock fee 23/06/08
+
+opr_repmemos_added=Replacement Memos Added :
+opr_repmemos_updated=Replacement Memos Updated :
+opr_repmemos_deleted=Replacement Memos Deleted :
+opr_repmemos_permupd=Replacement Memos Permissions Updated :
+opr_repmemos_viewed=Replacement Memos Viewed :
+opr_repmemos_statusupdate=Replacement Memo has been
+opr_repmemos_noteadded=Note Added
+pageopr_repmemos=Replacement Memos
+
+opr_claims_added=Claim Added :
+opr_claims_updated=Replacement Claim Updated :
+opr_claims_deleted=Claim Deleted :
+opr_claims_permupd=Claim Permissions Updated :
+opr_claims_viewed=Claim Memos Viewed :
+
+### MANIFESTS
+pageopr_manifests=Manifest
+opr_manifests_added=Manifest Added :
+opr_manifests_updated=Manifest Updated :
+opr_manifests_deleted=Manifest Deleted :
+opr_manifest_noteadded=Manifest New Note Added
+opr_manifest_done=Manifest Processed
+opr_manifest_itemadded=Manifest Item Added
+opr_manifest_itemdel=Manifest Item Added
+opr_manifest_error=Unable to process the Manifest, the merchandise is not in the Warehouse
+opr_itemskutransfers_deleted=Item SKU Transfers Deleted
+
+
+#### SKU TRANSFER
+pageopr_skustransfers=Manifest
+opr_skustransfers_added=SKU Transfer Added :
+opr_skustransfers_updated=SKU Transfer Updated :
+opr_skustransfers_deleted=SKU Transfer Deleted :
+opr_skustransfers_noteadded=SKU Transfer New Note Added
+opr_skustransfers_done=SKU Transfer Processed
+opr_skustransfers_itemadded=SKU Transfer Item Added
+opr_skustransfers_itemdel=SKU Transfer Item Deleted
+opr_skustransfers_error=Unable to process the SKU Transfer, the merchandise doesn't exists
+transfersku_to=The inventory for this item was sended to SKU:
+transfersku_from=Inventory for this item was received from SKU:
+skustransfers_error=Unable to process the Transfer,the merchandise is not in the Warehouse
+skustransfers_done=SKU Transfer Done
+skustransfers_noteadded=Sku Transfer Note Added:
+
+
+opr_chargebacks_added=Charge Back Added :
+opr_chargebacks_updated=Replacement Charge Back Updated :
+opr_chargebacks_deleted=Charge Back Deleted :
+opr_chargebacks_permupd=Charge Back Permissions Updated :
+opr_chargebacks_viewed=Charge Back Memos Viewed :
+
+
+### Samples
+pagemer_samples=Samples
+mer_samples_added=Samples Added :
+mer_samples_updated=Samples Updated :
+mer_samples_deleted=Samples Deleted :
+mer_samples_viewed=Samples Viewed :
+mer_samples_delvend=Samples Deleted
+mer_samples_addvend=Samples Added
+
+opr_retcust_updated=Return Updated :
+opr_retcust_updated=Return Updated :
+opr_orders_sampleadded=Sample added to order
+mer_parts_noteadded=Parts note added
+
+noninventory_related_updated=Noninventory related updated
+products_related_updated=Products related updated
+sku_parts_updated=SKU parts updated
+sku_parts_added=SKU parts added
+sku_updated=SKU updated
+sku_added=SKU added
+sku_parts_deleted=SKU parts deleted
+opr_repmemos_noteadded: Rep Memos note added
+opr_skuitemtransfers_added=Item SKU Transfers Added
+opr_skuitemtransfers_noteadded=Item SKU Transfers Note Added
+
+opr_orders_plogadded=Orders Paylog Added
+opr_orders_payments_paid=Orders Payments Paid
+mer_products_catupdated=Product Category Updated
+admin_prd_docs=Product Docs Updated
+orders_rman_updated=Orders Rman Updated
+var_updated=Var Updated
+var_added=Var Added
+
+opr_orders_prndone=PRN Done
+
+mer_po_auth_del=Purchase Order Auth Deleted
+mer_po_note_del=Purchase Order Note Deleted
+mer_po_ship_del=Purchase Order Shipping Deleted
+mer_vpo_notedel=Item Reserve Note Deleted
+
+
+opr_orders_logsdel=Order Logs Deleted
+opr_orders_notesdel=Order Logs Deleted
+opr_orders_plogsdel=Order PayLogs Deleted
+opr_orders_prodsdel=Order Products Deleted
+it_jobs_noteadded=IT Job Note Deleted
+
+#Secret coupon
+orders_secret_coupon=A product was given using secret coupon
+
+
+### DEBIT MEMOS
+opr_debitmemos=Debit Memos
+opr_debitmemos_added=Debit Memo Added :
+opr_debitmemos_updated=Debit Memo Updated :
+opr_debitmemos_deleted=Debit Memo Deleted :
+opr_debitmemos_noteadded=Debit Memo Added
+opr_debitmemos_viewed=Debit Memo Viewed :
+opr_debitmemos_htab2=ID_order,Order Date,Order Net,Order Status,Amount Debit
+opr_debitmemos_updbtn=Update Records
+opr_debitmemos_approved=Debit Memo Approved
+opr_debitmemos_applied=Debit Memo Applied
+opr_debitmemos_new=Debit Memo Unapproved
+opr_debitmemos_applied_err=Unable to Applied the debit memo. Replace the order(s) and try again
+opr_debitmemos_amnts=Amounts Updated
+opr_debitmemos_amnts_exceeds=Amount Excess
+
+### Locations
+opr_locations_updated=Locations Update : 
+opr_locations_invalid_status=This location contains products
+
+opr_customers_advances_partial=Customers Advances Applied Partially.
+opr_customers_advances_applied=Customers Advances Applied fully implemented.
+opr_customers_advances_applied_err=Unable to Applied the Customers Advances.
+opr_customers_advances_already_applied=Customer Advances Payment already applied
+opr_customers_advances_exceed_advances=Should not exceed the amount of Customers Advances
+opr_customers_advances_zero_amount=You can not apply a zero amount
+opr_customers_advances_exceed_payment=Should not exceed the amount pendig to pay
+opr_customers_advances_apply_no_delete=Cutomers Advaces once applied can not be deleted.
+opr_customers_advances_applied_in_order=Customers Advances applied correctly on order.
+opr_customers_advances_orders_error=Customer Advances can not be applied for orders errors.
+opr_customers_advances_not_modify=A Customers Advances applied, can not be modified.
+opr_customers_advances_amnts=Amounts Updated
+
+
+load_orders_title=RESUMEN DE CARGA MASIVA DE PEDIDOS
+load_orders_products_info=INFORMACI&Oacute;N DE PRODUCTOS
+load_orders_processed_nfo=INFORMACI&Oacute;N DE PEDIDOS CARGADOS EN DIREKSYS
+load_orders_quotes_error_invalid_line=ERROR - ELIMINE LAS COMILLAS PARA PODER CONTINUAR
+load_orders_product_not_found=EL PRODUCTO NO FUE ENCONTRADO.
+load_orders_product_price_invalid=EL PRECIO DEL PRODUCTO NO COINCIDE CON EL PRECIO EN DIREKSYS.
+
+load_orders_branchs_info=INFORMACI&Oacute;N DE SUCURSALES
+load_orders_branch=SUCURSAL
+load_orders_comments=OBSERVACIONES
+
+load_orders_invalid_branch_name=SUCURSAL INVALIDA
+load_orders_duplicated=YA EXISTEN PEDIDOS EN EL SISTEMA CON ESTE NUMERO DE ORDEN DE COMPRA.
+load_orders_po_error=EL NUMERO DE ORDEN DE COMPRA NO COINCIDE CON LA INFORMACION DEL ARCHIVO
+load_orders_stop=SE ENCONTRARON ERRORES EN EL PROCESO, CORRIJALOS PARA CONTINUAR.
+load_orders_completed=EL PROCESO DE CARGA SE EJECUTO CORRECTAMENTE
+load_orders_notes=Esta Orden fue creada por procesamiento de Carga Masiva de Direksys.
+load_orders_download_report=DESCARGAR REPORTE BASE DE PEDIDOS
+
+load_orders_fail_path_files_uploads_processed=EL DIRECTORIO CONFIGURADO PARA CARGAS PROCESADAS NO EXISTE
+load_orders_set_fail_path_files_uploads_processed=NO SE HA CONFIGURADO EL DIRECTORIO PARA CARGAS PROCESADAS
+load_orders_permissions_error_path_files_uploads_processed=EL DIRECTORIO CONFIGURADO PARA CARGAS PROCESADAS NO SE PUEDE ESCRIBIR
+
+load_orders_fail_path_files_uploads=EL DIRECTORIO CONFIGURADO PARA CARGAS NO EXISTE
+load_orders_set_fail_path_files_uploads=NO SE HA CONFIGURADO EL DIRECTORIO PARA CARGAS
+load_orders_permissions_error_path_files_uploads=EL DIRECTORIO CONFIGURADO PARA CARGAS NO SE PUEDE ESCRIBIR
+
+load_orders_upc=UPC
+load_orders_product=PRODUCTO
+load_orders_system_price=PRECIO DIREKSYS
+load_orders_price=PRECIO SOLICITADO
+load_orders_quantity=CANTIDAD
+load_orders_tax=% IVA
+load_orders_id_orders=ID PEDIDO
+
+load_orders_fail_payments=ERROR AL GENERAR LOS PAGOS AL PEDIDO
+load_orders_fail_products=ERROR AL GENERAR LOS PRODUCTOS AL PEDIDO

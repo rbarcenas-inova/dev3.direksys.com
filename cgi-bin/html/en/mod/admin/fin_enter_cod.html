@@ -1,0 +1,221 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 4, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+			  <tr>
+			    <td width="28%" align="center"></td>
+			    <td width="18%" class="cell_[va_mocash]" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_enter_cod")'>MO/Cash</td>
+			    <td width="18%" class="cell_[va_cc]" align="center" onClick='trjump("/cgi-bin/mod/admin/admin?cmd=fin_enter_cod&cc=1")'>Credit Card</td>
+			  </tr>
+			</table>
+
+	<div style="background-color:#ffffff;margin:15px;">
+		
+		
+
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+				    <td class="titletext" align="left" colspan="2">Enter COD Payment</td>
+				</tr>
+				<tr>
+				    <td class="stdtxterr" colspan="2">[va_message]</td>
+				</tr>
+			</table>
+			<br />
+			
+			<form action="/cgi-bin/mod/admin/admin" method="post" name="sitform" onSubmit="return disableSubmits();">
+				<fieldset><legend>Payment Information</legend>
+					 <input type="hidden" name="cmd" value="fin_enter_cod">
+					 <input type="hidden" name="action" value="1">
+
+					<table border="0" cellspacing="0" cellpadding="4" width="100%" class="">
+						<tr>
+							  <td class="smalltext" width="20%" nowrap="true">Order ID:  <span class="smallfieldterr">[er_id_orders]</span></td>
+							  <td class="smalltext">
+							  	<input type="text" name="id_orders" value="[in_id_orders]" size="20" class="input">
+							  	&nbsp;
+							  	<input type="submit" name="btn_info" value="Get Info" class="button">
+							</td>
+						</tr>
+						<tr>
+							  <td class="smalltext" nowrap="true">Driver :  <span class="smallfieldterr">[er_id_warehouses]</span></td>
+							  <td class="smalltext">
+							  	<select name="id_warehouses" class="input"><option>---</option>[fc_build_select_virtual_warehouses]</select>
+								</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="help_on">[va_order_info]</td>
+						</tr>
+					</table>
+ 
+
+<hr style="border:0px; border-top: 1px solid silver;  margin-bottom: 15px;">
+
+
+<table cellpadding="0px" cellspacing="0" width="100%">
+	<td width=50% valign=top>
+		<font face="century gothic" size="3">Bank Info: </font><br><br>
+		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="">
+			<tr>
+				  <td class="smalltext"><span class="smallfieldterr">[er_id_banks]</span></td>
+				  <td>
+				  	<select name="id_banks" id="id_banks" class="input">
+						<option value="">---</option>
+						[fc_build_select_custom_bank]
+					</select>
+				  </td>
+			</tr>
+		</table>
+	</td>
+	<td width=2% style="border-left:1px dashed silver;">
+	</td>
+	<td width=45% valign=top>
+		<font face="century gothic" size="3">Exceptions: </font><br><br>
+		<table border="0" cellspacing="0" cellpadding="4" width="100%" class="">
+			<tr height="45px">
+				  <td class="smalltext" valign="top" width=15px> </td>
+				  <td valign="top">
+						<label style="border: 1px solid #dddddd; padding:10px; margin-right: 15px; ">
+						<input type="checkbox" name="charging_carrier" id="charging_carrier" value="1" class='radio'>
+						Charging Carrier
+						</label> 
+						<label style="border: 1px solid #dddddd; padding:10px; margin-right: 15px; ">
+						<input type="checkbox" name="payment_lost" id="payment_lost" value="1" class='radio'>
+						Payment Lost 
+						</label>
+						<label style="border: 1px solid #dddddd; padding:10px; margin-right: 15px; ">
+						<input type="checkbox" name="fake_delivery" id="fake_delivery" value="1" class='radio'>
+						Fake Delivery 
+						</label>
+				  </td>
+			</tr>						
+		</table>
+ 
+	</td>
+</table>
+
+
+
+
+
+
+
+
+<hr style="border:0px; border-top: 1px solid silver;  margin-top: 30px; margin-bottom: 10px;">
+
+
+					<table border="0" cellspacing="0" cellpadding="4" width="100%" class="">
+						<tr>
+							  <td class="smalltext">Amount : <span class="smallfieldterr">[er_amount]</span></td>
+							  <td><input type="text" name="amount" value="[in_amount]" size="20" class="input"></td>
+						</tr>
+						<tr>
+							  <td class="smalltext" width=20%>Bank Date : <span class="smallfieldterr">[er_date]</span></td>
+							  <td><input type="text" id="date" name="date" value="[in_date]" size="20" class="input"></td>
+						</tr>
+						<tr>
+							  <td class="smalltext">Ref ID : </td>
+							  <td><input type="text" name="refid" value="[in_refid]" size="60" class="input"></td>
+						</tr>
+
+						<tr>
+							  <td class="smalltext" valign="top">Notes for Paylog : <span class="smallfieldterr">[er_notes]</span></td>
+							  <td><textarea name="notes" cols="50" rows="4" style="width:90%; height: 120px;" class="input">[in_notes]</textarea></td>
+						</tr>
+						<tr>
+							<td align="center" colspan="2"></td>
+					  </tr>
+					</table>	
+					&nbsp;
+				</fieldset>
+				<br />
+				<div align="center"><input type="submit" name="btn_submit" value="Enter Payment" class="button"></div>
+			</form>
+			
+			<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+<script language="javascript">
+<!--
+
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		// $(document).ajaxError(function(e, xhr, settings, exception) {
+		// alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		// });
+
+		var dates = $( "#date" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+		$('input[name=btn_submit]').click(function(event) {
+			var xthis = $(this);
+			xthis.css({'display': 'none'});
+		});
+
+		$('#charging_carrier').click(function(event) {
+			if( $(this).is(':checked') == true ){
+				$('#payment_lost').attr('checked', false);
+				$('#fake_delivery').attr('checked', false);
+				$('#id_banks').val("").change();
+			}
+		});
+
+		$('#payment_lost').click(function(event) {
+			if( $(this).is(':checked') == true ){
+				$('#charging_carrier').attr('checked', false);
+				$('#fake_delivery').attr('checked', false);
+				$('#id_banks').val("").change();
+			}
+		});
+
+		$('#fake_delivery').click(function(event) {
+			if( $(this).is(':checked') == true ){
+				$('#charging_carrier').attr('checked', false);
+				$('#payment_lost').attr('checked', false);
+				$('#id_banks').val("").change();
+			}
+		});		
+
+		$('#id_banks').change(function(event) {
+			if( $(this).val() != "" ){
+				$('#charging_carrier').attr('checked', false);
+				$('#payment_lost').attr('checked', false);
+				$('#fake_delivery').attr('checked', false);
+			}
+		});
+
+    });
+    chg_select('id_banks','[in_id_banks]');
+	chg_select('id_warehouses','[in_id_warehouses]');
+
+	
+//-->
+</script>
+
+[ip_footer]

@@ -1,0 +1,311 @@
+[ip_header_newsales]
+	
+	<table cellpadding="0" cellspacing="1" border="0" width="100%" bgcolor="#cccccc" style="height: 500px; min-width: 1050px;">
+		<tr bgcolor="#ffffff">
+			
+			[ip_sales_shop_cart]
+			
+			<td valign="top" align="left">
+				<div class="content">
+					
+					[ip_sales_header_info]
+					
+					[ip_sales_header_steps]
+
+					<div id="step5" class="div_step" style="">
+						<h1>Confirmar Informaci&oacute;n del pedido</h1>
+
+						<form action="/cgi-bin/mod/sales/admin" method="post" name="frm_sales" id="frm_sales_step5" autocomplete="off">
+							<input type="hidden" name="cmd" id="cmd" value="console_sales">
+							<input type="hidden" name="step" id="step" value="6">
+							<input type="hidden" name="action" id="action" value="confirm">
+							<input type="hidden" name="id_salesorigins" id="id_salesorigins" value="[va_id_salesorigins]">
+							<input type="hidden" name="zipcode" id="zipcode" value="[va_zipcode]">
+							<input type="hidden" name="shp_zipcode" id="shp_zipcode" value="[va_shp_zipcode]">
+
+							<input type="hidden" name="products" id="products" value="[va_products]">
+							<input type="hidden" name="pay_type" id="pay_type" value="[va_pay_type]">
+							<input type="hidden" name="total_pmts" id="total_pmts" value="[va_total_pmts]">
+							<input type="hidden" name="shipping" id="shipping" value="[va_shipping_amt]">
+							<input type="hidden" name="shp_type" id="shp_type" value="[va_shp_type]">
+							<!--input type="hidden" name="coupon" id="coupon" value="[va_coupon]"-->
+							<input type="hidden" name="discount" id="discount" value="[va_order_discount]">
+							<input type="hidden" name="postdate" id="postdate" value="[va_postdate]">
+							<input type="hidden" name="postdate_date" id="postdate_date" value="[va_postdate_date]">
+
+							<table width=100% cellpadding=0 cellspacing=0 border=0>
+								<tr>
+									<td class="cont">
+										<h2>Direcci&oacute;n de Cobro</h2>
+
+
+										<div class="block_addrs">
+											<div class="line2">
+												<span class="label_data">Nombre: </span> [va_firstname] [va_lastname1] [va_lastname2] 
+											</div>
+											<div class="line2">
+												<span class="label_data">Direcci&oacute;n: </span> [va_address1]
+											</div> 
+											<div class="line2">
+												<span class="label_data">Colonia: </span> [va_urbanization]
+											</div> 
+											<div class="line2">
+												<span class="label_data">Ciudad: </span> [va_city]
+											</div> 
+											<div class="line2">
+												<span class="label_data">Estado: </span> [va_state] &nbsp;&nbsp;&nbsp;
+												<span class="label_data" style="min-width: 20px;">C.P. </span> [va_zipcode]
+											</div> 
+											<br>
+											<div class="line2"> 
+												<span class="label_data">Entre Calles: </span> [va_address2]
+											</div> 
+											<div class="line2">
+												<span class="label_data">Referencias: </span> [va_address3]
+											</div>
+											<div class="line2">
+												<span class="label_data">Tel&eacute;fono (casa): </span> [va_phone]
+											</div>
+											<div class="line2">
+												<span class="label_data">Celular: </span> [va_cellphone]
+											</div>
+											<div class="line2">
+												<span class="label_data">Tel&eacute;fono (oficina): </span> [va_phone2]
+											</div>
+											<div class="line2">
+												<span class="label_data">E-mail: </span> [va_email]
+											</div>
+										</div>
+
+									</td>
+
+									<td  class="div"></td>
+
+									<td class="cont">
+										<h2>Direcci&oacute;n de Env&iacute;o</h2>
+
+										<div class="block_addrs">
+											<div class="line2">
+												<span class="label_data">Destinatario: </span> [va_shp_name]
+											</div>
+											<div class="line2">
+												<span class="label_data">Direcci&oacute;n: </span> [va_shp_address1]
+											</div> 
+											<div class="line2">
+												<span class="label_data">Colonia: </span> [va_shp_urbanization]
+											</div> 
+											<div class="line2">
+												<span class="label_data">Ciudad: </span> [va_shp_city]
+											</div> 
+											<div class="line2">
+												<span class="label_data">Estado: </span> [va_shp_state] &nbsp;&nbsp;&nbsp;
+												<span class="label_data" style="min-width: 20px;">C.P. </span> [va_shp_zipcode] 
+											</div>
+											<br>
+											<div class="line2"> 
+												<span class="label_data">Entre Calles: </span> [va_shp_address2]
+											</div> 
+											<div class="line2">
+												<span class="label_data">Referencias: </span> [va_shp_address3]
+											</div>
+											<div class="line2">
+												<div class="label_data" style="float: left; display: block; margin-bottom:3%; width:25%;">
+													Referencias F&iacute;sicas: 
+												</div> 
+												<div style="width:75%; float:left; text-transform: uppercase;">[va_shp_notes]</div>
+											</div>
+											<div class="line2">
+												<span class="label_data" style="width: 25%;">Horario de contacto : </span> [va_atime]
+											</div>											
+										</div>
+
+									</td>
+								</tr>
+							</table>
+
+							<br>
+
+							<div style="border-top: 1px solid silver; border-bottom: 1px solid silver; float: right; margin-bottom: 2px; text-align: right; width: 100%;"> 
+								[va_html_postdate]
+								<div id="div_postdate" title="Direksys :: Posfecha" style="text-align: center;">
+									<br />
+									<p style="margin: auto auto;">
+										<span>Elija la fecha: </span>
+										<input type="text" name="txtPostdate" id="txtPostdate" value="" maxlength="10" readonly="true" class="input" style="width: 100px;" />
+									</p><br />
+									<span style="color: gray; display: block; float: left; font-size: 8pt;">M&aacute;ximo 15 d&iacute;as</span>
+								</div>
+
+								<a href="#" id="lnk_addservices" class="lnk_button_icon" title="Agregar mas servicios a la orden">
+									<img src="/sitimages/sales/service.png" class="ico" style="height: 25px; width: 32px;">
+									M&aacute;s Servicios
+								</a>
+								<div id="div_services" title="Direksys :: Services" style="text-align: center;">
+									<table id="table_services" class="tb_grid" style="width: 100%;">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>Nombre</th>
+												<th>Tipo</th>
+												<th>Precio</th>
+												<th>Impuestos</th>
+											</tr>
+										</thead>
+										<tbody>
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<table id="table_products_list" cellpadding="10px" cellspacing="0" width="100%" border="0" style="border:1px solid silver;">
+								<tr>
+									<td class="td_blue" colspan="2" style="text-align: left; width: 70%;">Producto</td>
+									<td class="td_blue" style="text-align: center; width: 10%;">Cantidad</td>
+									<td class="td_blue" style="text-align: right; width: 20%;">Precio</td>
+								</tr>
+								[va_list_products_shop_cart]
+							</table>
+							<table cellpadding="10px" cellspacing="0" width="100%" border="0" style="border:1px solid silver;">
+								<tr> 
+									<td style="border-bottom: 1px solid silver; font-size: 11pt;" colspan="3" align="right"  valign="top" width="70px">									
+
+										<div style="border: 1px solid #fbca6b; background-color: #fdfdb3; padding: 5px; margin:5px ;  float: left; text-align: left; font-size: 12px; " >
+											&iquest;Tiene un cup&oacute;n?<br>
+											<center>
+												<div id="div_loading_coupon" style="display: inline-block;"></div>
+												<input type="[va_type_input_coupon]" name="coupon" id="coupon" value="[va_coupon]" maxlength="20" size="20" class="inputcupon">
+												<input type="button" value="Revisar" class="buttonline" name="check_coupon" id="check_coupon">		
+												<div id="div_coupon_info" title="Direksys :: Coupon Info."></div>
+											</center>											
+										</div>
+									 	Subtotal:<br>
+									 	Descuentos:<br>
+									 	Impuestos: ([va_ftaxes]%)<br>
+									 	Manejo y Envio:<br>
+									 	<div style="float: left; padding-left: 5px; font-size: 9pt; font-weight: bold; [va_view_promo_div]">
+											<span style="color: gray;">Folio Promocion:</span> [va_folio_promo]
+											[va_lnk_folio_promo_info]
+											<input type="hidden" name="folio_promo" value="[va_folio_promo]" id="folio_promo" />
+										</div>
+										<div id="div_promo_info" title="Direksys :: Promotion Info."></div>
+									</td>
+									<td style="border-bottom: 1px solid silver; font-size: 11pt;" align="right" valign="top">
+										 <span id="span_totalnet_amt">[va_order_ftotalnet]</span> <br>
+										 <a href="#" id="lnk_drop_discount" title="Eliminar el descuento">
+										 	<img src="/sitimages/default/b_drop.png" alt="X" style="border: none; height: 14px; width: 14px;"/>
+										 </a>
+										 <span id="span_discount_amt" style="color: #8A0808;">[va_order_fdiscount]</span> <br>
+										 <span id="span_taxes_amt">[va_order_ftaxes]</span> <br>
+										 <!--[va_lnk_drop_shipping] --> <span id="span_shipping_amt">[va_order_fshipping]</span> <br>
+									
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" align="right" width="70px">
+										<div style="float:left">
+											[fc_display_points]
+										</div>
+									 	<font size=3>TOTAL</font>
+									</td>
+									<td align="right" style="vertical-align: top;">
+										<span id="span_order_total" style="font-size: 12pt;">[va_order_ftotal]</span>
+									</td>
+								</tr>
+							</table>
+
+							<table border="0" style="width: 100%; border-spacing: 0; border-collapse: collapse; margin-top: 20px;">
+								<tr>
+									<td style="text-align: left; width: 50%;">
+										<div class="options_view" style="float: left;">Tipo de pago : 
+											<img src="/sitimages/sales/iconCredit-Card.png" class="ico" width="25px"> 
+											<span id="span_order_pay_type" style="color: #585858; font-weight: bold;"></span>
+										</div>
+									</td>
+									<td id="td_delivery_opts" style="text-align: right;">
+										<div class="options_view" style="float: right; text-align: right;"><span id="sp_updating_shp"></span>Tipo de env&iacute;o : 
+										[va_html_delivery_types]
+										</div>
+									</td>
+								</tr>
+ 							</table>
+
+
+							<br><br>
+
+							<div id="div_credit_card" style="display: none;">
+								<table cellpadding=10px cellspacing=0 width=100% border=0 style="border:1px solid silver;">
+									<tr>
+									  <td class="td_blue">Tarjeta</td>
+									  <td class="td_blue">Nombre en Tarjeta</td>
+									  <td class="td_blue">N&uacute;mero de tarjeta</td>
+									  <td class="td_blue">Expiraci&oacute;n</td>	
+									  <td class="td_blue">CVN</td>
+									  <td class="td_blue">Tel. de Casa</td>
+									  <td class="td_blue">Monto &#64; Fecha</td>
+									</tr>		
+									<tr>
+									  <td style="border-bottom: 1px solid silver; " align="left" valign="top">[va_pmtfield1] / [va_pmtfield7]</td>
+									  <td style="border-bottom: 1px solid silver; " align="left" valign="top">[va_pmtfield2]</td>
+									  <td style="border-bottom: 1px solid silver; " align="center" valign="top">[va_pmtfield3]</td>
+									  <td style="border-bottom: 1px solid silver; " align="center" valign="top">[va_pmtfield4]</td>	
+									  <td style="border-bottom: 1px solid silver; " align="center" valign="top">[va_pmtfield5]</td>
+									  <td style="border-bottom: 1px solid silver; " align="center" valign="top">[va_pmtfield6]</td>
+									  <td style="border-bottom: 1px solid silver; " align="right" valign="top" nowrap><span id="span_order_first_pmt" data-amt="[va_pmts_amount]"><!-- [va_order_ffirst_pmt]--> [va_order_ftotal] </span> &nbsp;&#64;&nbsp; [va_curdate]</td>
+									</tr>
+									<!-- 
+									[va_pmts_list_html]
+									[va_fpdays_html] 
+									-->
+								</table>
+								<br />
+								<div class="notas">
+									LEER AL CLIENTE<br>
+									<b>&iquest; Nos Autoriza a cargar a su tarjeta de [va_cardtype] que termina en [va_last4dig], los pagos en los t&eacute;rminos que le he descrito? Si est&aacute; de acuerdo, por favor diga "SI". Esta conversaci&oacute;n ser&aacute; grabada y considerada como su firma electr&oacute;nica autorizando esta transacci&oacute;n.</b>
+									<!--
+									<br><br>
+									If you authorize us to charge your [va_cardtype_en] card ending in [va_last4dig] for the installment payments I've just described, please say YES. This will be recorded as your electronic signature authorizing the transaction.
+									-->
+								</div>
+							</div>
+
+							<br><br>
+							
+							<center>
+								<input type="button" id="btn_submit" value="Confirmar Pedido" class="buttonv2">	
+							</center>	
+						</form>
+
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+
+	<div id="speech_main" class="speech_main">
+		<div id="div_hide" class="speech_title">
+			<a href="#" id="lnk_hide_speech" style="position: relative;" title="Ocultar">
+				<img src="/sitimages/sales/minimize.png" alt="minimize">
+			</a>
+		</div>
+		<div class="speech_content">
+			<img src="/sitimages/default/console-head.png" style="margin: 5px 10px 5px 0px; width: 50px; float: left;">
+			<div class="speech_content_text">
+				[va_speech_content]
+			</div>			
+			<div style="clear: both;"></div>
+			<div style="text-align: right; width: 100%; display: block;">
+				<span style="text-align: left; font-size: 8pt; margin-right: 20px;">[va_speech_code]</span>
+				<label style="font-size: 8pt; width: auto; position: relative;"><input type="checkbox" name="chk_speech_nevershow" id="chk_speech_nevershow" value="1">No volver a mostrar</label>
+			</div>
+		</div>
+	</div>
+
+	<div id="div_speech_icon" class="div_speech_icon" style="display: none;">
+		<a href="#">
+			<img src="/sitimages/default/console-head.png" style="width: 45px; height: 45px;">
+		</a>
+	</div>
+
+[ip_footer_console]

@@ -1,0 +1,157 @@
+	
+	&nbsp;
+	<fieldset><legend>Warehouse Receipt Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	  
+  	<tr>
+		    <td width="30%" valign="top">Vendor ID : <span class="smallfieldterr">[er_id_vendors]</span></td>
+		    <td class="smalltext">
+		    	<input type="text" name="id_vendors" id="id_vendors" value="[in_id_vendors]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input" required>
+				<a href="/cgi-bin/common/apps/schid?cmd=vendors&db=sl_vendors&fname=id_vendors&ajaxtype=1" title="Vendors" class="fancy_modal_iframe" id="Vendors">
+					<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+				</a>
+				<span class="smallfieldterr">[va_vendors_no_match]</span>
+		    </td>
+		 </tr>				
+  		<tr>
+		    <td width="30%" valign="top">Purchase Orders ID : <span class="smallfieldterr">[er_id_purchaseorders]</span></td>
+		    <td class="smalltext">
+				<input type="text" name="id_purchaseorders" id="id_purchaseorders" value="[in_id_purchaseorders]" size="10" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input">
+				<a href="/cgi-bin/common/apps/schid?cmd=wreceipts_addpo&db=sl_purchaseorders&fname=id_purchaseorders&ajaxtype=1" title="Purchase Orders" class="fancy_modal_iframe" id="Purchase Orders">
+					<img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0">
+				</a>
+				<div id="popup_pos" style="visibility: hidden; display: none; background-color: #ffffff;">
+					<div class="formtable">
+						<IFRAME SRC="" name="rcmd" id="if_wreceipts_addpo" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto"></IFRAME>
+					</div>
+				</div>
+		    </td>
+		</tr>
+  		<tr>
+		    <td width="30%">Invoice # : <span class="smallfieldterr">[er_invoice]</span></td>
+		    <td class="smalltext">
+		    	<input type="text" name="invoice" value="[in_invoice]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )' id="id_invoice" class="input" readonly>
+		    	<a href="admin?cmd=vendor_cfdi_selector&amp;element_id=id_invoice" title="Invoices" class="fancy_modal_iframe">
+					<img src="/sitimages//default/icsearchsmall.gif" border="0">
+				</a>
+		    </td>
+		</tr>	
+		<tr>
+		  <td width="30%">Invoice Date : <span class="smallfieldterr">[er_invoicedate]</span></td>
+			<td class="smalltext">
+				<input type="text" id="invoicedate" name="invoicedate" value="[in_invoicedate]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input"></a>
+			</td>
+		</tr>
+		<tr>
+		    <td valign="top" width="30%">Description : <span class="smallfieldterr">[er_description]</span></td>
+		    <td class="smalltext">
+		    	<textarea name="description" cols="50" rows="3" style="width: 100%" onFocus='focusOn( this )' onBlur='focusOff( this )'>[in_description]</textarea>
+		    </td>
+		 </tr>
+  		<tr>
+		    <td width="30%" valign="top">Type of  : <span class="smallfieldterr">[er_type]</span></td>
+		    <td class="smalltext">
+		    	<input type="radio" name="type" value="Warehouse Receipt" class="radio">Warehouse Receipt
+          		<input type="radio" name="type" value="Sample Receipt" class="radio">Sample Receipt<br>
+          		<input type="radio" name="type" value="Damaged Items Receipt" class="radio">Damaged Items Receipt
+          		<input type="radio" name="type" value="Others" class="radio">Other
+          		</td>
+         </tr>
+		<tr [va_curstyle]>
+		  <td width="30%">Currency:</td>
+		  <td class="smalltext">[ln_id_vendors@sl_vendors:Currency]</td>
+		</tr>
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Delivery Info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		   <td valign="top" width="30%">Received From : <span class="smallfieldterr">[er_receivedfrom]</span></td>
+		   <td class="smalltext">
+		   			<select name="receivedfrom" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input">
+                        <option value="">---</option>
+							[fc_build_select_receivedfrom]
+					</select></td>
+		 </tr>
+  		<tr>
+		    <td width="30%">Driver's Name : <span class="smallfieldterr">[er_driver]</span></td>
+		    <td class="smalltext"><input type="text" name="driver" value="[in_invoice]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input"></td>
+		 </tr>	
+  		<tr>
+		    <td width="30%">Driver's ID : <span class="smallfieldterr">[er_driverid]</span></td>
+		    <td class="smalltext"><input type="text" name="driverid" value="[in_driverid]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input"></td>
+		 </tr>	
+  		<tr>
+		    <td width="30%">Tracking # : <span class="smallfieldterr">[er_tracking]</span></td>
+		    <td class="smalltext"><input type="text" name="tracking" value="[in_tracking]" size="30" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input"></td>
+		 </tr>
+	</table>
+	</fieldset>
+	&nbsp;
+  <fieldset><legend>Warehouse Receipt Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+		    <td width="30%">Status  : <span class="smallfieldterr">[er_status]</span></td>
+		    <td class="smalltext">[fc_wreceipts_status]</td>
+		    <!-- <td class="smalltext">[in_status]<input type="hidden" name="status" value="[in_status]"></td> -->
+			
+		 </tr>
+  	</table>
+	</fieldset>
+
+<script language="javascript">
+<!--
+	chg_radio('type','[in_type]');
+	chg_select('receivedfrom','[in_receivedfrom]');
+
+	// Quitar required 
+	if('[va_required]' != '1'){
+		$('[required]').removeAttr('required');
+	}
+
+	function add_vendor(){
+		popup_show('popup_vendors', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'vendors');
+	}
+	function add_po() {
+		
+		var id_vendors = $('#id_vendors').val()
+		$('#if_wreceipts_addpo').attr('src','/cgi-bin/common/apps/schid?cmd=wreceipts_addpo&db=sl_purchaseorders&fname=id_purchaseorders&ajaxtype=id_purchaseorders'+'&id_vendors='+id_vendors);		
+		popup_show('popup_pos', 'item_drag2', 'popup_exit2', 'element-right', -1, -1,'pos');
+	}
+
+	
+	$('#id_vendors').on('change', function(){
+		x = $('[title="Invoices"]').attr('href').indexOf('&id_vendors');
+		id_vendors = $(this).val();
+		if(x == -1){
+			$('[title="Invoices"]').attr('href', $('[title="Invoices"]').attr('href')+'&id_vendors='+id_vendors);
+			local = true;
+		}else{
+			vl = $('[title="Invoices"]').attr('href').substring(0, x)+'&id_vendors='+id_vendors;
+			$('[title="Invoices"]').attr('href',vl);
+			local = true;
+		}
+	});
+
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#invoicedate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+
+//-->
+</script>
+
+<input type='hidden' name='id_exchangerates' value='[in_id_exchangerates]'>

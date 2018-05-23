@@ -1,0 +1,133 @@
+	<fieldset><legend>Service ID</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+			<td width="30%" class="titletext">Service ID : </td>
+			<td class="titletext">
+				<div class="scroller_anchormenu"></div> 
+					<div class="scrollermenu">
+						<div class="top_icons">
+							[in_id_services] &nbsp;
+							[fc_template_idbutton] &nbsp;
+							[fc_template_prnbutton]
+							[fc_func_list_manager]
+							<a href="/cgi-bin/common/apps/schid?cmd=services_addvendor&id_services=[in_id_services]" title="Add vendor" class="fancy_modal_iframe">
+								<img src='[va_imgurl]/[ur_pref_style]/b_addvendor.gif' title=' Add Vendor ' alt=' Add Vendor ' border='0' width='24' height='24'>
+							</a>
+						</div>
+					</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" class="smalltext">Date / Time /user  : </td>
+			<td class="smalltext">[in_date] [in_time] Created by : ([in_id_admin_users]) [in_admin_users.firstname] [in_admin_users.lastname]</td>
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;<a name='tabs' id='tabs'>&nbsp;</a>	
+	&nbsp;
+	<fieldset><legend>Service Main Info</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		  	<td width="30%">Name :</td>
+		   	<td class="smalltext">[in_name]</td>
+		</tr>
+		<tr>
+		    <td valign="top" width="30%">Description :</td>
+		    <td class="smalltext">[in_description]</td>
+		</tr>	
+		<tr>
+		  	<td width="30%">Price / Rate : </td>
+		   	<td class="smalltext">[in_sprice]</td>
+		</tr>	
+		<tr>
+		  	<td width="30%">Sales Price : </td>
+			  <td class="smalltext">[in_salesprice]</td>	   		
+		</tr>		
+	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>Accounting</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr style="[va_show_account_sale]">
+			  	<td valign="top" width="50%" class="smalltext">Sale Account : ([in_saleid_accounts]) [va_saccount_name]<br>
+			  		(0) To select the sale account based on Customer Type</span></td>
+			  	<td valign="top" width="50%" class="smalltext">Sale Tax : [in_tax] %</span></td>	
+			</tr>
+			<tr style="[va_show_account_purchase]">
+			  	<td valign="top" width="50%" class="smalltext">Purchase Account : ([in_purchaseid_accounts]) [va_paccount_name]<br>
+			  		(0) To select the sale account based on Customer Type</span></td>
+			  	<td valign="top" width="50%" class="smalltext">Purchase Tax : [in_tax] %</span></td>	
+			</tr>
+	  	</table>
+	</fieldset>
+	&nbsp;
+	<fieldset><legend>SAT info</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+				<td width="30%" >ID Product / Service : </td>
+				<td class="smalltext">[in_id_product_service]</td>
+			</tr>
+		</table>
+	</fieldset>
+	&nbsp;
+ 	<fieldset><legend>Service Type</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+				<td width="30%">Type : <span class="smallfieldterr">[er_servicetype]</span></td>
+			  <td class="smalltext">[in_servicetype]</td>
+			</tr>
+		<tr>
+	  	<td width="30%">Other : <span class="smallfieldterr">[er_other]</span></td>
+	   	<td class="smalltext">[in_other]</td>
+		</tr>			
+  	</table>
+	</fieldset>
+	&nbsp;	
+ 	<fieldset><legend>Service Status</legend>
+		<table border="0" cellspacing="0" cellpadding="2" width="100%">
+  		<tr>
+				<td width="30%">Status : <span class="smallfieldterr">[er_status]</span></td>
+			  <td class="smalltext">[in_status]</td>
+			</tr>
+  	</table>
+	</fieldset>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		//-------------------------------------------------------
+		// funcion para eliminar registros del tab7(Retenciones)
+		//-------------------------------------------------------
+		$('.lnk_drop_retention').live('click', function(event){
+			event.preventDefault();
+
+			$.ajax({
+				url: '/cgi-bin/common/apps/schid',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					'cmd': 'services_retention_setup',
+					'drop': $(this).data('id'),
+					'id_services': '[in_view]',
+					'action': '1',
+					'act_type': 'drop',
+				},
+				async: false,
+				cache: false,
+				success: function(response){
+					if( response.result == '200' ){
+						window.parent.$('#tbody_accounts_ret').html(response.html_result);
+						parent.$.fancybox.close();							
+					}else{
+						$('#err_message').html(response.error);
+					}
+				}
+			});
+
+			return false;
+		});
+		//-------------------------------------------------------
+
+	});
+</script>

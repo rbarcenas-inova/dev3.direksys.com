@@ -1,0 +1,81 @@
+[ip_header]
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+			<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 1, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+<form action="/cgi-bin/mod/custom/admin" method="POST" name="sitform">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="cmd" value="cus_orders">
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Searching Order </td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+	</table>
+	&nbsp;
+	<fieldset><legend>ID Search</legend>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">	
+		<tr>
+			<td width="30%" valign="top">Order  ID	 : <span class="smallfieldterr">[er_id_orders]</span></td>
+			  <td class="smalltext">
+					<input type="text" name="id_orders" id='id_orders' value="[in_id_orders]" size="20" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+					<a class="scroll" href="#orders" id="orders" onClick="search_order()"><img src="[va_imgurl]/[ur_pref_style]/icsearchsmall.gif" border="0"></a>
+				
+			   </td>
+		 </tr>
+		 <tr>
+		 	<td colspan="2" align="center" class="comment">The Order Status should be 'New' and Without Account Movements</td>
+		</tr>
+	</table>
+	</fieldset>	
+	<p align="center"><input type="submit" value="Search" class="button"></p>
+
+</form>	
+			
+			<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+	<div id="popup_orders" style="visibility: hidden; display: none; background-color: #ffffff;">
+		<div class="menu_bar_title" id="item_drag1">
+			<img id="popup_exit1" src="[va_imgurl]/[ur_pref_style]/popupclose.gif" />
+			&nbsp;&nbsp;&nbsp;orders
+		</div>
+		<div class="formtable">
+		<IFRAME SRC="/cgi-bin/common/apps/schid?cmd=orders&db=sl_orders&fname=id_orders&ajaxtype=1" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+			<H2>Unable to do the script</H2>
+			<H3>Please update your Browser</H3>
+		</IFRAME>	
+	</div></div>	
+
+
+<script language="javascript">
+
+	function search_order(){
+		popup_show('popup_orders', 'item_drag1', 'popup_exit1', 'element-right', -1, -1,'orders');
+	}
+
+</script>
+
+
+
+[ip_footer]
+
+

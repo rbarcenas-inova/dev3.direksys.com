@@ -1,0 +1,203 @@
+[ip_header_blank]
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+	    /* IFRAME */
+	    $(".fancy_modal_iframe").fancybox({
+	      'width'       : '75%',
+	      'height'      : '75%',
+	          'autoScale'       : false,
+	          'transitionIn'    : 'none',
+	      'transitionOut'   : 'none',
+	      'type'        : 'iframe'
+
+	    });
+
+	    $(".fancy_modal_iframe_ajax").fancybox({
+	      
+	      ajax : {
+	          type  : "GET",
+	          'width'       : '75%',
+	        'height'      : '75%',
+	            'autoScale'       : false,
+	            'transitionIn'    : 'none',
+	        'transitionOut'   : 'none'
+	      }
+	    });
+
+	    /* A INLINE*/
+	    $("a.fancy_modal_inline").fancybox({
+	      'hideOnContentClick': true
+	    });
+	});
+</script>
+
+[va_javascriptvar]
+ <!-- Direksys v2 -->  
+  <link rel="stylesheet" type="text/css" href="/sitimages/app_bar/mod/Xtyle.css" />
+  <!-- Direksys v2 -->  
+	<form method="post" action="[va_script_url]">
+		<input type="hidden" name="id_orders" value="[in_id_orders]">
+		<input type="hidden" name="id_purchaseorders" value="[in_id_purchaseorders]">
+		<input type="hidden" name="id_adjustments" value="[in_id_adjustments]">
+		<input type="hidden" name="id_bills" value="[in_id_bills]">
+		<input type="hidden" name="id_vendors" value="[in_id_vendors]">		
+		<!--<input type="hidden" name="view" value="[in_id_orders]">-->
+		[va_view]
+		<input type="hidden" name="action" value="editmovements">
+		<input type="hidden" name="tabsl" value="1">
+		<input type="hidden" name="cmd" value="[va_cmdtoapply]">
+		<input type="hidden" name="dototemp" value="NO">
+		<!--input type="hidden" name="return" value="[in_return]"-->
+		<input type="hidden" name="path" value="[in_path]">
+		<!--input type="hidden" name="returntype" value="[in_returntype]"-->
+		<input type="hidden" name="edit_type" value="[in_edit_type]">
+
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0"  bgcolor=#ffffff align="center">
+	    <tr>
+	      <td class="tbltextttl" colspan="2"><span class='fieldterr'>[va_tabmessages]</span>&nbsp;</td>
+	    </tr>     
+	    <tr>
+				<td class="tbltextttl">
+					Debits : [va_matchesdebit]
+					<a name="add_prdmenu" id="add_prdmenu">&nbsp;</a>
+					<!--a href='#add_prdmenu' onClick="popup_show('popup_adddebit', 'credit_drag', 'popup_exit_debit', 'element-right', -1, -1,'tabs');">
+						<img src='/sitimages/default/b_add.gif' title='Add credit' alt='' border='0'></a-->
+
+<a href="/cgi-bin/common/apps/ajaxfinance?cmd=edit_addmovements&type=debit&id_orders=[in_id_orders]&id_preorders=[in_id_preorders]&id_purchaseorders=[in_id_purchaseorders]&id_bills=[in_id_bills]&id_vendors=[in_sl_vendors]&id_adjustments=[in_id_adjustments]&path=[in_path]&edit_type=[in_edit_type]" title="Add Debit" class="fancy_modal_iframe">
+						<img src='/sitimages/default/b_add.gif' title='Add Debit' alt='' border='0'></a>
+
+				</td>
+				<td class="small_text" align="right" valign="top">
+					&nbsp;
+				</td>
+	    </tr>
+	    <tr>
+	    	<td colspan="2">      	
+				<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+	      	<tr>         	
+						<td class="menu_bar_title" nowrap>Select</td>
+						<td class="menu_bar_title" nowrap>Account ID</td>
+						<td class="menu_bar_title">Account Name</td>
+						<td class="menu_bar_title">Segment</td>
+						<td class="menu_bar_title" nowrap>Category</td>
+						<td class="menu_bar_title" nowrap>Debit Amount</td>
+						<td class="menu_bar_title" nowrap>Eff. Date</td>
+						<td class="menu_bar_title" nowrap>Journal Entry</td>
+						<td class="menu_bar_title" nowrap>Action</td>
+				 	</tr>
+				 	[va_searchresultsdebit]
+				</table>
+				<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				 	<tr>
+						<td class="tbltextttl" nowrap>
+								Credits : [va_matchescredit]
+								<a name="add_paymenu" id="add_paymenu">&nbsp;</a>
+								<!--<a href='#add_paymenu' onClick="popup_show('popup_addpay', 'chrg_drag', 'popup_exitchrg', 'element-right', -1, -1,'add_paymenu');"><img src='/sitimages//default/b_add.gif' title='Add payments' alt='' border='0'></a>-->
+								
+								<!--a href='#add_paymenu' onClick="popup_show('popup_addcredit', 'debit_drag', 'popup_exit_credit', 'element-right', -1, -1,'add_paymenu');"-->
+
+<a href="/cgi-bin/common/apps/ajaxfinance?cmd=edit_addmovements&type=credit&id_orders=[in_id_orders]&id_preorders=[in_id_preorders]&id_purchaseorders=[in_id_purchaseorders]&id_bills=[in_id_bills]&id_vendors=[in_sl_vendors]&id_adjustments=[in_id_adjustments]&path=[in_path]&edit_type=[in_edit_type]" title="Add credit" class="fancy_modal_iframe"> 
+	<img src='/sitimages//default/b_add.gif' title='Add Credit' alt='' border='0'></a>
+						</td>
+						<td class="small_text" align="right" valign="top">
+								<a name="prdmenu" id="prdmenu">&nbsp;</a>
+						</td>
+					</tr>
+					<tr>         	
+						<td class="menu_bar_title" nowrap>Select</td>
+						<td class="menu_bar_title" nowrap>Account ID</td>
+						<td class="menu_bar_title">Account Name</td>
+						<td class="menu_bar_title">Segment</td>
+						<td class="menu_bar_title" nowrap>Category</td>
+						<td class="menu_bar_title" nowrap>Credit Amount</td>
+						<td class="menu_bar_title" nowrap>Eff. Date</td>
+						<td class="menu_bar_title" nowrap>Journal Entry</td>
+						<td class="menu_bar_title" nowrap>Action</td>
+				 	</tr>
+				 	[va_searchresultscredit]
+	      </table>       
+	     </td>
+	    </tr>
+	    <tr> <!--onmouseover='m_over(this)' onmouseout='m_out(this)' onclick="trjump('[va_script_url]?cmd=[va_cmdtoapply]&view=[in_id_orders]&id_orders=[in_id_orders]&tab=[in_tab]#tabs')">
+	    	<td class="smalltext" valign="top" align="right" nowrap>[va_btntxt]</td>-->
+	    	<td colspan="5" align="center" class="stdtxterr">&nbsp;Diff: [va_diff]</td>
+	    </tr>
+	    <tr>	
+	    	<td colspan="5" align="center">&nbsp;[va_btntxt]</td>
+	    	<input type="hidden" name="finish" value="[va_finish]">
+	    	<!--	<input type='submit' align="center" value='[va_btntxt]' class='button' onclick="editorders()"></td>-->
+	    </tr>
+	  </table>
+</form>  
+<div id="ajax_windows" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="ajax_drag" align="left">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Direksys</td>
+			<td align=right width=20px><img id="ajax_exit" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+		</div>
+	<div id="ajaxcontent">&nbsp;</div>
+
+</div>
+<!--
+<div id="ajax_windows2" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+	<div class="menu_bar_title" id="ajax_drag2" align="left">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Direksys</td>
+			<td align=right width=20px><img id="ajax_exit2" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+	</div>
+	<div id="ajaxcontent2">&nbsp;</div>
+
+</div>
+
+
+			
+[va_cadtoprint]
+<script type='text/javascript'>
+//<![CDATA[
+	function change_txt_button(){
+		document.form.btnact.value="Recalcular";
+	}
+//]]>
+</script>
+
+
+			<!--  Add Credit-->
+					<!--div id="popup_addcredit" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+					<div class="menu_bar_title" id="credit_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Credit</td>
+			<td align=right width=20px><img id="popup_exit_credit" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+					</div>
+					<div >
+					<IFRAME SRC="/cgi-bin/common/apps/ajaxfinance?cmd=edit_addmovements&type=credit&id_orders=[in_id_orders]&id_preorders=[in_id_preorders]&id_purchaseorders=[in_id_purchaseorders]&id_bills=[in_id_bills]&id_vendors=[in_sl_vendors]&path=[in_path]&edit_type=[in_edit_type]" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+					<H2>Unable to do the script</H2>
+					<H3>Please update your Browser</H3>
+					</IFRAME>	
+					</div></div-->
+					
+			<!--  Add debit-->
+					<!--div id="popup_adddebit" style="visibility: hidden; display: none; background-color: #ffffff; border: 1px solid #999999;-moz-box-shadow: 0 0px 10px #333;	-webkit-box-shadow: 0 0px 10px #333;	box-shadow: 0 0px 10px #333;">
+					<div class="menu_bar_title" id="debit_drag">
+		<table width=100% cellpadding=0 cellspacing=3>
+			<td align=left>&nbsp;&nbsp;Add Debit</td>
+			<td align=right width=20px><img id="popup_exit_debit" src="[va_imgurl][ur_pref_style]/popupclose.gif" align=right style="cursor:pointer;"></td>
+		</table>
+					</div>
+					<div >
+					<IFRAME SRC="/cgi-bin/common/apps/ajaxfinance?cmd=edit_addmovements&type=debit&id_orders=[in_id_orders]&id_preorders=[in_id_preorders]&id_purchaseorders=[in_id_purchaseorders]&id_bills=[in_id_bills]&id_vendors=[in_sl_vendors]&path=[in_path]&edit_type=[in_edit_type]" name="rcmd" TITLE="Recieve Commands" width="546" height="250" FRAMEBORDER="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="auto">
+					<H2>Unable to do the script</H2>
+					<H3>Please update your Browser</H3>
+					</IFRAME>	
+					</div></div-->
+				
+
+
+
+
+
+

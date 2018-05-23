@@ -1,0 +1,98 @@
+<div style="width: 95%; background-color: #e5e5e5; padding: 2%; margin: auto auto;">
+	<center>
+		<table cellpadding="18px" cellspacing="0" style="border:1px solid silver;width:700px;background-color:#ffffff">
+			<tbody>
+				<tr bgcolor="#111111">
+					<td>
+						<img src="http://pedidos.inova.com.mx/img/logo2.png" width="110px" border="0" class="CToWUd">
+					</td>
+					<td align="right">
+						<font face="verdana" size="3" color="#ffffff">
+							<b>Purchase Orders ID: [in_id_purchaseorders]</b>
+						</font>
+					</td>
+				</tr>
+				<tr>
+					<td align="left" colspan="2">
+						<font face="arial, verdana">
+							<center>
+								<br />
+								<font face="century gothic, verdana" size="5" color="#2ab10b">Se requiere autorizaci&oacute;n [va_auth_phase]</font>
+								<br />
+								<br />
+								<table style="width: 100%">
+									<tr>
+										<td style="vertical-align: top;">Vendor:</td>
+										<td style="font-weight: bold; color: gray; padding: 3px 6px;">[in_id_vendors] - [va_vendor_name]</td>
+									</tr>
+									<tr>
+										<td>PO Date:</td>
+										<td style="font-weight: bold; color: gray; padding: 3px 6px;">[in_podate]</td>
+									</tr>
+									<tr>
+										<td>PO Type:</td>
+										<td style="font-weight: bold; color: gray; padding: 3px 6px;">[in_type]</td>
+									</tr>
+									<tr>
+										<td>PO Area:</td>
+										<td style="font-weight: bold; color: gray; padding: 3px 6px;">[va_segment_name]</td>
+									</tr>
+									<tr>
+										<td>PO Cancel Date:</td>
+										<td style="font-weight: bold; color: gray; padding: 3px 6px;">[in_canceldate]</td>
+									</tr>
+									<tr>
+										<td>PO Terms:</td>
+										<td style="font-weight: bold; color: gray; padding: 3px 6px;">[in_poterms]</td>
+									</tr>
+									<tr>
+										<td>EDT Date:</td>
+										<td style="font-weight: bold; color: gray; padding: 3px 6px;">[in_etd]</td>
+									</tr>
+									<tr>
+										<td>Currency:</td>
+										<td style="font-weight: bold; color: gray; padding: 3px 6px;">[ln_id_vendors@sl_vendors:Currency]</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="border-top: 1px solid gray; border-bottom: 1px solid gray; text-align: center; font-weight: bold; font-size: 11pt; color: gray;">Servicios:</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="">
+											<table border="0" style="border-collapse: collapse;	color: gray; font-size: 8pt; width: 100%;">
+												<tr style="background-color: #D8D8D8;	font-size: 9pt;	font-weight: bold;">
+													<th>Service</th>
+													<th>Area</th>
+													<th>Qty</th>
+													<th>Unit Price</th>
+													<th>Tax(%)</th>
+													<th>STotal</th>
+													<th>Tax($)</th>
+													<th>Total</th>
+												</tr>
+												[va_po_items_list]
+												<tr>
+											    	<td colspan="6" style="font-size: 9pt; font-weight: bold; padding: 3px 5px;" align="right" nowrap>[va_posubtot]</td>
+													<td style="font-size: 9pt; font-weight: bold; padding: 3px 5px;" align="right" nowrap>[va_potottax]</td>
+											    	<td style="font-size: 9pt; font-weight: bold; padding: 3px 5px;" align="right" nowrap>[va_pototal]</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							  	<br><br>
+							  	<span style="font-weight: bold; font-size: 10pt; color: #2ab10b;">Si considera que los datos est&aacute;n correctos, por favor de click en el bot&oacute;n para autorizar la Orden de Compra...</span>
+							  	<p>
+							  		<a href="http://[va_maindomain]/cgi-bin/common/apps/po_auth?e=[in_e]&p=[in_hash]" style="-moz-box-shadow: 0px 10px 14px -7px #3e7327; -webkit-box-shadow: 0px 10px 14px -7px #3e7327;box-shadow: 0px 10px 14px -7px #3e7327;background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77b55a), color-stop(1, #72b352));background:-moz-linear-gradient(top, #77b55a 5%, #72b352 100%);background:-webkit-linear-gradient(top, #77b55a 5%, #72b352 100%);background:-o-linear-gradient(top, #77b55a 5%, #72b352 100%);background:-ms-linear-gradient(top, #77b55a 5%, #72b352 100%);background:linear-gradient(to bottom, #77b55a 5%, #72b352 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77b55a', endColorstr='#72b352',GradientType=0);
+	background-color:#77b55a;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;border:1px solid #4b8f29;display:inline-block;cursor:pointer;color:#ffffff;font-family:Arial;font-size:16px;font-weight:bold;padding:11px 59px;text-decoration:none;text-shadow:0px 1px 0px #5b8a3c; position:relative; top:1px;">Autorizar</a>
+							  	</p>
+							</center>
+						</font>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div style="font-family: arial, verdana; font-size: 9pt; color: gray; width: 600px;">
+			NO RESPONDER: Este mensaje se envi&oacute; mediante un proceso automatizado, por lo que no est&aacute; habilitado para recibir respuestas.<br />
+		</div>
+	</center>
+</div>

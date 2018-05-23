@@ -1,0 +1,19 @@
+	&nbsp;
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">		
+		<tr>
+			<td colspan="3">
+<form enctype="multipart/form-data" name="upload" method="POST" action="/cgi-bin/common/apps/upfile" target="upwin">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="filetype" value="adjustment">
+	<input type="hidden" name="id_adjustments" value="[in_id_adjustments]">
+	<input type="file" size="30" name="file" onFocus='focusOn( this )' onBlur='focusOff( this )' class="input">
+	<span class="smallfieldterr"></span>
+	<input type="submit" value="Upload" class="button" onclick="upwin()">	
+</form>
+			</td>
+		</tr>	
+		<tr>
+			<td align="center"> {id_product} &nbsp;&nbsp;&nbsp; {New Qty} &nbsp;&nbsp;&nbsp; {Old Qty} &nbsp;&nbsp;&nbsp; {id_warehouses} &nbsp;&nbsp;&nbsp;{Location}</td>
+		</tr>
+	</table>
+	&nbsp;

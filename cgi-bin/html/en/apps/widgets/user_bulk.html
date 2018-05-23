@@ -1,0 +1,34 @@
+		<tr [va_bgcolor]>
+			<td class="smalltext">&nbsp;First Name : </td>
+			<td class="smalltext">&nbsp;<input type="text" size="20" name="[va_num]_FirstName" value="[in_FirstName]" onFocus="focusOn( this );" onBlur='focusOff( this )'></td>
+			<td class="smalltext" rowspan="3">[va_usergroup]</td>
+			<td class="smalltext" rowspan="3"><input type="checkbox" name="[va_num]_local" value="on"></td>
+			<td class="smalltext" rowspan="3">
+					&nbsp;&nbsp;&nbsp;&nbsp;<input type='radio' name="[va_num]_type" value="none" class="radio" checked> None<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;<input type='radio' name="[va_num]_type" value="sip" class="radio"> SIP<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;<input type='radio' name="[va_num]_type" value="iax" class="radio"> IAX2</td>
+			<td class="smalltext" rowspan="3"><input type="checkbox" name="[va_num]_nat" value="on"></td>
+			<td class="smalltext" rowspan="3"><input type="checkbox" name="[va_num]_vm" value="on"></td>
+		</tr>
+		<tr [va_bgcolor]>
+			<td class="smalltext">&nbsp;Last Name : </td>
+			<td class="smalltext">&nbsp;<input type="text" size="20" name="[va_num]_LastName" value="[in_LastName]" onFocus="focusOn( this );" onBlur='focusOff( this )'></td>
+		</tr>
+		<tr [va_bgcolor]>
+			<td class="smalltext">&nbsp;Username : </td>
+			<td class="smalltext">&nbsp;<input type="text" size="20" name="[va_num]_username" value="[in_username]" onFocus="focusOn( this );" onBlur='focusOff( this )'>
+				
+<script language="javascript">
+<!--
+
+chg_select('[va_num]_usergroup','[in_usergroup]');
+chg_radio('[va_num]_local','[in_local]');
+chg_radio('[va_num]_type','[in_type]');
+chg_radio('[va_num]_nat','[in_nat]');
+chg_radio('[va_num]_vm','[in_vm]');
+
+//-->
+</script>	
+				</td>
+		</tr>
+

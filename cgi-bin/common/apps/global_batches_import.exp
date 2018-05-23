@@ -1,0 +1,77 @@
+#!/usr/bin/expect -f
+
+set force_conservative 0  ;# set to 1 to force conservative mode even if
+			  ;# script wasn't run conservatively originally
+if {$force_conservative} {
+	set send_slow {1 .1}
+	proc send {ignore arg} {
+		sleep .1
+		exp_send -s -- $arg
+	}
+}
+
+set host "secureftp.globalresponse.com"
+set user "MOM-1545"
+set pass "Inn0v3nt10n$"
+#set dir "/home/www/github/dev.direksys.com/files/batches/innovausa"
+#set dir_s "/home/www/github/dev.direksys.com/files/batches/innovausa/sent"
+
+set stime [clock seconds]
+set tdate [clock format $stime  -format %m-%d-%y]
+set dir_archived "ARCHIVE"
+set dir_imported "IMPORTED"
+#set dir_direksys "/home/www/github/dev.direksys.com/files/batches/e1/ARCHIVE"
+set dir_direksys "/home/www/domains/d2.direksys.com/files/batches/e1/ARCHIVE"
+
+for {set i 1} {$i < 3} {incr i 1} {
+
+	if { $i == 1 } {
+		set fname "GRInvoice-"
+	} else {
+		set fname "NEW_GRInvoice-"
+	}
+	append fname "$tdate.CSV"
+	
+
+	puts "Downloading $fname..."
+
+	set timeout 30
+	spawn sftp $user@$host
+	match_max 100000
+	expect "password:"
+
+	send -- "$pass\r"
+	expect "sftp>"
+
+	send -- "\[A"
+	expect -exact ""
+
+	send -- "cd $dir_archived"
+	expect "cd $dir_archived"
+
+	send -- "\r"
+	expect "sftp>"
+
+	send -- "get $fname "
+	expect "$fname"	
+
+	send -- "$dir_direksys"
+	expect "$dir_direksys"
+
+	send -- "/\r"
+	expect "Fetching"
+
+	#send -- "rename $fname "
+	#expect "$fname"	
+
+	#send -- "$dir_imported/$fname"
+	#expect "$dir_imported/$fname"
+
+	send -- "\r"
+	expect "sftp>"
+
+	send -- "exit\r"
+	expect eof
+	puts "\n"
+
+}

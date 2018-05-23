@@ -1,0 +1,70 @@
+[ip_header]
+
+
+<table border="0" cellspacing="0" cellpadding="4" width="720" class="container_white">
+	<tr>
+		<td width="140" align="center" valign="top">
+			[ip_menu_main]
+			&nbsp;
+			[ip_imgman:menu]
+			&nbsp;
+			[fc_menu_custom]
+			&nbsp;
+		</td>
+		<td valign="top">
+<!-- Start Main Area  -->
+	<form action="/cgi-bin/imgman/admin" method="post" name="sitform" onsubmit="return warningmsg()">
+		<input type="hidden" name="cmd" value="home">
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="50%" align="center"></td>
+	    <td class="cell_on" align="center" onClick='trjump("/cgi-bin/imgman/admin?cmd=home")'>Images</td>
+	    <td class="cell_off" align="center" onClick='trjump("/cgi-bin/imgman/admin?cmd=upload")'>Upload</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/imgman/admin?cmd=gallery")'>Gallery</td>
+	    <td class='cell_off' align='center' onClick='trjump("/cgi-bin/imgman/dbman?cmd=categories")'>Add Category</td>
+	  </tr>
+	</table>
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Images Manager<br>
+		    		<select name="ID_images" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+	             		[fc_build_images_catlist]
+	             	  </select>
+	             	  <input type="submit" name="chgcat" value="Change Category" class="Button"></td>
+		 </tr>
+		<tr>
+		   <td colspan="2"><span class="help_on">This are the Images in your system, To view the Image information click on "V" To Edit it, click on "E" or "D" if you want to delete it</span></td>
+		 </tr>
+		<tr>
+		    <td class="stdtxterr" colspan="2">[va_message]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Categories : [va_matches]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+      </table>
+      
+	
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title" width="20%">View / Edit / Delete</td>
+		    <td class="menu_bar_title">Image</td>
+		    <td class="menu_bar_title">ID</td>
+		    <td class="menu_bar_title">Name</td>
+		    <td class="menu_bar_title">Filename</td>
+		    <td class="menu_bar_title">Size (Bytes)</td>
+		 </tr>
+		 [va_searchresults]
+     </table>
+	
+	</form>
+
+	<p>&nbsp;</p>
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]

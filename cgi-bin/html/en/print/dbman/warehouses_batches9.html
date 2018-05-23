@@ -1,0 +1,189 @@
+<STYLE TYPE="text/css">
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+</STYLE>
+
+<center>
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px>
+	<td><font class=info>
+
+<table cellpadding=0 cellspacing=0>
+     <td align="left" valign="top">		<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px></td>
+	[fc_show_companyinfo]
+</table>
+
+
+<hr style="color: #000;background-color: #000;height: 3px;width:640px;">
+
+&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;
+Fecha de Envio [in_shpdate]
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
+Tipo de Pago: [in_ptype]
+<br>
+
+<hr style="color: #000;background-color: #000;height: 1px;width:640px;">
+</td>
+<td align=center width=230px>
+
+
+	
+<table cellpadding=5 cellspacing=0  style="border:1px solid #333333;padding:0px;width:230px;-moz-border-radius: 5px;border-radius: 5px;" >
+	<td align=center>
+		[fc_checkifcopy]
+		<font class=id>
+	Número de Orden:<br> <font class=idno>[in_id_orders]</font><br>
+Fecha de Orden   [in_date]<br>
+<img src="/cgi-bin/common/apps/barcode?code=[va_e_prefix][in_id_orders]" style="margin-top:6px" border="0">
+	</td>
+</table>
+
+	</td>
+</table>
+
+
+
+
+<table border=0 cellpadding=0 cellspacing=7 style="margin-top:0px;" width=870px>
+	<td valign=top>		<font class=note>
+
+
+
+		<table cellpadding=0 cellspacing=0 border=0 width=600px>
+<tr>
+	<td colspan=2><font class=goto>
+		Información de Orden:
+	</td>
+	<td rowspan=2 width=25px align=left  style="border-left:1px dashed #aaaaaa;">
+&nbsp;
+	</td>
+	<td colspan=2><font class=goto>
+		Información de Envio:
+	</td>
+</tr>
+<tr>
+	<td width=20px></td>
+	<td align=left><font class=goto>
+		[fc_load_customer_name]<br>
+		[in_address1] [in_address2] [in_address3]<br>
+		[in_urbanization] [in_city]<br>
+		[in_state] [in_zip]<br>
+	</td>
+
+	<td width=20px></td>
+	<td align=left><font class=goto>
+		[in_shp_name] <br>
+		[va_shp_phone]<br>
+		[in_shp_address1] [in_shp_address2] [in_shp_address3]<br>
+		[in_shp_urbanization] [in_shp_city]<br>
+		[in_shp_state] [in_shp_zip]<br>
+	</td>
+</tr>
+</table>
+
+
+<br><br>
+
+<table cellpadding=5 cellspacing=0  style="border:1px solid #333333;width:630px;padding:10px;-moz-border-radius: 5px;border-radius: 5px;" >
+	<td align=left>
+		 <font class=gtxt>
+		<font class=gracias>Gracias por su Compra</font><br>
+		En su próxima compra utilice su número de cliente <font class=gid>[in_id_customers]</font> para que pueda recibir grandes premios. 
+	</td>
+</table>
+
+
+
+<br><br>
+
+
+
+<table cellpadding=5 cellspacing=0  style="border:1px solid #333333;" >
+	<tr bgcolor=#ffffff>
+		<td width=25px align=center style="border-left:0px solid #555555;border-bottom:1px solid #555555;"><font class=info>Cant
+		</td>
+		<td width=580px align=left style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=info>
+<table cellpadding=0 cellspacing=0 border=0>
+	<td width=90px><font class=info>Código</td>
+	<td width=350px><font class=info>Producto</td>
+	<td width=90px><font class=info>Precio Unitario</td>
+	<td width=40px align=center><font class=info>Total </td>
+</table>
+		</td>
+  </tr>
+
+	<tr bgcolor=#ffffff height=70px>
+		<td width=15px align=center  style="border-left:0px solid #555555;"><font class=infot>
+		</td>
+		<td width=580px align=left  style="border-left:1px solid #555555;"><br>
+<table cellpadding=0 cellspacing=0 border=0 height=80px>
+[fc_load_invoice_products]
+</table>
+
+
+
+		</td>
+  </tr>
+
+
+
+</table>
+
+<table cellpadding=5 cellspacing=0  style="border:1px solid #333333;margin-top:2px;" >
+	<tr bgcolor=#ffffff>
+		<td width=25px align=center>
+		</td>
+		<td width=580px style="border-left:1px solid #555555;">
+
+			<table cellpadding=0 cellspacing=0 border=0 width=570>
+	<td align=right>
+		<font class=detalles>
+Sub Total = [va_ordernet]<br>
+Descuentos= [va_orderdisc]<br>
+Impuestos = ([va_tax] %) [va_total_taxes]<br>
+Envio y Manejo = [va_ordershp]<br>
+Total = [va_total_order]<br>
+		</td>
+</table>
+
+		</td>
+  </tr>
+</table>
+<br>
+	<table width="100%" class=note border="0">
+		
+	</table>
+<br>
+	</td>
+	<td valign="top">	<font class=dir><br>
+
+		<img src="http://www.inova.com.mx/factura/Factura.jpg"><br><br>
+		<img src="/sitimages/encuesta.jpg">
+
+	</td>
+</table>

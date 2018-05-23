@@ -1,0 +1,132 @@
+[ip_header_blank]
+
+  <!-- Direksys v2 -->  
+  <link rel="stylesheet" type="text/css" href="[va_imgurl]app_bar/mod/Xtyle[in_e].css" />
+  <!-- Direksys v2 -->  
+
+<!-- Jquery -->
+<link rel="stylesheet" href="/libs/jqueryui/1.9.1/themes/cupertino/jquery-ui.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src=" /libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script type="text/javascript" language="JavaScript" src="/sitimages//jquery-events.js"></script>
+<script type="text/javascript" language="JavaScript" src="/sitimages//jquery-events.administration.js"></script>
+<!-- Jquery -->
+
+<!-- JqueryTools -->
+<script type="text/javascript" src="/jquery.tools.min.js"></script>
+<!-- JqueryTools -->
+
+<form action="[va_cgiurl]" method="POST" name="sitform" onsubmit="deactivate_button();">
+		<input type="hidden" name="action" value="1">
+		<input type="hidden" name="cmd" value="entershipment">
+		
+<!-- Start Main Area  -->
+
+
+
+
+
+
+
+	<div style="background-color:#ffffff; margin:15px;border:1px solid #aaaaaa;">
+		
+	<div style="margin:15px;">
+
+
+	<table border="0" cellspacing="0" cellpadding="4" width="100%">
+		<tr>
+			<td class="titletext" colspan="2" align="center">
+				 Enter Shipment 
+			</td>
+		</tr>
+		<tr>
+			<td><span class="bigerrtext">[va_error]</span>
+				<span class="stdtxterr">
+					<!-- start_err_msg  -->
+					[va_message]
+					<!-- end_err_msg  -->
+				</span>
+			</td>
+		</tr>
+		<tr>
+	    	<td valign="top">
+	    		Enter Shipment 
+	    		<span class="help_on">(Invoice / Tracking Number / Product Number)</span>
+		    	<br><textarea name="tracking" cols="50" style="width:98%;height:80px;" rows="5" class="input">[in_tracking]</textarea>	
+
+				<table>
+					<tr height=40px>
+						<td>Shipment Date:</td>
+						<td><input type="text" id="shpdate" name="shpdate" value="[in_shpdate]" size="15" class="input"><br></td>
+					</tr>
+					<tr height=40px>
+						<td>Warehouse: </td>
+						<td><select name="id_warehouses" class="input"><option>---</option>[fc_build_select_regular_warehouses]</select><br></td>
+					</tr>
+					<tr height=40px>
+						<td>Consolidated Shipment:</td>
+						<td><input type="checkbox" id="bulk" name="bulk" value="1" class="checkbox"><br></td>
+					</tr>
+					<tr height=40px>
+						<td>Scan From Pack Location:</td>
+						<td><input type="checkbox" id="scan_from_pack" name="scan_from_pack" value="1" class="checkbox"><br></td>
+					</tr>
+					<tr height=40px>
+						<td>Skip Batch Validation:</td>
+						<td><input type="checkbox" id="skip_batch" name="skip_batch" value="1" class="checkbox"><br></td>
+					</tr>
+					<tr height=40px>
+						<td>Authorization Code:</td>
+						<td><input type="text" id="authcode" name="authcode" value="[in_authcode]" size="15" class="input">
+				<br></td>
+					</tr>
+				</table>
+
+
+  
+		    </td>
+ 		 </tr>
+
+ 		 <tr>
+ 		 	<td align="center"><input type="submit" name="enterbutton" id="enterbutton" value="Enter shipment" class="button" onclick=""></td>
+ 		</tr>
+    </table>
+ 
+	
+</form>	
+
+<script language="javascript">
+<!--
+	
+	function deactivate_button()
+	{
+		document.sitform.enterbutton.disabled=true;
+	}
+	
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+			alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#shpdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: new Date(),
+			minDate: new Date(),
+			maxDate: "+6m",
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+	
+	chg_select('id_warehouses','[in_id_warehouses]');
+	chg_chkbox('bulk','[in_bulk]');
+	chg_chkbox('scan_from_pack','[in_scan_from_pack]');
+	chg_chkbox('skip_batch','[in_skip_batch]');
+
+//-->
+</script>
+	</div>
+</div>

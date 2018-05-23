@@ -1,0 +1,75 @@
+  <!-- Calendar -->
+  <style type="text/css">@import url(/sitimages//jscalendar/calendar-win2k-1.css);</style>
+  <link rel="stylesheet" type="text/css" media="all" href="/sitimages//jscalendar/skins/aqua/theme.css" title="Aqua">
+  <script type="text/javascript" src="/sitimages//jscalendar/calendar.js"></script>
+  <script type="text/javascript" src="/sitimages//default/calendar_lang.js"></script>
+  <script type="text/javascript" src="/sitimages//jscalendar/calendar-setup.js"></script>
+  <script type="text/javascript" src="/sitimages//default/popup.js"></script>
+  <script type="text/javascript" src="/sitimages//default/dropdown.js"></script>
+<!-- Jquery -->
+<link rel="stylesheet" href="/libs/jqueryui/1.9.1/themes/cupertino/jquery-ui.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src=" /libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script type="text/javascript" language="JavaScript" src="/sitimages//jquery-events.js"></script>
+<script type="text/javascript" language="JavaScript" src="/sitimages//jquery-events.administration.js"></script>
+<!-- Jquery -->
+
+<!-- JqueryTools -->
+<script type="text/javascript" src="/jquery.tools.min.js"></script>
+<!-- JqueryTools -->
+
+<table width="50%" border="0" cellspacing="0" cellpadding="2" align="center">
+	<tr>
+		<td class='smalltext' nowrap>
+			Tracking Number: [er_tracking]
+		</td>
+		<td class='smalltext'>
+			<input type="text" name="tracking" value="[in_tracking]" size='35' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		</td>
+	</tr>
+	<tr>
+		<td class='smalltext' nowrap>
+			Ship Provider: [er_shpprovider]
+		</td>
+		<td class='smalltext'>
+			<select name="shpprovider" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+          	<option value="">---</option>
+						[fc_build_select_shpvia]
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class='smalltext' nowrap>
+			Ship Date: [er_shpdate]
+		</td>
+		<td class='smalltext' nowrap>
+			<input type="text" id="shpdate" name="shpdate" value="[in_shpdate]" size='30' onFocus='focusOn( this )' onBlur='focusOff( this )'>
+		</td>
+	</tr>
+	<tr>
+		<td class='smalltext' colspan="2" align="center">
+			<input type='submit' class="button" value="Enter Shipment">
+		</td>
+	</tr>	
+</table>
+<script language="javascript">
+<!--					
+
+    $(document).ready(function() {
+
+		/*AJAX Error handler*/
+		$(document).ajaxError(function(e, xhr, settings, exception) {
+		alert('error in: ' + settings.url + ' \n'+'error:\n' + xhr.responseText );
+		});
+
+		var dates = $( "#shpdate" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+			defaultDate: "-2m",
+			maxDate: new Date(),
+			changeMonth: true,
+			numberOfMonths: 3,
+		});
+
+    });
+//-->
+</script>

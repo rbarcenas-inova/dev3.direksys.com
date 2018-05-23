@@ -1,0 +1,499 @@
+#!/usr/bin/perl
+#######################################################################
+#######################################################################
+#######################################################################
+
+#######
+####### /cgi-bin/common/apps/capture_depositref?e=2&process=analyze&no=1  -  Pree Proceso
+####### /cgi-bin/common/apps/capture_depositref?e=2&process=analyze&no=1  -  Proceso
+####### $va{'ida_banamex'} - Se usa para saber que contabilidad aplicar dependiendo lo que traiga la ultima columna
+
+use DBI;
+use DBIx::Connector;
+use DBD::mysql;
+use File::Copy;
+
+# Load the form information and set the config file and userid.
+local(%in) = &parse_form;
+local(%config, %cfg, %usr);
+
+# Required Libraries
+# --------------------------------------------------------
+eval {
+	require ("../subs/auth.cgi");
+	require ("../subs/sub.base.html.cgi");
+};
+
+if ($@) { &cgierr ("Error loading required Libraries",300,$@); }
+
+eval { &main; };
+if ($@) { &cgierr("Fatal error, 301, $@"); }
+
+exit;
+
+sub main {	
+	$|++;
+	print "Content-type: text/html\n\n";
+
+	# aplico la 2 porque este proceso fue diseñado para TMK
+	$in{'e'} = 2 if (!$in{'e'});
+	$va{'ida_nota'} = '76:0';
+	
+	&load_settings;
+
+	print "<h4>DIREKSYS :: $cfg{app_title} (e$in{'e'}) - CAPTURA DE PAGOS DE DEPOSITO REFERENCIADO</h5>";
+	# my $email_text = 'Cargado masivo de Ordenes -- '.localtime."\n";
+
+	# Numero de orden de cliente
+
+
+	&connect_db;
+	# paso 1 - revisar si en el folder configurado existen los 2 archivos y podrian ser del tipo csv | xls | xlsx
+	# consultar con robert este detalle
+	my $dir = $cfg{'path_sanborns_layouts'};
+	my $dirf = $cfg{'path_sanborns_layouts'} . 'done/';
+	$id_customer = 100105;# ----------------------------------------------->customer ID - SANBORNS
+
+	if(-e $dir) {
+
+		# cambiar a nombre archivo dinamico
+		my $file1 = 'capture_depositref'.$in{'no'}.'.csv';
+		
+		my $dir1 = $dir.$file1;
+		
+			print "abriendo: ".$dir1." <br>";
+
+			# lee archivo 1
+			# paso 2 - una vez que se encuentre el archivo hay que recorrer primero el que tiene el resumen
+			my ($string) = '';
+			my ($registers1) = 0;
+			my (@product, @cve_product, @product_price, @product_tax);
+
+			if(-r $dir1 and open (FILE, $dir1)) {
+				
+				print "<br><table width='100%' cellpadding='3' border='1' style='font-family:verdana;font-size:10px;border:solid 1px #000;'>";
+				print "<tr>";
+				print "		<th>ID ORDERS</th>";
+				print "		<th>PAYMENT DATE</th>";
+				print "		<th>AMOUNT</th>";
+				print "		<th>AUTH CODE</th>";
+				print "		<th>BANK</th>";
+				print "		<th>CREDIT MEMO</th>";
+				print "		<th>COMMENTS</th>";
+				print "</tr>";
+
+				my $errors=0;
+
+				TROW:while ($record = <FILE>) {
+
+					chomp $record;
+					$record =~ s/\r//g;
+					$registers1++;
+					my @fields = split "," , $record;
+
+
+					$fields[2] =~ s/[\" \$\,]//g;
+					my $field_id_orders = int($fields[0]);
+					my $field_date = &filter_values($fields[1]);
+					my $field_amount = &filter_values($fields[2]);
+					my $field_code = &filter_values($fields[3]);
+					my $field_bank = &filter_values($fields[4]);
+					my $field_creditmemo = filter_values($fields[5]);
+
+					if (int($field_id_orders) > 0){
+
+						print "<tr>";
+						print "		<td>$field_id_orders</td>";
+						print "		<td>$field_date</td>";
+						print "		<td>$field_amount</td>";
+						print "		<td>$field_code</td>";
+						print "		<td>$field_bank</td>";
+						print "		<td>$field_creditmemo</td>";
+
+
+						my $comments='';
+
+						my $sth = &Do_SQL("SELECT 
+						sl_orders_payments.ID_orders
+						, COUNT(*)payments
+						, sl_orders_payments.ID_orders_payments
+						, sl_orders.Ptype
+						, sl_orders_payments.Type
+						, round(sl_orders_payments.Amount,2)Amount
+						, abs(round(sl_orders_payments.Amount,2) - $field_amount)Diference
+						, Captured
+						, $field_amount AS AmountIn
+						, ROUND(Amount * (1 - $cfg{'porcerror'}/100),2) AS MinPay 
+						, ROUND(Amount * (1 + $cfg{'porcerror'}/100),2) AS MaxPay
+						, IF( ABS($field_amount - Amount) < 1 OR ($field_amount <= Amount * (1+$cfg{'porcerror'} / 100) AND $field_amount >= Amount * (1 - $cfg{'porcerror'} / 100)) ,1,0)AS Valid 
+						FROM sl_orders
+						INNER JOIN sl_orders_payments ON sl_orders_payments.ID_orders=sl_orders.ID_orders AND sl_orders_payments.Status NOT IN ('Cancelled') AND sl_orders_payments.Type='Referenced Deposit'
+						WHERE 1
+						AND sl_orders.Ptype='Referenced Deposit'
+						/* AND (Captured != 'Yes' OR Captured IS NULL) */
+						AND sl_orders.ID_orders = '$field_id_orders'
+						GROUP BY sl_orders_payments.ID_orders 
+						ORDER BY sl_orders.Date DESC");
+						my ($id_orders, $payments, $id_orders_payments, $ptype, $type, $amount, $diference, $captured, $amt_in, $minpay, $maxpay, $valid) = $sth->fetchrow_array();
+
+						$comments .= "El Pedido ya fue capturado '$field_id_orders'<br>" if ($captured eq 'Yes');
+						$comments .= "Pedido no encontrado '$field_id_orders'<br>" if (!$id_orders);
+						$comments .= "El Pedido No es Deposito Referenciado '$ptype'<br>" if ($ptype ne 'Referenced Deposit');
+						$comments .= "El Pago No es Deposito Referenciado '$type'<br>" if ($type ne 'Referenced Deposit');
+						#$comments .= "Pedido con diferencia entre montos = $diference<br>" if ($diference > 0.01 and !$valid);
+						$comments .= "Pedido con multiples pagos<br>" if ($payments > 1);
+						$comments .= "Pedido sin pagos<br>" if ($payments == 0);
+						$comments .= "Pedido sin banco<br>" if (!$field_bank);
+						$comments .= "Monto Invalido: $amount(Original) vs $field_amount(Recibido) <br>Min: $minpay - Max: $maxpay" if (!$valid);
+						
+						
+						$comments = "<span style='color:red;'>".$comments."</span><br>" if($comments ne '');
+
+
+						if ($comments eq '' and $valid and $ptype eq 'Referenced Deposit' and $payments == 1 and $field_id_orders > 0 and $field_amount > 0 and $field_code ne '' and $field_date ne ''){
+	
+							if ($in{'process'} eq 'commit'){
+							#if (1){
+								
+								my $modpay = $diference > 0 ? ", Amount = '$field_amount' " : '';
+								($field_bank eq 'nota') and ($modpay .= ", PmtField1 = '$field_creditmemo' ");
+								my ($sth) = &Do_SQL("UPDATE sl_orders_payments SET Captured='Yes', AuthCode='$field_code', CapDate=date('$field_date') , PmtField1 = '$field_bank' $modpay WHERE ID_orders_payments='$id_orders_payments' LIMIT 1;");
+								my ($sth) = &Do_SQL("UPDATE sl_orders SET Status='Processed', StatusPay='None' WHERE ID_orders='$id_orders' LIMIT 1;");
+								&auth_logging('opr_orders_stProcessed',$id_orders);
+								&status_logging($id_orders,'Processed');
+				
+								my $id_creditmemos; my $creditmemo_orders; my $modnote;
+								if($field_creditmemo ne '' and $field_creditmemo ne '0'){
+
+									#####
+									##### Es una nota de credito, buscamos el creditmemo original
+									#####
+									my ($sth) = &Do_SQL("SELECT cu_invoices_lines.ID_creditmemos, GROUP_CONCAT(DISTINCT sl_creditmemos_payments.ID_orders)AS ID_orders
+														FROM cu_invoices INNER JOIN cu_invoices_lines USING(ID_invoices)
+														LEFT JOIN sl_creditmemos_payments USING(ID_creditmemos)
+														WHERE CONCAT(doc_serial,doc_num) = '$field_creditmemo' 
+														GROUP BY ID_invoices,ID_creditmemos;");
+									($id_creditmemos, $creditmemo_orders) = $sth->fetchrow();
+									$id_creditmemos = 0 if !$id_creditmemos;
+									$creditmemo_orders = 0 if !$creditmemo_orders;
+
+
+									if($id_creditmemos){
+
+										###
+										### Nota en CreditMemo
+										###
+										my ($sth) = &Do_SQL("INSERT INTO sl_creditmemos_notes (ID_creditmemos,  Notes,  Type,  Date,  Time,  ID_admin_users ) 
+									 						VALUES('$id_creditmemos', 'Credit Applied to Order: $id_orders',  'Medium',  CURDATE(),  CURTIME(),  1)");
+									
+									}
+
+								}
+
+								$modnote .= "\nCM:$id_creditmemos" if $id_creditmemos; 
+								$modnote .= "\nOO:$creditmemo_orders" if $creditmemo_orders;
+								
+								&add_order_notes_by_type($id_orders,'Order Has Been Captured\nReference:$field_code\n$modnote',"Medium");
+								
+								$comments = "Payment Captured Successful<br>";
+								$comments .= "Monto Minimo aceptado: $field_amount vs $minpay<br>";
+								$comments .= "Monto Maximo aceptado: $field_amount vs $maxpay<br>";
+								$comments .= "Pago Actualizado:<br>" if $modpay ne '';
+
+
+								if($field_amount > 1){
+
+									## Accounting
+	                                my ($order_type, $ctype, $ptype,@params);
+	                                my ($sth) = &Do_SQL("SELECT Ptype, Type FROM sl_orders INNER JOIN sl_customers USING(ID_customers) WHERE ID_orders = '$id_orders';");
+	                                ($order_type, $ctype) = $sth->fetchrow();
+	                                $ptype = get_deposit_type($id_orders_payments,'');
+	                                @params = ($id_orders, $id_orders_payments, 1);
+	                                &accounting_keypoints('order_deposit_'. $ctype .'_'. $order_type .'_'. $ptype, \@params);
+
+	                                #########
+	                                ######### Cuentas contables especificas
+	                                #########
+	                                if($field_bank and $field_bank ne ''){
+
+										my ($ida_bank_debit, $ida_bank_credit) = split(/:/,$va{'ida_' . lc($field_bank)});
+
+										$ida_bank_debit = int($ida_bank_debit);
+										$ida_bank_credit = int($ida_bank_credit);
+
+										if($ida_bank_debit) {
+
+											$sql = "UPDATE sl_movements SET ID_accounts = '$ida_bank_debit' WHERE ID_tableused = '$id_orders' AND tableused = 'sl_orders' AND Credebit = 'Debit' AND Amount = '$amount' AND TIMESTAMPDIFF(SECOND,CONCAT(Date,' ',Time) , NOW()) < 30 ;";
+											$comments .= "<br>Debito Cambio a $ida_bank_debit";
+											&Do_SQL($sql);
+
+										}
+										
+										if($ida_bank_credit) {
+
+											$sql = "UPDATE sl_movements SET ID_accounts = '$ida_bank_credit' WHERE ID_tableused = '$id_orders' AND tableused = 'sl_orders' AND Credebit = 'Credit' AND Amount = '$amount' AND TIMESTAMPDIFF(SECOND,CONCAT(Date,' ',Time) , NOW()) < 30 ;";
+											$comments .= "<br>Credito Cambio a $ida_bank_credit";
+											&Do_SQL($sql);
+
+										}
+
+	                                }
+
+	                            }
+
+							}
+
+							#&cgierr("$id_orders - $comments") if $registers1 == 50;
+
+						}
+
+						print "		<td>$comments&nbsp;</td>";
+						print "</tr>";
+					}
+				}
+
+				print "</table><br>";
+
+
+				if($registers1 > 0) {
+					print "$registers1 records found in $dir1"." <br>";
+					if ($errors++){
+						print "SE ENCONTRARON ERRORES EN EL PROCESO, CORRIJALOS PARA CONTINUAR:<br>";
+						return;
+					}
+				}else {
+					print "no records found in $dir1"." <br>";
+					return;
+				}
+
+				close FILE;
+				
+
+			}else{
+				print "<span style='color:red;'>$dir1 no encontrado </span><br>";
+				return;
+			}
+
+  			#&send_text_mail($cfg{'from_email'},'adiaz@inovaus.com',"Resumen de Carga masiva de ordenes.", $email_text) if($in{'process'} eq 'commit');
+
+  			if($in{'process'} eq 'commit'){
+
+	  			### Moving the file to Backup
+				print "Moving ". $dir . $file1 .'to'. $dirf . $file1 ."\n\n";
+				move($dir . $file1, $dirf . $file1);
+
+			}
+	 
+	}else{
+		print "<span style='color:red;'>dir '$dir' not found </span><br>";
+		$email_text .= "El archivo '$dir' no fue encontrado.\n";
+
+	}
+
+	&disconnect_db;
+
+}
+
+#########################################################
+##			Query				##
+##########################################################
+sub parse_form {
+# --------------------------------------------------------
+	my (@pairs, %in);
+	my ($buffer, $pair, $name, $value);
+
+	if ($ENV{'REQUEST_METHOD'} eq 'GET') {
+		@pairs = split(/&/, $ENV{'QUERY_STRING'});
+	}elsif ($ENV{'REQUEST_METHOD'} eq 'POST') {
+		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
+ 		@pairs = split(/&/, $buffer);
+	}else {
+		&cgierr ("This script must be called from the Web\nusing either GET or POST requests\n\n");
+	}
+	PAIR: foreach $pair (@pairs) {
+		($name, $value) = split(/=/, $pair);
+
+		$name =~ tr/+/ /;
+		$name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		$name = lc($name);
+
+		$value =~ tr/+/ /;
+		$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+
+		$value =~ s/^\s+//g;
+		$value =~ s/\s+$//g;
+
+		#$value =~ s/\r//g;
+		$value =~ s/<!--(.|\n)*-->//g;			# Remove SSI.
+		if ($value eq "---") { next PAIR; }		# This is used as a default choice for select lists and is ignored.
+		(exists $in{$name}) ?
+			($in{$name} .= "|$value") :		# If we have multiple select, then we tack on
+			($in{$name}  = $value);			# using the ~~ as a seperator.
+	}
+	return %in;
+}
+
+##################################################################
+#     CGIERR   	#
+##################################################################
+sub cgierr {
+# --------------------------------------------------------
+# Last Modified on: 11/10/08 11:58:21
+# Last Modified by: MCC C. Gabriel Varela S: Se corrige la forma de mostrar la fecha
+	my (@sys_err) = @_;
+	print "Content-type: text/html\n\n";
+
+	my ($key,$env,$out_in,$out_env);
+	if (!$cfg{'cd'}){
+		print qq|
+						<head>
+										<title>CGI - ERROR</title>
+						</head>					
+						<body BGCOLOR="#FFFFFF" LINK="#FF0000" VLINK="#FF0000" ALINK="#FF0000">
+					
+							<table BORDER="0" WIDTH="500" CELLPADDING="10" CELLSPACING="10">
+							  <tr>
+							    <td BGCOLOR="#FF0000" colspan="2"><font size="5" color="#FFFFFF" face="Arial"><b>CGI-Error</b></font></td>
+							  </tr>
+							</table>
+							<table BORDER="0" WIDTH="550" CELLPADDING="2" CELLSPACING="0">|;
+								$sys_err[0]	and print "\n<tr>\n  <td valign='top' width='200'><font face='Arial' size='3'>Error Message</font></td>\n  <td><font face='Arial' size='3' color='#FF0000'><b>$sys_err[0]</b></font></td>\n</tr>\n";
+								$sys_err[1]	and print "<tr>\n  <td width='200'><font face='Arial' size='2'>Error Code</font></td>\n  <td><font face='Arial' size='2'>$sys_err[1]</font></td>\n";
+								$sys_err[2]	and print "<tr>\n  <td valign='top' width='200'><font face='Arial' size='2'>System Message</font></td>\n  <td><font face='Arial' size='2'>$sys_err[2]</font></td>\n";
+								print qq|
+							<tr>
+							  <td colspan="2"><p>&nbsp</p><font face='Arial' size='2'>If the problem percist, please contact us with the above Information.</font><br>
+									<font face='Arial' size='2'><a href="mailto:$systememail">$systememail</a></font></td>
+							</tr>
+							  </table>
+						</body>
+						</html>|;
+		######################################
+		### Save CGI ERR			
+		##############################
+		my ($ip);
+		my (@outmsg) = @sys_err;
+		my ($sec, $min, $hour, $day, $mon, $year, $dweek, $dyear, $daylight) = localtime(time());
+		$year+=1900;
+		$mon++;
+		my ($time,$date) = ("$hour:$min:$sec","$mon-$day-$year");
+		
+		foreach $key (sort keys %in) {
+			$outmsg[3] .= "$key=$in{$key},";
+		}
+		
+		foreach $env (sort keys %ENV) {
+			$outmsg[4] .= "$env=$ENV{$env},";
+		}
+		
+		for (0..4){
+			$outmsg[$_] =~ s/\n|\r/ /g;
+			$outmsg[$_] =~ s/\|/ /g;
+		}
+		
+		if ($ENV{'REMOTE_ADDR'}){
+			$ip = $ENV{'REMOTE_ADDR'};
+		}elsif ($ENV{'REMOTE_HOST'}){
+			$ip = $ENV{'REMOTE_HOST'};
+		}elsif ($ENV{'HTTP_CLIENT_IP'}){
+			$ip = $ENV{'HTTP_CLIENT_IP'};
+		}else{
+			$ip = "Unknow";
+		}
+	
+		(!$cfg{'cgierr_log_file'}) and ($cfg{'cgierr_log_file'} = './logs/cgierr.log');
+		if (open (LOG, ">>$cfg{'cgierr_log_file'}")){;
+			print LOG "$usr{'username'}|$outmsg[0]|$outmsg[1]|$outmsg[2]|$outmsg[3]|$outmsg[4]|$time|$date|$ip\n";
+			close AUTH;
+		}
+	
+
+	}else{
+		print "<PRE>\n\nCGI ERROR\n==========================================\n";
+					$sys_err[0]	and print "Error Message       : $sys_err[0]\n";
+					$sys_err[1]	and print "Error Code          : $sys_err[1]\n";
+					$sys_err[2]	and print "System Message      : $sys_err[2]\n";
+					$0			and print "Script Location     : $0\n";
+					$]			and print "Perl Version        : $]\n";
+					$sid		and print "Session ID          : $sid\n";
+
+
+		print "\nForm Variables IN\n-------------------------------------------\n";
+		
+		foreach $key (sort keys %in) {
+			my $space = " " x (20 - length($key));
+			$out_in .= "$key=$in{$key},";
+			print "$key$space: $in{$key}\n";
+		}
+		
+		print "\nForm Variables ERROR\n-------------------------------------------\n";
+		foreach $key (sort keys %error) {
+			my $space = " " x (20 - length($key));
+			print "$key$space: $error{$key}\n";
+		}
+		
+		print "\nEnvironment Variables\n-------------------------------------------\n";
+		foreach $env (sort keys %ENV) {
+			my $space = " " x (20 - length($env));
+			$out_env .= "$env=$ENV{$env},";
+			print "$env$space: $ENV{$env}\n";
+		}
+		
+		print "\n</PRE>";
+
+	}
+
+	exit -1;
+}
+
+sub load_settings {
+	my ($fname);
+	
+	if ($in{'e'}) {
+		$fname = "../general.e".$in{'e'}.".cfg";
+	}else {
+		$fname = "../general.ex.cfg";
+	}
+
+	## general
+	open (CFG, "<$fname") or &cgierr ("Unable to open: $fname,160,$!");
+	LINE: while (<CFG>) {
+		(/^#/)      and next LINE;
+		(/^\s*$/)   and next LINE;
+		$line = $_;
+		$line =~ s/\n|\r//g;
+		my ($td,$name,$value) = split (/\||\=/, $line,3);
+		if ($td eq "conf") {
+			$cfg{$name} = $value;
+			next LINE;
+		}elsif ($td eq "sys"){
+			$sys{$name} = $value;
+			next LINE;
+		}
+	}
+	close CFG;
+
+}
+
+sub check_ip {
+# --------------------------------------------------------
+	my ($ip, $ipfilter) = @_;
+	
+	my (@ip) = split(/\./,$ip,4);
+	my (@allowip) = split(/\,/,$ipfilter,4);
+	
+	for my $i(0..$#allowip){
+		$allowip[$i] =~ s/\n|\r//g;
+		$ok = 1;
+		my (@ipfilter) = split(/\./,$allowip[$i],4);
+		for my $x(0..3){
+			if ($ip[$x] ne $ipfilter[$x] and $ipfilter[$x] ne 'x'){
+				$ok = 0;
+			}
+		}
+	}
+	return $ok;
+}
+
+
+1;

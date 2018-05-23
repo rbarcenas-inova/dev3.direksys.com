@@ -1,0 +1,107 @@
+<form method="post" action="/cgi-bin/mod/[ur_application]/dbman" name="sitform" onsubmit="return confirm_adjustment();">
+	<input type="hidden" name="id_wreceipts" value="[in_id_wreceipts]">
+	<input type="hidden" name="view" value="[in_id_wreceipts]">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="tab" value="[in_tab]">
+	<input type="hidden" name="cmd" value="mer_wreceipts">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="gborder" align="center">
+		<tr>
+			<td class="tbltextttl" colspan="5">
+				<a href='javascript:trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=[in_cmd]&view=[in_id_wreceipts]&tab=[in_tab]&[va_rndnumber]#initab")'><img src='[va_imgurl]/[ur_pref_style]/b_reload.gif' title='Refresh' alt='' border='0'></a>&nbsp;
+				Records : [va_matches]</td>
+		</tr>
+		<tr>
+			<td colspan="5"><span class="stdtxterr">[va_message]</span>
+			 <table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+				<tr>
+				    <td class="menu_bar_title">&nbsp;</td>
+				    <td class="menu_bar_title" width="10%">Type</td>
+				    <td class="menu_bar_title" width="25%">Vendor</td>
+				    <td class="menu_bar_title" width="15%">Description</td>
+				    <td class="menu_bar_title" width="10%" align ="center" nowrap>Original Amount</td>
+				    <td class="menu_bar_title" width="10%" align ="center" nowrap>Amount</td>
+				    <td class="menu_bar_title" width="10%" align ="center" nowrap>Tax</td>
+				    <td class="menu_bar_title" width="12%" align ="right" nowrap>Total</td>
+				 </tr>
+				 [va_searchresults]
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5"><span class='fieldterr'>[va_tabmessages]</span>&nbsp;</td>
+		</tr>
+		[va_wr_blocked_start]
+		<tr>
+			<td colspan="5">Add New Adjustment</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<table align="center" width="100%">
+					<tr>
+						<td class="smalltext" valign="top">&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="smalltext" valign="top" width="30%">Description</td>
+						<td class="smalltext" valign="top">
+							<input type="text" name="description_adj" value="[in_description_adj]" size="60" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+							<span class="smallfieldterr">[er_description_adj]
+						</td>
+					</tr>
+					<tr>
+						<td class="smalltext" valign="top" width="30%">Tax</td>
+						<td class="smalltext" valign="top">
+							<input type="text" name="tax_percent" value="[in_tax_percent]" size="5" onFocus='focusOn( this )' onBlur='focusOff( this )'>%
+							<span class="smallfieldterr">[er_tax_percent]
+						</td>
+					</tr>
+					<tr>	
+						<td class="smalltext" valign="top" width="30%">Vendor</td>
+						<td class="smalltext" valign="top">
+							<select name="id_extvendors" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+								<option value="">---</option>
+								[fc_build_select_vendors_adjustments]
+							</select>
+							<span class="smallfieldterr">[er_id_extvendors]</span>
+						</td>
+					</tr>
+					<tr>	
+						<td class="smalltext" valign="top" width="30%">Charge</td>
+						<td class="smalltext" valign="top">
+							<select name="id_extracharges" onFocus='focusOn( this )' onBlur='focusOff( this )'>
+								<option value="">---</option>
+								[fc_build_select_poadjustments]
+							</select>
+							<span class="smallfieldterr">[er_id_extracharges]</span>
+						</td>
+					</tr>
+					<tr>	
+						<td class="smalltext" valign="top" width="30%">Amount [ln_id_vendors@sl_vendors:Currency]<br><span class="help_on">(W. Receipt Currency )</td>
+						<td class="smalltext" valign="top"> 
+							$ &nbsp;<input type="text" name="amount" value="[in_amount]" size="10"  onFocus='focusOn( this )' onBlur='focusOff( this )'><span class="smallfieldterr">[er_amount]</span>
+						</td>
+					</tr>
+					<tr>	
+						<td class="smalltext" valign="top" width="30%">Original Amount<br><span class="help_on">(Vendor Currency)</td>
+						<td class="smalltext" valign="top"> 
+							$ &nbsp;<input type="text" name="amount_original" value="[in_amount_original]" size="10"  onFocus='focusOn( this )' onBlur='focusOff( this )'><span class="smallfieldterr">[er_amount_original]</span>
+						</td>
+					</tr>
+				</table>
+			</td>
+		<tr>
+			<td colspan="5">&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="5"><input type="submit" value="Add Adjustment" class="button"></td>
+		</tr>
+		[va_wr_blocked_end]
+	</table>
+</form>
+<script language="javascript">
+<!--
+
+	chg_select('type','[in_type]');
+
+
+//-->
+</script>

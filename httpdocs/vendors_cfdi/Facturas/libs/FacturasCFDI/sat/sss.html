@@ -1,0 +1,186 @@
+"serie"=>$arr['serie'],
+		"folio"=>$arr['folio'],
+		"fecha"=>satxmlsv32_xml_fech($arr['fecha']),
+		"sello"=>"@",
+		"formaDePago"=>$arr['formaDePago'],
+		"noCertificado"=>$arr['noCertificado'],
+		"certificado"=>"@",
+		"subTotal"=>$arr['subTotal'],
+		"descuento"=>"0",
+		"total"=>$arr['total'],
+		"tipoDeComprobante"=>$arr['tipoDeComprobante'],
+		"metodoDePago"=>$arr['metodoDePago'],
+		"LugarExpedicion"=>$arr['LugarExpedicion'],
+		"NumCtaPago"=>$arr['NumCtaPago'],
+		"FolioFiscalOrig"=>$arr['FolioFiscalOrig'],
+		"SerieFolioFiscalOrig"=>$arr['SerieFolioFiscalOrig'],
+		"FechaFolioFiscalOrig"=>satxmlsv32_xml_fech($arr['FechaFolioFiscalOrig']),
+		"MontoFolioFiscalOrig"=>$arr['MontoFolioFiscalOrig']
+
+
+datos generales de Factura
+array(
+	'folio' => ,
+	'fecha' => ,
+	'sello' => ,
+	'formaDePago' => ,
+	'noCertificado' => ,
+	'certificado' => ,
+	'subTotal' => ,
+	'total' => ,
+	'tipoDeComprobante' => ,
+	'metodoDePago' => ,
+	'LugarExpedicion' => ,
+	'NumCtaPago' => ,
+	'FolioFiscalOrig' => ,
+	'SerieFolioFiscalOrig' => ,
+	'FechaFolioFiscalOrig' => ,
+	'MontoFolioFiscalOrig' => ,
+)
+
+Emisor
+
+array(
+	'rfc'=>
+	'nombre'=>
+	'calle'=>
+	'noExterior'=>
+	'noInterior'=>
+	'colonia'=>
+	'municipio'=>
+	'estado'=>
+	'pais'=>
+	'codigoPostal'	=>
+)
+
+$emisor = $root->appendChild($emisor);
+	satxmlsv32_cargaAtt($emisor, array("rfc"=>$arr['Emisor']['rfc'],
+		"nombre"=>$arr['Emisor']['nombre']
+		)
+	);
+	$domfis = $xml->createElement("cfdi:DomicilioFiscal");
+	$domfis = $emisor->appendChild($domfis);
+	satxmlsv32_cargaAtt($domfis, array("calle"=>"CARLOS B. ZETINA",
+		"noExterior"=>"80",
+		"noInterior"=>"",
+		"colonia"=>"PARQUE INDUSTRIAL XALOSTOC",
+		"municipio"=>"ECATEPEC DE MORELOS",
+		"estado"=>"MEXICO",
+		"pais"=>"MEXICO",
+		"codigoPostal"=>"55348"
+		)
+	);
+	$regimen = $xml->createElement("cfdi:RegimenFiscal");
+	$expedido = $emisor->appendChild($regimen);
+	satxmlsv32_cargaAtt($regimen, array("Regimen"=>$arr['Emisor']['Regimen']
+		)
+	);
+
+
+$receptor
+array(
+	'rfc'=>
+	'nombre'=>
+	'calle'=>
+	'noExterior'=>
+	'noInterior'=>
+	'colonia'=>
+	'municipio'=>
+	'estado'=>
+	'pais'=>
+	'codigoPostal'	=>
+)
+
+
+
+$receptor = $xml->createElement("cfdi:Receptor");
+	$receptor = $root->appendChild($receptor);
+	satxmlsv32_cargaAtt($receptor, array("rfc"=>$arr['Receptor']['rfc'],
+		"nombre"=>$arr['Receptor']['nombre']
+		)
+	);
+	$domicilio = $xml->createElement("cfdi:Domicilio");
+	$domicilio = $receptor->appendChild($domicilio);
+	satxmlsv32_cargaAtt($domicilio, array("calle"=>$arr['Receptor']['Domicilio']['calle'],
+		"noExterior"=>$arr['Receptor']['Domicilio']['noExterior'],
+		"noInterior"=>$arr['Receptor']['Domicilio']['noInterior'],
+		"colonia"=>$arr['Receptor']['Domicilio']['colonia'],
+		"localidad"=>$arr['Receptor']['Domicilio']['localidad'],
+		"municipio"=>$arr['Receptor']['Domicilio']['municipio'],
+		"estado"=>$arr['Receptor']['Domicilio']['estado'],
+		"pais"=>$arr['Receptor']['Domicilio']['pais'],
+		"codigoPostal"=>$arr['Receptor']['Domicilio']['codigoPostal'],
+		)
+	);
+
+
+conceptos array
+	array(
+		cantidad
+		unidad
+		descripcion
+		valorUnitario
+		importe
+	)
+
+
+$conceptos = $xml->createElement("cfdi:Conceptos");
+	$conceptos = $root->appendChild($conceptos);
+	for ($i=1; $i<=sizeof($arr['Conceptos']); $i++) {
+		$concepto = $xml->createElement("cfdi:Concepto");
+		$concepto = $conceptos->appendChild($concepto);
+		$prun = $arr['Conceptos'][$i]['valorUnitario'];
+		satxmlsv32_cargaAtt($concepto, array("cantidad"=>$arr['Conceptos'][$i]['cantidad'],
+			"unidad"=>$arr['Conceptos'][$i]['unidad'],
+			"descripcion"=>$arr['Conceptos'][$i]['descripcion'],
+			"valorUnitario"=>$arr['Conceptos'][$i]['valorUnitario'],
+			"importe"=>$arr['Conceptos'][$i]['importe'],
+			)
+		);
+	}
+
+
+
+impuestos traslados
+
+array(
+	impuesto
+	tasa
+	importe
+)
+
+
+$impuestos = $xml->createElement("cfdi:Impuestos");
+	$impuestos = $root->appendChild($impuestos);
+	if (isset($arr['Traslados']['importe'])) {
+		$traslados = $xml->createElement("cfdi:Traslados");
+		$traslados = $impuestos->appendChild($traslados);
+		$traslado = $xml->createElement("cfdi:Traslado");
+		$traslado = $traslados->appendChild($traslado);
+		satxmlsv32_cargaAtt($traslado, array("impuesto"=>$arr['Traslados']['impuesto'],
+			"tasa"=>$arr['Traslados']['tasa'],
+			"importe"=>$arr['Traslados']['importe']
+			)
+		);
+	}
+	$impuestos->SetAttribute("totalImpuestosTrasladados",$arr['Traslados']['importe']);
+
+
+
+
+xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+                xmlns:detallista="http://www.sat.gob.mx/detallista"
+                xmlns:divisas="http://www.sat.gob.mx/divisas"
+                xmlns:ecb="http://www.sat.gob.mx/ecb"
+                xmlns:ecc="http://www.sat.gob.mx/ecc"
+                xmlns:fn="http://www.w3.org/2005/xpath-functions"
+                xmlns:iedu="http://www.sat.gob.mx/iedu"
+                xmlns:implocal="http://www.sat.gob.mx/implocal"
+                xmlns:leyendasFisc="http://www.sat.gob.mx/leyendasFiscales"
+                xmlns:pfic="http://www.sat.gob.mx/pfic"
+                xmlns:psgecfd="http://www.sat.gob.mx/psgecfd"
+                xmlns:terceros="http://www.sat.gob.mx/terceros"
+                xmlns:tpe="http://www.sat.gob.mx/TuristaPasajeroExtranjero"
+                xmlns:ventavehiculos="http://www.sat.gob.mx/ventavehiculos"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">

@@ -1,0 +1,137 @@
+#!/usr/bin/perl
+
+#######################################################################
+#######################################################################
+#######################################################################
+use Image::Magick;
+use DBI;
+use DBIx::Connector;
+use DBD::mysql;
+
+          #apt-get install perlmagick
+          #apt-get install libgd-perl
+          #perl -MCPAN -e "install Image::Magick"
+
+# Load the form information and set the config file and userid.
+local(%in) = &parse_form;
+
+##### Loading File Location
+# --------------------------------------------------------
+open (CFG, "<../general.cfg") or &cgierr ("Unable to open: setup.cfg,150,$!");
+LINE: while (<CFG>) {
+	(/^#/)      and next LINE;
+	(/^\s*$/)   and next LINE;
+	$line = $_;
+	$line =~ s/\n|\r//g;
+	my ($td,$name,$value) = split (/\||\=/, $line,3);
+	if ($td eq "conf") {
+		$cfg{$name} = $value;
+		next LINE;
+	}
+}
+close CFG;
+
+eval { &main; };
+
+exit;
+
+sub main {
+# --------------------------------------------------------
+    my ($status) = &auth_check_password;
+    if ($status eq 'ok'){
+        if ($in{'fname'} and $in{'img_prn'}){
+            my($image, $x,$w,$h);
+            $in{'w'} = int($in{'w'});
+            $in{'h'} = int($in{'h'});
+            ($in{'w'}) and ($w = $in{'w'});
+            ($in{'h'}) and ($h = $in{'h'});
+            $g = $w."x".$h;
+            $image = Image::Magick->new;
+
+            $x = $image->Read("$cfg{'path_imgman'}$in{'fname'}");
+            if ($x){
+                print "Content-type: text/html\n\n";
+            }else{
+                 print "Content-Type: image/jpg\n\n";
+                 $x = $image->Thumbnail(geometry=>$g);
+                 eval('$x = $image->'. $in{'effect'});
+                 #$x = $image->AddNoise(noise=>'Uniform');
+                 #$x = $image->Solarize(threshold=>'double');
+                 #   $x = $image->RadialBlur(angle=>'double');
+                 #$x = $image->OilPaint(radius=>4);
+                 binmode STDOUT;
+                 $image->Write('jpg:-');
+            }
+        }elsif ($in{'fname'} and $in{'img_info'}){
+            my($image,$x);
+            #print "Content-type: text/html\n\n" unless $in{'method'} ne 'cmd';
+            $image = Image::Magick->new;
+            $x = $image->Read("$cfg{'path_imgman'}$in{'fname'}");
+            if (!$x){
+                my (@ary)=$image->Get('mime','width','height','x-resolution','y-resolution');
+                print join(",",@ary);
+            }else{
+                print "b $x";
+            }
+        }else{
+            #print "Content-type: text/html\n\n" unless $in{'method'} ne 'cmd';
+            print "error $ENV{'REQUEST_METHOD'} ";
+            foreach $key (keys %in){
+                print "$key = $in{$key} - ";
+            }
+        }
+    }
+}
+
+##########################################################
+##			Query				##
+##########################################################
+sub auth_check_password {
+# --------------------------------------------------------
+    return 'ok';
+}
+
+sub parse_form {
+# --------------------------------------------------------
+	my (@pairs, %in);
+	my ($buffer, $pair, $name, $value);
+
+	if ($#ARGV >0){
+        @pairs = @ARGV;
+        $in{'method'} = 'cmd';
+    }elsif($ENV{'REQUEST_METHOD'} eq 'GET') {
+		@pairs = split(/&/, $ENV{'QUERY_STRING'});
+        $in{'method'} = 'get';
+	}elsif ($ENV{'REQUEST_METHOD'} eq 'POST') {
+		read(STDIN, $buffer, $ENV{'CONTENT_LENGTH'});
+ 		@pairs = split(/&/, $buffer);
+        $in{'method'} = 'post';
+	}else {
+        @pairs = @ARGV;
+        $in{'method'} = 'cmd';
+	}
+	PAIR: foreach $pair (@pairs) {
+		($name, $value) = split(/=/, $pair);
+
+		$name =~ tr/+/ /;
+		$name =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+		$name = lc($name);
+
+		$value =~ tr/+/ /;
+		$value =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack("C", hex($1))/eg;
+
+		$value =~ s/^\s+//g;
+		$value =~ s/\s+$//g;
+
+		#$value =~ s/\r//g;
+		$value =~ s/<!--(.|\n)*-->//g;			# Remove SSI.
+		if ($value eq "---") { next PAIR; }		# This is used as a default choice for select lists and is ignored.
+		(exists $in{$name}) ?
+			($in{$name} .= "|$value") :		# If we have multiple select, then we tack on
+			($in{$name}  = $value);			# using the ~~ as a seperator.
+	}
+	return %in;
+}
+
+
+1;

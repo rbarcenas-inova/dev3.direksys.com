@@ -1,0 +1,407 @@
+
+<li><h3>Main</h3>
+	<div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td width=10px></td><td>
+			  <a href="/cgi-bin/mod/admin/admin?cmd=home"	class=acormenu><li>Homepage</a>
+			  <a href="/cgi-bin/mod/admin/dbman?cmd=usrman"	class=acormenu><li>User Manager</a>
+			  <a href="/cgi-bin/mod/admin/admin?cmd=about"	class=acormenu><li>About DirekSYS</a>
+			  <a href="javascript:logoff()"	class=acormenu><li>Logoff</a>
+				<br>
+			</td></tr>
+		</table>
+		<table border="0" cellspacing="0" cellpadding="0">
+			  [fc_link_to_extramodule]
+		</table>
+		<br>
+		[fc_menu_list]
+	</div>
+</li>
+
+<li><h3>Operations</h3>
+	<div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td colspan=2><font class=sub>Sales</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_sales"	class=acormenu><li>Dashboard</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_customers&search=advform"	class=acormenu><li>Customers</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_orders&search=advform"	class=acormenu><li>Orders</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=load_orders_from_layout" class=acormenu><li>Load Orders</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_inorders&search=advform"	class=acormenu><li>Incomplete Orders</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_origins" class=acormenu><li>Sale Channels</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_invoices"	class=acormenu><li>Invoices</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Shipping & Fulfillment</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_warehouses"	class=acormenu><li>Warehouses</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_locations"	class=acormenu><li>Locations</a>
+				<!-- <a href="/cgi-bin/mod/admin/dbman?cmd=opr_coverages"	class=acormenu><li>VWH Coverage</a> -->
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_zones" class=acormenu><li>Zones</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_manifests"	class=acormenu><li>Transfer Manifest</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_adjustments"	class=acormenu><li>Adjustments</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_skustransfers"	class=acormenu><li>SKU Transfer</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=opr_authnumber"	class=acormenu><li>Make Authorization number</a>												
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_claims"	class=acormenu><li>Claims</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_chargebacks"	class=acormenu><li>Chargebacks</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Account Receivable</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=opr_ar_addpayment"	class=acormenu><li>Enter Payment</a>
+				<!--a href="/cgi-bin/mod/admin/admin?cmd=opr_ar_toauth"	class=acormenu><li>Orders without Authorization Code</a-->
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_creditmemos"	class=acormenu><li>Credit Memos</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=opr_ar_statements"	class=acormenu><li>Statements</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=opr_ar_agging"	class=acormenu><li>Aging Summary</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_customers_advances"	class=acormenu><li>Customer Advances</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Returns</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_returns&search=form" class=acormenu><li>Manager</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_returns&search=listall&sb=id_returns&so=DESC&status=Processed"	class=acormenu><li>Processed</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_repmemos"	class=acormenu><li>Replacement Memos</a>
+				<br>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_return_notices" class=acormenu><li>Return Notices</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_carriers" class=acormenu><li>Carriers</a>
+				<br>
+			</td></tr>
+		</table>
+	</div>
+</li>
+
+
+<li><h3>Purchases & Bills</h3>
+	<div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td colspan=2><font class=sub>General</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_terms"	class=acormenu><li>Terms</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Purchases</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_vendors"	class=acormenu><li>Vendors</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_po"	class=acormenu><li>Purchases orders</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_wreceipts" class=acormenu><li>Warehouse receipts</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_bills"	class=acormenu><li>Bills</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=mer_change_topay"	class=acormenu><li>Change Status To Pay</a>		
+			</td>
+		</table>
+		<br>
+	</div>
+</li>
+
+
+<li><h3>Merchandising</h3>
+	<div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td colspan=2><font class=sub>Products & Services</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_parts"	class=acormenu><li>SKUS</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_noninventory" class=acormenu><li>Non Inventory Items</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_products"	class=acormenu><li>Products</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_services"	class=acormenu><li>Services</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Products Development</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_samples"	class=acormenu><li>Samples</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_prototypes"	class=acormenu><li>Prototypes</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Others</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_brands"	class=acormenu><li>Brand</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_packingopts"	class=acormenu><li>Packing/Shipping Options</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_categories"	class=acormenu><li>Categories</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mer_properties"	class=acormenu><li>Properties</a> 
+			</td>
+		</table>
+		<br>
+	</div>
+</li>
+
+<li><h3>Finance & Accounting</h3>
+	<div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_home"	class=acormenu><li>Financial Reports</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_reports_fp"	class=acormenu><li>Flex Pay</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Reports</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_ccbonus_dn"	class=acormenu><li>C. C. Bonus</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_batch"	class=acormenu><li>Print Batch</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_reporder_day"	class=acormenu><li>Orders Day</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_reporder_detail"	class=acormenu><li>Sales Shipping</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_reporder_all"	class=acormenu><li>All Orders</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_reporder_pay"	class=acormenu><li>Orders Payments</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_reporder_prod"	class=acormenu><li>Orders Products</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_reporder_cogs"	class=acormenu><li>Orders COGS</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_flexipagos"	class=acormenu><li>Flexipagos (AR)</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_report_debitscredits"	class=acormenu><li>Debits vs Credits</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_report_conciliation"	class=acormenu><li>Conciliation (Day)</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_repoper_day"	class=acormenu><li>Close Batch </a>
+				<hr>
+				<a href="/cgi-bin/mod/[ur_application]/admin?cmd=rep_aux_account_payable" class=acormenu><li>Auxiliary Account Payable</a>
+				<a href="/cgi-bin/mod/[ur_application]/admin?cmd=rep_aux_vendor_deposit" class=acormenu><li>Auxiliary Vendor Deposit</a>
+				<a href="/cgi-bin/mod/[ur_application]/admin?cmd=rep_aux_account_customers" class=acormenu><li>Auxiliary Account Receivable</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Orders</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_search_order"	class=acormenu><li>Search</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_enter_moneyorder"	class=acormenu><li>Enter Manual Payment</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_enter_cod"	class=acormenu><li>Enter COD Payment</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Returns</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_returns&search=Search&Status=Pending+Refunds&expanditem=4"	class=acormenu><li>Pending Refund</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=opr_returns&search=Search&Status=Pending+Payments&expanditem=4"	class=acormenu><li>Pending Payment</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Treasury</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=fin_banks"	class=acormenu><li>Banks</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_reconcile"	class=acormenu><li>Reconcile</a>
+				<!--a href="/cgi-bin/mod/admin/admin?cmd=fin_make_checks"	class=acormenu><li>Make checks</a-->
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_pending_bills"	class=acormenu><li>Bills Pending Auth.</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=fin_banks_movements"	class=acormenu><li>Banks movements</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_payment_bills"	class=acormenu><li>Payment Bills</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=preview_treasury"	class=acormenu><li>Treasury Load</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Accounting</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=fin_accounts"	class=acormenu><li>Accounts</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=fin_accategories"	class=acormenu><li>Accounts' Category</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=fin_journalentries"	class=acormenu><li>Journal Entries</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Setup</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=fin_taxstate"	class=acormenu><li>State Taxes</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=fin_taxcounty"	class=acormenu><li>County Taxes</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=fin_taxcity"	class=acormenu><li>City Taxes</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=fin_xcharges"	class=acormenu><li>Charges</a>
+				<!--&nbsp;&nbsp;&nbsp;<a href="/cgi-bin/mod/admin/admin?cmd=fin_"	class=acormenu><li>Transactions</a><br-->
+			</td>
+		</table>
+		<br>
+	</div>
+</li>
+
+<li><h3>Reports</h3>
+	<div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=opr_orders_board"	class=acormenu><li>Online Board</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=repmans&fulllist=1"	class=acormenu><li>Custom Reports</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=extracted_reports"	class=acormenu><li>Extracted Reports</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Orders</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_prod"	class=acormenu><li>Products</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_mm"	class=acormenu><li>Media</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_pay"	class=acormenu><li>Payments</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_usr"	class=acormenu><li>Users/Agents</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_cust"	class=acormenu><li>Customers/Orders</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_good_bad_l"	class=acormenu><li>Good/Bad</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_araging"	class=acormenu><li>A/R Aging</a>				
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_logistics"	class=acormenu><li>Logistics</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_balance"	class=acormenu><li>Balance</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_ar_order_payments"	class=acormenu><li>AR Payments</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_ar_aging"	class=acormenu><li>AR Aging</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_ar_aging_periods"	class=acormenu><li>AR Aging Periods</a>
+				<!--<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_ar_aging_periods2"	class=acormenu><li>AR Aging Periods Customer</a> -->
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_ar_customer_payments"	class=acormenu><li>AR Customer Payments</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>COD</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_cod_by_orders"	class=acormenu><li>By Order</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_cod_by_items"	class=acormenu><li>By Item</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_cod_by_posteddated"	class=acormenu><li>By Posted Dated</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Leading (CDR)</font></td></tr>
+			<tr><td width=10px></td><td>
+				<!--a href="/cgi-bin/mod/admin/admin?cmd=rep_cdr_home"	class=acormenu><li>Calls Report</a-->
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_cdr_leads_flash"	class=acormenu><li>Leading Flash</a>
+				<!--a href="/cgi-bin/mod/admin/admin?cmd=rep_cdr_didord"	class=acormenu><li>Leading / Orders by DID</a-->
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_cdr_ord"	class=acormenu><li>Orders</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_cdr_cod"	class=acormenu><li>Orders COD</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_cdr_tot"	class=acormenu><li>Total</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Business Intelligence</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_invoicing" class=acormenu><li>Invoicing</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_wholesale" class=acormenu><li>Wholesales Report</a>	
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_salesday"	class=acormenu><li>Sales by Day</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_prodbyagent"	class=acormenu><li>Sales by agent</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_allorders"	class=acormenu><li>Sales by Day/agent</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_allorders_by_capdate"	class=acormenu><li>Cumulative Collection</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_capture"	class=acormenu><li>Capture by agent</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_orders_customers_info"	class=acormenu><li>Orders/Customers Info</a>
+				<!--a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_orders_filter"	class=acormenu><li>Orders filter</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_noorder"	class=acormenu><li>Calls without Order</a-->
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_salesbysku"	class=acormenu><li>Sales by SKU</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_prodfam"	class=acormenu><li>Sales by ProdFam</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_shipinfo"	class=acormenu><li>Shipping Info</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_frec"	class=acormenu><li>Customers' frecuency</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_sex"	class=acormenu><li>Customers by Sex</a>				
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_sales_behavior"	class=acormenu><li>Sales Behavior</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_twilio_messages"	class=acormenu><li>Twilio Messages</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_orders_new_costs"	class=acormenu><li>Costs</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_sales_journal_v2"	class=acormenu><li>Sales Journal</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Accounting</font></font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=fin_journalentries_full" class=acormenu><li>Full Journal entry </a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_fin_collection" class=acormenu><li>Report Collection</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_fin_payments" class=acormenu><li>Payments' Report </a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_fin_kardex"	class=acormenu><li>Inventory Kardex</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_fin_inventory_valuation"	class=acormenu><li>Inventory Valuation</a>
+				<br>
+			</td></tr>	
+			<tr><td colspan=2><font class=sub>Bills</font></font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bills_flow"	class=acormenu><li>Flow Detail</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bills_flow&filter=topay"	class=acormenu><li>Flow Detail (To Pay)</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bills_banks" class=acormenu><li>Pays by Bank</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bills_po_payable" class=acormenu><li>Purchase Order Payable</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bills_po_ni_payable" class=acormenu><li>Purchase Order N/I Payable</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Media</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_mm_ratios"	class=acormenu><li>Ratios</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_media_sales" class=acormenu><li>Ventas</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Finance</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_fin_avsn"	class=acormenu><li>AVS N</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_fin_wreceipt"	class=acormenu><li>Warehouse Receipt</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Returns</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_ret_prod"	class=acormenu><li>Products</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_ret_orders"	class=acormenu><li>Orders</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_ret_orders_invoices"	class=acormenu><li>Orders and Invoices</a>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Logistics</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=rep_bi_allorders_logistics" class=acormenu><li>Sales by Day for Logistics</a>	
+				<br>
+			</td></tr>			
+		</table>
+		<br>
+	</div>
+</li>
+
+<li><h3>Media & Planning</h3>
+	<div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td colspan=2><font class=sub>General</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=mm_uploadcode"	class=acormenu><li>Sync Authorization Code</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mm_famprods&search=listall"	class=acormenu><li>Product Families</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mm_dmas"	class=acormenu><li>DMAs</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mm_zipdma"	class=acormenu><li>zipcode DMAs</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Planning</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mm_dids&search=listall"	class=acormenu><li>DID/DNIS</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mm_agencies&search=listall"	class=acormenu><li>Agencies</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mm_stations&search=listall"	class=acormenu><li>Stations</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mm_contracts&search=listall&sb=id_mediacontracts&so=DESC"	class=acormenu><li>Contracts</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Reports</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=mm_did0&search=listall"	class=acormenu><li>Orders wo/DID</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=mm_datax"	class=acormenu><li>Download Data</a>
+			</td>
+		</table>
+		<br>
+	</div>
+</li>
+
+<li><h3>Call Center</h3>
+	<div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td colspan=2><font class=sub>General</font></td></tr>
+			<tr><td width=10px></td><td>
+				<!--a href="/cgi-bin/mod/admin/admin?cmd=mkt_callcenters_availability"	class=acormenu><li>C. C. Schedules</a>	
+				<a href="/cgi-bin/mod/admin/admin?cmd=mkt_callcenters_logs"	class=acormenu><li>C. C. Logs</a-->	
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mkt_origins"	class=acormenu><li>Sale's Origins</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mkt_pnames"	class=acormenu><li>Price Names</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Call Center</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mkt_news"	class=acormenu><li>News</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mkt_speech"	class=acormenu><li>Steps Scripts</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mkt_operpages"	class=acormenu><li>Welcome Pages</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mkt_salesdocs"	class=acormenu><li>Sales docs.</a>
+				<br>
+			</td></tr>
+			<tr><td colspan=2><font class=sub>Promotions</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=mkt_coupons"	class=acormenu><li>Coupons</a>
+			</td>
+		</table>
+		<br>
+	</div>
+</li>
+
+<li><h3>Users</h3>
+	<div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td colspan=2><font class=sub><font class=sub>Users & Groups</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=usrgroup"	class=acormenu><li>User Groups</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=usrman"	class=acormenu><li>User account</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=usrptree"	class=acormenu><li>Perm tree</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=usr_view_admin_perm" class=acormenu><li>View Special Perm</a>
+				<hr>
+				<a href="/cgi-bin/mod/admin/admin?cmd=usr_admin_banned" class=acormenu><li>Banned Users</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=usr_admin_perm" class=acormenu><li>Users Permissions</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=group_admin_perm" class=acormenu><li>Groups Permissions</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=usr_users_perms_list" class=acormenu><li>Users Perms List</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=usr_view_groups_perm" class=acormenu><li>Groups Perms List</a>
+			</td></tr>
+			<tr><td colspan=2><font class=sub><font class=sub>Logs & Sessions</font></td></tr>
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=usr_sessions"	class=acormenu><li>View Active sessions</a>
+				<a href="/cgi-bin/mod/admin/dbman?cmd=usrlogs"	class=acormenu><li>Logs manager</a>
+ 			</td>
+		</table>
+		<br>
+	</div>
+</li>
+
+
+<li><h3>Preferences</h3>
+	<div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td width=10px></td><td>
+				<a href="/cgi-bin/mod/admin/admin?cmd=myprefs"	class=acormenu><li>Change my Preferences</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=myprefs_mypass"	class=acormenu><li>Change my Password</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=myprefs_wpage"	class=acormenu><li>Home Page</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=myprefs_mlogs"	class=acormenu><li>My Logs</a>
+				<a href="/cgi-bin/mod/admin/admin?cmd=help"	class=acormenu><li>Help</a>
+			</td>
+		</table>
+		<br>
+	</div>
+</li>

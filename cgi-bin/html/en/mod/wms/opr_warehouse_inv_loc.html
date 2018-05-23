@@ -1,0 +1,67 @@
+[ip_header]
+
+
+<table border="0" cellspacing="1" cellpadding="0" width="[ur_table_width]" bgcolor="#dedede">
+	<tr>
+		<td bgcolor="#ffffff" width=200px valign=top align=center>
+    		<!-- Acordion inicia-->
+			<table cellpadding=0 cellspacing=5 border=0><td align=left>
+			<font face=verdana>
+						<ul id="accordion">
+				[ip_menu]
+			</ul>
+			<script type="text/javascript" src="[va_yui_url]build/accordionview/accordionview-min.js"></script>
+			<script type="text/javascript">
+				var mainmenu = new YAHOO.widget.AccordionView('accordion', {collapsible: true, animationSpeed: '0.4', expandItem: 3, width: '180px', animate: true, effect: YAHOO.util.Easing.easeNone});
+			</script>
+		</td>
+		</table>
+		<td valign="top" aling="left" bgcolor="#ffffff">
+<!-- Start Main Area  -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab" align="center">
+	  <tr>
+	    <td width="30%" align="center"></td>
+	    <td width="18%" class="cell_on" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/admin?cmd=opr_warehouses_home")'>Warehouse</td>
+	    <td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=opr_warehouses&add=1")'>Add</td>
+		<td width="18%" class="cell_off" align="center" onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=opr_warehouses&search=form")'>Search</td>
+	    <td width="18%" class='cell_off' align='center' onClick='trjump("/cgi-bin/mod/[ur_application]/dbman?cmd=opr_warehouses&search=listall&so=DESC&sb=ID_warehouses")'>View / Edit / Delete</td>
+	  </tr>
+	</table>
+
+
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+		<tr>
+		    <td class="titletext" align="center" colspan="2">Inventory Warehouse with Locations [va_addtitle]</td>
+		 </tr>
+		<tr>
+		    <td class="tbltextttl">Records : [va_matches]	[va_options]</td>
+		    <td align="right" class="tbltextttl">Pages: [va_pageslist]</td>
+		 </tr>
+    </table>
+	<table border="0" cellspacing="0" cellpadding="4" width="100%" class="formtable">
+		<tr>
+		    <td class="menu_bar_title">Warehouse</td>
+		    <td class="menu_bar_title">Type</td>
+		    <td class="menu_bar_title">Location</td>
+		    <td class="menu_bar_title">ID</td>
+		    <td class="menu_bar_title">UPC</td>
+		    <td class="menu_bar_title">Model / Name</td>
+		    <td class="menu_bar_title">Category</td>
+		    <td class="menu_bar_title">Qty</td>
+		    [va_td_cost]
+		    <!-- td class="menu_bar_title">Cost</td>
+		    <!--td class="menu_bar_title">Total</td -->
+		 </tr>
+		[va_searchresults]
+    </table>
+    &nbsp;
+
+    <div style="padding:10px;text-align:center;"><a href="/cgi-bin/mod/[ur_application]/admin?cmd=opr_warehouses_inventory_locations&id_warehouses=[in_id_warehouses]&export=1" class="button">Export Inventory File</a></div>
+ 
+
+<!-- End Main Area  -->
+		</td>
+	</tr>
+</table>
+
+[ip_footer]
