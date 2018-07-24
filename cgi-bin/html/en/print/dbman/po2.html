@@ -19,19 +19,17 @@ font.gracias
 {font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
 
 font.info
-{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: normal;text-decoration: none;cursor: default;line-height:12pt;}
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
 font.infot
-{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
 font.detalles
-{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
 
 font.infotit
 {font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
 
 font.its
 {font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
-
-
 fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
 </STYLE>
 
@@ -46,181 +44,100 @@ fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    
 	</td>
 	[fc_show_companyinfo]
 </table>
+
 <center>
 <hr style="color: #000;background-color: #000;height: 1px;">
-
-
-
-<font class=its>P U R C H A S E O R D E R</font>
-<div style="[va_display_noauth]"><font class=its>U N A U T H O R I Z E D</font></div>
-<br>
+<font class=its> PURCHASE  &nbsp;&nbsp;   ORDER </font>
 <hr style="color: #000;background-color: #000;height: 1px;">
-
-<font class=dir>
-Order ID: [in_id_purchaseorders]
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; 
-Date: [in_date]
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; 
-Order Type: [in_type]
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; 
-Pymt Terms: [in_poterms]
-</font>
-
 <br>
-
-<hr style="color: #000;background-color: #000;height: 2px;">
-<br>
-
-<table cellpadding=0px cellspacing=15px border=0>
-	<td valign=top align=left><font class=infot><u>
-		Supplier:
-
-<table style="margin-left:25px;">
-	<td valign=top align=left width=400px><font class=info>
-		[va_vendor_name]<br>
-		<font class=infot>	Contact:</font><br>
-		Ctc: [va_vcontact]<br>
-		Tel: [va_vcontact_tel]<br>
-		Fax: [va_contact_fax]<br>
-		Email: [va_vcontact_email]
-	</td>
+	<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	<tr>
+		<td width="50%" valign="top">
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td colspan="2"><fieldset><span class="titletext"><font class=info>PO # :[in_id_purchaseorders]</span></fieldset></td>
+				</tr>
+		  	<tr>
+				  <td><font class=infot>Release Date :</td>
+				  <td><font class=info><fieldset>[in_podate]</fieldset></td>
+				</tr>			 
+		  	<tr>
+				  <td valign="top"><font class=infot>Cancel Date :</td>
+				  <td><font class=info><fieldset>[in_canceldate]</fieldset></td>
+				</tr>	
+		  	<tr>
+				  <td valign="top"><font class=infot>Vendor:</td>
+				  <td><font class=info>
+				  	<fieldset><b>([in_id_vendors])[va_vendor_inf]  	
+				  	</fieldset>
+				  </td>
+				</tr>	
+		  	<tr>
+				  <td valign="top"><font class=infot> Shipping<br>Instructions :</td>
+				  <td><font class=info>
+				  	<fieldset>[va_shipping_inst]</fieldset>
+				  </td>
+				</tr>	
+			</table>	
+			</td>
+		<td width="50%" valign="top">
+			<table border="0" cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+			  	<td valign="top"><font class=infot>Invoice To :</td>
+			    <td><fieldset><font class=info><b>SLN Management</b><br>4095 State Road 7 Ste L216<br>Wellington FL 33449</fieldset></td>
+				</tr>
+		  	<tr>
+				  <td valign="top"><font class=infot>Ship To :</td>
+				  <td><font class=info><fieldset>[va_shiptoaddress]</td>
+				</tr>			 
+		  	<tr>
+				  <td valign="top"><font class=infot>Payment Terms :</td>
+				  <td><font class=info>[in_poterms]</td>
+				</tr>
+		  	<tr>
+				  <td valign="top">&nbsp;</td>
+				  <td><font class=info>[in_poterms_desc]</td>
+				</tr>					
+		  	<tr>
+				  <td valign="top"><font class=infot>Ship Method :</td>
+				  <td><font class=info>[in_shipvia]</td>
+				</tr>
+		  	<tr>
+				  <td valign="top">&nbsp;</td>
+				  <td><font class=info>[in_other_desc]</td>
+				</tr>				
+				<tr>
+					<td valign="top"><font class=infot>PO (RefNum) :</td>
+				  <td><font class=info>[in_refnumber]</td>
+				</tr>
+				</tr>
+  		  <tr>
+		      <td width="30%"><font class=infot>ETD :</td>
+		      <td><font class=info>[in_etd]</td>
+		    </tr>
+			</table>			
+			</td>
+	</tr>
 </table>
 
-	<td>
-	<td valign=top align=left><font class=infot><u>
-		Bill To (Consignee):
-
-<table style="margin-left:25px;">
-	<td valign=top align=left width=400px><font class=info>
-<b>[va_company_name]</b><br>
-Boulevard [va_company_street] No. Ext. [va_company_num] No. Int. S/N,<br>
-Colonia [va_company_urbanization], Delegación [va_company_city], <br>
-C.P.[va_company_zip], [va_company_state], Estados Unidos Mexicanos<br>
-R.F.C: [va_company_rfc]<br>
-		Ctc: [va_ctc]<br>
-		Tel: [va_ctc_tel]<br>
-		Fax: [va_ctc_fax]<br>
-		Email: [va_ctc_email]		
-	</td>
-</table>
-
-
-
-	<td>
-</table>
-
-
-<hr style="color: #000;background-color: #000;height: 2px;">
-
-
-
-<table cellpadding=0px cellspacing=5px border=0>
-	<td valign=top align=left><font class=info>
-		<table cellpadding=0px cellspacing=10px border=0>
-			<tr><td valign=top align=right><font class=infot>Delivered To:</td><td valign=top align=left width=250px><font class=info>[va_shiptoaddress]</td></tr>
-			<tr><td valign=top align=right><font class=infot>Ship Terms:</td><td valign=top align=left width=250px><font class=info>[in_poterms]</td></tr>
-			<tr><td valign=top align=right><font class=infot>Standard Lead Time:</td><td valign=top align=left width=250px><font class=info>[in_etd]</td></tr>
-			<tr><td valign=top align=right><font class=infot>Requested Ship Date:</td><td valign=top align=left width=250px><font class=info>[in_etd]</td></tr>
-			<tr><td valign=top align=right><font class=infot>Customer Ref/PO #:</td><td valign=top align=left width=250px><font class=info>[in_id_purchaseorders]</td></tr>
-			<tr><td valign=top align=right><font class=infot>Origin:</td><td valign=top align=left width=250px><font class=info>[in_rciorigin]</td></tr>
-			<tr><td valign=top align=right><font class=infot>Currency:</td><td valign=top align=left width=250px><font class=info>[va_vendor_currency]</td></tr>
-		</table>
-	</td>
-	<td valign=top align=left><font class=info>
-		<table cellpadding=0px cellspacing=10px border=0>
-			<tr><td valign=top align=right><font class=infot>Mode of Transport:</td><td valign=top align=left width=310px><font class=info>[in_shipvia]</td></tr>
-			<tr><td valign=top align=right><font class=infot>Forwarder:</td><td valign=top align=left width=310px><font class=info>[in_rciforwarder]</td></tr>
-		</table>
-	</td>
-</table>
-
-
-
-
-
-<table cellpadding=5 cellspacing=0  style="border:1px solid #333333;" width=100% >
-	<tr bgcolor=#ffffff>
-		<td align=center style="border-left:1px solid #555555;border-bottom:1px solid #555555; border-left:0px;"><font class=infot>
-			Item 
-		</td>
-		<td align=center style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>
-			Description
-		</td>
-		<td align=center style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>
-			UPC
-		</td>
-		<td align=center style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>
-			SKU
-		</td>
-		<td align=center style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>
-			Qty
-		</td>
-		<td align=center style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>
-			Received
-		</td>
-		<td align=center style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>
-			CPU
-		</td>
-		<td align=center style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>
-			Amount
-		</td>
-  </tr>
-	[fc_load_po_items]	
-</table>
-
-
-<br>
-
-<table cellpadding=12 cellspacing=0  style="border:1px solid #333333;border-left:0px;border-bottom:0px;" width=100% >
-	<tr bgcolor=#ffffff>
-		<td align=left valign=top width=50% style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=info>
-			<font class=infotit>Document Requirements:</font><br>
-			- Original Invoice (3 original, 2copies). Invoice must include: Buyer info.<br>
-			(with tax ID/RFC) , Buyer information (with tax ID).<br>
-			- Bill of Ladings (3 originals+ 2 copies).<br>
-			- Packing List ( 3 originals+2 copies).<br>
-			-Certificate of origin (2 copies)<br>
-		</td>
-		<td align=left valign=top width=50% style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=info>
-			<font class=infotit>*Payment Terms:</font><br><u>
-			[in_poterms_desc]
-		</td>
-  </tr>
-	<tr bgcolor=#ffffff>
-		<td align=left valign=top width=50% style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=info>
-			<font class=infotit>Notify to:</font><br>
-			[va_notify]
-		</td>
-		<td align=left valign=top width=50% style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=info>
-			<font class=infotit>Shipping Marks:</font><br>
-			<table cellpadding=0 cellspacing=5>
-		<td align=left valign=top><font class=info>Company´s name:</td>
-			<td align=left valign=top><font class=info>[va_company_name]</td></tr>
-		<td align=left valign=top><font class=info>REF#:</td>
-			<td align=left valign=top><font class=info>[in_id_purchaseorders]</td></tr>
-		<td align=left valign=top><font class=info>Product Name</td>
-			<td align=left valign=top><font class=info></td></tr>
-		<td align=left valign=top><font class=info>Qty.:</td>
-			<td align=left valign=top><font class=info>--</tr>
-		<td align=left valign=top><font class=info>C/No.:</td>
-			<td align=left valign=top><font class=info>-</td></tr>
-		<td align=left valign=top><font class=info>Country of origin:</td>
-			<td align=left valign=top><font class=info>-</td></tr>
-		</table>
-		</td>
-  </tr>
-</table>
-<br>
-[va_add_notes_high]
-	</td>
-</table>
-
-
-
-
-
-
-
-
-
-
+<p class="txtlegend">Purchase Order
+<table border="0" cellspacing="0" cellpadding="7" width="100%"  style="border:1px solid #333333;border-bottom:1px solid #333333;">
+	<tr>
+		<td align="center" nowrap style="border-left:0px solid #555555;border-bottom:1px solid #555555;"><font class=infot>#</td>
+		<td align="center" nowrap style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>ID</td>
+		<td align="center" style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Vendor SKU</td>
+		<td align="center" style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Description</td>
+		<td align="center" style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Quantity</td>
+		<td align="center" style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Received</td>
+		<td align="center" style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>Price</td>
+		<td align="center" style="border-left:1px solid #555555;border-bottom:1px solid #555555;"><font class=infot>SubTotal</td>
+	 </tr><font class=info>
+	 [va_polist]
+	<tr>
+		<td colspan="8"><hr style="color: #000;background-color: #000;height: 2px;"></td>
+	</tr>			 
+	<tr>
+    <td colspan="7" align="right"><font class=infot>Total = </td>
+    <td align="right" nowrap><font class=info>[va_pototal]</td>
+	</tr>
+</table></p>

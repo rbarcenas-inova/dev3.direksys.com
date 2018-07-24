@@ -2,7 +2,7 @@
 font.dir
 {font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
 font.id
-{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: normal;text-decoration: none;cursor: default;line-height:19pt;}
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
 font.idno
 {font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
 
@@ -19,399 +19,119 @@ font.gracias
 {font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
 
 font.info
-{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
 font.infot
-{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
 font.detalles
-{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
 
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
 fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
 </STYLE>
 
 <center>
- <h3>[va_invoice_message]</h3>
-<table  border=0 cellpadding=0 cellspacing=0 width=870px>
+
+      <h3>[va_invoice_message]</h3> 
+
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px >
 	<td><font class=info>
 
- 
- 
- 
-<table cellpadding=0 cellspacing=0 border=0>
-	<td align=left>
 
-	[fc_show_companyinfo]
-	
- 
-</table>
+		<table cellpadding=0 cellspacing=0>
+			<td align=left>
+		        <td align="left" valign="top">		<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px></td>
+			[fc_show_companyinfo]
+		</table>
 
 
-<hr style="color: #000;background-color: #000;height: 3px;width:640px;">
-&nbsp; &nbsp; 
-I N V O I C E
-&nbsp; &nbsp; 
-
-<br>
-
-<hr style="color: #000;background-color: #000;height: 1px;width:640px;">
-</td>
-<td align=center width=230px>
+		<hr style="color: #000;background-color: #000;height: 3px;width:640px;">
+		<font class=its>W H O L E S A L E </font><br>
+		<hr style="color: #000;background-color: #000;height: 1px;width:640px;">
+	</td>
+	<td align=center width=230px  valign=top>
 
 
 	
-<table cellpadding=5 cellspacing=0  border=0 style="border:1px solid #333333;padding:0px;width:230px;-moz-border-radius: 5px;border-radius: 5px;" height=170px>
-	<td align=center>
-		 <font class=idno>PROFORMA INVOICE</font><br>
-	<font class=id>
-		[in_id_orders]<br>
-<!--img src="/cgi-bin/common/apps/barcode?code=MU[in_id_orders]" style="margin-top:6px" border="0"-->
-
-	</td>
-</table>
-
-	</td>
-</table>
-
-
-
-
-<table  border=0 cellpadding=0 cellspacing=7 style="margin-top:0px;" width=870px>
-	<td valign=top>		<font class=note>
-
-
-<table cellpadding=0 cellspacing=0 border=0 width=100%>
-	<td>
-		<table cellpadding=0 cellspacing=10 border=0>
-			<tr>
-				<td></td>
-				<td valign=top align=left><font class=goto><font size=3><b>
-					Bill to:
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Name
-				</td>
-				<td valign=top align=left><font class=infot>
-					[fc_load_customer_name]
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Address
-				</td>
-				<td valign=top align=left><font class=infot>
-					[in_address1] <br>
-					[in_address2] <br>
-					[in_address3]  <br>
-				</td>
-			</tr>
-			<tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Citty/Cty
-				</td>
-				<td valign=top align=left><font class=infot>
-					[in_city]  [in_urbanization]   [in_state] [in_zip] <br>
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Phone
-				</td>
-				<td valign=top align=left><font class=infot>
-					 [va_shp_phone][va_phone_number]
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Fax
-				</td>
-				<td valign=top align=left><font class=infot>
-					 [in_fax]
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Contact
-				</td>
-				<td valign=top align=left><font class=infot>
-					 [in_contactname]
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Email
-				</td>
-				<td valign=top align=left><font class=infot>
-					[in_email]
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Tax ID
-				</td>
-				<td valign=top align=left><font class=infot>
-					[in_taxid]
-				</td>
-			</tr>
+		<table cellpadding=5 cellspacing=0  style="border:1px solid #333333;padding:0px;width:230px;-moz-border-radius: 5px;border-radius: 5px;" >
+			<td align=center>
+				<font class=id>
+				Order ID: <br><font class=idno>[in_id_orders]</font><br>
+				Order Date:  [in_date]<br>
+				[fc_checkifcopy]
+			    <br>
+				<img src="/cgi-bin/common/apps/barcode?code=IU[in_id_orders]" border="0">
+			</td>
 		</table>
-		
+
 	</td>
-	<td valign=top>
-		
-		
-		
-				<font class=note>
-
-
-
-		<table cellpadding=0 cellspacing=10>
-			<tr>
-				<td></td>
-				<td valign=top align=left><font class=goto><font size=3><b>
-					Ship to:
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Name
-				</td>
-				<td valign=top align=left><font class=infot>
-					[fc_load_customer_name]
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Address
-				</td>
-				<td valign=top align=left><font class=infot>
-					[fc_load_customer_addres_code]<br>
-					[in_shp_address1]<br>
-					[in_shp_address2]<br>
-					[in_shp_address3]<br>
-
-				</td>
-			</tr>
-			<tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Citty/Cty
-				</td>
-				<td valign=top align=left><font class=infot>
-					[in_shp_city] [in_shp_urbanization] [in_shp_state] [in_shp_zip] <br>
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Phone
-				</td>
-				<td valign=top align=left><font class=infot>
-					 [va_shp_phone] 
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					 
-				</td>
-				<td valign=top align=left><font class=infot>
-					 [va_shp_phone2] 
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Contact
-				</td>
-				<td valign=top align=left><font class=infot>
-					 [in_shp_contactname]
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Email
-				</td>
-				<td valign=top align=left><font class=infot>
-					[in_shp_email]
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Tax ID
-				</td>
-				<td valign=top align=left><font class=infot>
-					[in_shp_taxid]
-				</td>
-			</tr>
-		</table>
-		
-		
-		
-	</td>
-	<td valign=top>
-		
-		
-		
-				<font class=note>
-<br>
-
-
-		<table cellpadding=0 cellspacing=10>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Date:
-				</td>
-				<td valign=top align=left><font class=infot>
-					[va_int_date]
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left nowrap><font class=info>
-					Order No.
-				</td>
-				<td valign=top align=left><font class=infot>
-					[va_int_id_orders]
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Ship Via
-				</td>
-				<td valign=top align=left><font class=infot>
-					[in_chp_via]
-				</td>
-			</tr>
-			<tr>
-				<td valign=top align=left><font class=info>
-					Terms
-				</td>
-				<td valign=top align=left><font class=infot>
-					[in_shp_terms]
-				</td>
-			</tr>
-		</table>
-		
-		
-		
-	</td>
-</table>
-
-
-<br>
-
-
-<hr style="color: #000;background-color: #000;height: 3px;width:870px;">
-
-
-
-
-<br><br> 
-
-
-
-<table cellpadding=5 cellspacing=0 width=100%>
-	<tr bgcolor=#ffffff>
-<td  style="border:1px solid #333333;border-right:0px solid #333333;">
-	Qty
-</td>
-<td  colspan=3 style="border:1px solid #333333;border-right:0px solid #333333;border-left:0px solid #333333;">
-	Product Desctiption
-</td>
-<td  style="border:1px solid #333333;border-right:0px solid #333333;border-left:0px solid #333333;">
-	Unit Price
-</td>
-<td  style="border:1px solid #333333;border-left:0px solid #333333;">
-	Total
-</td>
-</tr>
 <tr>
-	<td width=40px></td>
-	<td><font class=infot>Item</td>
-	<td><font class=infot>Color</td>
-	<td><font class=infot>Size</td>
-	<td width=120px></td>
-	<td width=120px></td>
-</tr>
-
-<!--demo list start [fc_load_inv_upcproducts]-->
-<tr>
-	<td align=left valign=top><font class=info> 60</td>
-	<td align=left valign=top><font class=info> quebare</td>
-	<td align=left valign=top><font class=info> beige</td>
-	<td align=left valign=top><font class=info> small</td>
-	<td align=left valign=top><font class=info> $ 10.00 </td>
-	<td align=left valign=top><font class=info> $600.00 </td>
-</tr>
-
-<!--demo list end [fc_load_inv_upcproducts]-->
-
-[fc_load_inv_upcproducts]
-
-	<tr bgcolor=#ffffff>
-<td>
-</td>
-<td>
-</td>
-<td>
-</td>
-<td>
-</td>
-<td  style="border:1px solid #333333;border-right:0px solid #333333;">
-	<font class=info>Total
-</td>
-<td  style="border:1px solid #333333;border-left:0px solid #333333;">
-	<font class=infot> [va_total_order] [va_int_currency]
-</td>
-</tr>
-</table>
+	<td align=left colspan=2>
 
 
+		<table cellpadding=0 cellspacing=0 border=0 style="margin-top:15px; width:100%">
+			<tr>
+				<td colspan=2><font class=goto>
+					Customer Info:
+				</td>
+				<td rowspan=2 width=25px align=left  style="border-left:1px dashed #aaaaaa;">
+					&nbsp;
+				</td>
+				<td colspan=2><font class=goto>
+					SEND TO:
+				</td>
+			</tr>
+			<tr>
+				<td width=20px></td>
+				<td align=left valign=top><font class=goto>
+					[fc_load_customer_name]<br>
+					[in_address1]
+					[in_address2]
+					[in_address3]
+					[in_urbanization]<br>
+					[in_city]<br>
+					[in_state] <br>
+					[in_zip]<br><br>
+
+					Tel: [va_shp_phone]
+					<br>
+				</td>
+				<td width=20px></td>
+				<td align=left valign=top><font class=goto>
+					[in_shp_name]<br>
+					[in_shp_address1]
+					[in_shp_address2]
+					[in_shp_address3]
+					[in_shp_urbanization]<br>
+					[in_shp_city]<br>
+					[in_shp_state]<br> 
+					[in_shp_zip]<br><br>
+
+					Shipping Date: [in_shpdate]<br>
+					Shipping Type: [in_shptype]<br>
+				</td>
+			</tr>
+		</table>
 
 
+		<br>
 
 
-
-
-<br>
-
-
-
-<br>
-<font class=info>
-
-Empresa:Importaciones de México y Latinoamérica S de RL de CV<br>
-Banco: Santander (México), SA<br>
-Moneda: USD<br>
-Numero de Cuenta: 82-500656180<br>
-Swift Code: BMSXMXMM<br>
-Clabe: 014180825006561809<br>
-ABBA: 021000021<br>
-Swift Dólar Americano : CHASUS33<br>
-Sucursal: 5658<br>
-Dirección del Banco: Adolfo Prieto No.202 1er piso Col. Del Valle<br>
-Del. Benito Juárez,México, DF 03100<br>
-Teléfono: (55)5169 4300<br>
-PAYMENT DETAILS:<br>
-
-
-
-<br>
-
-
-<hr style="color: #000;background-color: #000;height: 1px;width:870px;">
-
-
-<table width=100% cellspacing=5>
-<tr><td><font class=infot>PAYMENT DETAILS:</td><td><font class=infot> RECOMENDATIONS:</td></tr>
-<tr><td valign=top align=left><font class=info>Payment Method: N/A</td><td valign=top align=left><font class=info></td></tr>
-</table>
-
-
-<hr style="color: #000;background-color: #000;height: 1px;width:870px;">
-
-
-
-
-<br><br> 
-
-	</td>
-
+	 
+	     <table border="0" cellpadding="7" cellspacing="0" height="100%" width="100%" style="border:1px solid #111111;">
+	      <tr>
+	        <td width="10%" bgcolor="#111111" align="left"><font color=#ffffff>Product ID</td>      	
+	        <td width="40%" bgcolor="#111111" align="left"><font color=#ffffff>Product Description</td>
+	        <td width="10%" bgcolor="#111111" align="center"><font color=#ffffff>Quantity</td>
+	        <td width="15%" bgcolor="#111111" align="right"><font color=#ffffff>Unit Price</td>
+	        <td width="15%" bgcolor="#111111" align="right"><font color=#ffffff>Total</td>
+	      </tr>
+			[fc_load_inv_products]
+	     </table>
+ 
+	 </td>
 </table>

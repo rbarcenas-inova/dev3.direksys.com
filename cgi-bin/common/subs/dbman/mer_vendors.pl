@@ -182,14 +182,6 @@ sub validate_mer_vendors {
 			}
 		}		
 	}
-	if ($in{'id_accounts_debit'} == 0 or $in{'id_accounts_debit'} eq '') {
-		$error{'id_accounts_debit'} = &trans_txt('invalid');
-		++$err;
-	}
-	if ($in{'id_accounts_credit'} == 0 or $in{'id_accounts_credit'} eq '') {
-		$error{'id_accounts_credit'} = &trans_txt('invalid');
-		++$err;
-	}
 
 	if( $va{'error_vendors'} ){
 		++$err;

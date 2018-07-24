@@ -1408,13 +1408,8 @@ sub build_po_list {
 			$va{'polist'} .= "   <td class='smalltext' valign='top'>$tmp->{'VendorSKU'}</td>\n";
 			$va{'polist'} .= "   <td class='smalltext' valign='top'>$name </td>\n";
 			$va{'polist'} .= $va{'qyt'};
-			$va{'polist'} .= $va{'price'};
-			$va{'polist'} .= $va{'taxp'};
 			$va{'polist'} .= "   <td class='smalltext' align='center' valign='top' $color>".&format_number($rec->{'Received'})."</td>\n";
-			$va{'polist'} .= "   <td class='smalltext' align='right' valign='top' nowrap> ".&format_price($rec->{'Qty'} * $rec->{'Price'})."</td>\n";
-			$va{'polist'} .= "   <td class='smalltext' align='right' valign='top'>\$ ".&format_number($rec->{'Tax'},2)."</td>\n";
-			$va{'polist'} .= "   <td class='smalltext' align='right' valign='top'>\$ ".&format_number($rec->{'Tax_withholding'},2)."</td>\n";
-			$va{'polist'} .= "   <td class='smalltext' align='right' valign='top'>\$ ".&format_number($rec->{'Tax_other'},2)."</td>\n";
+			$va{'polist'} .= $va{'price'};
 			$va{'polist'} .= "   <td class='smalltext' align='right' valign='top' nowrap> ".$va{'total'}."</td>\n";
 			$va{'polist'} .= "</tr>\n";
 			$tot_qty += $rec->{'Qty'};

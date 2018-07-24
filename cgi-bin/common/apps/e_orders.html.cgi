@@ -1065,7 +1065,9 @@ sub add_sku{
 			my $sth = &Do_SQL($sql);
 			$va{'matches'} = $sth->fetchrow;
 			if ($va{'matches'}>0){
-				$sql = (!$cfg{'e_orders_use_price_by_customer'})?"SELECT * FROM sl_parts LEFT JOIN sl_skus ON ID_sku_products=400000000+ID_parts WHERE 1 $query AND sl_parts.Status = 'Active' LIMIT 0,50":"SELECT * FROM sl_parts INNER JOIN sl_customers_parts USING(ID_parts) LEFT JOIN sl_skus ON ID_sku_products=400000000+ID_parts WHERE 1 $query AND sl_parts.Status = 'Active' AND sl_customers_parts.ID_customers ='$idcust' LIMIT 0,50";
+				$sql = (!$cfg{'e_orders_use_price_by_customer'}) ?
+						"SELECT * FROM sl_parts LEFT JOIN sl_skus ON ID_sku_products = 400000000 + ID_parts WHERE 1 ". $query ." AND sl_parts.Status = 'Active' LIMIT 0,50 " : 
+						"SELECT * FROM sl_parts INNER JOIN sl_customers_parts USING(ID_parts) LEFT JOIN sl_skus ON ID_sku_products = 400000000 + ID_parts WHERE 1 ". $query ." AND sl_parts.Status = 'Active' AND sl_customers_parts.ID_customers = ". $idcust ." LIMIT 0,50";
 
 				my $sth = &Do_SQL($sql);
 				while ($rec = $sth->fetchrow_hashref){
