@@ -1,131 +1,176 @@
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td align="center" valign="top" colspan="3">
-      <h3>[va_invoice_message]</h3> 
-    </td>
-  </tr>
-   <tr>
-    <td colspan="2">
+<STYLE TYPE="text/css">
+font.dir
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.id
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+font.idno
+{font-family:  arial;background: ;color:#000000;font-size: 17pt;font-weight: bold;text-decoration: none;cursor: default;line-height:19pt;}
+
+font.note
+{font-family:  arial;background: ;color:#000000;font-size: 8pt;font-weight: bold;text-decoration: none;cursor: default;line-height:12pt;}
+font.goto
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.gid
+{font-family:  arial;background: ;color:#222222;font-size: 11pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gtxt
+{font-family:  arial;background: ;color:#222222;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+font.gracias
+{font-family:  arial;background: ;color:#222222;font-size: 12pt;font-weight: bold;text-decoration: none;cursor: default;line-height:14pt;}
+
+font.info
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+font.infot
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: bold;text-decoration: none;cursor: default;line-height:8pt;}
+font.detalles
+{font-family:  arial;background: ;color:#000000;font-size: 10pt;font-weight: normal;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.infotit
+{font-family:  arial;background: ;color:#000000;font-size: 9pt;font-weight: bold;text-decoration: none;cursor: default;line-height:13pt;}
+
+font.its
+{font-family:  arial;background: ;color:#000000;font-size: 13pt;font-weight: bold;text-decoration: none;cursor: default;line-height:20pt;}
+fieldset legend {    margin: 0;    padding: 0;    border: 0;    float: none;    font-size: 14px;    line-height: 18px;    color:#0c74ff;}
+</STYLE>
+
+<center>
+
+
+
+<table border=0 cellpadding=0 cellspacing=0 width=870px >
+	<td><font class=info>
+
 <table cellpadding=0 cellspacing=0>
 	<td align=left>
-	<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px>
-	</td>
+        <td align="left" valign="top">		<img src="[va_imgurl]/packing_list/logo_gris.e[in_e].gif" style="margin-right:15pt" border=0 height=75px></td>
 	[fc_show_companyinfo]
 </table>
-    	<div align="left">
-    	</div>
-   	</td>   	
-    <td width="51%" align="center">
-    	<table width="500" border="1" align="right" cellpadding="0" cellspacing="0">
-      	<tr>
-      		<td>
-        		<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	          	<tr>
-	            	<td align="center" class="tbltextttl">CLIENTE:</td>
-		          </tr>
-							<tr>
-							  <td align="center">
-							  	[fc_load_customer_name]<br>
-							  	[in_address1]<br>
-							  	[in_address2]<br>
-							  	[in_address3]
-						  	</td>
-							</tr>
-							<tr>
-						  	<td align="center">[in_urbanization]</td>
-							</tr>
-							<tr>			
-								<td align="center">[in_city]</td>
-							</tr>
-							<tr>
-							  <td align="center">[in_state] [in_zip]</td>
-							</tr>
-		      	</table>
-		    	</td>
-        	<td>
-        		<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	          	<tr>
-	            	<td align="center" class="tbltextttl">ENVIAR:</td>
-	          	</tr>
-							<tr>
-						  	<td align="center">
-						  		[in_shp_name]<br>
-						  		[va_shp_phone]
-						  		[in_shp_address1]<br>
-						  		[in_shp_address2]<br>
-						  		[in_shp_address3]
-						  	</td>
-							</tr>
-							<tr>
-						  	<td align="center">[in_shp_urbanization]</td>
-							</tr>
-							<tr>			
-								<td align="center">[in_shp_city]</td>
-							</tr>
-							<tr>
-							  <td align="center">[in_shp_state] [in_shp_zip]</td>
-							</tr>
-		    	  </table>
-		     	</td>
-		    </tr>
-    	</table>
-    <div align="center">
-    </div>
-    </td>
-  </tr>
-	<tr>
-		<td colspan="2"><table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
-				<tr>
-					<td>ORDEN</td>
-					<td>[in_id_orders]</td>
-				</tr>
-				<tr>
-					<td>FECHA</td>
-					<td>[in_date]</td>
-				</tr>
-				<tr>
-					<td>FECHA ENVIO</td>
-					<td>[in_shpdate]</td>
-				</tr>
-				<tr>
-					<td>TIPO ENVIO</td>
-					<td>[in_shptype]</td>
-				</tr>
-			</table>&nbsp;
-		</td>
-		<td valign='top' align='center'><br>
-			<img src="/cgi-bin/common/apps/barcode?code=[va_e_prefix][in_id_orders]" style="margin-top:6px" border="0">
-		</td>
-	</tr>
-  </tr>
-  <tr>
-    <td colspan="3">
-     <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+
+
+<hr style="color: #000;background-color: #000;height: 3px;width:640px;">
+
+<font class=its>P A C K I N G  &nbsp;&nbsp; L I S T </font>
+<br>
+
+<hr style="color: #000;background-color: #000;height: 1px;width:640px;">
+</td>
+<td align=center width=230px  valign=top>
+
+
+	
+<table cellpadding=5 cellspacing=0  style="border:1px solid #333333;padding:0px;width:230px;-moz-border-radius: 5px;border-radius: 5px;" >
+	<td align=center>
+
+		<font class=id>
+		Num Orden: <font class=idno>[in_id_orders]</font><br>
+Fecha Orden:  [in_date]<br>
+[fc_checkifcopy]
+	        	<br>
+			<img src="/cgi-bin/common/apps/barcode?code=IU[in_id_orders]" border="0">
+	</td>
+</table>
+
+</td>
+<tr>
+<td align=left colspan=2>
+
+
+		<table cellpadding=0 cellspacing=0 border=0 style="margin-top:15px; width:100%">
+<tr>
+	<td colspan=2><font class=goto>
+		Customer Info:
+	</td>
+	<td rowspan=2 width=25px align=left  style="border-left:1px dashed #aaaaaa;">
+&nbsp;
+	</td>
+
+	<td colspan=2><font class=goto>
+		Ship To:
+	</td>
+</tr>
+<tr>
+	<td width=20px></td>
+	<td align=left><font class=goto>
+
+
+[fc_load_customer_name]<br>
+[in_address1]
+[in_address2]
+[in_address3]<br>
+[in_urbanization]<br>
+[in_city]<br>
+[in_state] <br>
+[in_zip]<br> 
+
+<br>
+Tel: [va_shp_phone] 
+	</td>
+
+
+
+	<td width=20px></td>
+	<td align=left><font class=goto>
+
+[in_shp_name]
+<br>[in_shp_address1]
+[in_shp_address2]
+[in_shp_address3]<br>
+[in_shp_urbanization]<br>
+[in_shp_city]<br>
+[in_shp_state] <br>[in_shp_zip]
+
+
+<br><br>
+Shipping Type:	[in_shptype]
+	</td>
+
+</tr>
+</table>
+
+
+ 
+ <br>
+
+
+     <table border="0" cellpadding="7" cellspacing="0" height="100%" width="100%" style="border:1px solid #111111;">
       <tr>
-        <td width="10%" bgcolor="#C0C0C0" align="center">ID PRODUCTO</td>      	
-        <td width="40%" bgcolor="#C0C0C0" align="center">DESCRIPCION</td>
-        <td width="10%" bgcolor="#C0C0C0" align="center">CANTIDAD</td>
-        <td width="15%" bgcolor="#C0C0C0" align="center">PRECIO UNITARIO</td>
-        <td width="15%" bgcolor="#C0C0C0" align="center">SUBTOTAL</td>
+        <td width="15%" bgcolor="#111111" align="left"><font color=#ffffff>&nbsp;&nbsp;Product ID</td>      	
+        <td width="70%" bgcolor="#111111" align="left"><font color=#ffffff>Product Description</td>
+        <td width="15%" bgcolor="#111111" align="center"><font color=#ffffff>Quantity&nbsp;&nbsp;</td>
+
       </tr>
-     
-[fc_load_inv_products_cust_sku]
+		[fc_load_inv_products_clean]
 	  <tr>
-	    <td colspan="5">&nbsp;</td>
+	    <td colspan="5">&nbsp;</td>      	
 	  </tr>
     </table>
-	</td>
-  </tr>
 
 
 
-</table>	
-	
-	
-	
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" bgcolor="#C0C0C0" height="2"></td>
-  </tr>
+
+
+
+
+
+</td>
 </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

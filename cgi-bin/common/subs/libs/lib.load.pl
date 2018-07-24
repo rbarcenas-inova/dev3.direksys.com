@@ -247,6 +247,163 @@ sub load_order_payments {
 }
 
 
+sub load_inv_products_clean {
+#####
+##### Se manda llamar para el formato clean, sin montos
+#####
+
+
+	$in{'getit_clean'} = 1;
+	my ($style,$output,$tot_qty,$tot_ord,$choices,$prefix,$id_products);
+
+	my ($query)='';
+	my $table_cols = !$in{'getit_clean'} ? 5 : 3;
+	
+	$prefix="Related_"if(&is_exportation_order($in{'id_orders'}));
+	$id_products=$prefix."ID_products";
+	
+	if ($in{'toprint'}){
+		$style = 'stdtext';
+	}else{
+		$style = 'smalltext';
+	}
+		
+	$query = " AND ID_products  =  $in{'id_products'} "  if ($in{'id_products'} and  length($in{'id_products'})	== 9 and substr($in{'id_products'},0,1)==4);
+	my ($sth) = &Do_SQL("SELECT COUNT(*) FROM sl_orders_products WHERE ID_orders='$in{'id_orders'}' AND Status NOT IN('Order Cancelled', 'Inactive') $query");
+	$va{'matches'} = $sth->fetchrow; 
+	if ($va{'matches'}>0){
+
+		my $is_refill=0;
+		
+		my ($sth1) = &Do_SQL("SELECT * FROM sl_orders_products WHERE ID_orders='$in{'id_orders'}' AND Status NOT IN('Order Cancelled', 'Inactive') $query ORDER BY ID_orders_products");
+		my ($col);	
+		while ($col = $sth1->fetchrow_hashref){
+
+			my $refill_mark='';
+			$d = 1 - $d;
+
+			my ($sthk) = &Do_SQL("SELECT * FROM sl_skus WHERE ID_sku_products='$col->{'$id_products'}' and Status='Active'");
+			$rec = $sthk->fetchrow_hashref;
+
+			if ($col->{$id_products} < 5000){
+				### Services in Order
+				$output .= "   <td width=90px valign=top align=left><font class=detalles>$col->{'$id_products'}&nbsp;";
+				$output .= "   <div style='position:relative;right:27px;bottom:18px;'>".&format_number($col->{'Quantity'})."</div></td>\n";
+				#GV Modifica 21abr2008 Se cambia sl_services por sl_services #GV Modifica 21abr2008 Se cambia ID_services por ID_services
+				$output .= "   <td width=350px valign=top align=left><font class=detalles>".&load_name('sl_services','ID_services',$col->{$id_products},'Name')."</td>\n";
+			
+			}elsif($col->{$id_products}>600000000){
+				### Services in Order
+				(&load_name('sl_services','ID_services',$col->{$id_products}-600000000,'ServiceType') eq 'Refill') and ($is_refill = 1) and ($refill_mark = ' <strong>**</strong> ');
+				$output .= "   <td width=90px valign=top align=left><font class=detalles>".&format_sltvid($col->{$id_products})."&nbsp;</td>";
+				$output .= "   <td width=350px valign=top align=left><font class=detalles>".&load_name('sl_services','ID_services',$col->{$id_products}-600000000,'Name')." $refill_mark</td>\n";
+			
+			}else{
+				### Products in Order
+				$output .= "   <td width=90px valign=top align=left><font class=detalles>".&format_sltvid($col->{$id_products})."&nbsp;";
+				#$output .= "   <div style='position:relative;right:27px;bottom:18px;'>".&format_number($col->{'Quantity'})."</div></td>\n";
+				($col->{'SerialNumber'}) and ($col->{'SerialNumber'} = "<br>$col->{'SerialNumber'}");
+				($status,%tmp) = &load_product_info($col->{$id_products});
+
+				if(&is_exportation_order($in{'id_orders'}) or $query ne '') {
+					$tmp{'model'}=&load_name('sl_parts','ID_parts',$col->{$id_products}-400000000,'Model');
+					$tmp{'name'}=&load_name('sl_parts','ID_parts',$col->{$id_products}-400000000,'Name');
+				}
+
+				$tmp{'model'} = &replace_in_string($tmp{'model'});
+				$tmp{'name'} = &replace_in_string($tmp{'name'});
+
+				$output .= "   <td width=350px valign=top align=left><font class=detalles>$tmp{'model'}<br>$tmp{'name'} ".
+							"<span class='smalltext'>".&load_parts($col->{$id_products})."</span></td>";
+
+			}
+			
+
+			if(&is_exportation_order($in{'id_orders'})){
+				$output .= "  <td class='$style' align='right' nowrap>".$col->{'Quantity'}."</td>\n";
+
+				if(!$in{'getit_clean'}){
+
+					$output .= "  <td class='$style' align='right' nowrap>".&format_price($col->{'SalePrice'}/ $col->{'Quantity'})."</td>\n";
+					$output .= "  <td class='$style' align='right' nowrap>".&format_price($col->{'SalePrice'})."</td>\n"	if $col->{'SalePrice'} > 0;
+					$output .= "  <td class='$style' align='right' nowrap>".&format_price($col->{'SalePrice'}*-1)."</td>\n"	if $col->{'SalePrice'} < 0;
+
+				}
+
+				$tot_ord +=$col->{'SalePrice'} if $col->{'SalePrice'} >0;
+				$tot_ord -= $col->{'SalePrice'} if $col->{'SalePrice'} <0;
+
+			}else{
+				$output .= "  <td class='$style' align='right' nowrap>".$col->{'Quantity'}."</td>\n";
+
+				if(!$in{'getit_clean'}){
+				
+					$output .= "  <td class='$style' align='right' nowrap>".&format_price($col->{'SalePrice'})."</td>\n";
+					$output .= "  <td class='$style' align='right' nowrap>".&format_price($col->{'SalePrice'}*$col->{'Quantity'})."</td>\n"	if $col->{'SalePrice'} > 0;
+					$output .= "  <td class='$style' align='right' nowrap>".&format_price($col->{'SalePrice'}*$col->{'Quantity'}*-1)."</td>\n"	if $col->{'SalePrice'} < 0;
+
+				}
+
+				$tot_ord +=$col->{'SalePrice'} * $col->{'Quantity'} if $col->{'SalePrice'} >0; 
+				$tot_ord -= $col->{'SalePrice'} * $col->{'Quantity'} if $col->{'SalePrice'} <0;
+			}
+			
+			$output .= "</tr>\n";
+			$tot_qty += $col->{'Quantity'};	
+		 }
+		 
+		### Orders Totals
+		$taxes = &products_sum_in_order($in{'id_orders'}, "Tax");
+		$va{'total_taxes'} = &format_price($taxes);
+		$va{'total_order'} = &format_price(&total_orders_products($in{'id_orders'}));	
+		$va{'ordernet'} = &format_price($in{'ordernet'});
+		$va{'ordershp'} = &format_price(&products_sum_in_order($in{'id_orders'}, "Shipping"));
+		$va{'orderdisc'} = &format_price(&products_sum_in_order($in{'id_orders'}, "Discount"));
+		$va{'tax'} = $in{'ordertax'}*100;
+		$va{'ordertax'} = &format_number($in{'ordertax'}*100);	
+		#$va{'total_order'} = &format_price($in{'ordernet'}+$in{'ordershp'}+$in{'ordernet'}*$in{'ordertax'});		
+		#$va{'total_order'} = &format_price(int((($in{'ordernet'}*$tot_qty)  +$in{'ordershp'}-$va{'orderdisc'}+$in{'ordernet'}*$in{'ordertax'})*100+0.9)/100);				
+		my $refill_txt='&nbsp;';
+		if($is_refill){
+			$refill_txt .= qq|
+				    &nbsp;<tr>
+					    <td colspan='$table_cols'>
+						 <strong>|.&trans_txt('refill_disclaimer_title').qq|</strong><br>
+						 |.&trans_txt('refill_disclaimer_desc').qq|
+					    </td>
+				    </tr>&nbsp;|;
+
+		}
+		##Points
+		my $points_info='';
+		$va{'points_info'}='';
+		$va{'points_info'}=&get_points_info($in{'id_customers'},$in{'id_orders'});
+		$points_info=qq|[ip_forms:reward_points]| if($va{'points_info'}ne'');
+		
+		## Coupons?
+		my $add_coupon = '';
+		if($cfg{'coupons'} and $in{'ordernet'} >= $cfg{'coupons_mindireksys'}){
+			
+			$result = &get_coupon_external('sl_orders',$in{'id_orders'});
+
+			if($result > 0){
+				$add_coupon = qq|[ip_forms:coupons_external_view]|;
+			}
+		}
+			 
+		 
+	}else{
+		$output = qq|
+			<tr>
+				<td colspan='$table_cols' align="center">|.&trans_txt('search_nomatches').qq|</td>
+			</tr>\n|;
+	}
+
+	return $output;	
+
+}
+
+
 sub load_inv_products {
 # --------------------------------------------------------
 	return &load_ordproducts_list('std');
